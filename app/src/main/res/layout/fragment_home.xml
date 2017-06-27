@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.hawksjamesf.simpleweather.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <xyz.matteobattilana.library.WeatherView
+        android:id="@+id/wv_weather_status"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="-100dp"
+        android:layout_marginRight="-100dp"
+        app:angle="-3"
+        app:fadeOutTime="1000"
+        app:fps="40"
+        app:lifeTime="2200"
+        app:numParticles="55"
+        app:orientationMode="ENABLE"
+        app:startingWeather="RAIN"/>
+
+    <TextView
+        android:text="2017-06-27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_below="@+id/tv_city"
+        android:layout_alignParentStart="true" android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp" android:id="@+id/tv_date"/>
+    <TextView
+        android:text="Tuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_week" android:layout_alignBaseline="@+id/tv_date"
+        android:layout_alignBottom="@+id/tv_date" android:layout_toEndOf="@+id/tv_date"
+        android:layout_marginStart="14dp"/>
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Shanghai"
+        android:textSize="24sp"
+        android:layout_below="@+id/wv_weather_status" android:layout_centerHorizontal="true"/>
+    <TextView
+        android:text="26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_temperature"
+        android:layout_above="@+id/tv_date" android:layout_alignStart="@+id/tv_date"
+        android:layout_marginStart="17dp" android:textSize="36sp" android:textStyle="normal|bold|italic"
+        android:textAllCaps="false"/>
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_alignTop="@+id/tv_temperature"
+        android:layout_toEndOf="@+id/tv_temperature"/>
+    <me.zhouzhuo.zzweatherview.ZzWeatherView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/weather_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarThumbHorizontal="@drawable/scroll_bar_thumb"
+        android:scrollbarTrackHorizontal="@drawable/scroll_bar_thumb"
+        android:scrollbarSize="4dp"
+        android:background="#333"
+    >
+    </me.zhouzhuo.zzweatherview.ZzWeatherView>
+
+
+</RelativeLayout>
