@@ -5,20 +5,32 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.hawksjamesf.simpleweather.bean.DailyBean;
+import com.hawksjamesf.simpleweather.bean.SkyConBean;
+import com.hawksjamesf.simpleweather.bean.TempeBean;
 import com.orhanobut.logger.Logger;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,11 +42,7 @@ import okhttp3.Response;
 import xyz.matteobattilana.library.Common.Constants;
 import xyz.matteobattilana.library.WeatherView;
 
-//import me.zhouzhuo.zzweatherview.AirLevel;
-//import me.zhouzhuo.zzweatherview.WeatherModel;
-
-
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements LoaderManager.LoaderCallbacks<DailyBean> {
     private static final String TAG = "HomeFragment";
 
     @BindView(R.id.wv_weather_status)
@@ -50,6 +58,8 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.rv_fiften_days_forecast)
     RecyclerView mRvFiftenDaysForecast;
     private Activity mActivity;
+
+    private FiftenDaysAdapter mFiftenDaysAdapter;
 
 
     @Override
@@ -79,7 +89,17 @@ public class HomeFragment extends Fragment {
                 .setCurrentAngle(-3)
                 .setOrientationMode(Constants.orientationStatus.ENABLE)
                 .startAnimation();
-        mRvFiftenDaysForecast.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
+        mRvFiftenDaysForecast.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
+        mFiftenDaysAdapter = new FiftenDaysAdapter();
+        mRvFiftenDaysForecast.setAdapter(mFiftenDaysAdapter);
+
+
+//        mActivity.startService(new Intent(mActivity,HomeService.class));
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         //get server datas
         new OkHttpClient().newCall(new Request.Builder().url("https://api.caiyunapp.com/v2/TAkhjf8d1nlSlspN/121.6544,25.1552/forecast.json").build()).enqueue(new Callback() {
             @Override
@@ -89,33 +109,71 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Logger.json(response.body().string());
                 try {
-                    JSONObject rootObj= new JSONObject(response.body().string());
-                    JSONObject resultObj = jobj.getJSONObject("result");
+                    JSONObject rootObj = new JSONObject(response.body().string());
+                    JSONObject resultObj = rootObj.getJSONObject("result");
                     JSONObject dailyObj = resultObj.getJSONObject("daily");
-                    JSONObject temperatureObj = dailyObj.getJSONObject("temperature");
-                    JSONObject skyconObj = dailyObj.getJSONObject("skycon");
+
+                    JSONArray tempeArray = dailyObj.getJSONArray("temperature");
+                    Type tempeType = new TypeToken<List<TempeBean>>() {}.getType();
+                    List<TempeBean> tempeBeans = new Gson().fromJson(tempeArray.toString(), tempeType);
+                    for (TempeBean tempeBean : tempeBeans) {
+                        Logger.d(tempeBean);
+
+                    }
+                    JSONArray skyconArry =  dailyObj.getJSONArray("skycon");
+                    Type skyconType = new TypeToken<List<SkyConBean>>() {}.getType();
+                    List<SkyConBean> skyconBeans =   new Gson().fromJson(skyconArry.toString(), skyconType);
+                    for (SkyConBean skyconBean : skyconBeans) {
+                        Logger.d(skyconBean);
+                    }
+                    mFiftenDaysAdapter.setData(tempeBeans,skyconBeans);
+//                    mFiftenDaysAdapter.notifyDataSetChanged();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
         });
-        mRvFiftenDaysForecast.setAdapter(new FiftenDaysAdapter());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        getLoaderManager().initLoader(2, null, this);
+    }
+
+    @Override
+    public Loader<DailyBean> onCreateLoader(int id, Bundle args) {
+
+        return new AsyncTaskLoader<DailyBean>(mActivity) {
+            @Override
+            public DailyBean loadInBackground() {
+                Logger.d("loadInBackground");
+                return null;
+            }
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<DailyBean> loader, DailyBean data) {
+                Log.d(TAG,"onLoadFinished");
+        Logger.d(data);
 
 
     }
 
 
+    @Override
+    public void onLoaderReset(Loader<DailyBean> loader) {
+
+    }
+
+
     public class FiftenDaysAdapter extends RecyclerView.Adapter<FiftenDaysAdapter.FiftenDaysHolder> {
-
-
-//        public FiftenDaysAdapter(List<WeatherData>) {
-//
-//
-//        }
-
+        private List<SkyConBean> mSkyConBeans;
+        private List<TempeBean> mTempeBeans;
         @Override
         public FiftenDaysHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new FiftenDaysHolder(View.inflate(mActivity, R.layout.item_weather, null));
@@ -131,6 +189,13 @@ public class HomeFragment extends Fragment {
             return 7;
         }
 
+        public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans) {
+            mTempeBeans = tempeBeans;
+            mSkyConBeans=skyconBeans;
+
+
+        }
+
         public class FiftenDaysHolder extends RecyclerView.ViewHolder {
 
 
@@ -138,106 +203,6 @@ public class HomeFragment extends Fragment {
                 super(itemView);
                 ButterKnife.bind(this, itemView);
             }
-        }
     }
-
-
-//    private List<WeatherModel> generateData() {
-//        List<WeatherModel> list = new ArrayList<WeatherModel>();
-//        WeatherModel model = new WeatherModel();
-//        model.setDate("12/07");
-//        model.setWeek("昨天");
-//        model.setDayWeather("大雪");
-//        model.setDayTemp(11);
-//        model.setNightTemp(5);
-//        model.setNightWeather("晴");
-//        model.setWindOrientation("西南风");
-//        model.setWindLevel("3级");
-//        model.setAirLevel(AirLevel.EXCELLENT);
-//        list.add(model);
-//
-//        WeatherModel model1 = new WeatherModel();
-//        model1.setDate("12/08");
-//        model1.setWeek("今天");
-//        model1.setDayWeather("晴");
-//        model1.setDayTemp(8);
-//        model1.setNightTemp(5);
-//        model1.setNightWeather("晴");
-//        model1.setWindOrientation("西南风");
-//        model1.setWindLevel("3级");
-//        model1.setAirLevel(AirLevel.HIGH);
-//        list.add(model1);
-//
-//        WeatherModel model2 = new WeatherModel();
-//        model2.setDate("12/09");
-//        model2.setWeek("明天");
-//        model2.setDayWeather("晴");
-//        model2.setDayTemp(9);
-//        model2.setNightTemp(8);
-//        model2.setNightWeather("晴");
-//        model2.setWindOrientation("东南风");
-//        model2.setWindLevel("3级");
-//        model2.setAirLevel(AirLevel.POISONOUS);
-//        list.add(model2);
-//
-//        WeatherModel model3 = new WeatherModel();
-//        model3.setDate("12/10");
-//        model3.setWeek("周六");
-//        model3.setDayWeather("晴");
-//        model3.setDayTemp(12);
-//        model3.setNightTemp(9);
-//        model3.setDayPic(R.drawable.w0);
-//        model3.setNightPic(R.drawable.w1);
-//        model3.setNightWeather("晴");
-//        model3.setWindOrientation("东北风");
-//        model3.setWindLevel("3级");
-//        model3.setAirLevel(AirLevel.GOOD);
-//        list.add(model3);
-//
-//        WeatherModel model4 = new WeatherModel();
-//        model4.setDate("12/11");
-//        model4.setWeek("周日");
-//        model4.setDayWeather("多云");
-//        model4.setDayTemp(13);
-//        model4.setNightTemp(7);
-//        model4.setDayPic(R.drawable.w2);
-//        model4.setNightPic(R.drawable.w4);
-//        model4.setNightWeather("多云");
-//        model4.setWindOrientation("东北风");
-//        model4.setWindLevel("3级");
-//        model4.setAirLevel(AirLevel.LIGHT);
-//        list.add(model4);
-//
-//        WeatherModel model5 = new WeatherModel();
-//        model5.setDate("12/12");
-//        model5.setWeek("周一");
-//        model5.setDayWeather("多云");
-//        model5.setDayTemp(17);
-//        model5.setNightTemp(8);
-//        model5.setDayPic(R.drawable.w3);
-//        model5.setNightPic(R.drawable.w4);
-//        model5.setNightWeather("多云");
-//        model5.setWindOrientation("西南风");
-//        model5.setWindLevel("3级");
-//        model5.setAirLevel(AirLevel.LIGHT);
-//        list.add(model5);
-//
-//        WeatherModel model6 = new WeatherModel();
-//        model6.setDate("12/13");
-//        model6.setWeek("周二");
-//        model6.setDayWeather("晴");
-//        model6.setDayTemp(13);
-//        model6.setNightTemp(6);
-//        model6.setDayPic(R.drawable.w5);
-//        model6.setNightPic(R.drawable.w6);
-//        model6.setNightWeather("晴");
-//        model6.setWindOrientation("西南风");
-//        model6.setWindLevel("3级");
-//        model6.setAirLevel(AirLevel.POISONOUS);
-//        list.add(model6);
-//
-//
-//        return list;
-//    }
 
 }

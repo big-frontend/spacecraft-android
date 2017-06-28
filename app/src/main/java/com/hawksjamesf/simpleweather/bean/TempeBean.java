@@ -1,7 +1,7 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.bean;
 
 
-public  class TemperatureBean {
+public  class TempeBean {
     private String date;
     private int max;
     private double avg;
@@ -17,6 +17,16 @@ public  class TemperatureBean {
 
     public int getMax() {
         return max;
+    }
+
+    @Override
+    public String toString() {
+        return "TempeBean{" +
+                "date='" + date + '\'' +
+                ", max=" + max +
+                ", avg=" + avg +
+                ", min=" + min +
+                '}';
     }
 
     public void setMax(int max) {
@@ -38,4 +48,9 @@ public  class TemperatureBean {
     public void setMin(int min) {
         this.min = min;
     }
+
+
 }
+
+
+

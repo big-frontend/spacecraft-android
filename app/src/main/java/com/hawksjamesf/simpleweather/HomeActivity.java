@@ -34,6 +34,8 @@ public class HomeActivity extends AppCompatActivity  {
         mVpWeatherBackground.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager()));
         mLpiIndicator.setViewPager(mVpWeatherBackground,0);
 
+//        startService(new Intent(HomeActivity.this,HomeService.class));
+
     }
 
     private class ContentFragmentPagerAdapter extends FragmentPagerAdapter{

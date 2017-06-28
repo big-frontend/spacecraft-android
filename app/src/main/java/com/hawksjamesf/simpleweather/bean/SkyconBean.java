@@ -1,6 +1,6 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.bean;
 
-public  class SkyconBean {
+public  class SkyConBean {
     private String date;
     private String value;
 
