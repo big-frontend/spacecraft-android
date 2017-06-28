@@ -5,7 +5,6 @@
                 android:layout_height="match_parent"
                 tools:context="com.hawksjamesf.simpleweather.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <xyz.matteobattilana.library.WeatherView
         android:id="@+id/wv_weather_status"
         android:layout_width="match_parent"
@@ -55,17 +54,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_alignTop="@+id/tv_temperature"
         android:layout_toEndOf="@+id/tv_temperature"/>
-    <me.zhouzhuo.zzweatherview.ZzWeatherView
-        android:layout_alignParentBottom="true"
-        android:id="@+id/weather_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbarThumbHorizontal="@drawable/scroll_bar_thumb"
-        android:scrollbarTrackHorizontal="@drawable/scroll_bar_thumb"
-        android:scrollbarSize="4dp"
-        android:background="#333"
-    >
-    </me.zhouzhuo.zzweatherview.ZzWeatherView>
+    <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+    android:id="@+id/rv_fiften_days_forecast">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
 
 
 </RelativeLayout>
