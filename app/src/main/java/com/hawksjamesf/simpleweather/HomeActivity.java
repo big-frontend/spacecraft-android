@@ -1,6 +1,7 @@
 package com.hawksjamesf.simpleweather;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,13 +16,14 @@ import butterknife.ButterKnife;
 public class HomeActivity extends AppCompatActivity  {
 
     private static final String TAG = "HomeActivity";
-
+    @Nullable
     @BindView(R.id.vp_weather_background)
     ViewPager mVpWeatherBackground;
+    @Nullable
     @BindView(R.id.lpi_indicator)
     LinePageIndicator mLpiIndicator;
 
-    private Fragment[] contentFragment={new HomeFragment(),new HomeFragment(),new HomeFragment(),new HomeFragment()};
+    private Fragment[] contentFragment={new HomeFragment()/*,new HomeFragment(),new HomeFragment(),new HomeFragment()*/};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

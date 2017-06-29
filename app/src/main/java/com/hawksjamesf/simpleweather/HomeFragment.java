@@ -5,24 +5,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hawksjamesf.simpleweather.bean.DailyBean;
 import com.hawksjamesf.simpleweather.bean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.TempeBean;
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,24 +33,15 @@ import okhttp3.Response;
 import xyz.matteobattilana.library.Common.Constants;
 import xyz.matteobattilana.library.WeatherView;
 
-public class HomeFragment extends Fragment implements LoaderManager.LoaderCallbacks<DailyBean> {
+public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
-
+    @BindView(R.id.rlv_pull_refresh)
+    RefreshListView mRlvPullRefresh;
     @BindView(R.id.wv_weather_status)
     WeatherView mWvWeatherStatus;
-    @BindView(R.id.tv_city)
-    TextView mTvCity;
-    @BindView(R.id.tv_date)
-    TextView mTvDate;
-    @BindView(R.id.tv_week)
-    TextView mTvWeek;
-    @BindView(R.id.tv_temperature)
-    TextView mTvTemperature;
-    @BindView(R.id.rv_fiften_days_forecast)
-    RecyclerView mRvFiftenDaysForecast;
     private Activity mActivity;
-
-    private FiftenDaysAdapter mFiftenDaysAdapter;
+    private List<TempeBean> mTempeBeans;
+    private List<SkyConBean> mSkyconBeans;
 
 
     @Override
@@ -80,21 +62,8 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //Optional
-        mWvWeatherStatus.setWeather(Constants.weatherStatus.RAIN)
-                .setCurrentLifeTime(2000)
-                .setCurrentFadeOutTime(1000)
-                .setCurrentParticles(43)
-                .setFPS(84)
-                .setCurrentAngle(-3)
-                .setOrientationMode(Constants.orientationStatus.ENABLE)
-                .startAnimation();
-        mRvFiftenDaysForecast.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-        mFiftenDaysAdapter = new FiftenDaysAdapter();
-        mRvFiftenDaysForecast.setAdapter(mFiftenDaysAdapter);
 
 
-//        mActivity.startService(new Intent(mActivity,HomeService.class));
     }
 
     @Override
@@ -115,20 +84,21 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
                     JSONObject dailyObj = resultObj.getJSONObject("daily");
 
                     JSONArray tempeArray = dailyObj.getJSONArray("temperature");
-                    Type tempeType = new TypeToken<List<TempeBean>>() {}.getType();
-                    List<TempeBean> tempeBeans = new Gson().fromJson(tempeArray.toString(), tempeType);
-                    for (TempeBean tempeBean : tempeBeans) {
-                        Logger.d(tempeBean);
+                    Type tempeType = new TypeToken<List<TempeBean>>() {
+                    }.getType();
+                    mTempeBeans = new Gson().fromJson(tempeArray.toString(), tempeType);
+//                    for (TempeBean tempeBean : tempeBeans) {
+//                        Logger.d(tempeBean);
+//
+//                    }
+                    JSONArray skyconArry = dailyObj.getJSONArray("skycon");
+                    Type skyconType = new TypeToken<List<SkyConBean>>() {
+                    }.getType();
+                    mSkyconBeans = new Gson().fromJson(skyconArry.toString(), skyconType);
+//                    for (SkyConBean skyconBean : skyconBeans) {
+//                        Logger.d(skyconBean);
+//                    }
 
-                    }
-                    JSONArray skyconArry =  dailyObj.getJSONArray("skycon");
-                    Type skyconType = new TypeToken<List<SkyConBean>>() {}.getType();
-                    List<SkyConBean> skyconBeans =   new Gson().fromJson(skyconArry.toString(), skyconType);
-                    for (SkyConBean skyconBean : skyconBeans) {
-                        Logger.d(skyconBean);
-                    }
-                    mFiftenDaysAdapter.setData(tempeBeans,skyconBeans);
-//                    mFiftenDaysAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -136,73 +106,23 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
 
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-//        getLoaderManager().initLoader(2, null, this);
-    }
-
-    @Override
-    public Loader<DailyBean> onCreateLoader(int id, Bundle args) {
-
-        return new AsyncTaskLoader<DailyBean>(mActivity) {
-            @Override
-            public DailyBean loadInBackground() {
-                Logger.d("loadInBackground");
-                return null;
-            }
-        };
-    }
-
-    @Override
-    public void onLoadFinished(Loader<DailyBean> loader, DailyBean data) {
-                Log.d(TAG,"onLoadFinished");
-        Logger.d(data);
+        mWvWeatherStatus.setWeather(Constants.weatherStatus.RAIN)
+                .setCurrentLifeTime(2000)
+                .setCurrentFadeOutTime(1000)
+                .setCurrentParticles(43)
+                .setFPS(84)
+                .setCurrentAngle(-3)
+                .setOrientationMode(Constants.orientationStatus.ENABLE)
+                .startAnimation();
+        //set up pull-refresh view
+        mRlvPullRefresh.setAdapter(new RefreshAdapter(mActivity,mTempeBeans,mSkyconBeans));
+//        mActivity.startService(new Intent(mActivity,HomeService.class));
 
 
     }
 
 
-    @Override
-    public void onLoaderReset(Loader<DailyBean> loader) {
-
-    }
 
 
-    public class FiftenDaysAdapter extends RecyclerView.Adapter<FiftenDaysAdapter.FiftenDaysHolder> {
-        private List<SkyConBean> mSkyConBeans;
-        private List<TempeBean> mTempeBeans;
-        @Override
-        public FiftenDaysHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new FiftenDaysHolder(View.inflate(mActivity, R.layout.item_weather, null));
-        }
-
-        @Override
-        public void onBindViewHolder(FiftenDaysHolder holder, int position) {
-        }
-
-
-        @Override
-        public int getItemCount() {
-            return 7;
-        }
-
-        public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans) {
-            mTempeBeans = tempeBeans;
-            mSkyConBeans=skyconBeans;
-
-
-        }
-
-        public class FiftenDaysHolder extends RecyclerView.ViewHolder {
-
-
-            public FiftenDaysHolder(View itemView) {
-                super(itemView);
-                ButterKnife.bind(this, itemView);
-            }
-    }
 
 }
