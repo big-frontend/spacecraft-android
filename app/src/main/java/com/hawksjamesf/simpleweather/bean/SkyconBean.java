@@ -1,8 +1,8 @@
 package com.hawksjamesf.simpleweather.bean;
 
 public  class SkyConBean {
-    private String date;
     private String value;
+    private String date;
 
     public String getDate() {
         return date;

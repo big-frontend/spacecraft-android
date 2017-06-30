@@ -6,14 +6,19 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.hawksjamesf.simpleweather.bean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.TempeBean;
+import com.hawksjamesf.simpleweather.util.ConditionUtils;
 import com.orhanobut.logger.Logger;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -36,11 +41,10 @@ public class FifteenDaysView extends LinearLayout {
     private int nightLineColor = 0xff23acb3;
     private float lineWidth = 4f;
     private List<TempeBean> mTempeBeans;
-    private Context ct;
+    private List<SkyConBean> mSkyConBeans;
 
     public FifteenDaysView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        ct=context;
         dayPaint = new Paint();
         dayPaint.setColor(dayLineColor);
         dayPaint.setAntiAlias(true);
@@ -55,123 +59,210 @@ public class FifteenDaysView extends LinearLayout {
 
         pathDay = new Path();
         pathNight = new Path();
-    }
-//    private int getScreenWidth() {
-//        WindowManager wm = (WindowManager) getContext()
-//                .getSystemService(Context.WINDOW_SERVICE);
-//        return wm.getDefaultDisplay().getWidth();
-//    }
-//    private int getMaxDayTemp(List<WeatherModel> list) {
-//        if (list != null) {
-//            return Collections.max(list, new DayTempComparator()).getDayTemp();
-//        }
-//        return 0;
-//    }
-//    private int getMaxNightTemp(List<WeatherModel> list) {
-//        if (list != null) {
-//            return Collections.max(list, new NightTempComparator()).getNightTemp();
-//        }
-//        return 0;
-//    }
-//    private int getMinDayTemp(List<WeatherModel> list) {
-//        if (list != null) {
-//            return Collections.min(list, new DayTempComparator()).getDayTemp();
-//        }
-//        return 0;
-//    }
-//    private int getMinNightTemp(List<WeatherModel> list) {
-//        if (list != null) {
-//            return Collections.min(list, new NightTempComparator()).getNightTemp();
-//        }
-//        return 0;
-//    }
-    public void setData(List<TempeBean> tempeBeans) {
-        mTempeBeans = tempeBeans;
-        for (int i=0;i<5;i++) {
-            View itemView= LayoutInflater.from(ct).inflate(R.layout.item_fifteen_days_chart,null);
-            addView(itemView);
-            Logger.d(itemView);
-
-        }
-        invalidate();
-
+        setWillNotDraw(false);
 
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if (mTempeBeans == null || mSkyConBeans == null) return;
         if (getChildCount() > 0) {
+            Logger.d(getChildCount());
             ViewGroup root = (ViewGroup) getChildAt(0);
-            Logger.d(root);
-            for (int i = 0; i < root.getChildCount(); i++) {
-                Logger.d(getChildAt(i));
-            }
+
 
             if (root.getChildCount() > 0) {
+                //折线
+                for (int i = 0; i < getChildCount() - 1; i++) {
+                    View curItemView = getChildAt(i);
+                    View nextItemView = getChildAt(i + 1);
+//                    Logger.d(getChildAt(i));
 
-//                TemperatureView tempeView = (TemperatureView)root.getChildAt(1);
-                TemperatureView tempeView = (TemperatureView) root.findViewById(R.id.ttv_day);
-//
-                float curDayX = tempeView.getX();
-                float curDayY = tempeView.getY();
-                float curNightX = tempeView.getX();
-                float curNightY = tempeView.getY();
-//                Logger.d("nightX:"+nightX+"---nightY:"+nightY,tempeView);
+                    TemperatureView curTempe = (TemperatureView) curItemView.findViewById(R.id.ttv_day);
+//                    /*if (i==0)*/ Logger.d(curTempe);
+                    TemperatureView nextTempe = (TemperatureView) nextItemView.findViewById(R.id.ttv_day);
 
-                tempeView.setRadius(10);
-//
-                int deltaDayX = (int) (curDayX + tempeView.getxPointDay());
-                int deltaDayY = (int) (curDayY + tempeView.getyPointDay());
-                int deltaNightX = (int) (curNightX + tempeView.getxPointNight());
-                int deltaNightY = (int) (curNightY + tempeView.getyPointNight());
-//
-                pathDay.reset();
-                pathNight.reset();
+                    /**
+                     * day line chart
+                     */
+                    //current temperature point
+                    int curDayX1 = (int) (curTempe.getX() + curItemView.getWidth() * i);
+                    int curDayY1 = (int) curTempe.getY();
+                    int x1 = curDayX1 + curTempe.getxPointDay();
+                    int y1 = curDayY1 + curTempe.getyPointDay();
+//                    if (i==0) Logger.d(curTempe.getxPointDay()+","+ curTempe.getyPointDay());
+                    //next temperature point
+                    int nextDayX1 = (int) (nextTempe.getX() + nextItemView.getWidth() * (i + 1));
+                    int nextDayY1 = (int) nextTempe.getY();
+                    int x11 = nextDayX1 + nextTempe.getxPointDay();
+                    int y11 = nextDayY1 + nextTempe.getyPointDay();
+//                    Logger.d("curTempe:" + x1 + "," + y1 + "--" + x11 + "," + y11);
+                    canvas.drawLine(x1, y1, x11, y11, dayPaint);
 
-                pathDay.moveTo(deltaDayX, deltaDayY);
-                pathNight.moveTo(deltaNightX, deltaNightY);
-                    //折线
-                    for (int i = 0; i < root.getChildCount() - 1; i++) {
-                        View curItemView =getChildAt(i);
-                        View nextItemView=getChildAt(i+1);
+                    /**
+                     * night line chart
+                     */
+                    int curNightX1 = (int) (curTempe.getX() + curItemView.getWidth() * i);
+                    int curNightY1 = (int) curTempe.getY();
+                    int x2 = curNightX1 + curTempe.getxPointNight();
+                    int y2 = curNightY1 + curTempe.getyPointNight();
+//                    Logger.d(curTempe.getxPointNight()+","+ curTempe.getyPointNight());
 
-                        TemperatureView curTempe = (TemperatureView) getChildAt(i).findViewById(R.id.ttv_day);
-                        TemperatureView nextTempe = (TemperatureView) getChildAt(i+1).findViewById(R.id.ttv_day);
-                        //current temperature
-                        int curDayX1 = (int) (curTempe.getX() + curItemView.getWidth() * i);
-                        int curDayY1= (int) curTempe.getY();
-                        int curNightX1 = (int) (curTempe.getX() + curItemView.getWidth() * i);
-                        int curNightY1 = (int) curTempe.getY();
-                        //next temperature
-
-                        int nextDayX1 = (int) (nextTempe.getX() + nextItemView.getWidth() * i+1);
-                        int nextDayY1 = (int) nextTempe.getY();
-                        int nextNightX1 = (int) (nextTempe.getX() + nextItemView.getWidth() * i+1);
-                        int nextNightY1 = (int) nextTempe.getY();
-
-
-                        curTempe.setRadius(10);
-                        nextTempe.setRadius(10);
-
-                        int x1 = curDayX1 + curTempe.getxPointDay();
-                        int y1 = curDayY1 + curTempe.getyPointDay();
-                        int x2 = curNightX1 + curTempe.getxPointNight();
-                        int y2 = curNightY1 + curTempe.getyPointNight();
-
-                        int x11 = nextDayX1 + nextTempe.getxPointDay();
-                        int y11 = nextDayY1 + nextTempe.getyPointDay();
-                        int x22 = nextNightX1 + nextTempe.getxPointNight();
-                        int y22 = nextNightY1 + nextTempe.getyPointNight();
-
-                        canvas.drawLine(x1, y1, x11, y11, dayPaint);
-                        canvas.drawLine(x2, y2, x22, y22, nightPaint);
+                    int nextNightX1 = (int) (nextTempe.getX() + nextItemView.getWidth() * (i + 1));
+                    int nextNightY1 = (int) nextTempe.getY();
+                    int x22 = nextNightX1 + nextTempe.getxPointNight();
+                    int y22 = nextNightY1 + nextTempe.getyPointNight();
+//                    Logger.d("nextTempe:"+ x2 + "," + y2 + "--" + x22 + "," + y22);
+                    canvas.drawLine(x2, y2, x22, y22, nightPaint);
 
 
-                    }
+                }
             }
 
         }
+
+
+    }
+
+    private static class DayTempComparator implements Comparator<TempeBean> {
+
+        @Override
+        public int compare(TempeBean o1, TempeBean o2) {
+            if (o1.getMax() == o2.getMax()) {
+                return 0;
+            } else if (o1.getMax() > o2.getMax()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    private static class NightTempComparator implements Comparator<TempeBean> {
+
+        @Override
+        public int compare(TempeBean o1, TempeBean o2) {
+            if (o1.getMin() == o2.getMin()) {
+                return 0;
+            } else if (o1.getMin() > o2.getMin()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    private int getFiveDaysMaxTempe(List<TempeBean> tempeBeans) {
+        if (tempeBeans != null) {
+            return Collections.max(tempeBeans, new DayTempComparator()).getMax();
+        }
+        return 0;
+    }
+
+    private int getFiveDayMinTempe(List<TempeBean> tempeBeans) {
+        if (tempeBeans != null) {
+            return Collections.min(tempeBeans, new DayTempComparator()).getMax();
+        }
+        return 0;
+    }
+
+    private int getFiveNightsMaxTempe(List<TempeBean> tempeBeans) {
+        if (tempeBeans != null) {
+            return Collections.max(tempeBeans, new NightTempComparator()).getMin();
+        }
+        return 0;
+    }
+
+    private int getFiveNightsMinTempe(List<TempeBean> tempeBeans) {
+        if (tempeBeans != null) {
+            return Collections.min(tempeBeans, new NightTempComparator()).getMin();
+        }
+        return 0;
+    }
+
+    public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans) {
+        mTempeBeans = tempeBeans;
+        mSkyConBeans = skyconBeans;
+        if (tempeBeans == null || skyconBeans == null) return;
+
+        int fiveDaysMaxTempe = getFiveDaysMaxTempe(tempeBeans);
+        int fiveDayMinTempe = getFiveDayMinTempe(tempeBeans);
+        int fiveNightsMaxTempe = getFiveNightsMaxTempe(tempeBeans);
+        int fiveNightsMinTempe = getFiveNightsMinTempe(tempeBeans);
+
+        int max = fiveDaysMaxTempe > fiveNightsMaxTempe ? fiveDaysMaxTempe : fiveNightsMaxTempe;
+        int min = fiveDayMinTempe < fiveNightsMinTempe ? fiveDayMinTempe : fiveNightsMinTempe;
+        for (int i = 0; i < tempeBeans.size(); i++) {
+            TempeBean tempeBean = tempeBeans.get(i);
+            View itemView = getChildAt(i);
+            TemperatureView tempeView = (TemperatureView) itemView.findViewById(R.id.ttv_day);
+            tempeView.setMinTemp(min);
+            tempeView.setMaxTemp(max);
+            tempeView.setTemperatureDay(tempeBean.getMax());
+            tempeView.setTemperatureNight(tempeBean.getMin());
+
+
+        }
+        for (int j = 0; j < skyconBeans.size(); j++) {
+            SkyConBean skyConBean = skyconBeans.get(j);
+            String condition = skyConBean.getValue();
+            Logger.d(condition);
+            String[] split = skyConBean.getDate().split("-");
+            String date=split[1]+"/"+split[2];
+
+            View itemView = getChildAt(j);
+            TextView tvWeek = (TextView) itemView.findViewById(R.id.tv_week);
+            TextView tvDate = (TextView) itemView.findViewById(R.id.tv_date);
+            TextView tvDayWeather = (TextView) itemView.findViewById(R.id.tv_day_weather);
+            ImageView ivDayWeather = (ImageView) itemView.findViewById(R.id.iv_day_weather);
+            ImageView ivNightWeather = (ImageView) itemView.findViewById(R.id.iv_night_weather);
+            TextView tvNightWeather = (TextView) itemView.findViewById(R.id.tv_night_weather);
+            switch (j){
+                case 0:
+                    tvWeek.setText("Yesterday");
+                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+                    tvDayWeather.setText(condition);
+                    tvDate.setText(date);
+                    break;
+                case 1:
+                    tvWeek.setText("Today");
+                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+                    tvDayWeather.setText(condition);
+                    tvDate.setText(date);
+                    break;
+                case 2:
+                    tvWeek.setText("Today");
+                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+                    tvDayWeather.setText(condition);
+                    tvDate.setText(date);
+                    break;
+                case 3:
+                    tvWeek.setText("Today");
+                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+                    tvDayWeather.setText(condition);
+                    tvDate.setText(date);
+                    break;
+                case 4:
+                    tvWeek.setText("Today");
+                    tvDayWeather.setText(condition);
+                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+                    tvDate.setText(date);
+                    break;
+                case 5:
+                    tvWeek.setText("Today");
+                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+                    tvDayWeather.setText(condition);
+                    tvDate.setText(date);
+                    break;
+            }
+
+
+        }
+        invalidate();
+
+
     }
 
 

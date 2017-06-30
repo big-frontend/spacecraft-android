@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
     private Activity mActivity;
     private List<TempeBean> mTempeBeans;
     private List<SkyConBean> mSkyconBeans;
+    private RefreshAdapter mAdapter;
 
 
     @Override
@@ -62,6 +63,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mWvWeatherStatus.setWeather(Constants.weatherStatus.RAIN)
+                .setCurrentLifeTime(2000)
+                .setCurrentFadeOutTime(1000)
+                .setCurrentParticles(43)
+                .setFPS(84)
+                .setCurrentAngle(-3)
+                .setOrientationMode(Constants.orientationStatus.ENABLE)
+                .startAnimation();
+        //set up pull-refresh view
+        mAdapter = new RefreshAdapter(mActivity);
+        mRlvPullRefresh.setAdapter(mAdapter);
+//        mActivity.startService(new Intent(mActivity,HomeService.class));
 
 
     }
@@ -92,12 +105,18 @@ public class HomeFragment extends Fragment {
 //
 //                    }
                     JSONArray skyconArry = dailyObj.getJSONArray("skycon");
-                    Type skyconType = new TypeToken<List<SkyConBean>>() {
-                    }.getType();
+                    Type skyconType = new TypeToken<List<SkyConBean>>() {}.getType();
                     mSkyconBeans = new Gson().fromJson(skyconArry.toString(), skyconType);
-//                    for (SkyConBean skyconBean : skyconBeans) {
-//                        Logger.d(skyconBean);
+//                    for (SkyConBean skyconBean : mSkyconBeans) {
+//                        Logger.d(skyconArry);
 //                    }
+                    mActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.setData(mTempeBeans,mSkyconBeans);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
 
 
                 } catch (JSONException e) {
@@ -106,17 +125,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        mWvWeatherStatus.setWeather(Constants.weatherStatus.RAIN)
-                .setCurrentLifeTime(2000)
-                .setCurrentFadeOutTime(1000)
-                .setCurrentParticles(43)
-                .setFPS(84)
-                .setCurrentAngle(-3)
-                .setOrientationMode(Constants.orientationStatus.ENABLE)
-                .startAnimation();
-        //set up pull-refresh view
-        mRlvPullRefresh.setAdapter(new RefreshAdapter(mActivity,mTempeBeans,mSkyconBeans));
-//        mActivity.startService(new Intent(mActivity,HomeService.class));
 
 
     }

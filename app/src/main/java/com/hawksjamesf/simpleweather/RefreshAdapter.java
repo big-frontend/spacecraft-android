@@ -31,10 +31,8 @@ public class RefreshAdapter extends BaseAdapter {
     private List<SkyConBean> mSkyConBeans;
     private List<TempeBean> mTempeBeans;
 
-    public RefreshAdapter(Activity activity, List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans) {
+    public RefreshAdapter(Activity activity) {
         mActivity = activity;
-        mTempeBeans = tempeBeans;
-        mSkyConBeans = skyconBeans;
     }
 
 
@@ -58,7 +56,7 @@ public class RefreshAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflate(mActivity, R.layout.item_weather, null);
         ButterKnife.bind(this, view);
-        mRvFiftenDaysForecast.setData(mTempeBeans);
+        mRvFiftenDaysForecast.setData(mTempeBeans,mSkyConBeans);
 //        mRvFiftenDaysForecast.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
 //        FifteenDaysAdapter mFiftenDaysAdapter = new FifteenDaysAdapter(mActivity);
 //        mRvFiftenDaysForecast.setAdapter(mFiftenDaysAdapter);
@@ -67,4 +65,9 @@ public class RefreshAdapter extends BaseAdapter {
     }
 
 
+    public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans) {
+        mTempeBeans = tempeBeans;
+        mSkyConBeans = skyconBeans;
+
+    }
 }

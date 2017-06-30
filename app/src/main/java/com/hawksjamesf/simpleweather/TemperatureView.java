@@ -8,7 +8,6 @@ import android.view.View;
 
 /**
  * TemperatureView
- *
  */
 public class TemperatureView extends View {
 
@@ -32,19 +31,11 @@ public class TemperatureView extends View {
     private int yPointDay;
     private int xPointNight;
     private int yPointNight;
-    private int mWidth;
 
-    public TemperatureView(Context context) {
-        this(context, null);
-    }
 
     public TemperatureView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
-    }
-
-    public TemperatureView(Context context, AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs) {
@@ -75,28 +66,39 @@ public class TemperatureView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        drawPoint(canvas);
-
-        drawText(canvas);
-
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    private void drawPoint(Canvas canvas) {
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
         int height = getHeight() - textSize * 4;
         int x = getWidth() / 2;
         int y = (int) (height - height * (temperatureDay - minTemp) * 1.0f / (maxTemp - minTemp)) + textSize * 2;
+
         int x2 = getWidth() / 2;
         int y2 = (int) (height - height * (temperatureNight - minTemp) * 1.0f / (maxTemp - minTemp)) + textSize * 2;
         xPointDay = x;
         yPointDay = y;
         xPointNight = x2;
         yPointNight = y2;
-        mWidth = getWidth();
-        canvas.drawCircle(x, y, radius, pointPaint);
-        canvas.drawCircle(x2, y2, radius, pointPaint);
+//        Logger.d(xPointNight+","+yPointNight);
+
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        drawPoint(canvas);
+        drawText(canvas);
+
+
+    }
+
+    private void drawPoint(Canvas canvas) {
+        canvas.drawCircle(xPointDay, yPointDay, radius, pointPaint);
+        canvas.drawCircle(xPointNight, yPointNight, radius, pointPaint);
     }
 
     private void drawText(Canvas canvas) {
@@ -121,17 +123,11 @@ public class TemperatureView extends View {
         invalidate();
     }
 
-    public int getMaxTemp() {
-        return maxTemp;
-    }
 
     public void setMaxTemp(int maxTemp) {
         this.maxTemp = maxTemp;
     }
 
-    public int getMinTemp() {
-        return minTemp;
-    }
 
     public void setMinTemp(int minTemp) {
         this.minTemp = minTemp;
@@ -145,57 +141,21 @@ public class TemperatureView extends View {
         return yPointDay;
     }
 
-    public void setxPointDay(int xPointDay) {
-        this.xPointDay = xPointDay;
-    }
-
-    public void setyPointDay(int yPointDay) {
-        this.yPointDay = yPointDay;
-    }
 
     public int getxPointNight() {
         return xPointNight;
     }
 
-    public void setxPointNight(int xPointNight) {
-        this.xPointNight = xPointNight;
-    }
 
     public int getyPointNight() {
         return yPointNight;
     }
 
-    public void setyPointNight(int yPointNight) {
-        this.yPointNight = yPointNight;
-    }
-
-    public int getmWidth() {
-        return mWidth;
-    }
-
-    public int getTemperatureDay() {
-        return temperatureDay;
-    }
 
     public void setTemperatureDay(int temperatureDay) {
         this.temperatureDay = temperatureDay;
     }
 
-    public int getLineColor() {
-        return lineColor;
-    }
-
-    public void setLineColor(int lineColor) {
-        this.lineColor = lineColor;
-    }
-
-    public int getPointColor() {
-        return pointColor;
-    }
-
-    public void setPointColor(int pointColor) {
-        this.pointColor = pointColor;
-    }
 
     public int getTextColor() {
         return textColor;
@@ -205,9 +165,6 @@ public class TemperatureView extends View {
         this.textColor = textColor;
     }
 
-    public int getTemperatureNight() {
-        return temperatureNight;
-    }
 
     public void setTemperatureNight(int temperatureNight) {
         this.temperatureNight = temperatureNight;
