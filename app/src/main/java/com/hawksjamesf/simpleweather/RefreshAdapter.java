@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.hawksjamesf.simpleweather.bean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.TempeBean;
+import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
 
 import java.util.List;
 
@@ -25,8 +27,7 @@ import static android.view.View.inflate;
  */
 
 public class RefreshAdapter extends BaseAdapter {
-    @BindView(R.id.rv_fiften_days_forecast)
-    FifteenDaysView mRvFiftenDaysForecast;
+
     private Activity mActivity;
     private List<SkyConBean> mSkyConBeans;
     private List<TempeBean> mTempeBeans;
@@ -34,7 +35,6 @@ public class RefreshAdapter extends BaseAdapter {
     public RefreshAdapter(Activity activity) {
         mActivity = activity;
     }
-
 
 
     @Override
@@ -55,11 +55,9 @@ public class RefreshAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflate(mActivity, R.layout.item_weather, null);
-        ButterKnife.bind(this, view);
-        mRvFiftenDaysForecast.setData(mTempeBeans,mSkyConBeans);
-//        mRvFiftenDaysForecast.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
-//        FifteenDaysAdapter mFiftenDaysAdapter = new FifteenDaysAdapter(mActivity);
-//        mRvFiftenDaysForecast.setAdapter(mFiftenDaysAdapter);
+        ViewHolder holder = new ViewHolder(view);
+        holder.mRvFiftenDaysForecast.setData(mTempeBeans, mSkyConBeans);
+
 
         return view;
     }
@@ -70,4 +68,26 @@ public class RefreshAdapter extends BaseAdapter {
         mSkyConBeans = skyconBeans;
 
     }
+
+
+    static class ViewHolder {
+
+        @BindView(R.id.rv_fiften_days_forecast)
+        FifteenDaysView mRvFiftenDaysForecast;
+        @BindView(R.id.realtime_date)
+        TextView mRealtimeDate;
+        @BindView(R.id.realtime_week)
+        TextView mRealtimeWeek;
+        @BindView(R.id.realtime_city)
+        TextView mRealtimeCity;
+        @BindView(R.id.iv_realtime_condition)
+        ImageView mIvRealtimeCondition;
+        @BindView(R.id.realtime_temperature)
+        TextView mRealtimeTemperature;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
 }

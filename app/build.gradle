@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.hawksjamesf.simpleweather"
         minSdkVersion 17
@@ -40,5 +40,6 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.orhanobut:logger:2.1.1'
     compile 'com.google.code.gson:gson:2.8.1'
-
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 }

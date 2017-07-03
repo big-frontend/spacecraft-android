@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.bean;
+package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
 
 public  class SkyConBean {
     private String value;

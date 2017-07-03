@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -7,47 +8,69 @@
               tools:context="com.hawksjamesf.simpleweather.HomeFragment">
 
 
-    <RelativeLayout android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
 
-                    android:layout_height="367dp">
+        android:layout_height="367dp">
 
 
         <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_city" android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp" android:text="2017-06-27"/>
-        <TextView
-            android:id="@+id/tv_week"
+            android:id="@+id/realtime_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tv_date" android:layout_alignBottom="@+id/tv_date"
-            android:layout_marginStart="14dp" android:layout_toEndOf="@+id/tv_date"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/realtime_city"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="2017-06-27"/>
+
+        <TextView
+            android:id="@+id/realtime_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/realtime_date"
+            android:layout_alignBottom="@+id/realtime_date"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/realtime_date"
             android:text="Tuesday"/>
+
         <TextView
-            android:id="@+id/tv_city"
+            android:id="@+id/realtime_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/wv_weather_status"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="28dp"
-            android:text="Shanghai" android:textSize="24sp"/>
+            android:text="Shanghai"
+            android:textSize="24sp"/>
+
         <TextView
-            android:id="@+id/tv_temperature"
+            android:id="@+id/realtime_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_date"
-            android:layout_alignStart="@+id/tv_date" android:layout_marginStart="17dp"
-            android:text="26" android:textAllCaps="false"
+            android:layout_above="@+id/realtime_date"
+            android:layout_alignStart="@+id/realtime_date"
+            android:layout_marginStart="17dp"
+            android:text="26"
+            android:textAllCaps="false"
             android:textSize="36sp"
             android:textStyle="normal|bold|italic"/>
+
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_temperature"
-            android:layout_toEndOf="@+id/tv_temperature"
+            android:layout_alignTop="@+id/realtime_temperature"
+            android:layout_toEndOf="@+id/realtime_temperature"
             android:text="0"/>
+
+        <ImageView
+            android:id="@+id/iv_realtime_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/w0"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="13dp"/>
 
 
     </RelativeLayout>
@@ -58,6 +81,7 @@
         android:id="@+id/rv_fiften_days_forecast"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:weightSum="5">
         <include android:id="@+id/day1" layout="@layout/item_fifteen_days_chart"/>

@@ -6,8 +6,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -21,7 +19,7 @@ import java.util.Date;
  * 版本1.0
  * 创建时间 2015/12/2 8:24
  */
-public class RefreshListView extends ListView implements AbsListView.OnScrollListener,AdapterView.OnItemClickListener{
+public class RefreshListView extends ListView /*implements AbsListView.OnScrollListener,AdapterView.OnItemClickListener*/{
 
     private int startY = -1;
     private View listview_refresh_header;
@@ -42,24 +40,27 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
 
     public RefreshListView(Context context) {
         super(context);
-        initArrowAnim();
-        initHeaderView();
-        initFooterView();
+        init();
     }
 
 
     public RefreshListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initHeaderView();
-        initArrowAnim();
-        initFooterView();
+        init();
     }
 
     public RefreshListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        init();
+    }
+
+    private void init() {
         initHeaderView();
         initArrowAnim();
-        initFooterView();
+//        initFooterView();
+
     }
 
     /*
@@ -89,7 +90,7 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
         listview_refresh_footer.measure(0, 0);//量取大小
         mFooterViewHeight = listview_refresh_footer.getMeasuredHeight();//获得大小
         listview_refresh_footer.setPadding(0, -mFooterViewHeight, 0, 0);//隐藏脚布局
-        setOnScrollListener(this);
+//        setOnScrollListener(this);
     }
 
     /*
@@ -164,13 +165,13 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
             case STATE_PULL_REFRESH://下拉刷新
                 iv_refresh_arrow.setVisibility(View.VISIBLE);
                 pb_refresh_circle.setVisibility(View.INVISIBLE);
-                tv_refresh_intro.setText("下拉刷新...");
+                tv_refresh_intro.setText("pull ...");
                 iv_refresh_arrow.startAnimation(downAnim);//启动跳转箭头的动画
                 break;
             case STATE_RELEASE_REFRESH://松开刷新
                 iv_refresh_arrow.setVisibility(View.VISIBLE);
                 pb_refresh_circle.setVisibility(View.INVISIBLE);
-                tv_refresh_intro.setText("松开刷新...");
+                tv_refresh_intro.setText("release ...");
                 iv_refresh_arrow.startAnimation(upAnim);//启动跳转箭头的动画
 
                 break;
@@ -179,7 +180,7 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
                 iv_refresh_arrow.clearAnimation();
                 iv_refresh_arrow.setVisibility(View.INVISIBLE);
                 pb_refresh_circle.setVisibility(View.VISIBLE);
-                tv_refresh_intro.setText("正在刷新...");
+                tv_refresh_intro.setText("refreshing ...");
                 if (mListener != null) {
                     mListener.onRefresh();
                 }
@@ -187,49 +188,49 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
         }
     }
 
-    private boolean isLoadingMore;
+//    private boolean isLoadingMore;
 
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_FLING) {
-            if (getLastVisiblePosition() == getCount() - 1 && !isLoadingMore) {//滑动到了底部
-                System.out.println("到底了");
-                listview_refresh_footer.setPadding(0, 0, 0, 0);//显示脚布局
-                setSelection(getCount() - 1);// 改变listview显示位置
-                isLoadingMore = true;
-                if (mListener != null) {
-                    mListener.onLoadMore();//加载更多数据
-                }
+//    @Override
+//    public void onScrollStateChanged(AbsListView view, int scrollState) {
+//        if (scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_FLING) {
+//            if (getLastVisiblePosition() == getCount() - 1 && !isLoadingMore) {//滑动到了底部
+//                System.out.println("到底了");
+//                listview_refresh_footer.setPadding(0, 0, 0, 0);//显示脚布局
+//                setSelection(getCount() - 1);// 改变listview显示位置
+//                isLoadingMore = true;
+//                if (mListener != null) {
+//                    mListener.onLoadMore();//加载更多数据
+//                }
+//
+//            }
+//
+//        }
+//
+//    }
 
-            }
-
-        }
-
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-    }
-    private OnItemClickListener mItemClickListener;
-    @Override
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        super.setOnItemClickListener(this);
-        mItemClickListener =listener;
-    }
-    @Override//重写该方法让TabDetailPager获得的position不受头布局的干扰
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mItemClickListener !=null){
-        mItemClickListener.onItemClick(parent,view,position-getHeaderViewsCount(),id);
-        }
-    }
+//    @Override
+//    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//
+//    }
+//    private OnItemClickListener mItemClickListener;
+//    @Override
+//    public void setOnItemClickListener(OnItemClickListener listener) {
+//        super.setOnItemClickListener(this);
+//        mItemClickListener =listener;
+////    }
+//    @Override//重写该方法让TabDetailPager获得的position不受头布局的干扰
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        if (mItemClickListener !=null){
+//        mItemClickListener.onItemClick(parent,view,position-getHeaderViewsCount(),id);
+//        }
+//    }
 
 
     //向外部提供监听的接口
     public interface OnRefreshListener {
         public void onRefresh();
 
-        public void onLoadMore();
+//        public void onLoadMore();
     }
 
     public void setOnRefreshListener(OnRefreshListener listener) {
@@ -239,24 +240,24 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
     //获取当前时间
     public String getCurrentDate() { //m表示一月从0开始，M表示一月从1开始。h表示12时制，H表示24时制。
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("更新的时间：" + format.format(new Date()));
+        System.out.println("update date：" + format.format(new Date()));
         return format.format(new Date());
     }
 
     //收起下拉刷新控件
     public void onRefreshComplete(boolean success) {
-        if (isLoadingMore) {//加载更多
-            listview_refresh_footer.setPadding(0, -mFooterViewHeight, 0, 0);//隐藏脚布局
-            isLoadingMore = false;
-        } else {
+//        if (isLoadingMore) {//加载更多
+//            listview_refresh_footer.setPadding(0, -mFooterViewHeight, 0, 0);//隐藏脚布局
+//            isLoadingMore = false;
+//        } else {
             mCurrentState = STATE_PULL_REFRESH;
             iv_refresh_arrow.setVisibility(View.VISIBLE);
             pb_refresh_circle.setVisibility(View.INVISIBLE);
-            tv_refresh_intro.setText("下拉刷新...");
+            tv_refresh_intro.setText("pull ...");
             listview_refresh_header.setPadding(0, -mHeaderViewHeight, 0, 0);
             if (success) {//如果加载成功，则更新时间
-                tv_refresh_currentDate.setText("最新刷新时间" + getCurrentDate());
+                tv_refresh_currentDate.setText("last refresh date" + getCurrentDate());
             }
-        }
+//        }
     }
 }

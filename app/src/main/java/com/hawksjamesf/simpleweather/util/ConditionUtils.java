@@ -17,9 +17,9 @@ public class ConditionUtils {
         switch (weatherName) {
             case "晴":
                 return R.mipmap.w0;
-            case "CLOUDY":
+            case "PARTLY_CLOUDY_DAY":
                 return R.mipmap.w1;
-            case "阴":
+            case "CLOUDY":
                 return R.mipmap.w2;
             case "雷阵雨":
                 return R.mipmap.w4;
@@ -47,9 +47,9 @@ public class ConditionUtils {
         switch (weatherName) {
             case "晴":
                 return R.mipmap.w30;
-            case "CLOUDY":
+            case "PARTLY_CLOUDY_DAY":
                 return R.mipmap.w31;
-            case "阴":
+            case "CLOUDY":
                 return R.mipmap.w2;
             case "雷阵雨":
                 return R.mipmap.w4;

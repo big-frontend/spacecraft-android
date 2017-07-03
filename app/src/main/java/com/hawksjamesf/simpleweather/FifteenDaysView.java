@@ -12,11 +12,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hawksjamesf.simpleweather.bean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.TempeBean;
+import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
 import com.hawksjamesf.simpleweather.util.ConditionUtils;
-import com.orhanobut.logger.Logger;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -38,7 +40,7 @@ public class FifteenDaysView extends LinearLayout {
     protected Path pathNight;
 
     private int dayLineColor = 0xff78ad23;
-    private int nightLineColor = 0xff23acb3;
+    private int nightLineColor = 0xffe8d318;
     private float lineWidth = 4f;
     private List<TempeBean> mTempeBeans;
     private List<SkyConBean> mSkyConBeans;
@@ -69,7 +71,7 @@ public class FifteenDaysView extends LinearLayout {
 
         if (mTempeBeans == null || mSkyConBeans == null) return;
         if (getChildCount() > 0) {
-            Logger.d(getChildCount());
+//            Logger.d(getChildCount());
             ViewGroup root = (ViewGroup) getChildAt(0);
 
 
@@ -208,7 +210,7 @@ public class FifteenDaysView extends LinearLayout {
         for (int j = 0; j < skyconBeans.size(); j++) {
             SkyConBean skyConBean = skyconBeans.get(j);
             String condition = skyConBean.getValue();
-            Logger.d(condition);
+//            Logger.d(condition);
             String[] split = skyConBean.getDate().split("-");
             String date=split[1]+"/"+split[2];
 
@@ -217,47 +219,24 @@ public class FifteenDaysView extends LinearLayout {
             TextView tvDate = (TextView) itemView.findViewById(R.id.tv_date);
             TextView tvDayWeather = (TextView) itemView.findViewById(R.id.tv_day_weather);
             ImageView ivDayWeather = (ImageView) itemView.findViewById(R.id.iv_day_weather);
+
             ImageView ivNightWeather = (ImageView) itemView.findViewById(R.id.iv_night_weather);
             TextView tvNightWeather = (TextView) itemView.findViewById(R.id.tv_night_weather);
-            switch (j){
-                case 0:
-                    tvWeek.setText("Yesterday");
-                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
-                    tvDayWeather.setText(condition);
-                    tvDate.setText(date);
-                    break;
-                case 1:
-                    tvWeek.setText("Today");
-                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
-                    tvDayWeather.setText(condition);
-                    tvDate.setText(date);
-                    break;
-                case 2:
-                    tvWeek.setText("Today");
-                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
-                    tvDayWeather.setText(condition);
-                    tvDate.setText(date);
-                    break;
-                case 3:
-                    tvWeek.setText("Today");
-                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
-                    tvDayWeather.setText(condition);
-                    tvDate.setText(date);
-                    break;
-                case 4:
-                    tvWeek.setText("Today");
-                    tvDayWeather.setText(condition);
-                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
-                    tvDate.setText(date);
-                    break;
-                case 5:
-                    tvWeek.setText("Today");
-                    ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
-                    tvDayWeather.setText(condition);
-                    tvDate.setText(date);
-                    break;
-            }
 
+            ivDayWeather.setImageResource(ConditionUtils.getDayWeatherPic(condition));
+            tvDayWeather.setText(condition);
+            ivNightWeather.setImageResource(ConditionUtils.getNightWeatherPic(condition));
+            tvNightWeather.setText(condition);
+            tvDate.setText(date);
+//            String curDate = new  SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            Calendar calendar = Calendar.getInstance();
+            try {
+                calendar.setTime(new  SimpleDateFormat("yyyy-MM-dd").parse(skyConBean.getDate()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String[] weeks = getResources().getStringArray(R.array.weeks);
+            tvWeek.setText(weeks[calendar.get(Calendar.DAY_OF_WEEK)-1]);
 
         }
         invalidate();

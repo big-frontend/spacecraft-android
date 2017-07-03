@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hawksjamesf.simpleweather.bean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.TempeBean;
+import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
 
 import java.util.List;
 
