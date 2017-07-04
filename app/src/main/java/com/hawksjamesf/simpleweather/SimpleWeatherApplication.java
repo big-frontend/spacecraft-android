@@ -15,9 +15,16 @@ import com.orhanobut.logger.Logger;
  */
 
 public class SimpleWeatherApplication extends Application {
+    private static final boolean DEBUG = true;
+    private  static AppComponent appComponent;
     @Override
     public void onCreate() {
         super.onCreate();
+        if (DEBUG) {
         Logger.addLogAdapter(new AndroidLogAdapter());
+        }
+
+        appComponent = DaggerAppComponent.builder().build();
+
     }
 }

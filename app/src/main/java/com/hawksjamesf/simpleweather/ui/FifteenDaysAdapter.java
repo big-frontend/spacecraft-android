@@ -1,10 +1,11 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.ui;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
 

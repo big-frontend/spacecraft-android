@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion 23
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.hawksjamesf.simpleweather"
         minSdkVersion 17
@@ -25,21 +25,28 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.jakewharton:butterknife:8.6.0'
-    provided 'com.jakewharton:butterknife-compiler:8.6.0'
-    compile 'com.github.MatteoBattilana:WeatherView:1.2.0'
     compile project(':viewpagerindicator_library')
-    //    compile 'me.zhouzhuo.zzweatherview:zz-weather-view:1.0.2'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    apt 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.github.MatteoBattilana:WeatherView:1.2.0'
+
     compile 'com.google.dagger:dagger:2.11'
-    compile 'com.android.support:appcompat-v7:24'
+    apt 'com.google.dagger:dagger-compiler:2.11'
+    compile 'com.google.dagger:dagger-android:2.11'
+//    compile 'com.google.dagger:dagger-android-support:2.11'// if you use the support libraries
+//    provided 'com.google.dagger:dagger-android-processor:2.11'
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
+
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:retrofit-converters:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.orhanobut:logger:2.1.1'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.support:design:23.4.0'
 }
+

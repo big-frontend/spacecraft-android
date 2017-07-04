@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.ui.TemperatureView;
 import com.hawksjamesf.simpleweather.util.ConditionUtils;
 
 import java.text.ParseException;

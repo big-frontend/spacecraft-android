@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hawks.jamesf on 7/2/17.
  */
 
-public class RealTimeBean {
+public class RealTimeBean  {
 
 
     private String status;
@@ -75,7 +75,7 @@ public class RealTimeBean {
 
     public static class ResultBean {
         private String status;
-        private int temperature;
+        private float temperature;
         private String skycon;
         private double cloudrate;
         private int aqi;
@@ -93,11 +93,11 @@ public class RealTimeBean {
             this.status = status;
         }
 
-        public int getTemperature() {
+        public float getTemperature() {
             return temperature;
         }
 
-        public void setTemperature(int temperature) {
+        public void setTemperature(float temperature) {
             this.temperature = temperature;
         }
 

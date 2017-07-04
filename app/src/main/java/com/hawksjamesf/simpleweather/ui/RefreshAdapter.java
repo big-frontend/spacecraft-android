@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.ui;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,8 +7,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hawksjamesf.simpleweather.R;
+import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -29,8 +32,9 @@ import static android.view.View.inflate;
 public class RefreshAdapter extends BaseAdapter {
 
     private Activity mActivity;
-    private List<SkyConBean> mSkyConBeans;
-    private List<TempeBean> mTempeBeans;
+    private List<SkyConBean> mSCBeans;
+    private List<TempeBean> mTpBeans;
+    private RealTimeBean mRLBean;
 
     public RefreshAdapter(Activity activity) {
         mActivity = activity;
@@ -56,16 +60,21 @@ public class RefreshAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflate(mActivity, R.layout.item_weather, null);
         ViewHolder holder = new ViewHolder(view);
-        holder.mRvFiftenDaysForecast.setData(mTempeBeans, mSkyConBeans);
+        Logger.d(mRLBean);
+        holder.mRvFiftenDaysForecast.setData(mTpBeans, mSCBeans);
 
-
+//        holder.mRealtimeDate.setText(mRLBean.);
+//        Logger.d(mRLBean.getResult());
+//        holder.mIvRealtimeCondition.setImageResource(ConditionUtils.getDayWeatherPic(mRLBean.getResult().getSkycon()));
+//holder.mRealtimeTemperature.setText((int) mRLBean.getResult().getTemperature());
         return view;
     }
 
 
-    public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans) {
-        mTempeBeans = tempeBeans;
-        mSkyConBeans = skyconBeans;
+    public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans, RealTimeBean realTimeBean ) {
+        mRLBean=realTimeBean;
+        mTpBeans = tempeBeans;
+        mSCBeans = skyconBeans;
 
     }
 

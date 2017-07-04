@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.hawksjamesf.simpleweather.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -239,7 +241,7 @@ public class RefreshListView extends ListView /*implements AbsListView.OnScrollL
 
     //获取当前时间
     public String getCurrentDate() { //m表示一月从0开始，M表示一月从1开始。h表示12时制，H表示24时制。
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm:ss");
         System.out.println("update date：" + format.format(new Date()));
         return format.format(new Date());
     }
@@ -256,7 +258,7 @@ public class RefreshListView extends ListView /*implements AbsListView.OnScrollL
             tv_refresh_intro.setText("pull ...");
             listview_refresh_header.setPadding(0, -mHeaderViewHeight, 0, 0);
             if (success) {//如果加载成功，则更新时间
-                tv_refresh_currentDate.setText("last refresh date" + getCurrentDate());
+                tv_refresh_currentDate.setText("last refresh date : " + getCurrentDate());
             }
 //        }
     }

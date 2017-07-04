@@ -62,7 +62,7 @@
             android:layout_marginTop="10dp" android:src="@mipmap/w0"/>
         <!--android:src="@drawable/big_level_shape" />-->
     </LinearLayout>
-    <com.hawksjamesf.simpleweather.TemperatureView
+    <com.hawksjamesf.simpleweather.ui.TemperatureView
         android:id="@+id/ttv_day"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"

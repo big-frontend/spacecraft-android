@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.hawksjamesf.simpleweather.HomeFragment">
+              tools:context="com.hawksjamesf.simpleweather.ui.HomeFragment">
 
 
     <RelativeLayout
@@ -77,7 +77,7 @@
     <!--<View android:layout_width="match_parent" android:layout_height="200dp"-->
     <!--android:background="@android:color/holo_blue_light"/>-->
 
-    <com.hawksjamesf.simpleweather.FifteenDaysView
+    <com.hawksjamesf.simpleweather.ui.FifteenDaysView
         android:id="@+id/rv_fiften_days_forecast"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -89,6 +89,6 @@
         <include android:id="@+id/day3" layout="@layout/item_fifteen_days_chart"/>
         <include android:id="@+id/day4" layout="@layout/item_fifteen_days_chart"/>
         <include android:id="@+id/day5" layout="@layout/item_fifteen_days_chart"/>
-    </com.hawksjamesf.simpleweather.FifteenDaysView>
+    </com.hawksjamesf.simpleweather.ui.FifteenDaysView>
 
 </LinearLayout>
