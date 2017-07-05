@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
-import com.hawksjamesf.simpleweather.ui.TemperatureView;
 import com.hawksjamesf.simpleweather.util.ConditionUtils;
 
 import java.text.ParseException;
@@ -160,28 +159,28 @@ public class FifteenDaysView extends LinearLayout {
 
     private int getFiveDaysMaxTempe(List<TempeBean> tempeBeans) {
         if (tempeBeans != null) {
-            return Collections.max(tempeBeans, new DayTempComparator()).getMax();
+            return (int) Collections.max(tempeBeans, new DayTempComparator()).getMax();
         }
         return 0;
     }
 
     private int getFiveDayMinTempe(List<TempeBean> tempeBeans) {
         if (tempeBeans != null) {
-            return Collections.min(tempeBeans, new DayTempComparator()).getMax();
+            return (int) Collections.min(tempeBeans, new DayTempComparator()).getMax();
         }
         return 0;
     }
 
     private int getFiveNightsMaxTempe(List<TempeBean> tempeBeans) {
         if (tempeBeans != null) {
-            return Collections.max(tempeBeans, new NightTempComparator()).getMin();
+            return (int) Collections.max(tempeBeans, new NightTempComparator()).getMin();
         }
         return 0;
     }
 
     private int getFiveNightsMinTempe(List<TempeBean> tempeBeans) {
         if (tempeBeans != null) {
-            return Collections.min(tempeBeans, new NightTempComparator()).getMin();
+            return (int) Collections.min(tempeBeans, new NightTempComparator()).getMin();
         }
         return 0;
     }
@@ -204,8 +203,8 @@ public class FifteenDaysView extends LinearLayout {
             TemperatureView tempeView = (TemperatureView) itemView.findViewById(R.id.ttv_day);
             tempeView.setMinTemp(min);
             tempeView.setMaxTemp(max);
-            tempeView.setTemperatureDay(tempeBean.getMax());
-            tempeView.setTemperatureNight(tempeBean.getMin());
+            tempeView.setTemperatureDay((int) tempeBean.getMax());
+            tempeView.setTemperatureNight((int) tempeBean.getMin());
 
 
         }

@@ -2,8 +2,7 @@ package com.hawksjamesf.simpleweather;
 
 import android.app.Application;
 
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.*;
 
 /**
  * Copyright ® 2017
@@ -15,16 +14,17 @@ import com.orhanobut.logger.Logger;
  */
 
 public class SimpleWeatherApplication extends Application {
-    private static final boolean DEBUG = true;
     private  static AppComponent appComponent;
     @Override
     public void onCreate() {
         super.onCreate();
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
         Logger.addLogAdapter(new AndroidLogAdapter());
         }
 
         appComponent = DaggerAppComponent.builder().build();
-
+    }
+    public static AppComponent getAppComponent() {
+        return appComponent;
     }
 }

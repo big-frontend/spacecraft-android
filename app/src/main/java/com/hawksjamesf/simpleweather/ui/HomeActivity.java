@@ -1,5 +1,6 @@
 package com.hawksjamesf.simpleweather.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,8 @@ public class HomeActivity extends AppCompatActivity  {
     @Nullable
     @BindView(R.id.lpi_indicator)
     LinePageIndicator mLpiIndicator;
+    private int REFRESH_FLAG = 11;
+    private int GET_DATAS_FLAG = 12;
 
     private Fragment[] contentFragment={new HomeFragment()/*,new HomeFragment(),new HomeFragment(),new HomeFragment()*/};
 
@@ -39,7 +42,7 @@ public class HomeActivity extends AppCompatActivity  {
         mLpiIndicator.setViewPager(mVpWeatherBackground,0);
 
 
-//        startService(new Intent(HomeActivity.this,HomeService.class));
+        startService(new Intent(HomeActivity.this,HomeService.class));
 
     }
 
@@ -60,4 +63,6 @@ public class HomeActivity extends AppCompatActivity  {
             return contentFragment.length;
         }
     }
+
+
 }

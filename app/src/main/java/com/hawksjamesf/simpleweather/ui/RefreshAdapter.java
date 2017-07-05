@@ -11,7 +11,6 @@ import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -38,6 +37,15 @@ public class RefreshAdapter extends BaseAdapter {
 
     public RefreshAdapter(Activity activity) {
         mActivity = activity;
+
+    }
+    public void setFifteenData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans){
+        mTpBeans = tempeBeans;
+        mSCBeans = skyconBeans;
+    }
+    public void setRealTimeData(RealTimeBean realTimeBean){
+        mRLBean=realTimeBean;
+
     }
 
 
@@ -60,7 +68,9 @@ public class RefreshAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflate(mActivity, R.layout.item_weather, null);
         ViewHolder holder = new ViewHolder(view);
-        Logger.d(mRLBean);
+//        Logger.d(mRLBean);
+//        Logger.d(mSCBeans);
+//        Logger.d(mTpBeans);
         holder.mRvFiftenDaysForecast.setData(mTpBeans, mSCBeans);
 
 //        holder.mRealtimeDate.setText(mRLBean.);
@@ -70,13 +80,6 @@ public class RefreshAdapter extends BaseAdapter {
         return view;
     }
 
-
-    public void setData(List<TempeBean> tempeBeans, List<SkyConBean> skyconBeans, RealTimeBean realTimeBean ) {
-        mRLBean=realTimeBean;
-        mTpBeans = tempeBeans;
-        mSCBeans = skyconBeans;
-
-    }
 
 
     static class ViewHolder {

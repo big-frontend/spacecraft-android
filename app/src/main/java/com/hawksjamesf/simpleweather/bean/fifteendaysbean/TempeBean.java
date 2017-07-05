@@ -3,9 +3,9 @@ package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
 
 public  class TempeBean {
     private String date;
-    private int max;
-    private double avg;
-    private int min;
+    private float max;
+    private float avg;
+    private float min;
 
     public String getDate() {
         return date;
@@ -15,7 +15,7 @@ public  class TempeBean {
         this.date = date;
     }
 
-    public int getMax() {
+    public float getMax() {
         return max;
     }
 
@@ -29,23 +29,23 @@ public  class TempeBean {
                 '}';
     }
 
-    public void setMax(int max) {
+    public void setMax(float max) {
         this.max = max;
     }
 
-    public double getAvg() {
+    public float getAvg() {
         return avg;
     }
 
-    public void setAvg(double avg) {
+    public void setAvg(float avg) {
         this.avg = avg;
     }
 
-    public int getMin() {
+    public float getMin() {
         return min;
     }
 
-    public void setMin(int min) {
+    public void setMin(float min) {
         this.min = min;
     }
 

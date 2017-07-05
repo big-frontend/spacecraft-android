@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 android {
+    signingConfigs {
+        config {
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion '25.0.2'
     defaultConfig {
@@ -16,6 +20,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug{
+            buildConfigField ("String","BASE_URL",'"https://api.caiyunapp.com/"')
+        }
     }
     dexOptions {
     }
@@ -29,15 +36,13 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.6.0'
     apt 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'com.github.MatteoBattilana:WeatherView:1.2.0'
-
     compile 'com.google.dagger:dagger:2.11'
     apt 'com.google.dagger:dagger-compiler:2.11'
     compile 'com.google.dagger:dagger-android:2.11'
-//    compile 'com.google.dagger:dagger-android-support:2.11'// if you use the support libraries
-//    provided 'com.google.dagger:dagger-android-processor:2.11'
+    //    compile 'com.google.dagger:dagger-android-support:2.11'// if you use the support libraries
+    //    provided 'com.google.dagger:dagger-android-processor:2.11'
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
-
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:retrofit-converters:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'

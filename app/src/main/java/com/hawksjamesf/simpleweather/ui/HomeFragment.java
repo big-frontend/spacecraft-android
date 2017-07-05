@@ -10,17 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.hawksjamesf.simpleweather.BuildConfig;
 import com.hawksjamesf.simpleweather.MessageEvent;
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +40,10 @@ public class HomeFragment extends Fragment {
     private Activity mActivity;
     private List<TempeBean> mTempeBeans;
     private List<SkyConBean> mSkyconBeans;
+    private RealTimeBean mRLBean;
     private RefreshAdapter mAdapter;
+
+    private static final int REFRESH_FLAG = 11;
 
 
     public static final int EVENT_GET_DATA_REFRESH_ERROR = -1;
@@ -46,9 +53,6 @@ public class HomeFragment extends Fragment {
     public static final int EVENT_GET_DATA_FIFTEEN_DAYS_OK = 2;
     public static final int EVENT_GET_DATA_REALTIME_OK = 3;
     public static final int EVENT_GET_DATA_REALTIME_ERROR = 4;
-    private int refresh_flag = 11;
-    private int fifteendays_flag = 12;
-    private RealTimeBean mRealTimeBean;
 
 
     @Override
@@ -69,6 +73,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        EventBus.getDefault().register(this);
         mWvWeatherStatus.setWeather(Constants.weatherStatus.RAIN)
                 .setCurrentLifeTime(2000)
                 .setCurrentFadeOutTime(1000)
@@ -77,86 +82,90 @@ public class HomeFragment extends Fragment {
                 .setCurrentAngle(-3)
                 .setOrientationMode(Constants.orientationStatus.ENABLE)
                 .startAnimation();
+
         //set up pull-refresh view
         mAdapter = new RefreshAdapter(mActivity);
+
         mRlvPullRefresh.setAdapter(mAdapter);
-//        mRlvPullRefresh.setOnRefreshListener(new RefreshListView.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                requestDatasFromServer(refresh_flag);
-//
-//
-//            }
-//        });
-//        mActivity.startService(new Intent(mActivity,HomeService.class));
+
+        mRlvPullRefresh.setOnRefreshListener(new RefreshListView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+
+            }
+        });
 
 
     }
-
-
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        requestDatasFromServer(fifteendays_flag);
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
-
 
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         switch (event.getValueReturnEvent()) {
             case EVENT_GET_DATA_REFRESH_ERROR:
-//                Toast.makeText(mActivity, "network fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "network fail", Toast.LENGTH_SHORT).show();
                 mRlvPullRefresh.onRefreshComplete(false);
                 break;
 
             case EVENT_GET_DATA_REFRESH_OK:
                 mRlvPullRefresh.onRefreshComplete(true);
-                mAdapter.setData(mTempeBeans, mSkyconBeans,mRealTimeBean);
+//                mAdapter.setFifteenData();
                 mAdapter.notifyDataSetChanged();
                 Toast.makeText(mActivity, "upated", Toast.LENGTH_SHORT).show();
                 break;
 
-            case EVENT_GET_DATA_FIFTEEN_DAYS_OK:
-//                RealTimeBean realTimeBean = event.getVauleWithRealTime();
-//                if (mRealTimeBean==null) {
-//                    return;
-//                }
-//                Logger.d(mRealTimeBean);
-//                Logger.d(mRealTimeBean.getResult());
 
-                mAdapter.setData(mTempeBeans, mSkyconBeans,mRealTimeBean);
+            case EVENT_GET_DATA_FIFTEEN_DAYS_OK:
+                Map<List<TempeBean>, List<SkyConBean>> datas = EventBus.getDefault().getStickyEvent(MessageEvent.class).getMapWithFifteen();
+
+//                if (datas == null) break;
+                Iterator<Map.Entry<List<TempeBean>, List<SkyConBean>>> iterator = datas.entrySet().iterator();
+
+                while (iterator.hasNext()) {
+                    mTempeBeans = iterator.next().getKey();
+                    mSkyconBeans = iterator.next().getValue();
+                }
+                if (BuildConfig.DEBUG) {
+                    Logger.d(mTempeBeans);
+                    Logger.d(mSkyconBeans);
+                }
+                mAdapter.setFifteenData(mTempeBeans,mSkyconBeans);
                 mAdapter.notifyDataSetChanged();
                 break;
             case EVENT_GET_DATA_FIFTEEN_DAYS_ERROR:
-                Toast.makeText(mActivity, "network fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "network fail fifteen", Toast.LENGTH_SHORT).show();
                 break;
-
 
             case EVENT_GET_DATA_REALTIME_OK:
-
-
+                mRLBean = EventBus.getDefault().getStickyEvent(MessageEvent.class).getVauleWithRealTime();
+                mAdapter.setRealTimeData(mRLBean);
+                mAdapter.notifyDataSetChanged();
                 break;
             case EVENT_GET_DATA_REALTIME_ERROR:
+                Toast.makeText(mActivity, "network fail realtime", Toast.LENGTH_SHORT).show();
                 break;
 
         }
 
-    }
-
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
     }
 
 
