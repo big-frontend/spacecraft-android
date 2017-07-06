@@ -8,7 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.hawksjamesf.simpleweather.R;
-
+/**
+ * Copyright ® $ 2017
+ * All right reserved.
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
+ */
 public class SetupWizardActivity extends AppCompatActivity {
 
     @Override

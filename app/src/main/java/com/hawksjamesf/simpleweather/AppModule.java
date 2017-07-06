@@ -9,14 +9,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/7/4
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
 @Module
 public class AppModule {
@@ -29,7 +27,6 @@ public class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-    @Singleton
     @Provides
     public Call provideCall(){
         return new OkHttpClient().newCall(new Request.Builder().url("https://api.caiyunapp.com/v2/TAkhjf8d1nlSlspN/121.6544,25.1552/forecast.json").build());

@@ -1,13 +1,26 @@
 package com.hawksjamesf.simpleweather.bean;
 
 import java.util.List;
-
 /**
- * Created by hawks.jamesf on 7/2/17.
+ * Copyright ® $ 2017
+ * All right reserved.
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
-
 public class RealTimeBean  {
-
+    @Override
+    public String toString() {
+        return "RealTimeBean{" +
+                "status='" + status + '\'' +
+                ", lang='" + lang + '\'' +
+                ", server_time=" + server_time +
+                ", tzshift=" + tzshift +
+                ", unit='" + unit + '\'' +
+                ", result=" + result +
+                ", location=" + location +
+                '}';
+    }
 
     private String status;
     private String lang;

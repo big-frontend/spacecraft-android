@@ -31,7 +31,11 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 
 /**
- * Created by Hawks93JF on 6/28/2017.
+ * Copyright ® $ 2017
+ * All right reserved.
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
 public class HomeService extends IntentService {
     @Inject
@@ -64,8 +68,8 @@ public class HomeService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        /**
-         * retrofit2 style and get realtime data
+        /*
+          retrofit2 style and get realtime data
          */
         WeatherAPIInterface apiInterface = mRetrofit.create(WeatherAPIInterface.class);
         apiInterface.getRealTimeData("realtime").enqueue(new retrofit2.Callback<RealTimeBean>() {
@@ -81,8 +85,8 @@ public class HomeService extends IntentService {
         });
 
 
-        /**
-         * okhttp style and get fifteen data
+        /*
+          okhttp style and get fifteen data
          */
         mFifteenCall.enqueue(new Callback() {
             @Override
@@ -100,19 +104,12 @@ public class HomeService extends IntentService {
                     Type tempeType = new TypeToken<List<TempeBean>>() {
                     }.getType();
                     List<TempeBean> tempeBeans = new Gson().fromJson(tempeArray.toString(), tempeType);
-//                    for (TempeBean tempeBean : tempeBeans) {
-//                        Logger.d(tempeBean);
-//
-//                    }
                     JSONArray skyconArry = dailyObj.getJSONArray("skycon");
                     Type skyconType = new TypeToken<List<SkyConBean>>() {
                     }.getType();
                     List<SkyConBean> skyconBeans = new Gson().fromJson(skyconArry.toString(), skyconType);
-//                    for (SkyConBean skyconBean : mSkyconBeans) {
-//                        Logger.d(skyconArry);
-//                    }
-                    /**
-                     * replace runOnUiThread method by eventbus  mode to update UI thread
+                    /*
+                      replace runOnUiThread method by eventbus  mode to update UI thread
                      */
 
 //                    mActivity.runOnUiThread(new Runnable() {

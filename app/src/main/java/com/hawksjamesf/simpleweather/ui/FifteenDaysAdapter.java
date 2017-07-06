@@ -16,14 +16,12 @@ import butterknife.ButterKnife;
 import static android.view.View.inflate;
 
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/6/29
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
-
 
 public class FifteenDaysAdapter extends RecyclerView.Adapter<FifteenDaysAdapter.FifteenDaysHolder> {
     private List<SkyConBean> mSkyConBeans;

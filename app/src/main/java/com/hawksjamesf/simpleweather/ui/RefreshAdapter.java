@@ -7,25 +7,30 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hawksjamesf.simpleweather.BuildConfig;
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.util.ConditionUtils;
+import com.orhanobut.logger.Logger;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.view.View.inflate;
-
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/6/29
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
 
 public class RefreshAdapter extends BaseAdapter {
@@ -67,16 +72,26 @@ public class RefreshAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflate(mActivity, R.layout.item_weather, null);
+        if (mRLBean==null ||mSCBeans==null|| mTpBeans==null) return view;
         ViewHolder holder = new ViewHolder(view);
-//        Logger.d(mRLBean);
-//        Logger.d(mSCBeans);
-//        Logger.d(mTpBeans);
-        holder.mRvFiftenDaysForecast.setData(mTpBeans, mSCBeans);
+        if (BuildConfig.DEBUG){
 
-//        holder.mRealtimeDate.setText(mRLBean.);
-//        Logger.d(mRLBean.getResult());
-//        holder.mIvRealtimeCondition.setImageResource(ConditionUtils.getDayWeatherPic(mRLBean.getResult().getSkycon()));
-//holder.mRealtimeTemperature.setText((int) mRLBean.getResult().getTemperature());
+        Logger.d(mRLBean+"\n"+mSCBeans+"\n"+mTpBeans+"\n");
+        }
+        holder.mRvFiftenDaysForecast.setData(mTpBeans, mSCBeans);
+        SimpleDateFormat formater=new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        String curDate = formater.format(new Date());
+        try {
+            calendar.setTime(formater.parse(curDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String[] weeks = mActivity.getResources().getStringArray(R.array.weeks);
+        holder.mRealtimeWeek.setText(weeks[calendar.get(Calendar.DAY_OF_WEEK)-1]);
+        holder.mRealtimeDate.setText(curDate);
+        holder.mIvRealtimeCondition.setImageResource(ConditionUtils.getDayWeatherPic(mRLBean.getResult().getSkycon()));
+        holder.mRealtimeTemperature.setText(String.valueOf(mRLBean.getResult().getTemperature()));
         return view;
     }
 

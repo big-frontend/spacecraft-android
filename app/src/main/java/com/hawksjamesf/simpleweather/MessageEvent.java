@@ -4,19 +4,18 @@ import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
 
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/7/4
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
 
 public class MessageEvent {
@@ -31,7 +30,7 @@ public class MessageEvent {
 
 
     public MessageEvent setMapWithFifteen(List<TempeBean> tpBeans,List<SkyConBean> scBeans) {
-        datas = new HashMap<>();
+        datas = new Hashtable<>();
         datas.put(tpBeans, scBeans);
         return this;
     }

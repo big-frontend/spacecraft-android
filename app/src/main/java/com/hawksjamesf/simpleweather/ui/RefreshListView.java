@@ -17,9 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 作者hawks93
- * 版本1.0
- * 创建时间 2015/12/2 8:24
+ * Copyright ® $ 2017
+ * All right reserved.
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
 public class RefreshListView extends ListView /*implements AbsListView.OnScrollListener,AdapterView.OnItemClickListener*/{
 

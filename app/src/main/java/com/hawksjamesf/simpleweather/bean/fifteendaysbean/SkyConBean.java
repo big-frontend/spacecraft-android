@@ -1,5 +1,11 @@
 package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
-
+/**
+ * Copyright ® $ 2017
+ * All right reserved.
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
+ */
 public  class SkyConBean {
     private String value;
     private String date;
@@ -14,6 +20,14 @@ public  class SkyConBean {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "SkyConBean{" +
+                "value='" + value + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 
     public void setValue(String value) {

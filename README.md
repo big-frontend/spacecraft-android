@@ -1,16 +1,17 @@
 Thank you for open source projects:
 
-WeatherView
+自定义布局：WeatherView
 
-<!-- (https://github.com/MatteoBattilana/WeatherView) -->
+依赖注解库：dagger2
 
-ZzWeatherView
+网络库：retrofit2、okhttp3
 
-<!-- (https://github.com/zhouzhuo810/ZzWeatherView/blob/master/app/src/main/java/me/zhouzhuo/zzweatherviewdemo/MainActivity.java) -->
+事件分发库：eventbus
 
-BufferKinfe
+日志库：logger
 
-dagger2
+其他：BufferKinfe
 
-retrofit
+
+`Continue...`
 

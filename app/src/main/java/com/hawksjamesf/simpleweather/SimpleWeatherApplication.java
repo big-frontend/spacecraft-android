@@ -5,12 +5,11 @@ import android.app.Application;
 import com.orhanobut.logger.*;
 
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/6/28
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
 
 public class SimpleWeatherApplication extends Application {

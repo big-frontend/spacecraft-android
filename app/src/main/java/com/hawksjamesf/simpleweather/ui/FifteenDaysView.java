@@ -25,14 +25,12 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/6/29
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
-
 public class FifteenDaysView extends LinearLayout {
     private Paint dayPaint;
     private Paint nightPaint;
