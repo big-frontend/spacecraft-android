@@ -1,0 +1,35 @@
+{
+  "status": "ok",
+  "lang": "zh_CN",
+  "server_time": 1443418222,
+  "tzshift": 28800,
+  "location": [
+    25.1552,
+    121.6544
+  ],
+  "unit": "metric",
+  "result": {
+    "status": "ok",
+    "temperature": 28.0,
+    "skycon": "RAIN",
+    "pm25": 11,
+    "cloudrate": 0.51,
+    "humidity": 0.92,
+    "precipitation": {
+      "nearest": {
+        "status": "ok",
+        "distance": 0.77,
+        "intensity": 0.3125
+      },
+      "local": {
+        "status": "ok",
+        "intensity": 0.2812,
+        "datasource": "radar"
+      }
+    },
+    "wind": {
+      "direction": 25.33,
+      "speed": 83.3
+    }
+  }
+}

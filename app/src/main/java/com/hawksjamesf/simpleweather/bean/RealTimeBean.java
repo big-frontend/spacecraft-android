@@ -1,6 +1,9 @@
 package com.hawksjamesf.simpleweather.bean;
 
+import com.google.gson.Gson;
+
 import java.util.List;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -29,6 +32,11 @@ public class RealTimeBean  {
     private String unit;
     private ResultBean result;
     private List<Double> location;
+
+    public static RealTimeBean objectFromData(String str) {
+
+        return new Gson().fromJson(str, RealTimeBean.class);
+    }
 
     public String getStatus() {
         return status;
@@ -88,15 +96,18 @@ public class RealTimeBean  {
 
     public static class ResultBean {
         private String status;
-        private float temperature;
+        private double temperature;
         private String skycon;
-        private double cloudrate;
-        private int aqi;
-        private double humidity;
-        private double pres;
         private int pm25;
+        private double cloudrate;
+        private double humidity;
         private PrecipitationBean precipitation;
         private WindBean wind;
+
+        public static ResultBean objectFromData(String str) {
+
+            return new Gson().fromJson(str, ResultBean.class);
+        }
 
         public String getStatus() {
             return status;
@@ -106,11 +117,11 @@ public class RealTimeBean  {
             this.status = status;
         }
 
-        public float getTemperature() {
+        public double getTemperature() {
             return temperature;
         }
 
-        public void setTemperature(float temperature) {
+        public void setTemperature(double temperature) {
             this.temperature = temperature;
         }
 
@@ -122,6 +133,14 @@ public class RealTimeBean  {
             this.skycon = skycon;
         }
 
+        public int getPm25() {
+            return pm25;
+        }
+
+        public void setPm25(int pm25) {
+            this.pm25 = pm25;
+        }
+
         public double getCloudrate() {
             return cloudrate;
         }
@@ -130,36 +149,12 @@ public class RealTimeBean  {
             this.cloudrate = cloudrate;
         }
 
-        public int getAqi() {
-            return aqi;
-        }
-
-        public void setAqi(int aqi) {
-            this.aqi = aqi;
-        }
-
         public double getHumidity() {
             return humidity;
         }
 
         public void setHumidity(double humidity) {
             this.humidity = humidity;
-        }
-
-        public double getPres() {
-            return pres;
-        }
-
-        public void setPres(double pres) {
-            this.pres = pres;
-        }
-
-        public int getPm25() {
-            return pm25;
-        }
-
-        public void setPm25(int pm25) {
-            this.pm25 = pm25;
         }
 
         public PrecipitationBean getPrecipitation() {
@@ -182,6 +177,11 @@ public class RealTimeBean  {
             private NearestBean nearest;
             private LocalBean local;
 
+            public static PrecipitationBean objectFromData(String str) {
+
+                return new Gson().fromJson(str, PrecipitationBean.class);
+            }
+
             public NearestBean getNearest() {
                 return nearest;
             }
@@ -202,6 +202,11 @@ public class RealTimeBean  {
                 private String status;
                 private double distance;
                 private double intensity;
+
+                public static NearestBean objectFromData(String str) {
+
+                    return new Gson().fromJson(str, NearestBean.class);
+                }
 
                 public String getStatus() {
                     return status;
@@ -230,8 +235,13 @@ public class RealTimeBean  {
 
             public static class LocalBean {
                 private String status;
-                private int intensity;
+                private double intensity;
                 private String datasource;
+
+                public static LocalBean objectFromData(String str) {
+
+                    return new Gson().fromJson(str, LocalBean.class);
+                }
 
                 public String getStatus() {
                     return status;
@@ -241,11 +251,11 @@ public class RealTimeBean  {
                     this.status = status;
                 }
 
-                public int getIntensity() {
+                public double getIntensity() {
                     return intensity;
                 }
 
-                public void setIntensity(int intensity) {
+                public void setIntensity(double intensity) {
                     this.intensity = intensity;
                 }
 
@@ -262,6 +272,11 @@ public class RealTimeBean  {
         public static class WindBean {
             private double direction;
             private double speed;
+
+            public static WindBean objectFromData(String str) {
+
+                return new Gson().fromJson(str, WindBean.class);
+            }
 
             public double getDirection() {
                 return direction;

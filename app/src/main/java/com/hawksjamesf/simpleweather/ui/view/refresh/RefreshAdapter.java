@@ -1,6 +1,7 @@
-package com.hawksjamesf.simpleweather.ui;
+package com.hawksjamesf.simpleweather.ui.view.refresh;
 
 import android.app.Activity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,6 +13,8 @@ import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.ui.view.forecast.FifteenDaysAdapter;
+import com.hawksjamesf.simpleweather.ui.view.forecast.FifteenDaysView;
 import com.hawksjamesf.simpleweather.util.ConditionUtils;
 import com.orhanobut.logger.Logger;
 
@@ -25,6 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.view.View.inflate;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -35,6 +39,7 @@ import static android.view.View.inflate;
 
 public class RefreshAdapter extends BaseAdapter {
 
+    private static final String TAG = "HomeFragment/RefreshAdapter";
     private Activity mActivity;
     private List<SkyConBean> mSCBeans;
     private List<TempeBean> mTpBeans;
@@ -71,14 +76,24 @@ public class RefreshAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        if (BuildConfig.DEBUG){
+            Logger.t(TAG).d(mRLBean+"\n"+mSCBeans+"\n"+mTpBeans+"\n");
+        }
+
         View view = inflate(mActivity, R.layout.item_weather, null);
         if (mRLBean==null ||mSCBeans==null|| mTpBeans==null) return view;
         ViewHolder holder = new ViewHolder(view);
-        if (BuildConfig.DEBUG){
+        //it is belong to older FifteenDaysView
+//        holder.mRvFiftenDaysForecast.setData(mTpBeans, mSCBeans);
 
-        Logger.d(mRLBean+"\n"+mSCBeans+"\n"+mTpBeans+"\n");
-        }
-        holder.mRvFiftenDaysForecast.setData(mTpBeans, mSCBeans);
+        //it is belog to new FifteenDaysView
+        FifteenDaysAdapter fifteenDaysAdapter = new FifteenDaysAdapter(mActivity,mTpBeans,mSCBeans);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        holder.mRvFiftenDaysForecast.setLayoutManager(linearLayoutManager);
+        holder.mRvFiftenDaysForecast.setAdapter(fifteenDaysAdapter);
+
+
         SimpleDateFormat formater=new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         String curDate = formater.format(new Date());
@@ -116,5 +131,8 @@ public class RefreshAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
     }
+
+
+
 
 }

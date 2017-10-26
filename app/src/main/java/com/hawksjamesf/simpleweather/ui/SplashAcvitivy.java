@@ -21,9 +21,6 @@ public class SplashAcvitivy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
-
-
     }
 
     @Override
@@ -34,8 +31,6 @@ public class SplashAcvitivy extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        startService(new Intent(SplashAcvitivy.this,HomeService.class));
         Intent startIntent = new Intent();
         // TODO: 2017/7/4  go to HomeActivity or SetupWizardActivity
         startIntent.setClassName("com.hawksjamesf.simpleweather", "com.hawksjamesf.simpleweather.ui.HomeActivity");

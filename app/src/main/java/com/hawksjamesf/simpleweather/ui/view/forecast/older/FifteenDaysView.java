@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.ui;
+package com.hawksjamesf.simpleweather.ui.view.forecast.older;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -63,6 +63,44 @@ public class FifteenDaysView extends LinearLayout {
         setWillNotDraw(false);
 
     }
+
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        int measurewidth=0;
+//        int measureHeight=0;
+//        int childCount = getChildCount();
+//        measureChildren(widthMeasureSpec,heightMeasureSpec);
+//
+//
+//        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+//        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+//        int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+//        if (childCount==0){
+//
+//        }else if (widthSpecMode==MeasureSpec.AT_MOST && heightSpecMode==MeasureSpec.AT_MOST){
+//            View childAt = getChildAt(0);
+//            measurewidth=childCount*childAt.getMeasuredWidth();
+//            measureHeight=childAt.getMeasuredHeight();
+//            setMeasuredDimension(measurewidth,measureHeight);
+//        }else if (widthMeasureSpec==MeasureSpec.AT_MOST){
+//            View childAt = getChildAt(0);
+//            measurewidth=childCount*childAt.getMeasuredWidth();
+//            setMeasuredDimension(measurewidth,heightSpecMode);
+//
+//        }else  if (heightMeasureSpec==MeasureSpec.AT_MOST){
+//            View childAt = getChildAt(0);
+//            measureHeight=childAt.getMeasuredHeight();
+//            setMeasuredDimension(widthSpecSize,measureHeight);
+//        }
+//
+//    }
+
+//    @Override
+//    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+//        super.onLayout(changed, l, t, r, b);
+//    }
 
     @Override
     public void onDraw(Canvas canvas) {

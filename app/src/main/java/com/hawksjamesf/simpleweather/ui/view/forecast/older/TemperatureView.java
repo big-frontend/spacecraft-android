@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.ui;
+package com.hawksjamesf.simpleweather.ui.view.forecast.older;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -22,9 +22,7 @@ public class TemperatureView extends View {
     private int temperatureNight;
 
     private Paint pointPaint;
-    private Paint linePaint;
     private Paint textPaint;
-    private int lineColor;
     private int pointColor;
     private int textColor;
 
@@ -49,7 +47,6 @@ public class TemperatureView extends View {
     }
 
     private void initAttrs(Context context, AttributeSet attrs) {
-        lineColor = 0xff93a122;
         textColor = 0xffffffff;
         pointColor = 0xffffffff;
     }
@@ -57,10 +54,8 @@ public class TemperatureView extends View {
     private void initPaint(Context context, AttributeSet attrs) {
 
         pointPaint = new Paint();
-        linePaint = new Paint();
         textPaint = new Paint();
 
-        linePaint.setColor(lineColor);
         pointPaint.setColor(pointColor);
         pointPaint.setAntiAlias(true);
         textPaint.setColor(textColor);
@@ -69,10 +64,30 @@ public class TemperatureView extends View {
 
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
+
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+//        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+//        int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+//
+//        if (widthSpecMode==MeasureSpec.AT_MOST && heightSpecMode==MeasureSpec.AT_MOST){
+//            setMeasuredDimension(230,300);
+//            Logger.d(1);
+//        }else if (widthSpecMode==MeasureSpec.AT_MOST){
+//            Logger.d(2);
+//            setMeasuredDimension(230,heightSpecSize);
+//        }else if (heightSpecMode==MeasureSpec.AT_MOST){
+//            Logger.d(widthSpecMode+"  "+heightSpecMode);
+//            Logger.d(widthSpecSize+"  "+heightSpecSize);
+//            setMeasuredDimension(widthSpecSize,300);
+//        }
+//
+//    }
+
+
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -87,7 +102,6 @@ public class TemperatureView extends View {
         yPointDay = y;
         xPointNight = x2;
         yPointNight = y2;
-//        Logger.d(xPointNight+","+yPointNight);
 
     }
 

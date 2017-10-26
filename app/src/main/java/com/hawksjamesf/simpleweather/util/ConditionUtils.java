@@ -3,14 +3,12 @@ package com.hawksjamesf.simpleweather.util;
 import com.hawksjamesf.simpleweather.R;
 
 /**
- * Copyright ® 2017
- * Shanghai wind-mobi
+ * Copyright ® $ 2017
  * All right reserved.
- *
- * @author:chenjinfa
- * @since:2017/6/30
+ * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ *  @author: hawks jamesf
+ *  @since: 2017/7/4
  */
-
 public class ConditionUtils {
 
     public static int getDayWeatherPic(String weatherName) {
@@ -47,7 +45,7 @@ public class ConditionUtils {
         switch (weatherName) {
             case "晴":
                 return R.mipmap.w30;
-            case "PARTLY_CLOUDY_DAY":
+            case "PARTLY_CLOUDY_NIGHT":
                 return R.mipmap.w31;
             case "CLOUDY":
                 return R.mipmap.w2;

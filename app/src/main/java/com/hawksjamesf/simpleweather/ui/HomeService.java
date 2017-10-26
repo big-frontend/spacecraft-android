@@ -5,53 +5,44 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.hawksjamesf.simpleweather.MessageEvent;
 import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
-import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
+import com.hawksjamesf.simpleweather.event.FifteenEvent;
+import com.hawksjamesf.simpleweather.event.RealtimeEvent;
+import com.hawksjamesf.simpleweather.util.GetWeatherDataUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-import retrofit2.Retrofit;
 
 /**
  * Copyright ® $ 2017
  * All right reserved.
  * Code Link : https://github.com/HawksJamesf/SimpleWeather
- *  @author: hawks jamesf
- *  @since: 2017/7/4
+ *
+ * @author: hawks jamesf
+ * @since: 2017/7/4
  */
 public class HomeService extends IntentService {
-    @Inject
-    Retrofit mRetrofit;
-    @Inject
-    Call mFifteenCall;
+    private static final String TAG = "HomeService";
 
     @Inject
-    MessageEvent mEvent;
+    RealtimeEvent mEvent;
+    @Inject
+    FifteenEvent fifteenEvent;
     public static final int EVENT_GET_DATA_FIFTEEN_DAYS_ERROR = 0;
     public static final int EVENT_GET_DATA_FIFTEEN_DAYS_OK = 2;
     public static final int EVENT_GET_DATA_REALTIME_OK = 3;
     public static final int EVENT_GET_DATA_REALTIME_ERROR = 4;
 
+
     public HomeService() {
-        super("HomeService");
+        super(TAG);
     }
 
     @Nullable
@@ -67,68 +58,37 @@ public class HomeService extends IntentService {
     }
 
     @Override
+    public void onStart(@Nullable Intent intent, int startId) {
+        super.onStart(intent, startId);
+    }
+
+    @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        /*
-          retrofit2 style and get realtime data
-         */
-        WeatherAPIInterface apiInterface = mRetrofit.create(WeatherAPIInterface.class);
-        apiInterface.getRealTimeData("realtime").enqueue(new retrofit2.Callback<RealTimeBean>() {
-            @Override
-            public void onResponse(retrofit2.Call<RealTimeBean> call, retrofit2.Response<RealTimeBean> response) {
-                EventBus.getDefault().postSticky(mEvent.setValueReturnEvent(EVENT_GET_DATA_REALTIME_OK).setVauleWithRealTime(response.body()));
-            }
-
-            @Override
-            public void onFailure(retrofit2.Call<RealTimeBean> call, Throwable t) {
-                EventBus.getDefault().postSticky(mEvent.setValueReturnEvent(EVENT_GET_DATA_REALTIME_ERROR));
-            }
-        });
-
 
         /*
-          okhttp style and get fifteen data
+        get fifteen data from local
          */
-        mFifteenCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                EventBus.getDefault().postSticky(mEvent.setValueReturnEvent(EVENT_GET_DATA_FIFTEEN_DAYS_ERROR));
+        Map<List<TempeBean>, List<SkyConBean>> forecast = GetWeatherDataUtils.requestDataFromLocal(TempeBean.class,SkyConBean.class,this, GetWeatherDataUtils.FORECAST);
+        for (Map.Entry<List<TempeBean>, List<SkyConBean>> next : forecast.entrySet()) {
+            if (next != null) {
+                EventBus.getDefault().postSticky(fifteenEvent.setValueReturnEvent(EVENT_GET_DATA_FIFTEEN_DAYS_OK).setMapWithFifteen(next.getKey(), next.getValue()));
+
+            } else {
+                EventBus.getDefault().postSticky(fifteenEvent.setValueReturnEvent(EVENT_GET_DATA_FIFTEEN_DAYS_ERROR));
             }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    JSONObject rootObj = new JSONObject(response.body().string());
-                    JSONObject resultObj = rootObj.getJSONObject("result");
-                    JSONObject dailyObj = resultObj.getJSONObject("daily");
+        }
+        /*
+        get RealTimeBean data from local
+         */
+        RealTimeBean rlBean = GetWeatherDataUtils.requestDataFromLocal(RealTimeBean.class,this, GetWeatherDataUtils.REALTIMES);
+        if (rlBean != null) {
+            //success
 
-                    JSONArray tempeArray = dailyObj.getJSONArray("temperature");
-                    Type tempeType = new TypeToken<List<TempeBean>>() {
-                    }.getType();
-                    List<TempeBean> tempeBeans = new Gson().fromJson(tempeArray.toString(), tempeType);
-                    JSONArray skyconArry = dailyObj.getJSONArray("skycon");
-                    Type skyconType = new TypeToken<List<SkyConBean>>() {
-                    }.getType();
-                    List<SkyConBean> skyconBeans = new Gson().fromJson(skyconArry.toString(), skyconType);
-                    /*
-                      replace runOnUiThread method by eventbus  mode to update UI thread
-                     */
-
-//                    mActivity.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            mAdapter.setFifteenData(mTempeBeans, mSkyconBeans);
-//                            mAdapter.notifyDataSetChanged();
-//                        }
-//                    });
-                    EventBus.getDefault().postSticky(mEvent.setValueReturnEvent(EVENT_GET_DATA_FIFTEEN_DAYS_OK).setMapWithFifteen(tempeBeans, skyconBeans));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-
+            EventBus.getDefault().postSticky(mEvent.setValueReturnEvent(EVENT_GET_DATA_REALTIME_OK).setVauleWithRealTime(rlBean));
+        } else {
+            //error
+            EventBus.getDefault().postSticky(mEvent.setValueReturnEvent(EVENT_GET_DATA_REALTIME_ERROR));
+        }
     }
 }
 

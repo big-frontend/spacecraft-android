@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather;
+package com.hawksjamesf.simpleweather.event;
 
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
@@ -14,41 +14,50 @@ import javax.inject.Inject;
  * Copyright ® $ 2017
  * All right reserved.
  * Code Link : https://github.com/HawksJamesf/SimpleWeather
- *  @author: hawks jamesf
- *  @since: 2017/7/4
+ *
+ * @author: hawks.jamesf
+ * @since: 9/20/17
  */
 
-public class MessageEvent {
-
+public class FifteenEvent {
     @Inject
-    public MessageEvent() {
+    public FifteenEvent() {
     }
 
-    private Map<List<TempeBean>, List<SkyConBean>> datas;
+    @Override
+    public String toString() {
+        return "RealtimeEvent{" +
+                "fifteenDatas=" + fifteenDatas +
+                ", valueReturnEvent=" + valueReturnEvent +
+                ", rtBean=" + rtBean +
+                '}';
+    }
+
+    private Map<List<TempeBean>, List<SkyConBean>> fifteenDatas;
     private int valueReturnEvent;
     private RealTimeBean rtBean;
 
 
-    public MessageEvent setMapWithFifteen(List<TempeBean> tpBeans,List<SkyConBean> scBeans) {
-        datas = new Hashtable<>();
-        datas.put(tpBeans, scBeans);
+    public FifteenEvent setMapWithFifteen(List<TempeBean> tpBeans,List<SkyConBean> scBeans) {
+        fifteenDatas = new Hashtable<>();
+        fifteenDatas.put(tpBeans, scBeans);
         return this;
     }
 
     public Map<List<TempeBean>, List<SkyConBean>> getMapWithFifteen() {
-        return datas;
+        return fifteenDatas;
     }
 
     public int getValueReturnEvent() {
         return valueReturnEvent;
     }
 
-    public MessageEvent setValueReturnEvent(int valueReturnEvent) {
+    public FifteenEvent setValueReturnEvent(int valueReturnEvent) {
         this.valueReturnEvent = valueReturnEvent;
         return this;
     }
 
-    public MessageEvent setVauleWithRealTime(RealTimeBean bean) {
+    public FifteenEvent setVauleWithRealTime(RealTimeBean bean) {
         this.rtBean = bean;
         return this;
     }
@@ -56,5 +65,4 @@ public class MessageEvent {
     public RealTimeBean getVauleWithRealTime() {
         return rtBean;
     }
-
 }

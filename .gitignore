@@ -56,6 +56,5 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-.gitignore
-viewpagerindicator_library/build/
-zz-weather-view_lib
+app/src/.DS_Store
+app/src/main/.DS_Store

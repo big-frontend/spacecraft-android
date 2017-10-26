@@ -3,6 +3,11 @@
           package="com.hawksjamesf.simpleweather">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
         android:name=".SimpleWeatherApplication"
@@ -18,7 +23,6 @@
 
         <activity
             android:name=".ui.SplashAcvitivy"
-            android:label="@string/title_activity_splash_acvitivy"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

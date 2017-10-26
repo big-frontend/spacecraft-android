@@ -27,6 +27,7 @@ public class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+    @Singleton
     @Provides
     public Call provideCall(){
         return new OkHttpClient().newCall(new Request.Builder().url("https://api.caiyunapp.com/v2/TAkhjf8d1nlSlspN/121.6544,25.1552/forecast.json").build());

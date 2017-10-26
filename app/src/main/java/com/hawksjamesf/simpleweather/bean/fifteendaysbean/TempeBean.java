@@ -1,5 +1,7 @@
 package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
 
+import com.google.gson.Gson;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -8,23 +10,6 @@ package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
  *  @since: 2017/7/4
  */
 public  class TempeBean {
-    private String date;
-    private float max;
-    private float avg;
-    private float min;
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public float getMax() {
-        return max;
-    }
-
     @Override
     public String toString() {
         return "TempeBean{" +
@@ -35,27 +20,47 @@ public  class TempeBean {
                 '}';
     }
 
-    public void setMax(float max) {
+    private String date;
+    private double max;
+    private double avg;
+    private double min;
+
+    public static TempeBean objectFromData(String str) {
+
+        return new Gson().fromJson(str, TempeBean.class);
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public double getMax() {
+        return max;
+    }
+
+    public void setMax(double max) {
         this.max = max;
     }
 
-    public float getAvg() {
+    public double getAvg() {
         return avg;
     }
 
-    public void setAvg(float avg) {
+    public void setAvg(double avg) {
         this.avg = avg;
     }
 
-    public float getMin() {
+    public double getMin() {
         return min;
     }
 
-    public void setMin(float min) {
+    public void setMin(double min) {
         this.min = min;
     }
-
-
 }
 
 

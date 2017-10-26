@@ -1,4 +1,7 @@
 package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
+
+import com.google.gson.Gson;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -7,8 +10,21 @@ package com.hawksjamesf.simpleweather.bean.fifteendaysbean;
  *  @since: 2017/7/4
  */
 public  class SkyConBean {
-    private String value;
+    @Override
+    public String toString() {
+        return "SkyConBean{" +
+                "date='" + date + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
+
     private String date;
+    private String value;
+
+    public static SkyConBean objectFromData(String str) {
+
+        return new Gson().fromJson(str, SkyConBean.class);
+    }
 
     public String getDate() {
         return date;
@@ -20,14 +36,6 @@ public  class SkyConBean {
 
     public String getValue() {
         return value;
-    }
-
-    @Override
-    public String toString() {
-        return "SkyConBean{" +
-                "value='" + value + '\'' +
-                ", date='" + date + '\'' +
-                '}';
     }
 
     public void setValue(String value) {

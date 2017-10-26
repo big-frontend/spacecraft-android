@@ -46,8 +46,17 @@ public class HomeActivity extends AppCompatActivity  {
         EventBus.getDefault().register(contentFragment[0]);
 
 
-    }
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+//        startService(new Intent(HomeActivity.this,HomeService.class));
+        mVpWeatherBackground.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager()));
+        mLpiIndicator.setViewPager(mVpWeatherBackground,0);
+
+
+    }
     private class ContentFragmentPagerAdapter extends FragmentPagerAdapter{
 
         public ContentFragmentPagerAdapter(FragmentManager fm) {
@@ -67,15 +76,15 @@ public class HomeActivity extends AppCompatActivity  {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mVpWeatherBackground.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager()));
-        mLpiIndicator.setViewPager(mVpWeatherBackground,0);
+    protected void onStop() {
+        super.onStop();
+
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(contentFragment[0]);
+
     }
 }
