@@ -10,5 +10,4 @@ android:
 jdk:
   - oraclejdk8
 script:
-  - cd todoapp
   - ./gradlew assemble

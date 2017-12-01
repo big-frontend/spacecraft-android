@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.svg?branch=master)](https://travis-ci.org/HawksJamesf/SimpleWeather)
 Thank you for open source projects:
 
 自定义布局：WeatherView
