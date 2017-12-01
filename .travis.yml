@@ -1,0 +1,14 @@
+language: android
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-27.0.0
+    - android-23
+    - extra-android-m2repository
+    - extra-google-m2repository
+jdk:
+  - oraclejdk8
+script:
+  - cd todoapp
+  - ./gradlew assemble

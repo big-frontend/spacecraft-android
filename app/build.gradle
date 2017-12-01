@@ -5,20 +5,23 @@ android {
         config {
         }
     }
-    compileSdkVersion 24
-    buildToolsVersion '26.0.0'
+    compileSdkVersion 23
+    buildToolsVersion '27.0.0'
     defaultConfig {
+//        multiDexEnabled=true
         applicationId "com.hawksjamesf.simpleweather"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
+//        ndk {
             // 设置支持的SO库架构
-            abiFilters 'x86_64' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
-            abiFilters 'x86' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
-        }
+//            abiFilters 'x86_64'
+//            abiFilters 'x86'
+//            abiFilters 'armeabi-v7a'
+//            abiFilters 'arm64-v8a'
+//        }
     }
     buildTypes {
         release {
@@ -29,8 +32,7 @@ android {
             buildConfigField ("String","BASE_URL",'"https://api.caiyunapp.com/"')
         }
     }
-    dexOptions {
-    }
+
     productFlavors {
     }
 }
@@ -39,11 +41,12 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':viewpagerindicator_library')
     compile 'com.jakewharton:butterknife:8.6.0'
-    apt 'com.jakewharton:butterknife-compiler:8.6.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    provided 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'com.github.MatteoBattilana:WeatherView:1.2.0'
     compile 'com.google.dagger:dagger:2.11'
-    apt 'com.google.dagger:dagger-compiler:2.11'
-    compile 'com.google.dagger:dagger-android:2.11'
+    provided 'com.google.dagger:dagger-compiler:2.11'
+    //    compile 'com.google.dagger:dagger-android:2.11'
     //    compile 'com.google.dagger:dagger-android-support:2.11'// if you use the support libraries
     //    provided 'com.google.dagger:dagger-android-processor:2.11'
     compile 'com.android.support:appcompat-v7:24.1.1'
@@ -52,7 +55,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit-converters:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    //    compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.orhanobut:logger:2.1.1'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'org.greenrobot:eventbus:3.0.0'

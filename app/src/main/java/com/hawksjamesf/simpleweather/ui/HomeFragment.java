@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
@@ -26,8 +25,6 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Printer;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Hashtable;
 import java.util.List;
@@ -76,16 +73,15 @@ public class HomeFragment extends Fragment {
     @Inject
     Call mFifteenCall;
 
-    private static final int REFRESH_FLAG = 11;
 
 
     public static final int EVENT_GET_DATA_REFRESH_ERROR = -1;
-    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_ERROR = 0;
+//    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_ERROR = 0;
 
     public static final int EVENT_GET_DATA_REFRESH_OK = 1;
-    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_OK = 2;
-    public static final int EVENT_GET_DATA_REALTIME_OK = 3;
-    public static final int EVENT_GET_DATA_REALTIME_ERROR = 4;
+//    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_OK = 2;
+//    public static final int EVENT_GET_DATA_REALTIME_OK = 3;
+//    public static final int EVENT_GET_DATA_REALTIME_ERROR = 4;
 
 
     @Override
@@ -180,7 +176,7 @@ public class HomeFragment extends Fragment {
 
                             @Override
                             public void onNext(Hashtable o) {
-                                 Hashtable.Entry<RealTimeBean,Map<List<TempeBean>, List<SkyConBean>>> entry = (Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>>) o.entrySet().iterator().next();
+                                 @SuppressWarnings("unchecked") Hashtable.Entry<RealTimeBean,Map<List<TempeBean>, List<SkyConBean>>> entry = (Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>>) o.entrySet().iterator().next();
 
                                 Map<List<TempeBean>, List<SkyConBean>> map = entry.getValue();
                                 Map.Entry<List<TempeBean>, List<SkyConBean>> next = map.entrySet().iterator().next();
@@ -224,89 +220,80 @@ public class HomeFragment extends Fragment {
 //        Logger.t(TAG).w("backgroud:"+event.toString());
 //
 //    }
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onFifteenEvent(FifteenEvent event) {
-        switch (event.getValueReturnEvent()) {
+//    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+//    public void onFifteenEvent(FifteenEvent event) {
+//        switch (event.getValueReturnEvent()) {
+//
+//            case EVENT_GET_DATA_FIFTEEN_DAYS_OK:
+//                updateFifteenDaysDatas(EventBus.getDefault().getStickyEvent(FifteenEvent.class).getMapWithFifteen());
+//                mAdapter.notifyDataSetChanged();
+//                break;
+//            case EVENT_GET_DATA_FIFTEEN_DAYS_ERROR:
+//                Toast.makeText(mActivity, "network fail fifteen", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//    }
 
-            case EVENT_GET_DATA_FIFTEEN_DAYS_OK:
-                updateFifteenDaysDatas(EventBus.getDefault().getStickyEvent(FifteenEvent.class).getMapWithFifteen());
-                mAdapter.notifyDataSetChanged();
-                break;
-            case EVENT_GET_DATA_FIFTEEN_DAYS_ERROR:
-                Toast.makeText(mActivity, "network fail fifteen", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
-
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onRealtimeEvent(RealtimeEvent event) {
-        switch (event.getValueReturnEvent()) {
-
-            case EVENT_GET_DATA_REALTIME_OK:
-                updateRealtimeDatas(EventBus.getDefault().getStickyEvent(RealtimeEvent.class).getVauleWithRealTime());
-                mAdapter.notifyDataSetChanged();
-                break;
-            case EVENT_GET_DATA_REALTIME_ERROR:
-                Toast.makeText(mActivity, "network fail realtime", Toast.LENGTH_SHORT).show();
-                break;
-
-        }
-    }
-
-
-        @Subscribe(threadMode = ThreadMode.MAIN)
-        public void onRefreshEvent(RefreshEvent event){
-            switch (event.getValueReturnEvent()) {
-                case EVENT_GET_DATA_REFRESH_ERROR:
-                    Toast.makeText(mActivity, "network fail", Toast.LENGTH_SHORT).show();
-                    mRlvPullRefresh.onRefreshComplete(false);
-                    break;
-
-                case EVENT_GET_DATA_REFRESH_OK:
-                    Map<List<TempeBean>, List<SkyConBean>> mapWithFifteen = event.getMapWithFifteen();
-                    RealTimeBean vauleWithRealTime = event.getVauleWithRealTime();
-                    if (mapWithFifteen == null || vauleWithRealTime == null) return;
-                    updateRealtimeDatas(vauleWithRealTime);
-                    updateFifteenDaysDatas(mapWithFifteen);
-                    Logger.t(TAG).d("REFRESH_FLAG:\n" + vauleWithRealTime + "\n" + mapWithFifteen);
-                    mAdapter.notifyDataSetChanged();
-                    mRlvPullRefresh.onRefreshComplete(true);
-                    Toast.makeText(mActivity, "upated", Toast.LENGTH_SHORT).show();
-                    break;
+//    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+//    public void onRealtimeEvent(RealtimeEvent event) {
+//        switch (event.getValueReturnEvent()) {
+//
+//            case EVENT_GET_DATA_REALTIME_OK:
+//                updateRealtimeDatas(EventBus.getDefault().getStickyEvent(RealtimeEvent.class).getVauleWithRealTime());
+//                mAdapter.notifyDataSetChanged();
+//                break;
+//            case EVENT_GET_DATA_REALTIME_ERROR:
+//                Toast.makeText(mActivity, "network fail realtime", Toast.LENGTH_SHORT).show();
+//                break;
+//
+//        }
+//    }
 
 
-            }
+//        @Subscribe(threadMode = ThreadMode.MAIN)
+//        public void onRefreshEvent(RefreshEvent event){
+//            switch (event.getValueReturnEvent()) {
+//                case EVENT_GET_DATA_REFRESH_ERROR:
+//                    Toast.makeText(mActivity, "network fail", Toast.LENGTH_SHORT).show();
+//                    mRlvPullRefresh.onRefreshComplete(false);
+//                    break;
+//
+//                case EVENT_GET_DATA_REFRESH_OK:
+//                    Map<List<TempeBean>, List<SkyConBean>> mapWithFifteen = event.getMapWithFifteen();
+//                    RealTimeBean vauleWithRealTime = event.getVauleWithRealTime();
+//                    if (mapWithFifteen == null || vauleWithRealTime == null) return;
+//                    updateRealtimeDatas(vauleWithRealTime);
+//                    updateFifteenDaysDatas(mapWithFifteen);
+//                    Logger.t(TAG).d("REFRESH_FLAG:\n" + vauleWithRealTime + "\n" + mapWithFifteen);
+//                    mAdapter.notifyDataSetChanged();
+//                    mRlvPullRefresh.onRefreshComplete(true);
+//                    Toast.makeText(mActivity, "upated", Toast.LENGTH_SHORT).show();
+//                    break;
+//
+//
+//            }
+//
+//
+//        }
 
 
-        }
-
-
-    private void updateRealtimeDatas(RealTimeBean rlBean) {
-        Logger.t(TAG).d(rlBean);
-        mAdapter.setRealTimeData(rlBean);
-    }
-
-    private void updateFifteenDaysDatas(Map<List<TempeBean>, List<SkyConBean>> datas) {
-        List<TempeBean> tempeBeans = null;
-        List<SkyConBean> skyConBeans = null;
-        for (Map.Entry<List<TempeBean>, List<SkyConBean>> listListEntry : datas.entrySet()) {
-            tempeBeans = listListEntry.getKey();
-            skyConBeans = listListEntry.getValue();
-            Logger.t(TAG).d(tempeBeans + "\n" + skyConBeans);
-
-        }
-//                Iterator<Map.Entry<List<TempeBean>, List<SkyConBean>>> iterator = datas.entrySet().iterator();
-//                while (iterator.hasNext()) {
-//                    mTempeBeans = iterator.next().getKey();
-//                    mSkyconBeans = iterator.next().getValue();
-//                    Logger.d();
-//                }
-//                Logger.d(iterator.next().getKey());
-//                List<TempeBean> tempeBeans=new ArrayList<>();;
-//                List<SkyConBean> skyConBeen = iterator.next().getValue();
-
-        mAdapter.setFifteenData(tempeBeans, skyConBeans);
-    }
+//    private void updateRealtimeDatas(RealTimeBean rlBean) {
+//        Logger.t(TAG).d(rlBean);
+//        mAdapter.setRealTimeData(rlBean);
+//    }
+//
+//    private void updateFifteenDaysDatas(Map<List<TempeBean>, List<SkyConBean>> datas) {
+//        List<TempeBean> tempeBeans = null;
+//        List<SkyConBean> skyConBeans = null;
+//        for (Map.Entry<List<TempeBean>, List<SkyConBean>> listListEntry : datas.entrySet()) {
+//            tempeBeans = listListEntry.getKey();
+//            skyConBeans = listListEntry.getValue();
+//            Logger.t(TAG).d(tempeBeans + "\n" + skyConBeans);
+//
+//        }
+//
+//        mAdapter.setFifteenData(tempeBeans, skyConBeans);
+//    }
 
 
 }
