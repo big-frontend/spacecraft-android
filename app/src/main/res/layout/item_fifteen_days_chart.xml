@@ -50,11 +50,11 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center"
-            android:maxLines="1"
             android:scrollHorizontally="true"
             android:text="晴"
             android:textColor="#fff"
-            android:textSize="10sp"/>
+            android:textSize="10sp"
+            android:singleLine="true"/>
 
         <ImageView
             android:id="@+id/iv_day_weather"
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:maxLines="1"
+            android:singleLine="true"
             android:text="晴"
             android:textColor="#fff"
             android:textSize="10sp"/>

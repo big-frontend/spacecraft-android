@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     >
-    <com.viewpagerindicator.LinePageIndicator
-        android:layout_alignParentTop="true"
-        android:id="@+id/lpi_indicator"
-        android:layout_height="20sp"
-        android:layout_width="match_parent" />
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_weather_background"
-        android:layout_below="@id/lpi_indicator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
 
-</RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
