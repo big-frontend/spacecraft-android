@@ -41,7 +41,7 @@ captures/
 .idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
-.idea
+.idea/
 
 # Keystore files
 *.jks
@@ -59,3 +59,5 @@ freeline_project_description.json
 
 app/src/.DS_Store
 app/src/main/.DS_Store
+/viewpagerindicator_library/
+/viewpagerindicator_library/viewpagerindicator_library.iml

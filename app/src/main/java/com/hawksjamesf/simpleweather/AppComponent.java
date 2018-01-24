@@ -1,8 +1,7 @@
 package com.hawksjamesf.simpleweather;
 
 import com.hawksjamesf.simpleweather.ui.HomeFragment;
-import com.hawksjamesf.simpleweather.ui.HomeService;
-import com.hawksjamesf.simpleweather.ui.SplashAcvitivy;
+import com.hawksjamesf.simpleweather.ui.SplashActivity;
 
 import javax.inject.Singleton;
 
@@ -19,8 +18,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = AppModule.class/*more modules*/)
 public interface AppComponent {
-    void inject(SplashAcvitivy splashAcvitivy);
-    void inject(HomeService homeService);
+    void inject(SplashActivity splashActivity);
 
     void inject(HomeFragment homeFragment);
 }
