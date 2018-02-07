@@ -4,5 +4,3 @@ if (!isComponentMode.toBoolean()) {
 }
 include ':location'
 println("settings end")
-
-//include ':viewpagerindicator_library'
