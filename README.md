@@ -11,5 +11,6 @@ dev branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.sv
 - [x] MVP框架搭建
 - [ ] Retrofit+RxJava2封装整合
 - [ ] Room注解数据库的接入
-- [ ] 定位系统的设计与封装
+- [x] 定位系统的设计与封装
+- [x] 组件化设计
 
