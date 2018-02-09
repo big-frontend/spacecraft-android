@@ -13,4 +13,5 @@ dev branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.sv
 - [ ] Room注解数据库的接入
 - [x] 定位系统的设计与封装
 - [x] 组件化设计
+- [x] 提供gradle plugin for version
 

@@ -1,9 +1,11 @@
 println("lib location start")
 if (isComponentMode.toBoolean()) {
     apply plugin: 'com.android.application'
+    apply plugin: 'versionplugin'
 } else {
     apply plugin: 'com.android.library'
 }
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -28,6 +30,16 @@ android {
             debuggable true
         }
     }
+    if (isComponentMode.toBoolean()) {
+        versionPlugin {
+            buildTypeMatcher = 'debug'
+//        '$appName/project/buildType-v_$versionName-c_$versionCode'
+//        fileFormat = '$appName-v_$versionName-c_$versionCode'
+            fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode'
+
+        }
+    }
+
 
 }
 dependencies {
