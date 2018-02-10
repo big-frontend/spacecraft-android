@@ -1,3 +1,6 @@
-include ':app'
-
-include ':viewpagerindicator_library'
+println("settings start")
+if (!isComponentMode.toBoolean()) {
+    include ':app'
+}
+include ':location'
+println("settings end")

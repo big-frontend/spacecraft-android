@@ -3,19 +3,19 @@
              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
-    <xyz.matteobattilana.library.WeatherView
-        android:id="@+id/wv_weather_status"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="-100dp"
-        android:layout_marginRight="-100dp"
-        app:angle="-3"
-        app:fadeOutTime="1000"
-        app:fps="40"
-        app:lifeTime="2200"
-        app:numParticles="55"
-        app:orientationMode="ENABLE"
-        app:startingWeather="RAIN"/>
+    <!--<xyz.matteobattilana.library.WeatherView-->
+        <!--android:id="@+id/wv_weather_status"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginLeft="-100dp"-->
+        <!--android:layout_marginRight="-100dp"-->
+        <!--app:angle="-3"-->
+        <!--app:fadeOutTime="1000"-->
+        <!--app:fps="40"-->
+        <!--app:lifeTime="2200"-->
+        <!--app:numParticles="55"-->
+        <!--app:orientationMode="ENABLE"-->
+        <!--app:startingWeather="RAIN"/>-->
     <com.hawksjamesf.simpleweather.ui.view.refresh.RefreshListView
         android:id="@+id/rlv_pull_refresh"
         android:layout_width="match_parent"

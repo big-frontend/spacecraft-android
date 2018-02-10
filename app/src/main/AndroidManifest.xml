@@ -18,11 +18,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.HomeActivity"/>
 
-        <service android:name=".ui.HomeService">
-        </service>
-
         <activity
-            android:name=".ui.SplashAcvitivy"
+            android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

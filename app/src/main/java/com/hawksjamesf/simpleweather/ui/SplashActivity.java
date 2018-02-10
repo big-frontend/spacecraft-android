@@ -12,7 +12,7 @@ import com.hawksjamesf.simpleweather.R;
  *  @author: hawks jamesf
  *  @since: 2017/7/4
  */
-public class SplashAcvitivy extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
 
 
