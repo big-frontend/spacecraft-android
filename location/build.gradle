@@ -24,6 +24,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            ProGuard rule files to be included in the published AAR.
+//            consumerProguardFiles(
+//                    'consumer-proguard-rules.pro'
+//            )
         }
         component {
             initWith debug
