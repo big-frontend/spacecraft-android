@@ -4,7 +4,7 @@ import com.hawksjamesf.simpleweather.network.ObservableOrMainCallAdapterFactory;
 import com.hawksjamesf.simpleweather.network.URLInterceptor;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 import com.hawksjamesf.simpleweather.ui.HomePresenter;
-import com.hawksjamesf.simpleweather.util.Constants;
+import com.hawksjamesf.mockserver.Constants;
 
 import java.util.concurrent.TimeUnit;
 

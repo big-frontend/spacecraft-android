@@ -30,7 +30,7 @@ public class SimpleWeatherApplication extends Application {
 
         appComponent = DaggerAppComponent.builder().build();
 
-        CrashReport.initCrashReport(getApplicationContext(), "a5f4e5063e", false);
+        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, false);
     }
     public static AppComponent getAppComponent() {
         return appComponent;

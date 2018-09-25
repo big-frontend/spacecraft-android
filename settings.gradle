@@ -1,6 +1,6 @@
 println("settings start")
 if (!isComponentMode.toBoolean()) {
-    include ':app'
+    include ':app', ':mockserver'
 }
 include ':location'
 println("settings end")

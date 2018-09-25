@@ -26,6 +26,7 @@ android {
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
         buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
     }
     buildTypes {
         release {
@@ -78,6 +79,7 @@ dependencies {
     implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"
     implementation project(path: ':location')
+    implementation project(path: ':mockserver')
 
 
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
