@@ -1,5 +1,7 @@
 println("app start")
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -20,16 +22,17 @@ android {
             abiFilters 'armeabi-v7a'
             abiFilters 'arm64-v8a'
         }
+//        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
+//        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
+        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
         }
         debug {
-//            buildConfigField ("String","BASE_URL",'"https://api.caiyunapp.com/"')
-            buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
         }
     }
     lintOptions {
@@ -51,13 +54,16 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
 //    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
+    implementation "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
     //    implementation 'com.jakewharton.timber:timber:4.5.1'
     implementation 'com.orhanobut:logger:2.1.1'
 //    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaVersion}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroidVersion}"
     implementation 'com.tencent.bugly:crashreport:2.6.6.1'
     implementation 'com.tencent.bugly:nativecrashreport:3.3.1'
     // Test helpers for Room
@@ -72,5 +78,14 @@ dependencies {
     implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"
     implementation project(path: ':location')
+
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 }
 println("app end")
+repositories {
+    mavenCentral()
+}

@@ -17,6 +17,7 @@ import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
 import com.hawksjamesf.simpleweather.event.FifteenEvent;
 import com.hawksjamesf.simpleweather.event.RealtimeEvent;
 import com.hawksjamesf.simpleweather.event.RefreshEvent;
+import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 import com.hawksjamesf.simpleweather.ui.view.refresh.RefreshAdapter;
 import com.hawksjamesf.simpleweather.ui.view.refresh.RefreshListView;
 import com.hawksjamesf.simpleweather.util.GetWeatherDataUtils;
@@ -37,8 +38,6 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Call;
-import retrofit2.Retrofit;
 
 /**
  * Copyright ® $ 2017
@@ -52,7 +51,7 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment---";
     @BindView(R.id.rlv_pull_refresh)
     RefreshListView mRlvPullRefresh;
-//    @BindView(R.id.wv_weather_status)
+    //    @BindView(R.id.wv_weather_status)
 //    WeatherView mWvWeatherStatus;
     private Activity mActivity;
     private RefreshAdapter mAdapter;
@@ -63,11 +62,14 @@ public class HomeFragment extends Fragment {
     @Inject
     RefreshEvent mRefreshEvent;
     @Inject
-    Retrofit mRetrofit;
-    @Inject
-    Call mFifteenCall;
+    WeatherAPIInterface api;
 
-
+    public Fragment getInstance() {
+        Bundle bundle = new Bundle();
+        HomeFragment fragment = new HomeFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     public static final int EVENT_GET_DATA_REFRESH_ERROR = -1;
 //    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_ERROR = 0;
@@ -118,6 +120,14 @@ public class HomeFragment extends Fragment {
 
         mRlvPullRefresh.setAdapter(mAdapter);
 
+//        api.getCurrentWeatherDate("Shanghai")
+//                .subscribe(new Consumer<WeatherData>() {
+//                    @Override
+//                    public void accept(WeatherData weatherData) throws Exception {
+//
+//                    }
+//                });
+
 
     }
 
@@ -139,7 +149,7 @@ public class HomeFragment extends Fragment {
                          /*
                          get fifteen data from local
                         */
-                        Map<List<TempeBean>, List<SkyConBean>> forecast = GetWeatherDataUtils.requestDataFromLocal(TempeBean.class, SkyConBean.class,mActivity, GetWeatherDataUtils.FORECAST);
+                        Map<List<TempeBean>, List<SkyConBean>> forecast = GetWeatherDataUtils.requestDataFromLocal(TempeBean.class, SkyConBean.class, mActivity, GetWeatherDataUtils.FORECAST);
                         /*
                          get RealTimeBean data from local
                          */
@@ -150,12 +160,12 @@ public class HomeFragment extends Fragment {
                             e.onError(new Throwable());
                         } else {
                             Hashtable<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>> wrapper = new Hashtable<>();
-                            wrapper.put(rlBean,forecast);
+                            wrapper.put(rlBean, forecast);
                             e.onNext(wrapper);
                         }
 
                         e.onComplete();
-                        }
+                    }
                 })
                         .subscribeOn(Schedulers.io())
                         .observeOn(Schedulers.single())
@@ -167,15 +177,15 @@ public class HomeFragment extends Fragment {
 
                             @Override
                             public void onNext(Hashtable o) {
-                                 @SuppressWarnings("unchecked") Hashtable.Entry<RealTimeBean,Map<List<TempeBean>, List<SkyConBean>>> entry = (Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>>) o.entrySet().iterator().next();
+                                @SuppressWarnings("unchecked") Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>> entry = (Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>>) o.entrySet().iterator().next();
 
                                 Map<List<TempeBean>, List<SkyConBean>> map = entry.getValue();
                                 Map.Entry<List<TempeBean>, List<SkyConBean>> next = map.entrySet().iterator().next();
 
                                 EventBus.getDefault().post(mRefreshEvent
-                                                .setValueReturnEvent(EVENT_GET_DATA_REFRESH_OK)
-                                                .setVauleWithRealTime(entry.getKey())
-                                                .setMapWithFifteen(next.getKey(), next.getValue()));
+                                        .setValueReturnEvent(EVENT_GET_DATA_REFRESH_OK)
+                                        .setVauleWithRealTime(entry.getKey())
+                                        .setMapWithFifteen(next.getKey(), next.getValue()));
                             }
 
                             @Override

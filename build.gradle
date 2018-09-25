@@ -2,15 +2,15 @@
 
 println("root project start")
 buildscript {
+    ext.kotlin_version = '1.2.71'
     repositories {
         jcenter()
         google()
 
-
-
         }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 //
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -38,13 +38,19 @@ ext{
     // App dependencies
     supportLibraryVersion = '27.0.2'
     rxjavaVersion = '1.1.7'
-    rxandroidVersion='1.2.1'
+    rxandroidVersion='2.1.0'
     junitVersion='4.12'
     glideVersion='3.7.0'
     retrofitVersion='2.3.0'
+//    retrofitVersion='2.4.0'
+    okhttpVersion='3.11.0'
+//    okhttpMockVersion='3.11.0'
+    okhttpLoggingVersion='3.4.1'
     espressoVersion='3.0.1'
     runnerVersion='1.0.0'
     mockitoVersion = '1.10.19'
     hamcrestVersion = '1.3'
+    kotlin_version = '1.2.71'
+
 }
 println("root project end")

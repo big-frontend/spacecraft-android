@@ -7,7 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hawksjamesf.simpleweather.R;
+import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
+import com.hawksjamesf.simpleweather.bean.WeatherData;
+import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 import com.hawksjamesf.simpleweather.ui.mvp.RxActivity;
+
+import javax.inject.Inject;
+
+import io.reactivex.functions.Consumer;
 
 /**
  * Copyright ® $ 2017
@@ -21,6 +28,10 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
 
     private static final String TAG = "HomeActivity---";
     private RecyclerView mrvHome;
+
+    @Inject
+    WeatherAPIInterface api;
+
 
     @Override
     public HomePresenter createPresenter() {
@@ -43,9 +54,16 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         mrvHome.setAdapter(adapter);
 
 
+        SimpleWeatherApplication.getAppComponent().inject(this);
+        api.getCurrentWeatherDate("Shanghai")
+                .subscribe(new Consumer<WeatherData>() {
+                    @Override
+                    public void accept(WeatherData weatherData) throws Exception {
+
+                    }
+                });
+
     }
-
-
 
 
     private class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
@@ -60,6 +78,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         }
 
         @Override
+
         public int getItemCount() {
             return 0;
         }
