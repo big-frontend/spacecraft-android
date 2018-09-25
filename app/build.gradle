@@ -1,60 +1,18 @@
 println("app start")
 apply plugin: 'com.android.application'
-
-// Create a variable called keystorePropertiesFile, and initialize it to your
-// keystore.properties file, in the rootProject folder.
-def keystorePropertiesFile = rootProject.file("keystore/keystore.properties")
-
-// Initialize a new Properties() object called keystoreProperties.
-def keystoreProperties = new Properties()
-
-// Load your keystore.properties file into the keystoreProperties object.
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    compileOptions {
-        encoding = 'UTF-8'
-        incremental = false
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
-    }
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationIdSuffix = '.defaultConfig'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-//        dimension 'api'
-//        versionNameSuffix
-        // Specifies a flavor that the plugin should try to use from
-        // a given dimension. The following tells the plugin that, when encountering
-        // a dependency that includes a "minApi" dimension, it should select the
-        // "minApi18" flavor.
-        missingDimensionStrategy 'minApi', 'minApi18'
-        // You should specify a missingDimensionStrategy property for each
-        // dimension that exists in a local dependency but not in your app.
-        missingDimensionStrategy 'abi', 'x86'
 
 
         multiDexEnabled = true
-        applicationId = "com.hawksjamesf.simpleweather"
-        testApplicationId = 'com.hawksjamesf.simpleweather.test'
-        /**
-         * android:functionalTest
-         * Whether or not the Instrumentation class should run as a functional test — "true" if it should, and "false" if not. The default value is "false".
-         */
-        testFunctionalTest = false
-        /**
-         * android:handleProfiling
-         * Whether or not the Instrumentation object will turn profiling on and off — "true" if it determines when profiling starts and stops, and "false" if profiling continues the entire time it is running. A value of "true" enables the object to target profiling at a specific set of operations. The default value is "false".
-         */
-        testHandleProfiling = false
+        applicationId "com.hawksjamesf.simpleweather"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        e.g. [key: "value"] will give adb shell am instrument -w -e key value com.example...".
-//        testInstrumentationRunnerArguments[
-//        ]
         ndk {
 //             设置支持的SO库架构
             abiFilters 'x86_64'
@@ -62,255 +20,25 @@ android {
             abiFilters 'armeabi-v7a'
             abiFilters 'arm64-v8a'
         }
-        javaCompileOptions {
-
-            annotationProcessorOptions {
-//                    arguments map
-//                    classNames list
-//                    includeCompileClasspath boolean
-            }
-        }
-        manifestPlaceholders = [
-                qq_key    : 'sadfsfsf',
-                weixin_key: 'asdfsafa'
-        ]
-        /**
-         * multi dex
-         */
-        multiDexEnabled = true
-        multiDexKeepFile = file('multiDexKeep.txt')
-        multiDexKeepProguard = file('multiDexKeep.pro')
-        vectorDrawables {
-            //Densities used when generating PNGs from vector drawables at build time. For the PNGs to be generated, minimum SDK has to be below 21.
-//            generatedDensities
-            //Whether to use runtime support for vector drawables, instead of build-time support.
-//            useSupportLibrary
-        }
-        buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
-        resValue("string", "RES_NAME", "hello world")
-
-    }
-
-
-    signingConfigs {
-        debugConfigs {
-            keyAlias '123456'
-            keyPassword '123456'
-            storeFile file('../keystore/debug.jks')
-            storePassword '123456'
-            v1SigningEnabled false
-            v2SigningEnabled = false
-
-        }
-        releaseConfigs {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-            v1SigningEnabled false
-            v2SigningEnabled = false
-        }
-
     }
     buildTypes {
-
         release {
-//            name 'asfdasf'
-            debuggable = false
-            jniDebuggable = false
-            renderscriptDebuggable = false
-//            renderscriptOptimLevel
-
-            //Whether a linked Android Wear app should be embedded in variant using this build type.
-//            embedMicroApp=true
-            // 移除无用的resource文件
-            minifyEnabled = true
-            shrinkResources = true
-            useProguard = true
-            proguardFiles(
-                    getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro')
-//            buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
-//            resValue("string", "res_name", "asfasf")
-            manifestPlaceholders = [
-                    qq_key    : 'sadfsfsf',
-                    weixin_key: 'asdfsafa'
-            ]
-//            matchingFallbacks
-            /**
-             * multi dex
-             */
-            multiDexEnabled = true
-            multiDexKeepFile = file('multiDexKeep.txt')
-            multiDexKeepProguard = file('multiDexKeep.pro')
-
-//            pseudoLocalesEnabled = true
-
-            //test
-            testCoverageEnabled = false
-            zipAlignEnabled true
-
-            signingConfig signingConfigs.releaseConfigs
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
         }
         debug {
-            applicationIdSuffix = '.applicationIdSuffix'
-            versionNameSuffix = '.versionNameSuffix'
-            crunchPngs = true
 //            buildConfigField ("String","BASE_URL",'"https://api.caiyunapp.com/"')
-//            buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
-//            The manifest placeholders
-            manifestPlaceholders = [
-                    qq_key    : 'sadfsfsf',
-                    weixin_key: 'asdfsafa'
-            ]
-            signingConfig = signingConfigs.debugConfigs
-
+            buildConfigField("String", "BASE_URL", '"https://weatherapi.market.xiaomi.com"')
         }
     }
-    //Specifies the version of the module to publish externally. This property is generally useful only to library modules that you intend to publish to a remote repository, such as Maven.
-//    defaultPublishConfig 'demoDebug'
-//    defaultPublishConfig {
-//
-//    }
-
-//
-    flavorDimensions 'api', 'version', 'tier'
-    productFlavors {
-        free {
-            dimension 'tier'
-            // You can override the default selection at the product flavor
-            // level by configuring another missingDimensionStrategy property
-            // for the "minApi" dimension.
-            missingDimensionStrategy 'minApi', 'minApi23'
-        }
-//        paid {}
-        demo {
-            // Assigns this product flavor to the 'version' flavor dimension.
-            dimension 'version'
-        }
-
-        full {
-            dimension 'version'
-        }
-
-        minApi24 {
-            // Assigns this flavor to the 'api' dimension.
-            dimension 'api'
-            minSdkVersion '24'
-            versionNameSuffix "-minApi24"
-        }
-
-        minApi21 {
-            dimension "api"
-            minSdkVersion '21'
-            versionNameSuffix "-minApi21"
-        }
-    }
-
-    splits{
-
-    }
-
-
-
-    aaptOptions {
-        additionalParameters(
-//                '-S', '',//overlay通过-S指定，可以指定多个目录
-                ' --auto-add-overlay'//自动添加overlays包里的资源
-        )
-//        cruncherProcesses
-//        failOnMissingConfigEntry true
-//        ignoreAssets
-        /**
-         * --ignore-assets
-         *      Assets to be ignored. Default pattern is:
-         *      !.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~
-         */
-        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
-        /**
-         * -0  specifies an additional extension for which such files will not
-         *        be stored compressed in the .apk.  An empty string means to not
-         *        compress any files at all.
-         */
-//        noCompress ''//i.e., setting noCompress '' will trivially disable compression for all files.
-    }
-    //    dexOptions {
-//        additionalParameters '--main-dex-list=maindexlist.txt','--minimal-main-dex','--set-max-idx-number=20000'
-//        javaMaxHeapSize '2048m'
-//        jumboMode=true
-//        /**
-//         * Keep all classes with runtime annotations in the main dex in legacy multidex.
-//         *
-//         * This is enabled by default and works around an issue that will cause the app to crash when using java.lang.reflect.Field.getDeclaredAnnotations on older android versions.
-//         *
-//         * This can be disabled for for apps that do not use reflection and need more space in their main dex.
-//         *
-//         * See http://b.android.com/78144.
-//         */
-//        keepRuntimeAnnotatedClasses=false
-//        maxProcessCount 4
-//        preDexLibraries false
-//        threadCount 4
-//    }
-
     lintOptions {
 //        abortOnError false
     }
 
-    adbOptions {
-        /**
-         * app installation:
-         *  install [-lrtsdg] PACKAGE
-         *  install-multiple [-lrtsdpg] PACKAGE...
-         *      push package(s) to the device and install them
-         *      -l: forward lock application
-         *      -r: replace existing application
-         *      -t: allow test packages
-         *      -s: install application on sdcard
-         *      -d: allow version code downgrade (debuggable packages only)
-         *      -p: partial application install (install-multiple only)
-         *      -g: grant all runtime permissions
-         */
-        installOptions '-d', '-t', '-r'
-//        timeOutInMs=1000
-    }
-
-    packagingOptions {
+    productFlavors {
 
     }
-
-//    sdkDirectory
-//    ndkDirectory
-    resourcePrefix 'mylib_'
-    sourceSets {
-
-    }
-
-    variantFilter { variantFilter ->
-
-        def buildTypeName = variantFilter.buildType*.name
-        def flavorName = variantFilter.flavors*.name
-
-        if (flavorName.contains("dev") && buildTypeName.contains("release")) {
-            // Tells Gradle to ignore each variant that satisfies the conditions above.
-            setIgnore(true)
-        }
-    }
-
-    applicationVariants.all{variant->
-
-    }
-
-
-    dataBinding {
-        enabled = true
-        addDefaultAdapters = false
-        enabledForTests = true
-// The version of data binding to use.
-//        version=
-    }
-
-
 }
 
 dependencies {
@@ -339,7 +67,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     // RxJava support for Room
     implementation 'android.arch.persistence.room:rxjava2:1.0.0'
-    implementation "com.android.support:multidex:1.0.1"
+    //    implementation "com.android.support:multidex:1.0.1"
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"

@@ -31,12 +31,6 @@
             android:name=".ui.SetupWizardActivity"
             android:label="@string/title_activity_setup_wizard"
             android:theme="@style/AppTheme"/>
-
-        <meta-data android:name="qq_key"
-                   android:value="${qq_key}"/>
-
-        <meta-data android:name="weixin_key"
-                   android:value="${weixin_key}"/>
     </application>
 
 </manifest>
