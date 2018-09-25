@@ -24,7 +24,7 @@ import okhttp3.mockwebserver.MockWebServer;
  * @since: Sep/25/2018  Tue
  */
 @RunWith(AndroidJUnit4.class)
-public class HomeActivityTest extends InstrumentationTestCase {
+public class OkHttpTest extends InstrumentationTestCase {
 
     MockWebServer mockWebServer;
 
