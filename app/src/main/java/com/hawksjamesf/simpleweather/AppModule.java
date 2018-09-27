@@ -4,7 +4,6 @@ import com.hawksjamesf.simpleweather.network.ObservableOrMainCallAdapterFactory;
 import com.hawksjamesf.simpleweather.network.URLInterceptor;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 import com.hawksjamesf.simpleweather.ui.HomePresenter;
-import com.hawksjamesf.mockserver.Constants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -50,7 +49,7 @@ public class AppModule {
     WeatherAPIInterface provideWeatherAPIInterface() {
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl(BuildConfig.WEATHER_URL_OPEN_WEATHER_MAP)
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl("http://localhost:50195/")
                 .client(new OkHttpClient.Builder()
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(10, TimeUnit.SECONDS)

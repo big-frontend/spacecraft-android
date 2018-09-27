@@ -3,6 +3,7 @@ package com.hawksjamesf.simpleweather.ui;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -54,16 +55,20 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         mrvHome.setAdapter(adapter);
 
 
+
         SimpleWeatherApplication.getAppComponent().inject(this);
+
         api.getCurrentWeatherDate("Shanghai")
                 .subscribe(new Consumer<WeatherData>() {
                     @Override
                     public void accept(WeatherData weatherData) throws Exception {
+                        Log.d(TAG, "get current data");
 
                     }
                 });
 
     }
+
 
 
     private class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
@@ -90,4 +95,6 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
             super(itemView);
         }
     }
+
+
 }

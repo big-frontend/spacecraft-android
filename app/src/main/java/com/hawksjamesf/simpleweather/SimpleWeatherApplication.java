@@ -2,6 +2,8 @@ package com.hawksjamesf.simpleweather;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
+import com.hawksjamesf.mockserver.util.MockManager;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
@@ -11,17 +13,19 @@ import com.tencent.bugly.crashreport.CrashReport;
  * Copyright ® $ 2017
  * All right reserved.
  * Code Link : https://github.com/HawksJamesf/SimpleWeather
- *  @author: hawks jamesf
- *  @since: 2017/7/4
+ *
+ * @author: hawks jamesf
+ * @since: 2017/7/4
  */
 
 public class SimpleWeatherApplication extends Application {
-    private static final String TAG ="SimpleWeatherApp---";
-    private  static AppComponent appComponent;
+    private static final String TAG = "SimpleWeatherApp---";
+    private static AppComponent appComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()){
+        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
             @Override
             public boolean isLoggable(int priority, String tag) {
                 return BuildConfig.DEBUG;
@@ -30,9 +34,16 @@ public class SimpleWeatherApplication extends Application {
 
         appComponent = DaggerAppComponent.builder().build();
 
-        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, false);
+        Utils.init(this);
+
+        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
+
+        MockManager.init(getApplicationContext());
     }
+
     public static AppComponent getAppComponent() {
         return appComponent;
     }
+
+
 }
