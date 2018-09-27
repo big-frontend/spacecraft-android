@@ -3,6 +3,7 @@
 
     <application>
         <service android:name=".MockService"
-            android:process=":mock_service"/>
+            />
+            <!--android:process=":mock_service"-->
     </application>
 </manifest>

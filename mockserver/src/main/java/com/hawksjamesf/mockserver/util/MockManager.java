@@ -46,9 +46,9 @@ public class MockManager {
         Log.d(TAG,processName);
         if (!TextUtils.isEmpty(processName)) {
             if (processName.equals(PROCESS_1)) {
+                getInstance().bindAndStartService(context);
 
             } else if (processName.equals(PROCESS_2)) {
-                getInstance().bindAndStartService(context);
             }
         }
     }

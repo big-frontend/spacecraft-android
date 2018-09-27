@@ -49,7 +49,7 @@ public class AppModule {
     WeatherAPIInterface provideWeatherAPIInterface() {
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl(BuildConfig.WEATHER_URL_OPEN_WEATHER_MAP)
-                .baseUrl("http://localhost:50195/")
+                .baseUrl("http://localhost:50195")
                 .client(new OkHttpClient.Builder()
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(10, TimeUnit.SECONDS)

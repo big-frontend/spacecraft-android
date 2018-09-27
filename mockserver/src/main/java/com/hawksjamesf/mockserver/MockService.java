@@ -7,8 +7,6 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.blankj.utilcode.util.SPUtils;
-
 import java.io.IOException;
 import java.net.URL;
 
@@ -43,11 +41,13 @@ public class MockService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG, "onCreate");
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d(TAG, "onBind");
         return mBinder;
     }
 
@@ -57,9 +57,10 @@ public class MockService extends IntentService {
         try {
 //            mockWebServer.start();
             mockWebServer.start(50195);
-            SPUtils.getInstance().clear();
-            SPUtils.getInstance().put(Constants.PRE_BASE_URL, mockWebServer.url("/").toString());
-            Log.d(TAG,mockWebServer.url("/").toString());
+            mockWebServer.url("/");
+//            SPUtils.getInstance().clear();
+//            SPUtils.getInstance().put(Constants.PRE_BASE_URL, mockWebServer.url("/").toString());
+            Log.d(TAG, mockWebServer.url("/").toString());
 
             if (callback != null) {
                 callback.onStartMockServer();
