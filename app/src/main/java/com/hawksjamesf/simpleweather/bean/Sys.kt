@@ -13,6 +13,7 @@ data class Sys(
         var message: Float,
         var country: String,
         var sunrise: Int,
-        var sunset: Int
+        var sunset: Int,
+        var pod: String
 ) {
 }

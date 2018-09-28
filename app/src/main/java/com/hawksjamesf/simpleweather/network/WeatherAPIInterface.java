@@ -1,10 +1,12 @@
 package com.hawksjamesf.simpleweather.network;
 
 import com.hawksjamesf.simpleweather.bean.WeatherData;
+import com.hawksjamesf.simpleweather.bean.ListRes;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -37,7 +39,15 @@ public interface WeatherAPIInterface {
 
 
     @GET("/data/2.5/weather")
-    Observable<WeatherData> getCurrentWeatherDate(@Query("q") String city);
+    Observable<Response<WeatherData>> getCurrentWeatherDate(@Query("q") String city);
+
+    /**
+     * Call 5 day / 3 hour forecast data
+     * By city name
+     * api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
+     */
+    @GET("/data/2.5/forecast")
+    Observable<Response<ListRes<WeatherData>>> getFiveData(@Query("q") String city);
 
 
 }

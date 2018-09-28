@@ -60,7 +60,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
     implementation "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
     //    implementation 'com.jakewharton.timber:timber:4.5.1'
-    implementation 'com.orhanobut:logger:2.1.1'
+    implementation "com.blankj:utilcode:${rootProject.ext.utilcodeVersion}"
+    implementation "com.orhanobut:logger:${rootProject.ext.loggerVersion}"
 //    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaVersion}"
@@ -74,7 +75,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     // RxJava support for Room
     implementation 'android.arch.persistence.room:rxjava2:1.0.0'
-    //    implementation "com.android.support:multidex:1.0.1"
+    implementation "com.android.support:multidex:1.0.3"
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"

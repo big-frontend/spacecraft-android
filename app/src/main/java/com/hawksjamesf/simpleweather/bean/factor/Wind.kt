@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.bean
+package com.hawksjamesf.simpleweather.bean.factor
 
 /**
  * Copyright ® $ 2017
@@ -9,6 +9,6 @@ package com.hawksjamesf.simpleweather.bean
  */
 data class Wind(
         var speed:Float,
-        var deg:Int//degree
+        var deg:Float//degree
 ) {
 }

@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.bean
+package com.hawksjamesf.simpleweather.bean.weather
 
 /**
  * Copyright ® $ 2017
@@ -9,9 +9,12 @@ package com.hawksjamesf.simpleweather.bean
  */
 data class Main(
         var temp: Float,//temperature
-        var pressure: Int,
+        var pressure: Float,
         var humidity: Int,//湿度
         var temp_min: Float,
-        var temp_max: Float
+        var temp_max: Float,
+        var sea_level: Float,
+        var grnd_level: Float,
+        var temp_kf: Float
 ) {
 }

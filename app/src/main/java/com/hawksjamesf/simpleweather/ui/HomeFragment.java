@@ -120,14 +120,6 @@ public class HomeFragment extends Fragment {
 
         mRlvPullRefresh.setAdapter(mAdapter);
 
-//        api.getCurrentWeatherDate("Shanghai")
-//                .subscribe(new Consumer<WeatherData>() {
-//                    @Override
-//                    public void accept(WeatherData weatherData) throws Exception {
-//
-//                    }
-//                });
-
 
     }
 

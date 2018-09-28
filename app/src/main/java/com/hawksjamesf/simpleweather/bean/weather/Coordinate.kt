@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.bean
+package com.hawksjamesf.simpleweather.bean.weather
 
 /**
  * Copyright ® $ 2017
@@ -7,7 +7,7 @@ package com.hawksjamesf.simpleweather.bean
  * @author: hawskjamesf
  * @since: Sep/25/2018  Tue
  */
-data class Coord(
+data class Coordinate(
         val lon:Float,//longitude 经度
         val lat:Float//latitude 维度
 )

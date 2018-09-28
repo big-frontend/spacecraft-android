@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
-import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
-import java.net.URL;
 
-import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import okhttp3.mockwebserver.RecordedRequest;
 
 /**
  * Copyright ® $ 2017
@@ -22,16 +20,19 @@ import okhttp3.mockwebserver.RecordedRequest;
  * @since: Sep/25/2018  Tue
  */
 public class MockService extends IntentService {
-    private static final String TAG = "MockService---";
+    private static final String TAG = "MockService";
+
+
+    MockWebServer mockWebServer;
+    IMockApiImpl mBinder = new IMockApiImpl();
+    IMockServerCallback callback;
+    DispatcherImpl dispatcher;
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    MockWebServer mockWebServer;
-    IMockApiImpl mBinder = new IMockApiImpl();
-    IMockServerCallback callback;
-
     public MockService() {
         super("mock_service");
         mockWebServer = new MockWebServer();
@@ -41,13 +42,14 @@ public class MockService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate");
+        dispatcher = DispatcherImpl.getInstance(getApplicationContext());
+        Logger.t(TAG).d("");
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "onBind");
+        Logger.t(TAG).d("");
         return mBinder;
     }
 
@@ -57,26 +59,19 @@ public class MockService extends IntentService {
         try {
 //            mockWebServer.start();
             mockWebServer.start(50195);
+            Logger.t(TAG).i(mockWebServer.url("/").toString());
             mockWebServer.url("/");
 //            SPUtils.getInstance().clear();
 //            SPUtils.getInstance().put(Constants.PRE_BASE_URL, mockWebServer.url("/").toString());
-            Log.d(TAG, mockWebServer.url("/").toString());
 
             if (callback != null) {
                 callback.onStartMockServer();
             }
-            RecordedRequest recordedRequest = mockWebServer.takeRequest();
-            URL url = recordedRequest.getRequestUrl().url();
-            url.getPath();
-            String fileName = "current_data.json";
-            mockWebServer.enqueue(new MockResponse()
-                    .setResponseCode(200)
-                    .setBody(RestServiceTestHelper.getStringFromFile(getApplicationContext(), fileName)));
+            mockWebServer.setDispatcher(dispatcher);
+//            mockWebServer.enqueue();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();

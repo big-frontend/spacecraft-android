@@ -8,6 +8,10 @@ package com.hawksjamesf.mockserver;
  * @since: Sep/25/2018  Tue
  */
 public class Constants {
-//    public static String BASE_URL="https://api.openweathermap.org";
-    public static String PRE_BASE_URL="PRE_BASE_URL";
+    //    public static String BASE_URL="https://api.openweathermap.org";
+    public final static String PRE_BASE_URL = "PRE_BASE_URL";
+    public final static String CURRENT_DATA_URL_PATH = "/data/2.5/weather";
+    public final static String CURRENT_DATA_JSON = "current_data.json";
+    public static final String FIVE_DATA_URL_PATH="/data/2.5/forecast";
+    public static final String FIVE_DATA_JSON = "five_data.json";
 }

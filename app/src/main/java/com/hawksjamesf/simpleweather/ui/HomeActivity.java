@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
+import com.hawksjamesf.simpleweather.bean.ListRes;
 import com.hawksjamesf.simpleweather.bean.WeatherData;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 import com.hawksjamesf.simpleweather.ui.mvp.RxActivity;
@@ -16,6 +17,7 @@ import com.hawksjamesf.simpleweather.ui.mvp.RxActivity;
 import javax.inject.Inject;
 
 import io.reactivex.functions.Consumer;
+import retrofit2.Response;
 
 /**
  * Copyright ® $ 2017
@@ -59,10 +61,17 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         SimpleWeatherApplication.getAppComponent().inject(this);
 
         api.getCurrentWeatherDate("Shanghai")
-                .subscribe(new Consumer<WeatherData>() {
+                .subscribe(new Consumer<Response<WeatherData>>() {
                     @Override
-                    public void accept(WeatherData weatherData) throws Exception {
+                    public void accept(Response<WeatherData> weatherDataResponse) throws Exception {
                         Log.d(TAG, "get current data");
+                    }
+                });
+
+        api.getFiveData("Shanghai")
+                .subscribe(new Consumer<Response<ListRes<WeatherData>>>() {
+                    @Override
+                    public void accept(Response<ListRes<WeatherData>> listResResponse) throws Exception {
 
                     }
                 });

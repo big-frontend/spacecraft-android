@@ -1,4 +1,4 @@
-package com.hawksjamesf.mockserver.util;
+package com.hawksjamesf.mockserver;
 
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -9,13 +9,9 @@ import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.hawksjamesf.mockserver.Constants;
-import com.hawksjamesf.mockserver.IMockApi;
-import com.hawksjamesf.mockserver.IMockServerCallback;
-import com.hawksjamesf.mockserver.MockService;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -43,7 +39,7 @@ public class MockManager {
 
     public static void init(Context context) {
         String processName = getProcessName(context);
-        Log.d(TAG,processName);
+        Logger.t(TAG).d(processName);
         if (!TextUtils.isEmpty(processName)) {
             if (processName.equals(PROCESS_1)) {
                 getInstance().bindAndStartService(context);
@@ -68,7 +64,7 @@ public class MockManager {
                 iMockApi.register(new IMockServerCallback.Stub() {
                     @Override
                     public void onStartMockServer() throws RemoteException {
-                        Log.d(TAG, "start server:root dir-" + SPUtils.getInstance().getString(Constants.PRE_BASE_URL));
+                        Logger.t(TAG).d("start server:root dir-" + SPUtils.getInstance().getString(Constants.PRE_BASE_URL));
 
 
                     }
