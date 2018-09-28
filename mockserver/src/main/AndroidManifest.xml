@@ -2,8 +2,9 @@
           package="com.hawksjamesf.mockserver">
 
     <application>
-        <service android:name=".MockService"
+        <service
+            android:name=".MockService"
+            android:process=":mock_server"
             />
-            <!--android:process=":mock_service"-->
     </application>
 </manifest>

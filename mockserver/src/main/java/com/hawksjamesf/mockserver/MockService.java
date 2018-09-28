@@ -18,6 +18,8 @@ import okhttp3.mockwebserver.MockWebServer;
  *
  * @author: hawskjamesf
  * @since: Sep/25/2018  Tue
+ *
+ * MockService的启动一定要快与有网络请求的组件，不然有网络请求的组件在连接MockServer时会报错导致crash
  */
 public class MockService extends IntentService {
     private static final String TAG = "MockService";
