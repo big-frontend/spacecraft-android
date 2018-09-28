@@ -9,9 +9,10 @@ develop branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeathe
 接下来的任务主要安排如下：
 
 - [x] MVP框架搭建
-- [ ] Retrofit+RxJava2封装整合
+- [x] Retrofit+RxJava2封装整合
 - [ ] Room注解数据库的接入
-- [x] 定位系统的设计与封装
+- [ ] 定位系统的设计与封装
 - [x] 组件化设计
 - [x] 提供gradle plugin for version
+- [x] 临时使用MockServer模拟后端数据
 

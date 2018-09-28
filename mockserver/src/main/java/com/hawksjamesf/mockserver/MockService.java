@@ -1,6 +1,7 @@
 package com.hawksjamesf.mockserver;
 
 import android.app.IntentService;
+import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -82,9 +83,44 @@ public class MockService extends IntentService {
 
     }
 
+    /**
+     *
+     * @param intent
+     * @param flags
+     *
+     * int: Additional data about this start request.
+     * Value is either 0 or combination of START_FLAG_REDELIVERY or START_FLAG_RETRY.
+     *  0：
+     *
+     *  START_FLAG_REDELIVERY：
+     *
+     *  START_FLAG_RETRY：
+     *
+     * @param startId
+     * @return
+     *
+     * Value is START_STICKY_COMPATIBILITY, START_STICKY, START_NOT_STICKY or START_REDELIVER_INTENT.
+     *
+     * START_STICKY- tells the system to create a fresh copy of the service, when sufficient memory is available, after it recovers from low memory. Here you will lose the results that might have computed before.
+     *
+     * START_NOT_STICKY- tells the system not to bother to restart the service, even when it has sufficient memory.
+     *
+     * START_REDELIVER_INTENT- tells the system to restart the service after the crash and also redeliver the intents that were present at the time of crash.
+     *
+     */
+    @Override
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        return Service.START_STICKY;
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
     }
 
     public class IMockApiImpl extends IMockApi.Stub {
