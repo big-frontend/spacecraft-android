@@ -4,9 +4,11 @@ import android.test.InstrumentationTestCase;
 import com.hawksjamesf.simpleweather.bean.WeatherData;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 
+import junit.framework.Assert;
+
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Predicate;
 import okhttp3.OkHttpClient;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.mock.BehaviorDelegate;
@@ -44,19 +46,12 @@ public class RetrofitTest extends InstrumentationTestCase {
         BehaviorDelegate<WeatherAPIInterface> delegate = mockRetrofit.create(WeatherAPIInterface.class);
         HttpIsOkApi mockApi = new HttpIsOkApi(getInstrumentation().getContext(), delegate);
         mockApi.getCurrentWeatherDate("Shanghai")
-                .filter(new Predicate<WeatherData>() {
+                .subscribe(new Consumer<Response<WeatherData>>() {
                     @Override
-                    public boolean test(WeatherData weatherData) throws Exception {
-//                        Assert.assertTrue(200,);
-                        return false;
+                    public void accept(Response<WeatherData> response) throws Exception {
+                        Assert.assertTrue(response.isSuccessful());
                     }
-                })
-        .subscribe(new Consumer<WeatherData>() {
-            @Override
-            public void accept(WeatherData weatherData) throws Exception {
-//                Assert.assertTrue(200,);
-            }
-        });
+                });
     }
 
 }

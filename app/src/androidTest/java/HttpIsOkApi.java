@@ -1,12 +1,14 @@
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.hawksjamesf.simpleweather.bean.ListRes;
 import com.hawksjamesf.simpleweather.bean.RealTimeBean;
 import com.hawksjamesf.simpleweather.bean.WeatherData;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.mock.BehaviorDelegate;
 
 /**
@@ -31,7 +33,7 @@ public class HttpIsOkApi implements WeatherAPIInterface {
     }
 
     @Override
-    public Observable<WeatherData> getCurrentWeatherDate(String city) {
+    public Observable<Response<WeatherData>> getCurrentWeatherDate(String city) {
         String file = null;
         try {
             file = RestServiceTestHelper.getStringFromFile(context, "current_data.json");
@@ -40,5 +42,10 @@ public class HttpIsOkApi implements WeatherAPIInterface {
         }
         WeatherData data = new Gson().fromJson(file, WeatherData.class);
         return delegate.returningResponse(data).getCurrentWeatherDate(city);
+    }
+
+    @Override
+    public Observable<Response<ListRes<WeatherData>>> getFiveData(String city) {
+        return null;
     }
 }
