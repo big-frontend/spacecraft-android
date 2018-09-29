@@ -108,10 +108,10 @@ public class MockService extends IntentService {
      * START_REDELIVER_INTENT- tells the system to restart the service after the crash and also redeliver the intents that were present at the time of crash.
      *
      */
-    @Override
-    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
-        return Service.START_STICKY;
-    }
+//    @Override
+//    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+//        return Service.START_STICKY;
+//    }
 
     @Override
     public void onDestroy() {
