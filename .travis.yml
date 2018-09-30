@@ -11,6 +11,54 @@ android:
     - extra-google-m2repository
 jdk:
   - oraclejdk8
+
+
+before_install: echo "before_install"
+install: echo "install"
+before_script: echo "before_script"
 script:
+  - echo "build the script"
   - ./gradlew assemble
+
+after_success:
+  - echo "after_success"
+after_failure:
+  - echo "after_failure"
+before_deploy:
+  - echo "before_deploy"
+deploy:
+  provider: script
+  script: echo "deploy..."
+
+after_deploy:
+  - echo "after_deploy"
+
+after_script:
+  - echo "after_script"
+
+before_cache:
+  - echo "before_cache"
+#cache:
+#  - echo "cache"
+
+#os: osx
+#git:
+
+#you can safelist them all with regular expressions, for example /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+# blocklist
+#branches:
+#  except:
+#  - legacy
+#  - experimental
+#
+## safelist
+#branches:
+#  only:
+#  - master
+#  - stable
+
+sudo: required
+
+services:
+- docker
 
