@@ -52,7 +52,7 @@ public class OkHttpTest extends InstrumentationTestCase {
 
     @Test
     public void testHttpIsOk() throws Exception {
-        activityRule.launchActivity(new Intent());
+//        activityRule.launchActivity(new Intent());
         /**
          * 用Dispatcher替代手动enqueue Response
          */

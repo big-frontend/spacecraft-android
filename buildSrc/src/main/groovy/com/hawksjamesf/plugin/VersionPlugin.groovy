@@ -14,28 +14,29 @@ class VersionPlugin implements Plugin<Project> {
         project.afterEvaluate {
             def template = versionPlugin.fileFormat
             def engine = new SimpleTemplateEngine()
+            println("--> version plugin for groovy \n ${versionPlugin.buildTypeMatcher}\n ${versionPlugin.fileFormat}\n<---")
 
-            project.android.applicationVariants.matching({
-                it.buildType.name.matches(versionPlugin.buildTypeMatcher)
-            }).all { variant ->
-
-                def map = [
-                        'appName'    : project.name,
-                        'project'    : project.rootProject.name,
-                        'buildType'  : variant.buildType.name,
-                        'versionName': variant.versionName,
-                        'versionCode': variant.versionCode,
-
-                ]
-                def fileName = engine.createTemplate(template).make(map).toString()
-
-                variant.outputs.all {
-                    outputFileName = fileName + '.apk'
-
-
-                }
-
-            }
+//            project.android.applicationVariants.matching({
+//                it.buildType.name.matches(versionPlugin.buildTypeMatcher)
+//            }).all { variant ->
+//
+//                def map = [
+//                        'appName'    : project.name,
+//                        'project'    : project.rootProject.name,
+//                        'buildType'  : variant.buildType.name,
+//                        'versionName': variant.versionName,
+//                        'versionCode': variant.versionCode,
+//
+//                ]
+//                def fileName = engine.createTemplate(template).make(map).toString()
+//
+//                variant.outputs.all {
+//                    outputFileName = fileName + '.apk'
+//
+//
+//                }
+//
+//            }
 
 
         }

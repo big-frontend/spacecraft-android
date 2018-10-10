@@ -51,8 +51,8 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroidVersion}"
     api 'com.tencent.bugly:crashreport:2.6.6.1'
     api 'com.tencent.bugly:nativecrashreport:3.3.1'
-    // Test helpers for Room
-    testApi 'android.arch.persistence.room:testing:1.0.0'
+    // Test helpers for RoombuildToolsVersion
+    testImplementation 'android.arch.persistence.room:testing:1.0.0'
     // Room (use 1.1.0-alpha1 for latest alpha)
     api 'android.arch.persistence.room:runtime:1.0.0'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
@@ -65,7 +65,5 @@ dependencies {
 
 
 
-    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
-    androidTestApi 'com.android.support.test:runner:1.0.1'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -46,6 +46,31 @@ dependencies {
 //    api "com.orhanobut:logger:${rootProject.ext.loggerVersion}"
 
     api project(path: ':common')
+
+
+//    // Espresso dependencies
+//    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
+//    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${rootProject.ext.espressoVersion}"
+//    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${rootProject.ext.espressoVersion}"
+//    androidTestImplementation "com.android.support.test.espresso:espresso-accessibility:${rootProject.ext.espressoVersion}"
+//    androidTestImplementation "com.android.support.test.espresso:espresso-web:${rootProject.ext.espressoVersion}"
+//    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:${rootProject.ext.espressoVersion}"
+//    // The following Espresso dependency can be either "implementation"
+//    // or "androidTestImplementation", depending on whether you want the
+//    // dependency to appear on your APK's compile classpath or the test APK
+//    // classpath.
+//    androidTestImplementation "com.android.support.test.espresso:espresso-idling-resource:${rootProject.ext.espressoVersion}"
+//
+//    // Dependencies for Android unit tests
+//    androidTestImplementation "junit:junit:${rootProject.ext.junitVersion}"
+////    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
+//    androidTestImplementation 'org.mockito:mockito-android:2.11.0'
+//    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
+//    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
+//
+//    // Android Testing Support Library's runner and rules
+//    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
+//    androidTestImplementation "com.android.support.test:rules:${rootProject.ext.rulesVersion}"
 }
 repositories {
     mavenCentral()

@@ -31,6 +31,19 @@
             android:name=".ui.SetupWizardActivity"
             android:label="@string/title_activity_setup_wizard"
             android:theme="@style/AppTheme"/>
+
+
+        <!-- You don't need to include android:required="false" if your app's
+     minSdkVersion is 28 or higher. -->
+        <uses-library android:name="android.test.runner"
+                      android:required="false" />
+        <!-- For both of these declarations, you don't need to include
+             android:required="false" if your app's minSdkVersion is 28
+             or higher. -->
+        <uses-library android:name="android.test.base"
+                      android:required="false" />
+        <uses-library android:name="android.test.mock"
+                      android:required="false" />
     </application>
 
 </manifest>

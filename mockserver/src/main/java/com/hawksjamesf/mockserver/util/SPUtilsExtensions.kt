@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.SPUtils
  */
 const val USER = 1
 const val GLOBAL = 2
-@IntDef(value = [USER.toLong(), GLOBAL.toLong()])
+@IntDef(value = [USER, GLOBAL])
 @Retention(AnnotationRetention.SOURCE)
 private annotation class Level
 
