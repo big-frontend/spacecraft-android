@@ -23,10 +23,6 @@ versionPluginForJava {
     fileFormat = "sadfasd"
 }
 
-taskForJava {
-    message = "Hi"
-    recipient = "taskForJava"
-}
 
 versionPluginForKotlin {
     buildTypeMatcher = "debug"

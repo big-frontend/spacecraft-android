@@ -21,7 +21,8 @@ public class TaskForJava  extends DefaultTask {
     public void setRecipient(String recipient) { this.recipient = recipient; }
 
     @TaskAction
-    void sayGreeting() {
-        System.out.printf("%s, %s!\n", getMessage(), getRecipient());
+    void say() {
+        //dolast
+        System.out.printf("taskForJava :%s, %s!\n", getMessage(), getRecipient());
     }
 }

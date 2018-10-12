@@ -31,10 +31,10 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task hello(){
-    println("hello world")
-
-}
+//task hello(){
+//    println("hello world")
+//
+//}
 ext {
     compileSdkVersion = 26
     buildToolsVersion = '28.0.2'
