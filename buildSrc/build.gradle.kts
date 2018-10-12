@@ -10,6 +10,7 @@ plugins {
     `java-gradle-plugin`
 //    id("org.gradle.kotlin.kotlin-dsl") version("1.0-rc-10")
     groovy
+    java
     kotlin("jvm") version "1.2.71"
 
 }
@@ -19,11 +20,12 @@ buildscript {
     repositories {
         jcenter()
         google()
+        mavenCentral()
     }
 
     dependencies {
         classpath(kotlin("gradle-plugin", "1.2.71"))
-        classpath("com.android.tools.build:gradle:3.2.0")
+//        classpath("com.android.tools.build:gradle:3.2.0")
     }
 }
 
@@ -53,18 +55,15 @@ dependencies {
     implementation(kotlin("reflect"))
     testCompile(kotlin("test"))
     testCompile(kotlin("test-junit"))
+    implementation("com.android.tools.build:gradle:3.2.0")
+    implementation("org.javassist:javassist:3.20.0-GA")
 }
 
-//allprojects {
-//    repositories {
-//        jcenter()
-//        google()
-//    }
-//}
 
 repositories {
     jcenter()
     google()
+    mavenCentral()
 }
 
 
