@@ -1,9 +1,13 @@
 package com.hawksjamesf.plugin;
 
+import org.gradle.StartParameter;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
+import org.gradle.internal.reflect.Instantiator;
+
+import util.Console;
 
 /**
  * Copyright ® $ 2017
@@ -13,10 +17,19 @@ import org.gradle.api.Task;
  * @since: Oct/11/2018  Thu
  */
 public class VersionPluginForJava implements Plugin<Project> {
+
+    private Instantiator instantiator;
+
+    public VersionPluginForJava() {
+    }
+
     @Override
     public void apply(Project project) {
         VersionPluginExtensionForJava versionPluginForJava = project.getExtensions().create("versionPluginForJava", VersionPluginExtensionForJava.class, project);
 
+        StartParameter startParameter = project.getGradle().getStartParameter();
+
+        Console.printJ(startParameter.getTaskNames().toString());
 
         project.afterEvaluate(new Action<Project>() {
             @Override
@@ -52,5 +65,7 @@ public class VersionPluginForJava implements Plugin<Project> {
             }
         });
 
+        project.getGradle().addListener(new TaskActionListenerForJava());
+        project.getGradle().addListener(new TaskExecutionListenerForJava());
     }
 }

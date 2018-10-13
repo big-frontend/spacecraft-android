@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.cli.jvm.main
+
 //apply {
 //    plugin("kotlin")
 //    plugin("groovy")
@@ -29,14 +31,21 @@ buildscript {
     }
 }
 
-//sourceSets {
+sourceSets {
 //    main.kotlin.srcDirs="src/main/kotlin"
 //    main {
 //        java {
-//            srcDirs = ['src/main/kotlin']
+//            srcDirs = ['src/main/util/']
 //        }
 //    }
-//}
+    getByName("main").java.srcDir("src/main/util")
+//    getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
+//    getByName("debug").java.srcDirs("src/debug/kotlin")
+//    getByName("main").java.srcDirs("src/main/kotlin")
+//    getByName("test").java.srcDirs("src/test/kotlin")
+
+}
+
 //gradlePlugin {
 //    plugins {
 //        create("versionPluginForKotlin") {
