@@ -64,6 +64,6 @@ dependencies {
     api "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"
 
 
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${KOTLIN_VERSION}"
 
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
