@@ -3,6 +3,10 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather
 
 develop branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.svg?branch=develop)](https://travis-ci.org/HawksJamesf/SimpleWeather)
 
+tinker branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.svg?branch=tinker)](https://travis-ci.org/HawksJamesf/SimpleWeather)
+
+kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.svg?branch=kotlin-gradle)](https://travis-ci.org/HawksJamesf/SimpleWeather)
+
 ## 原由
 之前一段时间一直在忙于工作和看书，并且看了一些的开源库代码和整理了一些笔记，终于有时间再来维护这个项目了。现在再来整理一下这个项目，发现很多地方当时没有处理好，所以决定重构一下。重构的思路主要在于框架，而UI展示会尽量简单。如果后续有时间再来扩展UI功能。
 
