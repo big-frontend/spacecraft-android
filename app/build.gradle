@@ -116,6 +116,7 @@ dependencies {
     // Android Testing Support Library's runner and rules
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
     androidTestImplementation "com.android.support.test:rules:${rootProject.ext.rulesVersion}"
+    implementation 'com.google.android.material:material:1.0.0'
 
 }
 println("app end")
