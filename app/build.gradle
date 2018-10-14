@@ -13,7 +13,7 @@ versionPlugin {
     buildTypeMatcher = 'debug'
 //        '$appName/project/buildType-v_$versionName-c_$versionCode'
 //        fileFormat = '$appName-v_$versionName-c_$versionCode'
-    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode'
+    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
 
 versionPluginForJava {

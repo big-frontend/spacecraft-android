@@ -13,7 +13,7 @@ import org.gradle.api.execution.TaskActionListener;
 public class TaskActionListenerForJava implements TaskActionListener {
     @Override
     public void beforeActions(Task task) {
-        util.Console.printJ("action:"+task.toString());
+//        util.Console.printJ("action:"+task.toString());
     }
 
     @Override
