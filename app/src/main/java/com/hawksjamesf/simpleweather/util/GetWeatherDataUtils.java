@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.TempeBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;

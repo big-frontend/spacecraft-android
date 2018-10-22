@@ -1,10 +1,10 @@
-package com.hawksjamesf.simpleweather.bean
+package com.hawksjamesf.simpleweather.data.bean
 
-import com.hawksjamesf.simpleweather.bean.factor.Clouds
-import com.hawksjamesf.simpleweather.bean.factor.Wind
-import com.hawksjamesf.simpleweather.bean.weather.Coordinate
-import com.hawksjamesf.simpleweather.bean.weather.Main
-import com.hawksjamesf.simpleweather.bean.weather.Weather
+import com.hawksjamesf.simpleweather.data.bean.factor.Clouds
+import com.hawksjamesf.simpleweather.data.bean.factor.Wind
+import com.hawksjamesf.simpleweather.data.bean.weather.Coordinate
+import com.hawksjamesf.simpleweather.data.bean.weather.Main
+import com.hawksjamesf.simpleweather.data.bean.weather.Weather
 
 /**
  * Copyright ® $ 2017

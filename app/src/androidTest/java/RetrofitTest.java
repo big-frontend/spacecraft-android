@@ -1,7 +1,7 @@
 import android.support.test.filters.SmallTest;
 import android.test.InstrumentationTestCase;
 
-import com.hawksjamesf.simpleweather.bean.WeatherData;
+import com.hawksjamesf.simpleweather.data.bean.WeatherData;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 
 import junit.framework.Assert;

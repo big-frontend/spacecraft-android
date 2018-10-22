@@ -1,5 +1,8 @@
 package com.hawksjamesf.simpleweather;
 
+import com.hawksjamesf.simpleweather.data.source.DataSource;
+import com.hawksjamesf.simpleweather.data.source.mock.MockDataSource;
+import com.hawksjamesf.simpleweather.data.source.remote.RemoteDataSource;
 import com.hawksjamesf.simpleweather.network.ObservableOrMainCallAdapterFactory;
 import com.hawksjamesf.simpleweather.network.URLInterceptor;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
@@ -30,6 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class AppModule {
 
+    private SimpleWeatherApplication app;
+
+    public AppModule(SimpleWeatherApplication app) {
+        this.app = app;
+    }
+
     @Singleton
     @Provides
     OkHttpClient provideOKHttpClient() {
@@ -48,8 +57,8 @@ public class AppModule {
     @Provides
     WeatherAPIInterface provideWeatherAPIInterface() {
         Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BuildConfig.WEATHER_URL_OPEN_WEATHER_MAP)
-                .baseUrl("http://localhost:50195")
+                .baseUrl(BuildConfig.WEATHER_URL)
+//                .baseUrl("http://localhost:50195")
                 .client(new OkHttpClient.Builder()
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(10, TimeUnit.SECONDS)
@@ -68,7 +77,19 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public HomePresenter provideHomePresenter() {
+    HomePresenter provideHomePresenter() {
         return new HomePresenter();
+    }
+
+    @Provides
+    @Singleton
+    DataSource provideDataSource() {
+        if (BuildConfig.MOCKED_DATA_ACCESS) {
+            return new MockDataSource(app, new MockDataSource.UncertaintyParams(
+                    0f, 0, 1500L, 500L
+            ));
+        } else {
+            return RemoteDataSource.INSTANCE;
+        }
     }
 }

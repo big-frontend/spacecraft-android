@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
-import com.hawksjamesf.simpleweather.bean.RealTimeBean;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.data.bean.RealTimeBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.TempeBean;
 import com.hawksjamesf.simpleweather.event.FifteenEvent;
 import com.hawksjamesf.simpleweather.event.RealtimeEvent;
 import com.hawksjamesf.simpleweather.event.RefreshEvent;

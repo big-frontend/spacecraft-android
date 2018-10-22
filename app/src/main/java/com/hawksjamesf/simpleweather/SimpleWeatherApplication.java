@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.blankj.utilcode.util.Utils;
-import com.hawksjamesf.mockserver.MockManager;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
@@ -39,13 +38,15 @@ public class SimpleWeatherApplication extends Application {
             }
         });
 
-        appComponent = DaggerAppComponent.builder().build();
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
 
         Utils.init(this);
 
 //        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
 
-        MockManager.init(getApplicationContext());
+//        MockManager.init(getApplicationContext());
     }
 
     public static AppComponent getAppComponent() {

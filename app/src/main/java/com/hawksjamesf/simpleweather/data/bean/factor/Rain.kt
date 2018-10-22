@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.bean.factor
+package com.hawksjamesf.simpleweather.data.bean.factor
 
 /**
  * Copyright ® $ 2017

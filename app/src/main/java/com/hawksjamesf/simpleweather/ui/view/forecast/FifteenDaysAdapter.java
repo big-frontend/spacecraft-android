@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hawksjamesf.simpleweather.R;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.TempeBean;
 import com.hawksjamesf.simpleweather.ui.view.forecast.older.TemperatureView;
 import com.hawksjamesf.simpleweather.util.ConditionUtils;
 

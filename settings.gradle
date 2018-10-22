@@ -1,6 +1,6 @@
 println("settings start")
 if (!isComponentMode.toBoolean()) {
-    include ':app', ':mockserver', ':common', ':simpleweather_gradle_plugin'
+    include ':app'
 }
-include ':location'
+include ':location', ':common', ':simpleweather_gradle_plugin'
 println("settings end")

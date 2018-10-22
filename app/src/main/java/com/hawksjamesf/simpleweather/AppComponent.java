@@ -1,5 +1,6 @@
 package com.hawksjamesf.simpleweather;
 
+import com.hawksjamesf.simpleweather.data.source.DataSource;
 import com.hawksjamesf.simpleweather.ui.HomeActivity;
 import com.hawksjamesf.simpleweather.ui.HomeFragment;
 import com.hawksjamesf.simpleweather.ui.SplashActivity;
@@ -12,8 +13,9 @@ import dagger.Component;
  * Copyright ® $ 2017
  * All right reserved.
  * Code Link : https://github.com/HawksJamesf/SimpleWeather
- *  @author: hawks jamesf
- *  @since: 2017/7/4
+ *
+ * @author: hawks jamesf
+ * @since: 2017/7/4
  */
 
 @Singleton
@@ -23,4 +25,6 @@ public interface AppComponent {
 
     void inject(HomeFragment homeFragment);
     void inject(HomeActivity homeActivity);
+
+    DataSource source();
 }

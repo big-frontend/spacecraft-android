@@ -1,6 +1,6 @@
-package com.hawksjamesf.simpleweather.bean
+package com.hawksjamesf.simpleweather.data.bean
 
-import com.hawksjamesf.simpleweather.bean.weather.City
+import com.hawksjamesf.simpleweather.data.bean.weather.City
 
 /**
  * Copyright ® $ 2017
@@ -13,7 +13,7 @@ data class ListRes<T>(
         var cod: String,
         var message: Float,
         var cnt: Int,
-        var list: List<T>,
+        var list: MutableList<T>,
         var city: City
 
 

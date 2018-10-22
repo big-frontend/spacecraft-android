@@ -3,21 +3,19 @@ package com.hawksjamesf.simpleweather.ui;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
-import com.hawksjamesf.simpleweather.bean.ListRes;
-import com.hawksjamesf.simpleweather.bean.WeatherData;
-import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
+import com.hawksjamesf.simpleweather.data.bean.ListRes;
+import com.hawksjamesf.simpleweather.data.bean.WeatherData;
+import com.hawksjamesf.simpleweather.data.source.DataSource;
 import com.hawksjamesf.simpleweather.ui.mvp.RxActivity;
-
-import javax.inject.Inject;
+import com.orhanobut.logger.Logger;
 
 import io.reactivex.functions.Consumer;
-import retrofit2.Response;
 
 /**
  * Copyright ® $ 2017
@@ -32,9 +30,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
     private static final String TAG = "HomeActivity---";
     private RecyclerView mrvHome;
 
-    @Inject
-    WeatherAPIInterface api;
-
+    DataSource source;
 
     @Override
     public HomePresenter createPresenter() {
@@ -56,28 +52,25 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         HomeAdapter adapter = new HomeAdapter();
         mrvHome.setAdapter(adapter);
 
-
-
-        SimpleWeatherApplication.getAppComponent().inject(this);
-
-        api.getCurrentWeatherDate("Shanghai")
-                .subscribe(new Consumer<Response<WeatherData>>() {
+        source = SimpleWeatherApplication.getAppComponent().source();
+        source.getCurrentWeatherDate("London")
+                .subscribe(new Consumer<WeatherData>() {
                     @Override
-                    public void accept(Response<WeatherData> weatherDataResponse) throws Exception {
-                        Log.d(TAG, "get current data");
+                    public void accept(WeatherData weatherData) throws Exception {
+                        Logger.t(TAG).json(new Gson().toJson(weatherData));
+
                     }
                 });
 
-        api.getFiveData("Shanghai")
-                .subscribe(new Consumer<Response<ListRes<WeatherData>>>() {
+        source.getFiveData("London")
+                .subscribe(new Consumer<ListRes<WeatherData>>() {
                     @Override
-                    public void accept(Response<ListRes<WeatherData>> listResResponse) throws Exception {
-
+                    public void accept(ListRes<WeatherData> weatherDataListRes) throws Exception {
+                        Logger.t(TAG).json(new Gson().toJson(weatherDataListRes));
                     }
                 });
 
     }
-
 
 
     private class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {

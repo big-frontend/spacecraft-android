@@ -53,7 +53,7 @@ android {
         }
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
-        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
+//        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
         buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
     }
@@ -69,7 +69,26 @@ android {
 //        abortOnError false
     }
 
+    flavorDimensions('data_access')
     productFlavors {
+
+        mocked{
+            dimension 'data_access'
+            buildConfigField 'boolean','MOCKED_DATA_ACCESS','true'
+            buildConfigField 'String','WEATHER_URL','" "'
+        }
+        real{
+            dimension 'data_access'
+            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+
+        }
+
+        realLocalServer{
+            dimension 'data_access'
+            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+            buildConfigField 'String','WEATHER_URL',"\"http://${getLocalIP()}:8080\""
+        }
 
     }
 
@@ -79,10 +98,29 @@ android {
 
 }
 
+static String getLocalIP() {
+    InetAddress result = null
+    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces()
+    while (interfaces.hasMoreElements()) {
+        Enumeration<InetAddress> addresses = interfaces.nextElement().getInetAddresses()
+        while (addresses.hasMoreElements()) {
+            InetAddress address = addresses.nextElement()
+            if (!address.isLoopbackAddress()) {
+                if (address.isSiteLocalAddress()) {
+                    return address.getHostAddress()
+                } else if (result == null) {
+                    result = address
+                }
+            }
+        }
+    }
+    return (result != null ? result : InetAddress.getLocalHost()).getHostAddress()
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':location')
-    implementation project(path: ':mockserver')
+//    implementation project(path: ':mockserver')
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"

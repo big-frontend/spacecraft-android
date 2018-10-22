@@ -1,9 +1,9 @@
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.hawksjamesf.simpleweather.bean.ListRes;
-import com.hawksjamesf.simpleweather.bean.RealTimeBean;
-import com.hawksjamesf.simpleweather.bean.WeatherData;
+import com.hawksjamesf.simpleweather.data.bean.ListRes;
+import com.hawksjamesf.simpleweather.data.bean.RealTimeBean;
+import com.hawksjamesf.simpleweather.data.bean.WeatherData;
 import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
 
 import io.reactivex.Observable;

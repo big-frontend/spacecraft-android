@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.hawksjamesf.simpleweather.BuildConfig;
 import com.hawksjamesf.simpleweather.R;
-import com.hawksjamesf.simpleweather.bean.RealTimeBean;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.simpleweather.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.simpleweather.data.bean.RealTimeBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.TempeBean;
 import com.hawksjamesf.simpleweather.ui.view.forecast.FifteenDaysAdapter;
 import com.hawksjamesf.simpleweather.ui.view.forecast.FifteenDaysView;
 import com.hawksjamesf.simpleweather.util.ConditionUtils;
