@@ -72,6 +72,3 @@ dependencies {
 //    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
 //    androidTestImplementation "com.android.support.test:rules:${rootProject.ext.rulesVersion}"
 }
-repositories {
-    mavenCentral()
-}

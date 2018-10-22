@@ -119,6 +119,3 @@ dependencies {
 
 }
 println("app end")
-repositories {
-    mavenCentral()
-}
