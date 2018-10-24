@@ -18,17 +18,13 @@ versionPlugin {
 
 versionPluginForJava {
     buildTypeMatcher = "debug"
-//        '$appName/project/buildType-v_$versionName-c_$versionCode'
-//        fileFormat = '$appName-v_$versionName-c_$versionCode'
-    fileFormat = "sadfasd"
+    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
 
 
 versionPluginForKotlin {
     buildTypeMatcher = "debug"
-//        '$appName/project/buildType-v_$versionName-c_$versionCode'
-//        fileFormat = '$appName-v_$versionName-c_$versionCode'
-    fileFormat = "sadfasd"
+    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
 
 android {
