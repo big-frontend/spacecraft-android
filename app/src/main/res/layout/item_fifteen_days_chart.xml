@@ -65,7 +65,7 @@
         <!--android:src="@drawable/big_level_shape" />-->
     </LinearLayout>
 
-    <com.hawksjamesf.simpleweather.ui.view.forecast.older.TemperatureView
+    <com.hawksjamesf.simpleweather.ui.home.view.forecast.older.TemperatureView
         android:id="@+id/ttv_day"
         android:layout_width="80dp"
         android:layout_height="120dp"

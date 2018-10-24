@@ -16,7 +16,7 @@
         <!--app:numParticles="55"-->
         <!--app:orientationMode="ENABLE"-->
         <!--app:startingWeather="RAIN"/>-->
-    <com.hawksjamesf.simpleweather.ui.view.refresh.RefreshListView
+    <com.hawksjamesf.simpleweather.ui.home.view.refresh.RefreshListView
         android:id="@+id/rlv_pull_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -3,8 +3,8 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.hawksjamesf.simpleweather.data.bean.ListRes;
 import com.hawksjamesf.simpleweather.data.bean.RealTimeBean;
-import com.hawksjamesf.simpleweather.data.bean.WeatherData;
-import com.hawksjamesf.simpleweather.network.WeatherAPIInterface;
+import com.hawksjamesf.simpleweather.data.bean.home.WeatherData;
+import com.hawksjamesf.simpleweather.data.source.remote.WeatherAPIInterface;
 
 import io.reactivex.Observable;
 import retrofit2.Call;

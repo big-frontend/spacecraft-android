@@ -1,9 +1,8 @@
 package com.hawksjamesf.simpleweather;
 
 import com.hawksjamesf.simpleweather.data.source.DataSource;
-import com.hawksjamesf.simpleweather.ui.HomeActivity;
-import com.hawksjamesf.simpleweather.ui.HomeFragment;
 import com.hawksjamesf.simpleweather.ui.SplashActivity;
+import com.hawksjamesf.simpleweather.ui.home.HomeActivity;
 
 import javax.inject.Singleton;
 
@@ -23,7 +22,6 @@ import dagger.Component;
 public interface AppComponent {
     void inject(SplashActivity splashActivity);
 
-    void inject(HomeFragment homeFragment);
     void inject(HomeActivity homeActivity);
 
     DataSource source();

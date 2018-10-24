@@ -1,7 +1,12 @@
 package com.hawksjamesf.simpleweather.data.source.local;
 
 import com.hawksjamesf.simpleweather.data.bean.ListRes;
-import com.hawksjamesf.simpleweather.data.bean.WeatherData;
+import com.hawksjamesf.simpleweather.data.bean.login.Profile;
+import com.hawksjamesf.simpleweather.data.bean.home.WeatherData;
+import com.hawksjamesf.simpleweather.data.bean.login.LoginReq;
+import com.hawksjamesf.simpleweather.data.bean.login.SendCodeReq;
+import com.hawksjamesf.simpleweather.data.bean.login.SendCodeResp;
+import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq;
 import com.hawksjamesf.simpleweather.data.source.DataSource;
 
 import org.jetbrains.annotations.NotNull;
@@ -46,5 +51,22 @@ public class LocalDataSource implements DataSource {
         return null;
     }
 
+    @NotNull
+    @Override
+    public Single<SendCodeResp> sendCode(@NotNull SendCodeReq sendCodeReq) {
+        return null;
+    }
+
+    @NotNull
+    @Override
+    public Single<Profile> signUp(@NotNull SignUpReq signUpReq) {
+        return null;
+    }
+
+    @NotNull
+    @Override
+    public Single<Profile> login(@NotNull LoginReq loginReq) {
+        return null;
+    }
 }
 

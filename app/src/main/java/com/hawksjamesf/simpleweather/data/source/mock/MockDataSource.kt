@@ -1,10 +1,13 @@
 package com.hawksjamesf.simpleweather.data.source.mock;
 
 import android.content.Context
+import android.widget.Toast
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
 import com.hawksjamesf.simpleweather.data.bean.ListRes
-import com.hawksjamesf.simpleweather.data.bean.WeatherData
+import com.hawksjamesf.simpleweather.data.bean.login.Profile
+import com.hawksjamesf.simpleweather.data.bean.home.WeatherData
+import com.hawksjamesf.simpleweather.data.bean.login.*
 import com.hawksjamesf.simpleweather.data.source.DataSource
 import com.hawksjamesf.simpleweather.util.RestServiceTestHelper
 import io.reactivex.Observable
@@ -24,11 +27,17 @@ import java.util.concurrent.TimeUnit
  * @since: Oct/22/2018  Mon
  */
 class MockDataSource(
-        private val context: Context,
-        private val uncertaintyParams: UncertaintyParams = UncertaintyParams()
+        private val mContext: Context,
+        private val mUncertaintyParams: UncertaintyParams = UncertaintyParams()
 ) : DataSource {
 
-    var gson: Gson
+    private var mGson: Gson
+    private val mStore: Store = Store()
+
+    data class Store(
+            val records: MutableList<Record> = mutableListOf()
+    )
+
 
     /*
     SHORT is completely numeric, such as 12.13.52 or 3:30pm
@@ -79,19 +88,57 @@ class MockDataSource(
 //                return false
 //            }
 //        })
-        gson = gsonBuilder.create()
+        mGson = gsonBuilder.create()
     }
 
+    private fun uncertainty(): Single<Unit> {
+        return Single.just(Unit)
+                .uncertainNoConnectionError()
+                .uncertainDelay()
+                .uncertainUnknownError()
+    }
+
+
+    private fun <T> Single<T>.uncertainNoConnectionError(): Single<T> {
+        val shouldThrow = Math.random() < mUncertaintyParams.chanceOfFailingWithNoConnectionError
+        return map { if (shouldThrow) throw ClientException.NoConnection else it }
+    }
+
+    private fun <T> Single<T>.uncertainUnknownError(): Single<T> {
+        val shouldThrow = Math.random() < mUncertaintyParams.chanceOfFailingWithUnknownError
+        return map { if (shouldThrow) throw ClientException.Unknown else it }
+    }
+
+    private fun <T> Single<T>.uncertainDelay(): Single<T> {
+        val average = mUncertaintyParams.averageResponseDelayInMillis
+        val deviation = (Math.random() - 0.5) * mUncertaintyParams.responseDelayDeviationInMillis
+        val delayAmount = (average + deviation).coerceAtLeast(0.0).toLong()
+        return if (delayAmount != 0L) delay(delayAmount, TimeUnit.MILLISECONDS) else this
+    }
+
+    data class UncertaintyParams(
+
+            val chanceOfFailingWithNoConnectionError: Float = 0.0f,
+
+            val chanceOfFailingWithUnknownError: Float = 0.0f,
+
+            val averageResponseDelayInMillis: Long = 0,
+
+            val responseDelayDeviationInMillis: Long = 0
+    )
+
     /**
-     * Single<T>	只发射单个数据或错误事件,
+     * Single<T>	只发射单个数据或错误事件,SingleObserver只有onSuccess、onError
+     * Completable 只有 onComplete 和 onError 事件
+     * Maybe 可以看成是Single和Completable的结合。Maybe在没有数据发射时候subscribe会调用MaybeObserver的onComplete()，
+     *+ 如果Maybe有数据发射或者调用了onError()，是不会再执行MaybeObserver的onComplete()
      * Observable<T>	能够发射0或n个数据，并以成功或错误事件终止。
-     * 该方法对外不能提供空数据，当无数据是会调用doOnComplete
      */
     override fun getCurrentWeatherDate(city: String): Single<WeatherData> {
         return uncertainty()
                 .flatMapObservable {
                     Observable.just(
-                            gson.fromJson(RestServiceTestHelper.getStringFromFile(context, Constants.CURRENT_DATA_JSON), WeatherData::class.java)
+                            mGson.fromJson(RestServiceTestHelper.getStringFromFile(mContext, Constants.CURRENT_DATA_JSON), WeatherData::class.java)
                     )
                 }
 
@@ -109,47 +156,68 @@ class MockDataSource(
         return uncertainty()
                 .flatMapObservable {
                     Observable.just(
-                            gson.fromJson<ListRes<WeatherData>>(RestServiceTestHelper.getStringFromFile(context, Constants.FIVE_DATA_JSON), type)
+                            mGson.fromJson<ListRes<WeatherData>>(RestServiceTestHelper.getStringFromFile(mContext, Constants.FIVE_DATA_JSON), type)
                     )
                 }
                 .filter { it.city.name == city }
-                .doOnComplete { throw  Exception() }
+//                .singleElement()
+//                .doOnComplete { throw  Exception() }
+//                .ignoreElement()
 
     }
 
-    private fun uncertainty(): Single<Unit> {
-        return Single.just(Unit)
-                .uncertainNoConnectionError()
-                .uncertainDelay()
-                .uncertainUnknownError()
+    override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
+        return uncertainty()
+                .flatMapObservable { Observable.fromIterable(mStore.records) }
+//                .filter(Predicate<Record> { t ->
+//                    if (t.profile.mobile == sendCodeReq.mobile) {
+//                        Toast.makeText(mContext, "15s内不能重复发送", Toast.LENGTH_SHORT).show()
+//                        return@Predicate false
+//                    } else {
+//
+//                        return@Predicate true
+//                    }
+//                })
+                .map {
+                    val code = UUID.randomUUID().toString().toInt()
+                    val profileId = UUID.randomUUID().toString().toInt()
+                    mStore.records += Record(Profile(profileId, sendCodeReq.mobile, null, null), "", code)
+                    Toast.makeText(mContext, "当前的验证码为$code", Toast.LENGTH_LONG).show()
+                    return@map SendCodeResp(profileId, mobile = sendCodeReq.mobile)
+                }
+                .singleElement()
+                .doOnComplete { }
+                .toSingle()
     }
 
+    override fun signUp(signUpReq: SignUpReq): Single<Profile> {
+        return uncertainty()
+                .flatMapObservable { Observable.fromIterable(mStore.records) }
+                .filter { it.code == signUpReq.verificationCode }
+                .map {
+                    val record = it
+                    record.profile.token = ""
+                    record.profile.refreshToken = ""
+                    record.password = signUpReq.password
+                    val indexOf = mStore.records.indexOf(it)
+                    mStore.records[indexOf] = record
+                    record.profile
+                }
+                .singleElement()
+//                .doOnSuccess { throw ClientException.MobileUnavaible }
+//                .ignoreElement()
+                .doOnComplete { throw ClientException.VerificationCode }
+                .toSingle()
 
-    private fun <T> Single<T>.uncertainNoConnectionError(): Single<T> {
-        val shouldThrow = Math.random() < uncertaintyParams.chanceOfFailingWithNoConnectionError
-        return map { if (shouldThrow) throw Exception() else it }
     }
 
-    private fun <T> Single<T>.uncertainUnknownError(): Single<T> {
-        val shouldThrow = Math.random() < uncertaintyParams.chanceOfFailingWithUnknownError
-        return map { if (shouldThrow) throw Exception() else it }
+    override fun login(loginReq: LoginReq): Single<Profile> {
+        return uncertainty()
+                .flatMapObservable { Observable.fromIterable(mStore.records) }
+//                .filter { it.token == token }
+                .map { it.profile }
+                .singleElement()
+                .doOnComplete { ClientException.Unauthorized }
+                .toSingle()
     }
-
-    private fun <T> Single<T>.uncertainDelay(): Single<T> {
-        val average = uncertaintyParams.averageResponseDelayInMillis
-        val deviation = (Math.random() - 0.5) * uncertaintyParams.responseDelayDeviationInMillis
-        val delayAmount = (average + deviation).coerceAtLeast(0.0).toLong()
-        return if (delayAmount != 0L) delay(delayAmount, TimeUnit.MILLISECONDS) else this
-    }
-
-    data class UncertaintyParams(
-
-            val chanceOfFailingWithNoConnectionError: Float = 0.0f,
-
-            val chanceOfFailingWithUnknownError: Float = 0.0f,
-
-            val averageResponseDelayInMillis: Long = 0,
-
-            val responseDelayDeviationInMillis: Long = 0
-    )
 }

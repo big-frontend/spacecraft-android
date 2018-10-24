@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public abstract class RxActivity<P extends RxPresenter> extends AppCompatActivity {
+
     protected P presenter;
 
     public abstract P createPresenter();
@@ -22,12 +23,16 @@ public abstract class RxActivity<P extends RxPresenter> extends AppCompatActivit
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
-        presenter.onAttach(this);
+        if (presenter != null) {
+            presenter.onAttach(this);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.onDetach();
+        if (presenter != null) {
+            presenter.onDetach();
+        }
     }
 }

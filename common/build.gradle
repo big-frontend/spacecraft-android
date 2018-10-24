@@ -32,8 +32,13 @@ dependencies {
 
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    api "com.google.dagger:dagger:${rootProject.ext.daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
+    // Dagger dependencies
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    api "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    api "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
+    api "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+
     api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
