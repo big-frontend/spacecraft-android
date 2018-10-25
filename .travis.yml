@@ -4,9 +4,9 @@ android:
     - tools
     - platform-tools
     - build-tools-28.0.2
-    - android-23
-    - android-26
-    - android-17
+#    - android-23
+#    - android-26
+#    - android-17
     - android-28
     - extra-android-m2repository
     - extra-google-m2repository
@@ -58,8 +58,8 @@ before_cache:
 #  - master
 #  - stable
 
-sudo: required
+#sudo: required
 
-services:
-- docker
+#services:
+#- docker
 

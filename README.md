@@ -4,7 +4,7 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather
 
 ## Todo List:
 
-- [ ] MVP框架搭建
+- [x] MVP框架搭建
 - [ ] MVVM框架搭建
 - [x] 组件化设计
 - [x] 提供gradle plugin for version
@@ -15,7 +15,7 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather
 - [ ] 模块设计之数据存储：Room/Realm,SharedPreference
 - [ ] 模块设计之通用工具(kotlin & Java)
 - [ ] 模块设计之定位系统
-- [ ] 模块设计之登入模块
+- [x] 模块设计之登入模块
 
 ## Android Project
 app

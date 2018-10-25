@@ -2,6 +2,14 @@ println("lib location start")
 if (isComponentMode.toBoolean()) {
     apply plugin: 'com.android.application'
     apply plugin: 'versionplugin'
+
+    versionPlugin {
+        buildTypeMatcher = 'debug'
+//        '$appName/project/buildType-v_$versionName-c_$versionCode'
+//        fileFormat = '$appName-v_$versionName-c_$versionCode'
+        fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode'
+
+    }
 } else {
     apply plugin: 'com.android.library'
 }
@@ -30,20 +38,9 @@ android {
             debuggable true
         }
     }
-    if (isComponentMode.toBoolean()) {
-        versionPlugin {
-            buildTypeMatcher = 'debug'
-//        '$appName/project/buildType-v_$versionName-c_$versionCode'
-//        fileFormat = '$appName-v_$versionName-c_$versionCode'
-            fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode'
-
-        }
-    }
-
-
-    sourceSets{
-        component{
-            java.srcDirs=['src/component/java']
+    sourceSets {
+        component {
+            java.srcDirs = ['src/component/java']
         }
     }
 }
@@ -52,11 +49,13 @@ dependencies {
 
     api project(path: ':common')
 
-    // Dependencies for local unit tests
+//    // Dependencies for local unit tests
 //    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
-//    testImplementation "org.mockito:mockito-all:${rootProject.ext.mockitoVersion}"
+//    testImplementation "org.mockito:mockito-all:1.10.19"
+//    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
+//    testImplementation "org.mockito:mockito-inline:${rootProject.ext.mockitoVersion}"
 //    testImplementation "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
-
+//
 //    // Espresso dependencies
 //    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
 //    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${rootProject.ext.espressoVersion}"
@@ -72,10 +71,9 @@ dependencies {
 //
 //    // Dependencies for Android unit tests
 //    androidTestImplementation "junit:junit:${rootProject.ext.junitVersion}"
-////    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
-//    androidTestImplementation 'org.mockito:mockito-android:2.11.0'
-//    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
-//    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
+//    androidTestImplementation "org.mockito:mockito-android:${rootProject.ext.mockitoVersion}"
+////    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
+////    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
 //
 //    // Android Testing Support Library's runner and rules
 //    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"

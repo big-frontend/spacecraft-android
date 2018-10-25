@@ -1,13 +1,14 @@
 package com.hawksjamesf.simpleweather;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.blankj.utilcode.util.Utils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * Copyright ® $ 2017
@@ -18,7 +19,7 @@ import com.orhanobut.logger.PrettyFormatStrategy;
  * @since: 2017/7/4
  */
 
-public class SimpleWeatherApplication extends Application {
+public class SimpleWeatherApplication extends MultiDexApplication {
     private static final String TAG = "SimpleWeatherApp---";
     private static AppComponent appComponent;
     private static SimpleWeatherApplication app;
@@ -53,7 +54,7 @@ public class SimpleWeatherApplication extends Application {
 
         Utils.init(this);
 
-//        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
+        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
 
 //        MockManager.init(getApplicationContext());
     }
