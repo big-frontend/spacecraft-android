@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.data.source.remote.WeatherAPIInterface;
 
-import butterknife.ButterKnife;
 
 /**
  * Copyright ® $ 2017
@@ -69,7 +68,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this, view);
         return view;
     }
 

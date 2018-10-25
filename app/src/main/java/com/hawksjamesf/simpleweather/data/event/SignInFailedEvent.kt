@@ -9,10 +9,9 @@ import com.hawksjamesf.simpleweather.data.bean.login.ClientException
  * @author: hawks.jamesf
  * @since: Oct/24/2018  Wed
  */
-data class SignUpFailedEvent(
+data class SignInFailedEvent(
         val mobile: String,
         val password: String,
         val excep: ClientException
 
-) {
-}
+)

@@ -5,7 +5,6 @@ import android.widget.Toast
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
 import com.hawksjamesf.simpleweather.data.bean.ListRes
-import com.hawksjamesf.simpleweather.data.bean.login.Profile
 import com.hawksjamesf.simpleweather.data.bean.home.WeatherData
 import com.hawksjamesf.simpleweather.data.bean.login.*
 import com.hawksjamesf.simpleweather.data.source.DataSource
@@ -211,7 +210,7 @@ class MockDataSource(
 
     }
 
-    override fun login(loginReq: LoginReq): Single<Profile> {
+    override fun signIn(signinReq: SignInReq): Single<Profile> {
         return uncertainty()
                 .flatMapObservable { Observable.fromIterable(mStore.records) }
 //                .filter { it.token == token }
@@ -219,5 +218,8 @@ class MockDataSource(
                 .singleElement()
                 .doOnComplete { ClientException.Unauthorized }
                 .toSingle()
+    }
+
+    override fun signOut() {
     }
 }

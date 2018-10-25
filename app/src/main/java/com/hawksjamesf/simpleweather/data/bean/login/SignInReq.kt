@@ -7,7 +7,7 @@ package com.hawksjamesf.simpleweather.data.bean.login
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-data class LoginReq(
+data class SignInReq(
        val mobile:String,
        val password:String
 

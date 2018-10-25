@@ -21,6 +21,14 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 public class SimpleWeatherApplication extends Application {
     private static final String TAG = "SimpleWeatherApp---";
     private static AppComponent appComponent;
+    private static SimpleWeatherApplication app;
+
+    public static SimpleWeatherApplication getInstance() {
+        if (app == null) {
+            throw new IllegalStateException("app is null");
+        }
+        return app;
+    }
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -31,6 +39,7 @@ public class SimpleWeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
             @Override
             public boolean isLoggable(int priority, String tag) {

@@ -3,6 +3,7 @@ package com.hawksjamesf.simpleweather;
 import com.hawksjamesf.simpleweather.data.source.DataSource;
 import com.hawksjamesf.simpleweather.ui.SplashActivity;
 import com.hawksjamesf.simpleweather.ui.home.HomeActivity;
+import com.hawksjamesf.simpleweather.ui.login.Client;
 
 import javax.inject.Singleton;
 
@@ -25,4 +26,6 @@ public interface AppComponent {
     void inject(HomeActivity homeActivity);
 
     DataSource source();
+
+    Client client();
 }

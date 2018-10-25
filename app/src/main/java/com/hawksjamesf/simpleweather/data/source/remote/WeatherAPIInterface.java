@@ -3,7 +3,7 @@ package com.hawksjamesf.simpleweather.data.source.remote;
 import com.hawksjamesf.simpleweather.data.bean.ListRes;
 import com.hawksjamesf.simpleweather.data.bean.login.Profile;
 import com.hawksjamesf.simpleweather.data.bean.home.WeatherData;
-import com.hawksjamesf.simpleweather.data.bean.login.LoginReq;
+import com.hawksjamesf.simpleweather.data.bean.login.SignInReq;
 import com.hawksjamesf.simpleweather.data.bean.login.SendCodeReq;
 import com.hawksjamesf.simpleweather.data.bean.login.SendCodeResp;
 import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq;
@@ -41,8 +41,8 @@ public interface WeatherAPIInterface {
     @POST("/signup")
     Single<Profile> signUp(@Body SignUpReq req);
 
-    @POST("/login")
-    Single<Profile> login(@Body LoginReq req);
+    @POST("/signIn")
+    Single<Profile> login(@Body SignInReq req);
 
 
 }

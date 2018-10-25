@@ -2,12 +2,8 @@ package com.hawksjamesf.simpleweather.data.source.remote
 
 import com.hawksjamesf.simpleweather.BuildConfig
 import com.hawksjamesf.simpleweather.data.bean.ListRes
-import com.hawksjamesf.simpleweather.data.bean.login.Profile
 import com.hawksjamesf.simpleweather.data.bean.home.WeatherData
-import com.hawksjamesf.simpleweather.data.bean.login.LoginReq
-import com.hawksjamesf.simpleweather.data.bean.login.SendCodeReq
-import com.hawksjamesf.simpleweather.data.bean.login.SendCodeResp
-import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq
+import com.hawksjamesf.simpleweather.data.bean.login.*
 import com.hawksjamesf.simpleweather.data.source.DataSource
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -68,7 +64,11 @@ object RemoteDataSource : DataSource {
         return api.signUp(signUpReq)
     }
 
-    override fun login(loginReq: LoginReq): Single<Profile> {
+    override fun signIn(loginReq: SignInReq): Single<Profile> {
         return api.login(loginReq)
+    }
+
+    override fun signOut() {
+
     }
 }

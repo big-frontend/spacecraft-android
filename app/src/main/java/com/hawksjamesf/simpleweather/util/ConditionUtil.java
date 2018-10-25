@@ -9,7 +9,7 @@ import com.hawksjamesf.simpleweather.R;
  *  @author: hawks jamesf
  *  @since: 2017/7/4
  */
-public class ConditionUtils {
+public class ConditionUtil {
 
     public static int getDayWeatherPic(String weatherName) {
         switch (weatherName) {

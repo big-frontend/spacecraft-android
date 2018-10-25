@@ -3,6 +3,7 @@ package com.hawksjamesf.simpleweather;
 import com.hawksjamesf.simpleweather.data.source.DataSource;
 import com.hawksjamesf.simpleweather.data.source.mock.MockDataSource;
 import com.hawksjamesf.simpleweather.data.source.remote.RemoteDataSource;
+import com.hawksjamesf.simpleweather.ui.login.Client;
 
 import javax.inject.Singleton;
 
@@ -36,5 +37,12 @@ class AppModule {
         } else {
             return RemoteDataSource.INSTANCE;
         }
+    }
+
+    @Provides
+    @Singleton
+    Client provideClient(DataSource source){
+        return new Client(source);
+
     }
 }

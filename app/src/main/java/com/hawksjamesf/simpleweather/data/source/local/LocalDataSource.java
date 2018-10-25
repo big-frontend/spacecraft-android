@@ -3,7 +3,7 @@ package com.hawksjamesf.simpleweather.data.source.local;
 import com.hawksjamesf.simpleweather.data.bean.ListRes;
 import com.hawksjamesf.simpleweather.data.bean.login.Profile;
 import com.hawksjamesf.simpleweather.data.bean.home.WeatherData;
-import com.hawksjamesf.simpleweather.data.bean.login.LoginReq;
+import com.hawksjamesf.simpleweather.data.bean.login.SignInReq;
 import com.hawksjamesf.simpleweather.data.bean.login.SendCodeReq;
 import com.hawksjamesf.simpleweather.data.bean.login.SendCodeResp;
 import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq;
@@ -65,8 +65,13 @@ public class LocalDataSource implements DataSource {
 
     @NotNull
     @Override
-    public Single<Profile> login(@NotNull LoginReq loginReq) {
+    public Single<Profile> signIn(@NotNull SignInReq loginReq) {
         return null;
+    }
+
+    @Override
+    public void signOut() {
+
     }
 }
 

@@ -1,7 +1,10 @@
 println("app start")
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android-extensions"
 //apply plugin: 'kotlin-kapt'
+
+apply plugin: 'realm-android'
 
 apply plugin: 'versionplugin'
 //apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
@@ -73,19 +76,23 @@ android {
             buildConfigField 'boolean','MOCKED_DATA_ACCESS','true'
             buildConfigField 'String','WEATHER_URL','" "'
         }
-        real{
-            dimension 'data_access'
-            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
-            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+//        real{
+//            dimension 'data_access'
+//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+//            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+//
+//        }
+//
+//        realLocalServer{
+//            dimension 'data_access'
+//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+//            buildConfigField 'String','WEATHER_URL',"\"http://${getLocalIP()}:8080\""
+//        }
 
-        }
+    }
 
-        realLocalServer{
-            dimension 'data_access'
-            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
-            buildConfigField 'String','WEATHER_URL',"\"http://${getLocalIP()}:8080\""
-        }
-
+    sourceSets{
+        main.java.srcDirs+=["src/main/kotlin"]
     }
 
 //    useLibrary 'android.test.runner'
@@ -118,7 +125,7 @@ dependencies {
     implementation project(path: ':location')
 //    implementation project(path: ':mockserver')
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
     // Dependencies for local unit tests

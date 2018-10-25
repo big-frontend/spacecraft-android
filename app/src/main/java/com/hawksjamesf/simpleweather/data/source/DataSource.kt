@@ -1,12 +1,8 @@
 package com.hawksjamesf.simpleweather.data.source
 
 import com.hawksjamesf.simpleweather.data.bean.ListRes
-import com.hawksjamesf.simpleweather.data.bean.login.Profile
 import com.hawksjamesf.simpleweather.data.bean.home.WeatherData
-import com.hawksjamesf.simpleweather.data.bean.login.LoginReq
-import com.hawksjamesf.simpleweather.data.bean.login.SendCodeReq
-import com.hawksjamesf.simpleweather.data.bean.login.SendCodeResp
-import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq
+import com.hawksjamesf.simpleweather.data.bean.login.*
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -28,6 +24,8 @@ interface DataSource {
 
     fun signUp(signUpReq: SignUpReq): Single<Profile>
 
-    fun login(loginReq: LoginReq): Single<Profile>
+    fun signIn(signinReq: SignInReq): Single<Profile>
+
+    fun signOut()
 
 }

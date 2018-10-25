@@ -4,10 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignParentBottom="true"
-              android:layout_centerHorizontal="true" android:layout_marginBottom="247dp"
-              android:textColor="@android:color/holo_blue_light"
-              android:text="Loading" android:textSize="40sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="247dp"
+        android:gravity="center"
+        android:text="Splash\n
+Hello World"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="40sp"/>
 </RelativeLayout>
