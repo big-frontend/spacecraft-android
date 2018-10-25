@@ -1,13 +1,11 @@
 package com.hawksjamesf.simpleweather.ui.login
 
 import android.support.annotation.MainThread
-import com.hawksjamesf.simpleweather.data.bean.login.ClientException
-import com.hawksjamesf.simpleweather.data.bean.login.Profile
-import com.hawksjamesf.simpleweather.data.bean.login.SignInReq
-import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq
+import com.hawksjamesf.simpleweather.data.bean.login.*
 import com.hawksjamesf.simpleweather.data.source.DataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
+import java.util.concurrent.TimeUnit
 
 /**
  * Copyright ® $ 2017
@@ -20,6 +18,7 @@ class Client(
         private var dataSource: DataSource
 ) : ObservableClient() {
     private val TAG = "Client"
+    private val communicationTimeoutSeconds: Long = 10
 
     init {
         /**
@@ -35,9 +34,32 @@ class Client(
     }
 
     @MainThread
+    override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
+        Logger.t(TAG).d("send code--->req:$sendCodeReq")
+        stateData.apply {
+            signinginDisposable?.dispose()
+            signingupDisposable?.dispose()
+        }
+        return dataSource.sendCode(sendCodeReq)
+                .onErrorResumeNext {
+                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                }
+    }
+
+    @MainThread
     override fun signUp(signUpReq: SignUpReq): Single<Profile> {
-        Logger.t(TAG).d("sign up")
+        Logger.t(TAG).d("sign up--->req:$signUpReq")
+        stateData.apply {
+            signinginDisposable?.dispose()
+            signingupDisposable?.dispose()
+        }
         return dataSource.signUp(signUpReq)
+                .timeout(communicationTimeoutSeconds, TimeUnit.SECONDS)
+                .onErrorResumeNext {
+                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                }
+
+
     }
 
     @MainThread
@@ -48,6 +70,7 @@ class Client(
             signingupDisposable?.dispose()
         }
         return dataSource.signIn(signInReq)
+                //.timeout(communicationTimeoutSeconds, TimeUnit.SECONDS)
                 .onErrorResumeNext {
                     Single.error(it as? ClientException ?: ClientException.Unknown)
                 }
@@ -57,13 +80,15 @@ class Client(
 
     @MainThread
     override fun signOut() {
-       Logger.t(TAG).d("sign out")
+        Logger.t(TAG).d("sign out")
         stateData.apply {
             signinginDisposable?.dispose()
             signingupDisposable?.dispose()
         }
         stateData = StateData()
         dataSource.signOut()
+
+        //todo:profile 处理
     }
 
 

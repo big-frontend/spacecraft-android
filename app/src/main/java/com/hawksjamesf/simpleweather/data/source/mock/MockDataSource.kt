@@ -12,6 +12,7 @@ import com.hawksjamesf.simpleweather.util.RestServiceTestHelper
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import org.joda.time.DateTime
 import org.joda.time.format.ISODateTimeFormat
 import java.lang.reflect.Type
@@ -36,7 +37,7 @@ class MockDataSource(
     private val TAG = "Server"
 
     data class Store(
-            val records: MutableList<Record> = mutableListOf()
+            var records: MutableList<Record> = mutableListOf()
     )
 
 
@@ -90,6 +91,15 @@ class MockDataSource(
 //            }
 //        })
         mGson = gsonBuilder.create()
+
+        val testAccount = mutableListOf(
+                Record(Profile(0, "100", "100_token", "100_refresh_token"), "123456", 1),
+                Record(Profile(1, "101", "101_token", "101_refresh_token"), "123456", 1),
+                Record(Profile(2, "102", "102_token", "102_refresh_token"), "123456", 1),
+                Record(Profile(3, "103", "103_token", "103_refresh_token"), "123456", 1)
+        )
+        mStore.records.clear()
+        mStore.records.addAll(testAccount)
     }
 
     private fun uncertainty(): Single<Unit> {
@@ -167,28 +177,38 @@ class MockDataSource(
 
     }
 
+    val countDown: Long = 15//TimeUnit.SECONDS
     override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
+        Logger.t(TAG).d("send code--->sendCode")
         return uncertainty()
                 .flatMapObservable { Observable.fromIterable(mStore.records) }
-//                .filter(Predicate<Record> { t ->
-//                    if (t.profile.mobile == sendCodeReq.mobile) {
-//                        Toast.makeText(mContext, "15s内不能重复发送", Toast.LENGTH_SHORT).show()
-//                        return@Predicate false
-//                    } else {
-//
-//                        return@Predicate true
-//                    }
-//                })
-                .map {
-                    val code = UUID.randomUUID().toString().toInt()
-                    val profileId = UUID.randomUUID().toString().toInt()
-                    mStore.records += Record(Profile(profileId, sendCodeReq.mobile, null, null), "", code)
-                    Toast.makeText(mContext, "当前的验证码为$code", Toast.LENGTH_LONG).show()
-                    return@map SendCodeResp(profileId, mobile = sendCodeReq.mobile)
-                }
+                .filter { it.profile.mobile==sendCodeReq.mobile }
                 .singleElement()
-                .doOnComplete { }
-                .toSingle()
+                .doOnSuccess {
+                    //Maybe：当发现服务器有该数据时，注册失败，应该给前端提供注册失败信息
+                    Logger.t(TAG).d("send code--->doOnSuccess")
+                    throw ClientException.MobileUnavaible
+
+                }
+                .ignoreElement()
+                .doOnComplete {
+                    //Completable:只会调用OnComplete和OnError
+                    Logger.t(TAG).d("send code--->doOnComplete")
+                }
+                .toSingle {
+
+                }
+                .observeOn(AndroidSchedulers.mainThread())
+                .map {
+                    val code = Random().nextInt(9999)
+                    val profileId = Random().nextInt(20)
+                    mStore.records.add(Record(Profile(profileId, sendCodeReq.mobile, null, null), "", code))
+                    Logger.t(TAG).d("send code--->map $code")
+                    Toast.makeText(mContext, "${TAG}打印的验证码为${code}", Toast.LENGTH_LONG).show()
+                    return@map SendCodeResp(1, mobile = sendCodeReq.mobile)
+                }
+
+
     }
 
     override fun signUp(signUpReq: SignUpReq): Single<Profile> {
@@ -202,6 +222,7 @@ class MockDataSource(
                     record.password = signUpReq.password
                     val indexOf = mStore.records.indexOf(it)
                     mStore.records[indexOf] = record
+                    Logger.t(TAG).d("sign up--->record:${mStore.records[indexOf]}")
                     record.profile
                 }
                 .singleElement()
@@ -212,20 +233,14 @@ class MockDataSource(
 
     }
 
-    val testAccount = mutableListOf(
-            Record(Profile(0, "100", "100_token", "100_refresh_token"), "123456", 1),
-            Record(Profile(1, "101", "101_token", "101_refresh_token"), "123456", 1),
-            Record(Profile(2, "102", "102_token", "102_refresh_token"), "123456", 1),
-            Record(Profile(3, "103", "103_token", "103_refresh_token"), "123456", 1)
-
-    )
-
     override fun signIn(signinReq: SignInReq): Single<Profile> {
-        Logger.t(TAG).d("sign in")
         return uncertainty()
-                .flatMapObservable { Observable.fromIterable(testAccount) }
+                .flatMapObservable { Observable.fromIterable(mStore.records) }
                 .filter { it.profile.mobile == signinReq.mobile && it.password == signinReq.password }
-                .map { it.profile }
+                .map {
+                    Logger.t(TAG).d("sign in:${it.profile}")
+                    it.profile
+                }
                 .singleElement()
                 .doOnComplete { ClientException.Unauthorized }
                 .toSingle()

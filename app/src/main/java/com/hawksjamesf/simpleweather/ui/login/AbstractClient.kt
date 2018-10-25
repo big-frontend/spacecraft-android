@@ -28,6 +28,8 @@ abstract class AbstractClient {
     abstract fun signIn(signInReq: SignInReq): Single<Profile>
 
     abstract fun signOut()
+
+    abstract fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp>
 }
 
 
@@ -37,8 +39,8 @@ abstract class ObservableClient : AbstractClient() {
     private val signInFailedEventSubject = PublishSubject.create<SignInFailedEvent>()
     private val signUpFailedEventSubject = PublishSubject.create<SignUpFailedEvent>()
 
-    protected fun emitSignInFailedEvent(mobile: String, password: String, excep: ClientException) = signInFailedEventSubject.onNext(SignInFailedEvent(mobile, password, excep))
-    protected fun emitSignUpFailedEvent(mobile: String, password: String, excep: ClientException) = signUpFailedEventSubject.onNext(SignUpFailedEvent(mobile, password, excep))
+    fun emitSignInFailedEvent(mobile: String, password: String, excep: ClientException) = signInFailedEventSubject.onNext(SignInFailedEvent(mobile, password, excep))
+    fun emitSignUpFailedEvent(mobile: String, password: String, excep: ClientException) = signUpFailedEventSubject.onNext(SignUpFailedEvent(mobile, password, excep))
 
     //当登入/注册时，改变stateData的值时，通过stateDataSubject将登入/注册d的状态发给ui层从而更新ui
     var stateData: StateData

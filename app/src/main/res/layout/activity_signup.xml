@@ -10,7 +10,6 @@
               android:paddingBottom="@dimen/activity_vertical_margin"
               tools:context="com.hawksjamesf.simpleweather.ui.login.SignInActivity">
 
-    <!-- Login progress -->
     <ProgressBar
         android:id="@+id/pb_signup_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -25,27 +24,57 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/ll_login_form"
+            android:id="@+id/ll_signup_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <AutoCompleteTextView
-                    android:id="@+id/act_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="mobile"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:textColor="@android:color/black"
-                    android:singleLine="true"
-                    tools:text="sadfafasf"/>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
 
-            </android.support.design.widget.TextInputLayout>
+                    <AutoCompleteTextView
+                        android:id="@+id/atv_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mobile"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        tools:text="sadfafasf"/>
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:layout_margin="10dp"
+                    android:id="@+id/bt_send_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/rounded_confirm_btn"
+                    android:enabled="false"
+                    android:text="send code"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_verification_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="verification code"
+                android:imeActionId="6"
+                android:imeOptions="actionUnspecified"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                tools:text="1"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -53,16 +82,15 @@
 
                 <EditText
                     android:id="@+id/et_password"
-                    android:textColor="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="password"
                     android:imeActionId="6"
-                    android:imeActionLabel="login"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     tools:text="sadfafasf"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -77,11 +105,12 @@
                     android:layout_height="wrap_content"
                     android:hint="confirm password"
                     android:imeActionId="6"
-                    android:imeActionLabel="login"
+                    android:imeActionLabel="sigup"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -91,6 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_confirm_btn"
+                android:enabled="false"
                 android:text="sign up"
                 android:textStyle="bold"/>
 

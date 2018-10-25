@@ -5,11 +5,13 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.hawksjamesf.simpleweather.R
+import com.hawksjamesf.simpleweather.data.bean.login.ClientException
 import com.hawksjamesf.simpleweather.data.bean.login.ClientState
 import com.hawksjamesf.simpleweather.data.bean.login.SignInReq
 import com.hawksjamesf.simpleweather.ui.BaseActivity
 import com.hawksjamesf.simpleweather.ui.home.HomeActivity
 import com.hawksjamesf.simpleweather.ui.mvp.AutoDisposable
+import com.hawksjamesf.simpleweather.util.TextUtil
 import com.hawksjamesf.simpleweather.util.hideSoftInput
 import com.hawksjamesf.simpleweather.util.openActivity
 import com.hawksjamesf.simpleweather.util.subscribeBy
@@ -45,7 +47,7 @@ class SignInActivity : BaseActivity() {
                 }, { }, {}).autoDisposable()
 
         Observables.combineLatest(atv_mobile.textChanges(), et_password.textChanges())
-                .map { isValidate(it.first, it.second) }
+                .map { !TextUtil.isEmpty(it.first, it.second) }
                 .subscribe { bt_sign_in.isEnabled = it }
                 .autoDisposable()
 
@@ -55,7 +57,7 @@ class SignInActivity : BaseActivity() {
                 .mergeWith(bt_sign_in.clicks())
                 .publish().apply {
                     subscribe { hideSoftInput() }
-                    filter { isValidate(atv_mobile.text.toString(), et_password.text.toString()) }
+                    filter { !TextUtil.isEmpty(atv_mobile.text.toString(), et_password.text.toString()) }
                             .subscribe { signin(SignInReq(atv_mobile.text.toString(), et_password.text.toString())) }
 
                 }.connect(autoDisposable)
@@ -70,7 +72,7 @@ class SignInActivity : BaseActivity() {
 
     }
 
-    private fun isValidate(mobile: CharSequence, password: CharSequence) = mobile.isNotBlank() && password.isNotBlank()
+//    private fun isValidate(mobile: CharSequence, password: CharSequence) = mobile.isNotBlank() && password.isNotBlank()
 
     fun signin(signInReq: SignInReq) {
         client.signIn(signInReq)
@@ -83,6 +85,7 @@ class SignInActivity : BaseActivity() {
                         },
                         onError = {
                             client.stateData = StateData()
+                            client.emitSignInFailedEvent(signInReq.mobile, signInReq.password, it as ClientException)
                         }
 
                 )
@@ -107,7 +110,7 @@ class SignInActivity : BaseActivity() {
         client.signInFailedEventObservable.publish().apply {
             map { it.mobile }.subscribe { atv_mobile.text() }.autoDisposable()
             map { it.password }.subscribe { et_password.text() }.autoDisposable()
-            map { it.excep }.subscribe { Toast.makeText(this@SignInActivity, "$it", Toast.LENGTH_SHORT).show() }
+            map { it.excep }.observeOn(AndroidSchedulers.mainThread()).subscribe { Toast.makeText(this@SignInActivity, "$it", Toast.LENGTH_SHORT).show() }
         }.connect(autoDisposable)
     }
 
