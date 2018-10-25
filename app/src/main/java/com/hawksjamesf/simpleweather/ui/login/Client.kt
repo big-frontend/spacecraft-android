@@ -6,6 +6,7 @@ import com.hawksjamesf.simpleweather.data.bean.login.Profile
 import com.hawksjamesf.simpleweather.data.bean.login.SignInReq
 import com.hawksjamesf.simpleweather.data.bean.login.SignUpReq
 import com.hawksjamesf.simpleweather.data.source.DataSource
+import com.orhanobut.logger.Logger
 import io.reactivex.Single
 
 /**
@@ -35,31 +36,33 @@ class Client(
 
     @MainThread
     override fun signUp(signUpReq: SignUpReq): Single<Profile> {
-        com.orhanobut.logger.Logger.t(TAG).d("sign up")
+        Logger.t(TAG).d("sign up")
         return dataSource.signUp(signUpReq)
     }
 
     @MainThread
     override fun signIn(signInReq: SignInReq): Single<Profile> {
-        com.orhanobut.logger.Logger.t(TAG).d("sign in")
+        Logger.t(TAG).d("sign in--->req:$signInReq")
         stateData.apply {
             signinginDisposable?.dispose()
             signingupDisposable?.dispose()
         }
         return dataSource.signIn(signInReq)
-                .onErrorResumeNext { Single.error(it as? ClientException ?: ClientException.Unknown) }
+                .onErrorResumeNext {
+                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                }
 
 
     }
 
     @MainThread
     override fun signOut() {
-        com.orhanobut.logger.Logger.t(TAG).d("sign out")
+       Logger.t(TAG).d("sign out")
         stateData.apply {
             signinginDisposable?.dispose()
             signingupDisposable?.dispose()
         }
-        stateData=StateData()
+        stateData = StateData()
         dataSource.signOut()
     }
 

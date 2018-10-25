@@ -10,5 +10,8 @@ package com.hawksjamesf.simpleweather.data.bean.login
 data class SignInReq(
        val mobile:String,
        val password:String
-
-)
+){
+    override fun toString(): String {
+        return "SignInReq(mobile='$mobile', password='$password')"
+    }
+}

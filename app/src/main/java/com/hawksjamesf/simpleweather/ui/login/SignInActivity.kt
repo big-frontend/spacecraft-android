@@ -1,6 +1,7 @@
 package com.hawksjamesf.simpleweather.ui.login
 
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.hawksjamesf.simpleweather.R
@@ -17,6 +18,8 @@ import com.jakewharton.rxbinding2.view.visibility
 import com.jakewharton.rxbinding2.widget.editorActions
 import com.jakewharton.rxbinding2.widget.text
 import com.jakewharton.rxbinding2.widget.textChanges
+import com.orhanobut.logger.Logger
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.Observables
 import kotlinx.android.synthetic.main.activity_signin.*
 
@@ -28,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_signin.*
  * @since: Oct/23/2018  Tue
  */
 class SignInActivity : BaseActivity() {
+    private val TAG = "SignInActivity"
 
     override fun initComponent(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_signin)
@@ -74,6 +78,7 @@ class SignInActivity : BaseActivity() {
                         onSubscribe = { client.stateData = StateData(signinginDisposable = it) },
                         onSuccess = {
                             client.stateData = StateData(profile = it)
+                            Logger.t(TAG).d("sign in--->resp:$it and state:${client.stateData}")
                             //todo:将新的Profile存入到数据库
                         },
                         onError = {
@@ -90,7 +95,9 @@ class SignInActivity : BaseActivity() {
     override fun onResume(autoDisposable: AutoDisposable) {
         super.onResume(autoDisposable)
         client.stateObservable.publish().apply {
-            map { it == ClientState.SIGNING_IN }.subscribe { pb_signin_progress.visibility() }.autoDisposable()
+            map { it == ClientState.SIGNING_IN }.observeOn(AndroidSchedulers.mainThread()).subscribe {
+                pb_signin_progress.visibility = if (it) View.VISIBLE else View.GONE
+            }.autoDisposable()
             map { it == ClientState.SIGNED_OUT }.subscribe { ll_signin.visibility() }.autoDisposable()
             filter { it == ClientState.SIGNED_IN }.subscribe { openActivity<HomeActivity>() }.autoDisposable()
             filter { it == ClientState.SIGNING_UP }.subscribe { openActivity<SignUpActivity>(false) }.autoDisposable()

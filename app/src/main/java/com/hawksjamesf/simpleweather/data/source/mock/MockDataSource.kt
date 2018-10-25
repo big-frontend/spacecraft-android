@@ -9,6 +9,7 @@ import com.hawksjamesf.simpleweather.data.bean.home.WeatherData
 import com.hawksjamesf.simpleweather.data.bean.login.*
 import com.hawksjamesf.simpleweather.data.source.DataSource
 import com.hawksjamesf.simpleweather.util.RestServiceTestHelper
+import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.joda.time.DateTime
@@ -32,6 +33,7 @@ class MockDataSource(
 
     private var mGson: Gson
     private val mStore: Store = Store()
+    private val TAG = "Server"
 
     data class Store(
             val records: MutableList<Record> = mutableListOf()
@@ -210,10 +212,19 @@ class MockDataSource(
 
     }
 
+    val testAccount = mutableListOf(
+            Record(Profile(0, "100", "100_token", "100_refresh_token"), "123456", 1),
+            Record(Profile(1, "101", "101_token", "101_refresh_token"), "123456", 1),
+            Record(Profile(2, "102", "102_token", "102_refresh_token"), "123456", 1),
+            Record(Profile(3, "103", "103_token", "103_refresh_token"), "123456", 1)
+
+    )
+
     override fun signIn(signinReq: SignInReq): Single<Profile> {
+        Logger.t(TAG).d("sign in")
         return uncertainty()
-                .flatMapObservable { Observable.fromIterable(mStore.records) }
-//                .filter { it.token == token }
+                .flatMapObservable { Observable.fromIterable(testAccount) }
+                .filter { it.profile.mobile == signinReq.mobile && it.password == signinReq.password }
                 .map { it.profile }
                 .singleElement()
                 .doOnComplete { ClientException.Unauthorized }

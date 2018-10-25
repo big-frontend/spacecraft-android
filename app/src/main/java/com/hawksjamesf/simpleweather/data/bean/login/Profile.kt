@@ -12,4 +12,8 @@ data class Profile(
         val mobile: String,
         var token: String?,
         var refreshToken: String?
-)
+){
+    override fun toString(): String {
+        return "Profile(id=$id, mobile='$mobile', token=$token, refreshToken=$refreshToken)"
+    }
+}
