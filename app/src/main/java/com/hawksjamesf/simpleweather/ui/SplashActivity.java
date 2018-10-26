@@ -1,7 +1,7 @@
 package com.hawksjamesf.simpleweather.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.ui.login.SignInActivity;

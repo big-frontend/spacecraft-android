@@ -1,14 +1,15 @@
 package com.hawksjamesf.simpleweather;
 
 import android.content.Context;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
 
 import com.blankj.utilcode.util.Utils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
+
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 /**
  * Copyright ® $ 2017

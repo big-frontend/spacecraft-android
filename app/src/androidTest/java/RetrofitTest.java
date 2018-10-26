@@ -1,4 +1,4 @@
-import android.support.test.filters.SmallTest;
+import androidx.test.filters.SmallTest;
 import android.test.InstrumentationTestCase;
 
 import com.hawksjamesf.simpleweather.data.bean.home.WeatherData;

@@ -1,6 +1,6 @@
 package com.hawksjamesf.simpleweather.ui.login
 
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
 import com.hawksjamesf.simpleweather.data.bean.login.*
 import com.hawksjamesf.simpleweather.data.source.DataSource
 import com.orhanobut.logger.Logger
