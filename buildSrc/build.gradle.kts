@@ -62,7 +62,7 @@ dependencies {
     implementation(kotlin("reflect"))
     testCompile(kotlin("test"))
     testCompile(kotlin("test-junit"))
-    implementation("com.android.tools.build:gradle:3.2.0")
+    implementation("com.android.tools.build:gradle:3.2.1")
 //    implementation("org.javassist:javassist:3.20.0-GA")
 }
 

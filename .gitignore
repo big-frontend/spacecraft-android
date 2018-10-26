@@ -65,3 +65,9 @@ app/src/main/.DS_Store
 viewpagerindicator_library
 mockserver/src/main/.DS_Store
 .DS_Store
+app/src/main/res/xml/
+location/src/debug/
+location/src/release/
+script/
+server_python/static/
+server_python/templates/

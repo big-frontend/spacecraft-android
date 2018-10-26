@@ -8,6 +8,7 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather
 - [ ] MVVM框架搭建
 - [x] 组件化设计
 - [x] 提供gradle plugin for version
+- [ ] 提供gradle plugin for component
 
 ~~-[x] 临时使用MockServer模拟后端数据~~
 - [x] 提供mock环境、real环境、real local server环境
@@ -17,6 +18,7 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather
 - [ ] 模块设计之定位系统
 - [x] 模块设计之登入模块
 - [ ] 解耦：高内聚低耦合
+- [x] 持续集成、自动发布
 ## Client
 app
 

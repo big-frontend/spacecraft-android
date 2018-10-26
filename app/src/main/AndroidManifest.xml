@@ -48,10 +48,12 @@
             android:theme="@style/AppTheme"/>
 
 
-        <activity android:name=".ui.login.SignInActivity"
+        <activity
+            android:name=".ui.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
-        <activity android:name=".ui.login.SignUpActivity"
-                  android:parentActivityName=".ui.login.SignInActivity"
+        <activity
+            android:name=".ui.login.SignUpActivity"
+            android:parentActivityName=".ui.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
     </application>
 

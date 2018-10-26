@@ -30,18 +30,35 @@ versionPluginForKotlin {
     fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
 
+def getVersion() {
+    [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
+}
+
+
+def getKeyStoreProperty(String buildType) {
+    if (project.hasProperty("${buildType}_KEY_ALIAS")
+            && project.hasProperty("${buildType}_STORE_FILE")
+            && project.hasProperty("${buildType}_STORE_PASSWORD")
+            && project.hasProperty("${buildType}_KEY_PASSWORD")
+    ) {//used for ci
+        [project.property("${buildType}_KEY_ALIAS"), file("../${project.property("${buildType}_STORE_FILE")}"), project.property("${buildType}_KEY_PASSWORD"), project.property("${buildType}_STORE_PASSWORD")]
+    } else {//used for local build
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        [properties.getProperty("${buildType}_KEY_ALIAS"), file("../${properties.getProperty("${buildType}_STORE_FILE")}"), properties.getProperty("${buildType}_KEY_PASSWORD"), properties.getProperty("${buildType}_STORE_PASSWORD")]
+
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
+        (minSdkVersion, targetSdkVersion, versionCode, versionName) = getVersion()
 
         multiDexEnabled = true
         applicationId "com.hawksjamesf.simpleweather"
+        testApplicationId "com.hawksjamesf.simpleweather.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
 //             设置支持的SO库架构
@@ -56,12 +73,32 @@ android {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
         buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
     }
+    signingConfigs {
+//        debugSigningConfig {
+//            (keyAlias, storeFile, keyPassword, storePassword) = getKeyStoreProperty('DEBUG')
+//            v1SigningEnabled true
+//            v2SigningEnabled = true
+//
+//        }
+        releaseSigningConfig {
+            (keyAlias, storeFile, keyPassword, storePassword) = getKeyStoreProperty('RELEASE')
+            v1SigningEnabled true
+            v2SigningEnabled = true
+        }
+
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf']
+            signingConfig signingConfigs.releaseSigningConfig
         }
         debug {
+            minifyEnabled false
+            applicationIdSuffix = '.debug'
+            manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf']
+//            signingConfig signingConfigs.debugSigningConfig
         }
     }
     lintOptions {
@@ -157,8 +194,6 @@ dependencies {
     // Android Testing Support Library's runner and rules
     androidTestImplementation "androidx.test:runner:1.1.0"
     androidTestImplementation "androidx.test:rules:1.1.0"
-
-
 
 //    androidTestImplementation 'androidx.test:monitor:1.1.0'
 //    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0',{

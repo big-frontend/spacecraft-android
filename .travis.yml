@@ -1,65 +1,57 @@
 language: android
 android:
   components:
-    - tools
-    - platform-tools
-    - build-tools-28.0.2
-#    - android-23
-#    - android-26
-#    - android-17
-    - android-28
-    - extra-android-m2repository
-    - extra-google-m2repository
+  - tools
+  - platform-tools
+  - build-tools-28.0.3
+  - android-28
+  - extra-android-m2repository
+  - extra-google-m2repository
 jdk:
-  - oraclejdk8
-
-
-before_install: echo "before_install"
+- oraclejdk8
+before_install:
+- echo "before_install"
+- cd $TRAVIS_BUILD_DIR
+- wget -c https://raw.githubusercontent.com/Pgyer/TravisFile/master/pgyer_upload.sh -O pgyer_upload.sh
+- chmod +x pgyer_upload.sh
+#- mkdir keystore
+#- openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in debug.jks.enc -out $DEBUG_STORE_FILE -d
+- openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
 install: echo "install"
 before_script: echo "before_script"
 script:
-  - echo "build the script"
-  - ./gradlew assemble
-
+- echo "build the script"
+- ./gradlew assembleRelease -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
 after_success:
-  - echo "after_success"
+- echo "after_success"
+#- cp $TRAVIS_BUILD_DIR/$RELEASE_STORE_FILE $HOME
+#- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/release.jks -storepass $storepass -keypass $keypass app/build/outputs/apk/mock/release/app-mocked-release-unsigned.apk $RELEASE_KEY_ALIAS #[ $RELEASE_KEY_ALIAS 是签名文件的key alias]
+#- jarsigner -verify  app/build/outputs/apk/mock/release/app-mocked-release-unsigned.apk  # 验证未签名的 apk
+#- "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk yourapp.apk"  # apk优化并重命名
 after_failure:
-  - echo "after_failure"
+- echo "after_failure"
+
 before_deploy:
-  - echo "before_deploy"
+- echo "before_deploy"
 deploy:
   provider: script
   script: echo "deploy..."
-
 after_deploy:
-  - echo "after_deploy"
-
+- echo "after_deploy"
 after_script:
-  - echo "after_script"
-
+- echo "after_script"
+- set -e
+- ./$TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY
 before_cache:
-  - echo "before_cache"
-#cache:
-#  - echo "cache"
-
-#os: osx
-#git:
-
-#you can safelist them all with regular expressions, for example /^v\d+\.\d+(\.\d+)?(-\S*)?$/
-# blocklist
-#branches:
-#  except:
-#  - legacy
-#  - experimental
-#
-## safelist
-#branches:
-#  only:
-#  - master
-#  - stable
-
-#sudo: required
-
-#services:
-#- docker
-
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
+env:
+  global:
+  - secure: e6btVM8Wzk7yN9pdoDRTLoU27WxfAWDN7xq8VZ2f//ZgsT0gJU3byRMSh20kGKecN2VVVTwDNTCE3+5YEG/HJUd4Hf8eDhkjRCc1dahCib8RcYijQ+iq4aHhSi7UiT/AGpz3o/Uf3B26SumBuEzVjyyH5oysxPa8n950D2doooL6ArlkTBJpvTjubRhImYvi8UYpuBlmH2icOG3BnD0RZ4LfWlRXO0UffLVNg12/VWftU0HclrzG5YQ7vPLsc6/z+Z09ocoaCAHVShiYQTZVLvCne6fFOkc+9sYnO4z5HWZOzhbPHkpa6DgaCtuMk2xgVGcXeJlp2x5AE1HuADZKEM7l3NDzw4b9c7B6G3+jBouIoRldsHmDKw3iOL9z1jbQ54rd0URZcrDZVTUPb5+UGYlHydWqCGuvlph0gd7pB8JLLN4yI5Y+Pmw2DyTAIqhYlnLVnZ1O16uwu3Kqg+/9bvy3mW+xbN18XloQZQqaxpiYOLUog6ANEsF+pcJIfE/+llSr+CGg22km19bttz+bMEMKZi0K+KiON6JCg69Grz93ZkLZmcqdDvJzcGJbTNSzfat9p+CDW+J0Pn2/fUTdSQFrj8H4PawCsgWMT3R3ILvjuoBEAA0FtkPA8YVhaxPoeX2hj7uu3ZqIQJk9H4n7hEPb2LyVWqAHo5qg9OSPEfQ=
+  - secure: fmiaKVtCdcfr8XTRUU88cbKSTXGMho1iBI/zhXm9EffmN53hwLCyXz8nEPfq5/QsWkNQXtgtA6OmYNCfWwRNGu04/GN7L5llxSKwFtJFFNlvUnwQA8MIgi16dDPAGRgEff96rlWd6Gnxlzfup6qe/LlBtuZK0NIxOymy/l7vw2CzVm8VXPmVe7tCteGwiinc7ry20KpEAh1vvVQ4iWLbURvEoL8lUBz+leVTforf3wkGVRntZIX7AD/r3ePdDCXVTy0VowsQtHZZ0sO2PkMX0orvY5EuqjGIsxdKdGodT2qr/OIPN8tvH93Wz3h74iB9lCCFVGcoBL97UNQDhN7zsn6KTUHiBdsvj+CPy9+X0DFYNMh/QrA5Ny26zzJIMU0GC6NH0kr7BRRW+YoXNMxpcafmXngC/T/7WsuEUq/dVrulMDspwbkbEqkdMbYXYIcwvl2x8Zt+yAazGy404E+fLDCpkxPIheY4YQcx17og0aZPisaLsscbzx3yGFzkDppy687607PMxDH/ryXOAqoBiHcbq6SgxKUsziiySk/IuuNFPIaUMBqhEKHbzpX7pUrTuLtcwXyEAyOvlWg5XZawIf/DDDC9TYpZpIIw6er1aWLd9DW72SjCaEyC/Es8ziNOdySUN3ncIEHIUrixGivTC1SQOhu/0WWIO2/kfH5lKOI=

@@ -5,14 +5,11 @@ buildscript {
     repositories {
         jcenter()
         google()
-//        maven {
-//            url "https://maven.google.com"
-//        }
 
     }
     ext {
         compileSdkVersion = 28
-        buildToolsVersion = '28.0.2'
+        buildToolsVersion = '28.0.3'
         minSdkVersion = 17
         targetSdkVersion = 26
         versionCode = 2
@@ -41,7 +38,7 @@ buildscript {
         utilcodeVersion = '1.11.1'
         daggerVersion = '2.15'
         realmVersion = '5.7.0'
-        leakcanaryVersion='1.6.2'
+        leakcanaryVersion = '1.6.2'
 
     }
     dependencies {
