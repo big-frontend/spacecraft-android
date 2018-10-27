@@ -62,13 +62,13 @@ android {
     def releaseKeySet=['RELEASE_KEY_ALIAS','RELEASE_STORE_PASSWORD','RELEASE_KEY_PASSWORD']
     def debugKeySet=['DEBUG_KEY_ALIAS','DEBUG_STORE_PASSWORD','DEBUG_KEY_PASSWORD']
     signingConfigs {
-//        debugSigningConfig {
-//            (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(debugKeySet)
-//            storeFile file('../keystore/debug.jks')
-//            v1SigningEnabled true
-//            v2SigningEnabled = true
-//
-//        }
+        debugSigningConfig {
+            (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(debugKeySet)
+            storeFile file('../keystore/debug.jks')
+            v1SigningEnabled true
+            v2SigningEnabled = true
+
+        }
         releaseSigningConfig {
             (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(releaseKeySet)
             storeFile file('../keystore/release.jks')

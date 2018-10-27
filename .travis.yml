@@ -1,4 +1,13 @@
 language: android
+env:
+  global:
+  - secure: e6btVM8Wzk7yN9pdoDRTLoU27WxfAWDN7xq8VZ2f//ZgsT0gJU3byRMSh20kGKecN2VVVTwDNTCE3+5YEG/HJUd4Hf8eDhkjRCc1dahCib8RcYijQ+iq4aHhSi7UiT/AGpz3o/Uf3B26SumBuEzVjyyH5oysxPa8n950D2doooL6ArlkTBJpvTjubRhImYvi8UYpuBlmH2icOG3BnD0RZ4LfWlRXO0UffLVNg12/VWftU0HclrzG5YQ7vPLsc6/z+Z09ocoaCAHVShiYQTZVLvCne6fFOkc+9sYnO4z5HWZOzhbPHkpa6DgaCtuMk2xgVGcXeJlp2x5AE1HuADZKEM7l3NDzw4b9c7B6G3+jBouIoRldsHmDKw3iOL9z1jbQ54rd0URZcrDZVTUPb5+UGYlHydWqCGuvlph0gd7pB8JLLN4yI5Y+Pmw2DyTAIqhYlnLVnZ1O16uwu3Kqg+/9bvy3mW+xbN18XloQZQqaxpiYOLUog6ANEsF+pcJIfE/+llSr+CGg22km19bttz+bMEMKZi0K+KiON6JCg69Grz93ZkLZmcqdDvJzcGJbTNSzfat9p+CDW+J0Pn2/fUTdSQFrj8H4PawCsgWMT3R3ILvjuoBEAA0FtkPA8YVhaxPoeX2hj7uu3ZqIQJk9H4n7hEPb2LyVWqAHo5qg9OSPEfQ=
+  - secure: fmiaKVtCdcfr8XTRUU88cbKSTXGMho1iBI/zhXm9EffmN53hwLCyXz8nEPfq5/QsWkNQXtgtA6OmYNCfWwRNGu04/GN7L5llxSKwFtJFFNlvUnwQA8MIgi16dDPAGRgEff96rlWd6Gnxlzfup6qe/LlBtuZK0NIxOymy/l7vw2CzVm8VXPmVe7tCteGwiinc7ry20KpEAh1vvVQ4iWLbURvEoL8lUBz+leVTforf3wkGVRntZIX7AD/r3ePdDCXVTy0VowsQtHZZ0sO2PkMX0orvY5EuqjGIsxdKdGodT2qr/OIPN8tvH93Wz3h74iB9lCCFVGcoBL97UNQDhN7zsn6KTUHiBdsvj+CPy9+X0DFYNMh/QrA5Ny26zzJIMU0GC6NH0kr7BRRW+YoXNMxpcafmXngC/T/7WsuEUq/dVrulMDspwbkbEqkdMbYXYIcwvl2x8Zt+yAazGy404E+fLDCpkxPIheY4YQcx17og0aZPisaLsscbzx3yGFzkDppy687607PMxDH/ryXOAqoBiHcbq6SgxKUsziiySk/IuuNFPIaUMBqhEKHbzpX7pUrTuLtcwXyEAyOvlWg5XZawIf/DDDC9TYpZpIIw6er1aWLd9DW72SjCaEyC/Es8ziNOdySUN3ncIEHIUrixGivTC1SQOhu/0WWIO2/kfH5lKOI=
+
+sudo: required
+
+services:
+- docker
 android:
   components:
   - tools
@@ -9,6 +18,16 @@ android:
   - extra-google-m2repository
 jdk:
 - oraclejdk8
+
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
+
 before_install:
 - echo "before_install"
 - cd $TRAVIS_BUILD_DIR
@@ -42,16 +61,5 @@ after_deploy:
 after_script:
 - echo "after_script"
 - set -e
-- travis_wait 60 ./$TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY
-before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
-  - "$HOME/.android/build-cache"
-env:
-  global:
-  - secure: e6btVM8Wzk7yN9pdoDRTLoU27WxfAWDN7xq8VZ2f//ZgsT0gJU3byRMSh20kGKecN2VVVTwDNTCE3+5YEG/HJUd4Hf8eDhkjRCc1dahCib8RcYijQ+iq4aHhSi7UiT/AGpz3o/Uf3B26SumBuEzVjyyH5oysxPa8n950D2doooL6ArlkTBJpvTjubRhImYvi8UYpuBlmH2icOG3BnD0RZ4LfWlRXO0UffLVNg12/VWftU0HclrzG5YQ7vPLsc6/z+Z09ocoaCAHVShiYQTZVLvCne6fFOkc+9sYnO4z5HWZOzhbPHkpa6DgaCtuMk2xgVGcXeJlp2x5AE1HuADZKEM7l3NDzw4b9c7B6G3+jBouIoRldsHmDKw3iOL9z1jbQ54rd0URZcrDZVTUPb5+UGYlHydWqCGuvlph0gd7pB8JLLN4yI5Y+Pmw2DyTAIqhYlnLVnZ1O16uwu3Kqg+/9bvy3mW+xbN18XloQZQqaxpiYOLUog6ANEsF+pcJIfE/+llSr+CGg22km19bttz+bMEMKZi0K+KiON6JCg69Grz93ZkLZmcqdDvJzcGJbTNSzfat9p+CDW+J0Pn2/fUTdSQFrj8H4PawCsgWMT3R3ILvjuoBEAA0FtkPA8YVhaxPoeX2hj7uu3ZqIQJk9H4n7hEPb2LyVWqAHo5qg9OSPEfQ=
-  - secure: fmiaKVtCdcfr8XTRUU88cbKSTXGMho1iBI/zhXm9EffmN53hwLCyXz8nEPfq5/QsWkNQXtgtA6OmYNCfWwRNGu04/GN7L5llxSKwFtJFFNlvUnwQA8MIgi16dDPAGRgEff96rlWd6Gnxlzfup6qe/LlBtuZK0NIxOymy/l7vw2CzVm8VXPmVe7tCteGwiinc7ry20KpEAh1vvVQ4iWLbURvEoL8lUBz+leVTforf3wkGVRntZIX7AD/r3ePdDCXVTy0VowsQtHZZ0sO2PkMX0orvY5EuqjGIsxdKdGodT2qr/OIPN8tvH93Wz3h74iB9lCCFVGcoBL97UNQDhN7zsn6KTUHiBdsvj+CPy9+X0DFYNMh/QrA5Ny26zzJIMU0GC6NH0kr7BRRW+YoXNMxpcafmXngC/T/7WsuEUq/dVrulMDspwbkbEqkdMbYXYIcwvl2x8Zt+yAazGy404E+fLDCpkxPIheY4YQcx17og0aZPisaLsscbzx3yGFzkDppy687607PMxDH/ryXOAqoBiHcbq6SgxKUsziiySk/IuuNFPIaUMBqhEKHbzpX7pUrTuLtcwXyEAyOvlWg5XZawIf/DDDC9TYpZpIIw6er1aWLd9DW72SjCaEyC/Es8ziNOdySUN3ncIEHIUrixGivTC1SQOhu/0WWIO2/kfH5lKOI=
+- cd $TRAVIS_BUILD_DIR
+- ./pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY
