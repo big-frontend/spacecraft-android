@@ -11,6 +11,7 @@ apply plugin: 'versionplugin'
 apply plugin: 'versionpluginforjava'
 apply plugin: 'versionpluginforkotlin'
 
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 
 versionPlugin {
     buildTypeMatcher = 'debug'
@@ -32,22 +33,6 @@ versionPluginForKotlin {
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
-}
-
-
-def getKeyStoreProperty(String buildType) {
-    if (project.hasProperty("${buildType}_KEY_ALIAS")
-            && project.hasProperty("${buildType}_STORE_FILE")
-            && project.hasProperty("${buildType}_STORE_PASSWORD")
-            && project.hasProperty("${buildType}_KEY_PASSWORD")
-    ) {//used for ci
-        [project.property("${buildType}_KEY_ALIAS"), file("../${project.property("${buildType}_STORE_FILE")}"), project.property("${buildType}_KEY_PASSWORD"), project.property("${buildType}_STORE_PASSWORD")]
-    } else {//used for local build
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        [properties.getProperty("${buildType}_KEY_ALIAS"), file("../${properties.getProperty("${buildType}_STORE_FILE")}"), properties.getProperty("${buildType}_KEY_PASSWORD"), properties.getProperty("${buildType}_STORE_PASSWORD")]
-
-    }
 }
 
 android {
@@ -73,15 +58,20 @@ android {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
         buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
     }
+
+    def releaseKeySet=['RELEASE_KEY_ALIAS','RELEASE_STORE_PASSWORD','RELEASE_KEY_PASSWORD']
+    def debugKeySet=['DEBUG_KEY_ALIAS','DEBUG_STORE_PASSWORD','DEBUG_KEY_PASSWORD']
     signingConfigs {
 //        debugSigningConfig {
-//            (keyAlias, storeFile, keyPassword, storePassword) = getKeyStoreProperty('DEBUG')
+//            (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(debugKeySet)
+//            storeFile file('../keystore/debug.jks')
 //            v1SigningEnabled true
 //            v2SigningEnabled = true
 //
 //        }
         releaseSigningConfig {
-            (keyAlias, storeFile, keyPassword, storePassword) = getKeyStoreProperty('RELEASE')
+            (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(releaseKeySet)
+            storeFile file('../keystore/release.jks')
             v1SigningEnabled true
             v2SigningEnabled = true
         }

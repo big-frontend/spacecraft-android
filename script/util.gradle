@@ -1,0 +1,67 @@
+def hasProperties(String... keysets) {
+    hasProperties(keysets.toList())
+}
+
+static def isEmpty(String... varag) {
+    isEmpty(varag.toList())
+}
+
+def hasProperties(List<String> keysets) {
+    if (isEmpty(keysets)) {
+        throw new InvalidUserDataException("no varag")
+    }
+
+    for (String keyset : keysets) {
+        if (!rootProject.hasProperty(keyset)) {
+            return false
+        }
+    }
+    return true
+}
+
+static def isEmpty(List<String> list) {
+    if (list != null && list.size() > 0) {
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list[i] == null || list[i].length() == 0) {
+                return true
+            }
+        }
+        return false
+    } else {
+
+        return true
+    }
+
+}
+
+def getKeyStoreProperties(List<String> keysets) {
+    if (isEmpty(keysets)) {
+        throw new InvalidUserDataException("no varag")
+    }
+
+    def values = new ArrayList()
+
+    for (String keyset : keysets) {
+        if (!project.hasProperty(keyset)) {
+            //在local.properties中存在
+            def properties = new Properties()
+            properties.load(rootProject.file('local.properties').newDataInputStream())
+            for (String s : keysets) {
+                values.add(properties.getProperty(s))
+            }
+            return values
+        }
+    }
+    //在环境中存在
+    for (String keyset : keysets) {
+        values.add(project.property(keyset))
+    }
+    return values
+
+}
+
+ext {
+    getKeyStoreProperty = this.&getKeyStoreProperty
+    getKeyStoreProperties = this.&getKeyStoreProperties
+}

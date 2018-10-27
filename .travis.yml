@@ -42,7 +42,7 @@ after_deploy:
 after_script:
 - echo "after_script"
 - set -e
-- ./$TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY
+- travis_wait 60 ./$TRAVIS_BUILD_DIR/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

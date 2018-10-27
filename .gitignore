@@ -1,7 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Android template
 # Built application files
-*.apk
 *.ap_
 
 # Files for the ART/Dalvik VM
@@ -36,11 +35,8 @@ captures/
 
 # Intellij
 *.iml
-.idea/workspace.xml
 .idea/tasks.xml
-.idea/gradle.xml
 .idea/dictionaries
-.idea/libraries
 .idea/
 
 # Keystore files
@@ -57,17 +53,9 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-app/src/.DS_Store
-app/src/main/.DS_Store
 /viewpagerindicator_library/
 /viewpagerindicator_library/viewpagerindicator_library.iml
-.idea
 viewpagerindicator_library
-mockserver/src/main/.DS_Store
 .DS_Store
-app/src/main/res/xml/
-location/src/debug/
-location/src/release/
-script/
 server_python/static/
 server_python/templates/
