@@ -35,6 +35,14 @@ def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
 }
 
+
+task exportVarToShell(type: Exec) {
+        commandLine './../script/export_var.sh'
+        args "${rootProject.ext.versionName}","${rootProject.getRootDir().getAbsolutePath()}"
+//        args = "VERSION_NAME=${rootProject.ext.versionName}"
+//    }
+//}
+}
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -59,8 +67,8 @@ android {
         buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
     }
 
-    def releaseKeySet=['RELEASE_KEY_ALIAS','RELEASE_STORE_PASSWORD','RELEASE_KEY_PASSWORD']
-    def debugKeySet=['DEBUG_KEY_ALIAS','DEBUG_STORE_PASSWORD','DEBUG_KEY_PASSWORD']
+    def releaseKeySet = ['RELEASE_KEY_ALIAS', 'RELEASE_STORE_PASSWORD', 'RELEASE_KEY_PASSWORD']
+    def debugKeySet = ['DEBUG_KEY_ALIAS', 'DEBUG_STORE_PASSWORD', 'DEBUG_KEY_PASSWORD']
     signingConfigs {
         debugSigningConfig {
             (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(debugKeySet)

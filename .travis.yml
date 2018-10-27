@@ -31,8 +31,8 @@ cache:
 before_install:
 - echo "before_install"
 - cd $TRAVIS_BUILD_DIR
-- wget -c https://raw.githubusercontent.com/Pgyer/TravisFile/master/pgyer_upload.sh -O pgyer_upload.sh
-- chmod +x pgyer_upload.sh
+#- wget -c https://raw.githubusercontent.com/Pgyer/TravisFile/master/pgyer_upload.sh -O pgyer_upload.sh
+- chmod +x script/pgyer_upload.sh
 #- mkdir keystore
 #- openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in debug.jks.enc -out $DEBUG_STORE_FILE -d
 - openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in secrets.tar.enc -out secrets.tar -d
@@ -41,6 +41,7 @@ install: echo "install"
 before_script: echo "before_script"
 script:
 - echo "build the script"
+- ./gradlew exportVarToShell -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
 - ./gradlew assembleRelease -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
 after_success:
 - echo "after_success"
@@ -62,4 +63,4 @@ after_script:
 - echo "after_script"
 - set -e
 - cd $TRAVIS_BUILD_DIR
-- ./pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY
+- ./script/pgyer_upload.sh "${TRAVIS_BUILD_DIR}/app/build/outputs/apk/mocked/release/app-mocked-release.apk" $PG_API_KEY $PG_APP_KEY ${TRAVIS_BUILD_DIR}
