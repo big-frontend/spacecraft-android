@@ -57,5 +57,3 @@ freeline_project_description.json
 /viewpagerindicator_library/viewpagerindicator_library.iml
 viewpagerindicator_library
 .DS_Store
-server_python/static/
-server_python/templates/

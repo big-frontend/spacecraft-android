@@ -45,6 +45,38 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroidVersion}"
 
     /**
+     * ===============================mvvm start================================
+     */
+    kapt "com.android.databinding:compiler:3.1.4"
+    api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
+//    api 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
+//
+//// If you want to bind to Android-specific lifecycles
+//    api 'com.trello.rxlifecycle3:rxlifecycle-android:3.0.0'
+//
+//// If you want pre-written Activities and Fragments you can subclass as providers
+//    api 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'
+//
+//// If you want pre-written support preference Fragments you can subclass as providers
+//    api 'com.trello.rxlifecycle3:rxlifecycle-components-preference:3.0.0'
+//
+//// If you want to use Android Lifecycle for providers
+//    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:3.0.0'
+//
+//// If you want to use Kotlin syntax
+//    api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
+//
+//// If you want to use Kotlin syntax with Android Lifecycle
+//    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:3.0.0'
+//
+//// If you want to use Navi for providers
+//// DEPRECATED: Use rxlifecycle-android-lifecycle instead. This will be removed in a future release.
+//    api 'com.trello.rxlifecycle3:rxlifecycle-navi:3.0.0'
+    /**
+     * ===============================mvvm end================================
+     */
+
+    /**
      * ===============================decoupling start================================
      */
     api 'org.greenrobot:eventbus:3.1.1'

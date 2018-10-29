@@ -26,7 +26,7 @@ buildscript {
 
         // App dependencies
         supportLibraryVersion = '1.0.0'
-        rxjavaVersion = '1.1.7'
+        rxjavaVersion = '2.2.3'
         rxandroidVersion = '2.1.0'
         glideVersion = '3.7.0'
         retrofitVersion = '2.3.0'

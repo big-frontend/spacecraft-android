@@ -19,14 +19,6 @@ android:
 jdk:
 - oraclejdk8
 
-before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
-  - "$HOME/.android/build-cache"
 
 before_install:
 - echo "before_install"
@@ -51,6 +43,16 @@ after_success:
 #- "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk yourapp.apk"  # apk优化并重命名
 after_failure:
 - echo "after_failure"
+
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
+
 
 before_deploy:
 - echo "before_deploy"
