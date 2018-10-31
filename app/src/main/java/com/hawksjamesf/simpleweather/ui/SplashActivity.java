@@ -1,7 +1,6 @@
 package com.hawksjamesf.simpleweather.ui;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.ui.login.SignInActivity;
@@ -11,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -48,7 +48,7 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
-                        ActivityUtil.openActivity(SplashActivity.this, SignInActivity.class, true);
+                        ActivityUtil.startActivity(SplashActivity.this, SignInActivity.class, true);
                     }
                 }));
     }

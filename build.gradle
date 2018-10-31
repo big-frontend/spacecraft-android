@@ -6,6 +6,10 @@ buildscript {
         jcenter()
         google()
 
+        maven {
+            url "https://jitpack.io"
+            url "https://maven.aliyun.com/repository/jcenter"
+        }
     }
     ext {
         compileSdkVersion = 28
@@ -55,7 +59,11 @@ allprojects {
     repositories {
         jcenter()
         google()
-//        maven { url "https://jitpack.io" }
+        maven {
+            url "https://jitpack.io"
+            url "https://maven.aliyun.com/repository/jcenter"
+
+        }
     }
 }
 

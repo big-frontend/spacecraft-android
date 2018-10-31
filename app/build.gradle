@@ -37,8 +37,8 @@ def getVersion() {
 
 
 task exportVarToShell(type: Exec) {
-        commandLine './../script/export_var.sh'
-        args "${rootProject.ext.versionName}","${rootProject.getRootDir().getAbsolutePath()}"
+    commandLine './../script/export_var.sh'
+    args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
 //        args = "VERSION_NAME=${rootProject.ext.versionName}"
 //    }
 //}
@@ -50,6 +50,8 @@ android {
         (minSdkVersion, targetSdkVersion, versionCode, versionName) = getVersion()
 
         multiDexEnabled = true
+//        multiDexKeepFile file('multiDexKeepFile.txt')
+        multiDexKeepProguard file('multiDexKeep.pro')
         applicationId "com.hawksjamesf.simpleweather"
         testApplicationId "com.hawksjamesf.simpleweather.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -94,6 +96,7 @@ android {
         }
         debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix = '.debug'
             manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf']
 //            signingConfig signingConfigs.debugSigningConfig

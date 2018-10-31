@@ -2,7 +2,7 @@ package com.hawksjamesf.simpleweather;
 
 import android.content.Context;
 
-import com.blankj.utilcode.util.Utils;
+import com.hawksjamesf.simpleweather.util.Util;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
@@ -53,7 +53,8 @@ public class SimpleWeatherApplication extends MultiDexApplication {
                 .appModule(new AppModule(this))
                 .build();
 
-        Utils.init(this);
+//        Utils.init(this);
+        Util.init(this);
 
         CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
 

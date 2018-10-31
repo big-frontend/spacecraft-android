@@ -11,7 +11,6 @@ import com.hawksjamesf.simpleweather.SimpleWeatherApplication;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
  * @since: Oct/24/2018  Wed
  */
 public class KeyboardUtil {

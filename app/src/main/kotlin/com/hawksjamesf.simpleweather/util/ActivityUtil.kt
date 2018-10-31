@@ -1,3 +1,4 @@
+//@file:JvmName("ActivityUtil")
 package com.hawksjamesf.simpleweather.util
 
 import android.app.Activity
@@ -16,6 +17,6 @@ inline fun <reified T : Activity> Activity.openActivity(finish: Boolean = true) 
 }
 
 //typealias Callback:
-//inline fun <reified T:Activity> Activity.openActivity(requestCode:Int,callback: Callback){
+//inline fun <reified T:Activity> Activity.startActivity(requestCode:Int,callback: Callback){
 //    startActivityForResult(Intent(this,T::class.java),requestCode)
 //}
