@@ -67,6 +67,9 @@ android {
 //        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
         buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
+
+        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.generatedDensities = []
     }
 
     def releaseKeySet = ['RELEASE_KEY_ALIAS', 'RELEASE_STORE_PASSWORD', 'RELEASE_KEY_PASSWORD']
@@ -140,6 +143,10 @@ android {
         enabled = true
     }
 
+    aaptOptions {
+//        additionalParameters "—no-version-vectors"
+    }
+
 }
 
 static String getLocalIP() {
@@ -167,7 +174,7 @@ dependencies {
 //    implementation project(path: ':mockserver')
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha01'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha02'
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"

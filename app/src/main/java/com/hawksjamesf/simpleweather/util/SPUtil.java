@@ -25,10 +25,10 @@ public class SPUtil {
 
     @IntDef({USER, GLOBAL})
     @Retention(value = RetentionPolicy.SOURCE)
-    private @interface level {
+    private @interface Level {
     }
 
-    public static SPUtil getInstance(@level int level) {
+    public static SPUtil getInstance(@Level int level) {
         if (level == USER) {
 //            int profileId
             return getInstance(/*String.valueOf(profileId)*/);
