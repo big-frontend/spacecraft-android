@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hawksjamesf.simpleweather.R;
 import com.hawksjamesf.simpleweather.photo.PhotoActivity;
+import com.hawksjamesf.simpleweather.ui.person.SettingsActivity;
 import com.hawksjamesf.simpleweather.util.ActivityUtil;
 import com.hawksjamesf.simpleweather.video.VideoActivity;
 
@@ -61,6 +62,9 @@ public class MainActivity extends BaseActivity {
                     case R.id.navigation_notifications:
                         mTextMessage.setText("video");
                         ActivityUtil.startActivity(MainActivity.this, VideoActivity.class);
+                        return true;
+                    case R.id.navigation_settings:
+                        ActivityUtil.startActivity(MainActivity.this, SettingsActivity.class);
                         return true;
                 }
                 return false;
