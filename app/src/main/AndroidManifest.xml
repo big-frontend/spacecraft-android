@@ -21,6 +21,15 @@
             android:label="@string/title_activity_main"
             android:launchMode="singleTop">
         </activity>
+        <activity
+            android:name=".photo.PhotoActivity"
+            android:theme="@style/PhotoTheme">
+        </activity>
+        <activity
+            android:name=".video.VideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/VideoTheme">
+        </activity>
         <!--
      You don't need to include android:required="false" if your app's
      minSdkVersion is 28 or higher.

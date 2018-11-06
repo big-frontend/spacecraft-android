@@ -26,6 +26,11 @@ public class MainActivity extends BaseActivity {
     private BottomNavigationView bnv;
 
     @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+    @Override
     protected void initComponent(@Nullable Bundle savedInstanceState) {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -50,10 +55,12 @@ public class MainActivity extends BaseActivity {
                         mTextMessage.setText("home");
                         return true;
                     case R.id.navigation_dashboard:
-                        mTextMessage.setText("dashboard");
+                        mTextMessage.setText("photo");
+                        ActivityUtil.startActivity(MainActivity.this, PhotoActivity.class);
                         return true;
                     case R.id.navigation_notifications:
-                        mTextMessage.setText("notification");
+                        mTextMessage.setText("video");
+                        ActivityUtil.startActivity(MainActivity.this, VideoActivity.class);
                         return true;
                 }
                 return false;
