@@ -3,7 +3,6 @@ package com.hawksjamesf.simpleweather.ui;
 import android.os.Bundle;
 
 import com.hawksjamesf.simpleweather.R;
-import com.hawksjamesf.simpleweather.ui.login.SignInActivity;
 import com.hawksjamesf.simpleweather.util.ActivityUtil;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +47,7 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
-                        ActivityUtil.startActivity(SplashActivity.this, SignInActivity.class, true);
+                        ActivityUtil.startActivity(SplashActivity.this, MainActivity.class, true);
                     }
                 }));
     }

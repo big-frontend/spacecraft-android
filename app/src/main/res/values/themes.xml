@@ -1,0 +1,112 @@
+<resources>
+
+    <!--===================== base theme========================================-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--<item name="android:textColorPrimary">?android:attr/colorForeground</item>-->
+        <!--<item name="android:textColorPrimaryInverse">-->
+        <!--@android:color/primary_text_default_material_dark-->
+        <!--</item>-->
+        <!--<item name="android:textColorSecondary">?android:attr/colorForeground</item>-->
+        <!--<item name="android:textColorSecondaryInverse">-->
+        <!--@android:color/secondary_text_default_material_dark-->
+        <!--</item>-->
+
+        <!--<item name="android:colorForeground">@android:color/background_material_light</item>-->
+        <!--<item name="android:colorBackground">@android:color/background_material_light</item>-->
+        <!--<item name="android:windowBackground">?android:attr/colorBackground</item>-->
+
+        <item name="android:windowContentOverlay">@null</item>
+
+
+        <!--支持3.0以上-->
+        <!--<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>-->
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
+        <!--支持3.0以上-->
+        <!--支持2.0以上-->
+        <!--<item name="windowActionBarOverlay">true</item>-->
+        <!--<item name="actionBarStyle">@style/AppTheme.ActionBar</item>-->
+        <!--支持2.0以上-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <!--colorPrimary-->
+        <item name="colorPrimaryVariant">#3700B3</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!--colorSecondary-->
+        <item name="colorSecondaryVariant">#018786</item>
+        <item name="colorOnSecondary">#000000</item>
+        <!--android:colorBackground-->
+        <!--colorOnBackground-->
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorSurface">#000000</item>
+        <!--<item name="colorOnSurface"></item>-->
+        <item name="colorError">#C51162</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="scrimBackground">@android:color/white</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1
+        </item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2
+        </item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3
+        </item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4
+        </item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2
+        </item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
+    </style>
+    <!--老版本使用actionbar-->
+    <style name="AppTheme.ActionBar" parent="Widget.AppCompat.ActionBar"/>
+    <!--新版本使用toolbar-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <!--===================== base theme========================================-->
+
+
+    <!--=====================full screen========================================-->
+    <style name="FullscreenTheme" parent="AppTheme">
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <!--=====================full screen========================================-->
+
+
+    <!--=====================PhotoTheme screen========================================-->
+    <style name="PhotoTheme" parent="AppTheme"/>
+    <!--=====================PhotoTheme screen========================================-->
+
+    <!--=====================VideoTheme screen========================================-->
+    <style name="VideoTheme" parent="AppTheme">
+        <!--<item name="android:actionBarStyle">@style/VideoActionBarStyle</item>-->
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
+        <!--<item name="android:windowBackground">@null</item>-->
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="VideoActionBarStyle" parent="AppTheme.AppBarOverlay">
+        <item name="android:background">#66000000</item>
+    </style>
+
+    <!--=====================VideoTheme screen========================================-->
+
+</resources>
