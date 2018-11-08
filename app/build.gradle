@@ -52,8 +52,8 @@ android {
         multiDexEnabled = true
 //        multiDexKeepFile file('multiDexKeepFile.txt')
         multiDexKeepProguard file('multiDexKeep.pro')
-        applicationId "com.hawksjamesf.shenzhou"
-        testApplicationId "com.hawksjamesf.shenzhou.test"
+        applicationId "com.hawksjamesf.spacecraft"
+        testApplicationId "com.hawksjamesf.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
 //             设置支持的SO库架构

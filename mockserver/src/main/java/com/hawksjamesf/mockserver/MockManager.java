@@ -26,8 +26,8 @@ public class MockManager {
     private static final String TAG = "MockManager";
     MockServiceCon connection = new MockServiceCon();
     private IMockApi iMockApi;
-    private static final String PROCESS_1 = "com.hawksjamesf.shenzhou";
-    private static final String PROCESS_2 = "com.hawksjamesf.shenzhou:mock_service";
+    private static final String PROCESS_1 = "com.hawksjamesf.spacecraft";
+    private static final String PROCESS_2 = "com.hawksjamesf.spacecraft:mock_service";
 
     //eager load
     public static MockManager manager = new MockManager();

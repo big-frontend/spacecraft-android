@@ -1,8 +1,8 @@
-package com.hawksjamesf.shenzhou.event;
+package com.hawksjamesf.spacecraft.event;
 
-import com.hawksjamesf.shenzhou.data.bean.RealTimeBean;
-import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.spacecraft.data.bean.RealTimeBean;
+import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.TempeBean;
 
 import java.util.List;
 import java.util.Map;

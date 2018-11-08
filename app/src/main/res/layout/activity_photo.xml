@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.hawksjamesf.shenzhou.photo.PhotoActivity">
+    tools:context="com.hawksjamesf.spacecraft.photo.PhotoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context="com.hawksjamesf.shenzhou.ui.MainActivity">
+        tools:context="com.hawksjamesf.spacecraft.ui.MainActivity">
 
         <TextView
             android:id="@+id/message"

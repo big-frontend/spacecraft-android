@@ -1,4 +1,4 @@
-package com.hawksjamesf.shenzhou.data.bean;
+package com.hawksjamesf.spacecraft.data.bean;
 
 import com.google.gson.Gson;
 

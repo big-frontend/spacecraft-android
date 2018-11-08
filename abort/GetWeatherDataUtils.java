@@ -1,4 +1,4 @@
-package com.hawksjamesf.shenzhou.util;
+package com.hawksjamesf.spacecraft.util;
 
 import android.content.Context;
 

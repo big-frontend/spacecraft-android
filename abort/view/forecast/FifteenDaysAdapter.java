@@ -1,4 +1,4 @@
-package com.hawksjamesf.shenzhou.ui.home.view.forecast;
+package com.hawksjamesf.spacecraft.ui.home.view.forecast;
 
 import android.app.Activity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hawksjamesf.shenzhou.R;
-import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.TempeBean;
-import com.hawksjamesf.shenzhou.ui.home.view.forecast.older.TemperatureView;
+import com.hawksjamesf.spacecraft.R;
+import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.spacecraft.ui.home.view.forecast.older.TemperatureView;
 
 import java.util.List;
 
