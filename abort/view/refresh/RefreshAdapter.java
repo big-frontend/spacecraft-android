@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.ui.home.view.refresh;
+package com.hawksjamesf.shenzhou.ui.home.view.refresh;
 
 import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,14 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hawksjamesf.simpleweather.BuildConfig;
-import com.hawksjamesf.simpleweather.R;
-import com.hawksjamesf.simpleweather.data.bean.RealTimeBean;
-import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.TempeBean;
-import com.hawksjamesf.simpleweather.ui.home.view.forecast.FifteenDaysAdapter;
-import com.hawksjamesf.simpleweather.ui.home.view.forecast.FifteenDaysView;
-import com.hawksjamesf.simpleweather.util.ConditionUtils;
+import com.hawksjamesf.shenzhou.BuildConfig;
+import com.hawksjamesf.shenzhou.R;
+import com.hawksjamesf.shenzhou.data.bean.RealTimeBean;
+import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.shenzhou.ui.home.view.forecast.FifteenDaysAdapter;
+import com.hawksjamesf.shenzhou.ui.home.view.forecast.FifteenDaysView;
+import com.hawksjamesf.shenzhou.util.ConditionUtils;
 import com.orhanobut.logger.Logger;
 
 import java.text.ParseException;

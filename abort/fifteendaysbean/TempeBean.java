@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.data.bean.fifteendaysbean;
+package com.hawksjamesf.shenzhou.data.bean.fifteendaysbean;
 
 import com.google.gson.Gson;
 

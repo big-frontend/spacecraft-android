@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.util;
+package com.hawksjamesf.shenzhou.util;
 
 import android.content.Context;
 

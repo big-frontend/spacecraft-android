@@ -6,7 +6,7 @@ import android.test.InstrumentationTestCase;
 
 import com.hawksjamesf.mockserver.DispatcherImpl;
 import com.hawksjamesf.mockserver.RestServiceTestHelper;
-import com.hawksjamesf.simpleweather.ui.HomeActivity;
+import com.hawksjamesf.shenzhou.ui.HomeActivity;
 import com.orhanobut.logger.Logger;
 
 import org.junit.After;

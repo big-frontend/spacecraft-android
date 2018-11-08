@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.ui.home.view.refresh;
+package com.hawksjamesf.shenzhou.ui.home.view.refresh;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.hawksjamesf.simpleweather.R;
+import com.hawksjamesf.shenzhou.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

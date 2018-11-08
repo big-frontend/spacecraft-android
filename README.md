@@ -19,6 +19,7 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather
 - [x] 模块设计之登入模块
 - [ ] 解耦：高内聚低耦合
 - [x] 持续集成、自动发布
+- [ ] hybrid
 ## Client
 app
 

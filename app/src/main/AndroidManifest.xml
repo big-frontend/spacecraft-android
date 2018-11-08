@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.hawksjamesf.simpleweather">
+          package="com.hawksjamesf.shenzhou">
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/> <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- 获取wifi网络状态的信息 -->
@@ -10,26 +10,26 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
-        android:name=".SimpleWeatherApplication"
+        android:name="com.hawksjamesf.shenzhou.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.person.SettingsActivity">
+            android:name="com.hawksjamesf.shenzhou.ui.person.SettingsActivity">
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.hawksjamesf.shenzhou.ui.MainActivity"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop">
         </activity>
         <activity
-            android:name=".photo.PhotoActivity"
+            android:name="com.hawksjamesf.shenzhou.photo.PhotoActivity"
             android:theme="@style/PhotoTheme">
         </activity>
         <activity
-            android:name=".video.VideoActivity"
+            android:name="com.hawksjamesf.shenzhou.video.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/VideoTheme">
         </activity>
@@ -53,11 +53,11 @@
             android:required="false"/>
 
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name="com.hawksjamesf.shenzhou.ui.home.HomeActivity"
             android:launchMode="singleTop"/>
 
         <activity
-            android:name=".ui.SplashActivity"
+            android:name="com.hawksjamesf.shenzhou.ui.SplashActivity"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -66,17 +66,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SetupWizardActivity"
+            android:name="com.hawksjamesf.shenzhou.ui.SetupWizardActivity"
             android:label="@string/title_activity_setup_wizard"
             android:theme="@style/AppTheme"/>
 
 
         <activity
-            android:name=".ui.login.SignInActivity"
+            android:name="com.hawksjamesf.shenzhou.ui.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
         <activity
-            android:name=".ui.login.SignUpActivity"
-            android:parentActivityName=".ui.login.SignInActivity"
+            android:name="com.hawksjamesf.shenzhou.ui.login.SignUpActivity"
+            android:parentActivityName="com.hawksjamesf.shenzhou.ui.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
     </application>
 

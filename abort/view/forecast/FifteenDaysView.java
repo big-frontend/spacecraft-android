@@ -1,4 +1,4 @@
-package com.hawksjamesf.simpleweather.ui.home.view.forecast;
+package com.hawksjamesf.shenzhou.ui.home.view.forecast;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.hawksjamesf.simpleweather.R;
-import com.hawksjamesf.simpleweather.ui.home.view.forecast.older.TemperatureView;
+import com.hawksjamesf.shenzhou.R;
+import com.hawksjamesf.shenzhou.ui.home.view.forecast.older.TemperatureView;
 
 /**
  * TODO: document your custom view class.

@@ -1,8 +1,8 @@
-package com.hawksjamesf.simpleweather.event;
+package com.hawksjamesf.shenzhou.event;
 
-import com.hawksjamesf.simpleweather.data.bean.RealTimeBean;
-import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.SkyConBean;
-import com.hawksjamesf.simpleweather.data.bean.fifteendaysbean.TempeBean;
+import com.hawksjamesf.shenzhou.data.bean.RealTimeBean;
+import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.SkyConBean;
+import com.hawksjamesf.shenzhou.data.bean.fifteendaysbean.TempeBean;
 
 import java.util.List;
 import java.util.Map;
