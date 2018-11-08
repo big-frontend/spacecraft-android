@@ -28,6 +28,7 @@ before_install:
 #- mkdir keystore
 #- openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in debug.jks.enc -out $DEBUG_STORE_FILE -d
 - openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in secrets.tar.enc -out secrets.tar -d
+- openssl aes-256-cbc -K $encrypted_a09437c08557_key -iv $encrypted_a09437c08557_iv -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 install: echo "install"
 before_script: echo "before_script"

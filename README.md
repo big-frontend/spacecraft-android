@@ -1,4 +1,4 @@
-master branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.svg?branch=master)](https://travis-ci.org/HawksJamesf/SimpleWeather) feature/kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/SimpleWeather.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/HawksJamesf/SimpleWeather)
+master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Shenzhou.svg?branch=master)](https://travis-ci.org/HawksJamesf/Shenzhou) feature/kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/Shenzhou.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/HawksJamesf/Shenzhou)
 # To be Architecture
 > 驽马十驾功在不舍
 
