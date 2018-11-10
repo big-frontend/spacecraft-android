@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.data.source.remote.WeatherAPIInterface;
+import com.hawksjamesf.spacecraft.data.source.remote.WeatherApi;
 
 
 /**
@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
 //    WeatherView mWvWeatherStatus;
     private Activity mActivity;
 //    private RefreshAdapter mAdapter;
-    WeatherAPIInterface api;
+    WeatherApi api;
 
     public Fragment getInstance() {
         Bundle bundle = new Bundle();

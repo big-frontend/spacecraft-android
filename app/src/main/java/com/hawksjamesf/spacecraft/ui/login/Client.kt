@@ -2,7 +2,7 @@ package com.hawksjamesf.spacecraft.ui.login
 
 import androidx.annotation.MainThread
 import com.hawksjamesf.spacecraft.data.bean.login.*
-import com.hawksjamesf.spacecraft.data.source.DataSource
+import com.hawksjamesf.spacecraft.data.source.SignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  * @since: Oct/24/2018  Wed
  */
 class Client(
-        private var dataSource: DataSource
+        private var dataSource: SignInDataSource
 ) : ObservableClient() {
     private val TAG = "Client"
     private val communicationTimeoutSeconds: Long = 10

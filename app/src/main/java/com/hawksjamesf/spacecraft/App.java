@@ -2,6 +2,9 @@ package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
 
+import com.hawksjamesf.spacecraft.data.DaggerNetComponent;
+import com.hawksjamesf.spacecraft.data.NetComponent;
+import com.hawksjamesf.spacecraft.data.NetModule;
 import com.hawksjamesf.spacecraft.util.Util;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -22,7 +25,8 @@ import androidx.multidex.MultiDexApplication;
 
 public class App extends MultiDexApplication {
     private static final String TAG = "SimpleWeatherApp---";
-    private static AppComponent appComponent;
+    private static AppComponent sAppComponent;
+    private static NetComponent sNetComponent;
     private static App app;
 
     public static App getInstance() {
@@ -49,7 +53,12 @@ public class App extends MultiDexApplication {
             }
         });
 
-        appComponent = DaggerAppComponent.builder()
+        sNetComponent = DaggerNetComponent.builder()
+                .netModule(new NetModule())
+                .build();
+
+        sAppComponent = DaggerAppComponent.builder()
+                .netComponent(sNetComponent)
                 .appModule(new AppModule(this))
                 .build();
 
@@ -62,7 +71,11 @@ public class App extends MultiDexApplication {
     }
 
     public static AppComponent getAppComponent() {
-        return appComponent;
+        return sAppComponent;
+    }
+
+    public static NetComponent getNetComponet(){
+        return sNetComponent;
     }
 
 

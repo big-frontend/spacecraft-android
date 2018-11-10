@@ -4,11 +4,11 @@ package com.hawksjamesf.spacecraft.ui.home;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.App;
+import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.data.bean.ListRes;
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.spacecraft.data.source.DataSource;
+import com.hawksjamesf.spacecraft.data.source.WeatherDataSource;
 import com.hawksjamesf.spacecraft.ui.mvp.RxActivity;
 import com.orhanobut.logger.Logger;
 
@@ -27,7 +27,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
     private static final String TAG = "HomeActivity---";
 //    private RecyclerView mrvHome;
 
-    DataSource source;
+    WeatherDataSource source;
 
     @Override
     public HomePresenter createPresenter() {
@@ -40,7 +40,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         setContentView(R.layout.activity_home);
         presenter.load();
 
-        source = App.getAppComponent().source();
+        source= App.getNetComponet().getWeatherDataSource();
         source.getCurrentWeatherDate("London")
                 .subscribe(new Consumer<WeatherData>() {
                     @Override

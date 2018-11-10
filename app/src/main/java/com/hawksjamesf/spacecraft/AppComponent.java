@@ -1,11 +1,10 @@
 package com.hawksjamesf.spacecraft;
 
-import com.hawksjamesf.spacecraft.data.source.DataSource;
+import com.hawksjamesf.spacecraft.data.NetComponent;
+import com.hawksjamesf.spacecraft.scopes.UserScope;
 import com.hawksjamesf.spacecraft.ui.SplashActivity;
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
 import com.hawksjamesf.spacecraft.ui.login.Client;
-
-import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -17,15 +16,14 @@ import dagger.Component;
  * @author: hawks jamesf
  * @since: 2017/7/4
  */
-
-@Singleton
-@Component(modules = AppModule.class/*more modules*/)
+@UserScope
+@Component(dependencies = NetComponent.class, modules = {AppModule.class}/*more modules*/)
 public interface AppComponent {
     void inject(SplashActivity splashActivity);
 
     void inject(HomeActivity homeActivity);
 
-    DataSource source();
-
     Client client();
+
+
 }

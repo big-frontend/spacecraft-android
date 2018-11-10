@@ -2,7 +2,7 @@ import androidx.test.filters.SmallTest;
 import android.test.InstrumentationTestCase;
 
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.spacecraft.data.source.remote.WeatherAPIInterface;
+import com.hawksjamesf.spacecraft.data.source.remote.WeatherApi;
 
 import junit.framework.Assert;
 
@@ -43,7 +43,7 @@ public class RetrofitTest extends InstrumentationTestCase {
 
     @SmallTest
     public void testHttpIsOk() {
-        BehaviorDelegate<WeatherAPIInterface> delegate = mockRetrofit.create(WeatherAPIInterface.class);
+        BehaviorDelegate<WeatherApi> delegate = mockRetrofit.create(WeatherApi.class);
         HttpIsOkApi mockApi = new HttpIsOkApi(getInstrumentation().getContext(), delegate);
         mockApi.getCurrentWeatherDate("Shanghai")
                 .subscribe(new Consumer<Response<WeatherData>>() {

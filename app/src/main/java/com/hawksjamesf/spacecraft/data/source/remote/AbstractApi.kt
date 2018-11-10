@@ -1,12 +1,6 @@
 package com.hawksjamesf.spacecraft.data.source.remote
 
 import com.hawksjamesf.spacecraft.BuildConfig
-import com.hawksjamesf.spacecraft.data.bean.ListRes
-import com.hawksjamesf.spacecraft.data.bean.home.WeatherData
-import com.hawksjamesf.spacecraft.data.bean.login.*
-import com.hawksjamesf.spacecraft.data.source.DataSource
-import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
@@ -15,16 +9,17 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import kotlin.reflect.KClass
 
 /**
  * Copyright ® $ 2017
  * All right reserved.
  *
  * @author: hawks.jamesf
- * @since: Oct/22/2018  Mon
+ * @since: Nov/10/2018  Sat
  */
-object RemoteDataSource : DataSource {
-    var api: WeatherAPIInterface
+abstract class AbstractApi<T:Any> {
+    protected abstract var api: T
 
     init {
         api = Retrofit.Builder()
@@ -42,33 +37,8 @@ object RemoteDataSource : DataSource {
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(WeatherAPIInterface::class.java)
-
+                .create(getClass().java)
     }
 
-    override fun getCurrentWeatherDate(city: String): Single<WeatherData> {
-        return api.getCurrentWeatherDate(city)
-
-    }
-
-    override fun getFiveData(city: String): Observable<ListRes<WeatherData>> {
-        return api.getFiveData(city)
-
-    }
-
-    override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
-        return api.sendCode(sendCodeReq)
-    }
-
-    override fun signUp(signUpReq: SignUpReq): Single<Profile> {
-        return api.signUp(signUpReq)
-    }
-
-    override fun signIn(loginReq: SignInReq): Single<Profile> {
-        return api.login(loginReq)
-    }
-
-    override fun signOut() {
-
-    }
+    abstract fun getClass(): KClass<T>
 }

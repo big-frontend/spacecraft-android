@@ -1,18 +1,11 @@
 package com.hawksjamesf.spacecraft.data.source.remote;
 
 import com.hawksjamesf.spacecraft.data.bean.ListRes;
-import com.hawksjamesf.spacecraft.data.bean.login.Profile;
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.spacecraft.data.bean.login.SignInReq;
-import com.hawksjamesf.spacecraft.data.bean.login.SendCodeReq;
-import com.hawksjamesf.spacecraft.data.bean.login.SendCodeResp;
-import com.hawksjamesf.spacecraft.data.bean.login.SignUpReq;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -23,7 +16,7 @@ import retrofit2.http.Query;
  * @author: hawks jamesf
  * @since: 2017/7/4
  */
-public interface WeatherAPIInterface {
+public interface WeatherApi {
     @GET("/data/2.5/weather")
     Single<WeatherData> getCurrentWeatherDate(@Query("q") String city);
 
@@ -34,15 +27,4 @@ public interface WeatherAPIInterface {
      */
     @GET("/data/2.5/forecast")
     Observable<ListRes<WeatherData>> getFiveData(@Query("q") String city);
-
-    @POST("/sendcode")
-    Single<SendCodeResp> sendCode(@Body SendCodeReq req);
-
-    @POST("/signup")
-    Single<Profile> signUp(@Body SignUpReq req);
-
-    @POST("/signIn")
-    Single<Profile> login(@Body SignInReq req);
-
-
 }

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.hawksjamesf.spacecraft.data.bean.ListRes;
 import com.hawksjamesf.spacecraft.data.bean.RealTimeBean;
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.spacecraft.data.source.remote.WeatherAPIInterface;
+import com.hawksjamesf.spacecraft.data.source.remote.WeatherApi;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
@@ -18,11 +18,11 @@ import retrofit2.mock.BehaviorDelegate;
  * @author: hawskjamesf
  * @since: Sep/25/2018  Tue
  */
-public class HttpIsOkApi implements WeatherAPIInterface {
-    BehaviorDelegate<WeatherAPIInterface> delegate;
+public class HttpIsOkApi implements WeatherApi {
+    BehaviorDelegate<WeatherApi> delegate;
     Context context;
 
-    public HttpIsOkApi(Context context, BehaviorDelegate<WeatherAPIInterface> delegate) {
+    public HttpIsOkApi(Context context, BehaviorDelegate<WeatherApi> delegate) {
         this.delegate = delegate;
         this.context = context;
     }
