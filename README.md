@@ -1,4 +1,4 @@
-master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Shenzhou.svg?branch=master)](https://travis-ci.org/HawksJamesf/Shenzhou) feature/kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/Shenzhou.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/HawksJamesf/Shenzhou)
+master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=master)](https://travis-ci.org/HawksJamesf/Spacecraft) feature/kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/HawksJamesf/Spacecraft)
 # To be Architecture
 > 驽马十驾功在不舍
 
@@ -14,7 +14,7 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Shenzhou.svg?
 - [x] 提供mock环境、real环境、real local server环境
 - [x] 模块设计之网络模块(Retrofit+RxJava2)
 - [ ] 模块设计之数据存储：Room/Realm,SharedPreference
-- [ ] 模块设计之通用工具(kotlin & Java)
+- [x] 模块设计之通用工具(kotlin & Java)
 - [ ] 模块设计之定位系统
 - [x] 模块设计之登入模块
 - [ ] 解耦：高内聚低耦合

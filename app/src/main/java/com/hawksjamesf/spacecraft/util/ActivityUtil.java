@@ -29,6 +29,7 @@ public class ActivityUtil {
         intent.setClassName(packageName, className);
         ResolveInfo resolveInfo = Util.getApp().getPackageManager().resolveActivity(intent, 0);
         ComponentName componentName = intent.resolveActivity(Util.getApp().getPackageManager());
+        //PackageManager.PERMISSION_GRANTED=0
         List<ResolveInfo> resolveInfos = Util.getApp().getPackageManager().queryIntentActivities(intent, 0);
         return !(resolveInfo == null || componentName == null || resolveInfos.size() == 0);
     }
