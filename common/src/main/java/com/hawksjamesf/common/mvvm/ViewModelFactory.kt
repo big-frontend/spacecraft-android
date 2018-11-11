@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.mvvm
+package com.hawksjamesf.common.mvvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

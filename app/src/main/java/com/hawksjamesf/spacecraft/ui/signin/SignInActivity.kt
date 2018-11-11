@@ -9,7 +9,7 @@ import com.hawksjamesf.spacecraft.data.bean.signin.ClientException
 import com.hawksjamesf.spacecraft.data.bean.signin.ClientState
 import com.hawksjamesf.spacecraft.data.bean.signin.SignInReq
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity
-import com.hawksjamesf.spacecraft.ui.mvp.AutoDisposable
+import com.hawksjamesf.common.mvp.AutoDisposable
 import com.hawksjamesf.spacecraft.util.TextUtil
 import com.hawksjamesf.spacecraft.util.hideSoftInput
 import com.hawksjamesf.spacecraft.util.openActivity

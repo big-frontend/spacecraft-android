@@ -3,9 +3,9 @@ package com.hawksjamesf.spacecraft.ui.signin;
 import com.hawksjamesf.spacecraft.data.bean.signin.*
 import com.hawksjamesf.spacecraft.data.event.SignInFailedEvent
 import com.hawksjamesf.spacecraft.data.event.SignUpFailedEvent
-import com.hawksjamesf.spacecraft.ui.mvp.AbstractSpacecraftActivity
-import com.hawksjamesf.spacecraft.ui.mvp.AbstractSpacecraftPresenter
-import com.hawksjamesf.spacecraft.ui.mvp.SpacecraftView
+import com.hawksjamesf.common.mvp.AbstractSpacecraftActivity
+import com.hawksjamesf.common.mvp.AbstractSpacecraftPresenter
+import com.hawksjamesf.common.mvp.SpacecraftView
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject

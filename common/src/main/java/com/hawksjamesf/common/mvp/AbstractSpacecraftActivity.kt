@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.mvp
+package com.hawksjamesf.common.mvp
 
 import android.app.Activity
 import android.os.Bundle

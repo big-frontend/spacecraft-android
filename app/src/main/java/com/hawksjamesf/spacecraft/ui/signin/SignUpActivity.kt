@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import com.hawksjamesf.spacecraft.R
 import com.hawksjamesf.spacecraft.data.bean.signin.*
-import com.hawksjamesf.spacecraft.ui.mvp.AutoDisposable
+import com.hawksjamesf.common.mvp.AutoDisposable
 import com.hawksjamesf.spacecraft.util.TextUtil
 import com.hawksjamesf.spacecraft.util.hideSoftInput
 import com.hawksjamesf.spacecraft.util.subscribeBy

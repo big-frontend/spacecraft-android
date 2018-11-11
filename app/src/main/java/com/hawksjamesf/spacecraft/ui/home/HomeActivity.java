@@ -9,7 +9,7 @@ import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.data.bean.ListRes;
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
 import com.hawksjamesf.spacecraft.data.source.WeatherDataSource;
-import com.hawksjamesf.spacecraft.ui.mvp.RxActivity;
+import com.hawksjamesf.common.mvp.RxActivity;
 import com.orhanobut.logger.Logger;
 
 import io.reactivex.functions.Consumer;

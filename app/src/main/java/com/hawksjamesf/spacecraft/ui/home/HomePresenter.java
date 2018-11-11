@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.ui.home;
 
-import com.hawksjamesf.spacecraft.ui.mvp.RxPresenter;
+import com.hawksjamesf.common.mvp.RxPresenter;
 
 import java.util.HashMap;
 
