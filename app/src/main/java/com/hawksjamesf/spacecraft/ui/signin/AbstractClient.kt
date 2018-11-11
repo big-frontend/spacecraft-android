@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.ui.signin
 
-import com.hawksjamesf.spacecraft.data.bean.login.*
+import com.hawksjamesf.spacecraft.data.bean.signin.*
 import com.hawksjamesf.spacecraft.data.event.SignInFailedEvent
 import com.hawksjamesf.spacecraft.data.event.SignUpFailedEvent
 import io.reactivex.Observable
@@ -15,6 +15,7 @@ import io.reactivex.subjects.PublishSubject
  * @author: hawks.jamesf
  * @since: Oct/24/2018  Wed
  */
+@Deprecated("")
 abstract class AbstractClient {
 
     //public API
@@ -33,6 +34,7 @@ abstract class AbstractClient {
 }
 
 
+@Deprecated("")
 abstract class ObservableClient : AbstractClient() {
     //private API
     private val stateDataSubject = BehaviorSubject.createDefault<StateData>(StateData())

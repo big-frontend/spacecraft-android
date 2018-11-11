@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.data.event
 
-import com.hawksjamesf.spacecraft.data.bean.login.ClientException
+import com.hawksjamesf.spacecraft.data.bean.signin.ClientException
 
 /**
  * Copyright ® $ 2017

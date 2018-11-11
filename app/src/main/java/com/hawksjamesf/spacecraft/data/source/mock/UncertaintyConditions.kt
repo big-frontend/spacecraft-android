@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.data.source.mock;
 
-import com.hawksjamesf.spacecraft.data.bean.login.ClientException
+import com.hawksjamesf.spacecraft.data.bean.signin.ClientException
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 

@@ -1,8 +1,13 @@
 package com.hawksjamesf.spacecraft.ui.signin
 
 import androidx.annotation.MainThread
+import com.hawksjamesf.spacecraft.BuildConfig
 import com.hawksjamesf.spacecraft.data.bean.signin.*
 import com.hawksjamesf.spacecraft.data.source.SignInDataSource
+import com.hawksjamesf.spacecraft.data.source.mock.MockSignInDataSource
+import com.hawksjamesf.spacecraft.data.source.mock.UncertaintyConditions
+import com.hawksjamesf.spacecraft.data.source.remote.signin.RemoteSignInDataSource
+import com.hawksjamesf.spacecraft.util.Util
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
@@ -12,14 +17,23 @@ import java.util.concurrent.TimeUnit
  * All right reserved.
  *
  * @author: hawks.jamesf
- * @since: Oct/24/2018  Wed
+ * @since: Nov/11/2018  Sun
  */
-@Deprecated("")
-class Client(
+class SignInPresenter private constructor(
         private var dataSource: SignInDataSource
-) : ObservableClient() {
+) : SignInContract.Presenter() {
     private val TAG = "Client"
     private val communicationTimeoutSeconds: Long = 10
+
+    companion object {
+        var INSTANCE = SignInPresenter(if (BuildConfig.MOCKED_DATA_ACCESS) {
+            MockSignInDataSource(Util.getApp(), UncertaintyConditions.UncertaintyParams(
+                    0f, 0f, 1500L, 500L
+            ))
+        } else {
+            RemoteSignInDataSource()
+        })
+    }
 
     init {
         /**
@@ -91,6 +105,4 @@ class Client(
 
         //todo:profile 处理
     }
-
-
 }

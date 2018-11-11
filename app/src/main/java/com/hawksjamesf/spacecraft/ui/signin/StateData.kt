@@ -1,7 +1,7 @@
 package com.hawksjamesf.spacecraft.ui.signin
 
-import com.hawksjamesf.spacecraft.data.bean.login.ClientState
-import com.hawksjamesf.spacecraft.data.bean.login.Profile
+import com.hawksjamesf.spacecraft.data.bean.signin.ClientState
+import com.hawksjamesf.spacecraft.data.bean.signin.Profile
 import io.reactivex.disposables.Disposable
 
 /**

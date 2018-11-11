@@ -5,10 +5,9 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.hawksjamesf.spacecraft.R
-import com.hawksjamesf.spacecraft.data.bean.login.ClientException
-import com.hawksjamesf.spacecraft.data.bean.login.ClientState
-import com.hawksjamesf.spacecraft.data.bean.login.SignInReq
-import com.hawksjamesf.spacecraft.ui.BaseActivity
+import com.hawksjamesf.spacecraft.data.bean.signin.ClientException
+import com.hawksjamesf.spacecraft.data.bean.signin.ClientState
+import com.hawksjamesf.spacecraft.data.bean.signin.SignInReq
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity
 import com.hawksjamesf.spacecraft.ui.mvp.AutoDisposable
 import com.hawksjamesf.spacecraft.util.TextUtil
@@ -32,11 +31,25 @@ import kotlinx.android.synthetic.main.activity_signin.*
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-class SignInActivity : BaseActivity() {
+class SignInActivity : SignInContract.View() {
+//    @Inject override lateinit  var presenter:SignInContract.Presenter
+
+
+//    override fun createPresenter(): SignInContract.Presenter {
+//        return SignInPresenter(if (BuildConfig.MOCKED_DATA_ACCESS) {
+//            MockSignInDataSource(Util.getApp(), UncertaintyConditions.UncertaintyParams(
+//                    0f, 0f, 1500L, 500L
+//            ))
+//        } else {
+//            RemoteSignInDataSource()
+//        })
+//    }
+
     private val TAG = "SignInActivity"
 
     override fun initComponent(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_signin)
+//        App.getAppComponent().inject(this)
     }
 
     override fun handleCallback(autoDisposable: AutoDisposable) {
@@ -63,9 +76,9 @@ class SignInActivity : BaseActivity() {
                 }.connect(autoDisposable)
 
 
-        onBackPress.map { client.state == ClientState.SIGNING_IN }
+        onBackPress.map { presenter.state == ClientState.SIGNING_IN }
                 .publish().apply {
-                    filter { it }.subscribe { client.signOut() }.autoDisposable()
+                    filter { it }.subscribe { presenter.signOut() }.autoDisposable()
                     filter { !it }.subscribe { navigateBack() }.autoDisposable()
 
                 }.connect(autoDisposable)
@@ -75,29 +88,27 @@ class SignInActivity : BaseActivity() {
 //    private fun isValidate(mobile: CharSequence, password: CharSequence) = mobile.isNotBlank() && password.isNotBlank()
 
     fun signin(signInReq: SignInReq) {
-        client.signIn(signInReq)
+        presenter.signIn(signInReq)
                 .subscribeBy(
-                        onSubscribe = { client.stateData = StateData(signinginDisposable = it) },
+                        onSubscribe = { presenter.stateData = StateData(signinginDisposable = it) },
                         onSuccess = {
-                            client.stateData = StateData(profile = it)
-                            Logger.t(TAG).d("sign in--->resp:$it and state:${client.stateData}")
+                            presenter.stateData = StateData(profile = it)
+                            Logger.t(TAG).d("sign in--->resp:$it \nand state:${presenter.stateData}")
                             //todo:将新的Profile存入到数据库
                         },
                         onError = {
-                            client.stateData = StateData()
-                            client.emitSignInFailedEvent(signInReq.mobile, signInReq.password, it as ClientException)
+                            presenter.stateData = StateData()
+                            presenter.emitSignInFailedEvent(signInReq.mobile, signInReq.password, it as ClientException)
                         }
 
                 )
 
     }
 
-    override fun loadData(autoDisposable: AutoDisposable) {
-    }
-
     override fun onResume(autoDisposable: AutoDisposable) {
         super.onResume(autoDisposable)
-        client.stateObservable.publish().apply {
+        presenter.stateObservable.publish().apply {
+            Logger.t(TAG).d("onResume")
             map { it == ClientState.SIGNING_IN }.observeOn(AndroidSchedulers.mainThread()).subscribe {
                 pb_signin_progress.visibility = if (it) View.VISIBLE else View.GONE
             }.autoDisposable()
@@ -107,11 +118,10 @@ class SignInActivity : BaseActivity() {
 
         }.connect(autoDisposable)
 
-        client.signInFailedEventObservable.publish().apply {
+        presenter.signInFailedEventObservable.publish().apply {
             map { it.mobile }.subscribe { atv_mobile.text() }.autoDisposable()
             map { it.password }.subscribe { et_password.text() }.autoDisposable()
             map { it.excep }.observeOn(AndroidSchedulers.mainThread()).subscribe { Toast.makeText(this@SignInActivity, "$it", Toast.LENGTH_SHORT).show() }
         }.connect(autoDisposable)
     }
-
 }

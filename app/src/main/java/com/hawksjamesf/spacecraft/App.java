@@ -5,6 +5,7 @@ import android.content.Context;
 import com.hawksjamesf.spacecraft.data.DaggerNetComponent;
 import com.hawksjamesf.spacecraft.data.NetComponent;
 import com.hawksjamesf.spacecraft.data.NetModule;
+import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.hawksjamesf.spacecraft.util.Util;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -60,6 +61,7 @@ public class App extends MultiDexApplication {
         sAppComponent = DaggerAppComponent.builder()
                 .netComponent(sNetComponent)
                 .appModule(new AppModule(this))
+                .sigInModule(new SigInModule())
                 .build();
 
 //        Utils.init(this);
@@ -74,7 +76,7 @@ public class App extends MultiDexApplication {
         return sAppComponent;
     }
 
-    public static NetComponent getNetComponet(){
+    public static NetComponent getNetComponet() {
         return sNetComponent;
     }
 

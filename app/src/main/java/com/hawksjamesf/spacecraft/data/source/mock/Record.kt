@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.data.source.mock
 
-import com.hawksjamesf.spacecraft.data.bean.login.Profile
+import com.hawksjamesf.spacecraft.data.bean.signin.Profile
 
 /**
  * Copyright ® $ 2017

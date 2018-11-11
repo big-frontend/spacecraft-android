@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.data.bean.login
+package com.hawksjamesf.spacecraft.data.bean.signin
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,9 +9,8 @@ import com.google.gson.annotations.SerializedName
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-data class SignUpReq(
+data class SendCodeResp(
         @SerializedName("id")
-        val profileId:Int?=-1,
-        val password:String,
-        val verificationCode:Int
+        val profileId: Int,
+        val mobile: String
 )

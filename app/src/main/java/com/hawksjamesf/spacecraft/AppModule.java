@@ -31,4 +31,9 @@ public class AppModule {
 
     }
 
+//    @Provides
+//    @UserScope
+//    public SignInContract.Presenter provideSignInPresenter(SignInDataSource dataSource) {
+//        return new SignInPresenter(dataSource);
+//    }
 }

@@ -5,6 +5,8 @@ import com.hawksjamesf.spacecraft.scopes.UserScope;
 import com.hawksjamesf.spacecraft.ui.SplashActivity;
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
 import com.hawksjamesf.spacecraft.ui.signin.Client;
+import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
+import com.hawksjamesf.spacecraft.ui.signin.SignInActivity;
 
 import dagger.Component;
 
@@ -17,13 +19,15 @@ import dagger.Component;
  * @since: 2017/7/4
  */
 @UserScope
-@Component(dependencies = NetComponent.class, modules = {AppModule.class}/*more modules*/)
+@Component(dependencies = NetComponent.class, modules = {AppModule.class, SigInModule.class}/*more modules*/)
 public interface AppComponent {
     void inject(SplashActivity splashActivity);
 
     void inject(HomeActivity homeActivity);
 
     Client client();
+
+    void inject(SignInActivity signInActivity);
 
 
 }

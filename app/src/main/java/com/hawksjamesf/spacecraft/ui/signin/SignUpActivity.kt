@@ -4,8 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import com.hawksjamesf.spacecraft.R
-import com.hawksjamesf.spacecraft.data.bean.login.*
-import com.hawksjamesf.spacecraft.ui.BaseActivity
+import com.hawksjamesf.spacecraft.data.bean.signin.*
 import com.hawksjamesf.spacecraft.ui.mvp.AutoDisposable
 import com.hawksjamesf.spacecraft.util.TextUtil
 import com.hawksjamesf.spacecraft.util.hideSoftInput
@@ -24,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_signup.*
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-class SignUpActivity : BaseActivity() {
+class SignUpActivity : SignInContract.View() {
     private val TAG = "SignUpActivity"
     override fun initComponent(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_signup)
@@ -40,7 +39,7 @@ class SignUpActivity : BaseActivity() {
 
         bt_send_code.clicks()
                 .subscribe {
-                    client.sendCode(SendCodeReq(atv_mobile.text.toString())).subscribeBy(
+                    presenter.sendCode(SendCodeReq(atv_mobile.text.toString())).subscribeBy(
                             onSubscribe = {
 
                             },
@@ -83,9 +82,9 @@ class SignUpActivity : BaseActivity() {
 
                 }.connect(autoDisposable)
 
-        onBackPress.map { client.state == ClientState.SIGNING_UP }
+        onBackPress.map { presenter.state == ClientState.SIGNING_UP }
                 .publish().apply {
-                    filter { it }.subscribe { client.signOut() }.autoDisposable()
+                    filter { it }.subscribe { presenter.signOut() }.autoDisposable()
                     filter { !it }.subscribe { navigateBack() }.autoDisposable()
 
                 }.connect(autoDisposable)
@@ -94,30 +93,28 @@ class SignUpActivity : BaseActivity() {
     }
 
     fun signup(signUpReq: SignUpReq) {
-        client.signUp(signUpReq)
+        presenter.signUp(signUpReq)
                 .subscribeBy(
                         onError = {
-                            client.stateData = StateData()
-                            client.emitSignUpFailedEvent(atv_mobile.text.toString(), signUpReq.password, it as ClientException)
+                            presenter.stateData = StateData()
+                            presenter.emitSignUpFailedEvent(atv_mobile.text.toString(), signUpReq.password, it as ClientException)
                         },
                         onSuccess = {
-                            client.stateData = StateData(profile = it)
-                            Logger.t(TAG).d("sign up--->resp:$it and state:${client.stateData}")
+                            presenter.stateData = StateData(profile = it)
+                            Logger.t(TAG).d("sign up--->resp:$it and state:${presenter.stateData}")
                             //todo:将新的Profile存入到数据库
-                            client.signIn(SignInReq(it.mobile, signUpReq.password))
+                            presenter.signIn(SignInReq(it.mobile, signUpReq.password))
                         },
-                        onSubscribe = { client.stateData = StateData(signingupDisposable = it) }
+                        onSubscribe = { presenter.stateData = StateData(signingupDisposable = it) }
 
                 )
     }
 
-    override fun loadData(autoDisposable: AutoDisposable) {
-    }
 
     override fun onResume(autoDisposable: AutoDisposable) {
         super.onResume(autoDisposable)
         //todo:注册状态的ui变化 & 注册失败的ui变化
-        client.stateObservable.publish().apply {
+        presenter.stateObservable.publish().apply {
             //            map { it == ClientState.SIGNING_UP }.subscribe(pb_signup_progress.visibility()).autoDisposable()
             filter { it == ClientState.SIGNED_IN || it == ClientState.SIGNING_IN }
 
@@ -125,7 +122,7 @@ class SignUpActivity : BaseActivity() {
 
         }.connect(autoDisposable)
 
-        client.signUpFailedEventObservable.publish().apply {
+        presenter.signUpFailedEventObservable.publish().apply {
 
 
         }.connect(autoDisposable)

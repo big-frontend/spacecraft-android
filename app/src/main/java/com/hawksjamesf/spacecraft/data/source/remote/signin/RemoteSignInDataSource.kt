@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.data.source.remote.signin
 
-import com.hawksjamesf.spacecraft.data.bean.login.*
+import com.hawksjamesf.spacecraft.data.bean.signin.*
 import com.hawksjamesf.spacecraft.data.source.SignInDataSource
 import com.hawksjamesf.spacecraft.data.source.remote.AbstractApi
 import io.reactivex.Single

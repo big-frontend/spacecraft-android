@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.data.bean.login
+package com.hawksjamesf.spacecraft.data.bean.signin
 
 
 enum class TokenState {

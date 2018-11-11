@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.data.source.remote.signin
 
-import com.hawksjamesf.spacecraft.data.bean.login.*
+import com.hawksjamesf.spacecraft.data.bean.signin.*
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
