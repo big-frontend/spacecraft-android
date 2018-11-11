@@ -1,6 +1,6 @@
 println("settings start")
+include ':location', ':common', ':gradle_plugin', ':chatroom'
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }
-include ':location', ':common', ':gradle_plugin'
 println("settings end")
