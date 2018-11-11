@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.login
+package com.hawksjamesf.spacecraft.ui.signin
 
 import com.hawksjamesf.spacecraft.data.bean.login.*
 import com.hawksjamesf.spacecraft.data.event.SignInFailedEvent

@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import com.hawksjamesf.spacecraft.App
-import com.hawksjamesf.spacecraft.ui.login.Client
 import com.hawksjamesf.spacecraft.ui.mvp.AutoDisposable
+import com.hawksjamesf.spacecraft.ui.signin.Client
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject

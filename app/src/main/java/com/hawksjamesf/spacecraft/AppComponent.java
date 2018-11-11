@@ -4,7 +4,7 @@ import com.hawksjamesf.spacecraft.data.NetComponent;
 import com.hawksjamesf.spacecraft.scopes.UserScope;
 import com.hawksjamesf.spacecraft.ui.SplashActivity;
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
-import com.hawksjamesf.spacecraft.ui.login.Client;
+import com.hawksjamesf.spacecraft.ui.signin.Client;
 
 import dagger.Component;
 

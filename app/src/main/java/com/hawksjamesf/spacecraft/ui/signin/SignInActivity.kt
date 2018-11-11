@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.login
+package com.hawksjamesf.spacecraft.ui.signin
 
 import android.os.Bundle
 import android.view.View
