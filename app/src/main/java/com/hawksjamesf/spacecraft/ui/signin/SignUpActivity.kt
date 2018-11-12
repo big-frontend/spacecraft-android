@@ -6,9 +6,9 @@ import android.view.inputmethod.EditorInfo
 import com.hawksjamesf.spacecraft.R
 import com.hawksjamesf.spacecraft.data.bean.signin.*
 import com.hawksjamesf.common.mvp.AutoDisposable
-import com.hawksjamesf.spacecraft.util.TextUtil
-import com.hawksjamesf.spacecraft.util.hideSoftInput
-import com.hawksjamesf.spacecraft.util.subscribeBy
+import com.hawksjamesf.common.util.TextUtil
+import com.hawksjamesf.common.util.hideSoftInput
+import com.hawksjamesf.common.util.subscribeBy
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.editorActions
 import com.jakewharton.rxbinding2.widget.textChanges

@@ -3,8 +3,7 @@ package com.hawksjamesf.spacecraft.ui;
 import android.os.Bundle;
 
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.ui.signin.SignInActivity;
-import com.hawksjamesf.spacecraft.util.ActivityUtil;
+import com.hawksjamesf.common.util.ActivityUtil;
 
 import org.jetbrains.annotations.NotNull;
 

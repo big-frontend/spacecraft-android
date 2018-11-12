@@ -6,7 +6,7 @@ import com.hawksjamesf.spacecraft.data.DaggerNetComponent;
 import com.hawksjamesf.spacecraft.data.NetComponent;
 import com.hawksjamesf.spacecraft.data.NetModule;
 import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
-import com.hawksjamesf.spacecraft.util.Util;
+import com.hawksjamesf.common.util.Util;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;

@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.hawksjamesf.spacecraft.data.bean.ListRes
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData
 import com.hawksjamesf.spacecraft.data.source.WeatherDataSource
-import com.hawksjamesf.spacecraft.util.RestServiceTestHelper
+import com.hawksjamesf.common.util.RestServiceTestHelper
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.joda.time.DateTime

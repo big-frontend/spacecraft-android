@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.util;
+package com.hawksjamesf.common.util;
 
 import android.os.Build;
 import android.os.Bundle;

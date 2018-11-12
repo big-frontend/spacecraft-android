@@ -7,7 +7,7 @@ import com.hawksjamesf.spacecraft.data.source.SignInDataSource
 import com.hawksjamesf.spacecraft.data.source.mock.MockSignInDataSource
 import com.hawksjamesf.spacecraft.data.source.mock.UncertaintyConditions
 import com.hawksjamesf.spacecraft.data.source.remote.signin.RemoteSignInDataSource
-import com.hawksjamesf.spacecraft.util.Util
+import com.hawksjamesf.common.util.Util
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit

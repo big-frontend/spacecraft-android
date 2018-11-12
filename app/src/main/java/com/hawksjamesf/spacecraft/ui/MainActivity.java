@@ -9,7 +9,7 @@ import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.photo.PhotoActivity;
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
 import com.hawksjamesf.spacecraft.ui.person.SettingsActivity;
-import com.hawksjamesf.spacecraft.util.ActivityUtil;
+import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.video.VideoActivity;
 
 import org.jetbrains.annotations.NotNull;

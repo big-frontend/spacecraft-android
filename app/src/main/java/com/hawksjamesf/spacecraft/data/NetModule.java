@@ -8,7 +8,7 @@ import com.hawksjamesf.spacecraft.data.source.mock.MockWeatherDataSource;
 import com.hawksjamesf.spacecraft.data.source.mock.UncertaintyConditions;
 import com.hawksjamesf.spacecraft.data.source.remote.RemoteWeatherDataSource;
 import com.hawksjamesf.spacecraft.data.source.remote.signin.RemoteSignInDataSource;
-import com.hawksjamesf.spacecraft.util.Util;
+import com.hawksjamesf.common.util.Util;
 
 import javax.inject.Singleton;
 

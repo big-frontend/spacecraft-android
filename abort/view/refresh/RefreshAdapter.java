@@ -15,7 +15,7 @@ import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.TempeBean;
 import com.hawksjamesf.spacecraft.ui.home.view.forecast.FifteenDaysAdapter;
 import com.hawksjamesf.spacecraft.ui.home.view.forecast.FifteenDaysView;
-import com.hawksjamesf.spacecraft.util.ConditionUtils;
+import com.hawksjamesf.common.util.ConditionUtils;
 import com.orhanobut.logger.Logger;
 
 import java.text.ParseException;

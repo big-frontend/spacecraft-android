@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.util;
+package com.hawksjamesf.common.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

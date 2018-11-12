@@ -3,7 +3,7 @@ package com.hawksjamesf.spacecraft.photo;
 import android.os.Bundle;
 
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.util.BarUtil;
+import com.hawksjamesf.common.util.BarUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
