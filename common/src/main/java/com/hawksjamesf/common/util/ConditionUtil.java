@@ -1,6 +1,7 @@
 package com.hawksjamesf.common.util;
 
-import com.hawksjamesf.spacecraft.R;
+
+import com.hawksjamesf.common.R;
 
 /**
  * Copyright ® $ 2017
@@ -14,60 +15,60 @@ public class ConditionUtil {
     public static int getDayWeatherPic(String weatherName) {
         switch (weatherName) {
             case "晴":
-                return R.mipmap.w0;
+                return R.drawable.w0;
             case "PARTLY_CLOUDY_DAY":
-                return R.mipmap.w1;
+                return R.drawable.w1;
             case "CLOUDY":
-                return R.mipmap.w2;
+                return R.drawable.w2;
             case "雷阵雨":
-                return R.mipmap.w4;
+                return R.drawable.w4;
             case "雨夹雪":
-                return R.mipmap.w6;
+                return R.drawable.w6;
             case "RAIN":
-                return R.mipmap.w7;
+                return R.drawable.w7;
             case "中雨":
-                return R.mipmap.w8;
+                return R.drawable.w8;
             case "大雨":
-                return R.mipmap.w9;
+                return R.drawable.w9;
             case "暴雨":
-                return R.mipmap.w10;
+                return R.drawable.w10;
             case "大雪":
-                return R.mipmap.w17;
+                return R.drawable.w17;
             case "中雪":
-                return R.mipmap.w16;
+                return R.drawable.w16;
             case "冰雹":
-                return R.mipmap.w15;
+                return R.drawable.w15;
         }
-        return R.mipmap.w0;
+        return R.drawable.w0;
     }
 
     public static int getNightWeatherPic(String weatherName) {
         switch (weatherName) {
             case "晴":
-                return R.mipmap.w30;
+                return R.drawable.w30;
             case "PARTLY_CLOUDY_NIGHT":
-                return R.mipmap.w31;
+                return R.drawable.w31;
             case "CLOUDY":
-                return R.mipmap.w2;
+                return R.drawable.w2;
             case "雷阵雨":
-                return R.mipmap.w4;
+                return R.drawable.w4;
             case "雨夹雪":
-                return R.mipmap.w6;
+                return R.drawable.w6;
             case "RAIN":
-                return R.mipmap.w7;
+                return R.drawable.w7;
             case "中雨":
-                return R.mipmap.w8;
+                return R.drawable.w8;
             case "大雨":
-                return R.mipmap.w9;
+                return R.drawable.w9;
             case "暴雨":
-                return R.mipmap.w10;
+                return R.drawable.w10;
             case "大雪":
-                return R.mipmap.w17;
+                return R.drawable.w17;
             case "中雪":
-                return R.mipmap.w16;
+                return R.drawable.w16;
             case "冰雹":
-                return R.mipmap.w15;
+                return R.drawable.w15;
         }
-        return R.mipmap.w30;
+        return R.drawable.w30;
     }
 }

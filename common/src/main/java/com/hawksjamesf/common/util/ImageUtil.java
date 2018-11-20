@@ -28,7 +28,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
 
-import com.hawksjamesf.spacecraft.constants.MemoryUnit;
+import com.hawksjamesf.common.constants.MemoryUnit;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

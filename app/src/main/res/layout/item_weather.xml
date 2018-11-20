@@ -4,8 +4,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="com.hawksjamesf.spacecraft.ui.HomeFragment">
+              android:orientation="vertical">
 
 
     <RelativeLayout
@@ -67,7 +66,7 @@
             android:id="@+id/iv_realtime_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/w0"
+            app:srcCompat="@drawable/w0"
             android:layout_below="@+id/textView"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="13dp"/>

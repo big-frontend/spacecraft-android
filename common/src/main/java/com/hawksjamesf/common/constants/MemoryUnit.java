@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.constants;
+package com.hawksjamesf.common.constants;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

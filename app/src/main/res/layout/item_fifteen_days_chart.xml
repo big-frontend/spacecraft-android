@@ -61,7 +61,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="10dp"
-            android:src="@mipmap/w0"/>
+            android:src="@drawable/w0"/>
         <!--android:src="@drawable/big_level_shape" />-->
     </LinearLayout>
 
@@ -85,7 +85,7 @@
             android:layout_height="20dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
-            android:src="@mipmap/w0"/>
+            android:src="@drawable/w0"/>
         <!--android:src="@drawable/big_level_shape" />-->
 
         <TextView

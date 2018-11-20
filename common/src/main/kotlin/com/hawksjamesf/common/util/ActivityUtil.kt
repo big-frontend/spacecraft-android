@@ -1,5 +1,5 @@
 //@file:JvmName("ActivityUtil")
-package com.hawksjamesf.spacecraft.util
+package com.hawksjamesf.common.util
 
 import android.app.Activity
 import android.content.Intent

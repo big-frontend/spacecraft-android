@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+               android:startDelay="@android:integer/config_longAnimTime"
+               android:transitionOrdering="sequential">
+    <!--android:transitionOrdering="together"-->
+    <!--android:matchOrder=""-->
+    <fade
+        android:fadingMode="fade_in_out"
+        android:startDelay="@android:integer/config_shortAnimTime"
+        />
+    <explode
+        android:startDelay="@android:integer/config_mediumAnimTime"
+        />
+    <slide
+        android:startDelay="@android:integer/config_mediumAnimTime"/>
+
+
+    <!-- changeBounds is used for the TextViews which are shared -->
+    <changeBounds
+        android:startDelay="@android:integer/config_shortAnimTime"
+        />
+    <!--captures scale and rotation for Views-->
+    <changeTransform
+        android:startDelay="@android:integer/config_shortAnimTime"
+        />
+    <!-- changeImageTransform is used for the ImageViews which are shared -->
+    <changeImageTransform
+        android:startDelay="@android:integer/config_shortAnimTime"
+        />
+
+    <changeScroll
+        android:startDelay="@android:integer/config_shortAnimTime"
+        />
+    <changeClipBounds
+        android:startDelay="@android:integer/config_shortAnimTime"
+        />
+</transitionSet>

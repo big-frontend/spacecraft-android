@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+               android:startDelay="@android:integer/config_longAnimTime"
+               android:transitionOrdering="sequential">
+    <!--android:transitionOrdering="together"-->
+    <slide
+        android:slideEdge="top"
+        />
+
+    <!-- changeBounds is used for the TextViews which are shared -->
+    <changeBounds
+        android:matchOrder="@string/app_name"
+        />
+
+    <!-- changeImageTransform is used for the ImageViews which are shared -->
+    <changeTransform
+        android:reparent="true"
+        android:reparentWithOverlay="true"/>
+    <changeImageTransform
+        android:matchOrder="@string/app_name"
+        />
+    <changeScroll
+        android:matchOrder="@string/app_name"
+        />
+    <changeClipBounds
+        android:matchOrder="@string/app_name"
+        />
+</transitionSet>

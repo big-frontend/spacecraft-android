@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+               android:duration="10"
+               android:interpolator="@android:interpolator/accelerate_cubic">
+
+    <fade
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"/>
+    <explode
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"/>
+    <slide
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"
+        />
+
+    <!-- changeBounds is used for the TextViews which are shared -->
+    <changeBounds
+        android:duration="@android:integer/config_shortAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"
+        />
+
+    <changeTransform
+        android:duration="@android:integer/config_shortAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"
+        />
+    <!-- changeImageTransform is used for the ImageViews which are shared -->
+    <changeImageTransform
+        android:duration="@android:integer/config_shortAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"/>
+
+    <changeScroll
+        android:duration="@android:integer/config_shortAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"/>
+    <changeClipBounds
+        android:duration="@android:integer/config_shortAnimTime"
+        android:interpolator="@android:interpolator/accelerate_cubic"/>
+
+    <pathMotion/>
+    <patternPathMotion/>
+    <arcMotion/>
+    <targets/>
+    <recolor/>
+    <transition/>
+</transitionSet>

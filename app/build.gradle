@@ -136,6 +136,8 @@ android {
 
     sourceSets {
         main.java.srcDirs += ["src/main/kotlin"]
+        main.java.srcDirs += ["src/main/java-anim"]
+        main.res.srcDirs += ["src/main/res-anim"]
     }
 
 //    useLibrary 'android.test.runner'
