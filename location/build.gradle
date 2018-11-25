@@ -39,9 +39,9 @@ android {
         }
     }
     sourceSets {
-        component {
-            java.srcDirs = ['src/component/java']
-        }
+//        component {
+//            java.srcDirs = ['src/component/java']
+//        }
     }
 }
 dependencies {

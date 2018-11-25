@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--The X coordinate of the center of rotation. Expressed either:-->
+<!--in pixels relative to the object's left edge (such as "5"), -->
+<!--in percentage relative to the object's left edge (such as "5%"), -->
+<!--or in percentage relative to the parent container's left edge (such as "5%p")-->
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromDegrees="90"
+        android:pivotX="0%"
+        android:pivotY="0"
+        android:toDegrees="180"
+        android:visible="true"
+        android:drawable="@drawable/background"
+    >
+    <!--android:pivotX="0%p"-->
+    <!--android:pivotX="0"-->
+
+</rotate>

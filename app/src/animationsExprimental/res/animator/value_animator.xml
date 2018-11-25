@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedAttribute"
+    >
+
+    <propertyValuesHolder>
+        <keyframe
+            android:fraction="0"
+            android:value="1"
+            />
+        <keyframe
+            android:fraction=".2"
+            android:value=".4"/>
+        <keyframe
+            android:fraction="1"
+            android:value="0"/>
+    </propertyValuesHolder>
+
+</animator>

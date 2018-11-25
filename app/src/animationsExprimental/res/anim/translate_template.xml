@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--values from -100 to 100 ending with "%", indicating a percentage relative to itself; -->
+<!--values from -100 to 100 ending in "%p", indicating a percentage relative to its parent; -->
+<!--a float value with no suffix, indicating an absolute value-->
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromXDelta="18%"
+    android:toXDelta="10%"
+    android:fromYDelta="10%p"
+    android:toYDelta="0%p">
+
+</translate>

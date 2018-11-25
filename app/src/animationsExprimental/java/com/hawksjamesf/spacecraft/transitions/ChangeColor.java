@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft;
+package com.hawksjamesf.spacecraft.transitions;
 
 /**
  * Copyright ® $ 2017

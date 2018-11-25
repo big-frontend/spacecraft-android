@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:duration="10"
+     android:fillAfter="true"
+     android:fillBefore="false"
+     android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+     android:repeatMode="restart"
+     android:shareInterpolator="true"
+     android:startOffset="10">
+
+
+</set>

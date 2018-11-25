@@ -70,6 +70,7 @@ android {
         buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517883187"')
         buildConfigField('String', 'XIAOMI_APP_KEY', '"5381788364187"')
 
+        //lower 5.x
         vectorDrawables.useSupportLibrary = true
         vectorDrawables.generatedDensities = []
     }
@@ -136,8 +137,11 @@ android {
 
     sourceSets {
         main.java.srcDirs += ["src/main/kotlin"]
-        main.java.srcDirs += ["src/main/java-anim"]
-        main.res.srcDirs += ["src/main/res-anim"]
+        main.java.srcDirs += ["src/animationsExprimental/java"]
+        main.res.srcDirs += ["src/animationsExprimental/res"]
+        main.res.srcDirs += ["src/animationsExprimental/res-frame-animation"]
+        main.manifest.srcFile "src/animationsExprimental/AndroidManifest.xml"
+        main.assets.srcDirs += ["src/animationsExprimental/assets"]
     }
 
 //    useLibrary 'android.test.runner'
@@ -145,10 +149,6 @@ android {
 //    useLibrary 'android.test.mock'
     dataBinding {
         enabled = true
-    }
-
-    aaptOptions {
-//        additionalParameters "—no-version-vectors"
     }
 
 }
