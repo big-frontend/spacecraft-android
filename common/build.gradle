@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.protobuf'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -100,6 +101,7 @@ dependencies {
      */
     api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
@@ -107,6 +109,8 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
     api "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
 //    api 'com.google.code.gson:gson:2.8.2'
+//    api 'com.google.protobuf:protobuf-lite:3.0.0'
+
     /**
      * ===============================network end====================================
      */

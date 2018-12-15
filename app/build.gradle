@@ -13,6 +13,35 @@ apply plugin: 'versionpluginforkotlin'
 
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 
+apply plugin: 'com.google.protobuf'
+
+protobuf {
+    protoc {
+        // You still need protoc like in the non-Android case
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            // The codegen for lite comes as a separate artifact
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                // In most cases you don't need the full Java output
+                // if you use the lite output.
+                remove java
+            }
+            task.plugins {
+                javalite { }
+            }
+        }
+    }
+}
+
+
+
 versionPlugin {
     buildTypeMatcher = 'debug'
 //        '$appName/project/buildType-v_$versionName-c_$versionCode'
@@ -142,6 +171,17 @@ android {
         main.res.srcDirs += ["src/animationsExprimental/res-frame-animation"]
         main.manifest.srcFile "src/animationsExprimental/AndroidManifest.xml"
         main.assets.srcDirs += ["src/animationsExprimental/assets"]
+
+        //protobuf
+        main{
+            java{
+                srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+            }
+//            proto {
+//                srcDir 'src/main/proto'
+//
+//            }
+        }
     }
 
 //    useLibrary 'android.test.runner'
@@ -212,6 +252,7 @@ dependencies {
     // Android Testing Support Library's runner and rules
     androidTestImplementation "androidx.test:runner:1.1.0"
     androidTestImplementation "androidx.test:rules:1.1.0"
+    api 'com.google.protobuf:protobuf-lite:3.0.0'
 
 //    androidTestImplementation 'androidx.test:monitor:1.1.0'
 //    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0',{
