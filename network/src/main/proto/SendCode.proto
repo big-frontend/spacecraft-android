@@ -1,0 +1,12 @@
+syntax = "proto3";
+package com.hawksjamesf.spacecraft;
+option java_package = "com.hawksjamesf.spacecraft";
+option java_outer_classname = "SendCode";
+
+message SendCodeResp {
+
+}
+
+message SendCodeReq {
+
+}

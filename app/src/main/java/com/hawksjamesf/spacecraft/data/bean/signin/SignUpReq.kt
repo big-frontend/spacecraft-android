@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class SignUpReq(
         @SerializedName("id")
-        val profileId:Int?=-1,
-        val password:String,
-        val verificationCode:Int
+        val profileId: Int? = -1,
+        val password: String,
+        val verificationCode: Int
 )

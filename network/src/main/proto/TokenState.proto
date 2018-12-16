@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "com.hawksjamesf.spacecraft";
+option java_outer_classname = "TokenState";
+enum TokenState1 {
+    NONE = 0;
+    UNAUTHORIZED = 1;
+    OTHERS = 2;
+
+}
