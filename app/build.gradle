@@ -140,11 +140,11 @@ dependencies {
     implementation project(path: ':chatroom')
     implementation project(path: ':network')
 //    implementation project(path: ':mockserver')
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:support-vector-drawable:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-alpha01'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha02'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha03'
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"
@@ -154,17 +154,17 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
 
     // Espresso dependencies
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.0"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:3.1.0"
-    androidTestImplementation "androidx.test.espresso:espresso-accessibility:3.1.0"
-    androidTestImplementation "androidx.test.espresso:espresso-web:3.1.0"
-    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:3.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-accessibility:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-web:3.1.1"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:3.1.1"
     // The following Espresso dependency can be either "implementation"
     // or "androidTestImplementation", depending on whether you want the
     // dependency to appear on your APK's compile classpath or the test APK
     // classpath.
-    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:3.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:3.1.1"
 
     // Dependencies for Android unit tests
     androidTestImplementation "junit:junit:${rootProject.ext.junitVersion}"
@@ -173,8 +173,8 @@ dependencies {
     androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation "androidx.test:runner:1.1.0"
-    androidTestImplementation "androidx.test:rules:1.1.0"
+    androidTestImplementation "androidx.test:runner:1.1.1"
+    androidTestImplementation "androidx.test:rules:1.1.1"
 
 //    androidTestImplementation 'androidx.test:monitor:1.1.0'
 //    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0',{
