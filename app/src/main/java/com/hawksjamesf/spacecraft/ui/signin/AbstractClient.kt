@@ -1,8 +1,10 @@
 package com.hawksjamesf.spacecraft.ui.signin
 
-import com.hawksjamesf.spacecraft.data.bean.signin.*
-import com.hawksjamesf.spacecraft.data.event.SignInFailedEvent
-import com.hawksjamesf.spacecraft.data.event.SignUpFailedEvent
+import com.hawksjamesf.network.data.bean.signin.ClientException
+import com.hawksjamesf.network.data.bean.signin.ClientState
+import com.hawksjamesf.network.data.bean.signin.*
+import com.hawksjamesf.network.data.event.SignInFailedEvent
+import com.hawksjamesf.network.data.event.SignUpFailedEvent
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject

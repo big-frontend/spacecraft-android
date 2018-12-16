@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.hawksjamesf.spacecraft.data.bean.ListRes;
 import com.hawksjamesf.spacecraft.data.bean.RealTimeBean;
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.spacecraft.data.source.remote.WeatherApi;
+import com.hawksjamesf.network.data.source.remote.WeatherApi;
 
 import io.reactivex.Observable;
 import retrofit2.Call;

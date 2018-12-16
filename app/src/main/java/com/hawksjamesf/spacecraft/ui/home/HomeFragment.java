@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.data.source.remote.WeatherApi;
+import com.hawksjamesf.network.data.source.remote.WeatherApi;
 
 
 /**

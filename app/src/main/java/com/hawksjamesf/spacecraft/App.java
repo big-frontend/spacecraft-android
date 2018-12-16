@@ -2,11 +2,11 @@ package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
 
-import com.hawksjamesf.spacecraft.data.DaggerNetComponent;
-import com.hawksjamesf.spacecraft.data.NetComponent;
-import com.hawksjamesf.spacecraft.data.NetModule;
-import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.hawksjamesf.common.util.Util;
+import com.hawksjamesf.network.data.DaggerNetComponent;
+import com.hawksjamesf.network.data.NetComponent;
+import com.hawksjamesf.network.data.NetModule;
+import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;

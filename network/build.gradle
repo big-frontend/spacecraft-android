@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'com.google.protobuf'
 
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android-extensions"
+
 protobuf {
     protoc {
         // You still need protoc like in the non-Android case
@@ -38,6 +41,7 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
 
     }
 
@@ -46,20 +50,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        component {
-            initWith debug
-            debuggable true
-        }
     }
     sourceSets {
-//        component {
-//            java.srcDirs = ['src/component/java']
-//        }
-
         //protobuf
         main {
             java {
                 srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+                srcDirs += "src/main/wire"
             }
 //            proto {
 //                srcDir 'src/main/proto'
@@ -67,16 +64,75 @@ android {
 //            }
         }
     }
+    flavorDimensions('data_access')
+    productFlavors {
 
+        mocked {
+            dimension 'data_access'
+            buildConfigField 'boolean', 'MOCKED_DATA_ACCESS', 'true'
+            buildConfigField 'String', 'WEATHER_URL', '" "'
+        }
+//        real{
+//            dimension 'data_access'
+//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+//            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+//
+//        }
+//
+//        realLocalServer{
+//            dimension 'data_access'
+//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+//            buildConfigField 'String','WEATHER_URL',"\"http://${getLocalIP()}:8080\""
+//        }
+
+    }
+}
+
+static String getLocalIP() {
+    InetAddress result = null
+    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces()
+    while (interfaces.hasMoreElements()) {
+        Enumeration<InetAddress> addresses = interfaces.nextElement().getInetAddresses()
+        while (addresses.hasMoreElements()) {
+            InetAddress address = addresses.nextElement()
+            if (!address.isLoopbackAddress()) {
+                if (address.isSiteLocalAddress()) {
+                    return address.getHostAddress()
+                } else if (result == null) {
+                    result = address
+                }
+            }
+        }
+    }
+    return (result != null ? result : InetAddress.getLocalHost()).getHostAddress()
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api project(path: ':common')
-    api 'com.google.protobuf:protobuf-lite:3.0.0'
+
+    /**
+     * ===============================network start====================================
+     */
+    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
+//    api 'com.squareup.okhttp3:okhttp:3.8.1'
+    api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
+    api "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
+//    api 'com.google.code.gson:gson:2.8.2'
+//    api 'com.google.protobuf:protobuf-lite:3.0.0'
+
+    /**
+     * ===============================network end====================================
+     */
+    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
 }

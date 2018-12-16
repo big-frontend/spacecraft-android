@@ -1,13 +1,13 @@
 package com.hawksjamesf.spacecraft.ui.signin
 
 import androidx.annotation.MainThread
-import com.hawksjamesf.spacecraft.BuildConfig
-import com.hawksjamesf.spacecraft.data.bean.signin.*
-import com.hawksjamesf.spacecraft.data.source.SignInDataSource
-import com.hawksjamesf.spacecraft.data.source.mock.MockSignInDataSource
-import com.hawksjamesf.spacecraft.data.source.mock.UncertaintyConditions
-import com.hawksjamesf.spacecraft.data.source.remote.signin.RemoteSignInDataSource
 import com.hawksjamesf.common.util.Util
+import com.hawksjamesf.network.BuildConfig
+import com.hawksjamesf.network.data.bean.signin.*
+import com.hawksjamesf.network.data.source.SignInDataSource
+import com.hawksjamesf.network.data.source.mock.MockSignInDataSource
+import com.hawksjamesf.network.data.source.mock.UncertaintyConditions
+import com.hawksjamesf.network.data.source.remote.signin.RemoteSignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
