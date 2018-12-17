@@ -1,4 +1,4 @@
-master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=master)](https://travis-ci.org/HawksJamesf/Spacecraft) feature/kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/HawksJamesf/Spacecraft)
+master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=master)](https://travis-ci.org/HawksJamesf/Spacecraft) feature/kotlin-gradle branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/HawksJamesf/Spacecraft) feature/refactorClient branch:[![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.svg?branch=feature%2FrefactorClient)](https://travis-ci.org/HawksJamesf/Spacecraft)
 # To be Architect
 > 驽马十驾功在不舍
 
@@ -24,5 +24,6 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.sv
 app
 
 ## Server
-server_python
+server4py
+server4j
 
