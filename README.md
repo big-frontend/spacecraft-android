@@ -24,6 +24,6 @@ master branch : [![Build Status](https://travis-ci.org/HawksJamesf/Spacecraft.sv
 app
 
 ## Server
-server4py
-server4j
+- server4py
+- server4j
 
