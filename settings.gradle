@@ -3,6 +3,6 @@ include ':client/location', ':client/common', ':client/chatroom', ':client/netwo
 if (!isComponentMode.toBoolean()) {
     include ':client/app'
 }
-include ':server/server4j'
+//include ':server/server4j'
 include ':gradle_plugin'
 println("settings end")
