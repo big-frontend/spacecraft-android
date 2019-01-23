@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.hawksjamesf.common.util.BarUtil;
 import com.hawksjamesf.spacecraft.R;
 
 import androidx.appcompat.app.ActionBar;
@@ -66,9 +67,9 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-//        if (hasFocus) {
-//            hideSystemUI();
-//        }
+        if (hasFocus) {
+            BarUtil.setBarsFullscreen(this,BarUtil.LEAN_BACK);
+        }
     }
 
     @Override
@@ -90,6 +91,24 @@ public class VideoActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                // Note that system bars will only be "visible" if none of the
+                // LOW_PROFILE, HIDE_NAVIGATION, or FULLSCREEN flags are set.
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                    // TODO: The system bars are visible. Make any desired
+                    // adjustments to your UI, such as showing the action bar or
+                    // other navigational controls.
+                } else {
+                    // TODO: The system bars are NOT visible. Make any desired
+                    // adjustments to your UI, such as hiding the action bar or
+                    // other navigational controls.
+                }
+            }
+        });
     }
 
     @Override

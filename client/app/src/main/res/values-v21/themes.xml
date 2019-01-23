@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <!--<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">-->
-        <!--<item name="android:navigationBarColor">@android:color/transparent</item>-->
-        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <!--<item name="android:windowTranslucentNavigation">true</item>-->
-        <!--<item name="android:windowContentTransitions">true</item>-->
-        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">-->
 
         <!-- New MaterialComponents attributes. -->
         <!--colorPrimary-->
@@ -47,6 +40,38 @@
         <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
         <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+    </style>
+
+    <style name="AppTheme.BarsTransparent">
+        <!--设置状态栏和导航栏为全透明-->
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/holo_blue_bright</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <!--4.4-5.0的状态栏和导航栏为半透明；5.0+的状态栏和导航栏都为透明-->
+    <style name="PhotoTheme" parent="AppTheme.BarsTransparent">
+
+        <!--<item name="android:windowContentTransitions">true</item>-->
+        <!--<item name="android:windowAllowEnterTransitionOverlap">false</item>-->
+        <!--<item name="android:windowAllowReturnTransitionOverlap">false</item>-->
+
+        <!--activity转场动画-->
+        <!--<item name="android:windowActivityTransitions">true</item>-->
+        <!-- specify enter and exit transitions -->
+        <!--<item name="android:windowEnterTransition">@transition/explode</item>-->
+        <!--<item name="android:windowExitTransition">@transition/explode</item>-->
+
+        <!-- 部门元素的转场动画 -->
+        <!--<item name="android:windowSharedElementEnterTransition">-->
+            <!--@transition/change_image_transform-->
+        <!--</item>-->
+        <!--<item name="android:windowSharedElementExitTransition">-->
+            <!--@transition/change_image_transform-->
+        <!--</item>-->
+
+
     </style>
 
 </resources>

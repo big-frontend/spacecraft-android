@@ -1,5 +1,6 @@
 package com.hawksjamesf.spacecraft.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         tb = findViewById(R.id.tb);
         setSupportActionBar(tb);
+        tb.setBackgroundColor(Color.RED);
         mTextMessage = findViewById(R.id.message);
         mTextMessage.setText("home");
         bnv = findViewById(R.id.bnv);

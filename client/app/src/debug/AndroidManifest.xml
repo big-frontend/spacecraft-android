@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.hawksjamesf.spacecraft">
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/> <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
@@ -16,7 +17,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.hawksjamesf.spacecraft.ui.person.SettingsActivity">
         </activity>
@@ -27,7 +29,9 @@
         </activity>
         <activity
             android:name="com.hawksjamesf.spacecraft.photo.PhotoActivity"
-            android:theme="@style/PhotoTheme">
+            android:label="PhoteoActivity"
+            android:theme="@style/PhotoTheme"
+            >
         </activity>
         <activity
             android:name="com.hawksjamesf.spacecraft.video.VideoActivity"

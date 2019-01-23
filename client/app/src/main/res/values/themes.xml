@@ -21,7 +21,7 @@
         <!--<item name="android:windowBackground">?android:attr/colorBackground</item>-->
 
         <item name="android:windowContentOverlay">@null</item>
-
+        <!--<item name="android:fitsSystemWindows">true</item>-->
 
         <!--支持3.0以上-->
         <!--<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>-->
@@ -91,7 +91,10 @@
 
 
     <!--=====================PhotoTheme screen========================================-->
-    <style name="PhotoTheme" parent="AppTheme"/>
+    <style name="PhotoTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
     <!--=====================PhotoTheme screen========================================-->
 
     <!--=====================VideoTheme screen========================================-->
