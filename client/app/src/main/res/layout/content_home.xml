@@ -13,12 +13,14 @@
 
 
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:text="Hello World"
         android:textColor="@android:color/white"
         android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="81dp"/>
     <!--<android.support.v7.widget.RecyclerView-->
@@ -27,6 +29,20 @@
     <!--android:layout_height="match_parent"-->
     <!--tools:listItem="@layout/item_weather"/>-->
 
+    <fragment
+        android:id="@+id/fragment_nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:navGraph="@navigation/nav_graph"/>
+
+    <FrameLayout
+        android:id="@+id/fl_nav_host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

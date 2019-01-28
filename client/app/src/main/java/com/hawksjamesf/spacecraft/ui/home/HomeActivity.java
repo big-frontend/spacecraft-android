@@ -40,7 +40,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         setContentView(R.layout.activity_home);
         presenter.load();
 
-        source= App.getNetComponet().getWeatherDataSource();
+        source = App.getNetComponet().getWeatherDataSource();
         source.getCurrentWeatherDate("London")
                 .subscribe(new Consumer<WeatherData>() {
                     @Override
@@ -69,6 +69,22 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
                     }
                 });
 
+//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentByTag("tag_navigation_host");
+//        if (navHostFragment == null) {
+//            navHostFragment = NavHostFragment.create(R.navigation.nav_graph);
+//        }
+//
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.fl_nav_host, navHostFragment, "tag_navigation_host")
+//                .setPrimaryNavigationFragment(navHostFragment)// this is the equivalent to app:defaultNavHost="true"
+//                .commitNowAllowingStateLoss();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+//        return Navigation.findNavController(R.id.).navigateUp();
+        return super.onSupportNavigateUp();
     }
 
 

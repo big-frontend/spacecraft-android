@@ -6,11 +6,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.photo.PhotoActivity;
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
 import com.hawksjamesf.spacecraft.ui.person.SettingsActivity;
-import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.video.VideoActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
 import io.reactivex.disposables.Disposable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -45,6 +46,12 @@ public class MainActivity extends BaseActivity {
         mTextMessage = findViewById(R.id.message);
         mTextMessage.setText("home");
         bnv = findViewById(R.id.bnv);
+        final NavController navController = new NavController(this);
+//        navController.navigate(R.id.action_step_two);
+//        navController.navigate(R.id.fragment_flow_step_one_dest);
+//        navController.navigate(R.id.action_step_two, null, options);
+//        navController.setGraph();
+//        NavigationUI.setupWithNavController(bnv,navController);
 
     }
 
@@ -81,4 +88,5 @@ public class MainActivity extends BaseActivity {
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
 
     }
+
 }

@@ -1,16 +1,23 @@
 package com.hawksjamesf.spacecraft.ui.home;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.network.data.source.remote.WeatherApi;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.NavGraph;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 
 /**
@@ -23,13 +30,7 @@ import com.hawksjamesf.network.data.source.remote.WeatherApi;
  */
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment---";
-//    @BindView(R.id.rlv_pull_refresh)
-//    RefreshListView mRlvPullRefresh;
-    //    @BindView(R.id.wv_weather_status)
-//    WeatherView mWvWeatherStatus;
-    private Activity mActivity;
-//    private RefreshAdapter mAdapter;
-    WeatherApi api;
+    FragmentActivity mActivity;
 
     public Fragment getInstance() {
         Bundle bundle = new Bundle();
@@ -38,28 +39,15 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-    public static final int EVENT_GET_DATA_REFRESH_ERROR = -1;
-//    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_ERROR = 0;
-
-    public static final int EVENT_GET_DATA_REFRESH_OK = 1;
-//    public static final int EVENT_GET_DATA_FIFTEEN_DAYS_OK = 2;
-//    public static final int EVENT_GET_DATA_REALTIME_OK = 3;
-//    public static final int EVENT_GET_DATA_REALTIME_ERROR = 4;
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = (Activity) context;
+        mActivity = getActivity();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        App.getAppComponent().inject(this);
-//        EventBus.getDefault().register(this);
-
-//        mAdapter = new RefreshAdapter(mActivity);
 
     }
 
@@ -74,17 +62,46 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        mWvWeatherStatus.setWeather(Constants.weatherStatus.RAIN)
-//                .setCurrentLifeTime(2000)
-//                .setCurrentFadeOutTime(1000)
-//                .setCurrentParticles(43)
-//                .setFPS(84)
-//                .setCurrentAngle(-3)
-//                .setOrientationMode(Constants.orientationStatus.ENABLE)
-//                .startAnimation();
-        //set up pull-refresh view
+//        final val options = navOptions {
+//            anim {
+//                enter = R.anim.slide_in_right
+//                exit = R.anim.slide_out_left
+//                popEnter = R.anim.slide_in_left
+//                popExit = R.anim.slide_out_right
+//            }
+//        }
+        final NavOptions options = new NavOptions.Builder()
+//                .setEnterAnim(R.anim.)
+//                .setExitAnim(R.anim.)
+//                .setPopEnterAnim(R.anim.)
+//                .setPopExitAnim(R.anim.)
+                .build();
+        final NavController navController = new NavController(mActivity);
+//        navController.navigate(R.id.action_step_two);
+//        navController.navigate(R.id.fragment_flow_step_one_dest);
+//        navController.navigate(R.id.action_step_two, null, options);
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                NavDestination currentDestination = navController.getCurrentDestination();
+                NavGraph graph = navController.getGraph();
+                Log.d("cjf","onDestinationChanged-->" +
+                        "\ncurrentDestination:"+currentDestination+"_graph:"+graph);
+//                navController.navigateUp()
+            }
+        });
 
-//        mRlvPullRefresh.setAdapter(mAdapter);
+//        Navigation.setViewNavController(view, navController);
+        view.findViewById(R.id.bt_navigate_destination).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.fragment_flow_step_one_dest, null, options);
+
+            }
+        });
+        view.findViewById(R.id.bt_navigate_action).setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_step_two)
+        );
 
 
     }
@@ -98,70 +115,5 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-//        mRlvPullRefresh.setOnRefreshListener(new RefreshListView.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                io.reactivex.Observable.create(new ObservableOnSubscribe<Hashtable>() {
-//                    @Override
-//                    public void subscribe(@NonNull ObservableEmitter<Hashtable> e) throws Exception {
-//                         /*
-//                         get fifteen data from local
-//                        */
-//                        Map<List<TempeBean>, List<SkyConBean>> forecast = GetWeatherDataUtils.requestDataFromLocal(TempeBean.class, SkyConBean.class, mActivity, GetWeatherDataUtils.FORECAST);
-//                        /*
-//                         get RealTimeBean data from local
-//                         */
-//                        RealTimeBean rlBean = GetWeatherDataUtils.requestDataFromLocal(RealTimeBean.class, mActivity, GetWeatherDataUtils.REALTIMES);
-//                        Thread.sleep(2000L);
-//
-//                        if (forecast == null || rlBean == null) {
-//                            e.onError(new Throwable());
-//                        } else {
-//                            Hashtable<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>> wrapper = new Hashtable<>();
-//                            wrapper.put(rlBean, forecast);
-//                            e.onNext(wrapper);
-//                        }
-//
-//                        e.onComplete();
-//                    }
-//                })
-//                        .subscribeOn(Schedulers.io())
-//                        .observeOn(Schedulers.single())
-//                        .subscribe(new Observer<Hashtable>() {
-//                            @Override
-//                            public void onSubscribe(Disposable d) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onNext(Hashtable o) {
-//                                @SuppressWarnings("unchecked") Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>> entry = (Hashtable.Entry<RealTimeBean, Map<List<TempeBean>, List<SkyConBean>>>) o.entrySet().iterator().next();
-//
-//                                Map<List<TempeBean>, List<SkyConBean>> map = entry.getValue();
-//                                Map.Entry<List<TempeBean>, List<SkyConBean>> next = map.entrySet().iterator().next();
-//
-//                                EventBus.getDefault().post(mRefreshEvent
-//                                        .setValueReturnEvent(EVENT_GET_DATA_REFRESH_OK)
-//                                        .setVauleWithRealTime(entry.getKey())
-//                                        .setMapWithFifteen(next.getKey(), next.getValue()));
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable e) {
-//                                EventBus.getDefault().post(mRefreshEvent.setValueReturnEvent(EVENT_GET_DATA_REFRESH_ERROR));
-//
-//                            }
-//
-//                            @Override
-//                            public void onComplete() {
-//
-//                            }
-//                        });
-//                requsetDataFromServer();
-
-//                mRlvPullRefresh.onRefreshComplete(true);
-
-//            }
-//        });
     }
 }
