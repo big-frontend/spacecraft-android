@@ -1,5 +1,7 @@
 <resources>
-
+    <!--继承系统提供的样式使用parent，如果是继承自己提供的样式建议使用 .-->
+    <!--reference:
+          You can also inherit styles (except those from the platform) by extending a style's name with a dot notation, instead of using the parent attribute. That is, prefix the name of your style with the name of the style you want to inherit, separated by a period. You should usually do this only when extending your own styles, not styles from other libraries. For example, the following style inherits all styles from the GreenText style above and then increases the text size:-->
     <!--===================== base theme========================================-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
@@ -21,7 +23,6 @@
         <!--<item name="android:windowBackground">?android:attr/colorBackground</item>-->
 
         <item name="android:windowContentOverlay">@null</item>
-        <!--<item name="android:fitsSystemWindows">true</item>-->
 
         <!--支持3.0以上-->
         <!--<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>-->

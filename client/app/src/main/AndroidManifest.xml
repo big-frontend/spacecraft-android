@@ -27,7 +27,8 @@
         </activity>
         <activity
             android:name="com.hawksjamesf.spacecraft.photo.PhotoActivity"
-            android:theme="@style/PhotoTheme">
+            android:theme="@style/PhotoTheme"
+            >
         </activity>
         <activity
             android:name="com.hawksjamesf.spacecraft.video.VideoActivity"
@@ -55,6 +56,7 @@
 
         <activity
             android:name="com.hawksjamesf.spacecraft.ui.home.HomeActivity"
+            android:theme="@style/HomeTheme"
             android:launchMode="singleTop"/>
 
         <activity

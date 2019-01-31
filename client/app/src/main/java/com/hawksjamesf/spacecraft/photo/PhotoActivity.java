@@ -20,6 +20,7 @@ public class PhotoActivity extends AppCompatActivity {
         if (hasFocus) {
             //也可以在android:theme="@style/PhotoTheme"中配置
 //            BarUtil.setStatusBarTransparent(this);
+//            BarUtil.setBarsTransparent(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 //            BarUtil.setBarsFullscreen(PhotoActivity.this, BarUtil.IMMERSIVE_STICKY);
         }
 

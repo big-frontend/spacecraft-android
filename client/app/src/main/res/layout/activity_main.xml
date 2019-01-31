@@ -9,6 +9,10 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        app:title="title"
+        app:subtitle="subtitle"
+        app:logo="@mipmap/ic_launcher"
         android:id="@+id/tb"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

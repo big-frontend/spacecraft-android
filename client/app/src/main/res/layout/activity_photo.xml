@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/apricot"
+    android:fitsSystemWindows="true"
     tools:context="com.hawksjamesf.spacecraft.photo.PhotoActivity">
 
     <!--<com.google.android.material.appbar.AppBarLayout-->
@@ -32,9 +32,10 @@
     <!--</com.google.android.material.appbar.AppBarLayout>-->
 
     <androidx.viewpager.widget.ViewPager
+        android:fitsSystemWindows="true"
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
