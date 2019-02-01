@@ -2,6 +2,7 @@ package com.hawksjamesf.spacecraft.ui.home;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             BarUtil.setStatusBarTransparent(this);
+            BarUtil.setNavBarImmersive(this);
 //            BarUtil.setBarsTransparent(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         }
     }
@@ -107,6 +109,11 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
 //                .setPrimaryNavigationFragment(navHostFragment)// this is the equivalent to app:defaultNavHost="true"
 //                .commitNowAllowingStateLoss();
         AppBarLayout abl = findViewById(R.id.abl);
+        abl.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+            }
+        });
         CollapsingToolbarLayout ctbl=findViewById(R.id.ctbl);
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setAdapter(new MyAdapter());

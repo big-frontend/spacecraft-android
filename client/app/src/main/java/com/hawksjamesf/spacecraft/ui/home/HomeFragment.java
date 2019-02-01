@@ -2,7 +2,6 @@ package com.hawksjamesf.spacecraft.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,8 +84,6 @@ public class HomeFragment extends Fragment {
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 NavDestination currentDestination = navController.getCurrentDestination();
                 NavGraph graph = navController.getGraph();
-                Log.d("cjf","onDestinationChanged-->" +
-                        "\ncurrentDestination:"+currentDestination+"_graph:"+graph);
 //                navController.navigateUp()
             }
         });

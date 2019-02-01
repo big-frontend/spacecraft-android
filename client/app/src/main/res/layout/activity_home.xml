@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/apricot"
-    android:fitsSystemWindows="true"
     tools:context=".ui.home.HomeActivity"
     >
 
@@ -20,29 +19,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:liftOnScroll="true"
         app:liftOnScrollTargetViewId="@id/rv"
-        tools:expanded="true">
+        tools:expanded="false">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/ctbl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@android:color/white"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:statusBarScrim="@android:color/white"
-            app:title="collapsing toolbar layout"
+            android:minHeight="100dp"
+            app:collapsedTitleGravity="left"
+            app:contentScrim="@android:color/transparent"
+            app:expandedTitleGravity="right"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="@android:color/transparent"
+            app:title="collapsing title"
             app:titleEnabled="true"
             app:toolbarId="@id/tb"
             >
             <!--layout_scrollFlags-->
-            <!--scroll - 想滚动就必须设置这个。-->
-            <!--enterAlways - 实现quick return效果, 当向下移动时，立即F显示View（比如Toolbar)。-->
-            <!--exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面。-->
-            <!--enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。-->
+            <!--scroll - 想滚动就必须设置这个->
+            <!-enterAlways -在scrollview向下滚动时，显示view的layout_height -->
+            <!--enterAlwaysCollapsed - 搭配enterAlways使用，在scrollview向下滚动时 & 在view为collapse时，view显示暂时显示minHeight-->
+            <!--exitUntilCollapsed - 在view为collapsed时，view的显示的高度为android:minHeight设定-->
 
             <ImageView
+                android:id="@+id/iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
