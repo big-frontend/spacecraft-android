@@ -30,8 +30,12 @@ android {
     }
     sourceSets {
         main.java.srcDirs += ["src/main/kotlin"]
-    }
 
+        //carousel component
+        main.java.srcDirs += ["src/carousel/java"]
+        main.res.srcDirs += ["src/carousel/res"]
+        main.assets.srcDirs += ["src/carousel/assets"]
+    }
 
 }
 

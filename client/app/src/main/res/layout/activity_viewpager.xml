@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.hawksjamesf.common.CarouselView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        app:autoStart="true"
+        app:carouselInterval="5000"/>
+
+</LinearLayout>
