@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CarouselView">
-        <attr name="autoStart" format="boolean"/>
-        <attr name="carouselInterval" format="integer"/>
+        <attr name="cv_autoStart" format="boolean"/>
+        <attr name="cv_interval" format="integer"/>
     </declare-styleable>
 </resources>

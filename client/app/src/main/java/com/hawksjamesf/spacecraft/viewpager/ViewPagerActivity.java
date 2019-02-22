@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.hawksjamesf.common.CarouselView;
+import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
+import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;
 import com.hawksjamesf.spacecraft.R;
 
 import java.util.ArrayList;
@@ -40,11 +42,14 @@ public class ViewPagerActivity extends AppCompatActivity {
         list.add(4);
         list.add(5);
         cv.setAdapter(adapter);
+        cv.setPageTransformer(new ZoomOutPageTransformer());
         adapter.setDataList(list);
 
     }
 
-    public class Adapter extends CarouselView.CarouselPagerAdapter {
+    public class Adapter extends CarouselPagerAdapter<Integer>
+
+    {
         List<Integer> list = new ArrayList<>();
 
         public int getPagers() {
@@ -81,14 +86,6 @@ public class ViewPagerActivity extends AppCompatActivity {
         @Override
         public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
-        }
-
-
-        void setDataList(@NonNull List<Integer> list) {
-            this.list.clear();
-            this.list.addAll(list);
-            notifyDataSetChanged();
-
         }
     }
 }

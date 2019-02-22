@@ -14,6 +14,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
+
 public class BookFlipPageTransformer implements ViewPager.PageTransformer {
 
     private final int LEFT = -1;

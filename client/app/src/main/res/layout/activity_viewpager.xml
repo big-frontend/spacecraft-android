@@ -11,7 +11,18 @@
         android:layout_height="153dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        app:autoStart="true"
-        app:carouselInterval="5000"/>
+        app:cv_autoStart="true"
+        app:cv_interval="5000"
+        />
+
+    <com.hawksjamesf.common.CarouselView
+        android:id="@+id/cv1"
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        app:cv_autoStart="true"
+        app:cv_interval="5000"
+        />
 
 </LinearLayout>

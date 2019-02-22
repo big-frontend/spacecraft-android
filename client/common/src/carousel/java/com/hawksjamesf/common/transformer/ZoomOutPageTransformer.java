@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
+
 /**
  * Copyright ® $ 2019
  * All right reserved.

@@ -2,24 +2,21 @@ package com.hawksjamesf.common;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.SurfaceTexture;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.hawksjamesf.common.transformer.DepthPageTransformer;
+import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 /**
@@ -30,18 +27,18 @@ import androidx.viewpager.widget.ViewPager;
  * @email: jf.chen@Ctrip.com
  * @since: Feb/16/2019  Sat
  */
-public class CarouselView extends FrameLayout {
-    private boolean autoStart;
-    private int interval;
-    private static int DEFAULT_INTERVAL = 5000;
+public class CarouselView extends FrameLayout implements TextureView.SurfaceTextureListener, ViewPager.OnPageChangeListener, ViewPager.OnTouchListener {
+    private static final String TAG = CarouselView.class.getSimpleName();
+    private boolean mAutoStart;
+    private int mInterval;
+    private static int DEFAULT_INTERVAL = 3500;
     private ViewPager mVpContent;
     private TextView mTvIndicator;
-    private PagerAdapter mPagerAdapter;
+    private CarouselPagerAdapter mPagerAdapter;
     private boolean dragging;
-    private static int FAKE_SIZE = 1000;
-    private Timer timer = new Timer();
-    private int mDelay = 5000;
-    private int mCurPosition;
+    private int mCurPosition = 0;
+    private ViewPager.PageTransformer transformer;
+    private TextureView mTextureView;
 
     public CarouselView(@NonNull Context context) {
         super(context);
@@ -58,82 +55,70 @@ public class CarouselView extends FrameLayout {
         initView(attrs, defStyleAttr);
     }
 
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (!dragging) {
+                int currentItem = mVpContent.getCurrentItem();
+                mVpContent.setCurrentItem(currentItem + 1, true);
+                sendEmptyMessageDelayed(0, mInterval);
+            }
+        }
+    };
+
+    @Override
+    protected void onAttachedToWindow() {
+        Log.d(TAG, "onAttachedToWindow");
+        super.onAttachedToWindow();
+        if (mAutoStart && mPagerAdapter.getPagers() != 0) {
+            mHandler.sendEmptyMessageDelayed(0, mInterval);
+        }
+
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        Log.d(TAG, "onWindowFocusChanged");
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        Log.d(TAG, "onDetachedFromWindow");
+        super.onDetachedFromWindow();
+        mHandler.removeMessages(0);
+    }
+
     private void initView(AttributeSet attrs, int defStyle) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CarouselView, defStyle, 0);
-        autoStart = typedArray.getBoolean(R.styleable.CarouselView_autoStart, true);
-        interval = typedArray.getInteger(R.styleable.CarouselView_carouselInterval, DEFAULT_INTERVAL);
+        mAutoStart = typedArray.getBoolean(R.styleable.CarouselView_cv_autoStart, true);
+        mInterval = typedArray.getInteger(R.styleable.CarouselView_cv_interval, DEFAULT_INTERVAL);
         typedArray.recycle();
         View view = inflate(getContext(), R.layout.view_carousel, this);
-        mVpContent = view.findViewById(R.id.vp_content);
-        mVpContent.setPageTransformer(true, new DepthPageTransformer());
-        mTvIndicator = view.findViewById(R.id.tv_indicator);
-        mVpContent.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN || motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
-                    dragging = true;
-                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    dragging = false;
-                }
-                return false;
-            }
-        });
-        if (autoStart) {
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    if (!dragging) {
-                        mCurPosition += 1;
-                        mVpContent.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (mCurPosition == 0) {
-                                    mVpContent.setCurrentItem(mCurPosition, false);
-                                } else {
-                                    mVpContent.setCurrentItem(mCurPosition, true);
-
-                                }
-                            }
-                        });
-                    }
-
-                }
-            }, mDelay, interval);
+        mTextureView = new TextureView(getContext());
+        mTextureView.setSurfaceTextureListener(this);
+        mTextureView.setVisibility(View.VISIBLE);
+        mVpContent = (ViewPager) view.findViewById(R.id.vp_content);
+        mTvIndicator = (TextView) view.findViewById(R.id.tv_indicator);
+        mVpContent.setOffscreenPageLimit(3);
+        if (mAutoStart) {
+            mVpContent.setOnTouchListener(this);
         }
-//        mVpContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
-//
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
     }
 
     public void setAdapter(@NonNull final CarouselPagerAdapter adapter) {
         mPagerAdapter = adapter;
-        adapter.setViewPager(mVpContent);
-        mVpContent.setAdapter(adapter);
-        mTvIndicator.setText(1 + "/" + adapter.getPagers());
-        mVpContent.setCurrentItem(0);
-//            throw new IllegalArgumentException("Adapter is not null");
-        mVpContent.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int fakePosition) {
-                mCurPosition = fakePosition % adapter.getPagers();
-                mTvIndicator.setText(mCurPosition + 1 + "/" + adapter.getPagers());
-            }
-        });
+        mPagerAdapter.setViewPager(mVpContent);
+        mPagerAdapter.setIndicator(mTvIndicator);
+        mVpContent.setAdapter(mPagerAdapter);
+        mVpContent.setCurrentItem(0, false);
+        mTvIndicator.setText( 1+ "/" + mPagerAdapter.getPagers());
+        mVpContent.addOnPageChangeListener(this);
+    }
 
+    public void setPageTransformer(@NonNull ViewPager.PageTransformer pageTransformer) {
+        mVpContent.setPageTransformer(true, pageTransformer);
     }
 
     public void setCurrentItem(int position, boolean smoothScroll) {
@@ -144,69 +129,73 @@ public class CarouselView extends FrameLayout {
         return mVpContent.getCurrentItem();
     }
 
-    public abstract static class CarouselPagerAdapter extends PagerAdapter {
-        private ViewPager mVpContent;
+    @Override
+    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
+        Log.d(TAG, "onSurfaceTextureAvailable");
 
-        @Override
-        public int getCount() {
-            return FAKE_SIZE;
+
+    }
+
+    @Override
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int width, int height) {
+        Log.d(TAG, "onSurfaceTextureSizeChanged");
+
+    }
+
+    @Override
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        Log.d(TAG, "onSurfaceTextureDestroyed");
+        return false;
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        Log.d(TAG, "onSurfaceTextureUpdated");
+
+    }
+
+    @Override
+    public void onPageSelected(int fakePosition) {
+        if (mPagerAdapter.getPagers() != 0) {
+            mCurPosition = fakePosition % mPagerAdapter.getPagers();
+            Log.d(TAG, "fakePosition" + fakePosition + "_cur position:" + mCurPosition);
+            mTvIndicator.setText(fakePosition % mPagerAdapter.getPagers() + 1 + "/" + mPagerAdapter.getPagers());
         }
+    }
 
-        protected abstract int getPagers();
+    @Override
+    public void onPageScrolled(int fakePosition, float positionOffset, int positionOffsetPixels) {
+    }
 
-        protected abstract Object instantiatePager(@NonNull ViewGroup container, int position);
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        Log.d(TAG, "state:" + state);
+        switch (state) {
+            case ViewPager.SCROLL_STATE_IDLE: {//idle状态
+            }
+            case ViewPager.SCROLL_STATE_DRAGGING: {//手动滑动
+//                        dragging = true;
+//                        mHandler.removeMessages(0);
+            }
+            case ViewPager.SCROLL_STATE_SETTLING: {
+                //Indicates that the pager is in the process of settling to a final position.
 
-        protected abstract void destroyPager(@NonNull ViewGroup container, int position, @NonNull Object object);
-
-        @CallSuper
-        @Override
-        public void finishUpdate(@NonNull ViewGroup container) {
-            if (mVpContent != null) {
-                int position = mVpContent.getCurrentItem();
-                if (position == 0) {
-                    position = getPagers();
-                    mVpContent.setCurrentItem(position, false);
-                } else if (position == FAKE_SIZE - 1) {
-                    position = getPagers() - 1;
-                    mVpContent.setCurrentItem(position, false);
-                }
             }
         }
-
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            position %= getPagers();
-            return instantiatePager(container, position);
-        }
-
-        @Override
-        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-            position %= getPagers();
-            destroyPager(container, position, object);
-        }
-
-        @Override
-        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-            return false;
-        }
-
-        private void setViewPager(@NonNull ViewPager viewPager) {
-            mVpContent = viewPager;
-        }
-
     }
 
-    public abstract static class CarouselFragmentPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN || motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
+            dragging = true;
+            mHandler.removeMessages(0);
 
-        public CarouselFragmentPagerAdapter(FragmentManager fm) {
-            super(fm);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            dragging = false;
+            mHandler.sendEmptyMessageDelayed(0, mInterval);
         }
 
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            return super.instantiateItem(container, position);
-        }
+        return false;
     }
+
 }
