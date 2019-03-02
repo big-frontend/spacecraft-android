@@ -10,7 +10,7 @@ import okio.ByteString;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: jf.chen
+ * @author: hawksjamesf
  * @since: Dec/16/2018  Sun
  */
 public class Profile extends Message<Profile, Profile.Builder> {

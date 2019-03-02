@@ -24,8 +24,8 @@ import androidx.navigation.Navigation;
  * Copyright ® $ 2019
  * All right reserved.
  *
- * @author: jf.chen
- * @email: jf.chen@Ctrip.com
+ * @author: hawksjamesf
+ * @email: hawksjamesf@gmail.com
  * @since: Jan/27/2019  Sun
  */
 public class DeepLinkFragment extends Fragment {

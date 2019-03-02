@@ -20,8 +20,8 @@ import androidx.viewpager.widget.ViewPager;
  * Copyright ® $ 2019
  * All right reserved.
  *
- * @author: jf.chen
- * @email: jf.chen@Ctrip.com
+ * @author: hawksjamesf
+ * @email: hawksjamesf@gmail.com
  * @since: Feb/20/2019  Wed
  */
 public abstract class CarouselPagerAdapter<T> extends PagerAdapter {

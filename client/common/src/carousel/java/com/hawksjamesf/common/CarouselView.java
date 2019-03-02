@@ -23,8 +23,8 @@ import androidx.viewpager.widget.ViewPager;
  * Copyright ® $ 2019
  * All right reserved.
  *
- * @author: jf.chen
- * @email: jf.chen@Ctrip.com
+ * @author: hawksjamesf
+ * @email: hawksjamesf@gmail.com
  * @since: Feb/16/2019  Sat
  */
 public class CarouselView extends FrameLayout implements TextureView.SurfaceTextureListener, ViewPager.OnPageChangeListener, ViewPager.OnTouchListener {
