@@ -5,6 +5,12 @@
 
     <com.hawksjamesf.common.VideoSurfaceView
         android:id="@+id/vsv"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.hawksjamesf.common.VideoTextureView
+        android:id="@+id/vtv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

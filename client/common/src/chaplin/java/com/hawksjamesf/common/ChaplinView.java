@@ -2,6 +2,7 @@ package com.hawksjamesf.common;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Matrix;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class ChaplinView extends FrameLayout {
     private static final String TAG = ChaplinView.class.getSimpleName();
 
     private VideoSurfaceView mSurfaceView;
+    private VideoTextureView vtv;
     private ImageView imageView;
 
     private Handler mUIHandler;
@@ -49,6 +51,7 @@ public class ChaplinView extends FrameLayout {
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
         View rootView = inflate(getContext(), R.layout.view_chaplin, this);
         mSurfaceView = rootView.findViewById(R.id.vsv);
+        vtv = rootView.findViewById(R.id.vtv);
         imageView = rootView.findViewById(R.id.iv);
         mUIHandler = new Handler();
     }
@@ -105,7 +108,8 @@ public class ChaplinView extends FrameLayout {
 
 
     public void start() {
-        mSurfaceView.start();
+//        mSurfaceView.start();
+        vtv.start();
         mUIHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -145,6 +149,11 @@ public class ChaplinView extends FrameLayout {
         });
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        relayoutByScaleType(vtv.videoWidth, vtv.videoHeight, getWidth(), getHeight(), ScaleType.CENTER_INSIDE);
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -168,5 +177,61 @@ public class ChaplinView extends FrameLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Log.d(TAG, "onDetachedFromWindow");
+    }
+
+    private Matrix mVideoMatrix;
+
+    public void relayoutByScaleType(final int videoWidth, final int videoHeight,
+                                    final int containerWidth, final int containerHeight, final ScaleType scaleType) {
+        if (videoWidth == 0 || videoHeight == 0 || containerWidth == 0 || containerHeight == 0)
+            return;
+        if (scaleType == ScaleType.FIT_XY) {
+            mVideoMatrix = null;
+        } else {
+            mVideoMatrix = new Matrix();
+            //第1步:把视频区移动到View区,使两者中心点重合.
+            float dx = (containerWidth - videoWidth) / 2f;
+            float dy = (containerHeight - videoHeight) / 2f;
+            mVideoMatrix.setTranslate(dx, dy);
+
+            //第2步:因为默认视频是fitXY的形式显示的,所以首先要缩放还原回来.
+            mVideoMatrix.preScale(videoWidth / (containerWidth * 1f), videoHeight / (containerHeight * 1f));
+
+            float sx = containerWidth / (videoWidth * 1f);
+            float sy = containerHeight / (videoHeight * 1f);
+            float pivotX = containerWidth / 2f;
+            float pivotY = containerHeight / 2f;
+            if (scaleType == ScaleType.CENTER_CROP) {//裁剪后全屏显示
+                //第3步,等比例放大或缩小,直到视频区的一边超过View一边, 另一边与View的另一边相等. 因为超过的部分超出了View的范围,所以是不会显示的,相当于裁剪了.
+                float maxScale = Math.max(sx, sy);
+                mVideoMatrix.postScale(maxScale, maxScale, pivotX, pivotY);//后两个参数坐标是以整个View的坐标系以参考的
+            } else if (scaleType == ScaleType.CENTER_INSIDE) {//全部显示并居中
+                //第3步,等比例放大或缩小,直到视频区的一边和View一边相等.如果另一边和view的一边不相等，则留下空隙
+                float minScale = Math.min(sx, sy);
+                mVideoMatrix.postScale(minScale, minScale, pivotX, pivotY);
+            }
+            vtv.setTransform(mVideoMatrix);
+        }
+    }
+
+    public int px2dp(final float pxValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+
+    private ScaleType mScaleType;
+
+    public void setScaleType(ScaleType scaleType) {
+        if (scaleType == null) {
+            throw new NullPointerException();
+        }
+
+        if (mScaleType != scaleType) {
+            mScaleType = scaleType;
+
+//            requestLayout();
+//            invalidate();
+        }
     }
 }
