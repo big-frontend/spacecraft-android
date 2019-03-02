@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 /**
  * Copyright ® $ 2017
  * All right reserved.
- * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
  * @author: hawks jamesf
  * @since: 2017/7/4

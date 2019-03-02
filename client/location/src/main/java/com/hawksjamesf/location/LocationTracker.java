@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat;
 /**
  * Copyright ® $ 2017
  * All right reserved.
- * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
  * @author: hawks.jamesf
  * @since: 1/26/18

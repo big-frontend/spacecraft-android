@@ -18,14 +18,14 @@ import androidx.multidex.MultiDexApplication;
 /**
  * Copyright ® $ 2017
  * All right reserved.
- * Code Link : https://github.com/HawksJamesf/SimpleWeather
+ * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
  * @author: hawks jamesf
  * @since: 2017/7/4
  */
 
 public class App extends MultiDexApplication {
-    private static final String TAG = "SimpleWeatherApp---";
+    private static final String TAG = "SpacecraftApp---";
     private static AppComponent sAppComponent;
     private static NetComponent sNetComponent;
     private static App app;
