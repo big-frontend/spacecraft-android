@@ -2,7 +2,6 @@ package com.hawksjamesf.common;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.SurfaceTexture;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -27,7 +26,7 @@ import androidx.viewpager.widget.ViewPager;
  * @email: hawksjamesf@gmail.com
  * @since: Feb/16/2019  Sat
  */
-public class CarouselView extends FrameLayout implements TextureView.SurfaceTextureListener, ViewPager.OnPageChangeListener, ViewPager.OnTouchListener {
+public class CarouselView extends FrameLayout implements ViewPager.OnPageChangeListener, ViewPager.OnTouchListener {
     private static final String TAG = CarouselView.class.getSimpleName();
     private boolean mAutoStart;
     private int mInterval;
@@ -70,7 +69,7 @@ public class CarouselView extends FrameLayout implements TextureView.SurfaceText
     protected void onAttachedToWindow() {
         Log.d(TAG, "onAttachedToWindow");
         super.onAttachedToWindow();
-        if (mAutoStart && mPagerAdapter.getPagers() != 0) {
+        if (mAutoStart && mPagerAdapter != null && mPagerAdapter.getPagers() != 0) {
             mHandler.sendEmptyMessageDelayed(0, mInterval);
         }
 
@@ -80,7 +79,12 @@ public class CarouselView extends FrameLayout implements TextureView.SurfaceText
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
-        Log.d(TAG, "onWindowFocusChanged");
+        Log.d(TAG, "onWindowFocusChanged:" + hasWindowFocus);
+        if (hasWindowFocus) {
+            mHandler.sendEmptyMessageDelayed(0, mInterval);
+        } else {
+            mHandler.removeMessages(0);
+        }
     }
 
     @Override
@@ -96,15 +100,13 @@ public class CarouselView extends FrameLayout implements TextureView.SurfaceText
         mInterval = typedArray.getInteger(R.styleable.CarouselView_cv_interval, DEFAULT_INTERVAL);
         typedArray.recycle();
         View view = inflate(getContext(), R.layout.view_carousel, this);
-        mTextureView = new TextureView(getContext());
-        mTextureView.setSurfaceTextureListener(this);
-        mTextureView.setVisibility(View.VISIBLE);
-        mVpContent = (ViewPager) view.findViewById(R.id.vp_content);
-        mTvIndicator = (TextView) view.findViewById(R.id.tv_indicator);
+        mVpContent = view.findViewById(R.id.vp_content);
+        mTvIndicator = view.findViewById(R.id.tv_indicator);
         mVpContent.setOffscreenPageLimit(3);
         if (mAutoStart) {
             mVpContent.setOnTouchListener(this);
         }
+
     }
 
     public void setAdapter(@NonNull final CarouselPagerAdapter adapter) {
@@ -113,7 +115,7 @@ public class CarouselView extends FrameLayout implements TextureView.SurfaceText
         mPagerAdapter.setIndicator(mTvIndicator);
         mVpContent.setAdapter(mPagerAdapter);
         mVpContent.setCurrentItem(0, false);
-        mTvIndicator.setText( 1+ "/" + mPagerAdapter.getPagers());
+        mTvIndicator.setText(1 + "/" + mPagerAdapter.getPagers());
         mVpContent.addOnPageChangeListener(this);
     }
 
@@ -129,34 +131,11 @@ public class CarouselView extends FrameLayout implements TextureView.SurfaceText
         return mVpContent.getCurrentItem();
     }
 
-    @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
-        Log.d(TAG, "onSurfaceTextureAvailable");
 
-
-    }
-
-    @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int width, int height) {
-        Log.d(TAG, "onSurfaceTextureSizeChanged");
-
-    }
-
-    @Override
-    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        Log.d(TAG, "onSurfaceTextureDestroyed");
-        return false;
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        Log.d(TAG, "onSurfaceTextureUpdated");
-
-    }
 
     @Override
     public void onPageSelected(int fakePosition) {
-        if (mPagerAdapter.getPagers() != 0) {
+        if (mPagerAdapter != null && mPagerAdapter.getPagers() != 0) {
             mCurPosition = fakePosition % mPagerAdapter.getPagers();
             Log.d(TAG, "fakePosition" + fakePosition + "_cur position:" + mCurPosition);
             mTvIndicator.setText(fakePosition % mPagerAdapter.getPagers() + 1 + "/" + mPagerAdapter.getPagers());

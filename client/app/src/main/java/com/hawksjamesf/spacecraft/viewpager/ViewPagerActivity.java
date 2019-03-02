@@ -1,12 +1,16 @@
 package com.hawksjamesf.spacecraft.viewpager;
 
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import com.hawksjamesf.common.CarouselView;
+import com.hawksjamesf.common.ChaplinView;
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;
 import com.hawksjamesf.spacecraft.R;
@@ -18,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.hawksjamesf.common.VideoSurfaceView.videoUrl;
 /**
  * Copyright ® $ 2019
  * All right reserved.
@@ -29,6 +34,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ViewPagerActivity extends AppCompatActivity {
     List<Integer> list = new ArrayList<>();
     CarouselView cv;
+    VideoView vv;
+    ChaplinView clv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,15 +52,43 @@ public class ViewPagerActivity extends AppCompatActivity {
         cv.setPageTransformer(new ZoomOutPageTransformer());
         adapter.setDataList(list);
 
+        vv = findViewById(R.id.vv);
+//        MediaController mediaController = new MediaController(this);
+//        vv.setMediaController(mediaController);
+        vv.setVideoURI(Uri.parse(videoUrl));
+        clv = findViewById(R.id.clv);
+        vv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clv.start();
+            }
+        });
+        vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setVolume(0, 0);
+            }
+        });
+
     }
 
-    public class Adapter extends CarouselPagerAdapter<Integer>
 
-    {
-        List<Integer> list = new ArrayList<>();
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vv.start();
+        clv.start();
+
+    }
+
+    public class Adapter extends CarouselPagerAdapter<Integer> {
         public int getPagers() {
-            return list.size();
+            return dataList.size();
         }
 
         @Override
@@ -68,7 +103,7 @@ public class ViewPagerActivity extends AppCompatActivity {
                 imageView.setBackgroundColor(Color.YELLOW);
             } else if (position == 3) {
                 imageView.setBackgroundColor(Color.RED);
-            }else if (position ==4){
+            } else if (position == 4) {
                 imageView.setBackgroundColor(Color.CYAN);
 
             }

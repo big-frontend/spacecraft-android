@@ -35,6 +35,12 @@ android {
         main.java.srcDirs += ["src/carousel/java"]
         main.res.srcDirs += ["src/carousel/res"]
         main.assets.srcDirs += ["src/carousel/assets"]
+
+        //chaplin component
+        main.aidl.srcDirs += ["src/chaplin/aidl"]
+        main.java.srcDirs += ["src/chaplin/java"]
+        main.res.srcDirs += ["src/chaplin/res"]
+        main.assets.srcDirs += ["src/chaplin/assets"]
     }
 
 }
