@@ -173,10 +173,6 @@ public class ChaplinView extends FrameLayout {
         }
     }
 
-    public int px2dp(final float pxValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
-    }
 
 
     private ScaleType mScaleType;

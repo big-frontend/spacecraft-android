@@ -245,10 +245,6 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     }
     // media play end
 
-    public int dp2px(final float dpValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
 
 
     private boolean isInPlaybackState() {

@@ -160,4 +160,17 @@ public class VideoActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+//
+//    @Override
+//    public void onActionClicked(Action action) {
+//        if (action.getId() == R.id.lb_control_picture_in_picture) {
+//            getActivity().enterPictureInPictureMode();
+//            return;
+//        }
+//    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+    }
 }
