@@ -3,6 +3,7 @@ package com.hawksjamesf.common;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Matrix;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -11,8 +12,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 
@@ -53,6 +52,17 @@ public class ChaplinView extends FrameLayout {
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
         View rootView = inflate(getContext(), R.layout.view_chaplin, this);
         mVsvSurface = rootView.findViewById(R.id.vsv_surface);
+        mVsvSurface.setOnMediaPlayerListener(new OnMediaPlayerListener() {
+            @Override
+            protected void onPrepared(MediaPlayer mp) {
+
+            }
+
+            @Override
+            protected void onCompletion(MediaPlayer mp) {
+                imageView.setVisibility(View.VISIBLE);
+            }
+        });
         mVtvTexture = rootView.findViewById(R.id.vtv_texture);
         imageView = rootView.findViewById(R.id.iv);
         mUIHandler = new Handler();
@@ -105,8 +115,6 @@ public class ChaplinView extends FrameLayout {
 //        }
 //    }
 
-
-    private List<Boolean> stickies = new ArrayList<>();
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -174,7 +182,6 @@ public class ChaplinView extends FrameLayout {
     }
 
 
-
     private ScaleType mScaleType;
 
     public void setScaleType(ScaleType scaleType) {
@@ -190,9 +197,10 @@ public class ChaplinView extends FrameLayout {
         }
     }
 
+
     //<editor-fold desc="开放的接口，API">
     public void start() {
-//        mVsvSurface.start();
+        mVsvSurface.start();
         mVtvTexture.start();
         mUIHandler.post(new Runnable() {
             @Override
@@ -237,11 +245,14 @@ public class ChaplinView extends FrameLayout {
         setURI(uri, null);
     }
 
+    private static final String raw_file = "android.resource://%s/%s";
+    public static final String assets_file = "file:///android_asset/%s";
+
     public void setURI(final Uri uri, final Map<String, String> headers) {
-        if (uri == null) {
-            throw new NullPointerException("uri param can not be null.");
-        }
-        mVtvTexture.setVideoURI(uri, headers);
+        mVsvSurface.setVideoURI(uri, headers);
+        String uriPath = String.format(raw_file, getContext().getPackageName(), R.raw.wechatsight1);
+//        String uriPath = String.format(assets_file, "video_sample_1");
+        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
     }
     //</editor-fold>
 }
