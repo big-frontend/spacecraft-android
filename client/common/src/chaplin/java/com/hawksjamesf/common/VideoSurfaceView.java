@@ -29,8 +29,6 @@ import androidx.annotation.RequiresApi;
 public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener, MediaPlayer.OnBufferingUpdateListener/*, Handler.Callback*/ {
 
     private static final String TAG = "Chaplin/Surface";
-    public static final String videoUrl = "https://video.c-ctrip.com/videos/u0030l000000dbzlh5934.mp4";
-    public static final String gifUrl = "https://n.sinaimg.cn/tech/transform/138/w600h338/20190228/VRRf-htptaqf5558611.gif";
 
     public int surfaceWidth;
     public int surfaceHeight;
@@ -42,7 +40,7 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     public boolean hasStickyMessage = false;
     private State mCurState = State.IDLE;
-    private Uri mUri = Uri.parse(videoUrl);
+    private Uri mUri ;
     private Map<String, String> mHeaders;
     private MediaPlayer mMediaPlayer;
     private int mAudioSession;

@@ -1,5 +1,6 @@
 package com.hawksjamesf.spacecraft.viewpager;
 
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.widget.VideoView;
 
 import com.hawksjamesf.common.CarouselView;
 import com.hawksjamesf.common.ChaplinView;
+import com.hawksjamesf.common.Constants;
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;
 import com.hawksjamesf.spacecraft.R;
@@ -22,7 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.hawksjamesf.common.VideoSurfaceView.videoUrl;
 /**
  * Copyright ® $ 2019
  * All right reserved.
@@ -55,8 +56,10 @@ public class ViewPagerActivity extends AppCompatActivity {
         vv = findViewById(R.id.vv);
 //        MediaController mediaController = new MediaController(this);
 //        vv.setMediaController(mediaController);
-        vv.setVideoURI(Uri.parse(videoUrl));
+        AssetManager assets = getResources().getAssets();
+        vv.setVideoURI(Uri.parse(Constants.videoUrl));
         clv = findViewById(R.id.clv);
+        clv.setURI(Uri.parse(Constants.videoUrl));
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,13 +4,13 @@
              android:layout_height="match_parent">
 
     <com.hawksjamesf.common.VideoSurfaceView
-        android:id="@+id/vsv"
-        android:visibility="gone"
+        android:id="@+id/vsv_surface"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <com.hawksjamesf.common.VideoTextureView
-        android:id="@+id/vtv"
+        android:id="@+id/vtv_texture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:scaleType="center"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_play_circle_filled_apricot_24dp"/>
 
     <MediaController

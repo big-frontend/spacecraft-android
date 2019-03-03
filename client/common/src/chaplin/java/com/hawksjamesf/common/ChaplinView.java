@@ -3,6 +3,7 @@ package com.hawksjamesf.common;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -25,8 +27,8 @@ import java.util.List;
 public class ChaplinView extends FrameLayout {
     private static final String TAG = ChaplinView.class.getSimpleName();
 
-    private VideoSurfaceView mSurfaceView;
-    private VideoTextureView vtv;
+    private VideoSurfaceView mVsvSurface;
+    private VideoTextureView mVtvTexture;
     private ImageView imageView;
 
     private Handler mUIHandler;
@@ -50,8 +52,8 @@ public class ChaplinView extends FrameLayout {
 
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
         View rootView = inflate(getContext(), R.layout.view_chaplin, this);
-        mSurfaceView = rootView.findViewById(R.id.vsv);
-        vtv = rootView.findViewById(R.id.vtv);
+        mVsvSurface = rootView.findViewById(R.id.vsv_surface);
+        mVtvTexture = rootView.findViewById(R.id.vtv_texture);
         imageView = rootView.findViewById(R.id.iv);
         mUIHandler = new Handler();
     }
@@ -96,9 +98,9 @@ public class ChaplinView extends FrameLayout {
 //            }
 //
 //            Log.d(TAG, "onLayout:" + surfaceToLeft + "/" + surfaceToTop + ":" + surfaceToRight + "/" + surfaceToBottom);
-//            if (mSurfaceView != null) {
+//            if (mVsvSurface != null) {
 //
-////                mSurfaceView.layout(surfaceToLeft, surfaceToTop, surfaceToRight, surfaceToBottom);
+////                mVsvSurface.layout(surfaceToLeft, surfaceToTop, surfaceToRight, surfaceToBottom);
 //            }
 //        }
 //    }
@@ -106,53 +108,10 @@ public class ChaplinView extends FrameLayout {
 
     private List<Boolean> stickies = new ArrayList<>();
 
-
-    public void start() {
-//        mSurfaceView.start();
-        vtv.start();
-        mUIHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (imageView.getVisibility() == View.VISIBLE) {
-                    imageView.animate().setListener(new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            imageView.setVisibility(View.GONE);
-                            imageView.setScaleX(1f);
-                            imageView.setScaleY(1f);
-                            imageView.setAlpha(1f);
-                            animation.cancel();
-                        }
-
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animator animation) {
-
-                        }
-                    })
-                            .scaleX(2f)
-                            .scaleY(2f)
-                            .alpha(0.5f)
-                            .setDuration(1000)
-                            .start();
-                }
-
-            }
-        });
-    }
-
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        relayoutByScaleType(vtv.videoWidth, vtv.videoHeight, getWidth(), getHeight(), ScaleType.CENTER_INSIDE);
+//        relayoutByScaleType(mVtvTexture.videoWidth, mVtvTexture.videoHeight, getWidth(), getHeight(), ScaleType.CENTER_INSIDE);
     }
 
     @Override
@@ -210,7 +169,7 @@ public class ChaplinView extends FrameLayout {
                 float minScale = Math.min(sx, sy);
                 mVideoMatrix.postScale(minScale, minScale, pivotX, pivotY);
             }
-            vtv.setTransform(mVideoMatrix);
+            mVtvTexture.setTransform(mVideoMatrix);
         }
     }
 
@@ -234,4 +193,59 @@ public class ChaplinView extends FrameLayout {
 //            invalidate();
         }
     }
+
+    //<editor-fold desc="开放的接口，API">
+    public void start() {
+//        mVsvSurface.start();
+        mVtvTexture.start();
+        mUIHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (imageView.getVisibility() == View.VISIBLE) {
+                    imageView.animate().setListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            imageView.setVisibility(View.GONE);
+                            imageView.setScaleX(1f);
+                            imageView.setScaleY(1f);
+                            imageView.setAlpha(1f);
+                            animation.cancel();
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    })
+                            .scaleX(2f)
+                            .scaleY(2f)
+                            .alpha(0.5f)
+                            .setDuration(1000)
+                            .start();
+                }
+
+            }
+        });
+    }
+
+    public void setURI(final Uri uri) {
+        setURI(uri, null);
+    }
+
+    public void setURI(final Uri uri, final Map<String, String> headers) {
+        if (uri == null) {
+            throw new NullPointerException("uri param can not be null.");
+        }
+        mVtvTexture.setVideoURI(uri, headers);
+    }
+    //</editor-fold>
 }

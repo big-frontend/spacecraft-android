@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.common.util.ActivityUtil;
+import com.hawksjamesf.spacecraft.viewpager.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -47,7 +48,7 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
-                        ActivityUtil.startActivity(SplashActivity.this, MainActivity.class, true);
+                        ActivityUtil.startActivity(SplashActivity.this, ViewPagerActivity.class, true);
                     }
                 }));
     }
