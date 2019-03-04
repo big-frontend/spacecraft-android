@@ -3,11 +3,13 @@ package com.hawksjamesf.common;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -23,14 +25,16 @@ import java.util.Map;
  * @email: hawksjamesf@gmail.com
  * @since: Feb/28/2019  Thu
  */
-public class ChaplinView extends FrameLayout {
+public class ChaplinView extends FrameLayout implements TextureView.SurfaceTextureListener {
     private static final String TAG = ChaplinView.class.getSimpleName();
 
     private VideoSurfaceView mVsvSurface;
-    private VideoTextureView mVtvTexture;
+    //    private VideoTextureView mVtvTexture;
+    private TextureView mTvTexture;
     private ImageView imageView;
 
     private Handler mUIHandler;
+    private MediaPlayerWrapper mMediaPlayerWrapper;
 
 
     public ChaplinView(Context context) {
@@ -63,8 +67,12 @@ public class ChaplinView extends FrameLayout {
                 imageView.setVisibility(View.VISIBLE);
             }
         });
-        mVtvTexture = rootView.findViewById(R.id.vtv_texture);
+//        mVtvTexture = rootView.findViewById(R.id.vtv_texture);
         imageView = rootView.findViewById(R.id.iv);
+
+        mTvTexture = rootView.findViewById(R.id.tv_texture);
+        mTvTexture.setSurfaceTextureListener(this);
+        mMediaPlayerWrapper = new MediaPlayerWrapper(getContext());
         mUIHandler = new Handler();
     }
 
@@ -177,7 +185,7 @@ public class ChaplinView extends FrameLayout {
                 float minScale = Math.min(sx, sy);
                 mVideoMatrix.postScale(minScale, minScale, pivotX, pivotY);
             }
-            mVtvTexture.setTransform(mVideoMatrix);
+//            mVtvTexture.setTransform(mVideoMatrix);
         }
     }
 
@@ -197,11 +205,31 @@ public class ChaplinView extends FrameLayout {
         }
     }
 
+    @Override
+    public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+
+    }
+
+    @Override
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+
+    }
+
+    @Override
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+        return false;
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+
+    }
+
 
     //<editor-fold desc="开放的接口，API">
     public void start() {
         mVsvSurface.start();
-        mVtvTexture.start();
+//        mVtvTexture.start();
         mUIHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -250,9 +278,12 @@ public class ChaplinView extends FrameLayout {
 
     public void setURI(final Uri uri, final Map<String, String> headers) {
         mVsvSurface.setVideoURI(uri, headers);
+        mMediaPlayerWrapper.setDataSource(uri,headers);
         String uriPath = String.format(raw_file, getContext().getPackageName(), R.raw.wechatsight1);
 //        String uriPath = String.format(assets_file, "video_sample_1");
-        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
+//        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
+        //todo：network & disk & memory cache
     }
+
     //</editor-fold>
 }

@@ -33,7 +33,7 @@ buildscript {
         supportLibraryVersion = '1.0.2'
         rxjavaVersion = '2.2.3'
         rxandroidVersion = '2.1.0'
-        glideVersion = '3.7.0'
+        glideVersion = '4.9.0'
         retrofitVersion = '2.3.0'
 //    retrofitVersion='2.4.0'
         okhttpVersion = '3.11.0'
@@ -51,7 +51,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0-alpha13'
+        classpath 'com.android.tools.build:gradle:3.5.0-alpha06'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
         classpath "io.realm:realm-gradle-plugin:$realmVersion"
         classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.6"

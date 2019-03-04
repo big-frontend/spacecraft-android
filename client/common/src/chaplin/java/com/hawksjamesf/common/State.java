@@ -9,12 +9,16 @@ package com.hawksjamesf.common;
  * @since: Mar/02/2019  Sat
  */
 public enum State {
-    ERROR,
     IDLE,
+    INITIALIZED,
     PREPARING,
     PREPARED,
     PLAYING,
-    PAUSE,
-    PLAYBACK_COMPLETED
+//    STARTED,
+    PAUSED,
+    STOPPED,
+    PLAYBACK_COMPLETED,
+    END,
+    ERROR
 
 }

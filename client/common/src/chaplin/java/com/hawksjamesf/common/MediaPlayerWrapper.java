@@ -1,34 +1,35 @@
 package com.hawksjamesf.common;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.SurfaceTexture;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.LinearLayout;
+import android.view.TextureView;
 
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.Map;
 
 import androidx.annotation.AnyThread;
-import androidx.annotation.RequiresApi;
 
 /**
- * Copyright ® $ 2019
+ * Copyright ® 2019
  * All right reserved.
+ * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
  * @author: hawksjamesf
  * @email: hawksjamesf@gmail.com
  * @since: Mar/02/2019  Sat
  */
-public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
-
-    private static final String TAG = "Chaplin/Surface";
+public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
+    public static final String TAG = "Chaplin/PlayerManager";
 
     public int surfaceWidth;
     public int surfaceHeight;
@@ -42,7 +43,6 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     private int mAudioSessionId;
     private AudioAttributes mAudioAttributes;
     private MediaPlayer mMediaPlayer;
-    private SurfaceHolder mSurfaceHolder;
 
     private OnLogListener mLogListener;
 
@@ -57,49 +57,59 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     }
 
-    public VideoSurfaceView(Context context) {
-        super(context);
-        initView(null, 0);
+
+    private Context mContext;
+    private SurfaceTexture mSurfaceTexture;
+    private SurfaceHolder mSurfaceHolder;
+
+    public static MediaPlayerWrapper create(Context context, Uri uri) {
+        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
+        mediaPlayerWrapper.setDataSource(uri);
+        return mediaPlayerWrapper;
     }
 
-    public VideoSurfaceView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initView(attrs, 0);
+    /**
+     * @param context
+     * @param resid   R.raw.xxx
+     * @return
+     */
+    public static MediaPlayerWrapper create(Context context, int resid) {
+        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
+        AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
+        if (afd == null) return null;
+        try {
+            mediaPlayerWrapper.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mediaPlayerWrapper;
     }
 
-    public VideoSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(attrs, defStyleAttr);
+    public static MediaPlayerWrapper createAndBind(Context context, TextureView textureView) {
+        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
+        return mediaPlayerWrapper;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public VideoSurfaceView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    public static MediaPlayerWrapper createAndBind(Context context, SurfaceView surfaceView) {
+        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
+        return mediaPlayerWrapper;
     }
 
-    private void initView(AttributeSet attributeSet, int defStyleAttr) {
-        getHolder().addCallback(this);
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        requestFocus();
-
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        Log.d(TAG, "surfaceCreated:" +
-                "surface is creating:" + surfaceHolder.isCreating()
-        );
-        mSurfaceHolder = surfaceHolder;
-        release(false);
-
-        mMediaPlayer = MediaPlayer.create(getContext(), mUri);
-        mMediaPlayer.setDisplay(mSurfaceHolder);
-
-
+    public MediaPlayerWrapper(Context context) {
+        mContext = context;
+//        release(false);
+        mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setScreenOnWhilePlaying(true);
         mMediaPlayer.setVolume(0, 0);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mAudioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MOVIE)
+                    .build();
+            mMediaPlayer.setAudioAttributes(mAudioAttributes);
+        }
+//        mMediaPlayer.setAudioSessionId(mAudioSessionId);
         mMediaPlayer.setOnPreparedListener(this);
         mMediaPlayer.setOnSeekCompleteListener(this);
         mMediaPlayer.setOnBufferingUpdateListener(this);
@@ -107,44 +117,6 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         mMediaPlayer.setOnErrorListener(this);
         mMediaPlayer.setOnInfoListener(this);
         mMediaPlayer.setOnVideoSizeChangedListener(this);
-
-
-        if (mAudioSessionId != 0 && mAudioAttributes != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mMediaPlayer.setAudioSessionId(mAudioSessionId);
-            mMediaPlayer.setAudioAttributes(mAudioAttributes);
-        }
-
-        if (mHeaders != null) {
-            try {
-                mMediaPlayer.setDataSource(getContext(), mUri, mHeaders);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-
-    @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
-        Log.d(TAG, "surfaceChanged:" +
-                "surface size:" + width + "/" + height +
-                "--->parent frame size:" + ((LinearLayout) getParent()).getWidth() + "/" + ((LinearLayout) getParent()).getHeight() +
-                "--->surface is creating:" + surfaceHolder.isCreating()
-        );
-        surfaceWidth = width;
-        surfaceHeight = height;
-
-
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        Log.d(TAG, "surfaceDestroyed:" +
-                "surface is creating:" + surfaceHolder.isCreating()
-        );
-        mSurfaceHolder = null;
-        release(true);
     }
 
     // media play start:
@@ -183,8 +155,8 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         videoHeight = height;
         //surface 面积越大，播放视频的性能越好
         if (videoWidth != 0 && videoHeight != 0) {
-            if (mSurfaceHolder != null) {
-                mSurfaceHolder.setFixedSize(videoWidth, videoHeight);
+            if (mSurfaceTexture != null) {
+                mSurfaceTexture.setDefaultBufferSize(videoWidth, videoHeight);
             }
         }
         if (mOnMediaPlayerListener != null) {
@@ -299,24 +271,44 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         }
     }
 
-    public void setVideoURI(final Uri uri) {
-        setVideoURI(uri, null);
+    public void setDataSource(final Uri uri) {
+        setDataSource(uri, null);
     }
 
-    public void setVideoURI(final Uri uri, final Map<String, String> headers) {
-//        mMediaPlayerManager.setVideoURI(uri, headers);
+    public void setDataSource(final Uri uri, final Map<String, String> headers) {
         if (uri == null) {
             throw new NullPointerException("uri param can not be null.");
         }
         mUri = uri;
         mHeaders = headers;
+        if (mHeaders != null) {
+            try {
+                mMediaPlayer.setDataSource(mContext, mUri, mHeaders);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    public void setDataSource(FileDescriptor fd, long offset, long length) {
+        try {
+            mMediaPlayer.setDataSource(fd, offset, length);
+            mMediaPlayer.prepareAsync();
+            mCurState = State.PREPARING;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void bindSurface(SurfaceTexture surfaceTexture) {
+        mSurfaceTexture = surfaceTexture;
+        mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
+    }
+
+    public void bindSurface(SurfaceHolder surfaceHolder) {
+        mSurfaceHolder = surfaceHolder;
+        mMediaPlayer.setDisplay(mSurfaceHolder);
     }
     //</editor-fold>
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
-    }
 }

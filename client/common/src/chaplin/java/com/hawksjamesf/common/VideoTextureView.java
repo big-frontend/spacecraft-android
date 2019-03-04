@@ -301,7 +301,7 @@ public class VideoTextureView extends TextureView implements TextureView.Surface
         Log.d(TAG, "pause:isPlaying:" + isPlaying());
         if (isPlaying()) {
             mMediaPlayer.pause();
-            mCurState = State.PAUSE;
+            mCurState = State.PAUSED;
         }
     }
 
