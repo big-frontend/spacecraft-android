@@ -9,12 +9,17 @@
         android:orientation="vertical">
 
 
-        <com.hawksjamesf.common.VideoSurfaceView
-            android:id="@+id/vsv_surface"
+        <!--<com.hawksjamesf.common.VideoSurfaceView-->
+        <!--android:id="@+id/vsv_surface"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--/>-->
+        <SurfaceView
+            android:id="@+id/sv_surface"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="match_parent"

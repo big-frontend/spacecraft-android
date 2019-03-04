@@ -5,17 +5,15 @@ buildscript {
     repositories {
         jcenter()
         google()
-        maven {
-            url "https://jitpack.io"
-            url "https://maven.aliyun.com/repository/jcenter"
-        }
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url = uri "https://repo.spring.io/milestone" }
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     ext {
         compileSdkVersion = 28
         buildToolsVersion = '28.0.3'
-        minSdkVersion = 17
+        minSdkVersion = 19//kk
         targetSdkVersion = 26
         versionCode = 2
         versionName = "2.0.0"
@@ -75,11 +73,8 @@ allprojects {
     repositories {
         jcenter()
         google()
-        maven {
-            url "https://jitpack.io"
-            url "https://maven.aliyun.com/repository/jcenter"
-
-        }
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url = uri "https://repo.spring.io/milestone" }
         maven { url 'https://plugins.gradle.org/m2/' }
     }

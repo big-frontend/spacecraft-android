@@ -3,12 +3,12 @@ package com.hawksjamesf.common;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -25,16 +25,18 @@ import java.util.Map;
  * @email: hawksjamesf@gmail.com
  * @since: Feb/28/2019  Thu
  */
-public class ChaplinView extends FrameLayout implements TextureView.SurfaceTextureListener {
+public class ChaplinView extends FrameLayout {
     private static final String TAG = ChaplinView.class.getSimpleName();
 
-    private VideoSurfaceView mVsvSurface;
+    //    private VideoSurfaceView mVsvSurface;
+    private SurfaceView mSvSurface;
+    private VideoPlayer mMPForSurface;
     //    private VideoTextureView mVtvTexture;
     private TextureView mTvTexture;
     private ImageView imageView;
 
     private Handler mUIHandler;
-    private MediaPlayerWrapper mMediaPlayerWrapper;
+    private VideoPlayer mMPForTexture;
 
 
     public ChaplinView(Context context) {
@@ -55,8 +57,22 @@ public class ChaplinView extends FrameLayout implements TextureView.SurfaceTextu
 
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
         View rootView = inflate(getContext(), R.layout.view_chaplin, this);
-        mVsvSurface = rootView.findViewById(R.id.vsv_surface);
-        mVsvSurface.setOnMediaPlayerListener(new OnMediaPlayerListener() {
+//        mVsvSurface = rootView.findViewById(R.id.vsv_surface);
+
+//        mVsvSurface.setOnMediaPlayerListener(new OnMediaPlayerListener() {
+//            @Override
+//            protected void onPrepared(MediaPlayer mp) {
+//
+//            }
+//
+//            @Override
+//            protected void onCompletion(MediaPlayer mp) {
+//                imageView.setVisibility(View.VISIBLE);
+//            }
+//        });
+        mSvSurface = rootView.findViewById(R.id.sv_surface);
+        mMPForSurface = VideoPlayer.createAndBind(getContext(), mSvSurface);
+        mMPForSurface.setOnMediaPlayerListener(new OnMediaPlayerListener() {
             @Override
             protected void onPrepared(MediaPlayer mp) {
 
@@ -65,14 +81,15 @@ public class ChaplinView extends FrameLayout implements TextureView.SurfaceTextu
             @Override
             protected void onCompletion(MediaPlayer mp) {
                 imageView.setVisibility(View.VISIBLE);
+
             }
         });
-//        mVtvTexture = rootView.findViewById(R.id.vtv_texture);
-        imageView = rootView.findViewById(R.id.iv);
 
+//        mVtvTexture = rootView.findViewById(R.id.vtv_texture);
         mTvTexture = rootView.findViewById(R.id.tv_texture);
-        mTvTexture.setSurfaceTextureListener(this);
-        mMediaPlayerWrapper = new MediaPlayerWrapper(getContext());
+        mMPForTexture = VideoPlayer.createAndBind(getContext(), mTvTexture);
+
+        imageView = rootView.findViewById(R.id.iv);
         mUIHandler = new Handler();
     }
 
@@ -205,31 +222,27 @@ public class ChaplinView extends FrameLayout implements TextureView.SurfaceTextu
         }
     }
 
-    @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-
-    }
-
-    @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-
-    }
-
-    @Override
-    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-        return false;
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
-    }
-
 
     //<editor-fold desc="开放的接口，API">
+
+
+    public void setURI(final Uri uri) {
+        setURI(uri, null);
+    }
+
+    public void setURI(final Uri uri, final Map<String, String> headers) {
+//        mVsvSurface.setVideoURI(uri, headers);
+        mMPForSurface.setDataSource(uri, headers);
+        mMPForTexture.setDataSource(uri, headers);
+//        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
+        //todo：network & disk & memory cache
+    }
+
     public void start() {
-        mVsvSurface.start();
+//        mVsvSurface.start();
+        mMPForSurface.start();
 //        mVtvTexture.start();
+        mMPForTexture.start();
         mUIHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -267,22 +280,6 @@ public class ChaplinView extends FrameLayout implements TextureView.SurfaceTextu
 
             }
         });
-    }
-
-    public void setURI(final Uri uri) {
-        setURI(uri, null);
-    }
-
-    private static final String raw_file = "android.resource://%s/%s";
-    public static final String assets_file = "file:///android_asset/%s";
-
-    public void setURI(final Uri uri, final Map<String, String> headers) {
-        mVsvSurface.setVideoURI(uri, headers);
-        mMediaPlayerWrapper.setDataSource(uri,headers);
-        String uriPath = String.format(raw_file, getContext().getPackageName(), R.raw.wechatsight1);
-//        String uriPath = String.format(assets_file, "video_sample_1");
-//        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
-        //todo：network & disk & memory cache
     }
 
     //</editor-fold>

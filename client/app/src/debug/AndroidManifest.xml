@@ -86,7 +86,7 @@
             android:parentActivityName="com.hawksjamesf.spacecraft.ui.signin.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
 
-        <activity android:name=".viewpager.ViewPagerActivity"/>
+        <activity android:name=".ViewPagerActivity"/>
     </application>
 
 </manifest>

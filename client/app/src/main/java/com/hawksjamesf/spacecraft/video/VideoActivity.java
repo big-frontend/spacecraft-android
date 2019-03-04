@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hawksjamesf.common.util.BarUtil;
 import com.hawksjamesf.spacecraft.R;
 
 import androidx.appcompat.app.ActionBar;
@@ -68,7 +67,8 @@ public class VideoActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            BarUtil.setBarsFullscreen(this,BarUtil.LEAN_BACK);
+//            BarUtil.setBarsFullscreen(this,BarUtil.LEAN_BACK);
+            hide();
         }
     }
 

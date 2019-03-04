@@ -8,10 +8,10 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.R;
+import com.hawksjamesf.spacecraft.ViewPagerActivity;
 import com.hawksjamesf.spacecraft.photo.PhotoActivity;
 import com.hawksjamesf.spacecraft.ui.person.SettingsActivity;
 import com.hawksjamesf.spacecraft.video.VideoActivity;
-import com.hawksjamesf.spacecraft.viewpager.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 

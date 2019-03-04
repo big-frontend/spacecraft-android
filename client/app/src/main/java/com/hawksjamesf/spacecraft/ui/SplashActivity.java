@@ -2,9 +2,9 @@ package com.hawksjamesf.spacecraft.ui;
 
 import android.os.Bundle;
 
-import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.common.util.ActivityUtil;
-import com.hawksjamesf.spacecraft.viewpager.ViewPagerActivity;
+import com.hawksjamesf.spacecraft.R;
+import com.hawksjamesf.spacecraft.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -12,12 +12,14 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.TextureView;
+import android.widget.LinearLayout;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.Map;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.RawRes;
 
 /**
  * Copyright ® 2019
@@ -28,7 +30,10 @@ import androidx.annotation.AnyThread;
  * @email: hawksjamesf@gmail.com
  * @since: Mar/02/2019  Sat
  */
-public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
+public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
+        MediaPlayer.OnPreparedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener,
+        MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener,
+        TextureView.SurfaceTextureListener, SurfaceHolder.Callback {
     public static final String TAG = "Chaplin/PlayerManager";
 
     public int surfaceWidth;
@@ -57,46 +62,13 @@ public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, Media
 
     }
 
-
     private Context mContext;
+    private TextureView mTextureView;
     private SurfaceTexture mSurfaceTexture;
+    private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
 
-    public static MediaPlayerWrapper create(Context context, Uri uri) {
-        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
-        mediaPlayerWrapper.setDataSource(uri);
-        return mediaPlayerWrapper;
-    }
-
-    /**
-     * @param context
-     * @param resid   R.raw.xxx
-     * @return
-     */
-    public static MediaPlayerWrapper create(Context context, int resid) {
-        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
-        AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
-        if (afd == null) return null;
-        try {
-            mediaPlayerWrapper.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return mediaPlayerWrapper;
-    }
-
-    public static MediaPlayerWrapper createAndBind(Context context, TextureView textureView) {
-        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
-        return mediaPlayerWrapper;
-    }
-
-    public static MediaPlayerWrapper createAndBind(Context context, SurfaceView surfaceView) {
-        MediaPlayerWrapper mediaPlayerWrapper = new MediaPlayerWrapper(context);
-        return mediaPlayerWrapper;
-    }
-
-    public MediaPlayerWrapper(Context context) {
+    public VideoPlayer(Context context) {
         mContext = context;
 //        release(false);
         mMediaPlayer = new MediaPlayer();
@@ -118,6 +90,58 @@ public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, Media
         mMediaPlayer.setOnInfoListener(this);
         mMediaPlayer.setOnVideoSizeChangedListener(this);
     }
+
+
+    //TextureView start
+    @Override
+    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
+        Log.d(TAG, "onSurfaceTextureAvailable:" + width + "/" + height);
+        mSurfaceTexture = surfaceTexture;
+        mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
+    }
+
+    @Override
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int width, int height) {
+        Log.d(TAG, "onSurfaceTextureSizeChanged surfaceTexture size:" + width + "/" + height +
+                "--->parent frame size:" + ((LinearLayout) mTextureView.getParent()).getWidth() + "/" + ((LinearLayout) mTextureView.getParent()).getHeight());
+
+    }
+
+    @Override
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        Log.d(TAG, "onSurfaceTextureDestroyed");
+        mSurfaceTexture = null;
+        mMediaPlayer.setSurface(null);
+        return false;
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+//        Log.d(TAG, "onSurfaceTextureUpdated");
+
+    }
+    //TextureView end
+
+    //SurfaceView start
+    @Override
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        mSurfaceHolder = surfaceHolder;
+        mMediaPlayer.setDisplay(mSurfaceHolder);
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        mSurfaceHolder = null;
+        mMediaPlayer.setDisplay(null);
+
+    }
+
+    //SurfaceView end
 
     // media play start:
     /*
@@ -158,6 +182,11 @@ public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, Media
             if (mSurfaceTexture != null) {
                 mSurfaceTexture.setDefaultBufferSize(videoWidth, videoHeight);
             }
+
+            if (mSurfaceHolder != null) {
+                mSurfaceHolder.setFixedSize(videoWidth, videoHeight);
+
+            }
         }
         if (mOnMediaPlayerListener != null) {
             mOnMediaPlayerListener.onVideoSizeChanged(mp, width, height);
@@ -166,7 +195,7 @@ public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, Media
 
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
-//        Log.d(TAG, "onBufferingUpdate:percent:" + percent);
+        Log.d(TAG, "onBufferingUpdate:percent:" + percent);
         if (mOnMediaPlayerListener != null) {
             mOnMediaPlayerListener.onBufferingUpdate(mp, percent);
         }
@@ -276,17 +305,26 @@ public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, Media
     }
 
     public void setDataSource(final Uri uri, final Map<String, String> headers) {
-        if (uri == null) {
-            throw new NullPointerException("uri param can not be null.");
-        }
         mUri = uri;
         mHeaders = headers;
-        if (mHeaders != null) {
-            try {
-                mMediaPlayer.setDataSource(mContext, mUri, mHeaders);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            mMediaPlayer.setDataSource(mContext, mUri, mHeaders);
+            mMediaPlayer.prepareAsync();
+            mCurState = State.PREPARING;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setDataSource(@RawRes int resid) {
+        AssetFileDescriptor afd = mContext.getResources().openRawResourceFd(resid);
+        if (afd == null) return;
+        try {
+            mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            mMediaPlayer.prepareAsync();
+            mCurState = State.PREPARING;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -298,17 +336,84 @@ public class MediaPlayerWrapper implements MediaPlayer.OnPreparedListener, Media
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void bindSurface(SurfaceTexture surfaceTexture) {
-        mSurfaceTexture = surfaceTexture;
-        mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
+
+    public void bindTextureView(TextureView textureView) {
+        mTextureView = textureView;
+        mTextureView.setSurfaceTextureListener(this);
     }
 
-    public void bindSurface(SurfaceHolder surfaceHolder) {
-        mSurfaceHolder = surfaceHolder;
-        mMediaPlayer.setDisplay(mSurfaceHolder);
+    public void bindSurfaceView(SurfaceView surfaceView) {
+        mSurfaceView = surfaceView;
+        mSurfaceView.getHolder().addCallback(this);
+    }
+
+    public static VideoPlayer createAndBind(Context context, TextureView textureView) {
+        VideoPlayer videoPlayer = new VideoPlayer(context);
+        videoPlayer.bindTextureView(textureView);
+        return videoPlayer;
+    }
+
+    public static VideoPlayer createAndBind(Context context, TextureView textureView, int resid) {
+        try {
+            VideoPlayer videoPlayer = new VideoPlayer(context);
+            AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
+            if (afd == null) return null;
+            videoPlayer.bindTextureView(textureView);
+            videoPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+            return videoPlayer;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static VideoPlayer createAndBind(Context context, SurfaceView surfaceView) {
+        VideoPlayer videoPlayer = new VideoPlayer(context);
+        videoPlayer.bindSurfaceView(surfaceView);
+        return videoPlayer;
+    }
+
+    public static VideoPlayer createAndBind(Context context, SurfaceView surfaceView, @RawRes int resid) {
+        try {
+            VideoPlayer videoPlayer = new VideoPlayer(context);
+            AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
+            if (afd == null) return null;
+            videoPlayer.bindSurfaceView(surfaceView);
+            videoPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+            return videoPlayer;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * @param context
+     * @param resid   R.raw.xxx
+     * @return
+     */
+    public static VideoPlayer create(Context context, @RawRes int resid) {
+        try {
+            VideoPlayer videoPlayer = new VideoPlayer(context);
+            AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
+            if (afd == null) return null;
+            videoPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+            return videoPlayer;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static VideoPlayer create(Context context, Uri uri) {
+        VideoPlayer videoPlayer = new VideoPlayer(context);
+        videoPlayer.setDataSource(uri);
+        return videoPlayer;
     }
     //</editor-fold>
 }
