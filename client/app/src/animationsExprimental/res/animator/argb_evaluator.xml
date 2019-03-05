@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:duration="5000"
+    android:interpolator="@android:anim/linear_interpolator"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse">
+
+    <propertyValuesHolder
+        android:propertyName="backgroundColor"
+        android:valueFrom="0xFFFF0000"
+        android:valueTo="0xFF0000FF"
+        android:valueType="colorType">
+        <keyframe
+            android:fraction="0"
+            android:value="0xFFFF0000" />
+        <keyframe
+            android:fraction=".5"
+            android:value="0xFFFFFF00" />
+        <keyframe
+            android:fraction="1"
+            android:value="0xFF0000FF" />
+    </propertyValuesHolder>
+
+</objectAnimator>

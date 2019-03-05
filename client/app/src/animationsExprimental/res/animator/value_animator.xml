@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animator
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<animator xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="UnusedAttribute"
+    android:duration="5000"
+    android:repeatCount="infinite"
+    android:interpolator="@android:anim/bounce_interpolator"
+    android:repeatMode="reverse"
     >
 
-    <propertyValuesHolder>
+    <propertyValuesHolder
+        android:propertyName="translationX"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        android:valueType="floatType"
+        >
         <keyframe
             android:fraction="0"
-            android:value="1"
-            />
+            android:value="0" />
         <keyframe
-            android:fraction=".2"
-            android:value=".4"/>
+            android:fraction=".5"
+            android:value="50.0" />
         <keyframe
             android:fraction="1"
-            android:value="0"/>
+            android:value="100.0" />
+    </propertyValuesHolder>
+
+    <propertyValuesHolder
+        android:propertyName="translationY"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        android:valueType="floatType"
+        >
+        <keyframe
+            android:fraction="0"
+            android:value="0" />
+        <keyframe
+            android:fraction=".5"
+            android:value="50.0" />
+        <keyframe
+            android:fraction="1"
+            android:value="100.0" />
     </propertyValuesHolder>
 
 </animator>

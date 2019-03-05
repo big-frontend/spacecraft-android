@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,18 +8,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <Button
-            android:id="@+id/bt_start"
+            android:id="@+id/bt_start_interpolator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="start animation interpolator"
             android:textAllCaps="false" />
 
         <LinearLayout
-            android:id="@+id/ll"
+            android:id="@+id/ll_interpolator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+
+
+        <Button
+            android:id="@+id/bt_start_evaluators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start animation evaluators"
+            android:textAllCaps="false" />
+
+        <LinearLayout
+            android:id="@+id/ll_evaluators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
 
     </LinearLayout>
 </ScrollView>
