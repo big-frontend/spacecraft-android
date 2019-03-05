@@ -2,9 +2,9 @@
           package="com.hawksjamesf.spacecraft">
 
     <application>
+        <activity android:name=".AnimActivity"/>
         <activity android:name=".LottieActivity"/>
         <activity android:name=".FrameAnimationActivity"/>
-        <activity android:name=".ScrollableActivity"/>
         <activity
             android:name=".TransitionActivity"
             android:theme="@style/BaseAppTheme"/>

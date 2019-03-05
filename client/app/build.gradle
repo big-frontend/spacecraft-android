@@ -120,13 +120,13 @@ android {
         main.java.srcDirs += ["src/animationsExprimental/java"]
         main.res.srcDirs += ["src/animationsExprimental/res"]
         main.res.srcDirs += ["src/animationsExprimental/res-frame-animation"]
-        main.manifest.srcFile "src/animationsExprimental/AndroidManifest.xml"
+//        main.manifest.srcFile "src/animationsExprimental/AndroidManifest.xml"
         main.assets.srcDirs += ["src/animationsExprimental/assets"]
 
         main.java.srcDirs += ["src/scrollExprimental/java"]
         main.res.srcDirs += ["src/scrollExprimental/res"]
         main.res.srcDirs += ["src/scrollExprimental/res-frame-animation"]
-        main.manifest.srcFile "src/scrollExprimental/AndroidManifest.xml"
+//        main.manifest.srcFile "src/scrollExprimental/AndroidManifest.xml"
         main.assets.srcDirs += ["src/scrollExprimental/assets"]
 
     }

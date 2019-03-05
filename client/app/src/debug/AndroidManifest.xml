@@ -87,6 +87,15 @@
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
 
         <activity android:name=".ViewPagerActivity"/>
+        <activity android:name=".ParallaxActivity"/>
+
+        <activity android:name=".AnimActivity"/>
+        <activity android:name=".LottieActivity"/>
+        <activity android:name=".FrameAnimationActivity"/>
+        <activity
+            android:name=".TransitionActivity"
+            android:theme="@style/BaseAppTheme"/>
+        <activity android:name=".ScrollableActivity"/>
     </application>
 
 </manifest>
