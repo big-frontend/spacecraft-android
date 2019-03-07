@@ -2,14 +2,11 @@ package com.hawksjamesf.spacecraft;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.animation.FloatArrayEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.IntArrayEvaluator;
-import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PointFEvaluator;
-import android.animation.PropertyValuesHolder;
 import android.animation.RectEvaluator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -269,67 +266,4 @@ public class AnimActivity extends AppCompatActivity {
          */
 
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-    //
-//    static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-//
-//        Context context;
-//        List<Interpolator> dataForInterpolators = new ArrayList<Interpolator>() {
-//            {
-//                add(new LinearInterpolator());
-//                add(new AccelerateInterpolator());
-//                add(new DecelerateInterpolator());
-//                add(new AccelerateDecelerateInterpolator());
-//
-//                add(new AnticipateInterpolator());
-//                add(new OvershootInterpolator());
-//                add(new AnticipateOvershootInterpolator());
-//
-//                add(new BounceInterpolator());//弹球
-//                add(new CycleInterpolator(0.5f));//周期运动：sin(2 * PI * mCycles * x) mCycles周期的倍数
-//            }
-//        };
-//
-//        public MyAdapter(Context context) {
-//            this.context = context;
-//        }
-//
-//        @NonNull
-//        @Override
-//        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//
-//            return new MyViewHolder(
-//                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my, parent, false)
-//            );
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-//            holder.tvText.setText(
-//                    dataForInterpolators.get(position).getClass().getSimpleName()
-//            );
-//
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return dataForInterpolators.size();
-//        }
-//
-//    }
-//
-//    static class MyViewHolder extends RecyclerView.ViewHolder {
-//        TextView tvText;
-//
-//        public MyViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            tvText = itemView.findViewById(R.id.tv_text);
-//        }
-//    }
 }
