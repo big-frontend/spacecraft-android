@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changeTransform xmlns:android="http://schemas.android.com/apk/res/android"
+    android:reparent="true"
+    android:reparentWithOverlay="true">
+
+</changeTransform>

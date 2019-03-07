@@ -12,10 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author: hawks.jamesf
  * @since: Nov/25/2018  Sun
  */
-public class TransitionActivity extends AppCompatActivity {
+public class TransitionForViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transition);
+        setContentView(R.layout.activity_transition_for_activity);
     }
 }

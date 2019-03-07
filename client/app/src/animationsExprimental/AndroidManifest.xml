@@ -6,7 +6,7 @@
         <activity android:name=".LottieActivity"/>
         <activity android:name=".FrameAnimationActivity"/>
         <activity
-            android:name=".TransitionActivity"
+            android:name=".TransitionForViewActivity"
             android:theme="@style/BaseAppTheme"/>
 
     </application>

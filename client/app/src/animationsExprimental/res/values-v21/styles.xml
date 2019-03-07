@@ -2,19 +2,21 @@
 <resources>
 
     <style name="BaseAppTheme" parent="android:Theme.Material">
-        <!-- enable window content transitions -->
+
         <item name="android:windowActivityTransitions">true</item>
 
         <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/explode</item>
-        <item name="android:windowExitTransition">@transition/explode</item>
+        <item name="android:windowEnterTransition">@transition/transition_window_enter</item>
+        <item name="android:windowExitTransition">@transition/transition_window_exit</item>
 
+        <!-- enable window content transitions -->
+        <item name="android:windowContentTransitions">true</item>
         <!-- specify shared element transitions -->
         <item name="android:windowSharedElementEnterTransition">
-            @transition/change_image_transform
+            @transition/transition_window_share_element_enter
         </item>
         <item name="android:windowSharedElementExitTransition">
-            @transition/change_image_transform
+            @transition/transition_window_share_element_exit
         </item>
     </style>
 </resources>

@@ -49,7 +49,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-alpha06'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha13'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
         classpath "io.realm:realm-gradle-plugin:$realmVersion"
         classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.6"
