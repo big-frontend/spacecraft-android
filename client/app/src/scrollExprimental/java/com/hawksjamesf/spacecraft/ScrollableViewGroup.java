@@ -61,6 +61,7 @@ public class ScrollableViewGroup extends LinearLayout {
     float startY;
     float endY;
 
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 //        Log.d(TAG, "onTouchEvent--->ACTION:" + event.getAction());
@@ -102,7 +103,6 @@ public class ScrollableViewGroup extends LinearLayout {
                     velocityTracker.computeCurrentVelocity(1000);
                     yVelocity = velocityTracker.getYVelocity();
                 }
-
                 scroller.fling(getScrollX(), getScrollY(), 0, (int) (yVelocity == -1f ? currVelocity : yVelocity), 0, 0, 0, 200);
 //                scroller.startScroll(getScrollX(), getScrollY(), 0, 200);//弹性滚动
                 velocityTracker.recycle();
