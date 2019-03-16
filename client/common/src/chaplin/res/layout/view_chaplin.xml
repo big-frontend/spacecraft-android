@@ -8,13 +8,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <!--<com.hawksjamesf.common.VideoSurfaceView-->
-        <!--android:id="@+id/vsv_surface"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--/>-->
         <SurfaceView
             android:id="@+id/sv_surface"
             android:layout_width="match_parent"
@@ -26,11 +19,6 @@
             android:layout_height="1dp"
             android:background="@color/apricot"/>
 
-        <!--<com.hawksjamesf.common.VideoTextureView-->
-        <!--android:id="@+id/vtv_texture"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"/>-->
         <TextureView
             android:id="@+id/tv_texture"
             android:layout_width="match_parent"

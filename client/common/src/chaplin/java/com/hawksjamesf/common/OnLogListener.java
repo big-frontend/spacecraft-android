@@ -22,7 +22,7 @@ public interface OnLogListener {
      * MediaPlayer.MEDIA_ERROR_MALFORMED
      * MediaPlayer.MEDIA_ERROR_UNSUPPORTED
      * MediaPlayer.MEDIA_ERROR_TIMED_OUT
-     * MEDIA_ERROR_SYSTEM (-2147483648) - low-level system error.
+     * MEDIA_ERROR_TIMED_OUT (-2147483648) - low-level system error.
      */
 
     boolean onError(MediaPlayer mp, int what, int extra);

@@ -2,6 +2,7 @@ package com.hawksjamesf.common;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -14,7 +15,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import java.io.FileDescriptor;
 import java.util.Map;
+
+import androidx.annotation.RawRes;
 
 
 /**
@@ -225,24 +229,18 @@ public class ChaplinView extends FrameLayout {
 
     //<editor-fold desc="开放的接口，API">
 
-
     public void setURI(final Uri uri) {
-        setURI(uri, null);
-    }
-
-    public void setURI(final Uri uri, final Map<String, String> headers) {
 //        mVsvSurface.setVideoURI(uri, headers);
-        mMPForSurface.setDataSource(uri, headers);
-        mMPForTexture.setDataSource(uri, headers);
 //        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
-        //todo：network & disk & memory cache
     }
 
     public void start() {
 //        mVsvSurface.start();
-        mMPForSurface.start();
 //        mVtvTexture.start();
-        mMPForTexture.start();
+//        animateImageView();
+    }
+
+    private void animateImageView() {
         mUIHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -281,6 +279,38 @@ public class ChaplinView extends FrameLayout {
             }
         });
     }
+
+    public void setDataSourceAndPlay(final Uri uri) {
+        setDataSourceAndPlay(uri, null);
+    }
+
+    public void setDataSourceAndPlay(final Uri uri, final Map<String, String> headers) {
+        //todo：network & disk & memory cache
+        mMPForSurface.setDataSource(uri, headers);
+        mMPForSurface.start();
+
+        mMPForTexture.setDataSource(uri, headers);
+        mMPForTexture.start();
+        animateImageView();
+    }
+
+    public void setDataSourceAndPlay(@RawRes int resid) {
+        AssetFileDescriptor afd = getContext().getResources().openRawResourceFd(resid);
+        if (afd == null) return;
+        setDataSourceAndPlay(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+    }
+
+    public void setDataSourceAndPlay(FileDescriptor fd, long offset, long length) {
+        mMPForSurface.setDataSource(fd, offset, length);
+        mMPForSurface.start();
+
+        mMPForTexture.setDataSource(fd, offset, length);
+        mMPForTexture.start();
+
+        animateImageView();
+
+    }
+
 
     //</editor-fold>
 }

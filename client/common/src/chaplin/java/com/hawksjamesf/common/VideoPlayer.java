@@ -36,12 +36,12 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         TextureView.SurfaceTextureListener, SurfaceHolder.Callback {
     public static final String TAG = "Chaplin/PlayerManager";
 
-    public int surfaceWidth;
-    public int surfaceHeight;
-    public int videoWidth;
-    public int videoHeight;
-    private boolean hasStickyMessage = false;
+    //    public int width;
+//    public int height;
+    //    public int surfaceWidth;
+//    public int surfaceHeight;
     private State mCurState = State.IDLE;
+    private State mTargetState = State.IDLE;
     private Uri mUri;
     private Map<String, String> mHeaders;
 
@@ -68,7 +68,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
 
-    public VideoPlayer(Context context) {
+    private VideoPlayer(Context context) {
         mContext = context;
 //        release(false);
         mMediaPlayer = new MediaPlayer();
@@ -92,7 +92,9 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     }
 
 
-    //TextureView start
+    /**
+     * TextureView start
+     */
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
         Log.d(TAG, "onSurfaceTextureAvailable:" + width + "/" + height);
@@ -100,16 +102,17 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
     }
 
+    //修改LayouParament才会调用这个方法
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int width, int height) {
-        Log.d(TAG, "onSurfaceTextureSizeChanged surfaceTexture size:" + width + "/" + height +
-                "--->parent frame size:" + ((LinearLayout) mTextureView.getParent()).getWidth() + "/" + ((LinearLayout) mTextureView.getParent()).getHeight());
-
+        Log.d(TAG, "onSurfaceTextureSizeChanged surfaceTexture size:" + width + "/" + height
+                + "--->parent frame size:" + ((LinearLayout) mTextureView.getParent()).getWidth() + "/" + ((LinearLayout) mTextureView.getParent()).getHeight()
+        );
     }
 
     @Override
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        Log.d(TAG, "onSurfaceTextureDestroyed");
+//        Log.d(TAG, "onSurfaceTextureDestroyed");
         mSurfaceTexture = null;
         mMediaPlayer.setSurface(null);
         return false;
@@ -120,71 +123,90 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
 //        Log.d(TAG, "onSurfaceTextureUpdated");
 
     }
-    //TextureView end
+    /**
+     * TextureView end
+     */
 
-    //SurfaceView start
+    /**
+     * SurfaceView start
+     */
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        Log.d(TAG, "surfaceCreated");
         mSurfaceHolder = surfaceHolder;
         mMediaPlayer.setDisplay(mSurfaceHolder);
     }
 
+    /* SurfaceHolder#setFixedSize方法会触发该方法调用
+    format:PixelFormat
+    public static final int RGBA_8888    = 1;
+    public static final int RGBX_8888    = 2;
+    public static final int RGB_888      = 3;
+    public static final int RGB_565      = 4;
+    public static final int RGBA_F16     = 0x16;
+    public static final int RGBA_1010102 = 0x2B;
+     */
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
+        Log.d(TAG, "surfaceChanged format:" + format +
+                "--->surface size:" + width + "/" + height
+                + "--->parent frame size:" + ((LinearLayout) mSurfaceView.getParent()).getWidth() + "/" + ((LinearLayout) mSurfaceView.getParent()).getHeight()
+        );
 
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+//        Log.d(TAG, "surfaceDestroyed");
         mSurfaceHolder = null;
         mMediaPlayer.setDisplay(null);
 
     }
 
-    //SurfaceView end
+    /**
+     * SurfaceView end
+     */
 
-    // media play start:
-    /*
-     log:
-        onVideoSizeChanged:width:1280_height:720
-        onBufferingUpdate:percent:100
-        onPrepared
-        handleMessage:curthread:Thread[ChaplinThread,5,main]
-        onBufferingUpdate:percent:0
-        onInfo：what:703_extra:0
-        onInfo：what:701_extra:0
-        onVideoSizeChanged:width:1280_height:720
-        onBufferingUpdate:percent:9
-        onBufferingUpdate:percent:20
-        onBufferingUpdate:percent:31
-        onInfo：what:703_extra:0
-        onInfo：what:702_extra:0
-        onBufferingUpdate:percent:31
-        onInfo：what:3_extra:0
-        onBufferingUpdate:percent:43
-        onBufferingUpdate:percent:54
-        onBufferingUpdate:percent:65
-        onBufferingUpdate:percent:77
-        onBufferingUpdate:percent:86
-        onBufferingUpdate:percent:97
-        onBufferingUpdate:percent:100
-        onCompletion
+    /**
+     * media play start:
+     * log:
+     * onVideoSizeChanged:width:1280_height:720
+     * onBufferingUpdate:percent:100
+     * onPrepared
+     * handleMessage:curthread:Thread[ChaplinThread,5,main]
+     * onBufferingUpdate:percent:0
+     * onInfo：what:703_extra:0
+     * onInfo：what:701_extra:0
+     * onVideoSizeChanged:width:1280_height:720
+     * onBufferingUpdate:percent:9
+     * onBufferingUpdate:percent:20
+     * onBufferingUpdate:percent:31
+     * onInfo：what:703_extra:0
+     * onInfo：what:702_extra:0
+     * onBufferingUpdate:percent:31
+     * onInfo：what:3_extra:0
+     * onBufferingUpdate:percent:43
+     * onBufferingUpdate:percent:54
+     * onBufferingUpdate:percent:65
+     * onBufferingUpdate:percent:77
+     * onBufferingUpdate:percent:86
+     * onBufferingUpdate:percent:97
+     * onBufferingUpdate:percent:100
+     * onCompletion
      */
     @Override
     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
         Log.d(TAG, "onVideoSizeChanged:" + width + "/" + height +
                 "--->video size:" + mp.getVideoWidth() + "/" + mp.getVideoHeight()
         );
-        videoWidth = width;
-        videoHeight = height;
         //surface 面积越大，播放视频的性能越好
-        if (videoWidth != 0 && videoHeight != 0) {
+        if (width != 0 && height != 0) {
             if (mSurfaceTexture != null) {
-                mSurfaceTexture.setDefaultBufferSize(videoWidth, videoHeight);
+                mSurfaceTexture.setDefaultBufferSize(width, height);
             }
 
             if (mSurfaceHolder != null) {
-                mSurfaceHolder.setFixedSize(videoWidth, videoHeight);
+                mSurfaceHolder.setFixedSize(width, height);
 
             }
         }
@@ -208,9 +230,14 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
             mOnMediaPlayerListener.onPrepared(mp);
         }
         mCurState = State.PREPARED;
-        if (hasStickyMessage) {
-            hasStickyMessage = false;
-            start();
+        if (mTargetState == State.PLAYING) {
+            if (mSurfaceHolder != null && !mSurfaceHolder.isCreating()) {
+                start();
+            }
+
+            if (mTextureView != null && mTextureView.isAvailable()) {
+                start();
+            }
         }
     }
 
@@ -232,18 +259,135 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.d(TAG, "onError：what:" + what + "--->extra:" + extra);
+        String whatdesc = "";
+        switch (what) {
+            case 1: {
+                whatdesc = "MEDIA_ERROR_UNKNOWN";
+                break;
+            }
+            case 100: {
+                whatdesc = "MEDIA_ERROR_SERVER_DIED";
+                break;
+            }
+        }
+        String extradesc = "";
+        switch (extra) {
+            case -110: {
+
+                extradesc = "MEDIA_ERROR_TIMED_OUT";
+                break;
+            }
+            case -1004: {
+
+                extradesc = "MEDIA_ERROR_IO";
+                break;
+            }
+            case -1007: {
+
+                extradesc = "MEDIA_ERROR_MALFORMED";
+                break;
+            }
+            case -1010: {
+
+                extradesc = "MEDIA_ERROR_UNSUPPORTED";
+                break;
+            }
+            case -2147483648: {
+
+                extradesc = "MEDIA_ERROR_SYSTEM";
+                break;
+            }
+        }
+        Log.d(TAG, "onError：what/desc:" + what + "/" + whatdesc + "--->extra/desc:" + extra + "/" + extradesc);
         return mLogListener != null && mLogListener.onError(mp, what, extra);
     }
 
     @Override
     public boolean onInfo(MediaPlayer mp, int what, int extra) {
-        Log.d(TAG, "onInfo：what:" + what + "--->extra:" + extra);
+        String text = "";
+        switch (what) {
+            case 1: {
+                text = "MEDIA_INFO_UNKNOWN";
+                break;
+            }
+            case 2: {
+                //The player was started because it was used as the next player for another player, which just completed playback
+                //setNextMediaPlayer(MediaPlayer)
+                text = "MEDIA_INFO_STARTED_AS_NEXT";
+                break;
+            }
+            case 3: {
+                text = "MEDIA_INFO_VIDEO_RENDERING_START";//渲染第一帧
+                break;
+            }
+            case 700: {
+                //The video is too complex for the decoder: it can't decode frames fast enough. Possibly only the audio plays fine at this stage.
+                text = "MEDIA_INFO_VIDEO_TRACK_LAGGING";
+                break;
+            }
+            case 701: {
+                text = "MEDIA_INFO_BUFFERING_START";
+                break;
+            }
+            case 702: {
+                text = "MEDIA_INFO_BUFFERING_END";
+                break;
+            }
+            case 703: {
+                text = "MEDIA_INFO_NETWORK_BANDWIDTH";//网络宽带
+                break;
+            }
+            case 800: {
+                //Bad interleaving means that a media has been improperly interleaved or not interleaved at all,
+                // e.g has all the video samples first then all the audio ones. Video is playing but a lot of disk seeks may be happening
+                text = "MEDIA_INFO_BAD_INTERLEAVING";//正常情况下音频和视频样本将依序排列，交错情况下音频和视频数据会不正确
+                break;
+            }
+            case 801: {
+                text = "MEDIA_INFO_NOT_SEEKABLE";//不能seek，可能是一个直播流
+                break;
+            }
+            case 802: {
+                text = "MEDIA_INFO_METADATA_UPDATE";//metadata更新
+//                mp.getMetadata
+                break;
+            }
+            case 804: {
+                text = "MEDIA_INFO_AUDIO_NOT_PLAYING";
+                break;
+            }
+            case 805: {
+                text = "MEDIA_INFO_VIDEO_NOT_PLAYING";
+                break;
+            }
+            case 901: {
+                //Subtitle track was not supported by the media framework.
+                text = "MEDIA_INFO_UNSUPPORTED_SUBTITLE";
+                break;
+            }
+            case 902: {
+                //Reading the subtitle track takes too long.
+                text = "MEDIA_INFO_SUBTITLE_TIMED_OUT";
+                break;
+            }
+        }
+        Log.d(TAG, "onInfo：what/desc:" + what + "/" + text + "--->extra:" + extra);
         return mLogListener != null && mLogListener.onInfo(mp, what, extra);
     }
 
-    // media play end:
+    /**
+     * media play end:
+     */
 
+    private void bindTextureView(TextureView textureView) {
+        mTextureView = textureView;
+        mTextureView.setSurfaceTextureListener(this);
+    }
+
+    private void bindSurfaceView(SurfaceView surfaceView) {
+        mSurfaceView = surfaceView;
+        mSurfaceView.getHolder().addCallback(this);
+    }
 
     private void release(boolean cleatTargetState) {
         if (mMediaPlayer != null) {
@@ -251,7 +395,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
             mMediaPlayer.release();
             mCurState = State.IDLE;
             if (cleatTargetState) {
-                hasStickyMessage = false;
+                mTargetState = State.IDLE;
             }
 
         }
@@ -278,18 +422,22 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         if (mMediaPlayer != null && isInPlaybackState()) {
             mMediaPlayer.start();
             mCurState = State.PLAYING;
-        } else {//save sticky message
-            hasStickyMessage = true;
         }
+        mTargetState = State.PLAYING;
+    }
+
+    public void resume() {
+
     }
 
     @AnyThread
     public void pause() {
         Log.d(TAG, "pause:isPlaying:" + isPlaying());
-        if (isPlaying()) {
+        if (isInPlaybackState() && isPlaying()) {
             mMediaPlayer.pause();
             mCurState = State.PAUSED;
         }
+        mTargetState = State.PAUSED;
     }
 
     @AnyThread
@@ -300,10 +448,30 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         }
     }
 
+
+    public int getDuration() {
+        if (isInPlaybackState()) {
+            return mMediaPlayer.getDuration();
+        } else {
+
+            return -1;
+        }
+    }
+
+    public int getCurrentPositiono() {
+        if (isInPlaybackState()) {
+            return mMediaPlayer.getCurrentPosition();
+        } else {
+            return -1;
+        }
+    }
+
+
     public void setDataSource(final Uri uri) {
         setDataSource(uri, null);
     }
 
+    // For streams, you should call prepareAsync(), which returns immediately, rather than blocking until enough data has been buffered.
     public void setDataSource(final Uri uri, final Map<String, String> headers) {
         mUri = uri;
         mHeaders = headers;
@@ -319,35 +487,38 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     public void setDataSource(@RawRes int resid) {
         AssetFileDescriptor afd = mContext.getResources().openRawResourceFd(resid);
         if (afd == null) return;
-        try {
-            mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            mMediaPlayer.prepareAsync();
-            mCurState = State.PREPARING;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
     }
 
+    //For files, it is OK to call prepare(), which blocks until MediaPlayer is ready for playback
     public void setDataSource(FileDescriptor fd, long offset, long length) {
         try {
             mMediaPlayer.setDataSource(fd, offset, length);
-            mMediaPlayer.prepareAsync();
-            mCurState = State.PREPARING;
+            mMediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-    public void bindTextureView(TextureView textureView) {
-        mTextureView = textureView;
-        mTextureView.setSurfaceTextureListener(this);
-    }
-
-    public void bindSurfaceView(SurfaceView surfaceView) {
-        mSurfaceView = surfaceView;
-        mSurfaceView.getHolder().addCallback(this);
-    }
+//
+//    public void setDataSourceAndPlay(final Uri uri) {
+//        setDataSourceAndPlay(uri, null);
+//
+//    }
+//
+//    public void setDataSourceAndPlay(final Uri uri, final Map<String, String> headers) {
+//        setDataSource(uri, headers);
+//        start();
+//    }
+//
+//    public void setDataSourceAndPlay(@RawRes int resid) {
+//        setDataSource(resid);
+//        start();
+//    }
+//
+//    public void setDataSourceAndPlay(FileDescriptor fd, long offset, long length) {
+//        setDataSource(fd, offset, length);
+//        start();
+//    }
 
     public static VideoPlayer createAndBind(Context context, TextureView textureView) {
         VideoPlayer videoPlayer = new VideoPlayer(context);
