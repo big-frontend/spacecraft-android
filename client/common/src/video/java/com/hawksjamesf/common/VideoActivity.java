@@ -1,12 +1,11 @@
-package com.hawksjamesf.spacecraft.video;
+package com.hawksjamesf.common;
+
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.hawksjamesf.spacecraft.R;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

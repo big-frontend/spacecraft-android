@@ -1,4 +1,4 @@
-package com.hawksjamesf.common;
+package com.hawksjamesf.common.widget;
 
 /**
  * Copyright ® $ 2019
@@ -12,11 +12,11 @@ public enum State {
     IDLE,
     INITIALIZED,
     PREPARING,
-    PREPARED,
-    PLAYING,
-//    STARTED,
-    PAUSED,
-    STOPPED,
+    PREPARED,//prepared
+    PLAYING,//start
+//    STARTED,//start
+    PAUSED,//pause
+    STOPPED,//stop
     PLAYBACK_COMPLETED,
     END,
     ERROR

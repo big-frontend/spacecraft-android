@@ -21,7 +21,7 @@
         app:cv_interval="5000"
         />
 
-    <com.hawksjamesf.common.ChaplinView
+    <com.hawksjamesf.common.widget.ChaplinVideoView
         android:id="@+id/clv"
         android:layout_width="300dp"
         android:layout_height="300dp"

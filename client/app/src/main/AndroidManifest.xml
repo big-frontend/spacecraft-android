@@ -31,7 +31,7 @@
             >
         </activity>
         <activity
-            android:name="com.hawksjamesf.spacecraft.video.VideoActivity"
+            android:name="com.hawksjamesf.common.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/VideoTheme">
         </activity>

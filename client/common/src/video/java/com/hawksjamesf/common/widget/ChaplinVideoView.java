@@ -1,4 +1,4 @@
-package com.hawksjamesf.common;
+package com.hawksjamesf.common.widget;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.hawksjamesf.common.R;
+
 import java.io.FileDescriptor;
 import java.util.Map;
 
@@ -29,54 +31,40 @@ import androidx.annotation.RawRes;
  * @email: hawksjamesf@gmail.com
  * @since: Feb/28/2019  Thu
  */
-public class ChaplinView extends FrameLayout {
-    private static final String TAG = ChaplinView.class.getSimpleName();
+public class ChaplinVideoView extends FrameLayout {
+    private static final String TAG = ChaplinVideoView.class.getSimpleName();
 
-    //    private VideoSurfaceView mVsvSurface;
     private SurfaceView mSvSurface;
     private VideoPlayer mMPForSurface;
-    //    private VideoTextureView mVtvTexture;
-    private TextureView mTvTexture;
     private ImageView imageView;
-
     private Handler mUIHandler;
+    private TextureView mTvTexture;
     private VideoPlayer mMPForTexture;
 
 
-    public ChaplinView(Context context) {
+    public ChaplinVideoView(Context context) {
         super(context);
         initView(null, 0);
     }
 
-    public ChaplinView(Context context, AttributeSet attrs) {
+    public ChaplinVideoView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         initView(attrs, 0);
     }
 
-    public ChaplinView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ChaplinVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(attrs, defStyleAttr);
     }
 
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
         View rootView = inflate(getContext(), R.layout.view_chaplin, this);
-//        mVsvSurface = rootView.findViewById(R.id.vsv_surface);
-
-//        mVsvSurface.setOnMediaPlayerListener(new OnMediaPlayerListener() {
-//            @Override
-//            protected void onPrepared(MediaPlayer mp) {
-//
-//            }
-//
-//            @Override
-//            protected void onCompletion(MediaPlayer mp) {
-//                imageView.setVisibility(View.VISIBLE);
-//            }
-//        });
         mSvSurface = rootView.findViewById(R.id.sv_surface);
         mMPForSurface = VideoPlayer.createAndBind(getContext(), mSvSurface);
-        mMPForSurface.setOnMediaPlayerListener(new OnMediaPlayerListener() {
+        mTvTexture = rootView.findViewById(R.id.tv_texture);
+        mMPForTexture = VideoPlayer.createAndBind(getContext(), mTvTexture);
+        mMPForTexture.setOnMediaPlayerListener(new OnMediaPlayerListener() {
             @Override
             protected void onPrepared(MediaPlayer mp) {
 
@@ -88,10 +76,6 @@ public class ChaplinView extends FrameLayout {
 
             }
         });
-
-//        mVtvTexture = rootView.findViewById(R.id.vtv_texture);
-        mTvTexture = rootView.findViewById(R.id.tv_texture);
-        mMPForTexture = VideoPlayer.createAndBind(getContext(), mTvTexture);
 
         imageView = rootView.findViewById(R.id.iv);
         mUIHandler = new Handler();
@@ -228,18 +212,6 @@ public class ChaplinView extends FrameLayout {
 
 
     //<editor-fold desc="开放的接口，API">
-
-    public void setURI(final Uri uri) {
-//        mVsvSurface.setVideoURI(uri, headers);
-//        mVtvTexture.setVideoURI(Uri.parse(uriPath), headers);
-    }
-
-    public void start() {
-//        mVsvSurface.start();
-//        mVtvTexture.start();
-//        animateImageView();
-    }
-
     private void animateImageView() {
         mUIHandler.post(new Runnable() {
             @Override
@@ -286,8 +258,9 @@ public class ChaplinView extends FrameLayout {
 
     public void setDataSourceAndPlay(final Uri uri, final Map<String, String> headers) {
         //todo：network & disk & memory cache
-        mMPForSurface.setDataSource(uri, headers);
-        mMPForSurface.start();
+//        mMPForSurface.setDataSource(uri, headers);
+//        mMPForSurface.start();
+        mSvSurface.setVisibility(View.GONE);
 
         mMPForTexture.setDataSource(uri, headers);
         mMPForTexture.start();
@@ -311,6 +284,8 @@ public class ChaplinView extends FrameLayout {
 
     }
 
-
+    public void start() {
+        mMPForTexture.start();
+    }
     //</editor-fold>
 }

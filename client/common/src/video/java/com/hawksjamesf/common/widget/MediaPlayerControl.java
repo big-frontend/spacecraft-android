@@ -1,4 +1,4 @@
-package com.hawksjamesf.common;
+package com.hawksjamesf.common.widget;
 
 /**
  * Copyright ® $ 2019

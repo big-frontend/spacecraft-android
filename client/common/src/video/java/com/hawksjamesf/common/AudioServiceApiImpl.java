@@ -1,4 +1,4 @@
-package com.hawksjamesf.common.service;
+package com.hawksjamesf.common;
 
 import android.content.Context;
 import android.media.MediaPlayer;

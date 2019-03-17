@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hawksjamesf.common.ChaplinView;
-import com.hawksjamesf.common.Constants;
+import com.hawksjamesf.common.widget.ChaplinVideoView;
+import com.hawksjamesf.common.widget.Constants;
 import com.hawksjamesf.common.util.ConvertUtil;
 
 import androidx.annotation.NonNull;
@@ -38,8 +38,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ParallaxActivity extends AppCompatActivity {
     LinearLayout item_top_bar_for_recyclerview;
     LinearLayout item_top_bar_for_listview;
-    ChaplinView clvForRecyclerView;
-    ChaplinView clvForListView;
+    ChaplinVideoView clvForRecyclerView;
+    ChaplinVideoView clvForListView;
     RecyclerView rv;
     ListView lv;
     private int mTouchMoveCount = 0;
@@ -56,11 +56,10 @@ public class ParallaxActivity extends AppCompatActivity {
 
         item_top_bar_for_recyclerview = findViewById(R.id.item_top_bar_for_recyclerview);
         clvForRecyclerView = item_top_bar_for_recyclerview.findViewById(R.id.clv);
-        clvForRecyclerView.setURI(Uri.parse(Constants.VIDEO_URL));
+        clvForRecyclerView.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL));
 
         item_top_bar_for_listview = findViewById(R.id.item_top_bar_for_listview);
         clvForListView = item_top_bar_for_listview.findViewById(R.id.clv);
-        clvForListView.setURI(Uri.parse(Constants.VIDEO_URL));
 
 
         rv = findViewById(R.id.rv);
@@ -70,6 +69,18 @@ public class ParallaxActivity extends AppCompatActivity {
         rv.setLayoutManager(linearLayoutManager);
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(rv);
+//        rv.addItemDecoration(new );
+        rv.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(@NonNull View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(@NonNull View view) {
+
+            }
+        });
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -272,8 +283,6 @@ public class ParallaxActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        clvForRecyclerView.start();
-        clvForListView.start();
     }
 
     static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -301,7 +310,7 @@ public class ParallaxActivity extends AppCompatActivity {
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvText;
-        ChaplinView clv;
+        ChaplinVideoView clv;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

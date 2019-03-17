@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.hawksjamesf.common.ChaplinView
+        <com.hawksjamesf.common.widget.ChaplinVideoView
             android:id="@+id/clv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

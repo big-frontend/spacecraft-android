@@ -1,10 +1,11 @@
-package com.hawksjamesf.common;
+package com.hawksjamesf.common.widget;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.SurfaceTexture;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
+import android.media.PlaybackParams;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
@@ -50,17 +51,15 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     private MediaPlayer mMediaPlayer;
 
     private OnLogListener mLogListener;
-
     public void setOnLogListener(OnLogListener logListener) {
         this.mLogListener = logListener;
     }
-
     private OnMediaPlayerListener mOnMediaPlayerListener;
-
     public void setOnMediaPlayerListener(OnMediaPlayerListener listener) {
         mOnMediaPlayerListener = listener;
-
     }
+
+    private int mSeekWhenPrepared;  // recording the seek position while preparing
 
     private Context mContext;
     private TextureView mTextureView;
@@ -398,6 +397,18 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
                 mTargetState = State.IDLE;
             }
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PlaybackParams playbackParams = mMediaPlayer.getPlaybackParams();
+            }
+        }
+    }
+
+
+    @AnyThread
+    private void stop() {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
         }
     }
 
@@ -426,10 +437,6 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         mTargetState = State.PLAYING;
     }
 
-    public void resume() {
-
-    }
-
     @AnyThread
     public void pause() {
         Log.d(TAG, "pause:isPlaying:" + isPlaying());
@@ -439,15 +446,6 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         }
         mTargetState = State.PAUSED;
     }
-
-    @AnyThread
-    public void stop() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer.stop();
-            mMediaPlayer.release();
-        }
-    }
-
 
     public int getDuration() {
         if (isInPlaybackState()) {
@@ -463,6 +461,16 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
             return mMediaPlayer.getCurrentPosition();
         } else {
             return -1;
+        }
+    }
+
+    public void  seekTo(int msec){
+        if (isInPlaybackState()){
+            mMediaPlayer.seekTo(msec);
+            mSeekWhenPrepared= 0;
+        }else {
+            mSeekWhenPrepared= 0;
+
         }
     }
 

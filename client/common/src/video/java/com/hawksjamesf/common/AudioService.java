@@ -1,4 +1,4 @@
-package com.hawksjamesf.common.service;
+package com.hawksjamesf.common;
 
 import android.app.Service;
 import android.content.Intent;

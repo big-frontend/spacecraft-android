@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.hawksjamesf.common.CarouselView;
-import com.hawksjamesf.common.ChaplinView;
-import com.hawksjamesf.common.Constants;
+import com.hawksjamesf.common.widget.ChaplinVideoView;
+import com.hawksjamesf.common.widget.Constants;
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;
 
@@ -34,7 +34,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     List<Integer> list = new ArrayList<>();
     CarouselView cv;
     VideoView vv;
-    ChaplinView clv;
+    ChaplinVideoView clv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,7 +56,6 @@ public class ViewPagerActivity extends AppCompatActivity {
 //        vv.setMediaController(mediaController);
         vv.setVideoURI(Uri.parse(Constants.VIDEO_URL));
         clv = findViewById(R.id.clv);
-        clv.setURI(Uri.parse(Constants.VIDEO_URL));
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

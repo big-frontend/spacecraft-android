@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">common</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="weeks">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thurday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+    <string name="title_activity_splash_acvitivy">SplashAcvitivy</string>
+    <string name="title_activity_setup_wizard">SetupWizardActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

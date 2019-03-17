@@ -1,4 +1,4 @@
-package com.hawksjamesf.common;
+package com.hawksjamesf.common.widget;
 
 import android.content.Context;
 import android.media.AudioAttributes;
@@ -26,6 +26,7 @@ import androidx.annotation.RequiresApi;
  * @email: hawksjamesf@gmail.com
  * @since: Mar/02/2019  Sat
  */
+@Deprecated
 public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
 
     private static final String TAG = "Chaplin/Surface";

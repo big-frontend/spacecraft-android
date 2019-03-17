@@ -16,7 +16,7 @@
             android:orientation="vertical"
             >
 
-            <!--<com.hawksjamesf.common.VideoSurfaceView-->
+            <!--<com.hawksjamesf.common.widget.VideoSurfaceView-->
             <!--android:id="@+id/vsv_surface"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="0dp"-->
@@ -40,7 +40,7 @@
             android:layout_height="1dp"
             android:background="@color/apricot"/>
 
-        <!--<com.hawksjamesf.common.VideoTextureView-->
+        <!--<com.hawksjamesf.common.widget.VideoTextureView-->
         <!--android:id="@+id/vtv_texture"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp"-->
@@ -52,7 +52,7 @@
             android:orientation="vertical"
             >
 
-            <!--<com.hawksjamesf.common.VideoSurfaceView-->
+            <!--<com.hawksjamesf.common.widget.VideoSurfaceView-->
             <!--android:id="@+id/vsv_surface"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="0dp"-->
