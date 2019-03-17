@@ -5,9 +5,9 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.SurfaceTexture;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.media.PlaybackParams;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -21,6 +21,10 @@ import java.util.Map;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.RawRes;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.OnLifecycleEvent;
 
 /**
  * Copyright ® 2019
@@ -34,7 +38,7 @@ import androidx.annotation.RawRes;
 public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         MediaPlayer.OnPreparedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener,
         MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener,
-        TextureView.SurfaceTextureListener, SurfaceHolder.Callback {
+        TextureView.SurfaceTextureListener, SurfaceHolder.Callback, LifecycleObserver {
     public static final String TAG = "Chaplin/PlayerManager";
 
     //    public int width;
@@ -51,25 +55,30 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     private MediaPlayer mMediaPlayer;
 
     private OnLogListener mLogListener;
+
     public void setOnLogListener(OnLogListener logListener) {
         this.mLogListener = logListener;
     }
+
     private OnMediaPlayerListener mOnMediaPlayerListener;
+
     public void setOnMediaPlayerListener(OnMediaPlayerListener listener) {
         mOnMediaPlayerListener = listener;
     }
 
     private int mSeekWhenPrepared;  // recording the seek position while preparing
+    private Handler mUIHandler;
 
     private Context mContext;
     private TextureView mTextureView;
     private SurfaceTexture mSurfaceTexture;
     private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
+    private int mEndPoint = -1;
 
     private VideoPlayer(Context context) {
+        mUIHandler = new Handler();
         mContext = context;
-//        release(false);
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setScreenOnWhilePlaying(true);
         mMediaPlayer.setVolume(0, 0);
@@ -96,9 +105,13 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
      */
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
-        Log.d(TAG, "onSurfaceTextureAvailable:" + width + "/" + height);
+        Log.d(TAG, "onSurfaceTextureAvailable:position" + position + "--->" + width + "/" + height);
+//        release(false);
         mSurfaceTexture = surfaceTexture;
         mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
+        if (mTargetState == State.PLAYING && mTextureView != null && mTextureView.isAvailable()) {
+            start();
+        }
     }
 
     //修改LayouParament才会调用这个方法
@@ -111,15 +124,82 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
 
     @Override
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-//        Log.d(TAG, "onSurfaceTextureDestroyed");
-        mSurfaceTexture = null;
-        mMediaPlayer.setSurface(null);
+        Log.d(TAG, "onSurfaceTextureDestroyed+position" + position);
+        //     mSurfaceTexture = null;
+        //       mMediaPlayer.setSurface(null);
+//        release(true);
+        if (mMediaPlayer != null) {
+//            mMediaPlayer.stop();
+//            mMediaPlayer.reset();
+//            mCurState = State.IDLE;
+//            mTargetState = State.IDLE;
+        }
         return false;
+    }
+
+    int position;
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-//        Log.d(TAG, "onSurfaceTextureUpdated");
+//        Log.d(TAG, "onSurfaceTextureUpdated:getCurrentPosition/mEndPoint" + mMediaPlayer.getCurrentPosition() + "/" + mEndPoint);
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying() && mEndPoint != -1 && mMediaPlayer.getCurrentPosition() > mEndPoint) {
+//            mMediaPlayer.seekTo(60000);
+//            mEndPoint = -1;
+        }
+
+    }
+
+    private boolean isBackground = false;
+
+    //can receive zero or one argument
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onStart() {
+        Log.d(TAG, "onStart");
+        if (mCurState == State.PAUSED && isBackground) {
+            start();
+        }
+        isBackground = false;
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void onStop(LifecycleOwner lifecycleOwner) {
+        Log.d(TAG, "onStop");
+        pause();
+        isBackground = true;
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public void onResume() {
+        Log.d(TAG, "onResume");
+        if (mCurState == State.PAUSED && isBackground) {
+            start();
+        }
+        isBackground = false;
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    public void onPause(LifecycleOwner lifecycleOwner) {
+        Log.d(TAG, "onPause");
+        pause();
+        isBackground = true;
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy(LifecycleOwner lifecycleOwner) {
+        Log.d(TAG, "onDestroy");
+        release(true);
+        isBackground = false;
+    }
+
+    //Methods annotated with ON_ANY can receive the second argument
+    @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+    public void onAny(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
+        Log.d(TAG, "onAny");
 
     }
     /**
@@ -131,9 +211,14 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
      */
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        Log.d(TAG, "surfaceCreated");
+//        Log.d(TAG, "surfaceCreated");
+//        release(false);
         mSurfaceHolder = surfaceHolder;
-        mMediaPlayer.setDisplay(mSurfaceHolder);
+//        mMediaPlayer.setDisplay(mSurfaceHolder);
+
+//        if (mTargetState == State.PLAYING && mSurfaceHolder != null && !mSurfaceHolder.isCreating()) {
+//            start();
+//        }
     }
 
     /* SurfaceHolder#setFixedSize方法会触发该方法调用
@@ -147,10 +232,10 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
      */
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
-        Log.d(TAG, "surfaceChanged format:" + format +
-                "--->surface size:" + width + "/" + height
-                + "--->parent frame size:" + ((LinearLayout) mSurfaceView.getParent()).getWidth() + "/" + ((LinearLayout) mSurfaceView.getParent()).getHeight()
-        );
+//        Log.d(TAG, "surfaceChanged format:" + format +
+//                "--->surface size:" + width + "/" + height
+//                + "--->parent frame size:" + ((LinearLayout) mSurfaceView.getParent()).getWidth() + "/" + ((LinearLayout) mSurfaceView.getParent()).getHeight()
+//        );
 
     }
 
@@ -158,7 +243,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
 //        Log.d(TAG, "surfaceDestroyed");
         mSurfaceHolder = null;
-        mMediaPlayer.setDisplay(null);
+//        mMediaPlayer.setDisplay(null);
 
     }
 
@@ -194,7 +279,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
      * onCompletion
      */
     @Override
-    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+    public void onVideoSizeChanged(final MediaPlayer mp, final int width, final int height) {
         Log.d(TAG, "onVideoSizeChanged:" + width + "/" + height +
                 "--->video size:" + mp.getVideoWidth() + "/" + mp.getVideoHeight()
         );
@@ -209,9 +294,14 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
 
             }
         }
-        if (mOnMediaPlayerListener != null) {
-            mOnMediaPlayerListener.onVideoSizeChanged(mp, width, height);
-        }
+        mUIHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (mOnMediaPlayerListener != null) {
+                    mOnMediaPlayerListener.onVideoSizeChanged(mp, width, height);
+                }
+            }
+        });
     }
 
     @Override
@@ -223,11 +313,16 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     }
 
     @Override
-    public void onPrepared(MediaPlayer mp) {
-        Log.d(TAG, "onPrepared");
-        if (mOnMediaPlayerListener != null) {
-            mOnMediaPlayerListener.onPrepared(mp);
-        }
+    public void onPrepared(final MediaPlayer mp) {
+        Log.d(TAG, "onPrepared:"+position);
+        mUIHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (mOnMediaPlayerListener != null) {
+                    mOnMediaPlayerListener.onPrepared(mp);
+                }
+            }
+        });
         mCurState = State.PREPARED;
         if (mTargetState == State.PLAYING) {
             if (mSurfaceHolder != null && !mSurfaceHolder.isCreating()) {
@@ -241,23 +336,36 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     }
 
     @Override
-    public void onSeekComplete(MediaPlayer mp) {
+    public void onSeekComplete(final MediaPlayer mp) {
         Log.d(TAG, "onSeekComplete:");
-        if (mOnMediaPlayerListener != null) {
-            mOnMediaPlayerListener.onSeekComplete(mp);
-        }
+        mUIHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (mOnMediaPlayerListener != null) {
+                    mOnMediaPlayerListener.onSeekComplete(mp);
+                }
+            }
+        });
     }
 
     @Override
-    public void onCompletion(MediaPlayer mp) {
-        Log.d(TAG, "onCompletion:");
-        if (mOnMediaPlayerListener != null) {
-            mOnMediaPlayerListener.onCompletion(mp);
-        }
+    public void onCompletion(final MediaPlayer mp) {
+        mCurState = State.PLAYBACK_COMPLETED;
+        Log.d(TAG, "onCompletion:position/mCurState:"+position+"/"+mCurState);
+        mUIHandler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                if (mOnMediaPlayerListener != null) {
+                    mOnMediaPlayerListener.onCompletion(mp);
+                }
+            }
+        });
     }
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
+        mCurState = State.ERROR;
         String whatdesc = "";
         switch (what) {
             case 1: {
@@ -266,6 +374,10 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
             }
             case 100: {
                 whatdesc = "MEDIA_ERROR_SERVER_DIED";
+                break;
+            }
+            case -38: {
+                whatdesc = "-38";
                 break;
             }
         }
@@ -302,7 +414,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     }
 
     @Override
-    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+    public boolean onInfo(final MediaPlayer mp, int what, int extra) {
         String text = "";
         switch (what) {
             case 1: {
@@ -317,6 +429,15 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
             }
             case 3: {
                 text = "MEDIA_INFO_VIDEO_RENDERING_START";//渲染第一帧
+                mUIHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (mOnMediaPlayerListener != null) {
+                            mOnMediaPlayerListener.onFirstFrame(mp);
+                        }
+                    }
+                });
                 break;
             }
             case 700: {
@@ -392,17 +513,14 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         if (mMediaPlayer != null) {
             mMediaPlayer.reset();
             mMediaPlayer.release();
+            mMediaPlayer = null;
             mCurState = State.IDLE;
             if (cleatTargetState) {
                 mTargetState = State.IDLE;
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PlaybackParams playbackParams = mMediaPlayer.getPlaybackParams();
-            }
         }
     }
-
 
     @AnyThread
     private void stop() {
@@ -425,13 +543,25 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         return isInPlaybackState() && mMediaPlayer.isPlaying();
     }
 
+    public State getCurState() {
+        return mCurState;
+    }
+
     @AnyThread
     public void start() {
-        Log.d(TAG, "start:" +
-                "--->isInPlaybackState:" + isInPlaybackState()
+        start(mEndPoint);
+    }
+
+    @AnyThread
+    public void start(int endPoint) {
+        mEndPoint = endPoint;
+        Log.d(TAG, "start:position/mCurState:" +position+ "/"+mCurState+
+                "--->isInPlaybackState:" + isInPlaybackState() +
+                "--->duration:" + getDuration()
         );
         if (mMediaPlayer != null && isInPlaybackState()) {
             mMediaPlayer.start();
+            mMediaPlayer.seekTo(60100);
             mCurState = State.PLAYING;
         }
         mTargetState = State.PLAYING;
@@ -464,16 +594,15 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         }
     }
 
-    public void  seekTo(int msec){
-        if (isInPlaybackState()){
+    public void seekTo(int msec) {
+        if (isInPlaybackState()) {
             mMediaPlayer.seekTo(msec);
-            mSeekWhenPrepared= 0;
-        }else {
-            mSeekWhenPrepared= 0;
+            mSeekWhenPrepared = 0;
+        } else {
+            mSeekWhenPrepared = 0;
 
         }
     }
-
 
     public void setDataSource(final Uri uri) {
         setDataSource(uri, null);
@@ -484,6 +613,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         mUri = uri;
         mHeaders = headers;
         try {
+            mMediaPlayer.reset();
             mMediaPlayer.setDataSource(mContext, mUri, mHeaders);
             mMediaPlayer.prepareAsync();
             mCurState = State.PREPARING;
@@ -501,32 +631,13 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     //For files, it is OK to call prepare(), which blocks until MediaPlayer is ready for playback
     public void setDataSource(FileDescriptor fd, long offset, long length) {
         try {
+            mMediaPlayer.reset();
             mMediaPlayer.setDataSource(fd, offset, length);
             mMediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-//
-//    public void setDataSourceAndPlay(final Uri uri) {
-//        setDataSourceAndPlay(uri, null);
-//
-//    }
-//
-//    public void setDataSourceAndPlay(final Uri uri, final Map<String, String> headers) {
-//        setDataSource(uri, headers);
-//        start();
-//    }
-//
-//    public void setDataSourceAndPlay(@RawRes int resid) {
-//        setDataSource(resid);
-//        start();
-//    }
-//
-//    public void setDataSourceAndPlay(FileDescriptor fd, long offset, long length) {
-//        setDataSource(fd, offset, length);
-//        start();
-//    }
 
     public static VideoPlayer createAndBind(Context context, TextureView textureView) {
         VideoPlayer videoPlayer = new VideoPlayer(context);

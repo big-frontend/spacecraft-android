@@ -15,9 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.hawksjamesf.common.util.ConvertUtil;
 import com.hawksjamesf.common.widget.ChaplinVideoView;
 import com.hawksjamesf.common.widget.Constants;
-import com.hawksjamesf.common.util.ConvertUtil;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,18 +56,18 @@ public class ParallaxActivity extends AppCompatActivity {
 
         item_top_bar_for_recyclerview = findViewById(R.id.item_top_bar_for_recyclerview);
         clvForRecyclerView = item_top_bar_for_recyclerview.findViewById(R.id.clv);
-        clvForRecyclerView.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL));
-
+        clvForRecyclerView.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL))
+//        clvForRecyclerView.setDataSourceAndPlay(R.raw.wechatsight1)
+                .bindLifecycle(getLifecycle());
         item_top_bar_for_listview = findViewById(R.id.item_top_bar_for_listview);
         clvForListView = item_top_bar_for_listview.findViewById(R.id.clv);
-
 
         rv = findViewById(R.id.rv);
         final MyAdapter myAdapter = new MyAdapter();
         rv.setAdapter(myAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rv.getContext(), RecyclerView.VERTICAL, false);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rv.getContext(), RecyclerView.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
-        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        final PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(rv);
 //        rv.addItemDecoration(new );
         rv.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
@@ -84,16 +84,39 @@ public class ParallaxActivity extends AppCompatActivity {
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if (newState ==RecyclerView.SCROLL_STATE_IDLE){
-//                    recyclerView.findViewHolderForAdapterPosition()
-//                    recyclerView.findViewHolderForLayoutPosition()
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+                    int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+                    int firstCompletelyVisibleItemPosition = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                    int lastCompletelyVisibleItemPosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+                    Log.d("onScrollStateChanged", "firstVisibleItemPosition/lastVisibleItemPosition:" + firstVisibleItemPosition + "/" + lastVisibleItemPosition
+                            + "--->firstCompletelyVisibleItemPosition/lastCompletelyVisibleItemPosition" + firstCompletelyVisibleItemPosition + "/" + lastCompletelyVisibleItemPosition);
+
+                    RecyclerView.ViewHolder viewHolderForAdapterPosition = recyclerView.findViewHolderForAdapterPosition(firstVisibleItemPosition);
+                    if (viewHolderForAdapterPosition != null) {
+                        int oldPosition = viewHolderForAdapterPosition.getOldPosition();
+                        int adapterPosition = viewHolderForAdapterPosition.getAdapterPosition();
+                        int layoutPosition = viewHolderForAdapterPosition.getLayoutPosition();
+                        Log.d("onScrollStateChanged", "viewHolderForAdapterPosition--->oldPosition/adapterPosition/layoutPosition:" + oldPosition + "/" + adapterPosition + "/" + layoutPosition);
+                    }
+                    RecyclerView.ViewHolder viewHolderForLayoutPosition = recyclerView.findViewHolderForLayoutPosition(firstVisibleItemPosition);
+
+                    if (viewHolderForLayoutPosition != null) {
+                        int oldPosition = viewHolderForLayoutPosition.getOldPosition();
+                        int adapterPosition = viewHolderForLayoutPosition.getAdapterPosition();
+                        int layoutPosition = viewHolderForLayoutPosition.getLayoutPosition();
+                        Log.d("onScrollStateChanged", "viewHolderForLayoutPosition--->oldPosition/adapterPosition/layoutPosition:" + oldPosition + "/" + adapterPosition + "/" + layoutPosition);
+                        ((MyViewHolder) viewHolderForLayoutPosition).clv.start();
+                    }
                 }
             }
+
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
+
         });
         rv.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -154,7 +177,7 @@ public class ParallaxActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 Log.d("ParallaxActivity", "ListView:getView:position" + position);
-                MyViewHolder myViewHolder = null;
+                MyViewHolder myViewHolder;
                 if (convertView == null) {
                     View itemView = LayoutInflater.from(ParallaxActivity.this).inflate(R.layout.item_my, parent, false);
                     myViewHolder = new MyViewHolder(itemView);
@@ -215,6 +238,12 @@ public class ParallaxActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
 
     private void moveUpAndDown(View v, MotionEvent event) {
         float currentY = event.getY();
@@ -280,40 +309,82 @@ public class ParallaxActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+    class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+        public static final int FIRST_BOOT = 0;
+        public static final int NON_FIRST_BOOT = 1;
 
-    static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+        @Override
+        public int getItemViewType(int position) {
+            int viewtype;
+            if (position == 0) {
+                viewtype = FIRST_BOOT;
+            } else {
+                viewtype = NON_FIRST_BOOT;
+            }
+
+            return viewtype;
+        }
 
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             Log.d("ParallaxActivity", "onCreateViewHolder");
-            return new MyViewHolder(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false)
-            );
+            MyViewHolder viewHolder;
+            if (FIRST_BOOT == viewType) {
+                viewHolder = new MyViewHolder(
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false),
+                        true
+                );
+            } else {
+                viewHolder = new MyViewHolder(
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false)
+                );
+            }
+            return viewHolder;
         }
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Log.d("ParallaxActivity", "RecyclerView:onBindViewHolder:position:" + position);
             holder.tvText.setText("RecyclerView:position:" + position);
+            holder.clv.setPosition(position);
+            if (holder.isFirstBoot && position == 0) {
+                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1)
+//                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
+                ;
+                holder.isFirstBoot = false;
+            } else if (position % 2 == 0) {
+//                holder.clv.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL), false)
+                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1, false)
+//                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
+                ;
+            } else {
+                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1, false)
+//                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
+                ;
+            }
         }
 
         @Override
         public int getItemCount() {
-            return 23;
+            return 4;
         }
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvText;
         ChaplinVideoView clv;
+        boolean isFirstBoot;
 
-        public MyViewHolder(@NonNull View itemView) {
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvText = itemView.findViewById(R.id.tv_text);
+            clv = itemView.findViewById(R.id.clv);
+        }
+
+        MyViewHolder(@NonNull View itemView, boolean isFirstBoot) {
+            super(itemView);
+            this.isFirstBoot = isFirstBoot;
             tvText = itemView.findViewById(R.id.tv_text);
             clv = itemView.findViewById(R.id.clv);
         }

@@ -27,11 +27,12 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/iv_video_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:scaleType="centerInside"
+        android:background="@android:color/black"
+        android:scaleType="center"
         android:src="@drawable/ic_play_circle_filled_apricot_24dp"/>
 
     <MediaController

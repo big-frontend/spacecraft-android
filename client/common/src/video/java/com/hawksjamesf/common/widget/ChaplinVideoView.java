@@ -6,7 +6,6 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -21,6 +20,7 @@ import java.io.FileDescriptor;
 import java.util.Map;
 
 import androidx.annotation.RawRes;
+import androidx.lifecycle.Lifecycle;
 
 
 /**
@@ -30,14 +30,58 @@ import androidx.annotation.RawRes;
  * @author: hawksjamesf
  * @email: hawksjamesf@gmail.com
  * @since: Feb/28/2019  Thu
+ * <p>
+ * <p>
+ * <p>
+ * R.raw.xxx
+ * setup:
+ * start:--->isInPlaybackState:false
+ * onAny
+ * onStart
+ * onAny
+ * onResume
+ * onAny
+ * onVideoSizeChanged:960/544--->video size:960/544
+ * onPrepared
+ * onSurfaceTextureAvailable:537/597
+ * onSurfaceTextureAvailable:537/519
+ * onSurfaceTextureAvailable:537/299
+ * onSurfaceTextureSizeChanged surfaceTexture size:444/35--->parent frame size:444/72
+ * onSurfaceTextureSizeChanged surfaceTexture size:444/591--->parent frame size:444/1185
+ * onSurfaceTextureSizeChanged surfaceTexture size:537/519--->parent frame size:537/1041
+ * <p>
+ * url
+ * setup:
+ * start:--->isInPlaybackState:false
+ * onAny
+ * onStart
+ * onAny
+ * onResume
+ * onAny
+ * onSurfaceTextureAvailable:537/597
+ * onSurfaceTextureAvailable:537/519
+ * onSurfaceTextureAvailable:537/299
+ * onSurfaceTextureSizeChanged surfaceTexture size:444/35--->parent frame size:444/72
+ * onSurfaceTextureSizeChanged surfaceTexture size:444/591--->parent frame size:444/1185
+ * onSurfaceTextureSizeChanged surfaceTexture size:537/519--->parent frame size:537/1041
+ * onVideoSizeChanged:1280/720--->video size:1280/720
+ * onBufferingUpdate:percent:100
+ * onPrepared
+ * start:--->isInPlaybackState:true
+ * onBufferingUpdate:percent:0
+ * onInfo：what/desc:703/MEDIA_INFO_NETWORK_BANDWIDTH--->extra:0
+ * onInfo：what/desc:701/MEDIA_INFO_BUFFERING_START--->extra:0
+ * onVideoSizeChanged:1280/720--->video size:1280/720
+ * onBufferingUpdate:percent:3
+ * onBufferingUpdate:percent:4
  */
 public class ChaplinVideoView extends FrameLayout {
     private static final String TAG = ChaplinVideoView.class.getSimpleName();
 
     private SurfaceView mSvSurface;
-    private VideoPlayer mMPForSurface;
-    private ImageView imageView;
-    private Handler mUIHandler;
+    //    private VideoPlayer mMPForSurface;
+    private ImageView mIvVideoState;
+
     private TextureView mTvTexture;
     private VideoPlayer mMPForTexture;
 
@@ -61,7 +105,8 @@ public class ChaplinVideoView extends FrameLayout {
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
         View rootView = inflate(getContext(), R.layout.view_chaplin, this);
         mSvSurface = rootView.findViewById(R.id.sv_surface);
-        mMPForSurface = VideoPlayer.createAndBind(getContext(), mSvSurface);
+//        mMPForSurface = VideoPlayer.createAndBind(getContext(), mSvSurface);
+        mSvSurface.setVisibility(View.GONE);
         mTvTexture = rootView.findViewById(R.id.tv_texture);
         mMPForTexture = VideoPlayer.createAndBind(getContext(), mTvTexture);
         mMPForTexture.setOnMediaPlayerListener(new OnMediaPlayerListener() {
@@ -71,14 +116,53 @@ public class ChaplinVideoView extends FrameLayout {
             }
 
             @Override
+            protected void onFirstFrame(MediaPlayer mp) {
+                animatePlay();
+            }
+
+            @Override
             protected void onCompletion(MediaPlayer mp) {
-                imageView.setVisibility(View.VISIBLE);
+                mIvVideoState.setVisibility(View.VISIBLE);
 
             }
+
         });
 
-        imageView = rootView.findViewById(R.id.iv);
-        mUIHandler = new Handler();
+        mIvVideoState = rootView.findViewById(R.id.iv_video_state);
+    }
+
+    public void animatePlay() {
+        if (mIvVideoState.getVisibility() == View.VISIBLE) {
+            mIvVideoState.animate().setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mIvVideoState.setVisibility(View.GONE);
+                    mIvVideoState.setScaleX(1f);
+                    mIvVideoState.setScaleY(1f);
+                    mIvVideoState.setAlpha(1f);
+                    animation.cancel();
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            })
+                    .scaleX(2f)
+                    .scaleY(2f)
+                    .alpha(0.5f)
+                    .setDuration(1000)
+                    .start();
+        }
     }
 
 //    @Override
@@ -212,80 +296,71 @@ public class ChaplinVideoView extends FrameLayout {
 
 
     //<editor-fold desc="开放的接口，API">
-    private void animateImageView() {
-        mUIHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (imageView.getVisibility() == View.VISIBLE) {
-                    imageView.animate().setListener(new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                        }
+    public ChaplinVideoView setDataSourceAndPlay(final Uri uri) {
+        return setDataSourceAndPlay(uri, null, true);
 
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            imageView.setVisibility(View.GONE);
-                            imageView.setScaleX(1f);
-                            imageView.setScaleY(1f);
-                            imageView.setAlpha(1f);
-                            animation.cancel();
-                        }
-
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animator animation) {
-
-                        }
-                    })
-                            .scaleX(2f)
-                            .scaleY(2f)
-                            .alpha(0.5f)
-                            .setDuration(1000)
-                            .start();
-                }
-
-            }
-        });
     }
 
-    public void setDataSourceAndPlay(final Uri uri) {
-        setDataSourceAndPlay(uri, null);
+    public ChaplinVideoView setDataSourceAndPlay(final Uri uri, boolean autoPlay) {
+        return setDataSourceAndPlay(uri, null, autoPlay);
+
     }
 
-    public void setDataSourceAndPlay(final Uri uri, final Map<String, String> headers) {
+    public ChaplinVideoView setDataSourceAndPlay(final Uri uri, final Map<String, String> headers, boolean autoPlay) {
         //todo：network & disk & memory cache
 //        mMPForSurface.setDataSource(uri, headers);
-//        mMPForSurface.start();
-        mSvSurface.setVisibility(View.GONE);
-
         mMPForTexture.setDataSource(uri, headers);
-        mMPForTexture.start();
-        animateImageView();
+        if (autoPlay) {
+//        mMPForSurface.start();
+            mMPForTexture.start();
+        }
+        return this;
     }
 
-    public void setDataSourceAndPlay(@RawRes int resid) {
+    public ChaplinVideoView setDataSourceAndPlay(@RawRes int resid) {
+        return setDataSourceAndPlay(resid, true);
+    }
+
+    public ChaplinVideoView setDataSourceAndPlay(@RawRes int resid, boolean autoPlay) {
         AssetFileDescriptor afd = getContext().getResources().openRawResourceFd(resid);
-        if (afd == null) return;
-        setDataSourceAndPlay(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        if (afd == null) return this;
+        return setDataSourceAndPlay(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength(), autoPlay);
     }
 
-    public void setDataSourceAndPlay(FileDescriptor fd, long offset, long length) {
-        mMPForSurface.setDataSource(fd, offset, length);
-        mMPForSurface.start();
+    public ChaplinVideoView setDataSourceAndPlay(FileDescriptor fd, long offset, long length) {
+        return setDataSourceAndPlay(fd, offset, length, true);
+    }
 
+    public int limit = 3000;
+
+    public ChaplinVideoView setDataSourceAndPlay(FileDescriptor fd, long offset, long length, boolean autoPlay) {
+//        mMPForSurface.setDataSource(fd, offset, length);
         mMPForTexture.setDataSource(fd, offset, length);
-        mMPForTexture.start();
-
-        animateImageView();
+        if (autoPlay) {
+//            mMPForSurface.start();
+            mMPForTexture.start(limit);
+        }
+        return this;
 
     }
 
-    public void start() {
-        mMPForTexture.start();
+    public ChaplinVideoView start() {
+        if (mMPForTexture.getCurState() == State.PLAYBACK_COMPLETED) {
+            animatePlay();
+        }
+        mMPForTexture.start(limit);
+        return this;
+    }
+
+    public void setPosition(int position) {
+        mMPForTexture.setPosition(position);
+    }
+
+    public ChaplinVideoView bindLifecycle(Lifecycle lifecycle) {
+        if (lifecycle != null) {
+            lifecycle.addObserver(mMPForTexture);
+        }
+        return this;
     }
     //</editor-fold>
 }
