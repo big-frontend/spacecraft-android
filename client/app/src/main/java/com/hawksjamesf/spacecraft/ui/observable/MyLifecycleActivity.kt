@@ -13,7 +13,7 @@ import androidx.lifecycle.LifecycleRegistry
  * @author: hawks.jamesf
  * @since: Nov/11/2018  Sun
  */
-class MyLifecyclOwner : AppCompatActivity(), LifecycleOwner {
+class MyLifecycleActivity : AppCompatActivity(), LifecycleOwner {
 
     private lateinit var mLifecycleRegistry: LifecycleRegistry
 
@@ -21,12 +21,14 @@ class MyLifecyclOwner : AppCompatActivity(), LifecycleOwner {
         super.onCreate(savedInstanceState)
 
         mLifecycleRegistry = LifecycleRegistry(this)
-        mLifecycleRegistry.markState(Lifecycle.State.CREATED)
+//        mLifecycleRegistry.currentState = Lifecycle.State.CREATED
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
     }
 
     public override fun onStart() {
         super.onStart()
-        mLifecycleRegistry.markState(Lifecycle.State.STARTED)
+//        mLifecycleRegistry.currentState = Lifecycle.State.STARTED
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
     }
 
     override fun getLifecycle(): Lifecycle {

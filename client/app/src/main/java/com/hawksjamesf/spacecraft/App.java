@@ -6,12 +6,14 @@ import com.hawksjamesf.common.util.Util;
 import com.hawksjamesf.network.data.DaggerNetComponent;
 import com.hawksjamesf.network.data.NetComponent;
 import com.hawksjamesf.network.data.NetModule;
+import com.hawksjamesf.spacecraft.ui.observable.AppLifecycleObserver;
 import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
@@ -70,6 +72,7 @@ public class App extends MultiDexApplication {
         CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
 
 //        MockManager.init(getApplicationContext());
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
     }
 
     public static AppComponent getAppComponent() {
