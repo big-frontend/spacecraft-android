@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -17,6 +19,7 @@ import com.hawksjamesf.network.data.bean.ListRes;
 import com.hawksjamesf.network.data.bean.home.WeatherData;
 import com.hawksjamesf.network.data.source.WeatherDataSource;
 import com.hawksjamesf.spacecraft.App;
+import com.hawksjamesf.spacecraft.ParallaxActivity;
 import com.hawksjamesf.spacecraft.R;
 import com.orhanobut.logger.Logger;
 
@@ -42,6 +45,8 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
     WeatherDataSource source;
     RecyclerView rv;
 
+
+    ListView lv;
     @Override
     public HomePresenter createPresenter() {
         return new HomePresenter();
@@ -121,6 +126,50 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) rv.getLayoutParams();
         AppBarLayout.ScrollingViewBehavior behavior = (AppBarLayout.ScrollingViewBehavior) layoutParams.getBehavior();
         behavior.setOverlayTop(120);
+
+
+        lv = findViewById(R.id.lv);
+        lv.setNestedScrollingEnabled(true);
+        lv.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return 23;
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                Log.d("ParallaxActivity", "ListView:getView:position" + position);
+                MyViewHolder myViewHolder;
+                if (convertView == null) {
+                    View itemView = LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_my, parent, false);
+                    myViewHolder = new MyViewHolder(itemView);
+                    itemView.setTag(myViewHolder);
+                    convertView = itemView;
+
+                } else {
+                    myViewHolder = (MyViewHolder) convertView.getTag();
+                }
+                try {
+                    Thread.sleep(50);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                myViewHolder.tvText.setText("ListView:position:" + position);
+                return convertView;
+
+            }
+        });
     }
 
     static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
