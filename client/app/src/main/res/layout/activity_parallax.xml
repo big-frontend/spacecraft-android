@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="horizontal">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
 
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:background="@color/colorAccent"
         android:orientation="vertical"
         >
+        <!--android:layout_weight="1"-->
 
         <include
             android:id="@+id/item_top_bar_for_recyclerview"
@@ -32,25 +33,36 @@
         android:layout_height="match_parent"
         android:background="@color/lightGreyBlue"/>
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:background="@color/colorAccent"
         android:orientation="vertical"
         >
+        <!--android:layout_weight="1"-->
+        <com.google.android.material.appbar.AppBarLayout
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:expanded="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:liftOnScroll="true"
+            app:liftOnScrollTargetViewId="@id/lv"
+            android:theme="@style/AppTheme.AppBarOverlay">
+            <include
+                android:id="@+id/item_top_bar_for_listview"
+                layout="@layout/item_top_bar"/>
 
-        <include
-            android:id="@+id/item_top_bar_for_listview"
-            layout="@layout/item_top_bar"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <ListView
+        <com.hawksjamesf.spacecraft.CustListView
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/apricot"/>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.hawksjamesf.spacecraft;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +25,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -41,7 +42,7 @@ public class ParallaxActivity extends AppCompatActivity {
     ChaplinVideoView clvForRecyclerView;
     ChaplinVideoView clvForListView;
     RecyclerView rv;
-    ListView lv;
+    CustListView lv;
     private int mTouchMoveCount = 0;
     private float mStartY = 0;
     private long mStartEventTime = 0;
@@ -67,8 +68,8 @@ public class ParallaxActivity extends AppCompatActivity {
         rv.setAdapter(myAdapter);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rv.getContext(), RecyclerView.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
-        final PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
-        pagerSnapHelper.attachToRecyclerView(rv);
+//        final PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+//        pagerSnapHelper.attachToRecyclerView(rv);
 //        rv.addItemDecoration(new );
         rv.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
             @Override
@@ -78,6 +79,7 @@ public class ParallaxActivity extends AppCompatActivity {
 
             @Override
             public void onChildViewDetachedFromWindow(@NonNull View view) {
+
 
             }
         });
@@ -106,7 +108,18 @@ public class ParallaxActivity extends AppCompatActivity {
                         int adapterPosition = viewHolderForLayoutPosition.getAdapterPosition();
                         int layoutPosition = viewHolderForLayoutPosition.getLayoutPosition();
                         Log.d("onScrollStateChanged", "viewHolderForLayoutPosition--->oldPosition/adapterPosition/layoutPosition:" + oldPosition + "/" + adapterPosition + "/" + layoutPosition);
-                        ((MyViewHolder) viewHolderForLayoutPosition).clv.start();
+//                        ((MyViewHolder) viewHolderForLayoutPosition).clv.start();
+                    }
+                }else if (newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                    Log.d("onScrollStateChanged", "SCROLL_STATE_DRAGGING");
+                    int childCount = recyclerView.getChildCount();
+                    for (int i = 0; i < childCount; i++) {
+                    RecyclerView.ViewHolder viewHolderForLayoutPosition = recyclerView.findViewHolderForAdapterPosition(i);
+
+                    if (viewHolderForLayoutPosition != null) {
+//                    ((MyViewHolder) viewHolderForLayoutPosition).clv.start();
+                    }
+
                     }
                 }
             }
@@ -142,7 +155,7 @@ public class ParallaxActivity extends AppCompatActivity {
                     if (mTouchMoveCount > MAX_MOVE_COUNT) {
                         return false;
                     }
-//                    moveUpAndDown(v, event);
+                    moveUpAndDown(v, event);
                     return false;
                 } else if (action == MotionEvent.ACTION_UP) {
                     mStartY = 0;
@@ -176,7 +189,7 @@ public class ParallaxActivity extends AppCompatActivity {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                Log.d("ParallaxActivity", "ListView:getView:position" + position);
+                Log.d("ParallaxActivity", "ListView:getView:position/childCount" + position+"/"+parent.getChildCount());
                 MyViewHolder myViewHolder;
                 if (convertView == null) {
                     View itemView = LayoutInflater.from(ParallaxActivity.this).inflate(R.layout.item_my, parent, false);
@@ -262,10 +275,10 @@ public class ParallaxActivity extends AppCompatActivity {
 
 
     private ValueAnimator mObjectAnimator;
-    private int mDuration = 300;
+    private int mDuration = 3000;
 
     private void startTitleViewAnimator(final View v, final int endPaddingTop) {
-        if (item_top_bar_for_recyclerview != null && item_top_bar_for_listview != null) {
+        if (item_top_bar_for_recyclerview != null || item_top_bar_for_listview != null) {
             int start = 0;
             if (v instanceof RecyclerView) {
                 start = item_top_bar_for_recyclerview.getPaddingTop();
@@ -284,6 +297,13 @@ public class ParallaxActivity extends AppCompatActivity {
             mObjectAnimator.setDuration(mDuration);
             mObjectAnimator.setInterpolator(new DecelerateInterpolator());
             mObjectAnimator.start();
+            mObjectAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+//                    lv.aminating = true;
+                }
+            });
             mObjectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -302,7 +322,20 @@ public class ParallaxActivity extends AppCompatActivity {
                         paddingBottom = item_top_bar_for_listview.getPaddingBottom();
 
                         item_top_bar_for_listview.setPadding(paddingLeft, animatedValue, paddingRight, paddingBottom);
-                    }
+//                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) lv.getLayoutParams();
+//                        layoutParams.height += -animatedValue;
+//                        lv.setLayoutParams(layoutParams);
+//                        item_top_bar_for_listview.offsetTopAndBottom(animatedValue);
+//                        lv.offsetTopAndBottom(animatedValue);
+                            lv.aminating = true;
+                        //下滑 animatedValue =0；上滑 animatedValue = -528
+                            if (animatedValue == -mOffsetY) {//上滑
+                                        lv.moveUp =true;
+                            } else if (animatedValue == 0) {//下滑
+                                        lv.moveUp =false;
+
+                            }
+                        }
 
                 }
             });
@@ -367,7 +400,7 @@ public class ParallaxActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return 4;
+            return 20;
         }
     }
 
