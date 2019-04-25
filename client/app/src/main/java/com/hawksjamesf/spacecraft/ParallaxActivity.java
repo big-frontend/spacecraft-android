@@ -121,6 +121,7 @@ public class ParallaxActivity extends AppCompatActivity {
                     }
 
                     }
+                    throw  new UnsupportedOperationException();
                 }
             }
 

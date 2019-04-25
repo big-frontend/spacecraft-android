@@ -32,6 +32,10 @@ versionPluginForKotlin {
     fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
 
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.firebase-perf'
+
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
 }
@@ -110,7 +114,8 @@ android {
         }
     }
     lintOptions {
-//        abortOnError false
+        checkReleaseBuilds false
+        abortOnError false
     }
 
 
@@ -198,6 +203,11 @@ dependencies {
 //    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0',{
 //        exclude group: 'com.android.support', module: 'multidex'
 //    }
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    implementation 'com.google.firebase:firebase-perf:16.2.5'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
 
 }
 println("app end")

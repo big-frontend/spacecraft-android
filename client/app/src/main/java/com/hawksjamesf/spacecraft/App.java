@@ -2,6 +2,7 @@ package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
 import com.hawksjamesf.common.util.Util;
 import com.hawksjamesf.network.data.DaggerNetComponent;
 import com.hawksjamesf.network.data.NetComponent;
@@ -16,6 +17,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Copyright ® $ 2017
@@ -70,7 +72,7 @@ public class App extends MultiDexApplication {
         Util.init(this);
 
         CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
-
+        Fabric.with(this, new Crashlytics());
 //        MockManager.init(getApplicationContext());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
     }
