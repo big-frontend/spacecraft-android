@@ -1,6 +1,7 @@
 package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.crashlytics.android.Crashlytics;
 import com.hawksjamesf.common.util.Util;
@@ -13,6 +14,10 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
@@ -70,12 +75,51 @@ public class App extends MultiDexApplication {
 
 //        Utils.init(this);
         Util.init(this);
-
-        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG);
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        strategy.setAppVersion(BuildConfig.VERSION_NAME);
+        strategy.setBuglyLogUpload(true);
+        String packageName = getApplicationContext().getPackageName();
+        strategy.setAppPackageName(packageName);
+        String processName = getProcessName(android.os.Process.myPid());
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+//        strategy.setAppReportDelay(20000);   //改为20s
+//        strategy.setAppChannel()
+//        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
+        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, false);
+        CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         Fabric.with(this, new Crashlytics());
 //        MockManager.init(getApplicationContext());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
     }
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 
     public static AppComponent getAppComponent() {
         return sAppComponent;

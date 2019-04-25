@@ -74,6 +74,9 @@ android {
         buildConfigField('String', 'BUGLY_APP_KEY', '"a15ecf84-1786-40c6-abf5-fe975fce22e6"')
         buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517883187"')
         buildConfigField('String', 'XIAOMI_APP_KEY', '"5381788364187"')
+        manifestPlaceholders = [
+                'BUGLY_APP_ID': '3d62251014', 'BUGLY_APP_KEY': 'a15ecf84-1786-40c6-abf5-fe975fce22e6', "BUGLY_APP_VERSION": "${rootProject.ext.versionName}"
+        ]
 
         //lower 5.x
         vectorDrawables.useSupportLibrary = true
@@ -102,14 +105,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf']
+            manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf', 'BUGLY_ENABLE_DEBUG': 'false']
             signingConfig signingConfigs.releaseSigningConfig
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix = '.debug'
-            manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf']
+            manifestPlaceholders = [
+                    'QQ_KEY'            : 'adf', 'WEXIN_KEY': 'adfaf',
+                    'BUGLY_ENABLE_DEBUG': 'true'
+            ]
 //            signingConfig signingConfigs.debugSigningConfig
         }
     }
