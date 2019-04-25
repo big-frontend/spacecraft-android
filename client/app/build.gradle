@@ -66,7 +66,8 @@ android {
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
 //        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
-        buildConfigField('String', 'BUGLY_APP_ID', '"a5f4e5063e"')
+        buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
+        buildConfigField('String', 'BUGLY_APP_KEY', '"a15ecf84-1786-40c6-abf5-fe975fce22e6"')
         buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517883187"')
         buildConfigField('String', 'XIAOMI_APP_KEY', '"5381788364187"')
 
