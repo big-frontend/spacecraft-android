@@ -206,8 +206,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
     implementation 'com.google.firebase:firebase-perf:16.2.5'
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
-
+    implementation 'com.google.firebase:firebase-config:16.5.0'
+//    implementation 'com.google.android.gms:play-services-location:16.0.0'
+//    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
 }
 println("app end")
