@@ -72,8 +72,8 @@ android {
 //        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
         buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
         buildConfigField('String', 'BUGLY_APP_KEY', '"a15ecf84-1786-40c6-abf5-fe975fce22e6"')
-        buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517883187"')
-        buildConfigField('String', 'XIAOMI_APP_KEY', '"5381788364187"')
+        buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517994447"')
+        buildConfigField('String', 'XIAOMI_APP_KEY', '"5921799441447"')
         manifestPlaceholders = [
                 'BUGLY_APP_ID': '3d62251014', 'BUGLY_APP_KEY': 'a15ecf84-1786-40c6-abf5-fe975fce22e6', "BUGLY_APP_VERSION": "${rootProject.ext.versionName}"
         ]
@@ -173,7 +173,7 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0-alpha01'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha03'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha06'
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"
@@ -210,7 +210,7 @@ dependencies {
 //        exclude group: 'com.android.support', module: 'multidex'
 //    }
     implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    api 'com.crashlytics.sdk.android:crashlytics:2.9.9'
     implementation 'com.google.firebase:firebase-perf:16.2.5'
     implementation 'com.google.firebase:firebase-config:16.5.0'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'

@@ -41,7 +41,7 @@ import kotlin.jvm.functions.Function1;
 public class SplashActivity extends BaseActivity {
     public static final String TAG="SplashActivity";
 
-    @AddTrace(name = "initComponentTrace", enabled = true /* optional */)
+    @AddTrace(name = "_splashActivity_initComponentTrace", enabled = true /* optional */)
     @Override
     protected void initComponent(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_splash);
@@ -56,7 +56,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-        final Trace myTrace = FirebasePerformance.getInstance().newTrace("test_trace");
+        final Trace myTrace = FirebasePerformance.getInstance().newTrace("loadData");
         myTrace.start();
         final FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         onDestroyDisposable.add(Observable.timer(2, TimeUnit.SECONDS)
@@ -74,8 +74,8 @@ public class SplashActivity extends BaseActivity {
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     }
                 }));
-        myTrace.stop();
         fetchWelcome();
+        myTrace.stop();
     }
 
     // Remote Config keys
