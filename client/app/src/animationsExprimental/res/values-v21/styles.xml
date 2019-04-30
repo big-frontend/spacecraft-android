@@ -4,19 +4,35 @@
     <style name="BaseAppTheme" parent="android:Theme.Material">
 
         <item name="android:windowActivityTransitions">true</item>
-
-        <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/transition_window_enter</item>
-        <item name="android:windowExitTransition">@transition/transition_window_exit</item>
-
-        <!-- enable window content transitions -->
         <item name="android:windowContentTransitions">true</item>
-        <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/transition_window_share_element_enter
-        </item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <!--<item name="android:windowSharedElementsUseOverlay">false</item>-->
+        <!--<item name="android:fragmentAllowEnterTransitionOverlap">false</item>-->
+        <!--<item name="android:fragmentAllowReturnTransitionOverlap">false</item>-->
+    </style>
+
+    <style name="BaseAppTheme.ListTheme">
+        <item name="android:windowExitTransition">@transition/transition_window_exit</item>
+        <item name="android:windowReenterTransition">@transition/transition_window_reenter</item>
         <item name="android:windowSharedElementExitTransition">
             @transition/transition_window_share_element_exit
         </item>
+        <item name="android:windowSharedElementReenterTransition">
+            @transition/transition_window_share_element_reenter
+        </item>
+    </style>
+
+    <style name="BaseAppTheme.DetailTheme">
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/transition_window_enter</item>
+        <item name="android:windowReturnTransition">@transition/transition_window_return</item>
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/transition_window_share_element_enter
+        </item>
+        <item name="android:windowSharedElementReturnTransition">
+            @transition/transition_window_share_element_return
+        </item>
+
     </style>
 </resources>

@@ -113,18 +113,18 @@ public class ActivityUtil {
         }
     }
 
-    public static void startACtivity(@NonNull final Class<?> clazz) {
+    public static void startActivity(@NonNull final Class<?> clazz) {
         Context context = getActivityOrApp();
         startActivity(context, null, context.getPackageName(), clazz.getName(), null);
     }
 
-    public static void startACtivity(@NonNull final Class<?> clazz, @NonNull final Bundle options) {
+    public static void startActivity(@NonNull final Class<?> clazz, @NonNull final Bundle options) {
         Context context = getActivityOrApp();
         startActivity(context, null, context.getPackageName(), clazz.getName(), options);
 
     }
 
-    public static void startACtivity(@NonNull final Class<?> clazz, @NonNull final int enterAnim, @NonNull final int exitAnim) {
+    public static void startActivity(@NonNull final Class<?> clazz, @NonNull final int enterAnim, @NonNull final int exitAnim) {
         Context context = getActivityOrApp();
         startActivity(context, null, context.getPackageName(), clazz.getName(), getOptionsBundle(context, enterAnim, exitAnim));
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN && context instanceof Activity)

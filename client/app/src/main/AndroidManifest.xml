@@ -106,8 +106,11 @@
         <activity android:name=".TransitionForViewActivity"/>
         <activity
             android:name=".TransitionForActivityActivity"
-            android:theme="@style/BaseAppTheme"
             />
+            <!--android:theme="@style/BaseAppTheme.ListTheme"-->
+        <activity
+            android:name=".DetailActivity"
+            android:theme="@style/BaseAppTheme.DetailTheme"/>
         <activity android:name=".ScrollableActivity"/>
     </application>
 

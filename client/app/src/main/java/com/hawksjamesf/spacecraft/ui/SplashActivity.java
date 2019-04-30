@@ -14,8 +14,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.BuildConfig;
-import com.hawksjamesf.spacecraft.ParallaxActivity;
 import com.hawksjamesf.spacecraft.R;
+import com.hawksjamesf.spacecraft.TransitionForActivityActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -65,7 +65,7 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
-                        ActivityUtil.startActivity(SplashActivity.this, ParallaxActivity.class, true);
+                        ActivityUtil.startActivity(SplashActivity.this, TransitionForActivityActivity.class, true);
                         myTrace.incrementMetric("started activity", 1);
                         Bundle bundle = new Bundle();
                         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id");
