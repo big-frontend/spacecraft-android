@@ -1,12 +1,14 @@
 package com.hawksjamesf.spacecraft;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,9 @@ import java.util.List;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +35,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
  * @author: hawks.jamesf
  * @since: Nov/25/2018  Sun
  */
-public class TransitionForActivityActivity extends Activity {
+public class TransitionForActivityActivity extends AppCompatActivity {
     private List<ViewModel> dataList = new ArrayList<ViewModel>() {
         {
             add(new ViewModel(R.drawable.tmp, "图片"));
@@ -56,9 +61,18 @@ public class TransitionForActivityActivity extends Activity {
     };
     StaggeredGridLayoutManager staggeredGridLayoutManager;
 
+    public static void startActivity(Activity activity) {
+        ActivityCompat.startActivity(activity,
+                new Intent(activity, TransitionForActivityActivity.class),
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle());
+        activity.finish();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         setContentView(R.layout.activity_transition_for_activity);
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
@@ -72,12 +86,15 @@ public class TransitionForActivityActivity extends Activity {
         dividerItemDecoration2.setDrawable(getDrawable(R.drawable.divider));
         rv.addItemDecoration(dividerItemDecoration);
         rv.addItemDecoration(dividerItemDecoration2);
-        Slide slide = new Slide(Gravity.LEFT);
+        Slide slide = new Slide(Gravity.BOTTOM);
         slide.setDuration(1000);
         slide.setInterpolator(new FastOutSlowInInterpolator());
         slide.excludeTarget(android.R.id.statusBarBackground, true);
         slide.excludeTarget(android.R.id.navigationBarBackground, true);
-        getWindow().setExitTransition(slide);
+//        getWindow().setExitTransition(slide);
+        getWindow().setEnterTransition(slide);
+//        getWindow().setReturnTransition(null);
+        getWindow().setAllowEnterTransitionOverlap(false);
     }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {

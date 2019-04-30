@@ -12,16 +12,17 @@
         <!--<item name="android:fragmentAllowReturnTransitionOverlap">false</item>-->
     </style>
 
-    <style name="BaseAppTheme.ListTheme">
-        <item name="android:windowExitTransition">@transition/transition_window_exit</item>
-        <item name="android:windowReenterTransition">@transition/transition_window_reenter</item>
-        <item name="android:windowSharedElementExitTransition">
-            @transition/transition_window_share_element_exit
-        </item>
-        <item name="android:windowSharedElementReenterTransition">
-            @transition/transition_window_share_element_reenter
-        </item>
-    </style>
+    <!--<style name="BaseAppTheme.ListTheme">-->
+    <!--<item name="android:windowEnterTransition">@transition/slide_bottom</item>-->
+    <!--<item name="android:windowExitTransition">@transition/slide_bottom</item>-->
+    <!--<item name="android:windowReenterTransition">@transition/transition_window_reenter</item>-->
+    <!--<item name="android:windowSharedElementExitTransition">-->
+    <!--@transition/transition_window_share_element_exit-->
+    <!--</item>-->
+    <!--<item name="android:windowSharedElementReenterTransition">-->
+    <!--@transition/transition_window_share_element_reenter-->
+    <!--</item>-->
+    <!--</style>-->
 
     <style name="BaseAppTheme.DetailTheme">
         <!-- specify enter and exit transitions -->

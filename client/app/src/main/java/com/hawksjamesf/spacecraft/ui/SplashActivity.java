@@ -1,5 +1,6 @@
 package com.hawksjamesf.spacecraft.ui;
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ import kotlin.jvm.functions.Function1;
  * @since: 2017/7/4
  */
 public class SplashActivity extends BaseActivity {
-    public static final String TAG="SplashActivity";
+    public static final String TAG = "SplashActivity";
 
     @AddTrace(name = "_splashActivity_initComponentTrace", enabled = true /* optional */)
     @Override
@@ -65,13 +66,14 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
-                        ActivityUtil.startActivity(SplashActivity.this, TransitionForActivityActivity.class, true);
                         myTrace.incrementMetric("started activity", 1);
                         Bundle bundle = new Bundle();
                         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id");
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
                         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+                        ActivityUtil.startActivity(TransitionForActivityActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        finish();
                     }
                 }));
         fetchWelcome();
@@ -81,6 +83,7 @@ public class SplashActivity extends BaseActivity {
     // Remote Config keys
     private static final String LOADING_PHRASE_CONFIG_KEY = "loading_phrase";
     private static final String WELCOME_MESSAGE_KEY = "welcome_message";
+
     private void fetchWelcome() {
         final FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -89,7 +92,7 @@ public class SplashActivity extends BaseActivity {
                 .build();
         mFirebaseRemoteConfig.setConfigSettings(configSettings);
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        Log.i(TAG,"LOADING_PHRASE_CONFIG_KEY:"+mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
+        Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
         mFirebaseRemoteConfig.fetchAndActivate()
                 .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
                     @Override

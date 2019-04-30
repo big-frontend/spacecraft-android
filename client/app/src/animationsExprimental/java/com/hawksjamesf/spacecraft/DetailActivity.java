@@ -1,6 +1,7 @@
 package com.hawksjamesf.spacecraft;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.transition.Transition;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +26,6 @@ import java.util.Map;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -70,12 +69,11 @@ public class DetailActivity extends Activity {
     ImageView ivCover;
     TextView tvText;
 
-    public static void startActivity(TransitionForActivityActivity transitionForActivityActivity, ImageView iv, TextView tv) {
+    public static void startActivity(Activity activity, ImageView iv, TextView tv) {
         Pair<View, String> pair0 = Pair.create((View) iv, IV_TRANSITIONNAME);
         Pair<View, String> pair1 = Pair.create((View) tv, TV_TRANSITIONNAME);
-        ActivityCompat.startActivity(transitionForActivityActivity,
-                new Intent(transitionForActivityActivity, DetailActivity.class),
-                ActivityOptionsCompat.makeSceneTransitionAnimation(transitionForActivityActivity, pair0, pair1).toBundle());
+        activity.startActivity(new Intent(activity, DetailActivity.class),
+                ActivityOptions.makeSceneTransitionAnimation(activity, pair0, pair1).toBundle());
     }
 
     @Override
