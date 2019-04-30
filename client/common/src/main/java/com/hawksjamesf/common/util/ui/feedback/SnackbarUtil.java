@@ -1,4 +1,4 @@
-package com.hawksjamesf.common.util;
+package com.hawksjamesf.common.util.ui.feedback;
 
 import android.text.SpannableString;
 import android.text.Spanned;

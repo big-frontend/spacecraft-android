@@ -112,6 +112,7 @@
             android:name=".DetailActivity"
             android:theme="@style/BaseAppTheme.DetailTheme"/>
         <activity android:name=".ScrollableActivity"/>
+        <activity android:name=".FeedbackUtilActivity"/>
     </application>
 
 </manifest>

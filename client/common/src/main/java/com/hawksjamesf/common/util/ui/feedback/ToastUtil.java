@@ -1,4 +1,4 @@
-package com.hawksjamesf.common.util;
+package com.hawksjamesf.common.util.ui.feedback;
 
 
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.hawksjamesf.common.util.Util;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
