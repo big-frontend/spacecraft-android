@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
-               android:duration="1000" android:transitionOrdering="together">
+               android:duration="1000"
+               android:transitionOrdering="together">
 
     <!-- changeBounds is used for the TextViews which are shared -->
-    <changeBounds />
+    <changeBounds/>
 
     <!-- changeImageTransform is used for the ImageViews which are shared -->
-    <changeImageTransform />
+    <changeImageTransform/>
     <changeTransform
         />
     <!--<changeScroll android:matchOrder="itemId"/>-->
-    <changeClipBounds />
-
+    <changeClipBounds/>
 </transitionSet>

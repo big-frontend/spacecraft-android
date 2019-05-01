@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:opacity="translucent">
+    <item
+        android:drawable="@color/apricot"
+        tools:height="400dp"
+        tools:width="200dp">
+        <ripple
+            android:color="@color/lightGreyBlue"
+            android:radius="10dp"/>
+    </item>
+
+    <item
+        android:width="40dp"
+        android:height="40dp"
+        android:gravity="center"
+        >
+
+        <bitmap
+            android:antialias="true"
+            android:src="@mipmap/ic_launcher"
+            android:tint="@color/lightGreyBlue"/>
+    </item>
+
+    <item
+        android:width="40dp"
+        android:height="40dp"
+        android:gravity="center">
+        <inset
+            android:drawable="@mipmap/ic_launcher"
+            android:inset="10dp"
+            android:visible="true">
+
+        </inset>
+    </item>
+
+
+
+</layer-list>

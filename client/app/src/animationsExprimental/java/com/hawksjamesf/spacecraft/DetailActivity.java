@@ -1,7 +1,6 @@
 package com.hawksjamesf.spacecraft;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +9,11 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.transition.Transition;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.hawksjamesf.common.util.ui.feedback.SnackbarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +22,9 @@ import java.util.Map;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,8 +70,8 @@ public class DetailActivity extends Activity {
     public static void startActivity(Activity activity, ImageView iv, TextView tv) {
         Pair<View, String> pair0 = Pair.create((View) iv, IV_TRANSITIONNAME);
         Pair<View, String> pair1 = Pair.create((View) tv, TV_TRANSITIONNAME);
-        activity.startActivity(new Intent(activity, DetailActivity.class),
-                ActivityOptions.makeSceneTransitionAnimation(activity, pair0, pair1).toBundle());
+        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class),
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair0, pair1).toBundle());
     }
 
     @Override
@@ -81,9 +79,9 @@ public class DetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ivCover = findViewById(R.id.iv_cover);
-        TextView tv = findViewById(R.id.tv_text);
-        ViewCompat.setTransitionName(ivCover, IV_TRANSITIONNAME);
-        ViewCompat.setTransitionName(tv, TV_TRANSITIONNAME);
+        tvText = findViewById(R.id.tv_text);
+        ivCover.setTransitionName(IV_TRANSITIONNAME);
+        tvText.setTransitionName(TV_TRANSITIONNAME);
 //        postponeEnterTransition();
 //        iv.getViewTreeObserver().addOnPreDrawListener(
 //                new ViewTreeObserver.OnPreDrawListener() {
@@ -179,26 +177,16 @@ public class DetailActivity extends Activity {
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                if (position == 0) {
-                    return 0;
-
-                } else if (position == 1) {
-                    return 2;
-                } else {
-                    return 4;
-                }
+                return (position > 4 || position == 0) ? 4 : position;
             }
         });
         rvContent.setLayoutManager(gridLayoutManager);
         Adapter adapter = new Adapter();
         rvContent.setAdapter(adapter);
         rvContent.setHasFixedSize(true);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL);
-        DividerItemDecoration dividerItemDecoration2 = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
-        dividerItemDecoration2.setDrawable(getDrawable(R.drawable.divider));
         rvContent.addItemDecoration(dividerItemDecoration);
-        rvContent.addItemDecoration(dividerItemDecoration2);
     }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
@@ -238,11 +226,11 @@ public class DetailActivity extends Activity {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SnackbarUtil.with(tvText)
-                            .setActionText("action text")
-                            .setMessage("message")
-                            .setDuration(1000)
-                            .showSuccess();
+//                    SnackbarUtil.with(tvText)
+//                            .setActionText("action text")
+//                            .setMessage("message")
+//                            .setDuration(1000)
+//                            .showSuccess();
                 }
             });
         }

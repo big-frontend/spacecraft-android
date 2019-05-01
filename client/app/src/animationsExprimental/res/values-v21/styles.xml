@@ -26,14 +26,12 @@
 
     <style name="BaseAppTheme.DetailTheme">
         <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/transition_window_enter</item>
-        <item name="android:windowReturnTransition">@transition/transition_window_return</item>
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/transition_window_share_element_enter
-        </item>
-        <item name="android:windowSharedElementReturnTransition">
-            @transition/transition_window_share_element_return
-        </item>
+        <item name="android:windowEnterTransition">@transition/enter_detail</item>
+        <!--<item name="android:windowReturnTransition">@transition/return_detail</item>-->
+        <item name="android:windowSharedElementEnterTransition">@transition/enter_share_element_detail</item>
+        <!--<item name="android:windowSharedElementReturnTransition">-->
+            <!--@transition/return_share_element_detail-->
+        <!--</item>-->
 
     </style>
 </resources>

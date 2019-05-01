@@ -3,29 +3,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:flexWrap="wrap"
+    android:layout_height="150dp"
+    android:background="@android:color/holo_blue_bright"
+    android:padding="5dp"
+    app:alignContent="stretch"
     app:alignItems="stretch"
-    app:alignContent="stretch" >
+    app:flexWrap="wrap"
+    >
 
     <TextView
         android:id="@+id/textview1"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/apricot"
+        android:text="textview1"
         app:layout_flexBasisPercent="50%"
         />
 
     <TextView
         android:id="@+id/textview2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGreyBlue"
+        android:text="textview2"
         app:layout_alignSelf="center"
         />
 
     <TextView
         android:id="@+id/textview3"
-        android:layout_width="160dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/afasf"
+        android:text="textview3"
         app:layout_alignSelf="flex_end"
         />
 </com.google.android.flexbox.FlexboxLayout>

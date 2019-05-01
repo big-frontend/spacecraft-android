@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:tools="http://schemas.android.com/tools"
               android:gravity="center_horizontal"
               android:orientation="vertical">
 
@@ -16,17 +16,18 @@
 
     <TextView
         android:id="@+id/tv_text"
-        android:textColor="@color/lightGreyBlue"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:text="你好吗我很好，她不好asdfasfasfdasfddasfasfd"
+        android:textColor="@color/lightGreyBlue"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/apricot"
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         tools:itemCount="9"
         tools:listitem="@layout/item_detail_content"
         />
