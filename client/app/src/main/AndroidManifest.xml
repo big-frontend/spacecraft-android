@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:name="com.hawksjamesf.spacecraft.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,9 +28,9 @@
         <meta-data
             android:name="BUGLY_APP_VERSION"
             android:value="${BUGLY_APP_VERSION}"/>
-        <!--<meta-data-->
-            <!--android:name="BUGLY_APP_CHANNEL"-->
-            <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
+        <meta-data
+            android:name="BUGLY_APP_CHANNEL"
+            android:value="${BUGLY_APP_CHANNEL}"/>
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="${BUGLY_ENABLE_DEBUG}"/>
