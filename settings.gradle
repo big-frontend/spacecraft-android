@@ -1,7 +1,7 @@
 println("settings start")
-include ':client/location', ':client/common', ':client/chatroom', ':client/network'
+include ':location', ':common', ':chatroom', ':network'
 if (!isComponentMode.toBoolean()) {
-    include ':client/app'
+    include ':app'
 }
 //include ':server/server4j'
 include ':gradle_plugin'

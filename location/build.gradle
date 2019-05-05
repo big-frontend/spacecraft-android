@@ -1,3 +1,4 @@
+println("lib location start")
 if (isComponentMode.toBoolean()) {
     apply plugin: 'com.android.application'
     apply plugin: 'versionplugin'
@@ -38,15 +39,15 @@ android {
         }
     }
     sourceSets {
-        component {
-            java.srcDirs = ['src/component/java']
-        }
+//        component {
+//            java.srcDirs = ['src/component/java']
+//        }
     }
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(path: ':client/common')
+    api project(path: ':common')
 
 //    // Dependencies for local unit tests
 //    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
@@ -78,3 +79,4 @@ dependencies {
 //    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
 //    androidTestImplementation "com.android.support.test:rules:${rootProject.ext.rulesVersion}"
 }
+println("lib location end")

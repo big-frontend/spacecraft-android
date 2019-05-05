@@ -73,12 +73,12 @@ android {
             buildConfigField 'String', 'WEATHER_URL', '" "'
 
         }
-        real {
-            dimension 'data_access'
-            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
-            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
-
-        }
+//        real {
+//            dimension 'data_access'
+//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+//            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+//
+//        }
 //
 //        realLocalServer{
 //            dimension 'data_access'
@@ -114,7 +114,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    api project(path: ':client/common')
+    api project(path: ':common')
 
     /**
      * ===============================network start====================================

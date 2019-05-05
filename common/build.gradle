@@ -120,11 +120,11 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha06'
     api 'androidx.room:room-rxjava2:2.1.0-alpha06'
 
-    //realm database
-    api "io.realm:realm-annotations:$realmVersion"
-    api "io.realm:realm-android-library:$realmVersion"
-    api "io.realm:realm-android-kotlin-extensions:$realmVersion"
-    annotationProcessor "io.realm:realm-annotations-processor:$realmVersion"
+//    //realm database
+//    api "io.realm:realm-annotations:$realmVersion"
+//    api "io.realm:realm-android-library:$realmVersion"
+//    api "io.realm:realm-android-kotlin-extensions:$realmVersion"
+//    annotationProcessor "io.realm:realm-annotations-processor:$realmVersion"
     /**
      * ================================database end==============================
      */

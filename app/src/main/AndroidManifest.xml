@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/> <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:networkSecurityConfig="@xml/network_security_config"
@@ -28,9 +27,9 @@
         <meta-data
             android:name="BUGLY_APP_VERSION"
             android:value="${BUGLY_APP_VERSION}"/>
-        <meta-data
-            android:name="BUGLY_APP_CHANNEL"
-            android:value="${BUGLY_APP_CHANNEL}"/>
+        <!--<meta-data-->
+            <!--android:name="BUGLY_APP_CHANNEL"-->
+            <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="${BUGLY_ENABLE_DEBUG}"/>
