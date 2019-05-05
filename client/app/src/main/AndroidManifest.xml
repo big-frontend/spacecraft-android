@@ -20,34 +20,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <!-- 配置APP ID -->
+
         <meta-data
             android:name="BUGLY_APPID"
             android:value="${BUGLY_APP_ID}"/>
-        <!-- 配置APP版本号 -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
             android:value="${BUGLY_APP_VERSION}"/>
-        <!-- 配置APP渠道号 -->
-        <meta-data
-            android:name="BUGLY_APP_CHANNEL"
-            android:value="${BUGLY_APP_KEY}"/>
-        <!-- 配置Bugly调试模式（true或者false）-->
+        <!--<meta-data-->
+            <!--android:name="BUGLY_APP_CHANNEL"-->
+            <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="${BUGLY_ENABLE_DEBUG}"/>
-        <!--
- You don't need to include android:required="false" if your app's
- minSdkVersion is 28 or higher.
-    -->
         <uses-library
             android:name="android.test.runner"
             android:required="false"/>
-        <!--
- For both of these declarations, you don't need to include
-             android:required="false" if your app's minSdkVersion is 28
-             or higher.
-        -->
         <uses-library
             android:name="android.test.base"
             android:required="false"/>

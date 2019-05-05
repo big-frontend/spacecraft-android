@@ -82,7 +82,6 @@ android {
         vectorDrawables.useSupportLibrary = true
         vectorDrawables.generatedDensities = []
     }
-
     def releaseKeySet = ['RELEASE_KEY_ALIAS', 'RELEASE_STORE_PASSWORD', 'RELEASE_KEY_PASSWORD']
     def debugKeySet = ['DEBUG_KEY_ALIAS', 'DEBUG_STORE_PASSWORD', 'DEBUG_KEY_PASSWORD']
     signingConfigs {
@@ -107,6 +106,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf', 'BUGLY_ENABLE_DEBUG': 'false']
             signingConfig signingConfigs.releaseSigningConfig
+
+
         }
         debug {
             minifyEnabled false
@@ -117,14 +118,13 @@ android {
                     'BUGLY_ENABLE_DEBUG': 'true'
             ]
 //            signingConfig signingConfigs.debugSigningConfig
+//            matchingFallbacks = ["mocked"]
         }
     }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
-
-
 
     sourceSets {
         main.java.srcDirs += ["src/main/kotlin"]
@@ -158,11 +158,40 @@ android {
     dataBinding {
         enabled = true
     }
+    defaultPublishConfig 'xiaomiRealRelease'
+    flavorDimensions 'channel', 'data_access'
+    productFlavors {
+        mocked {
+            dimension 'data_access'
+            matchingFallbacks = ['mocked']
+        }
+        real {
+            dimension 'data_access'
+            matchingFallbacks = ['real']
+        }
+        xiaomi {
+            dimension 'channel'
+            manifestPlaceholders = [
+                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
+            ]
+        }
+        huawei {
+            dimension 'channel'
+            manifestPlaceholders = [
+                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
+            ]
+        }
+    }
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        def buildType = variant.buildType.name
+        if ((names.contains("mocked") && buildType.contains("release"))
+                || names.contains("real") && buildType.contains("debug")) {
+            setIgnore(true)
+        }
+    }
 
 }
-
-
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':client/location')

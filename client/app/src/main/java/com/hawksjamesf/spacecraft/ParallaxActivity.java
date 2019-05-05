@@ -123,6 +123,7 @@ public class ParallaxActivity extends AppCompatActivity {
 
                     }
 
+                    CrashReport.setUserSceneTag(ParallaxActivity.this, 111685); // 上报后的Crash会显示该标签
                     CrashReport.testJavaCrash();
                 }
             }

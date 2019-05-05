@@ -2,6 +2,7 @@ package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.hawksjamesf.common.util.Util;
@@ -85,11 +86,12 @@ public class App extends MultiDexApplication {
 //        strategy.setAppReportDelay(20000);   //改为20s
 //        strategy.setAppChannel()
 //        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
-        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, false);
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
+        CrashReport.initCrashReport(getApplicationContext(), strategy);
         Fabric.with(this, new Crashlytics());
 //        MockManager.init(getApplicationContext());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+
     }
     /**
      * 获取进程号对应的进程名
