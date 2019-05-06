@@ -64,7 +64,6 @@ android {
 //            }
         }
     }
-    publishNonDefault true
     flavorDimensions "data_access"
     productFlavors {
         mocked {
@@ -73,12 +72,12 @@ android {
             buildConfigField 'String', 'WEATHER_URL', '" "'
 
         }
-//        real {
-//            dimension 'data_access'
-//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
-//            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
-//
-//        }
+        real {
+            dimension 'data_access'
+            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+
+        }
 //
 //        realLocalServer{
 //            dimension 'data_access'

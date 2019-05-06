@@ -5,8 +5,6 @@ apply plugin: "kotlin-android-extensions"
 //apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 
-//apply plugin: 'realm-android'
-
 apply plugin: 'versionplugin'
 //apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
 apply plugin: 'versionpluginforjava'
@@ -157,38 +155,38 @@ android {
     dataBinding {
         enabled = true
     }
-//    defaultPublishConfig 'xiaomiRealRelease'
-//    flavorDimensions 'channel', 'data_access'
-//    productFlavors {
-//        mocked {
-//            dimension 'data_access'
-//            matchingFallbacks = ['mocked']
-//        }
-//        real {
-//            dimension 'data_access'
-//            matchingFallbacks = ['real']
-//        }
-//        xiaomi {
-//            dimension 'channel'
-//            manifestPlaceholders = [
-//                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
-//            ]
-//        }
-//        huawei {
-//            dimension 'channel'
-//            manifestPlaceholders = [
-//                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
-//            ]
-//        }
-//    }
-//    variantFilter { variant ->
-//        def names = variant.flavors*.name
-//        def buildType = variant.buildType.name
-//        if ((names.contains("mocked") && buildType.contains("release"))
-//                || names.contains("real") && buildType.contains("debug")) {
-//            setIgnore(true)
-//        }
-//    }
+    defaultPublishConfig 'xiaomiRealRelease'
+    flavorDimensions 'channel', 'data_access'
+    productFlavors {
+        mocked {
+            dimension 'data_access'
+            matchingFallbacks = ['mocked']
+        }
+        real {
+            dimension 'data_access'
+            matchingFallbacks = ['real']
+        }
+        xiaomi {
+            dimension 'channel'
+            manifestPlaceholders = [
+                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
+            ]
+        }
+        huawei {
+            dimension 'channel'
+            manifestPlaceholders = [
+                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
+            ]
+        }
+    }
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        def buildType = variant.buildType.name
+        if ((names.contains("mocked") && buildType.contains("release"))
+                || names.contains("real") && buildType.contains("debug")) {
+            setIgnore(true)
+        }
+    }
 
 }
 dependencies {
