@@ -101,6 +101,7 @@
             android:theme="@style/BaseAppTheme.DetailTheme"/>
         <activity android:name=".ScrollableActivity"/>
         <activity android:name=".FeedbackUtilActivity"/>
+        <activity android:name=".ConstraintAndFlexBoxActivity"/>
     </application>
 
 </manifest>

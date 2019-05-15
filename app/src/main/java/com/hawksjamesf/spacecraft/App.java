@@ -2,7 +2,6 @@ package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.hawksjamesf.common.util.Util;
@@ -24,6 +23,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
+import me.ele.uetool.UETool;
 
 /**
  * Copyright ® $ 2017
@@ -91,7 +91,7 @@ public class App extends MultiDexApplication {
         Fabric.with(this, new Crashlytics());
 //        MockManager.init(getApplicationContext());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
-
+        UETool.showUETMenu();
     }
     /**
      * 获取进程号对应的进程名
