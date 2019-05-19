@@ -2,7 +2,7 @@ import androidx.test.filters.SmallTest;
 import android.test.InstrumentationTestCase;
 
 import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.network.data.source.remote.WeatherApi;
+import com.hawksjamesf.network.source.remote.WeatherApi;
 
 import junit.framework.Assert;
 

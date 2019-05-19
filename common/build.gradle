@@ -3,8 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'realm-android'
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -117,24 +115,6 @@ dependencies {
      */
 
     /**
-     * ================================database start==============================
-     */
-    //room database
-    testImplementation 'androidx.room:room-testing:2.1.0-alpha06'
-    api 'androidx.room:room-runtime:2.1.0-alpha06'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha06'
-    api 'androidx.room:room-rxjava2:2.1.0-alpha06'
-
-//    //realm database
-    api "io.realm:realm-annotations:$realmVersion"
-    api "io.realm:realm-android-library:$realmVersion"
-    api "io.realm:realm-android-kotlin-extensions:$realmVersion"
-    annotationProcessor "io.realm:realm-annotations-processor:$realmVersion"
-    /**
-     * ================================database end==============================
-     */
-
-    /**
      * ===============================image start=============================
      */
     api "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
@@ -161,7 +141,7 @@ dependencies {
    *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
    *解决方法：需要exclude掉v4包
     */
-    api "com.google.android.material:material:1.1.0-alpha05"
+    api "com.google.android.material:material:1.1.0-alpha06"
 
     api 'com.airbnb.android:lottie:2.8.0'
     api 'com.google.android:flexbox:1.1.0'

@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft;
 
-import com.hawksjamesf.network.data.NetComponent;
+import com.hawksjamesf.network.NetComponent;
 import com.hawksjamesf.spacecraft.scopes.UserScope;
 import com.hawksjamesf.spacecraft.ui.SplashActivity;
 import com.hawksjamesf.spacecraft.ui.home.HomeActivity;

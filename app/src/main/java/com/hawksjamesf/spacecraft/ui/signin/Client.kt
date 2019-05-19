@@ -1,9 +1,8 @@
 package com.hawksjamesf.spacecraft.ui.signin
 
 import androidx.annotation.MainThread
-import com.hawksjamesf.network.data.bean.signin.ClientException
-import com.hawksjamesf.network.data.bean.signin.*
-import com.hawksjamesf.network.data.source.SignInDataSource
+import com.hawksjamesf.network.signin.*
+import com.hawksjamesf.network.source.SignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
@@ -44,7 +43,8 @@ class Client(
         }
         return dataSource.sendCode(sendCodeReq)
                 .onErrorResumeNext {
-                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                    Single.error(it as? ClientException
+                            ?: ClientException.Unknown)
                 }
     }
 
@@ -58,7 +58,8 @@ class Client(
         return dataSource.signUp(signUpReq)
                 .timeout(communicationTimeoutSeconds, TimeUnit.SECONDS)
                 .onErrorResumeNext {
-                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                    Single.error(it as? ClientException
+                            ?: ClientException.Unknown)
                 }
 
 
@@ -74,7 +75,8 @@ class Client(
         return dataSource.signIn(signInReq)
                 //.timeout(communicationTimeoutSeconds, TimeUnit.SECONDS)
                 .onErrorResumeNext {
-                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                    Single.error(it as? ClientException
+                            ?: ClientException.Unknown)
                 }
 
 

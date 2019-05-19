@@ -1,19 +1,21 @@
 apply plugin: 'com.android.library'
-
-apply plugin: 'com.google.protobuf'
-
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
+apply plugin: 'com.google.protobuf'
 
 protobuf {
     protoc {
         // You still need protoc like in the non-Android case
-        artifact = 'com.google.protobuf:protoc:3.0.0'
+        artifact = 'com.google.protobuf:protoc:3.7.1'
     }
     plugins {
         javalite {
             // The codegen for lite comes as a separate artifact
             artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+//            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
         }
     }
     generateProtoTasks {
@@ -25,6 +27,10 @@ protobuf {
             }
             task.plugins {
                 javalite {}
+                grpc {
+                    // Options added to --grpc_out
+                    option 'lite'
+                }
             }
         }
     }
@@ -42,6 +48,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040"')
 
     }
 
@@ -52,16 +59,17 @@ android {
         }
     }
     sourceSets {
-        //protobuf
         main {
             java {
-                srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+                //${protobuf.generatedFilesBaseDir}：
+                // /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/network/build/generated/source/proto
+                //protobuf
+//                srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+                //wire
                 srcDirs += "src/main/wire"
+                //gson
+                srcDirs += "src/main/gson"
             }
-//            proto {
-//                srcDir 'src/main/proto'
-//
-//            }
         }
     }
     flavorDimensions "data_access"
@@ -74,8 +82,8 @@ android {
         }
         real {
             dimension 'data_access'
-            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
-            buildConfigField 'String','WEATHER_URL','"https://api.openweathermap.org"'
+            buildConfigField 'boolean', 'MOCKED_DATA_ACCESS', 'false'
+            buildConfigField 'String', 'WEATHER_URL', '"https://api.openweathermap.org"'
 
         }
 //
@@ -114,10 +122,11 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     api project(path: ':common')
-
     /**
      * ===============================network start====================================
      */
+
+    //restful
     api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
@@ -129,10 +138,16 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
     api "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
 //    api 'com.google.code.gson:gson:2.8.2'
-//    api 'com.google.protobuf:protobuf-lite:3.0.0'
+
+    //rpc
+//    api 'com.google.protobuf:protobuf-lite:3.0.1'//存在依赖冲突
+//    api "io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}"
+//    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
+//    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
 
     /**
      * ===============================network end====================================
      */
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
+    implementation 'javax.annotation:javax.annotation-api:1.3.1'
 }

@@ -7,7 +7,7 @@ import com.hawksjamesf.common.mvp.AutoDisposable
 import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
 import com.hawksjamesf.common.util.subscribeBy
-import com.hawksjamesf.network.data.bean.signin.*
+import com.hawksjamesf.network.signin.*
 import com.hawksjamesf.spacecraft.R
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.editorActions

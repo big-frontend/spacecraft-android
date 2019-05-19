@@ -5,9 +5,9 @@ import android.text.TextUtils;
 
 import com.crashlytics.android.Crashlytics;
 import com.hawksjamesf.common.util.Util;
-import com.hawksjamesf.network.data.DaggerNetComponent;
-import com.hawksjamesf.network.data.NetComponent;
-import com.hawksjamesf.network.data.NetModule;
+import com.hawksjamesf.network.DaggerNetComponent;
+import com.hawksjamesf.network.NetComponent;
+import com.hawksjamesf.network.NetModule;
 import com.hawksjamesf.spacecraft.ui.observable.AppLifecycleObserver;
 import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.orhanobut.logger.AndroidLogAdapter;

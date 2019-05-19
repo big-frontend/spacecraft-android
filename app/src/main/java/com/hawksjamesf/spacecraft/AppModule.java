@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft;
 
-import com.hawksjamesf.network.data.source.SignInDataSource;
+import com.hawksjamesf.network.source.SignInDataSource;
 import com.hawksjamesf.spacecraft.scopes.UserScope;
 import com.hawksjamesf.spacecraft.ui.signin.Client;
 

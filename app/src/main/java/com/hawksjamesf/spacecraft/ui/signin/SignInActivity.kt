@@ -11,9 +11,9 @@ import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
 import com.hawksjamesf.common.util.openActivity
 import com.hawksjamesf.common.util.subscribeBy
-import com.hawksjamesf.network.data.bean.signin.ClientException
-import com.hawksjamesf.network.data.bean.signin.ClientState
-import com.hawksjamesf.network.data.bean.signin.*
+import com.hawksjamesf.network.signin.ClientException
+import com.hawksjamesf.network.signin.ClientState
+import com.hawksjamesf.network.signin.SignInReq
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.view.visibility
 import com.jakewharton.rxbinding2.widget.editorActions

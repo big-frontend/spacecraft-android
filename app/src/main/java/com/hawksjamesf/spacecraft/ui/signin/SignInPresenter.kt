@@ -3,11 +3,11 @@ package com.hawksjamesf.spacecraft.ui.signin
 import androidx.annotation.MainThread
 import com.hawksjamesf.common.util.Util
 import com.hawksjamesf.network.BuildConfig
-import com.hawksjamesf.network.data.bean.signin.*
-import com.hawksjamesf.network.data.source.SignInDataSource
-import com.hawksjamesf.network.data.source.mock.MockSignInDataSource
-import com.hawksjamesf.network.data.source.mock.UncertaintyConditions
-import com.hawksjamesf.network.data.source.remote.signin.RemoteSignInDataSource
+import com.hawksjamesf.network.signin.*
+import com.hawksjamesf.network.source.SignInDataSource
+import com.hawksjamesf.network.source.mock.MockSignInDataSource
+import com.hawksjamesf.network.source.mock.UncertaintyConditions
+import com.hawksjamesf.network.source.remote.signin.RemoteSignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
@@ -57,7 +57,8 @@ class SignInPresenter private constructor(
         }
         return dataSource.sendCode(sendCodeReq)
                 .onErrorResumeNext {
-                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                    Single.error(it as? ClientException
+                            ?: ClientException.Unknown)
                 }
     }
 
@@ -71,7 +72,8 @@ class SignInPresenter private constructor(
         return dataSource.signUp(signUpReq)
                 .timeout(communicationTimeoutSeconds, TimeUnit.SECONDS)
                 .onErrorResumeNext {
-                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                    Single.error(it as? ClientException
+                            ?: ClientException.Unknown)
                 }
 
 
@@ -87,7 +89,8 @@ class SignInPresenter private constructor(
         return dataSource.signIn(signInReq)
                 //.timeout(communicationTimeoutSeconds, TimeUnit.SECONDS)
                 .onErrorResumeNext {
-                    Single.error(it as? ClientException ?: ClientException.Unknown)
+                    Single.error(it as? ClientException
+                            ?: ClientException.Unknown)
                 }
 
 

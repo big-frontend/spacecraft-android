@@ -15,11 +15,10 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
 import com.hawksjamesf.common.mvp.RxActivity;
 import com.hawksjamesf.common.util.BarUtil;
-import com.hawksjamesf.network.data.bean.ListRes;
-import com.hawksjamesf.network.data.bean.home.WeatherData;
-import com.hawksjamesf.network.data.source.WeatherDataSource;
+import com.hawksjamesf.network.ListRes;
+import com.hawksjamesf.network.home.WeatherData;
+import com.hawksjamesf.network.source.WeatherDataSource;
 import com.hawksjamesf.spacecraft.App;
-import com.hawksjamesf.spacecraft.ParallaxActivity;
 import com.hawksjamesf.spacecraft.R;
 import com.orhanobut.logger.Logger;
 
