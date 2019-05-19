@@ -196,6 +196,9 @@ android {
     }
 
 }
+configurations {
+    all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':location')
