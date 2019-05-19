@@ -1,5 +1,5 @@
 println("settings start")
-include ':location', ':common', ':chatroom', ':network'
+include ':location', ':common', ':chatroom', ':network', ':storage'
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }

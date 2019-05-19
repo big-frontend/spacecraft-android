@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        component {
+            initWith debug
+            debuggable true
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += ["src/main/kotlin"]
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    /**
+     * ================================database start==============================
+     */
+    //room database
+    testImplementation 'androidx.room:room-testing:2.1.0-beta01'
+    api 'androidx.room:room-runtime:2.1.0-beta01'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-beta01'
+    api 'androidx.room:room-rxjava2:2.1.0-beta01'
+
+//    //realm database
+    api "io.realm:realm-annotations:5.7.0"
+    api "io.realm:realm-android-library:5.7.0"
+    api "io.realm:realm-android-kotlin-extensions:5.7.0"
+    annotationProcessor "io.realm:realm-annotations-processor:5.7.0"
+    /**
+     * ================================database end==============================
+     */
+}
