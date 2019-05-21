@@ -14,8 +14,8 @@ protobuf {
             artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
         }
         grpc {
-            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
-//            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
+//            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
         }
     }
     generateProtoTasks {

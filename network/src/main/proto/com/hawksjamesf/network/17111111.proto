@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package com.hawksjamesf.network;
 option java_package = "com.hawksjamesf.network";
-//option java_outer_classname = "SignIn";
+option java_outer_classname = "SignUpProto";
 option java_multiple_files = true;
 option java_generic_services = true;
 
@@ -16,6 +16,6 @@ message SignUpReq {
 message SignUpResp {
 }
 
-//service SignUpService {
-//    rpc signup (SignUpReq) returns (SignUpResp);
-//}
+service SignUpService {
+    rpc signup (SignUpReq) returns (SignUpResp);
+}

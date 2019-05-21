@@ -1,8 +1,9 @@
-package com.hawksjamesf.network.source.remote
+package com.hawksjamesf.network.source.remote.rest.weather
 
 import com.hawksjamesf.network.ListRes
 import com.hawksjamesf.network.home.WeatherData
 import com.hawksjamesf.network.source.WeatherDataSource
+import com.hawksjamesf.network.source.remote.rest.AbstractApi
 import io.reactivex.Observable
 import io.reactivex.Single
 import kotlin.reflect.KClass

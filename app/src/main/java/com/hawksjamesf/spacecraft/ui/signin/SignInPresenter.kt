@@ -7,7 +7,7 @@ import com.hawksjamesf.network.signin.*
 import com.hawksjamesf.network.source.SignInDataSource
 import com.hawksjamesf.network.source.mock.MockSignInDataSource
 import com.hawksjamesf.network.source.mock.UncertaintyConditions
-import com.hawksjamesf.network.source.remote.signin.RemoteSignInDataSource
+import com.hawksjamesf.network.source.remote.rest.signin.RemoteSignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit

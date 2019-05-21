@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.source.remote;
+package com.hawksjamesf.network.source.remote.rest.weather;
 
 
 import com.hawksjamesf.network.ListRes;

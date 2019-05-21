@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.source.remote
+package com.hawksjamesf.network.source.remote.rest
 
 import okhttp3.Interceptor
 import okhttp3.Response

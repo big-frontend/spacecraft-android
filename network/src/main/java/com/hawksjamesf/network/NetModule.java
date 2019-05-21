@@ -6,8 +6,8 @@ import com.hawksjamesf.network.source.WeatherDataSource;
 import com.hawksjamesf.network.source.mock.MockSignInDataSource;
 import com.hawksjamesf.network.source.mock.MockWeatherDataSource;
 import com.hawksjamesf.network.source.mock.UncertaintyConditions;
-import com.hawksjamesf.network.source.remote.RemoteWeatherDataSource;
-import com.hawksjamesf.network.source.remote.signin.RemoteSignInDataSource;
+import com.hawksjamesf.network.source.remote.rest.weather.RemoteWeatherDataSource;
+import com.hawksjamesf.network.source.remote.rest.signin.RemoteSignInDataSource;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.source.remote.signin
+package com.hawksjamesf.network.source.remote.rest.signin
 
 import com.hawksjamesf.network.signin.*
 import io.reactivex.Single
@@ -20,6 +20,6 @@ interface SignInApi {
     @POST("/signup")
     abstract fun signUp(@Body req: SignUpReq): Single<Profile>
 
-    @POST("/signIn")
-    abstract fun login(@Body req: SignInReq): Single<Profile>
+    @POST("/signin")
+    abstract fun signIn(@Body req: SignInReq): Single<Profile>
 }

@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.source.remote;
+package com.hawksjamesf.network.source.remote.rest;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;

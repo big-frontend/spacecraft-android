@@ -1,8 +1,8 @@
-package com.hawksjamesf.network.source.remote.signin
+package com.hawksjamesf.network.source.remote.rest.signin
 
 import com.hawksjamesf.network.signin.*
 import com.hawksjamesf.network.source.SignInDataSource
-import com.hawksjamesf.network.source.remote.AbstractApi
+import com.hawksjamesf.network.source.remote.rest.AbstractApi
 import io.reactivex.Single
 import kotlin.reflect.KClass
 
@@ -27,7 +27,7 @@ class RemoteSignInDataSource : SignInDataSource, AbstractApi<SignInApi>() {
     }
 
     override fun signIn(loginReq: SignInReq): Single<Profile> {
-        return api.login(loginReq)
+        return api.signIn(loginReq)
     }
 
     override fun signOut() {
