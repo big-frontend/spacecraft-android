@@ -85,7 +85,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     }
 
-    public class Adapter extends CarouselPagerAdapter<Integer> {
+    public static class Adapter extends CarouselPagerAdapter<Integer> {
         public int getPagers() {
             return dataList.size();
         }

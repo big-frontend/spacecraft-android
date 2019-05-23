@@ -23,7 +23,6 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
-import me.ele.uetool.UETool;
 
 /**
  * Copyright ® $ 2017
@@ -91,7 +90,7 @@ public class App extends MultiDexApplication {
         Fabric.with(this, new Crashlytics());
 //        MockManager.init(getApplicationContext());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
-        UETool.showUETMenu();
+//        UETool.showUETMenu();
     }
     /**
      * 获取进程号对应的进程名

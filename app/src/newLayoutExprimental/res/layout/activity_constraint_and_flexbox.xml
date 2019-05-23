@@ -8,13 +8,36 @@
     android:layout_height="match_parent"
     >
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_out"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/vp2_out"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_nest"/>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_out"
+        app:layout_constraintBottom_toTopOf="@+id/vp_out"
+        android:background="@color/apricot"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_out"
+        app:layout_constraintBottom_toTopOf="@+id/cl_first"
+        android:background="@color/lightGreyBlue"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_first"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/apricot"
-        app:layout_constraintTop_toBottomOf="@+id/diver_first"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/diver_first"
         >
 
         <TextView
