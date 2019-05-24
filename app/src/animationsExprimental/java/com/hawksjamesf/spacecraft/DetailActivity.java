@@ -33,9 +33,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * Copyright ® $ 2019
  * All right reserved.
  *
- * @author: jf.chen
- * @email: jf.chen@Ctrip.com
- * @since: Apr/30/2019  Tue
+ * @author: hawksjamesf
+ * @email: hawksjamesf@gmail.com
+ * @since: Feb/16/2019  Sat
  */
 public class DetailActivity extends Activity {
     public static final String IV_TRANSITIONNAME = "image";

@@ -25,9 +25,9 @@ import androidx.viewpager2.widget.ViewPager2;
  * Copyright ® $ 2019
  * All right reserved.
  *
- * @author: jf.chen
- * @email: jf.chen@Ctrip.com
- * @since: May/15/2019  Wed
+ * @author: hawksjamesf
+ * @email: hawksjamesf@gmail.com
+ * @since: Feb/16/2019  Sat
  */
 public class ConstraintAndFlexBoxActivity extends AppCompatActivity {
     RecyclerView rvOut;

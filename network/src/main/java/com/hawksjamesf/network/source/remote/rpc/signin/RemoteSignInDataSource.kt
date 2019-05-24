@@ -4,9 +4,9 @@ package com.hawksjamesf.network.source.remote.rpc.signin
  * Copyright ® $ 2019
  * All right reserved.
  *
- * @author: jf.chen
- * @email: jf.chen@Ctrip.com
- * @since: May/20/2019  Mon
+ * @author: hawksjamesf
+ * @email: hawksjamesf@gmail.com
+ * @since: Feb/16/2019  Sat
  */
 class RemoteSignInDataSource {
 }
