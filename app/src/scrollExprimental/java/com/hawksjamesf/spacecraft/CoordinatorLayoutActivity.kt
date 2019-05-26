@@ -39,6 +39,9 @@ class CoordinatorLayoutActivity : Activity() {
         pagerSnapHelper.attachToRecyclerView(mRvContent)
 
         vp_content.adapter = ProxyAdapter()
+
+
+//        (tl_tabs.layoutParams as CoordinatorLayout.LayoutParams).behavior = TabsBehavior()
     }
 
     inner class ProxyAdapter : PagerAdapter() {
