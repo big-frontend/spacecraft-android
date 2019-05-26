@@ -3,6 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 
+def srcDirs = [
+        "carousel",
+        "video",
+
+]
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -28,18 +33,30 @@ android {
         }
     }
     sourceSets {
-        main.java.srcDirs += ["src/main/kotlin"]
-
-        //carousel component
-        main.java.srcDirs += ["src/carousel/java"]
-        main.res.srcDirs += ["src/carousel/res"]
-        main.assets.srcDirs += ["src/carousel/assets"]
-
-        //video component
-        main.aidl.srcDirs += ["src/video/aidl"]
-        main.java.srcDirs += ["src/video/java"]
-        main.res.srcDirs += ["src/video/res"]
-        main.assets.srcDirs += ["src/video/assets"]
+        main {
+//            java.includes = srcDirs.collect { 'src/' + it + '/**/*.java' }
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                res.srcDirs += 'src/' + it + '/res'
+                assets.srcDirs += 'src/' + it + '/assets'
+                java.srcDirs += 'src/' + it + '/java'
+                aidl.srcDirs += 'src/' + it + '/aidl'
+            }
+        }
+//        main.java.srcDirs += ["src/main/kotlin"]
+//
+//        //carousel component
+//        main.java.srcDirs += ["src/carousel/java"]
+//        main.res.srcDirs += ["src/carousel/res"]
+//        main.assets.srcDirs += ["src/carousel/assets"]
+//
+//        //video component
+//        main.aidl.srcDirs += ["src/video/aidl"]
+//        main.java.srcDirs += ["src/video/java"]
+//        main.res.srcDirs += ["src/video/res"]
+//        main.assets.srcDirs += ["src/video/assets"]
     }
 
 }

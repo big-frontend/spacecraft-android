@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
 
 
     <LinearLayout
@@ -41,14 +41,14 @@
         >
         <!--android:layout_weight="1"-->
         <com.google.android.material.appbar.AppBarLayout
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:expanded="false"
-            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:liftOnScroll="true"
             app:liftOnScrollTargetViewId="@id/lv"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            tools:expanded="false">
+
             <include
                 android:id="@+id/item_top_bar_for_listview"
                 layout="@layout/item_top_bar"/>
@@ -56,11 +56,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.hawksjamesf.spacecraft.CustListView
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/apricot"/>
+            android:background="@color/apricot"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
