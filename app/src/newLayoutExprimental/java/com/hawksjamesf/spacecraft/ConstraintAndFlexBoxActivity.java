@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -50,9 +50,8 @@ public class ConstraintAndFlexBoxActivity extends AppCompatActivity {
         adapter = new Adapter();
         rvOut.setAdapter(adapter);
         rvOut.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        rvOut.setNestedScrollingEnabled(false);
-        rvOut.setHasFixedSize(true);
-
+        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        pagerSnapHelper.attachToRecyclerView(rvOut);
         vpOut2 = findViewById(R.id.vp2_out);
         vpOut2.setAdapter(adapter);
         vpOut2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
@@ -84,8 +83,8 @@ public class ConstraintAndFlexBoxActivity extends AppCompatActivity {
             dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
             holder.rvNest.addItemDecoration(dividerItemDecoration);
 //            holder.itemView.setBackground();
-            holder.tvPagerName.setText("pager:" + position);
-            holder.tvPagerName.setBackgroundColor(Color.CYAN);
+//            holder.tvPagerName.setText("pager:" + position);
+//            holder.tvPagerName.setBackgroundColor(Color.CYAN);
             container.addView(holder.itemView);
             return  holder.itemView;
         }
@@ -119,8 +118,8 @@ public class ConstraintAndFlexBoxActivity extends AppCompatActivity {
             dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
             holder.rvNest.addItemDecoration(dividerItemDecoration);
 //            holder.itemView.setBackground();
-            holder.tvPagerName.setText("pager:" + position);
-            holder.tvPagerName.setBackgroundColor(Color.CYAN);
+//            holder.tvPagerName.setText("pager:" + position);
+//            holder.tvPagerName.setBackgroundColor(Color.CYAN);
 
         }
 
@@ -133,12 +132,10 @@ public class ConstraintAndFlexBoxActivity extends AppCompatActivity {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private RecyclerView rvNest;
-        private TextView tvPagerName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             rvNest = itemView.findViewById(R.id.rv_nest);
-            tvPagerName = itemView.findViewById(R.id.tv_pager_name);
         }
     }
 

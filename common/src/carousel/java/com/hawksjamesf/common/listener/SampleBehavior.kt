@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.listener
+package com.hawksjamesf.common.listener
 
 import android.util.Log
 import android.view.MotionEvent

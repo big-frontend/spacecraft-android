@@ -1,40 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/apricot"
-              android:orientation="vertical">
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-    <!--<androidx.recyclerview.widget.RecyclerView-->
-    <!--android:id="@+id/rv"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"/>-->
 
-    <com.hawksjamesf.common.CarouselView
-        android:id="@+id/cv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        app:cv_autoStart="true"
-        app:cv_interval="5000"
-        />
-
-    <com.hawksjamesf.common.widget.ChaplinVideoView
-        android:id="@+id/clv"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        />
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical">
 
 
-    <VideoView
-        android:id="@+id/vv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        />
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            >
+
+            <com.hawksjamesf.common.PagerView
+                android:id="@+id/pv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_contral"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_control"/>
 
 
-</LinearLayout>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.hawksjamesf.common.CarouselView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            app:cv_autoStart="true"
+            app:cv_interval="5000"
+            />
+
+        <com.hawksjamesf.common.widget.ChaplinVideoView
+            android:id="@+id/clv"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            />
+
+
+        <VideoView
+            android:id="@+id/vv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            />
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.listener;
+package com.hawksjamesf.common.listener;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -8,15 +8,13 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 
-import com.hawksjamesf.spacecraft.TabsLayout;
+import com.hawksjamesf.common.TabsLayout;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.math.MathUtils;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -45,22 +43,13 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
 
 
     @Override
-    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
-        Log.d("NestedScrollingBehavior", "onStartNestedScroll\nchild--->" + child + "\ndirectTargetChild--->" + directTargetChild + "\ntarget--->" + target + "\naxes--->" + axes + "\ntype--->" + type);
-        return !canScroll;
-    }
-
-    @Override
-    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
-        Log.d("NestedScrollingBehavior", "onNestedPreScroll");
-        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
-    }
-
-    boolean canScroll;
-
-    @Override
-    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull MotionEvent ev) {
-        Log.d("NestedScrollingBehavior", "onInterceptTouchEvent");
+    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull final MotionEvent ev) {
+        Log.d("NestedScrollingBehavior", "onInterceptTouchEvent：" + ev.getAction());
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) child.getLayoutManager();
+        int orientation = 0;
+        if (linearLayoutManager != null) {
+            orientation = linearLayoutManager.getOrientation();
+        }
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mLastMotionX = mInitialMotionX = ev.getX();
@@ -71,21 +60,22 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 int activePointerId = mActivePointerId;
                 int pointerIndex = ev.findPointerIndex(activePointerId);
                 float x = ev.getX(pointerIndex);
-                float dx = x - mLastMotionX;
                 float y = ev.getY(pointerIndex);
-                //Negative to check scrolling up or positive to check scrolling down.
-                canScroll = canScroll(child, false, (int) dx, (int) x, (int) y);
-                if (dx != 0 && canScroll) {
+                float dx = x - mLastMotionX;
+                float dy = y - mLastMotionY;
+                if (orientation == RecyclerView.HORIZONTAL && dx != 0 && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
                     mLastMotionX = x;
+                    child.requestDisallowInterceptTouchEvent(true);
+                } else if (orientation == RecyclerView.VERTICAL && dy != 0 && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
                     mLastMotionY = y;
-                    ((RecyclerView) child).requestDisallowInterceptTouchEvent(true);
+                    child.requestDisallowInterceptTouchEvent(true);
                 } else {
-                    ((RecyclerView) child).requestDisallowInterceptTouchEvent(false);
+                    child.requestDisallowInterceptTouchEvent(false);
                 }
-
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+
                 break;
         }
         return super.onInterceptTouchEvent(parent, child, ev);
@@ -94,7 +84,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
     /*
      * Negative to check scrolling left, positive to check scrolling right.
      */
-    private boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
+    private boolean canScrollHorizontally(View v, boolean checkV, int direction, int x, int y) {
         if (v instanceof ViewGroup) {
             final ViewGroup group = (ViewGroup) v;
             final int scrollX = v.getScrollX();
@@ -107,42 +97,71 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 final View child = group.getChildAt(i);
                 if (x + scrollX >= child.getLeft() && x + scrollX < child.getRight()
                         && y + scrollY >= child.getTop() && y + scrollY < child.getBottom()
-                        && canScroll(child, true, dx, x + scrollX - child.getLeft(),
+                        && canScrollHorizontally(child, true, direction, x + scrollX - child.getLeft(),
                         y + scrollY - child.getTop())) {
                     return true;
                 }
             }
         }
 
-        return checkV && v.canScrollHorizontally(-dx);
+        return checkV && v.canScrollHorizontally(-direction);
     }
 
+    /*
+     * Negative to check scrolling up, positive to check scrolling down.
+     */
+    private boolean canScroll(final View v, final boolean checkV, final int delta, final int x, final int y, int orientation) {
+        if (v instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) v;
+            int scrollX = v.getScrollX();
+            int scrollY = v.getScrollY();
+            int count = group.getChildCount();
+            for (int i = count - 1; i >= 0; i--) {
+                final View child = group.getChildAt(i);
+                if (child.getLeft() <= x + scrollX && x + scrollX < child.getRight() && child.getTop() <= y + scrollY && y + scrollY < child.getBottom()//判断点击是否位于可滑动的区域
+                        && canScroll(child, true, delta, x + scrollX - child.getLeft(), y + scrollY - child.getTop(), orientation)) {
+                    return true;
+                }
+            }
+        }
+        if (orientation == RecyclerView.HORIZONTAL) {
+            return checkV && v.canScrollHorizontally(-delta);
+        } else {
+            return checkV && v.canScrollVertically(-delta);
+        }
+    }
+
+    RecyclerView.OnScrollListener listener;
+
     @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, RecyclerView child, final View dependency) {
+    public boolean layoutDependsOn(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull final View dependency) {
         // We depend on any AppBarLayouts
         if (dependency instanceof TabsLayout) {
             final TabsLayout tabsLayout = (TabsLayout) dependency;
             final LinearLayoutManager layoutManager = (LinearLayoutManager) child.getLayoutManager();
-
-            child.clearOnScrollListeners();
-            child.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        Log.d("NestedScrollingBehavior", "onScrollStateChanged>position:" + layoutManager.findFirstCompletelyVisibleItemPosition());
-                        tabsLayout.animateIndicatorToPosition(layoutManager.findFirstCompletelyVisibleItemPosition(), 200);
+            if (layoutManager == null) return false;
+            if (listener == null) {
+                listener = new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                            Log.d("NestedScrollingBehavior", "onScrollStateChanged>position:" + layoutManager.findFirstCompletelyVisibleItemPosition());
+                            tabsLayout.animateIndicatorToPosition(layoutManager.findFirstCompletelyVisibleItemPosition(), 200);
+                        }
                     }
-                }
 
-                @Override
-                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                }
-            });
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                    }
+                };
+            }
+            child.removeOnScrollListener(listener);
+            child.addOnScrollListener(listener);
             tabsLayout.setOnTabSelectedListener(new TabsLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(View view, int position) {
-                    Log.d("NestedScrollingBehavior", "ponTabSelected>osition:" + position);
+                    Log.d("NestedScrollingBehavior", "ponTabSelected>position:" + position);
                     layoutManager.scrollToPosition(position);
                 }
             });
@@ -153,13 +172,13 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
 
     @Override
     public boolean onMeasureChild(
-            CoordinatorLayout parent,
+            @NonNull CoordinatorLayout parent,
             RecyclerView child,
             int parentWidthMeasureSpec,
             int widthUsed,
             int parentHeightMeasureSpec,
             int heightUsed) {
-        Log.d("TabsBehavior", "onMeasureChild:\nchild--->" + child +
+        Log.d("NestedScrollingBehavior", "onMeasureChild:\nchild--->" + child +
                 "\nparentWidthMeasureSpec/widthUsed--->" + parentWidthMeasureSpec + "/" + widthUsed +
                 "\nparentHeightMeasureSpec/heightUsed--->" + parentHeightMeasureSpec + "/" + heightUsed);
         final int childLpHeight = child.getLayoutParams().height;
@@ -182,11 +201,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 }
 
                 int headerHeight = header.getMeasuredHeight();
-                if (shouldHeaderOverlapScrollingChild()) {
-                    child.setTranslationY(-headerHeight);
-                } else {
-                    availableHeight -= headerHeight;
-                }
+                availableHeight -= headerHeight;
                 final int heightMeasureSpec =
                         View.MeasureSpec.makeMeasureSpec(
                                 availableHeight,
@@ -203,23 +218,6 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
         }
         return false;
     }
-
-    protected boolean shouldHeaderOverlapScrollingChild() {
-        return false;
-    }
-
-    TabsLayout findFirstDependency(List<View> views) {
-        for (int i = 0, z = views.size(); i < z; i++) {
-            View view = views.get(i);
-            if (view instanceof TabsLayout) {
-                return (TabsLayout) view;
-            }
-        }
-        return null;
-    }
-
-    private int verticalLayoutGap = 0;
-    private int overlayTop;
 
     @Override
     public boolean onLayoutChild(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, int layoutDirection) {
@@ -256,13 +254,10 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                     out,
                     layoutDirection);
 
-            final int overlap = getOverlapPixelsForOffset(header);
-            child.layout(out.left, out.top - overlap, out.right, out.bottom - overlap);
-            verticalLayoutGap = out.top - header.getBottom();
+            child.layout(out.left, out.top, out.right, out.bottom);
         } else {
             // If we don't have a dependency, let super handle it
             parent.onLayoutChild(child, layoutDirection);
-            verticalLayoutGap = 0;
         }
 
         return true;
@@ -272,13 +267,15 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
         return gravity == Gravity.NO_GRAVITY ? GravityCompat.START | Gravity.TOP : gravity;
     }
 
-    final int getOverlapPixelsForOffset(final View header) {
-        return overlayTop == 0
-                ? 0
-                : MathUtils.clamp((int) (getOverlapRatioForOffset(header) * overlayTop), 0, overlayTop);
+
+    TabsLayout findFirstDependency(List<View> views) {
+        for (int i = 0, z = views.size(); i < z; i++) {
+            View view = views.get(i);
+            if (view instanceof TabsLayout) {
+                return (TabsLayout) view;
+            }
+        }
+        return null;
     }
 
-    float getOverlapRatioForOffset(final View header) {
-        return 1f;
-    }
 }
