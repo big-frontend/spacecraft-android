@@ -15,7 +15,4 @@ data class ListRes<T>(
         var cnt: Int,
         var list: MutableList<T>,
         var city: City
-
-
-) {
-}
+)

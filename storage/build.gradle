@@ -45,10 +45,10 @@ dependencies {
     //room database
     testImplementation 'androidx.room:room-testing:2.1.0-beta01'
     api 'androidx.room:room-runtime:2.1.0-beta01'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-beta01'
     api 'androidx.room:room-rxjava2:2.1.0-beta01'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-beta01'
 
-//    //realm database
+    //realm database
     api "io.realm:realm-annotations:5.7.0"
     api "io.realm:realm-android-library:5.7.0"
     api "io.realm:realm-android-kotlin-extensions:5.7.0"
