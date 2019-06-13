@@ -17,9 +17,10 @@ import okhttp3.mockwebserver.RecordedRequest;
  * @author: hawks.jamesf
  * @since: Sep/28/2018  Fri
  * <p>
- * 当mock 包中的Dispatcher和网络请求接口在同一个进程A中，那么其他进程的Dispatcher就不能连接到A;
- * 如果网络请求接口在A进程中，各个Dispatcher在其他相对于的进程中，那么都可以使用。
- * 比如该项目中的mockserver模块被放入：mock_server进程中，测试进程中的Dispatcher就可以使用。
+ * 当mock包中的Dispatcher服务和客户端在同一个进程A中，那么其他进程的Dispatcher就不能连接到A进程;
+ * 如果客户端在A进程中，各个Dispatcher在其他进程中，那么都可以使用。
+ * <p>
+ * 比如该项目中的mockserver模块中的Dispatcher在mock_server进程，测试模块中的Dispatcher在测试进程中，客户端在A进程，测试模块和mockserver模块中的Dispatcher就都可以使用。
  */
 public class DispatcherImpl extends Dispatcher {
     public static final String TAG = "DispatcherImpl";

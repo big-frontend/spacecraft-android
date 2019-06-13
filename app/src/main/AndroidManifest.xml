@@ -12,11 +12,11 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
         android:name="com.hawksjamesf.spacecraft.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -28,11 +28,12 @@
             android:name="BUGLY_APP_VERSION"
             android:value="${BUGLY_APP_VERSION}"/>
         <!--<meta-data-->
-            <!--android:name="BUGLY_APP_CHANNEL"-->
-            <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
+        <!--android:name="BUGLY_APP_CHANNEL"-->
+        <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="${BUGLY_ENABLE_DEBUG}"/>
+
         <uses-library
             android:name="android.test.runner"
             android:required="false"/>
@@ -85,7 +86,9 @@
             android:parentActivityName="com.hawksjamesf.spacecraft.ui.signin.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
 
-        <activity android:name=".ViewPagerActivity"/>
+        <activity
+            android:name=".ViewPagerActivity"
+            android:exported="true"/>
         <activity android:name=".ParallaxActivity"/>
 
         <activity android:name=".AnimActivity"/>
@@ -95,14 +98,18 @@
         <activity
             android:name=".TransitionForActivityActivity"
             />
-            <!--android:theme="@style/BaseAppTheme.ListTheme"-->
+        <!--android:theme="@style/BaseAppTheme.ListTheme"-->
         <activity
             android:name=".DetailActivity"
             android:theme="@style/BaseAppTheme.DetailTheme"/>
         <activity android:name=".ScrollableActivity"/>
         <activity android:name=".FeedbackUtilActivity"/>
-        <activity android:name=".ConstraintAndFlexBoxActivity"/>
-        <activity android:name=".CoordinatorLayoutActivity"/>
+        <activity
+            android:name=".ConstraintAndFlexBoxActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".CoordinatorLayoutActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -33,6 +33,7 @@ abstract class AbstractApi<T : Any> {
                 .baseUrl(baseUrl)
                 //                .baseUrl("http://localhost:50195")
                 .client(OkHttpClient.Builder()
+//                        .sslSocketFactory()
                         .connectTimeout(10, TimeUnit.SECONDS)
                         .readTimeout(10, TimeUnit.SECONDS)
                         .writeTimeout(10, TimeUnit.SECONDS)

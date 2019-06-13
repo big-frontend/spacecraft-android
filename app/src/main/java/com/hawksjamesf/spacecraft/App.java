@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.crashlytics.android.Crashlytics;
 import com.hawksjamesf.common.util.Util;
+import com.hawksjamesf.mockserver.MockManager;
 import com.hawksjamesf.network.DaggerNetComponent;
 import com.hawksjamesf.network.NetComponent;
 import com.hawksjamesf.network.NetModule;
@@ -88,7 +89,7 @@ public class App extends MultiDexApplication {
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         CrashReport.initCrashReport(getApplicationContext(), strategy);
         Fabric.with(this, new Crashlytics());
-//        MockManager.init(getApplicationContext());
+        MockManager.init(getApplicationContext());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 //        UETool.showUETMenu();
     }

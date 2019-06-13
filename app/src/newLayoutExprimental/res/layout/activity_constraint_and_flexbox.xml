@@ -1,416 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_out"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/vp2_out"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_nest"/>
-
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp2_out"
-        app:layout_constraintBottom_toTopOf="@+id/vp_out"
-        android:background="@color/apricot"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_out"
-        app:layout_constraintBottom_toTopOf="@+id/cl_first"
-        android:background="@color/lightGreyBlue"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_first"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/apricot"
-        app:layout_constraintBottom_toTopOf="@+id/diver_first"
+        android:layout_height="match_parent"
         >
 
-        <TextView
-            android:id="@+id/textview1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/lightGreyBlue"
-            android:gravity="center"
-            android:text="text1"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toTopOf="@+id/guideline1"
-            app:layout_constraintEnd_toStartOf="@+id/textview2"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_out"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/vp2_out"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.4"/>
+            tools:listitem="@layout/item_nest"/>
 
-        <TextView
-            android:id="@+id/textview2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
-            android:gravity="center"
-            android:text="text2"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toStartOf="@+id/textview3"
-            app:layout_constraintStart_toEndOf="@+id/textview1"
-            app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/textview3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_bright"
-            android:gravity="center"
-            android:text="text3"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/guideline1"
-            app:layout_constraintEnd_toStartOf="@+id/textview4"
-            app:layout_constraintStart_toEndOf="@+id/textview2"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/textview4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
-            android:gravity="center"
-            android:text="text4"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textview3"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_out"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25"
-            />
-        <!--app:layout_constraintGuide_begin="20dp"-->
+            android:layout_height="100dp"
+            android:background="@color/apricot"
+            app:layout_constraintBottom_toTopOf="@+id/vp_out"/>
 
-        <TextView
-            android:id="@+id/textview11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_out"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:background="@color/lightGreyBlue"
-            android:gravity="center"
-            android:text="text11"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textview22"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline1"/>
+            app:layout_constraintBottom_toTopOf="@+id/cl_first"/>
 
-        <TextView
-            android:id="@+id/textview22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
-            android:gravity="center"
-            android:text="text22"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/textview33"
-            app:layout_constraintStart_toEndOf="@+id/textview11"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_first"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/apricot"
+            app:layout_constraintBottom_toTopOf="@+id/diver_first"
+            >
 
-        <TextView
-            android:id="@+id/textview33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_bright"
-            android:gravity="center"
-            android:text="text33"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textview22"
-            app:layout_constraintTop_toBottomOf="@+id/guideline1"
-            />
+            <TextView
+                android:id="@+id/textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/lightGreyBlue"
+                android:gravity="center"
+                android:text="text1"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/guideline1"
+                app:layout_constraintEnd_toStartOf="@+id/textview2"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.4"/>
 
-        <TextView
-            android:id="@+id/textview44"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
-            android:gravity="center"
-            android:text="text44"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@+id/barrier"
-            app:layout_constraintTop_toBottomOf="@+id/guideline1"
-            app:layout_constraintVertical_bias="0.1"
-            />
+            <TextView
+                android:id="@+id/textview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_dark"
+                android:gravity="center"
+                android:text="text2"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toStartOf="@+id/textview3"
+                app:layout_constraintStart_toEndOf="@+id/textview1"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="start"
-            app:constraint_referenced_ids="textview33,textview22"/>
+            <TextView
+                android:id="@+id/textview3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_bright"
+                android:gravity="center"
+                android:text="text3"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toTopOf="@+id/guideline1"
+                app:layout_constraintEnd_toStartOf="@+id/textview4"
+                app:layout_constraintStart_toEndOf="@+id/textview2"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textview4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="text4"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textview3"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25"
+                />
+            <!--app:layout_constraintGuide_begin="20dp"-->
+
+            <TextView
+                android:id="@+id/textview11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/lightGreyBlue"
+                android:gravity="center"
+                android:text="text11"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textview22"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline1"/>
+
+            <TextView
+                android:id="@+id/textview22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_dark"
+                android:gravity="center"
+                android:text="text22"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toStartOf="@+id/textview33"
+                app:layout_constraintStart_toEndOf="@+id/textview11"/>
+
+            <TextView
+                android:id="@+id/textview33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_bright"
+                android:gravity="center"
+                android:text="text33"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textview22"
+                app:layout_constraintTop_toBottomOf="@+id/guideline1"
+                />
+
+            <TextView
+                android:id="@+id/textview44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="text44"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/barrier"
+                app:layout_constraintTop_toBottomOf="@+id/guideline1"
+                app:layout_constraintVertical_bias="0.1"
+                />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="textview33,textview22"/>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="constraint"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="constraint"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75"
+                />
+
+
+            <TextView
+                android:id="@+id/textview222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="text222"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline2"
+                />
+
+            <TextView
+                android:id="@+id/textview333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="text333"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintCircle="@+id/textview222"
+                app:layout_constraintCircleAngle="300"
+                app:layout_constraintCircleRadius="100dp"
+                />
+
+
+            <TextView
+                android:id="@+id/textview444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="text444"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_max="23dp"
+                app:layout_constraintWidth_min="10dp"
+                app:layout_constraintWidth_percent="0.3"
+                tools:layout_editor_absoluteY="150dp"/>
+
+            <include layout="@layout/template"/>
+
+
+            <androidx.constraintlayout.widget.Group
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="textview222,textview333,textview444"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/diver_first"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/afasf"
+            app:layout_constraintTop_toBottomOf="@+id/cl_first"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.75"
-            />
+            android:background="@color/apricot"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/diver_first">
+
+            <!--主轴方向 app:flexDirection="row"-->
+            <!--        flex_start 、flex-end： 、center： 、space-between： 、space-around：-->
+            <!--主轴对齐方式 app:justifyContent="center"-->
+            <!--副轴对齐方式 app:alignItems="stretch"-->
+            <!--多轴对齐方式 app:alignContent="stretch"-->
+
+            <!--            app:showDivider="beginning"-->
+            <!--            app:dividerDrawable="@drawable/divider"-->
+            <!--            app:dividerDrawableVertical="@drawable/divider"-->
+            <!--            app:showDividerVertical="beginning"-->
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:dividerDrawableHorizontal="@drawable/divider"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="center"
+                app:showDividerHorizontal="end"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Flex Box"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightGreyBlue"
+                    android:gravity="center"
+                    android:text="textview1"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_dark"
+                    android:gravity="center"
+                    android:text="textview2"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_bright"
+                    android:gravity="center"
+                    android:text="textview3"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_light"
+                    android:gravity="center"
+                    android:text="textview4"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:dividerDrawableVertical="@drawable/divider"
+                app:flexWrap="wrap"
+                app:showDividerVertical="middle|beginning|end"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Flex Box"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    app:layout_alignSelf="center"/>
+
+                <TextView
+                    android:id="@+id/fbl_text11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightGreyBlue"
+                    android:gravity="center"
+                    android:text="textview11"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_dark"
+                    android:gravity="center"
+                    android:text="textview22"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    app:layout_alignSelf="flex_end"
+                    app:layout_wrapBefore="true"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_bright"
+                    android:gravity="center"
+                    android:text="textview33"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    app:layout_alignSelf="center"
+                    />
+
+                <TextView
+                    android:id="@+id/fbl_text44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_light"
+                    android:gravity="center"
+                    android:text="textview44"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    app:layout_flexBasisPercent="50%"
+                    />
+
+            </com.google.android.flexbox.FlexboxLayout>
 
 
-        <TextView
-            android:id="@+id/textview222"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
-            android:gravity="center"
-            android:text="text222"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline2"
-            />
-
-        <TextView
-            android:id="@+id/textview333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
-            android:gravity="center"
-            android:text="text333"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintCircle="@+id/textview222"
-            app:layout_constraintCircleAngle="300"
-            app:layout_constraintCircleRadius="100dp"
-            />
-
-
-        <TextView
-            android:id="@+id/textview444"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
-            android:gravity="center"
-            android:text="text444"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintDimensionRatio="16:9"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_max="23dp"
-            app:layout_constraintWidth_min="10dp"
-            app:layout_constraintWidth_percent="0.3"
-            tools:layout_editor_absoluteY="150dp"/>
-
-        <include layout="@layout/template"/>
-
-
-        <androidx.constraintlayout.widget.Group
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:constraint_referenced_ids="textview222,textview333,textview444"/>
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:id="@+id/diver_first"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/afasf"
-        app:layout_constraintTop_toBottomOf="@+id/cl_first"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/apricot"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/diver_first">
-
-        <!--主轴方向 app:flexDirection="row"-->
-        <!--        flex_start 、flex-end： 、center： 、space-between： 、space-around：-->
-        <!--主轴对齐方式 app:justifyContent="center"-->
-        <!--副轴对齐方式 app:alignItems="stretch"-->
-        <!--多轴对齐方式 app:alignContent="stretch"-->
-
-        <!--            app:showDivider="beginning"-->
-        <!--            app:dividerDrawable="@drawable/divider"-->
-        <!--            app:dividerDrawableVertical="@drawable/divider"-->
-        <!--            app:showDividerVertical="beginning"-->
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:dividerDrawableHorizontal="@drawable/divider"
-            app:flexDirection="row"
-            app:flexWrap="wrap"
-            app:justifyContent="center"
-            app:showDividerHorizontal="end"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Flex Box"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/lightGreyBlue"
-                android:gravity="center"
-                android:text="textview1"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_dark"
-                android:gravity="center"
-                android:text="textview2"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_bright"
-                android:gravity="center"
-                android:text="textview3"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
-                android:gravity="center"
-                android:text="textview4"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:alignContent="stretch"
-            app:alignItems="stretch"
-            app:dividerDrawableVertical="@drawable/divider"
-            app:flexWrap="wrap"
-            app:showDividerVertical="middle|beginning|end"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Flex Box"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                app:layout_alignSelf="center"/>
-
-            <TextView
-                android:id="@+id/fbl_text11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/lightGreyBlue"
-                android:gravity="center"
-                android:text="textview11"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_dark"
-                android:gravity="center"
-                android:text="textview22"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                app:layout_alignSelf="flex_end"
-                app:layout_wrapBefore="true"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_bright"
-                android:gravity="center"
-                android:text="textview33"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                app:layout_alignSelf="center"
-                />
-
-            <TextView
-                android:id="@+id/fbl_text44"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
-                android:gravity="center"
-                android:text="textview44"
-                android:textSize="24sp"
-                android:textStyle="bold|italic"
-                app:layout_flexBasisPercent="50%"
-                />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

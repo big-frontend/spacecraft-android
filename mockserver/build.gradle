@@ -11,6 +11,7 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040"')
 
     }
 
@@ -25,50 +26,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-//    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
-//    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-//    implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
-//    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
-//    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-//
-//    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-//    implementation "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
-//    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-//    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
-//    implementation "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
-////    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-//    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
-//    implementation "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//    implementation "com.blankj:utilcode:${rootProject.ext.utilcodeVersion}"
-//    api "com.orhanobut:logger:${rootProject.ext.loggerVersion}"
-
     api project(path: ':common')
-
-
-//    // Espresso dependencies
-//    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
-//    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${rootProject.ext.espressoVersion}"
-//    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${rootProject.ext.espressoVersion}"
-//    androidTestImplementation "com.android.support.test.espresso:espresso-accessibility:${rootProject.ext.espressoVersion}"
-//    androidTestImplementation "com.android.support.test.espresso:espresso-web:${rootProject.ext.espressoVersion}"
-//    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:${rootProject.ext.espressoVersion}"
-//    // The following Espresso dependency can be either "implementation"
-//    // or "androidTestImplementation", depending on whether you want the
-//    // dependency to appear on your APK's compile classpath or the test APK
-//    // classpath.
-//    androidTestImplementation "com.android.support.test.espresso:espresso-idling-resource:${rootProject.ext.espressoVersion}"
-//
-//    // Dependencies for Android unit tests
-//    androidTestImplementation "junit:junit:${rootProject.ext.junitVersion}"
-////    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
-//    androidTestImplementation 'org.mockito:mockito-android:2.11.0'
-//    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
-//    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
-//
-//    // Android Testing Support Library's runner and rules
-//    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
-//    androidTestImplementation "com.android.support.test:rules:${rootProject.ext.rulesVersion}"
+//    implementation project(path: ':network')
+    api "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
+    api "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
 }

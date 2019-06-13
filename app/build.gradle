@@ -9,9 +9,6 @@ apply plugin: 'versionplugin'
 //apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
 apply plugin: 'versionpluginforjava'
 apply plugin: 'versionpluginforkotlin'
-
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
-
 versionPlugin {
     buildTypeMatcher = 'debug'
 //        '$appName/project/buildType-v_$versionName-c_$versionCode'
@@ -30,6 +27,22 @@ versionPluginForKotlin {
     fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
 
+apply plugin: 'findbugs'
+findbugs {
+    ignoreFailures = false
+    toolVersion = "3.0.1"
+//    sourceSets=[sourceSets.main]
+    excludeFilter = file("config/findbugs/excludeFilter.xml")
+    reportsDir = file("$project.buildDir/reports/findbugs")
+    effort = "max"
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.firebase.firebase-perf'
@@ -204,7 +217,7 @@ dependencies {
     implementation project(path: ':location')
     implementation project(path: ':chatroom')
     implementation project(path: ':network')
-//    implementation project(path: ':mockserver')
+    debugImplementation project(path: ':mockserver')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0-alpha01'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"

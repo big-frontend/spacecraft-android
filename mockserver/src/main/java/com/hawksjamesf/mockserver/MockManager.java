@@ -26,7 +26,7 @@ public class MockManager {
     private static final String TAG = "MockManager";
     MockServiceCon connection = new MockServiceCon();
     private IMockApi iMockApi;
-    private static final String PROCESS_1 = "com.hawksjamesf.spacecraft";
+    private static final String PROCESS_1 = "com.hawksjamesf.spacecraft.debug";
     private static final String PROCESS_2 = "com.hawksjamesf.spacecraft:mock_service";
 
     //eager load
@@ -42,7 +42,6 @@ public class MockManager {
         Logger.t(TAG).d(processName);
         if (!TextUtils.isEmpty(processName)) {
             if (processName.equals(PROCESS_1)) {
-
                 getInstance().bindAndStartService(context);
             } else if (processName.equals(PROCESS_2)) {
             }
