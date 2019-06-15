@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pressed"
+        android:drawable="@drawable/ic_baseline_3d_rotation_24dp_black"
+        android:state_pressed="true" />
+
+    <item
+        android:id="@+id/unpressed"
+        android:drawable="@drawable/ic_baseline_3d_rotation_24dp_white" />
+
+    <transition
+        android:drawable="@drawable/toggle_unchecked_checked"
+        android:fromId="@id/unpressed"
+        android:toId="@id/pressed" />
+
+    <transition
+        android:drawable="@drawable/toggle_checked_unchecked"
+        android:fromId="@+id/pressed"
+        android:toId="@+id/unpressed" />
+
+</animated-selector>

@@ -48,7 +48,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
-        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040"')
+        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
 
     }
 

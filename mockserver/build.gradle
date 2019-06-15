@@ -11,7 +11,7 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040"')
+        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
 
     }
 

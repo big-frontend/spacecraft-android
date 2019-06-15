@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+        android:alpha="0.8"
+        android:src="@drawable/w14"
+        android:tint="@color/apricot"
+        android:tintMode="multiply"
+        android:antialias="true"
+    />
+<!--        android:dither="true"-->
+<!--        android:filter="true"-->
+<!--        android:mipMap="true"-->
+    <!--        android:tintMode="screen" src_atop src_in src_over multiply add screen-->

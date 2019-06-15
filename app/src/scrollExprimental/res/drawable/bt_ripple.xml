@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="@color/apricot">
+    <item>
+        <shape>
+            <gradient
+                android:angle="90"
+                android:centerColor="@color/apricot"
+                android:centerX="12"
+                android:centerY="12"
+                android:endColor="@color/apricot"
+                android:gradientRadius="2dp"
+                android:startColor="@color/apricot"
+                android:type="linear"
+                android:useLevel="true"/>
+            <solid android:color="@color/apricot"/>
+            <stroke
+                android:width="12dp"
+                android:color="@color/apricot"
+                android:dashWidth="1dp"
+                android:dashGap="12dp"/>
+            <corners
+                android:bottomLeftRadius="3dp"
+                android:bottomRightRadius="2dp"
+                android:radius="2dp"
+                android:topLeftRadius="2dp"
+                android:topRightRadius="2dp"/>
+            <padding
+                android:bottom="1dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp"/>
+            <size
+                android:width="2dp"
+                android:height="2dp"/>
+        </shape>
+    </item>
+
+    <item>
+
+        <clip
+            android:clipOrientation="horizontal"
+            android:drawable="@color/apricot"
+            android:gravity="end">
+            <bitmap
+                android:alpha="23"
+                android:antialias="true"
+                android:autoMirrored="true"
+                android:dither="true"
+                android:filter="true"
+                android:gravity="end"
+                android:mipMap="true"
+                android:src="@color/apricot"
+                android:tileMode="clamp"
+                android:tileModeX="clamp"
+                android:tileModeY="clamp"
+                android:tint="@color/apricot"
+                android:tintMode="src_atop"/>
+        </clip>
+        <color android:color="@color/apricot">
+
+        </color>
+
+        <inset android:drawable="@color/apricot" android:inset="@android:dimen/app_icon_size" android:visible="true">
+            <bitmap
+                android:alpha="23"
+                android:antialias="true"
+                android:autoMirrored="true"
+                android:dither="true"
+                android:filter="true"
+                android:gravity="end"
+                android:mipMap="true"
+                android:src="@color/apricot"
+                android:tileMode="clamp"
+                android:tileModeX="clamp"
+                android:tileModeY="clamp"
+                android:tint="@color/apricot"
+                android:tintMode="src_atop"/>
+        </inset>
+        <layer-list android:opacity="opaque">
+
+        </layer-list>
+
+        <level-list >
+
+        </level-list>
+
+        <transition>
+
+        </transition>
+
+        <selector>
+
+        </selector>
+
+        <scale>
+
+        </scale>
+
+
+
+    </item>
+</ripple>

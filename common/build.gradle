@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 def srcDirs = [
         "carousel",
         "video",
+        "colorpicker",
+        "drawable",
 
 ]
 android {

@@ -8,5 +8,30 @@
     android:orientation="vertical"
     tools:context=".CoordinatorLayoutActivity">
 
+    <Button
+        android:id="@+id/bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGreyBlue"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="show button"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGreyBlue"
+        android:text="show2"
+        app:rippleColor="@color/mtrl_btn_ripple_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/lightGreyBlue"
+        android:clickable="true"
+        android:enabled="true"
+        android:foreground="@drawable/bt_selector"
+        android:text="show text"/>
 
 </LinearLayout>

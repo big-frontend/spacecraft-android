@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="scr over"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+        <!--        <Space/>-->
+
+        <Button
+            android:id="@+id/bt_scr_over"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="button scr over"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="scr in"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/bt_src_in"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="button scr in"/>
+        <!--        <Space/>-->
+
+
+        <!--        <Space/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="scr atop"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/bt_scr_atop"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="bt_scr_atop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="scr add"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/bt_scr_add"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="bt_scr_add"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="scr multiply"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/bt_scr_multiply"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="bt_scr_multiply"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="scr screen"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/bt_scr_screen"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="bt_scr_screen"/>
+
+
+        <Space/>
+    </GridLayout>
+
+</ScrollView>
