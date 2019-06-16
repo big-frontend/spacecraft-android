@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,12 +21,6 @@
             app:flexDirection="row"
             app:flexWrap="wrap"
             >
-
-            <com.hawksjamesf.common.PagerView
-                android:id="@+id/pv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:pv_orientation="vertical"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_contral"
@@ -65,4 +59,4 @@
 
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</FrameLayout>

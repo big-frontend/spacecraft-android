@@ -1,22 +1,22 @@
 package com.hawksjamesf.common.adapter;
 
-        import android.graphics.drawable.Drawable;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-        import com.hawksjamesf.common.PagerView;
-        import com.hawksjamesf.common.PagerViewModel;
-        import com.hawksjamesf.common.R;
-        import com.hawksjamesf.common.TabsLayout;
+import com.hawksjamesf.common.PagerView;
+import com.hawksjamesf.common.PagerViewModel;
+import com.hawksjamesf.common.R;
+import com.hawksjamesf.common.TabsLayout;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-        import androidx.annotation.NonNull;
-        import androidx.recyclerview.widget.DividerItemDecoration;
-        import androidx.recyclerview.widget.LinearLayoutManager;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Copyright ® $ 2019
@@ -26,7 +26,7 @@ package com.hawksjamesf.common.adapter;
  * @email: hawksjamesf@gmail.com
  * @since: May/27/2019  Mon
  */
-public class Adapter1 extends PagerView.Adapter<Adapter1.ViewHolder1> {
+public class Adapter11 extends PagerView.Adapter<Adapter11.ViewHolder1> {
     private List<PagerViewModel> mDataList = new ArrayList<PagerViewModel>();
 
     public void setDataList(List<PagerViewModel> dataList) {
@@ -41,7 +41,7 @@ public class Adapter1 extends PagerView.Adapter<Adapter1.ViewHolder1> {
         ViewHolder1 viewHolder1 = new ViewHolder1(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_nest, parent, false)
         );
-        viewHolder1.rvNest.setAdapter(new Adapter2());
+        viewHolder1.rvNest.setAdapter(new Adapter22());
 //        pv?.addOnTabSelectedListener(new  TabsLayout.OnTabSelectedListener() {
 //            override fun onTabSelected(view: View?, position: Int) {
 //                viewHolder1.rvNest.scrollToPosition(0)
@@ -52,7 +52,7 @@ public class Adapter1 extends PagerView.Adapter<Adapter1.ViewHolder1> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder1 holder, int position) {
-        Adapter2 adapter = (Adapter2) holder.rvNest.getAdapter();
+        Adapter22 adapter = (Adapter22) holder.rvNest.getAdapter();
         if (adapter != null) {
             adapter.setDataList(mDataList.get(position).getContents());
         }
@@ -79,8 +79,8 @@ public class Adapter1 extends PagerView.Adapter<Adapter1.ViewHolder1> {
         ViewHolder1(@NonNull View itemView) {
             super(itemView);
             rvNest = itemView.findViewById(R.id.rv_nest);
-            rvNest.setLayoutManager(new LinearLayoutManager(rvNest.getContext(), RecyclerView.HORIZONTAL, false));
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvNest.getContext(), RecyclerView.HORIZONTAL);
+            rvNest.setLayoutManager(new LinearLayoutManager(rvNest.getContext(), RecyclerView.VERTICAL, false));
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvNest.getContext(), RecyclerView.VERTICAL);
             Drawable drawable = itemView.getContext().getDrawable(R.drawable.divider);
             if (drawable != null) {
                 dividerItemDecoration.setDrawable(drawable);

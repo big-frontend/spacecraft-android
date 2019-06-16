@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
-import com.hawksjamesf.common.listener.TabsBehavior;
 import com.hawksjamesf.common.util.CollectionUtil;
 import com.hawksjamesf.common.util.ConvertUtil;
 import com.hawksjamesf.common.util.Util;
@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.DrawableRes;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 /**
@@ -38,9 +38,20 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
  * @email: hawksjamesf@gmail.com
  * @since: May/26/2019  Sun
  */
-@CoordinatorLayout.DefaultBehavior(TabsBehavior.class)
-public class TabsLayout extends HorizontalScrollView {
-    public static final int GAP = ConvertUtil.px2dp(24);
+//@CoordinatorLayout.DefaultBehavior(TabsBehavior.class)
+public class TabsLayout extends FrameLayout {
+    public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
+    public static final int VERTICAL = LinearLayout.VERTICAL;
+    private int mOrientation = HORIZONTAL;
+    public static final int GAP = ConvertUtil.dp2px(24);
+    private int mCurPosition;
+    private ValueAnimator mIndicatorAnimator;
+
+    private LinearLayout mRootView;
+    private LinearLayout mLlContainer;
+    private FrameLayout mScrollView;
+    private View mIndicator;
+    private int mTabIndicatorAnimationDuration = 200;
 
     public TabsLayout(Context context) {
         this(context, null);
@@ -54,19 +65,44 @@ public class TabsLayout extends HorizontalScrollView {
         this(context, attrs, defStyleAttr, -1);
     }
 
-    LinearLayout llContainer;
-    View indicator;
-    int tabIndicatorAnimationDuration = 200;
-
     public TabsLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
-        View rootView = View.inflate(context, R.layout.view_tabs_layout, this);
-        llContainer = rootView.findViewById(R.id.ll_container);
-        indicator = rootView.findViewById(R.id.indicator);
-        setHorizontalScrollBarEnabled(false);
+        mRootView = (LinearLayout) View.inflate(context, R.layout.view_tabs_layout, null);
+        mLlContainer = mRootView.findViewById(R.id.ll_container);
+        mIndicator = mRootView.findViewById(R.id.indicator);
+        setOrientation(HORIZONTAL);
     }
 
+    public void setOrientation(int orientation) {
+        this.mOrientation = orientation;
+        removeView(mScrollView);
+        if (mScrollView != null) {
+            mScrollView.removeView(mRootView);
+        }
+        ViewGroup.LayoutParams rootViewLp;
+        if (mOrientation == HORIZONTAL) {
+            mScrollView = new HorizontalScrollView(getContext());
+            mScrollView.setHorizontalScrollBarEnabled(false);
+            rootViewLp = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            mRootView.setOrientation(VERTICAL);
+            mLlContainer.setOrientation(HORIZONTAL);
+        } else {
+            mScrollView = new NestedScrollView(getContext());
+            mScrollView.setVerticalScrollBarEnabled(false);
+            rootViewLp = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+            );
+            mRootView.setOrientation(HORIZONTAL);
+            mLlContainer.setOrientation(VERTICAL);
+        }
+        mScrollView.addView(mRootView, rootViewLp);
+        addView(mScrollView);
+    }
 
     public static class TabItem {
         public String name;
@@ -91,7 +127,7 @@ public class TabsLayout extends HorizontalScrollView {
 
     public void setDataList(List<TabItem> tabList) {
         if (CollectionUtil.isEmpty(tabList)) return;
-        llContainer.removeAllViews();
+        mLlContainer.removeAllViews();
         for (int i = 0; i < tabList.size(); ++i) {
             final View itemView = View.inflate(getContext(), R.layout.item_icon_and_text, null);
 
@@ -105,7 +141,7 @@ public class TabsLayout extends HorizontalScrollView {
                         }
                     }
                     animateIndicatorToPosition(
-                            finalI, tabIndicatorAnimationDuration);
+                            finalI, mTabIndicatorAnimationDuration);
                 }
             });
             TabItem tabItem = tabList.get(i);
@@ -122,16 +158,26 @@ public class TabsLayout extends HorizontalScrollView {
                         .into(ivIcon);
             }
             MarginLayoutParams layoutParams = new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.rightMargin = GAP;
-            llContainer.addView(itemView, layoutParams);
-            if (llContainer.getChildCount() > 0) {
-                final ViewGroup.LayoutParams indicatorLp = indicator.getLayoutParams();
-                llContainer.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+            if (mOrientation == HORIZONTAL) {
+                layoutParams.rightMargin = GAP;
+            } else {
+                layoutParams.bottomMargin = GAP;
+            }
+            mLlContainer.addView(itemView, layoutParams);
+            if (mLlContainer.getChildCount() > 0) {
+                final ViewGroup.LayoutParams indicatorLp = mIndicator.getLayoutParams();
+                mLlContainer.addOnLayoutChangeListener(new OnLayoutChangeListener() {
                     @Override
                     public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                         v.removeOnLayoutChangeListener(this);
-                        indicatorLp.width = llContainer.getChildAt(0).getWidth();
-                        indicator.setLayoutParams(indicatorLp);
+                        if (mOrientation == HORIZONTAL) {
+                            indicatorLp.width = mLlContainer.getChildAt(0).getWidth();
+                            indicatorLp.height = ConvertUtil.dp2px(5);
+                        } else {
+                            indicatorLp.width = ConvertUtil.dp2px(5);
+                            indicatorLp.height = mLlContainer.getChildAt(0).getHeight();
+                        }
+                        mIndicator.setLayoutParams(indicatorLp);
                     }
                 });
             }
@@ -151,46 +197,72 @@ public class TabsLayout extends HorizontalScrollView {
         mOnTabSelectedListenerList.add(onTabSelectedListener);
     }
 
-
-    int curPosition;
-    private ValueAnimator indicatorAnimator;
-
     public void animateIndicatorToPosition(final int position, int duration) {
-        if (indicatorAnimator != null && indicatorAnimator.isRunning()) {
-            indicatorAnimator.cancel();
-            indicatorAnimator.removeAllListeners();
+        if (mIndicatorAnimator != null && mIndicatorAnimator.isRunning()) {
+            mIndicatorAnimator.cancel();
+            mIndicatorAnimator.removeAllListeners();
         }
 
-        final View curView = llContainer.getChildAt(curPosition);
-        final View targetView = llContainer.getChildAt(position);
-        Log.d("TabsLayout", "animateIndicatorToPosition:" + curView + "/" + targetView + "--" + position + "/" + curPosition);
-        if (targetView == null || curView == null || position == curPosition) return;
+        final View curView = mLlContainer.getChildAt(mCurPosition);
+        final View targetView = mLlContainer.getChildAt(position);
+        Log.d("TabsLayout", "animateIndicatorToPosition:" + curView + "/" + targetView + "--" + position + "/" + mCurPosition);
+        if (targetView == null || curView == null || position == mCurPosition) return;
 
         int curLeft = curView.getLeft();
         int curRight = curView.getRight();
         int targetLeft = targetView.getLeft();
         int targetRight = targetView.getRight();
 
-        if (targetRight > ScreenUtils.getScreenWidth()) {
-            int dx = targetRight - ScreenUtils.getScreenWidth();
-            smoothScrollBy(dx, 0);
+        int curTop = curView.getTop();
+        int curBottom = curView.getBottom();
+        int targetTop = targetView.getTop();
+        int targetBottom = targetView.getBottom();
+
+        int startValue;
+        int endValue;
+        String property;
+        if (mOrientation == HORIZONTAL) {
+            startValue = curLeft;
+            endValue = targetLeft;
+            property = "translationX";
+            int dx = 0;
+            if (targetRight > ScreenUtils.getScreenWidth()) {
+                dx = targetRight - ScreenUtils.getScreenWidth();
+                //todo:fix bug
+//            } else if (targetLeft < 0) {
+//                dx = targetLeft;
+            }
+            ((HorizontalScrollView) mScrollView).smoothScrollBy(dx, 0);
+        } else {
+            startValue = curTop;
+            endValue = targetTop;
+            property = "translationY";
+            int dy = 0;
+            if (targetBottom > ScreenUtils.getScreenHeight()) {
+                dy = targetBottom - ScreenUtils.getScreenWidth();
+                //todo:fix bug
+//            } else if (targetLeft < 0) {
+//                dx = targetLeft;
+            }
+            ((NestedScrollView) mScrollView).smoothScrollBy(0, dy);
+
         }
 
-        indicatorAnimator = ObjectAnimator.ofFloat(indicator, "translationX", curLeft, targetLeft);
-        indicatorAnimator.setInterpolator(new FastOutSlowInInterpolator());
-        indicatorAnimator.setDuration(duration);
-        indicatorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        mIndicatorAnimator = ObjectAnimator.ofFloat(mIndicator, property, startValue, endValue);
+        mIndicatorAnimator.setInterpolator(new FastOutSlowInInterpolator());
+        mIndicatorAnimator.setDuration(duration);
+        mIndicatorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
             }
         });
-        indicatorAnimator.addListener(
+        mIndicatorAnimator.addListener(
                 new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        curPosition = position;
+                        mCurPosition = position;
                     }
                 });
-        indicatorAnimator.start();
+        mIndicatorAnimator.start();
     }
 }

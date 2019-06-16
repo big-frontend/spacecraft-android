@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.VideoView;
 
-import com.hawksjamesf.common.adapter.Adapter1;
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;
 import com.hawksjamesf.common.widget.ChaplinVideoView;
@@ -45,29 +44,7 @@ public class ViewPagerActivity extends AppCompatActivity {
             add(5);
         }
     };
-    List<PagerViewModel> pagerviewList = new ArrayList<PagerViewModel>() {
-        {
 
-            TabsLayout.TabItem tabItem0 = new TabsLayout.TabItem("美食", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem1 = new TabsLayout.TabItem("景点", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem2 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem3 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem4 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem5 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem6 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem7 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            TabsLayout.TabItem tabItem8 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
-            add(new PagerViewModel(tabItem0, list));
-            add(new PagerViewModel(tabItem1, list));
-            add(new PagerViewModel(tabItem2, list));
-            add(new PagerViewModel(tabItem3, list));
-            add(new PagerViewModel(tabItem4, list));
-            add(new PagerViewModel(tabItem5, list));
-            add(new PagerViewModel(tabItem6, list));
-            add(new PagerViewModel(tabItem7, list));
-            add(new PagerViewModel(tabItem8, list));
-        }
-    };
     CarouselView cv;
     VideoView vv;
     ChaplinVideoView clv;
@@ -101,10 +78,6 @@ public class ViewPagerActivity extends AppCompatActivity {
             }
         });
 
-        pv = findViewById(R.id.pv);
-        Adapter1 adapter1 = new Adapter1();
-        pv.setAdapter(adapter1);
-        adapter1.setDataList(pagerviewList);
 
         RecyclerView rvContral = findViewById(R.id.rv_contral);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);

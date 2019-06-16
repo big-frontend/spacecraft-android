@@ -159,11 +159,21 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
             CoordinatorLayout.LayoutParams lp =
                     (CoordinatorLayout.LayoutParams) child.getLayoutParams();
             Rect available = new Rect();
-            available.set(
-                    parent.getPaddingLeft() + lp.leftMargin,
-                    header.getBottom() + lp.topMargin,
-                    parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
-                    parent.getHeight() + header.getBottom() - parent.getPaddingBottom() - lp.bottomMargin);
+            LinearLayoutManager layoutManager = (LinearLayoutManager) child.getLayoutManager();
+            if (layoutManager == null) return false;
+            if ((layoutManager.getOrientation() == RecyclerView.HORIZONTAL)) {
+                available.set(
+                        parent.getPaddingLeft() + lp.leftMargin,
+                        header.getBottom() + lp.topMargin,
+                        parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
+                        parent.getHeight() + header.getBottom() - parent.getPaddingBottom() - lp.bottomMargin);
+            } else {
+                available.set(
+                        header.getRight() + lp.leftMargin,
+                        parent.getPaddingTop() + lp.topMargin,
+                        parent.getWidth() + header.getRight() - parent.getPaddingRight() - lp.rightMargin,
+                        parent.getHeight() - parent.getPaddingBottom() - lp.bottomMargin);
+            }
             Rect out = new Rect();
             GravityCompat.apply(
                     resolveGravity(lp.gravity),
@@ -172,12 +182,6 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                     available,
                     out,
                     layoutDirection);
-            boolean clipToPadding = child.getClipToPadding();
-            if (clipToPadding){
-
-            }else {
-
-            }
             child.layout(out.left, out.top, out.right, out.bottom);
         } else {
             // If we don't have a dependency, let super handle it
