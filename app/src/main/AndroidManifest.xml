@@ -91,25 +91,7 @@
             android:exported="true"/>
         <activity android:name=".ParallaxActivity"/>
 
-        <activity android:name=".AnimActivity"/>
-        <activity android:name=".LottieActivity"/>
-        <activity android:name=".FrameAnimationActivity"/>
-        <activity android:name=".TransitionForViewActivity"/>
-        <activity
-            android:name=".TransitionForActivityActivity"
-            />
-        <!--android:theme="@style/BaseAppTheme.ListTheme"-->
-        <activity
-            android:name=".DetailActivity"
-            android:theme="@style/BaseAppTheme.DetailTheme"/>
-        <activity android:name=".ScrollableActivity"/>
         <activity android:name=".FeedbackUtilActivity"/>
-        <activity
-            android:name=".ConstraintAndFlexBoxActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".CoordinatorLayoutActivity"
-            android:exported="true"/>
     </application>
 
 </manifest>

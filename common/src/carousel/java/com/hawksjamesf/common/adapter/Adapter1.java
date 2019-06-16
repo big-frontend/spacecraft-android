@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hawksjamesf.common.PagerView;
+import com.hawksjamesf.common.PagerViewModel;
 import com.hawksjamesf.common.R;
+import com.hawksjamesf.common.TabsLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,21 +26,13 @@ import androidx.recyclerview.widget.RecyclerView;
  * @email: hawksjamesf@gmail.com
  * @since: May/27/2019  Mon
  */
-public class Adapter1 extends RecyclerView.Adapter<Adapter1.ViewHolder1> {
-    private List<Integer> mDataList = new ArrayList<Integer>() {{
-        for (int i = 0; i < 5; ++i) add(i);
-    }};
+public class Adapter1 extends PagerView.Adapter<Adapter1.ViewHolder1> {
+    private List<PagerViewModel> mDataList = new ArrayList<PagerViewModel>();
 
-    public void setDataList(List<Integer> dataList) {
+    public void setDataList(List<PagerViewModel> dataList) {
         this.mDataList.clear();
         this.mDataList.addAll(dataList);
         notifyDataSetChanged();
-    }
-
-    private Adapter2 mAdapter2 = new Adapter2();
-
-    public void insertAdapter(Adapter2 adapter) {
-        mAdapter2 = adapter;
     }
 
     @NonNull
@@ -46,7 +41,12 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.ViewHolder1> {
         ViewHolder1 viewHolder1 = new ViewHolder1(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_nest, parent, false)
         );
-        viewHolder1.rvNest.setAdapter(mAdapter2);
+        viewHolder1.rvNest.setAdapter(new Adapter2());
+//        pv?.addOnTabSelectedListener(new  TabsLayout.OnTabSelectedListener() {
+//            override fun onTabSelected(view: View?, position: Int) {
+//                viewHolder1.rvNest.scrollToPosition(0)
+//            }
+//        })
         return viewHolder1;
     }
 
@@ -54,13 +54,22 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.ViewHolder1> {
     public void onBindViewHolder(@NonNull ViewHolder1 holder, int position) {
         Adapter2 adapter = (Adapter2) holder.rvNest.getAdapter();
         if (adapter != null) {
-            adapter.setDataList(mDataList);
+            adapter.setDataList(mDataList.get(position).getContents());
         }
     }
 
     @Override
     public int getItemCount() {
         return mDataList.size();
+    }
+
+    @Override
+    public List<TabsLayout.TabItem> getTabList() {
+        List<TabsLayout.TabItem> tabs = new ArrayList<TabsLayout.TabItem>();
+        for (PagerViewModel pagerViewModel : mDataList) {
+            tabs.add(pagerViewModel.getTab());
+        }
+        return tabs;
     }
 
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 import com.hawksjamesf.common.TabsLayout;
@@ -16,8 +17,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,17 +29,17 @@ import androidx.recyclerview.widget.RecyclerView;
  * @since: May/25/2019  Sat
  */
 public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
-    public NestedScrollingBehavior(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-
+    private int mTouchSlop;
     private float mInitialMotionX;
     private float mInitialMotionY;
     private float mLastMotionX;
     private float mLastMotionY;
     private int mActivePointerId;
-
+    public NestedScrollingBehavior(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        ViewConfiguration configuration = ViewConfiguration.get(context);
+        mTouchSlop = configuration.getScaledTouchSlop();
+    }
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull final MotionEvent ev) {
@@ -63,10 +62,16 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 float y = ev.getY(pointerIndex);
                 float dx = x - mLastMotionX;
                 float dy = y - mLastMotionY;
-                if (orientation == RecyclerView.HORIZONTAL && dx != 0 && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
+                Log.d("NestedScrollingBehavior", "dx/dy>>>>mTouchSlop：" + dx + "/" + dy + ">>>>" + mTouchSlop);
+                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
+                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
+                } else {
+//                    parent.getParent().requestDisallowInterceptTouchEvent(false);
+                }
+                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
                     mLastMotionX = x;
                     child.requestDisallowInterceptTouchEvent(true);
-                } else if (orientation == RecyclerView.VERTICAL && dy != 0 && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
+                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) >mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
                     mLastMotionY = y;
                     child.requestDisallowInterceptTouchEvent(true);
                 } else {
@@ -79,32 +84,6 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 break;
         }
         return super.onInterceptTouchEvent(parent, child, ev);
-    }
-
-    /*
-     * Negative to check scrolling left, positive to check scrolling right.
-     */
-    private boolean canScrollHorizontally(View v, boolean checkV, int direction, int x, int y) {
-        if (v instanceof ViewGroup) {
-            final ViewGroup group = (ViewGroup) v;
-            final int scrollX = v.getScrollX();
-            final int scrollY = v.getScrollY();
-            final int count = group.getChildCount();
-            // Count backwards - let topmost views consume scroll distance first.
-            for (int i = count - 1; i >= 0; i--) {
-                // TODO: Add versioned support here for transformed views.
-                // This will not work for transformed views in Honeycomb+
-                final View child = group.getChildAt(i);
-                if (x + scrollX >= child.getLeft() && x + scrollX < child.getRight()
-                        && y + scrollY >= child.getTop() && y + scrollY < child.getBottom()
-                        && canScrollHorizontally(child, true, direction, x + scrollX - child.getLeft(),
-                        y + scrollY - child.getTop())) {
-                    return true;
-                }
-            }
-        }
-
-        return checkV && v.canScrollHorizontally(-direction);
     }
 
     /*
@@ -158,7 +137,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
             }
             child.removeOnScrollListener(listener);
             child.addOnScrollListener(listener);
-            tabsLayout.setOnTabSelectedListener(new TabsLayout.OnTabSelectedListener() {
+            tabsLayout.addOnTabSelectedListener(new TabsLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(View view, int position) {
                     Log.d("NestedScrollingBehavior", "ponTabSelected>position:" + position);
@@ -166,55 +145,6 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 }
             });
             return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onMeasureChild(
-            @NonNull CoordinatorLayout parent,
-            RecyclerView child,
-            int parentWidthMeasureSpec,
-            int widthUsed,
-            int parentHeightMeasureSpec,
-            int heightUsed) {
-        Log.d("NestedScrollingBehavior", "onMeasureChild:\nchild--->" + child +
-                "\nparentWidthMeasureSpec/widthUsed--->" + parentWidthMeasureSpec + "/" + widthUsed +
-                "\nparentHeightMeasureSpec/heightUsed--->" + parentHeightMeasureSpec + "/" + heightUsed);
-        final int childLpHeight = child.getLayoutParams().height;
-        if (childLpHeight == ViewGroup.LayoutParams.MATCH_PARENT
-                || childLpHeight == ViewGroup.LayoutParams.WRAP_CONTENT) {
-            // If the menu's height is set to match_parent/wrap_content then measure it
-            // with the maximum visible height
-            final View header = findFirstDependency(parent.getDependencies(child));
-            if (header != null) {
-                int availableHeight = View.MeasureSpec.getSize(parentHeightMeasureSpec);
-                if (availableHeight > 0 && ViewCompat.getFitsSystemWindows(header)) {
-                    WindowInsetsCompat parentInsets = parent.getLastWindowInsets();
-                    if (parentInsets != null) {
-                        availableHeight += parentInsets.getSystemWindowInsetTop()
-                                + parentInsets.getSystemWindowInsetBottom();
-                    }
-                } else {
-                    // If the measure spec doesn't specify a size, use the current height
-                    availableHeight = parent.getHeight();
-                }
-
-                int headerHeight = header.getMeasuredHeight();
-                availableHeight -= headerHeight;
-                final int heightMeasureSpec =
-                        View.MeasureSpec.makeMeasureSpec(
-                                availableHeight,
-                                childLpHeight == ViewGroup.LayoutParams.MATCH_PARENT
-                                        ? View.MeasureSpec.EXACTLY
-                                        : View.MeasureSpec.AT_MOST);
-
-                // Now measure the scrolling view with the correct height
-                parent.onMeasureChild(
-                        child, parentWidthMeasureSpec, widthUsed, heightMeasureSpec, heightUsed);
-
-                return true;
-            }
         }
         return false;
     }
@@ -233,18 +163,6 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                     header.getBottom() + lp.topMargin,
                     parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
                     parent.getHeight() + header.getBottom() - parent.getPaddingBottom() - lp.bottomMargin);
-
-            final WindowInsetsCompat parentInsets = parent.getLastWindowInsets();
-            if (parentInsets != null
-                    && ViewCompat.getFitsSystemWindows(parent)
-                    && !ViewCompat.getFitsSystemWindows(child)) {
-                // If we're set to handle insets but this child isn't, then it has been measured as
-                // if there are no insets. We need to lay it out to match horizontally.
-                // Top and bottom and already handled in the logic above
-                available.left += parentInsets.getSystemWindowInsetLeft();
-                available.right -= parentInsets.getSystemWindowInsetRight();
-            }
-
             Rect out = new Rect();
             GravityCompat.apply(
                     resolveGravity(lp.gravity),
@@ -253,7 +171,12 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                     available,
                     out,
                     layoutDirection);
+            boolean clipToPadding = child.getClipToPadding();
+            if (clipToPadding){
 
+            }else {
+
+            }
             child.layout(out.left, out.top, out.right, out.bottom);
         } else {
             // If we don't have a dependency, let super handle it

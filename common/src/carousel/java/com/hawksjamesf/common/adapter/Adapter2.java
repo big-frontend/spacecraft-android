@@ -23,11 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * @since: Feb/16/2019  Sat
  */
 public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder2> {
-    private List<Integer> mDataList = new ArrayList<Integer>() {{
-        for (int i = 0; i < 5; ++i) add(i);
-    }};
+    private List<Object> mDataList = new ArrayList<Object>();
 
-    public void setDataList(List<Integer> dataList) {
+    public void setDataList(List<?> dataList) {
         this.mDataList.clear();
         this.mDataList.addAll(dataList);
         notifyDataSetChanged();

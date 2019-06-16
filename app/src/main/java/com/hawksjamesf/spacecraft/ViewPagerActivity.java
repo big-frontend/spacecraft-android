@@ -14,7 +14,9 @@ import android.widget.VideoView;
 
 import com.hawksjamesf.common.CarouselView;
 import com.hawksjamesf.common.PagerView;
-import com.hawksjamesf.common.adapter.Adapter2;
+import com.hawksjamesf.common.PagerViewModel;
+import com.hawksjamesf.common.TabsLayout;
+import com.hawksjamesf.common.adapter.Adapter1;
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;
 import com.hawksjamesf.common.widget.ChaplinVideoView;
@@ -45,6 +47,17 @@ public class ViewPagerActivity extends AppCompatActivity {
             add(3);
             add(4);
             add(5);
+        }
+    };
+    List<PagerViewModel> pagerviewList = new ArrayList<PagerViewModel>() {
+        {
+
+            TabsLayout.TabItem tabItem0 = new TabsLayout.TabItem("美食", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem1 = new TabsLayout.TabItem("景点", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem2 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            add(new PagerViewModel(tabItem0, list));
+            add(new PagerViewModel(tabItem1, list));
+            add(new PagerViewModel(tabItem2, list));
         }
     };
     CarouselView cv;
@@ -81,9 +94,9 @@ public class ViewPagerActivity extends AppCompatActivity {
         });
 
         pv = findViewById(R.id.pv);
-        Adapter2 adapter2 = new Adapter2();
-        pv.setAdapter2(adapter2);
-        adapter2.setDataList(list);
+        Adapter1 adapter1 = new Adapter1();
+        pv.setAdapter(adapter1);
+        adapter1.setDataList(pagerviewList);
 
         RecyclerView rvContral = findViewById(R.id.rv_contral);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
