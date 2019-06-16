@@ -25,7 +25,8 @@
             <com.hawksjamesf.common.PagerView
                 android:id="@+id/pv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:pv_orientation="vertical"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_contral"
@@ -33,7 +34,6 @@
                 android:layout_height="200dp"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_control"/>
-
 
 
         </com.google.android.flexbox.FlexboxLayout>

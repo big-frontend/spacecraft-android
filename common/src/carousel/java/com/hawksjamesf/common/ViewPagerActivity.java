@@ -51,9 +51,21 @@ public class ViewPagerActivity extends AppCompatActivity {
             TabsLayout.TabItem tabItem0 = new TabsLayout.TabItem("美食", R.drawable.ic_arrow_back_black_24dp);
             TabsLayout.TabItem tabItem1 = new TabsLayout.TabItem("景点", R.drawable.ic_arrow_back_black_24dp);
             TabsLayout.TabItem tabItem2 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem3 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem4 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem5 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem6 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem7 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
+            TabsLayout.TabItem tabItem8 = new TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp);
             add(new PagerViewModel(tabItem0, list));
             add(new PagerViewModel(tabItem1, list));
             add(new PagerViewModel(tabItem2, list));
+            add(new PagerViewModel(tabItem3, list));
+            add(new PagerViewModel(tabItem4, list));
+            add(new PagerViewModel(tabItem5, list));
+            add(new PagerViewModel(tabItem6, list));
+            add(new PagerViewModel(tabItem7, list));
+            add(new PagerViewModel(tabItem8, list));
         }
     };
     CarouselView cv;

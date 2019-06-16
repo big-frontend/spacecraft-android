@@ -35,6 +35,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
     private float mLastMotionX;
     private float mLastMotionY;
     private int mActivePointerId;
+
     public NestedScrollingBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
         ViewConfiguration configuration = ViewConfiguration.get(context);
@@ -71,7 +72,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
                     mLastMotionX = x;
                     child.requestDisallowInterceptTouchEvent(true);
-                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) >mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
+                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
                     mLastMotionY = y;
                     child.requestDisallowInterceptTouchEvent(true);
                 } else {
