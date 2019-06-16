@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft;
+package com.hawksjamesf.common;
 
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -12,10 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.VideoView;
 
-import com.hawksjamesf.common.CarouselView;
-import com.hawksjamesf.common.PagerView;
-import com.hawksjamesf.common.PagerViewModel;
-import com.hawksjamesf.common.TabsLayout;
 import com.hawksjamesf.common.adapter.Adapter1;
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.common.transformer.ZoomOutPageTransformer;

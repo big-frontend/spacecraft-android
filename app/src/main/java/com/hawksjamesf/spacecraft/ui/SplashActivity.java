@@ -16,7 +16,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.BuildConfig;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.ViewPagerActivity;
+import com.hawksjamesf.common.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 

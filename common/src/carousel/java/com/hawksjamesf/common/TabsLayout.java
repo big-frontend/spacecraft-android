@@ -64,17 +64,6 @@ public class TabsLayout extends HorizontalScrollView {
         View rootView = View.inflate(context, R.layout.view_tabs_layout, this);
         llContainer = rootView.findViewById(R.id.ll_container);
         indicator = rootView.findViewById(R.id.indicator);
-        final ViewGroup.LayoutParams layoutParams = indicator.getLayoutParams();
-        if (llContainer.getChildCount() > 0) {
-            llContainer.addOnLayoutChangeListener(new OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    v.removeOnLayoutChangeListener(this);
-                    layoutParams.width = llContainer.getChildAt(0).getWidth();
-                    indicator.setLayoutParams(layoutParams);
-                }
-            });
-        }
         setHorizontalScrollBarEnabled(false);
     }
 
@@ -127,12 +116,25 @@ public class TabsLayout extends HorizontalScrollView {
                 ivIcon.setImageDrawable(tabItem.drawable);
             }
 
-            Glide.with(ivIcon.getContext())
-                    .load(tabItem.url)
-                    .into(ivIcon);
+            if (tabItem.url != null && tabItem.url.length() > 0) {
+                Glide.with(ivIcon.getContext())
+                        .load(tabItem.url)
+                        .into(ivIcon);
+            }
             MarginLayoutParams layoutParams = new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.rightMargin = GAP;
             llContainer.addView(itemView, layoutParams);
+            if (llContainer.getChildCount() > 0) {
+                final ViewGroup.LayoutParams indicatorLp = indicator.getLayoutParams();
+                llContainer.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                        v.removeOnLayoutChangeListener(this);
+                        indicatorLp.width = llContainer.getChildAt(0).getWidth();
+                        indicator.setLayoutParams(indicatorLp);
+                    }
+                });
+            }
         }
     }
 

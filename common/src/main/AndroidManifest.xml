@@ -33,6 +33,9 @@
         <activity
             android:name="com.hawksjamesf.common.CoordinatorLayoutActivity"
             android:exported="true"/>
+        <activity
+            android:name="com.hawksjamesf.common.ViewPagerActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

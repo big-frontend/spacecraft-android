@@ -86,9 +86,7 @@
             android:parentActivityName="com.hawksjamesf.spacecraft.ui.signin.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
 
-        <activity
-            android:name=".ViewPagerActivity"
-            android:exported="true"/>
+
         <activity android:name=".ParallaxActivity"/>
 
         <activity android:name=".FeedbackUtilActivity"/>
