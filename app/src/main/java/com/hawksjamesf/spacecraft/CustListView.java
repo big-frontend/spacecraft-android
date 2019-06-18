@@ -111,6 +111,11 @@ public class CustListView extends ListView {
 
     @Override
     protected void layoutChildren() {
+
+
+//                Debug.startMethodTracing("AbsListViewScroll");
+//                mScrollProfilingStarted = true;
+
         if (aminating) {
 //            ReflectUtils reflect = ReflectUtils.reflect(getClass().getSuperclass());
 //             reflect.method("fillGap",true);
@@ -135,6 +140,14 @@ public class CustListView extends ListView {
         } else {
             super.layoutChildren();
         }
+
+
+//        if (PROFILE_SCROLLING) {
+//            if (mScrollProfilingStarted) {
+//                Debug.stopMethodTracing();
+//                mScrollProfilingStarted = false;
+//            }
+//        }
 
     }
 

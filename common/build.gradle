@@ -75,7 +75,7 @@ dependencies {
     api "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
     api "io.reactivex.rxjava2:rxkotlin:2.2.0"
     //    api 'com.jakewharton.timber:timber:4.5.1'
-    api "com.blankj:utilcode:+"
+    api "com.blankj:utilcode:1.24.2"
     api 'joda-time:joda-time:2.10'
     api 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${KOTLIN_VERSION}"

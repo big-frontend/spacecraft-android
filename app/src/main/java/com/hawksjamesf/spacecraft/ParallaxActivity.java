@@ -56,6 +56,11 @@ public class ParallaxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parallax);
 
+//        CustClipView ccv = findViewById(R.id.ccv);
+//        View view = View.inflate(this, R.layout.view_cust_clip, ccv);
+//        Log.d("cjf","ccv cliptoPadding/cliptoChildren/chliptoBound:"+ccv.getClipToPadding()+"/"+ccv.getClipChildren()+"/"+ccv.getClipBounds());
+
+
         item_top_bar_for_recyclerview = findViewById(R.id.item_top_bar_for_recyclerview);
         clvForRecyclerView = item_top_bar_for_recyclerview.findViewById(R.id.clv);
         clvForRecyclerView.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL))
@@ -193,7 +198,7 @@ public class ParallaxActivity extends AppCompatActivity {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                Log.d("ParallaxActivity", "ListView:getView:position/childCount" + position+"/"+parent.getChildCount());
+                Log.d("ParallaxActivity", "ListView:getView:position/childCount: " + position+"/"+parent.getChildCount());
                 MyViewHolder myViewHolder;
                 if (convertView == null) {
                     View itemView = LayoutInflater.from(ParallaxActivity.this).inflate(R.layout.item_my, parent, false);

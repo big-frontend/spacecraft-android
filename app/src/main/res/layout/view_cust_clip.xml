@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="@color/colorAccent"-->
+    <!--android:clipChildren="false"-->
+    <!--android:layout_height="match_parent">-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_width="32dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:background="@color/lightGreyBlue"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/apricot"-->
+            <!--android:singleLine="true"-->
+            <!--android:text="Clip view"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textAllCaps="false" />-->
+
+    <!--</LinearLayout>-->
+<!--</FrameLayout>-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccent"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    tools:clipChildren="false"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:background="@color/apricot"
+        android:text="clip to " />
+    <!--android:translationX="-10dp"-->
+</FrameLayout>

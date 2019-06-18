@@ -1,49 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="horizontal">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGreyBlue"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"
+        android:background="@color/afasf"
+        android:clipChildren="false"
+       >
+
+        <FrameLayout
+            android:background="@color/colorAccent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:background="@color/apricot"
+                android:text="clip to " />
+            <!--android:translationX="-10dp"-->
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <com.hawksjamesf.spacecraft.CustClipView
+        android:layout_gravity="center"
+        android:id="@+id/ccv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:background="@color/afasf"
+        tools:layout="@layout/view_cust_clip"
+        />
+
+
 
 
     <LinearLayout
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        >
+        android:padding="10dp">
         <!--android:layout_weight="1"-->
 
         <include
             android:id="@+id/item_top_bar_for_recyclerview"
-            layout="@layout/item_top_bar"/>
+            layout="@layout/item_top_bar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/apricot"
-            />
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/apricot" />
+
+
+        </FrameLayout>
     </LinearLayout>
 
     <View
         android:layout_width="2dp"
         android:layout_height="match_parent"
-        android:background="@color/lightGreyBlue"/>
+        android:background="@color/lightGreyBlue" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
         <!--android:layout_weight="1"-->
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:liftOnScroll="true"
             app:liftOnScrollTargetViewId="@id/lv"
@@ -51,7 +97,7 @@
 
             <include
                 android:id="@+id/item_top_bar_for_listview"
-                layout="@layout/item_top_bar"/>
+                layout="@layout/item_top_bar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -60,8 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/apricot"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

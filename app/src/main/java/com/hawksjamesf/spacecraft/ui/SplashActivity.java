@@ -18,6 +18,7 @@ import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.BuildConfig;
 import com.hawksjamesf.spacecraft.R;
 
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;

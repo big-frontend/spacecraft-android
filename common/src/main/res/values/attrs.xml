@@ -9,4 +9,9 @@
         <attr name="metaButtonBarButtonStyle" format="reference"/>
     </declare-styleable>
 
+    <attr name="asdfdsf" format="enum">
+        <enum name="asdfsaf" value="1"/>
+        <enum name="sdfsaf" value="0"/>
+    </attr>
+
 </resources>

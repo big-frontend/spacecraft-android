@@ -75,7 +75,7 @@ import androidx.core.content.ContextCompat;
  * StringBuffer 线程安全
  * <p>
  * span有20种（在android.text.style包下）：
- * text appearance affecting spans or text metrics affecting spans(character affection spans):继承CharacterStyle
+ * #### text appearance affecting spans or text metrics affecting spans(character affection spans):继承CharacterStyle
  * <p>
  * 1.主要是appearance这块
  * - BackgroundColorSpan,背景色
@@ -86,7 +86,7 @@ import androidx.core.content.ContextCompat;
  * - StrikethroughSpan, 删除线
  * - UnderlineSpan 下划线
  * - TypefaceSpan,字体样式family，楷书，行书
- * - StyleSpan,
+ * - StyleSpan, Typeface.BOLD/Typeface.ITALIC/Typeface.BOLD_ITALIC/Typeface.NORMAL
  * <p>
  * 2.主要是处理metrics这块
  * - MetricAffectingSpan,
@@ -111,7 +111,7 @@ import androidx.core.content.ContextCompat;
  * - URLSpan
  * - TextLinkSpan,
  * <p>
- * paragraph affecting spans：继承ParagraphStyle
+ * #### paragraph affecting spans：继承ParagraphStyle
  * - AlignmentSpan,
  * - AlignmentSpan.Standard,文字对其方式
  * - TabStopSpan,
