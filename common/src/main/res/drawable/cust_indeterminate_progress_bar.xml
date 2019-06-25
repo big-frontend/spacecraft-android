@@ -4,6 +4,9 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:toDegrees="360">
+<!--    50：距离原坐标50px
+        50%:控件的中心点
+        50%p：控件的容器中心点-->
     <shape
         android:shape="ring"
         android:thicknessRatio="13"
