@@ -3,6 +3,7 @@ include ':location', ':common', ':chatroom', ':network', ':storage',':mockserver
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }
+include ':networkExprimental'
 //include ':server/server4j'
 include ':gradle_plugin'
 println("settings end")

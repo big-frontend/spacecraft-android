@@ -28,7 +28,7 @@ class DrawableActivity : AppCompatActivity() {
         }
 
         vp.adapter = Adapter()
-        vp.currentItem = 9
+        vp.currentItem = 5
     }
 
     inner class Adapter : PagerAdapter() {
@@ -38,6 +38,7 @@ class DrawableActivity : AppCompatActivity() {
                 "clip",
                 "inset",
                 "scale",
+                "rotate",
                 "group/layer",
                 "group/state list",
                 "group/level list",
@@ -134,6 +135,31 @@ class DrawableActivity : AppCompatActivity() {
                             val max = seekBar?.max
                             val scale = progress.toDouble() / max?.toDouble()!!
                             drawable.level = ((10000 * scale).toInt())
+                        }
+
+                        override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                        }
+
+                        override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                        }
+
+                    })
+                    view
+                }
+                "rotate" -> {
+                    val view = layoutInflater.inflate(R.layout.button_seekbar, container, false)
+                    val btn = view.findViewById<Button>(R.id.button)
+                    val drawable = resources.getDrawable(R.drawable.rotate)
+                    btn.background = drawable
+                    val sb = view.findViewById<SeekBar>(R.id.seekBar)
+                    sb.progress = sb?.max?.div(2) ?: 0
+                    drawable.level = 10000/2
+                    sb.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                            val max = seekBar?.max
+                            val scale = progress.toDouble() / max?.toDouble()!!
+                            drawable.level = ((10000 * scale).toInt())
+//                            drawable.level = progress
                         }
 
                         override fun onStartTrackingTouch(seekBar: SeekBar?) {

@@ -1,6 +1,8 @@
 package com.hawksjamesf.common;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RotateDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.hawksjamesf.common.adapter.CarouselPagerAdapter;
@@ -166,6 +169,37 @@ public class ViewPagerActivity extends AppCompatActivity {
             }
         });
 
+        Drawable drawable = getResources().getDrawable(R.drawable.baseline_3d_rotation_black_24, null);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+//        RotateDrawable rotateDrawable = build_rotatedrawable(drawable,
+//                0, 360,
+//                10000/2, 10000/2,
+//                true, true
+//
+//        );
+//        rotateDrawable.setLevel(10000/2);
+//        ((ImageView) findViewById(R.id.iv_compunt)).setImageDrawable(rotateDrawable);
+        RotateDrawable rotateDrawable = (RotateDrawable) ((TextView) findViewById(R.id.tv_compunt)).getCompoundDrawables()[2];
+//        ((TextView) findViewById(R.id.tv_compunt)).setCompoundDrawables(null,null,rotateDrawable,null);
+        rotateDrawable.setLevel(10000/2);
+//        ((TextView) findViewById(R.id.tv_compunt)).setBackground(rotateDrawable);
+
+    }
+
+    public static RotateDrawable build_rotatedrawable(final Drawable drawable,
+                                                      final int fromDegress, final int toDegress,
+                                                      final float pivotX, final float pivotY,
+                                                      final boolean relativeX, final boolean relativeY) {
+        RotateDrawable rotateDrawable = new RotateDrawable();
+        rotateDrawable.setDrawable(drawable);
+        rotateDrawable.setFromDegrees(fromDegress);
+        rotateDrawable.setToDegrees(toDegress);
+        rotateDrawable.setPivotX(pivotX);
+        rotateDrawable.setPivotY(pivotY);
+        rotateDrawable.setPivotXRelative(relativeX);
+        rotateDrawable.setPivotYRelative(relativeY);
+        rotateDrawable.setLevel(10000/2);
+        return rotateDrawable;
     }
 
 
