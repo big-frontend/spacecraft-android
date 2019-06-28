@@ -66,17 +66,21 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 Log.d("NestedScrollingBehavior", "dx/dy>>>>mTouchSlop：" + dx + "/" + dy + ">>>>" + mTouchSlop);
                 if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
                     parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
+                    if (canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
+                        mLastMotionX = x;
+                        child.requestDisallowInterceptTouchEvent(true);
+                    }
+                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop) {
+//                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
+                        child.requestDisallowInterceptTouchEvent(true);
+                    if (canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
+//                    if (canScrollVertical(child)) {
+                        mLastMotionY = y;
+                    }
+//                        return false;
+
                 } else {
-//                    parent.getParent().requestDisallowInterceptTouchEvent(false);
-                }
-                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
-                    mLastMotionX = x;
-                    child.requestDisallowInterceptTouchEvent(true);
-                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
-                    mLastMotionY = y;
-                    child.requestDisallowInterceptTouchEvent(true);
-                } else {
-                    child.requestDisallowInterceptTouchEvent(false);
+//                    child.requestDisallowInterceptTouchEvent(false);
                 }
                 break;
             case MotionEvent.ACTION_UP:
