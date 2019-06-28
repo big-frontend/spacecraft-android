@@ -12,34 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_out"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/vp2_out"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_nest"/>
-
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp2_out"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/apricot"
-            app:layout_constraintBottom_toTopOf="@+id/vp_out"/>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_out"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/lightGreyBlue"
-            app:layout_constraintBottom_toTopOf="@+id/cl_first"/>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_first"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="400dp"
             android:background="@color/apricot"
             app:layout_constraintBottom_toTopOf="@+id/diver_first"
             >
@@ -132,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_blue_dark"
                 android:gravity="center"
-                android:text="text22"
+                android:text="barrier text22"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -145,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_blue_bright"
                 android:gravity="center"
-                android:text="text33"
+                android:text="barrier text33"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_blue_light"
                 android:gravity="center"
-                android:text="text44"
+                android:text="barrier text44"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -198,6 +174,18 @@
                 app:layout_constraintGuide_percent="0.75"
                 />
 
+            <TextView
+                android:id="@+id/textview111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="text111"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline2"
+                />
 
             <TextView
                 android:id="@+id/textview222"
@@ -205,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_blue_light"
                 android:gravity="center"
-                android:text="text222"
+                android:text="circle text222"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -218,11 +206,11 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_blue_light"
                 android:gravity="center"
-                android:text="text333"
+                android:text="circle text333"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintCircle="@+id/textview222"
-                app:layout_constraintCircleAngle="300"
+                app:layout_constraintCircleAngle="250"
                 app:layout_constraintCircleRadius="100dp"
                 />
 
@@ -241,7 +229,8 @@
                 app:layout_constraintWidth_max="23dp"
                 app:layout_constraintWidth_min="10dp"
                 app:layout_constraintWidth_percent="0.3"
-                tools:layout_editor_absoluteY="150dp"/>
+                tools:layout_editor_absoluteX="119dp"
+                tools:layout_editor_absoluteY="334dp"/>
 
             <include layout="@layout/template"/>
 
