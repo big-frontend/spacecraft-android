@@ -1,11 +1,63 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api 'com.squareup.okhttp3:okhttp:3.11.0'
+//    api 'com.android.volley:volley:1.1.1'
     implementation files('libs/jsoup-1.12.1.jar')
 //    implementation 'org.jsoup:jsoup:1.12.1'
     api "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
+//    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31"
+
+    /**
+     * ===============================network  start====================================
+     */
+    /*
+     >>>>>> http style  start
+     */
+    //restful
+//    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+
+//    api 'com.squareup.okhttp3:okhttp:3.8.1'
+//    api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
+    //rpc
+//    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
+//        exclude group:  'com.google.guava'
+//        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+//    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
+//    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
+
+    /*
+    http style  end
+     */
+
+
+    /*
+    >>>>>> http serialization  start
+     */
+    //json
+    api 'com.google.code.gson:gson:2.8.5'
+//    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    implementation("com.squareup.moshi:moshi:1.8.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
+
+    //protobuf
+    //api 'com.google.protobuf:protobuf-lite:3.0.1'
+//    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
+    /*
+    http serialization  end
+     */
+
+    /**
+     * ===============================network end====================================
+     */
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
 }
 
 sourceCompatibility = "7"
