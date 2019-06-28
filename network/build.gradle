@@ -1,40 +1,40 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
-apply plugin: 'com.google.protobuf'
 
-protobuf {
-    protoc {
-        // You still need protoc like in the non-Android case
-        artifact = 'com.google.protobuf:protoc:3.7.1'
-    }
-    plugins {
-        javalite {
-            // The codegen for lite comes as a separate artifact
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
-        }
-        grpc {
-//            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
-            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
-        }
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                // In most cases you don't need the full Java output
-                // if you use the lite output.
-                remove java
-            }
-            task.plugins {
-                javalite {}
-                grpc {
-                    // Options added to --grpc_out
-                    option 'lite'
-                }
-            }
-        }
-    }
-}
+//apply plugin: 'com.google.protobuf'
+//protobuf {
+//    protoc {
+//        // You still need protoc like in the non-Android case
+//        artifact = 'com.google.protobuf:protoc:3.7.1'
+//    }
+//    plugins {
+//        javalite {
+//            // The codegen for lite comes as a separate artifact
+//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//        }
+//        grpc {
+////            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+//            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
+//        }
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                // In most cases you don't need the full Java output
+//                // if you use the lite output.
+//                remove java
+//            }
+//            task.plugins {
+//                javalite {}
+//                grpc {
+//                    // Options added to --grpc_out
+//                    option 'lite'
+//                }
+//            }
+//        }
+//    }
+//}
 
 
 android {
@@ -124,23 +124,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     api project(path: ':common')
     /**
-     * ===============================network start====================================
+     * ===============================network  start====================================
      */
-
+//    api 'com.squareup.okhttp3:okhttp:3.8.1'
+//    api 'com.android.volley:volley:1.1.1'
+    /*
+     >>>>>> http style  start
+     */
     //restful
     api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
-//    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
 
-//    api 'com.squareup.okhttp3:okhttp:3.8.1'
     api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
-
-    //api 'com.google.code.gson:gson:2.8.2'
-    //api 'com.google.protobuf:protobuf-lite:3.0.1'
-
     //rpc
     api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
 //        exclude group:  'com.google.guava'
@@ -148,6 +144,30 @@ dependencies {
     }
     api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
     api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
+
+    /*
+    http style  end
+     */
+
+
+    /*
+    >>>>>> http serialization  start
+     */
+    //json
+    //api 'com.google.code.gson:gson:2.8.2'
+    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-moshi:${rootProject.ext.retrofitVersion}"
+//    implementation("com.squareup.moshi:moshi:1.8.0")
+//    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
+//    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
+
+    //protobuf
+    //api 'com.google.protobuf:protobuf-lite:3.0.1'
+    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
+    /*
+    http serialization  end
+     */
 
     /**
      * ===============================network end====================================

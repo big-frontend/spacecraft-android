@@ -7,11 +7,12 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ListView;
+import android.widget.SectionIndexer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class CustListView extends ListView {
+public class CustListView extends ListView implements SectionIndexer {
     public CustListView(Context context) {
         this(context, null);
     }
@@ -155,4 +156,18 @@ public class CustListView extends ListView {
     boolean aminating;
     boolean moveUp;
 
+    @Override
+    public Object[] getSections() {
+        return new Object[0];
+    }
+
+    @Override
+    public int getPositionForSection(int sectionIndex) {
+        return 0;
+    }
+
+    @Override
+    public int getSectionForPosition(int position) {
+        return 0;
+    }
 }
