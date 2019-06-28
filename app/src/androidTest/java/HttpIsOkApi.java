@@ -1,13 +1,11 @@
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.hawksjamesf.spacecraft.data.bean.ListRes;
-import com.hawksjamesf.spacecraft.data.bean.RealTimeBean;
-import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.network.source.remote.weather.WeatherApi;
+import com.hawksjamesf.network.ListRes;
+import com.hawksjamesf.network.home.WeatherData;
+import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
 
 import io.reactivex.Observable;
-import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.mock.BehaviorDelegate;
 

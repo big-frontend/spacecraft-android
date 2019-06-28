@@ -223,12 +223,17 @@ dependencies {
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha06'
 
+    /**
+     * ===============================test start=============================
+     */
+
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator-v18:2.2.0-alpha1'
     // Dependencies for local unit tests
-    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
-    testImplementation "org.mockito:mockito-all:1.10.19"
-    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
-    testImplementation "org.mockito:mockito-inline:${rootProject.ext.mockitoVersion}"
-    testImplementation "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
+//    testImplementation 'junit:junit:4.12'
+//    testImplementation "org.mockito:mockito-all:1.10.19"
+//    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
+//    testImplementation "org.mockito:mockito-inline:${rootProject.ext.mockitoVersion}"
+//    testImplementation "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
 
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
@@ -252,8 +257,12 @@ dependencies {
     // Android Testing Support Library's runner and rules
     androidTestImplementation "androidx.test:runner:1.1.1"
     androidTestImplementation "androidx.test:rules:1.1.1"
+    androidTestImplementation 'androidx.test:monitor:1.1.0'
 
-//    androidTestImplementation 'androidx.test:monitor:1.1.0'
+    /**
+     * ===============================test end=============================
+     */
+
 //    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0',{
 //        exclude group: 'com.android.support', module: 'multidex'
 //    }

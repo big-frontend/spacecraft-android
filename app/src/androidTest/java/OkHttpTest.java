@@ -1,12 +1,8 @@
 import android.content.Intent;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
-import android.test.InstrumentationTestCase;
 
 import com.hawksjamesf.mockserver.DispatcherImpl;
 import com.hawksjamesf.mockserver.RestServiceTestHelper;
-import com.hawksjamesf.spacecraft.ui.HomeActivity;
+import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
 import com.orhanobut.logger.Logger;
 
 import org.junit.After;
@@ -15,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
