@@ -56,7 +56,6 @@ sourceSets {
 dependencies {
     implementation(gradleKotlinDsl())
     implementation(kotlin("stdlib", "1.2.71"))
-    implementation(kotlin("stdlib-jdk8"))
     implementation(gradleApi())
     implementation(localGroovy())
     implementation(kotlin("reflect"))
