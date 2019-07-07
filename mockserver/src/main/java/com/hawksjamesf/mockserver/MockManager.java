@@ -38,6 +38,11 @@ public class MockManager {
     }
 
     public static void init(Context context) {
+       init(context,true);
+    }
+
+    public static void init(Context context,boolean debugable) {
+        if (!debugable) return;
         String processName = getProcessName(context);
         Logger.t(TAG).d(processName);
         if (!TextUtils.isEmpty(processName)) {
@@ -48,7 +53,7 @@ public class MockManager {
         }
     }
 
-    //由于多进程架构中，Application会被调用两次
+        //由于多进程架构中，Application会被调用两次
     void bindAndStartService(Context context) {
         Intent intent = new Intent(context, MockService.class);
         /**

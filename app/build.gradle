@@ -217,7 +217,7 @@ dependencies {
     implementation project(path: ':location')
     implementation project(path: ':chatroom')
     implementation project(path: ':network')
-    debugImplementation project(path: ':mockserver')
+    implementation project(path: ':mockserver')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
