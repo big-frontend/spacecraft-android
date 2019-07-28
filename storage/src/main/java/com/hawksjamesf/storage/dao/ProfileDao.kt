@@ -1,7 +1,6 @@
 package com.hawksjamesf.storage.dao
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
 import com.hawksjamesf.storage.model.Profile
 
 /**
@@ -15,4 +14,20 @@ import com.hawksjamesf.storage.model.Profile
 interface ProfileDao {
     @Query("SELECT * FROM profile")
     fun getProfile(): Profile
+
+    @Transaction
+    @Query("SELECT * FROM profile WHERE id = :profileMobile")
+    fun getProfileById(profileMobile:String): Profile
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(profileList: List<Profile>)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updateAll(profileList: List<Profile>)
+
+    @Delete
+    fun deleteByProfile(profile: Profile)
+
+
+
 }

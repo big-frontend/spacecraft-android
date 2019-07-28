@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 import com.hawksjamesf.common.util.Util;
 import com.hawksjamesf.mockserver.MockManager;
 import com.hawksjamesf.network.DaggerNetComponent;
@@ -92,6 +93,18 @@ public class App extends MultiDexApplication {
         MockManager.init(getApplicationContext(),BuildConfig.DEBUG);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 //        UETool.showUETMenu();
+        Stetho.initializeWithDefaults(this);
+//        Stetho.initialize(Stetho.newInitializerBuilder(this)
+//                .enableDumpapp(new DumperPluginsProvider() {
+//                    @Override
+//                    public Iterable<DumperPlugin> get() {
+//                        return new Stetho.DefaultDumperPluginsBuilder(this)
+//                                .provide(new MyDumperPlugin())
+//                                .finish();
+//                    }
+//                })
+//                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+//                .build());
     }
     /**
      * 获取进程号对应的进程名
