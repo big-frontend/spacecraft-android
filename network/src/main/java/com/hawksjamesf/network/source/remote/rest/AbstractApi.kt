@@ -11,7 +11,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.protobuf.ProtoConverterFactory
 import retrofit2.converter.wire.WireConverterFactory
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.KClass
@@ -49,7 +48,7 @@ abstract class AbstractApi<T : Any> {
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(MoshiConverterFactory.create())
-                .addConverterFactory(ProtoConverterFactory.create())
+//                .addConverterFactory(ProtoConverterFactory.create())
                 .addConverterFactory(WireConverterFactory.create())
                 .build()
                 .create(getClass().java)

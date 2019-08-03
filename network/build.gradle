@@ -120,7 +120,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation 'junit:junit:4.12'
-    testImplementation  'org.assertj:assertj-core:3.11.0'
+    testImplementation 'org.assertj:assertj-core:3.11.0'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     api project(path: ':common')
@@ -166,8 +166,8 @@ dependencies {
 
     //protobuf
     //api 'com.google.protobuf:protobuf-lite:3.0.1'
-    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
+//    api("com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}")
+    api("com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}")
     /*
     http serialization  end
      */
