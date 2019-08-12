@@ -2,9 +2,11 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.squareup.okhttp3:okhttp:3.14.1'
+    api 'com.squareup.okhttp3:okhttp:4.0.1'
+    api "com.squareup.okhttp3:okhttp-tls:4.0.1"
 //    api 'com.android.volley:volley:1.1.1'
     implementation files('libs/jsoup-1.12.1.jar')
 //    implementation 'org.jsoup:jsoup:1.12.1'
@@ -18,8 +20,8 @@ dependencies {
      >>>>>> http style  start
      */
     //restful
-//    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-//    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
 //    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
 
 //    api 'com.squareup.okhttp3:okhttp:3.8.1'
@@ -48,8 +50,8 @@ dependencies {
 
     //protobuf
     //api 'com.google.protobuf:protobuf-lite:3.0.1'
-//    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
-//    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
     /*
     http serialization  end
      */
@@ -58,6 +60,7 @@ dependencies {
      * ===============================network end====================================
      */
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation "com.github.jnr:jnr-unixsocket:0.23"
 }
 
 sourceCompatibility = "7"
