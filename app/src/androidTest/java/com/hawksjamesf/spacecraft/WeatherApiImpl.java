@@ -1,12 +1,15 @@
+package com.hawksjamesf.spacecraft;
+
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.hawksjamesf.common.util.RestServiceTestHelper;
 import com.hawksjamesf.network.ListRes;
 import com.hawksjamesf.network.home.WeatherData;
 import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
 
 import io.reactivex.Observable;
-import retrofit2.Response;
+import io.reactivex.Single;
 import retrofit2.mock.BehaviorDelegate;
 
 /**
@@ -16,22 +19,17 @@ import retrofit2.mock.BehaviorDelegate;
  * @author: hawskjamesf
  * @since: Sep/25/2018  Tue
  */
-public class HttpIsOkApi implements WeatherApi {
+public class WeatherApiImpl implements WeatherApi {
     BehaviorDelegate<WeatherApi> delegate;
     Context context;
 
-    public HttpIsOkApi(Context context, BehaviorDelegate<WeatherApi> delegate) {
+    WeatherApiImpl(Context context, BehaviorDelegate<WeatherApi> delegate) {
         this.delegate = delegate;
         this.context = context;
     }
 
     @Override
-    public Call<RealTimeBean> getRealTimeData(String filename) {
-        return null;
-    }
-
-    @Override
-    public Observable<Response<WeatherData>> getCurrentWeatherDate(String city) {
+    public Single<WeatherData> getCurrentWeatherDate(String city) {
         String file = null;
         try {
             file = RestServiceTestHelper.getStringFromFile(context, "current_data.json");
@@ -43,7 +41,7 @@ public class HttpIsOkApi implements WeatherApi {
     }
 
     @Override
-    public Observable<Response<ListRes<WeatherData>>> getFiveData(String city) {
+    public Observable<ListRes<WeatherData>> getFiveData(String city) {
         return null;
     }
 }

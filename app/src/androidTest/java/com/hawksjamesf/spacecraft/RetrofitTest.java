@@ -1,11 +1,16 @@
-import androidx.test.filters.SmallTest;
+package com.hawksjamesf.spacecraft;
+
 import android.test.InstrumentationTestCase;
 
-import com.hawksjamesf.spacecraft.data.bean.home.WeatherData;
-import com.hawksjamesf.network.source.remote.weather.WeatherApi;
+import com.hawksjamesf.network.home.WeatherData;
+import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
 
 import junit.framework.Assert;
 
+import org.junit.runner.RunWith;
+
+import androidx.test.filters.SmallTest;
+import androidx.test.runner.AndroidJUnit4;
 import io.reactivex.functions.Consumer;
 import okhttp3.OkHttpClient;
 import retrofit2.Response;
@@ -22,7 +27,7 @@ import retrofit2.mock.NetworkBehavior;
  * @author: hawskjamesf
  * @since: Sep/25/2018  Tue
  */
-//@RunWith(AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class RetrofitTest extends InstrumentationTestCase {
 
     MockRetrofit mockRetrofit;
@@ -44,7 +49,7 @@ public class RetrofitTest extends InstrumentationTestCase {
     @SmallTest
     public void testHttpIsOk() {
         BehaviorDelegate<WeatherApi> delegate = mockRetrofit.create(WeatherApi.class);
-        HttpIsOkApi mockApi = new HttpIsOkApi(getInstrumentation().getContext(), delegate);
+        WeatherApiImpl mockApi = new WeatherApiImpl(getInstrumentation().getContext(), delegate);
         mockApi.getCurrentWeatherDate("Shanghai")
                 .subscribe(new Consumer<Response<WeatherData>>() {
                     @Override

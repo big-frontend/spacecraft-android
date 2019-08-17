@@ -89,7 +89,7 @@ abstract class AbstractApi<T : Any> {
 
         //android system ssl(openssl)
         val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm()).also {
-            it.init(null as KeyStore)
+            it.init(null as KeyStore?)
         }
         val trustManagers = trustManagerFactory.trustManagers
         if (trustManagers.size != 1 || trustManagers[0] !is X509TrustManager) {

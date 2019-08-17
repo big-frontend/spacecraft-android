@@ -89,6 +89,7 @@ dependencies {
 //    debugApi 'me.ele:uetool-fresco:1.0.17'
     api 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+    api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"
 
     /**
      * ===============================mvvm start================================

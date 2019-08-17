@@ -11,7 +11,7 @@ import okhttp3.Response
  * @since: Oct/25/2018  Thu
  */
 class TokenInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response? {
-        return null
+    override fun intercept(chain: Interceptor.Chain): Response {
+        return chain.proceed(chain.request())
     }
 }

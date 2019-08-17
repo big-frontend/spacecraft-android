@@ -217,10 +217,10 @@ dependencies {
     implementation project(path: ':location')
     implementation project(path: ':chatroom')
     implementation project(path: ':network')
-    implementation project(path: ':mockserver')
     implementation project(path: ':storage')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha06'
 
@@ -273,5 +273,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-config:16.5.0'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
+    annotationProcessor project(path: ':processor')
+    implementation project(path: ':annotations')
 }
 println("app end")

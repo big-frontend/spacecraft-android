@@ -27,7 +27,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(path: ':common')
-//    implementation project(path: ':network')
     api "com.squareup.okhttp3:mockwebserver:${rootProject.ext.okhttpVersion}"
     api "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
 }

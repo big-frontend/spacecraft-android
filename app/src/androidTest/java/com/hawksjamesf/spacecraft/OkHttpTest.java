@@ -1,3 +1,5 @@
+package com.hawksjamesf.spacecraft;
+
 import android.content.Intent;
 
 import com.hawksjamesf.mockserver.DispatcherImpl;
@@ -11,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import okhttp3.mockwebserver.MockResponse;
@@ -23,10 +26,10 @@ import okhttp3.mockwebserver.MockWebServer;
  * @author: hawskjamesf
  * @since: Sep/25/2018  Tue
  */
-@RunWith(AndroidJUnit4.class)
+//@RunWith(AndroidJUnit4.class)
 public class OkHttpTest extends InstrumentationTestCase {
 
-    public static final String TAG = "OkHttpTest";
+    public static final String TAG = "com.hawksjamesf.spacecraft.OkHttpTest";
     MockWebServer mockWebServer;
 
     @Rule
@@ -62,14 +65,14 @@ public class OkHttpTest extends InstrumentationTestCase {
 //                case Constants.CURRENT_DATA_URL_PATH: {
 //                    mockWebServer.enqueue(new MockResponse()
 //                            .setResponseCode(200)
-//                            .setBody(RestServiceTestHelper.getStringFromFile(getInstrumentation().getContext(), Constants.CURRENT_DATA_JSON)));
+//                            .setBody(com.hawksjamesf.network.api.RestServiceTestHelper.getStringFromFile(getInstrumentation().getContext(), Constants.CURRENT_DATA_JSON)));
 //                    break;
 //                }
 //
 //                case Constants.FIVE_DATA_URL_PATH: {
 //                    mockWebServer.enqueue(new MockResponse()
 //                            .setResponseCode(200)
-//                            .setBody(RestServiceTestHelper.getStringFromFile(getInstrumentation().getContext(), Constants.FIVE_DATA_JSON)));
+//                            .setBody(com.hawksjamesf.network.api.RestServiceTestHelper.getStringFromFile(getInstrumentation().getContext(), Constants.FIVE_DATA_JSON)));
 //                    break;
 //                }
 //
