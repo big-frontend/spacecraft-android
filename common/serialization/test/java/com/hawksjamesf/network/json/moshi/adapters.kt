@@ -2,12 +2,12 @@ package com.hawksjamesf.network.json.moshi
 
 import com.squareup.moshi.*
 import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrl
+import java.net.URL
 
 
 class URLTypeAdapter2 {
     @FromJson
-    fun string2URL(urlString: String) = urlString.toHttpUrl()
+    fun string2URL(urlString: String) = URL(urlString)
 
     @ToJson
     fun url2String(url: HttpUrl) = url.toString()

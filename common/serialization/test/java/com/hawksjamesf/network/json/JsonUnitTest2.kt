@@ -2,7 +2,6 @@ package com.hawksjamesf.network.json
 
 import com.alibaba.fastjson.JSON
 import com.google.gson.GsonBuilder
-import com.hawksjamesf.annotations.TraceTime
 import com.hawksjamesf.network.json.gson.TitlebarTypeAdapter
 import com.hawksjamesf.network.printInfo
 import com.squareup.moshi.JsonReader
@@ -32,7 +31,7 @@ class JsonUnitTest2 : TestCase() {
     }
 
     //    @Test
-    @TraceTime
+//    @TraceTime
     fun testGson() {
         val gson = GsonBuilder()
                 .setPrettyPrinting()
@@ -48,7 +47,7 @@ class JsonUnitTest2 : TestCase() {
     }
 
     //    @Test
-    @TraceTime
+//    @TraceTime
     fun testFastJson() {
 
         val fastjson = JSON.parseObject<GithubApiForFastjson2>(inputStream.readBytes(), GithubApiForFastjson2::class.javaObjectType)

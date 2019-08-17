@@ -45,12 +45,19 @@ android {
             java.excludes = [
                     '**/build/**',
             ]
-            srcDirs.forEach {
-                res.srcDirs += 'src/' + it + '/res'
-                res.srcDirs += 'src/' + it + '/res-frame-animation'
-                assets.srcDirs += 'src/' + it + '/assets'
-                java.srcDirs += 'src/' + it + '/java'
-                aidl.srcDirs += 'src/' + it + '/aidl'
+//            srcDirs.forEach {
+//                res.srcDirs += 'src/' + it + '/res'
+//                res.srcDirs += 'src/' + it + '/res-frame-animation'
+//                assets.srcDirs += 'src/' + it + '/assets'
+//                java.srcDirs += 'src/' + it + '/java'
+//                aidl.srcDirs += 'src/' + it + '/aidl'
+//            }
+            srcDirs.forEach{
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
             }
         }
 //        main.java.srcDirs += ["src/main/kotlin"]
@@ -65,7 +72,23 @@ android {
 //        main.java.srcDirs += ["src/video/java"]
 //        main.res.srcDirs += ["src/video/res"]
 //        main.assets.srcDirs += ["src/video/assets"]
+        androidTest{
+            srcDirs.forEach{
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+//                res.srcDirs += "$projectDir/$it/test/resources"
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
     }
+
 
 }
 
@@ -88,6 +111,7 @@ dependencies {
     releaseApi 'me.ele:uetool-no-op:1.0.17'
     // if you want to show more attrs about Fresco's DraweeView
 //    debugApi 'me.ele:uetool-fresco:1.0.17'
+    implementation("com.squareup.okio:okio:2.3.0")
     /**
      * ===============================serialization start================================
      */
@@ -119,7 +143,6 @@ dependencies {
     /**
      * ===============================serialization end================================
      */
-
 
 
     /**
@@ -241,7 +264,7 @@ dependencies {
 
     androidTestApi 'androidx.test.uiautomator:uiautomator-v18:2.2.0-alpha1'
     // Dependencies for local unit tests
-//    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 //    testImplementation "org.mockito:mockito-all:1.10.19"
 //    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
 //    testImplementation "org.mockito:mockito-inline:${rootProject.ext.mockitoVersion}"
