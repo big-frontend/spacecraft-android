@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlinx-serialization'
 
 def srcDirs = [
         "carousel",
@@ -87,9 +88,39 @@ dependencies {
     releaseApi 'me.ele:uetool-no-op:1.0.17'
     // if you want to show more attrs about Fresco's DraweeView
 //    debugApi 'me.ele:uetool-fresco:1.0.17'
-    api 'org.parceler:parceler-api:1.1.12'
-    annotationProcessor 'org.parceler:parceler:1.1.12'
+    /**
+     * ===============================serialization start================================
+     */
     api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"
+    annotationProcessor 'org.parceler:parceler:1.1.12'
+    api 'org.parceler:parceler-api:1.1.12'
+
+    //》》》》》》》》json
+
+    //api 'com.google.code.gson:gson:2.8.2'
+
+
+    api 'com.alibaba:fastjson:1.1.71.android'
+
+    implementation("com.squareup.moshi:moshi:1.8.0")
+    implementation 'com.squareup.moshi:moshi-adapters:1.8.0'
+    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
+    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:converter-moshi:${rootProject.ext.retrofitVersion}"
+
+
+    //》》》》》》protobuf
+
+    //api 'com.google.protobuf:protobuf-lite:3.0.1'
+    //    api("com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}")
+    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
+
+    /**
+     * ===============================serialization end================================
+     */
+
+
 
     /**
      * ===============================mvvm start================================

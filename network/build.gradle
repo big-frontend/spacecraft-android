@@ -1,8 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
-apply plugin: 'kotlinx-serialization'
-//apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-kapt'
 
 //apply plugin: 'com.google.protobuf'
 //protobuf {
@@ -163,38 +162,10 @@ dependencies {
         http style  end
          */
 
-    /*
-        >>>>>> http serialization  start
-         */
-
-    //json
-
-    //api 'com.google.code.gson:gson:2.8.2'
-    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:converter-moshi:${rootProject.ext.retrofitVersion}"
-
-    api 'com.alibaba:fastjson:1.1.71.android'
-
-    //    implementation("com.squareup.moshi:moshi:1.8.0")
-
-    //    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
-
-    //    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
-
-    //protobuf
-
-    //api 'com.google.protobuf:protobuf-lite:3.0.1'
-
-    //    api("com.squareup.retrofit2:converter-protobuf:${rootProject.ext.retrofitVersion}")
-    api "com.squareup.retrofit2:converter-wire:${rootProject.ext.retrofitVersion}"
-
-    /*
-        http serialization  end
-         */
 
     /**
      *  ===============================network end====================================
      */
-    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
 }

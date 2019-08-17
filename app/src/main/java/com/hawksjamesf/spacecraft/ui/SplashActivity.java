@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -59,6 +60,8 @@ public class SplashActivity extends BaseActivity {
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
         final Trace myTrace = FirebasePerformance.getInstance().newTrace("loadData");
         myTrace.start();
+        final HttpMetric httpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
+        httpMetric.start();
         final FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         onDestroyDisposable.add(Observable.timer(2, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -67,6 +70,8 @@ public class SplashActivity extends BaseActivity {
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
                         myTrace.incrementMetric("started activity", 1);
+                        httpMetric.setHttpResponseCode(200);
+                        httpMetric.setResponseContentType("application/x-protobuf");
                         Bundle bundle = new Bundle();
                         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id");
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
@@ -78,6 +83,7 @@ public class SplashActivity extends BaseActivity {
                 }));
         fetchWelcome();
         myTrace.stop();
+        httpMetric.stop();
     }
 
     // Remote Config keys
