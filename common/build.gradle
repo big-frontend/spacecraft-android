@@ -52,7 +52,7 @@ android {
 //                java.srcDirs += 'src/' + it + '/java'
 //                aidl.srcDirs += 'src/' + it + '/aidl'
 //            }
-            srcDirs.forEach{
+            srcDirs.forEach {
                 assets.srcDirs += "$projectDir/$it/main/assets"
                 aidl.srcDirs += "$projectDir/$it/main/aidl"
                 res.srcDirs += "$projectDir/$it/main/res-frame-animation"
@@ -72,8 +72,8 @@ android {
 //        main.java.srcDirs += ["src/video/java"]
 //        main.res.srcDirs += ["src/video/res"]
 //        main.assets.srcDirs += ["src/video/assets"]
-        androidTest{
-            srcDirs.forEach{
+        androidTest {
+            srcDirs.forEach {
                 assets.srcDirs += "$projectDir/$it/androidTest/assets"
                 aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
                 res.srcDirs += "$projectDir/$it/androidTest/res"
@@ -112,6 +112,7 @@ dependencies {
     // if you want to show more attrs about Fresco's DraweeView
 //    debugApi 'me.ele:uetool-fresco:1.0.17'
     implementation("com.squareup.okio:okio:2.3.0")
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
     /**
      * ===============================serialization start================================
      */
