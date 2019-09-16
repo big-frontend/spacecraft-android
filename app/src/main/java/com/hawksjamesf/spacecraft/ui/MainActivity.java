@@ -6,12 +6,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.hawksjamesf.common.VideoActivity;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.common.ViewPagerActivity;
 import com.hawksjamesf.spacecraft.photo.PhotoActivity;
 import com.hawksjamesf.spacecraft.ui.person.SettingsActivity;
+import com.hawksjamesf.uicomponent.VideoActivity;
+import com.hawksjamesf.uicomponent.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 

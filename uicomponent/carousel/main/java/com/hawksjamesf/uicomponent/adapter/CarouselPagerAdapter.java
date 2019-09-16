@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hawksjamesf.uicomponent.util.CollectionUtil;
+import com.hawksjamesf.common.util.CollectionUtil;
 
 import java.util.ArrayList;
 import java.util.List;

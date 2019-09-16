@@ -18,9 +18,9 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
-import com.hawksjamesf.uicomponent.util.CollectionUtil;
-import com.hawksjamesf.uicomponent.util.ConvertUtil;
-import com.hawksjamesf.uicomponent.util.Util;
+import com.hawksjamesf.common.util.CollectionUtil;
+import com.hawksjamesf.common.util.ConvertUtil;
+import com.hawksjamesf.common.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;

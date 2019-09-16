@@ -14,10 +14,10 @@ import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.hawksjamesf.common.ConstraintPerformanceActivity;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.BuildConfig;
 import com.hawksjamesf.spacecraft.R;
+import com.hawksjamesf.uicomponent.ConstraintPerformanceActivity;
 
 import org.jetbrains.annotations.NotNull;
 

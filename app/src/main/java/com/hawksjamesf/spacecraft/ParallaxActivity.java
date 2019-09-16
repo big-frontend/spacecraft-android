@@ -18,8 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hawksjamesf.common.util.ConvertUtil;
-import com.hawksjamesf.common.widget.ChaplinVideoView;
-import com.hawksjamesf.common.widget.Constants;
+import com.hawksjamesf.uicomponent.widget.ChaplinVideoView;
+import com.hawksjamesf.uicomponent.widget.Constants;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import androidx.annotation.NonNull;

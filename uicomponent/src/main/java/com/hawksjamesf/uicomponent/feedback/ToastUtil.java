@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hawksjamesf.uicomponent.util.Util;
+import com.hawksjamesf.common.util.Util;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;

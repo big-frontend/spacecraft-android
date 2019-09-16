@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.hawksjamesf.common.util.ui.feedback.ToastUtil;
+import com.hawksjamesf.uicomponent.feedback.ToastUtil;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
