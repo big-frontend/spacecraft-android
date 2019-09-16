@@ -5,14 +5,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
 
 def srcDirs = [
-        "carousel",
-        "video",
-        "colorpicker",
-        "drawable",
-        "animationsExprimental",
-        "newLayoutExprimental",
-        "scrollExprimental",
         "serialization",
+        "async",
 
 ]
 android {
@@ -55,7 +49,6 @@ android {
             srcDirs.forEach {
                 assets.srcDirs += "$projectDir/$it/main/assets"
                 aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
             }
@@ -98,21 +91,28 @@ dependencies {
     api 'androidx.core:core-ktx:1.0.2'
     api 'androidx.multidex:multidex:2.0.1'
     api "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
-    api "io.reactivex.rxjava2:rxkotlin:2.2.0"
     //    api 'com.jakewharton.timber:timber:4.5.1'
     api "com.blankj:utilcode:1.24.2"
     api 'joda-time:joda-time:2.10'
     api 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31"
-    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaVersion}"
-    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroidVersion}"
 
     debugApi 'me.ele:uetool:1.0.17'
     releaseApi 'me.ele:uetool-no-op:1.0.17'
     // if you want to show more attrs about Fresco's DraweeView
 //    debugApi 'me.ele:uetool-fresco:1.0.17'
-    implementation("com.squareup.okio:okio:2.3.0")
+    api("com.squareup.okio:okio:2.3.0")
+    /**
+     * ===============================async start================================
+     */
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
+    api "io.reactivex.rxjava2:rxkotlin:2.2.0"
+    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaVersion}"
+    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroidVersion}"
+
+    /**
+     * ===============================async end================================
+     */
     /**
      * ===============================serialization start================================
      */
@@ -203,37 +203,10 @@ dependencies {
     api "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
     annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
     /**
-     * ===============================monitor end=============================
+     * ===============================image end=============================
      */
 
-    /**
-     * ================================ui start=====================================
-     */
-    api "androidx.appcompat:appcompat:1.0.2"
-    api "androidx.recyclerview:recyclerview:1.0.0"
 
-    api 'android.arch.navigation:navigation-fragment:1.0.0'
-    api 'android.arch.navigation:navigation-ui:1.0.0'
-    api 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
-    api 'android.arch.navigation:navigation-ui-ktx:1.0.0'
-    //layout
-    api 'androidx.constraintlayout:constraintlayout:1.1.3'
-    api 'com.google.android:flexbox:1.1.0'
-    //layout
-
-    api 'androidx.palette:palette:1.0.0'
-    /*
-   *该库和`com.android.support:design:`都存在v4，编译时会报错：
-   *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
-   *解决方法：需要exclude掉v4包
-    */
-    api "com.google.android.material:material:1.1.0-alpha06"
-
-    api 'com.airbnb.android:lottie:2.8.0'
-    api 'androidx.vectordrawable:vectordrawable:1.1.0-beta01'
-    /**
-     * ================================ui end=====================================
-     */
 
     /**
      * ===============================monitor start=============================
@@ -249,9 +222,9 @@ dependencies {
     // Optional, if you use support library fragments:
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${rootProject.ext.leakcanaryVersion}"
 
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-perf:16.2.5'
-    implementation 'com.google.firebase:firebase-config:16.5.0'
+    api 'com.google.firebase:firebase-core:16.0.8'
+    api 'com.google.firebase:firebase-perf:16.2.5'
+    api 'com.google.firebase:firebase-config:16.5.0'
 
     api 'com.facebook.stetho:stetho:1.5.1'
     api 'com.facebook.stetho:stetho-js-rhino:1.5.1'
@@ -298,5 +271,7 @@ dependencies {
     /**
      * ===============================test end=============================
      */
+
+    api "com.google.android.material:material:1.1.0-alpha06"
 
 }

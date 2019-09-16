@@ -1,9 +1,7 @@
 println("settings start")
-include ':location', ':common', ':chatroom', ':network', ':storage',':mockserver', ':processor', ':annotations'
+include ':location', ':common', ':chatroom', ':network', ':storage', ':mockserver', ':uicomponent'
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }
-include ':networkExprimental'
-//include ':server/server4j'
-include ':gradle_plugin'
+include ':gradle_plugin', ':annotations', ':processor', ':networkExprimental'
 println("settings end")

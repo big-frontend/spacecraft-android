@@ -2,48 +2,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.hawksjamesf.common">
 
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
-
-    <application>
-        <activity
-            android:name=".DrawableActivity"
-            android:label="@string/title_activity_drawable"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity android:name=".AnimActivity"/>
-        <activity
-            android:name="com.hawksjamesf.common.DetailActivity"
-            android:theme="@style/BaseAppTheme.DetailTheme"/>
-        <activity android:name=".LottieActivity"/>
-        <activity android:name=".FrameAnimationActivity"/>
-        <activity
-            android:name=".TransitionForViewActivity"
-            android:theme="@style/BaseAppTheme"/>
-
-        <activity
-            android:name=".TransitionForActivityActivity"
-            />
-        <!--android:theme="@style/BaseAppTheme.ListTheme"-->
-
-        <activity android:name="com.hawksjamesf.common.ScrollableActivity"/>
-
-        <activity
-            android:name="com.hawksjamesf.common.ConstraintAndFlexBoxActivity"
-            android:exported="true"/>
-        <activity
-            android:name="com.hawksjamesf.common.ConstraintPerformanceActivity"
-            android:theme="@style/AppTheme"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name="com.hawksjamesf.common.CoordinatorLayoutActivity"
-            android:exported="true"/>
-        <activity
-            android:name="com.hawksjamesf.common.PagerViewActivity"
-            android:exported="true"/>
-        <activity
-            android:name="com.hawksjamesf.common.ViewPagerActivity"
-            android:exported="true"/>
-    </application>
-
 </manifest>

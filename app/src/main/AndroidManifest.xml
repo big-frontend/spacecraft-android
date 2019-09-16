@@ -54,7 +54,7 @@
             android:label="PhoteoActivity"
             android:theme="@style/PhotoTheme"/>
         <activity
-            android:name="com.hawksjamesf.common.VideoActivity"
+            android:name="com.hawksjamesf.uicomponent.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:supportsPictureInPicture="true"
             android:theme="@style/VideoTheme"/>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical">
+
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_contral"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_control"/>
+            <ImageView
+            android:id="@+id/iv_compunt"
+            android:layout_width="wrap_content"
+            android:text="adfdasfasf"
+            android:layout_height="wrap_content"/>
+            <TextView
+                android:drawableRight="@drawable/rotate"
+                android:id="@+id/tv_compunt"
+                android:layout_width="wrap_content"
+                android:text="adfdasfasf"
+                android:layout_height="wrap_content"/>
+
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.hawksjamesf.uicomponent.CarouselView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            app:cv_autoStart="true"
+            app:cv_interval="5000"
+            />
+
+        <com.hawksjamesf.uicomponent.widget.ChaplinVideoView
+            android:id="@+id/clv"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            />
+
+
+        <VideoView
+            android:id="@+id/vv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            />
+
+
+    </LinearLayout>
+</FrameLayout>

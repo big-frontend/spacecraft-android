@@ -80,7 +80,7 @@ public class App extends MultiDexApplication {
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         CrashReport.initCrashReport(getApplicationContext(), strategy);
         Fabric.with(this, new Crashlytics());
-        MockManager.init(getApplicationContext(),BuildConfig.DEBUG);
+//        MockManager.init(getApplicationContext(),BuildConfig.DEBUG);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
 

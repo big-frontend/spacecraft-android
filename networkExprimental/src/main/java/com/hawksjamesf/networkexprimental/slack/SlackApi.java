@@ -111,7 +111,9 @@ public class SlackApi {
                 .url(baseUrl.newBuilder("chat.postMessage").build())
                 .addHeader("Authorization", "Bearer " + accessToken)
                 .addHeader("Content-Type", "application/json; charset=utf-8")
-                .post(RequestBody.create(MediaType.get("application/json; charset=utf-8"), moshi.adapter(PostMessage.class).toJson(postMessage)))
+                .post(RequestBody.create(
+                                MediaType.get("application/json; charset=utf-8"), moshi.adapter(PostMessage.class).toJson(postMessage)
+                        ))
                 .build();
         Call call = httpClient.newCall(request);
         try (Response response = call.execute()) {
