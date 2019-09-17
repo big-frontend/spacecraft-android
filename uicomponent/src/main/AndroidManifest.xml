@@ -2,45 +2,45 @@
           package="com.hawksjamesf.uicomponent">
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
 
-<!--    <application>-->
-<!--        <activity-->
-<!--            android:name=".DrawableActivity"-->
-<!--            android:label="@string/title_activity_drawable"-->
-<!--            android:theme="@style/AppTheme">-->
-<!--        </activity>-->
-<!--        <activity android:name=".AnimActivity"/>-->
-<!--        <activity-->
-<!--            android:name=".DetailActivity"-->
-<!--            android:theme="@style/BaseAppTheme.DetailTheme"/>-->
-<!--        <activity android:name=".LottieActivity"/>-->
-<!--        <activity android:name=".FrameAnimationActivity"/>-->
-<!--        <activity-->
-<!--            android:name=".TransitionForViewActivity"-->
-<!--            android:theme="@style/BaseAppTheme"/>-->
+    <application>
+        <activity
+            android:name=".DrawableActivity"
+            android:label="@string/title_activity_drawable"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".AnimActivity"/>
+        <activity
+            android:name=".DetailActivity"
+            android:theme="@style/BaseAppTheme.DetailTheme"/>
+        <activity android:name=".LottieActivity"/>
+        <activity android:name=".FrameAnimationActivity"/>
+        <activity
+            android:name=".TransitionForViewActivity"
+            android:theme="@style/BaseAppTheme"/>
 
-<!--        <activity-->
-<!--            android:name=".TransitionForActivityActivity"-->
-<!--            />-->
-<!--        &lt;!&ndash;android:theme="@style/BaseAppTheme.ListTheme"&ndash;&gt;-->
+        <activity
+            android:name=".TransitionForActivityActivity"
+            />
+        <!--android:theme="@style/BaseAppTheme.ListTheme"-->
 
-<!--        <activity android:name=".ScrollableActivity"/>-->
+        <activity android:name=".ScrollableActivity"/>
 
-<!--        <activity-->
-<!--            android:name=".ConstraintAndFlexBoxActivity"-->
-<!--            android:exported="true"/>-->
-<!--        <activity-->
-<!--            android:name=".ConstraintPerformanceActivity"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/AppTheme">-->
-<!--        </activity>-->
-<!--        <activity-->
-<!--            android:name=".CoordinatorLayoutActivity"-->
-<!--            android:exported="true"/>-->
-<!--        <activity-->
-<!--            android:name=".PagerViewActivity"-->
-<!--            android:exported="true"/>-->
-<!--        <activity-->
-<!--            android:name=".ViewPagerActivity"-->
-<!--            android:exported="true"/>-->
-<!--    </application>-->
+        <activity
+            android:name=".ConstraintAndFlexBoxActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ConstraintPerformanceActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".CoordinatorLayoutActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".PagerViewActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ViewPagerActivity"
+            android:exported="true"/>
+    </application>
 </manifest>

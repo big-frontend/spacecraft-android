@@ -58,7 +58,6 @@ public class ParallaxActivity extends AppCompatActivity {
 
 //        CustClipView ccv = findViewById(R.id.ccv);
 //        View view = View.inflate(this, R.layout.view_cust_clip, ccv);
-//        Log.d("cjf","ccv cliptoPadding/cliptoChildren/chliptoBound:"+ccv.getClipToPadding()+"/"+ccv.getClipChildren()+"/"+ccv.getClipBounds());
 
 
         item_top_bar_for_recyclerview = findViewById(R.id.item_top_bar_for_recyclerview);
