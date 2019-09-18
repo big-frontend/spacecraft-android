@@ -59,7 +59,6 @@ class ConstraintPerformanceActivity : AppCompatActivity() {
                     WeakReference(textViewFinish),
                     WeakReference(container))
             asyncTask.execute()
-            throw  IllegalStateException()
         }
 
         constraintCalcButton.setOnClickListener {

@@ -1,25 +1,22 @@
 package com.hawksjamesf.common;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import androidx.test.runner.AndroidJUnit4;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Copyright ® $ 2017
- * All right reserved.
+ * Instrumented test, which will execute on an Android device.
  *
- * @author: hawks.jamesf
- * @since: Sep/11/2019  Wed
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class RxjavaDemo extends TestCase {
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
+@RunWith(AndroidJUnit4.class)
+public class RxjavaTest {
+    @Test
     public void testRxjava() {
         Observable.just("hawks jamesf")
                 .subscribeOn(Schedulers.io())
@@ -27,11 +24,6 @@ public class RxjavaDemo extends TestCase {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
 
                     }
                 });

@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 
 //apply plugin: 'com.google.protobuf'
 //protobuf {
@@ -119,10 +120,6 @@ static String getLocalIP() {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.assertj:assertj-core:3.11.0'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation project(path: ':annotations')
     testImplementation project(path: ':annotations')
     annotationProcessor project(path: ':processor')

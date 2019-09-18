@@ -1,35 +1,40 @@
 package com.hawksjamesf.common;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.concurrent.ExecutionException;
 
+import androidx.test.runner.AndroidJUnit4;
 import okhttp3.HttpUrl;
 
 /**
- * Copyright ® $ 2017
- * All right reserved.
+ * Instrumented test, which will execute on an Android device.
  *
- * @author: hawks.jamesf
- * @since: Sep/11/2019  Wed
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class AsyncTaskDemo extends TestCase {
-
+@RunWith(AndroidJUnit4.class)
+public class AsyncTaskTest {
+    public static final String TAG="AsyncTaskTest";
+    @Test
     public void testAsyncTask() {
-        //一个SimpleAsyncTask对象单线程执行任务，多个SimpleAsyncTask对象才能多线程执行任务
-        SimpleAsyncTask simpleAsyncTask = new SimpleAsyncTask();
-        simpleAsyncTask.execute(HttpUrl.parse("https://api.github.com/user"));
-        simpleAsyncTask.executeOnExecutor(SimpleAsyncTask.THREAD_POOL_EXECUTOR, HttpUrl.parse("https://api.github.com/user"));
+        // Context of the app under test.
+//        Context appContext = InstrumentationRegistry.getTargetContext();
 
+//        assertEquals("com.hawksjamesf.common.test", appContext.getPackageName());
+        //一个SimpleAsyncTask对象单线程执行任务，多个SimpleAsyncTask对象才能多线程执行任务
         // 1. 执行20个task,这20个会按照顺序执行,没有多线程并发
         for (int i = 0; i < 10; i++) {
             final int finalI = i;
             SimpleAsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("task:" + finalI);
+                    Log.i(TAG,"task:" + finalI);
 
                 }
             });
@@ -37,7 +42,7 @@ public class AsyncTaskDemo extends TestCase {
             SimpleAsyncTask serialTask = new SimpleAsyncTask();
             serialTask.execute(HttpUrl.parse("https://api.github.com/user"), HttpUrl.parse("https://api.github.com/user"));
             try {
-                System.out.println("serialTask/ " + i + " :" + serialTask.get());
+                Log.i(TAG,"serialTask/ " + i + " :" + serialTask.get());
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -54,12 +59,17 @@ public class AsyncTaskDemo extends TestCase {
                     for (HttpUrl httpUrl : httpUrls) {
                         sb.append(httpUrl.pathSegments());
                     }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     return sb.toString();
                 }
             }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, HttpUrl.parse("https://api.github.com/user"));
 
             try {
-                System.out.println("concurrentTask/ " + j + " :" + concurrentTask.get());
+                Log.i(TAG,"concurrentTask/ " + j + " :" + concurrentTask.get());
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -101,7 +111,20 @@ public class AsyncTaskDemo extends TestCase {
             for (HttpUrl httpUrl : urls) {
                 sb.append(httpUrl.pathSegments());
             }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return sb.toString();
         }
+    }
+    @Before
+    public void setup() {
+
+    }
+    @After
+    public void tearDown() {
+
     }
 }
