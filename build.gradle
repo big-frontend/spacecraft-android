@@ -32,7 +32,7 @@ buildscript {
         rxjavaVersion = '2.2.3'
         rxandroidVersion = '2.1.0'
         glideVersion = '4.9.0'
-        retrofitVersion = '2.3.0'
+        retrofitVersion = '2.6.1'
 //    retrofitVersion='2.4.0'
         okhttpVersion = '3.11.0'
 //    okhttpMockVersion='3.11.0'

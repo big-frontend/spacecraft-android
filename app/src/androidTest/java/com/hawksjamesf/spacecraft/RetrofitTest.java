@@ -1,12 +1,12 @@
 package com.hawksjamesf.spacecraft;
 
-import android.test.InstrumentationTestCase;
 
 import com.hawksjamesf.network.home.WeatherData;
 import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import androidx.test.filters.SmallTest;
@@ -28,13 +28,12 @@ import retrofit2.mock.NetworkBehavior;
  * @since: Sep/25/2018  Tue
  */
 @RunWith(AndroidJUnit4.class)
-public class RetrofitTest extends InstrumentationTestCase {
+public class RetrofitTest {
 
     MockRetrofit mockRetrofit;
 
-    @Override
+    @Before
     protected void setUp() throws Exception {
-        super.setUp();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://test.com")
                 .client(new OkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())

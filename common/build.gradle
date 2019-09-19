@@ -155,6 +155,9 @@ dependencies {
     // Lifecycles only (no ViewModel or LiveData)
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01'
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha01'
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha04"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha04"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha04"
     //If you use Java 8 Language, then observe events with DefaultLifecycleObserver
 //    api 'androidx.lifecycle:lifecycle-common-java8:2.1.0-alpha03'
 //    api 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'

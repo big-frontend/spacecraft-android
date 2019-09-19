@@ -20,7 +20,7 @@ import okhttp3.HttpUrl;
  */
 @RunWith(AndroidJUnit4.class)
 public class AsyncTaskTest {
-    public static final String TAG="AsyncTaskTest";
+
     @Test
     public void testAsyncTask() {
         // Context of the app under test.
@@ -34,51 +34,47 @@ public class AsyncTaskTest {
             SimpleAsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    Log.i(TAG,"task:" + finalI);
+                    Log.i(SimpleAsyncTask.TAG, "task:" + finalI);
 
                 }
             });
 
             SimpleAsyncTask serialTask = new SimpleAsyncTask();
+            serialTask.i = i;
+            serialTask.suffix = "serialTask";
             serialTask.execute(HttpUrl.parse("https://api.github.com/user"), HttpUrl.parse("https://api.github.com/user"));
-            try {
-                Log.i(TAG,"serialTask/ " + i + " :" + serialTask.get());
-            } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 
         //2.执行10个真正的并发线程,并发的核心线程数为2-4个cpu count，最大可以支持并发的线程数为2倍的cpu count+1，线程的存活时间为30s
         for (int j = 0; j < 10; j++) {
-            AsyncTask<HttpUrl, Integer, String> concurrentTask = new AsyncTask<HttpUrl, Integer, String>() {
+            final int finalJ = j;
+            SimpleAsyncTask concurrentTask = new SimpleAsyncTask();
+            concurrentTask.i = j;
+            concurrentTask.suffix = "concurrentTask";
+            concurrentTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, HttpUrl.parse("https://api.github.com/user"));
+//            try {
+//                //Future#get方法是阻塞式调用。由于AsyncTask是基于Handler的消息异步，故不会有阻塞。kotlin极有可能也是采用消息实现的异步
+//                Log.i(SimpleAsyncTask.TAG, "concurrentTask/ " + finalJ + " :" + concurrentTask.get());
+//            } catch (ExecutionException | InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
-                @Override
-                protected String doInBackground(HttpUrl... httpUrls) {
-                    //通过多个url得到一个结果
-                    StringBuilder sb = new StringBuilder();
-                    for (HttpUrl httpUrl : httpUrls) {
-                        sb.append(httpUrl.pathSegments());
-                    }
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    return sb.toString();
-                }
-            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, HttpUrl.parse("https://api.github.com/user"));
-
-            try {
-                Log.i(TAG,"concurrentTask/ " + j + " :" + concurrentTask.get());
-            } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 
+
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
     static class SimpleAsyncTask extends AsyncTask<HttpUrl, Integer, String> {
+        public static final String TAG = "SimpleAsyncTaskTest";
+        public String suffix = "";
+        public volatile int i;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -86,7 +82,11 @@ public class AsyncTaskTest {
 
         @Override
         protected void onPostExecute(String aLong) {
-            super.onPostExecute(aLong);
+            try {
+                Log.i(TAG, suffix + "_onPostExecute/ " + i + " :" + get());
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -119,10 +119,12 @@ public class AsyncTaskTest {
             return sb.toString();
         }
     }
+
     @Before
     public void setup() {
 
     }
+
     @After
     public void tearDown() {
 

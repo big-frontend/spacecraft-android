@@ -72,6 +72,7 @@ abstract class AbstractApi<T : Any> {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
 //                .addConverterFactory(MoshiConverterFactory.create())
 //                .addConverterFactory(ProtoConverterFactory.create())
