@@ -1,5 +1,7 @@
 package com.hawksjamesf.spacecraft;
 
+import android.app.Instrumentation;
+import android.content.Context;
 import android.content.Intent;
 
 import com.hawksjamesf.mockserver.DispatcherImpl;
@@ -11,11 +13,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
@@ -27,7 +27,7 @@ import okhttp3.mockwebserver.MockWebServer;
  * @since: Sep/25/2018  Tue
  */
 //@RunWith(AndroidJUnit4.class)
-public class OkHttpTest extends InstrumentationTestCase {
+public class OkHttpTest  {
 
     public static final String TAG = "com.hawksjamesf.spacecraft.OkHttpTest";
     MockWebServer mockWebServer;
@@ -35,10 +35,11 @@ public class OkHttpTest extends InstrumentationTestCase {
     @Rule
     public ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class, true, false);
     DispatcherImpl dispatcher;
+    Instrumentation instrumentation;
+    Context context;
 
     @Before
     public void setUp() throws Exception {
-        super.setUp();
         mockWebServer = new MockWebServer();
 //        mockWebServer.start();
         mockWebServer.start(50195);
@@ -46,8 +47,10 @@ public class OkHttpTest extends InstrumentationTestCase {
         Logger.t(TAG).i(mockWebServer.url("/").toString());
 //        mockWebServer.url(BuildConfig.WEATHER_URL_OPEN_WEATHER_MAP);
 //        mockWebServer.url("/data/2.5/weather");
-        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-        dispatcher = DispatcherImpl.getInstance(getInstrumentation().getContext());
+         instrumentation = InstrumentationRegistry.getInstrumentation();
+         context = instrumentation.getContext();
+//        injectInstrumentation(instrumentation);
+        dispatcher = DispatcherImpl.getInstance(context);
         mockWebServer.setDispatcher(dispatcher);
     }
 
@@ -90,7 +93,7 @@ public class OkHttpTest extends InstrumentationTestCase {
         String fileName = "404.json";
         mockWebServer.enqueue(new MockResponse()
                 .setResponseCode(404)
-                .setBody(RestServiceTestHelper.getStringFromFile(getInstrumentation().getContext(), fileName)));
+                .setBody(RestServiceTestHelper.getStringFromFile(context, fileName)));
 
         activityRule.launchActivity(new Intent());
 
@@ -99,7 +102,6 @@ public class OkHttpTest extends InstrumentationTestCase {
 
     @After
     public void tearDown() throws Exception {
-        super.tearDown();
 //        mockWebServer.shutdown();
     }
 }
