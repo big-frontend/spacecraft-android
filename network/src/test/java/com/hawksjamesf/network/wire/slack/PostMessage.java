@@ -1,4 +1,4 @@
-package com.hawksjamesf.networkexprimental.slack;
+package com.hawksjamesf.network.wire.slack;
 
 /**
  * Copyright ® $ 2017

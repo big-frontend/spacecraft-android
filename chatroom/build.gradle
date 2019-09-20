@@ -12,6 +12,7 @@ if (isComponentMode.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 
 
 android {

@@ -3,5 +3,5 @@ include ':location', ':common', ':chatroom', ':network', ':storage', ':mockserve
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }
-include ':gradle_plugin', ':annotations', ':processor', ':networkExprimental'
+include ':gradle_plugin', ':annotations', ':processor'
 println("settings end")

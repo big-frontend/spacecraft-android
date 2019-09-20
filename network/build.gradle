@@ -123,6 +123,7 @@ dependencies {
     implementation project(path: ':annotations')
     testImplementation project(path: ':annotations')
     annotationProcessor project(path: ':processor')
+    testImplementation files('libs/jsoup-1.12.1.jar')
     api project(path: ':common')
     api project(path: ':mockserver')
 
@@ -165,4 +166,5 @@ dependencies {
      */
     kapt "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation "com.github.jnr:jnr-unixsocket:0.23"
 }
