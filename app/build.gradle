@@ -137,39 +137,6 @@ android {
         abortOnError false
     }
 
-    sourceSets {
-        main.java.srcDirs += ["src/main/kotlin"]
-
-        //animation
-        main.java.srcDirs += ["src/animationsExprimental/java"]
-        main.res.srcDirs += ["src/animationsExprimental/res"]
-        main.res.srcDirs += ["src/animationsExprimental/res-frame-animation"]
-//        main.manifest.srcFile "src/animationsExprimental/AndroidManifest.xml"
-        main.assets.srcDirs += ["src/animationsExprimental/assets"]
-
-        //scroll
-        main.java.srcDirs += ["src/scrollExprimental/java"]
-        main.res.srcDirs += ["src/scrollExprimental/res"]
-        main.res.srcDirs += ["src/scrollExprimental/res-frame-animation"]
-//        main.manifest.srcFile "src/scrollExprimental/AndroidManifest.xml"
-        main.assets.srcDirs += ["src/scrollExprimental/assets"]
-
-        //vlayout
-        main.java.srcDirs += ["src/scrollExprimental/java"]
-        main.res.srcDirs += ["src/scrollExprimental/res"]
-        main.res.srcDirs += ["src/scrollExprimental/res-frame-animation"]
-//        main.manifest.srcFile "src/scrollExprimental/AndroidManifest.xml"
-        main.assets.srcDirs += ["src/scrollExprimental/assets"]
-
-        //new layout
-        main.java.srcDirs += ["src/newLayoutExprimental/java"]
-        main.res.srcDirs += ["src/newLayoutExprimental/res"]
-        main.res.srcDirs += ["src/newLayoutExprimental/res-frame-animation"]
-//        main.manifest.srcFile "src/newLayoutExprimental/AndroidManifest.xml"
-        main.assets.srcDirs += ["src/newLayoutExprimental/assets"]
-
-    }
-
 //    useLibrary 'android.test.runner'
 //    useLibrary 'android.test.base'
 //    useLibrary 'android.test.mock'
@@ -220,6 +187,7 @@ dependencies {
     implementation project(path: ':network')
     implementation project(path: ':storage')
     implementation project(path: ':uicomponent')
+    implementation project(path: ':image')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"

@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+
+
+def srcDirs = [
+//        "carousel",
+//        "video",
+//        "colorpicker",
+//        "drawable",
+//        "animationsExprimental",
+//        "newLayoutExprimental",
+//        "scrollExprimental",
+
+]
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(path: ':common')
+
+    /**
+     * ===============================image start=============================
+     */
+    api "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
+    /**
+     * ===============================image end=============================
+     */
+}
