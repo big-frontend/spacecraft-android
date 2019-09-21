@@ -41,7 +41,6 @@ android {
             srcDirs.forEach {
                 assets.srcDirs += "$projectDir/$it/main/assets"
                 aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
             }
@@ -68,12 +67,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(path: ':common')
 
-    /**
-     * ===============================image start=============================
-     */
-    api "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
-    /**
-     * ===============================image end=============================
-     */
+
 }

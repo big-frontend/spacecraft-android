@@ -187,7 +187,6 @@ dependencies {
     implementation project(path: ':network')
     implementation project(path: ':storage')
     implementation project(path: ':uicomponent')
-    implementation project(path: ':image')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"

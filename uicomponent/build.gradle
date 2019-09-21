@@ -71,6 +71,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(path: ':common')
+//    implementation project(path: ':image')
     /**
      * ================================ui start=====================================
      */
