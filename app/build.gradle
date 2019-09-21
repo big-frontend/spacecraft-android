@@ -46,7 +46,7 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
-apply plugin: 'com.google.firebase.firebase-perf'
+//apply plugin: 'com.google.firebase.firebase-perf'
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
@@ -68,7 +68,7 @@ android {
 
         multiDexEnabled = true
 //        multiDexKeepFile file('multiDexKeepFile.txt')
-        multiDexKeepProguard file('multiDexKeep.pro')
+//        multiDexKeepProguard file('multiDexKeep.pro')
         applicationId "com.hawksjamesf.spacecraft"
         testApplicationId "com.hawksjamesf.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -175,11 +175,14 @@ android {
             setIgnore(true)
         }
     }
-
+    packagingOptions {
+        exclude 'META-INF/proguard/coroutines.pro'
+    }
 }
 configurations {
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
 }
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':location')
@@ -194,9 +197,9 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha06'
 
     api 'com.crashlytics.sdk.android:crashlytics:2.10.0'
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-perf:16.2.5'
-    implementation 'com.google.firebase:firebase-config:16.5.0'
+//    implementation 'com.google.firebase:firebase-core:16.0.8'
+//    implementation 'com.google.firebase:firebase-perf:16.2.5'
+//    implementation 'com.google.firebase:firebase-config:16.5.0'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     annotationProcessor project(path: ':processor')
