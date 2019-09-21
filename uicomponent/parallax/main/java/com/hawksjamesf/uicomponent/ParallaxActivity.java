@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft;
+package com.hawksjamesf.uicomponent;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

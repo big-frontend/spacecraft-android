@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.wire;
+package com.hawksjamesf.network;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

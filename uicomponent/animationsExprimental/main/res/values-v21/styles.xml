@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseAppTheme" parent="android:Theme.Material">
+    <style name="BaseAppTheme" parent="android:Theme.Material.NoActionBar">
 
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">false</item>
         <item name="android:windowAllowReturnTransitionOverlap">false</item>
-        <!--<item name="android:windowSharedElementsUseOverlay">false</item>-->
-        <!--<item name="android:fragmentAllowEnterTransitionOverlap">false</item>-->
-        <!--<item name="android:fragmentAllowReturnTransitionOverlap">false</item>-->
+<!--        <item name="android:windowSharedElementsUseOverlay">false</item>-->
+<!--        <item name="android:fragmentAllowEnterTransitionOverlap">false</item>-->
+<!--        <item name="android:fragmentAllowReturnTransitionOverlap">false</item>-->
     </style>
 
-    <!--<style name="BaseAppTheme.ListTheme">-->
-    <!--<item name="android:windowEnterTransition">@transition/slide_bottom</item>-->
-    <!--<item name="android:windowExitTransition">@transition/slide_bottom</item>-->
-    <!--<item name="android:windowReenterTransition">@transition/transition_window_reenter</item>-->
-    <!--<item name="android:windowSharedElementExitTransition">-->
-    <!--@transition/transition_window_share_element_exit-->
-    <!--</item>-->
-    <!--<item name="android:windowSharedElementReenterTransition">-->
-    <!--@transition/transition_window_share_element_reenter-->
-    <!--</item>-->
-    <!--</style>-->
+    <!-- 一般情况下，列表页提供出场和返场动画-->
+    <style name="BaseAppTheme.ListTheme">
+        <!--当前页面进场-->
+        <item name="android:windowEnterTransition">@transition/enter_list</item>
+        <!-- 当前页面出场-->
+<!--        <item name="android:windowExitTransition"></item>-->
+        <!-- 当前页面重新入场-->
+<!--        <item name="android:windowReenterTransition">@transition/transition_window_reenter</item>-->
 
+<!--        <item name="android:windowSharedElementExitTransition">@transition/transition_window_share_element_exit</item>-->
+<!--        <item name="android:windowSharedElementReenterTransition">@transition/transition_window_share_element_reenter</item>-->
+    </style>
+    <!--    一般情况下，列表页提供进场-->
     <style name="BaseAppTheme.DetailTheme">
-        <!-- specify enter and exit transitions -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--当前页面进场-->
         <item name="android:windowEnterTransition">@transition/enter_detail</item>
-        <!--<item name="android:windowReturnTransition">@transition/return_detail</item>-->
+        <!-- 当前页面返场-->
+<!--        <item name="android:windowReturnTransition">@transition/return_detail</item>-->
+
         <item name="android:windowSharedElementEnterTransition">@transition/enter_share_element_detail</item>
-        <!--<item name="android:windowSharedElementReturnTransition">-->
-            <!--@transition/return_share_element_detail-->
-        <!--</item>-->
+        <item name="android:windowSharedElementReturnTransition">@transition/return_share_element_detail</item>
+<!--        <item name="android:fragmentSharedElementEnterTransition"></item>-->
+<!--        <item name="android:fragmentSharedElementReturnTransition"></item>-->
 
     </style>
 </resources>

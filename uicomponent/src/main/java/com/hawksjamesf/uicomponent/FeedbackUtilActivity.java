@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft;
+package com.hawksjamesf.uicomponent;
 
 import android.os.Bundle;
 import android.view.View;

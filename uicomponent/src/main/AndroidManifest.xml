@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.hawksjamesf.uicomponent">
+
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
 
     <application>
@@ -20,8 +21,8 @@
 
         <activity
             android:name=".TransitionForActivityActivity"
+            android:theme="@style/BaseAppTheme.ListTheme"
             />
-        <!--android:theme="@style/BaseAppTheme.ListTheme"-->
 
         <activity android:name=".ScrollableActivity"/>
 
@@ -42,5 +43,7 @@
         <activity
             android:name=".ViewPagerActivity"
             android:exported="true"/>
+        <activity android:name=".ParallaxActivity"/>
+        <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity"/>
     </application>
 </manifest>

@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.wire.tls;
+package com.hawksjamesf.network.tls;
 
 import java.io.IOException;
 import java.net.InetAddress;

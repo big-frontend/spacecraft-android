@@ -11,6 +11,7 @@ def srcDirs = [
         "animationsExprimental",
         "newLayoutExprimental",
         "scrollExprimental",
+        "parallax",
 
 ]
 android {

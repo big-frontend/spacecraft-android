@@ -12,4 +12,12 @@
             <target android:excludeId="@android:id/navigationBarBackground"/>
         </targets>
     </slide>
+    <slide
+        android:duration="1000"
+        android:interpolator="@android:interpolator/fast_out_slow_in"
+        android:slideEdge="right">
+        <targets>
+            <target android:targetId="@id/toolbar"/>
+        </targets>
+    </slide>
 </transitionSet>

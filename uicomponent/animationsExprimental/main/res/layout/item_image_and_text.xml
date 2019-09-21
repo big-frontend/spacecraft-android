@@ -5,6 +5,7 @@
              android:background="@android:color/white"
              android:padding="5dp"
              android:transitionGroup="false"
+             android:id="@+id/fl_item"
     >
 
     <FrameLayout

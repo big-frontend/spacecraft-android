@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.wire.slack;
+package com.hawksjamesf.network.slack;
 
 
 import java.io.Closeable;

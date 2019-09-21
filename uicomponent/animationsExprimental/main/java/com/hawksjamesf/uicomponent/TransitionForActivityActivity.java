@@ -36,6 +36,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
  *
  * @author: hawks.jamesf
  * @since: Nov/25/2018  Sun
+ * <p>
+ * Activity的转场有两种：
+ * - 窗口转场:窗口的转场将给窗口的进出场动画增加效果，比如百叶窗、幻灯片、渐变等效果。android系统提供的窗口过渡基本从侧边进入或者下面进入，并没有复杂的效果。
+ * - 共享元素转场:常见于两个页面有共同的元素，比如图片，文件等。
  */
 public class TransitionForActivityActivity extends Activity {
     private List<ViewModel> dataList = new ArrayList<ViewModel>() {
@@ -69,6 +73,7 @@ public class TransitionForActivityActivity extends Activity {
                 new Intent(activity, TransitionForActivityActivity.class),
                 ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle());
     }
+
     @AddTrace(name = "_transitionForActivityActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,8 +82,9 @@ public class TransitionForActivityActivity extends Activity {
         getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
 //        getWindow().setAllowEnterTransitionOverlap(false);
 //        getWindow().setAllowReturnTransitionOverlap(false);
+
         setContentView(R.layout.activity_transition_for_activity);
-        rv = (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv_image_text);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(staggeredGridLayoutManager);
         Adapter adapter = new Adapter();
@@ -93,9 +99,7 @@ public class TransitionForActivityActivity extends Activity {
         slide.excludeTarget(android.R.id.statusBarBackground, true);
         slide.excludeTarget(android.R.id.navigationBarBackground, true);
         Transition slideRight = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
-        getWindow().setExitTransition(slideRight);
-        getWindow().setReturnTransition(slide);
-        getWindow().setEnterTransition(slide);
+        getWindow().setEnterTransition(slideRight);
 
     }
 
