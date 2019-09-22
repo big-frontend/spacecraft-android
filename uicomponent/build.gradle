@@ -117,7 +117,13 @@ dependencies {
     api "androidx.paging:paging-runtime-ktx:2.1.0"
     testImplementation "androidx.paging:paging-common:2.1.0" // For Kotlin use paging-common-ktx
     api "androidx.paging:paging-rxjava2:2.1.0" // For Kotlin use paging-rxjava2-ktx
-//    api 'aandroid.arch.work:work-runtime-ktx:'
+
+    api "androidx.work:work-runtime:2.2.0"
+    api "androidx.work:work-runtime-ktx:2.2.0"
+    api "androidx.work:work-rxjava2:2.2.0"
+    api "androidx.work:work-gcm:2.2.0"
+    androidTestImplementation "androidx.work:work-testing:2.2.0"
+//    api "androidx.work:work-firebase:2.2.0"
     /**
      * ================================ui end=====================================
      */

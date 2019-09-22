@@ -55,6 +55,8 @@ def srcDirs = [
         "navigation",
         "paging",
         "paging-lib",
+        "workmanager",
+        "workmanager-lib",
 
 ]
 
@@ -152,6 +154,7 @@ android {
                 aidl.srcDirs += "$projectDir/$it/main/aidl"
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
+                renderscript.srcDirs +="$projectDir/$it/main/rs"
             }
         }
         androidTest {
@@ -252,5 +255,7 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     annotationProcessor project(path: ':processor')
     implementation project(path: ':annotations')
+
 }
 println("app end")
+

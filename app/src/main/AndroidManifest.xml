@@ -90,6 +90,17 @@
         <activity android:name=".PagingActivity"/>
         <activity android:name=".sourceFromNetwork.NetworkActivity"/>
         <activity android:name=".sourceFromNetwork.reddit.ui.RedditActivity"/>
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:directBootAware="false"
+            android:exported="false"
+            android:multiprocess="true"
+            tools:node="remove"
+            tools:targetApi="n" />
+
+        <activity android:name="com.example.background.SelectImageActivity"/>
+        <activity android:name="com.example.background.FilterActivity"/>
     </application>
 
 </manifest>
