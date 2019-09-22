@@ -51,6 +51,11 @@ apply plugin: 'io.fabric'
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
 }
+def srcDirs = [
+        "navigation",
+        "paging",
+
+]
 
 
 task exportVarToShell(type: Exec) {
@@ -136,6 +141,33 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
 
 //    useLibrary 'android.test.runner'
 //    useLibrary 'android.test.base'
@@ -143,6 +175,9 @@ android {
     dataBinding {
         enabled = true
     }
+    /**
+     * 渠道包 start
+     */
     defaultPublishConfig 'xiaomiRealRelease'
     flavorDimensions 'channel', 'data_access'
     productFlavors {
@@ -175,6 +210,10 @@ android {
             setIgnore(true)
         }
     }
+    /**
+     * 渠道包 start
+     */
+
     packagingOptions {
         exclude 'META-INF/proguard/coroutines.pro'
     }

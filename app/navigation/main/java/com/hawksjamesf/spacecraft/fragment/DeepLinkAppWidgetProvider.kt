@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hawksjamesf.spacecraft.ui.fragment
+package com.hawksjamesf.spacecraft.fragment
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider

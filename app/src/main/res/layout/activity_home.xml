@@ -86,7 +86,7 @@
                 android:clipToPadding="false"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <!--<include layout="@layout/content_home"/>-->
+<!--            <include layout="@layout/content_home"/>-->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"

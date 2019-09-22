@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.home;
+package com.hawksjamesf.spacecraft.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        Navigation.setViewNavController(view, navController);
+        Navigation.setViewNavController(view, navController);
         view.findViewById(R.id.bt_navigate_destination).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

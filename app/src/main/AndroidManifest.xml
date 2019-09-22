@@ -86,6 +86,7 @@
             android:parentActivityName="com.hawksjamesf.spacecraft.ui.signin.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
 
+        <activity android:name=".NavigationActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.fragment;
+package com.hawksjamesf.spacecraft.fragment;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
