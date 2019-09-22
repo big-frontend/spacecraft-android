@@ -87,6 +87,9 @@
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
 
         <activity android:name=".NavigationActivity"/>
+        <activity android:name=".PagingActivity"/>
+        <activity android:name=".sourceFromNetwork.NetworkActivity"/>
+        <activity android:name=".sourceFromNetwork.reddit.ui.RedditActivity"/>
     </application>
 
 </manifest>

@@ -1,3 +1,4 @@
+//noinspection GradleDynamicVersion
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
@@ -89,6 +90,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    api "androidx.activity:activity-ktx:1.1.0-alpha03"
+    api "androidx.activity:activity:1.1.0-alpha03"
     api 'androidx.core:core-ktx:1.1.0'
     api 'androidx.multidex:multidex:2.0.1'
     api "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
@@ -151,7 +154,9 @@ dependencies {
     /**
      * ===============================mvvm start================================
      */
-    annotationProcessor 'androidx.databinding:databinding-compiler:3.6.0-alpha12'
+    kapt 'androidx.databinding:databinding-compiler:3.6.0-alpha12'
+//    annotationProcessor 'androidx.databinding:databinding-compiler:3.6.0-alpha12'
+    api 'androidx.databinding:databinding-runtime:3.6.0-alpha12'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
     // Lifecycles only (no ViewModel or LiveData)
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha05'
@@ -189,11 +194,11 @@ dependencies {
      */
     api 'org.greenrobot:eventbus:3.1.1'
     // Dagger dependencies
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-    api "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-    api "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
-    api "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+//    kapt "com.google.dagger:dagger-compiler:2.16"
+    api "com.google.dagger:dagger:2.16"
+    api "com.google.dagger:dagger-android:2.16"
+    api "com.google.dagger:dagger-android-support:2.16"
+//    kapt "com.google.dagger:dagger-android-processor:2.16"
     /**
      * ===============================decoupling  end================================
      */
@@ -228,12 +233,10 @@ dependencies {
     /**
      * ===============================image start=============================
      */
-    api "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
+    api "com.github.bumptech.glide:glide:4.10.0"
+    kapt "com.github.bumptech.glide:compiler:4.10.0"
     /**
      * ===============================image end=============================
      */
-
-
 
 }

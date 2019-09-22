@@ -40,10 +40,10 @@ dependencies {
      * ================================database start==============================
      */
     //room database
-    testImplementation 'androidx.room:room-testing:2.1.0-beta01'
-    api 'androidx.room:room-runtime:2.1.0-beta01'
-    api 'androidx.room:room-rxjava2:2.1.0-beta01'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-beta01'
+    testImplementation 'androidx.room:room-testing:2.2.0-rc01'
+    api 'androidx.room:room-runtime:2.2.0-rc01'
+    api 'androidx.room:room-rxjava2:2.2.0-rc01'
+    annotationProcessor 'androidx.room:room-compiler:2.2.0-rc01'
 
     //realm database
     api "io.realm:realm-annotations:5.7.0"
