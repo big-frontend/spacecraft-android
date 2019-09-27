@@ -2,6 +2,7 @@ package com.hawksjamesf.network.source.remote.rest
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.hawksjamesf.network.BuildConfig
+import com.hawksjamesf.network.source.remote.rest.interceptor.MetricInterceptor
 import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -53,6 +54,7 @@ abstract class AbstractApi<T : Any> {
                 .addInterceptor(URLInterceptor())
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addNetworkInterceptor(StethoInterceptor())
+                .addNetworkInterceptor(MetricInterceptor())
 //                .socketFactory(SocketFactory.getDefault())
                 .sslSocketFactory(sslSocketFactory, trustManager)
                 .hostnameVerifier(OkHostnameVerifier)

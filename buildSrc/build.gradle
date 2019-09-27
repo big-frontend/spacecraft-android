@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+//apply plugin: 'kotlin'
+
+buildscript {
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        google()
+    }
+
+//    dependencies {
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41"
+//    }
+}
+
+sourceSets {
+    main {
+        ["src/main/util", "src/main/kotlin"].forEach {
+            java.srcDirs += it
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "com.android.tools.build:gradle:3.5.0"
+//    implementation "org.javassist:javassist:3.20.0-GA"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
+}
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    google()
+}
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+}
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}

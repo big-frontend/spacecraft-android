@@ -17,7 +17,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.BuildConfig;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.sourceFromNetwork.NetworkActivity;
+import com.hawksjamesf.storage.FirebaseDatabaseActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -42,6 +42,9 @@ import kotlin.jvm.functions.Function1;
  */
 public class SplashActivity extends BaseActivity {
     public static final String TAG = "SplashActivity";
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private Trace myTrace;
+    private HttpMetric mHttpMetric;
 
     @AddTrace(name = "_splashActivity_initComponentTrace", enabled = true /* optional */)
     @Override
@@ -58,11 +61,11 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-        final Trace myTrace = FirebasePerformance.getInstance().newTrace("loadData");
+        myTrace = FirebasePerformance.getInstance().newTrace("loadData");
         myTrace.start();
-        final HttpMetric httpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
-        httpMetric.start();
-        final FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mHttpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
+        mHttpMetric.start();
         onDestroyDisposable.add(Observable.timer(2, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
@@ -70,21 +73,24 @@ public class SplashActivity extends BaseActivity {
                     public void accept(Long aLong) throws Exception {
                         //todo:需要通过refresh token来判断进入那个界面
                         myTrace.incrementMetric("started activity", 1);
-                        httpMetric.setHttpResponseCode(200);
-                        httpMetric.setResponseContentType("application/x-protobuf");
+                        mHttpMetric.setHttpResponseCode(200);
+                        mHttpMetric.setResponseContentType("application/x-protobuf");
+
                         Bundle bundle = new Bundle();
                         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id");
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
                         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-                        ActivityUtil.startActivity(NetworkActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(FirebaseDatabaseActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        TransitionForActivityActivity.startActivity(SplashActivity.this);
                         finish();
                     }
                 }));
         fetchWelcome();
         myTrace.stop();
-        httpMetric.stop();
+        mHttpMetric.stop();
+
+//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event);
     }
 
     // Remote Config keys

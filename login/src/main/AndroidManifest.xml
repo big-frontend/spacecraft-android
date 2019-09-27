@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.storage">
+    package="com.hawksjamesf.login">
 
     <application>
-        <activity android:name=".FirebaseDatabaseActivity" />
+        <activity android:name=".LoginActivity" />
     </application>
 </manifest>

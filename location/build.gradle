@@ -34,16 +34,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        component {
-            initWith debug
-            debuggable true
-        }
-    }
-    sourceSets {
 //        component {
-//            java.srcDirs = ['src/component/java']
+//            initWith debug
+//            debuggable true
 //        }
     }
+//    sourceSets {
+//        main {
+//            java.srcDirs += ['src/component/java']
+//        }
+//    }
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

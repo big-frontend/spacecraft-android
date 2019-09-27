@@ -221,8 +221,9 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${rootProject.ext.leakcanaryVersion}"
 
     api 'com.google.firebase:firebase-core:17.2.0'
-    api 'com.google.firebase:firebase-perf:19.0.0'
-    api 'com.google.firebase:firebase-config:19.0.1'
+    api 'com.google.firebase:firebase-perf:16.2.5'
+//    api 'com.google.firebase:firebase-perf:19.0.0'
+    api 'com.google.firebase:firebase-config:19.0.2'
 
     api 'com.facebook.stetho:stetho:1.5.1'
     api 'com.facebook.stetho:stetho-js-rhino:1.5.1'

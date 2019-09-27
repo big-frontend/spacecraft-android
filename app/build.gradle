@@ -1,5 +1,6 @@
 println("app start")
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
@@ -8,7 +9,6 @@ apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'versionplugin'
 //apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
 apply plugin: 'versionpluginforjava'
-apply plugin: 'versionpluginforkotlin'
 versionPlugin {
     buildTypeMatcher = 'debug'
 //        '$appName/project/buildType-v_$versionName-c_$versionCode'
@@ -20,13 +20,6 @@ versionPluginForJava {
     buildTypeMatcher = "debug"
     fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 }
-
-
-versionPluginForKotlin {
-    buildTypeMatcher = "debug"
-    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
-}
-
 apply plugin: 'findbugs'
 findbugs {
     ignoreFailures = false
@@ -44,9 +37,7 @@ tasks.withType(FindBugs) {
 }
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
-//apply plugin: 'com.google.firebase.firebase-perf'
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
@@ -240,6 +231,7 @@ dependencies {
     implementation project(path: ':storage')
     implementation project(path: ':uicomponent')
     implementation project(path: ':common')
+    implementation project(path: ':login')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
@@ -248,14 +240,12 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:4.10.0"
 
     api 'com.crashlytics.sdk.android:crashlytics:2.10.0'
-//    implementation 'com.google.firebase:firebase-core:16.0.8'
-//    implementation 'com.google.firebase:firebase-perf:16.2.5'
-//    implementation 'com.google.firebase:firebase-config:16.5.0'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     annotationProcessor project(path: ':processor')
     implementation project(path: ':annotations')
 
 }
+apply plugin: 'com.google.gms.google-services'
 println("app end")
 
