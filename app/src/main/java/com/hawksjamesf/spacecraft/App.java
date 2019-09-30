@@ -2,10 +2,18 @@ package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hawksjamesf.common.util.Util;
-import com.hawksjamesf.mockserver.MockManager;
 import com.hawksjamesf.network.DaggerNetComponent;
 import com.hawksjamesf.network.NetComponent;
 import com.hawksjamesf.network.NetModule;
@@ -17,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
@@ -36,6 +45,7 @@ public class App extends MultiDexApplication {
     private static AppComponent sAppComponent;
     private static NetComponent sNetComponent;
     private static App app;
+    private static FirebaseRemoteConfig sFirebaseRemoteConfig;
 
     public static App getInstance() {
         if (app == null) {
@@ -84,7 +94,42 @@ public class App extends MultiDexApplication {
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
 
+        sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(3600)
+                .setFetchTimeoutInSeconds(60 * 60)
+                .build();
+        sFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        sFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+        sFirebaseRemoteConfig.ensureInitialized();
+        sFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        Log.i(TAG, "onComplete-perf_enable:" + sFirebaseRemoteConfig.getBoolean("perf_enable"));
+                        FirebasePerformance.getInstance().setPerformanceCollectionEnabled(sFirebaseRemoteConfig.getBoolean("perf_enable"));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "onFailure");
+                    }
+                })
+                .addOnSuccessListener(new OnSuccessListener<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        Log.i(TAG, "onSuccess:" + aBoolean);
+                    }
+                })
+                .addOnCanceledListener(new OnCanceledListener() {
+                    @Override
+                    public void onCanceled() {
+                        Log.i(TAG, "onCanceled");
+                    }
+                });
     }
+
     /**
      * 获取进程号对应的进程名
      *
@@ -121,6 +166,10 @@ public class App extends MultiDexApplication {
 
     public static NetComponent getNetComponet() {
         return sNetComponent;
+    }
+
+    public static FirebaseRemoteConfig getFirebaseRemoteConfig() {
+        return sFirebaseRemoteConfig;
     }
 
 

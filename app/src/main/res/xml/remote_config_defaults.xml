@@ -12,4 +12,8 @@
         <key>welcome_message</key>
         <value>Welcome to my awesome app!</value>
     </entry>
+    <entry>
+        <key>perf_enable</key>
+        <value>true</value>
+    </entry>
 </defaultsMap>

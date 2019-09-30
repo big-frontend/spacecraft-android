@@ -11,9 +11,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.perf.metrics.AddTrace;
@@ -40,10 +42,12 @@ public class FirebaseDatabaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        database.setPersistenceEnabled(true);
+        database.setPersistenceCacheSizeBytes(50*1024*1024);
+        database.setLogLevel(Logger.Level.DEBUG);
         DatabaseReference myRef = database.getReference();
-//        myRef.child("user");
-//        myRef.setValue("Hello, World!");
-        // Read from the database
+        myRef.child("user");
+        myRef.setValue("Hello, World!");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -60,11 +64,12 @@ public class FirebaseDatabaseActivity extends AppCompatActivity {
             }
         });
 
-//        FirebaseFirestoreSettings build = new FirebaseFirestoreSettings.Builder()
-//                .setPersistenceEnabled(true)
+        FirebaseFirestoreSettings build = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
 //                .setHost("spacecraft-22dc1.firebaseapp.com")
-//                .build();
-//        databasev2.setFirestoreSettings(build);
+                .setCacheSizeBytes(50*10241024)
+                .build();
+        databasev2.setFirestoreSettings(build);
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();

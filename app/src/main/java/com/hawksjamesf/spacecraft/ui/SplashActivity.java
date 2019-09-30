@@ -13,9 +13,8 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hawksjamesf.common.util.ActivityUtil;
-import com.hawksjamesf.spacecraft.BuildConfig;
+import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.storage.FirebaseDatabaseActivity;
 
@@ -45,6 +44,7 @@ public class SplashActivity extends BaseActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private Trace myTrace;
     private HttpMetric mHttpMetric;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig= App.getFirebaseRemoteConfig();
 
     @AddTrace(name = "_splashActivity_initComponentTrace", enabled = true /* optional */)
     @Override
@@ -98,13 +98,6 @@ public class SplashActivity extends BaseActivity {
     private static final String WELCOME_MESSAGE_KEY = "welcome_message";
 
     private void fetchWelcome() {
-        final FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
-                .setMinimumFetchIntervalInSeconds(3600)
-                .build();
-        mFirebaseRemoteConfig.setConfigSettings(configSettings);
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
         mFirebaseRemoteConfig.fetchAndActivate()
                 .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
