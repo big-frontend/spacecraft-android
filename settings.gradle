@@ -1,7 +1,12 @@
 println("settings start")
-include ':location', ':common', ':chatroom', ':network', ':storage', ':mockserver', ':image', ':uicomponent', ':login'
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }
 include ':gradle_plugin', ':annotations', ':processor'
+include ':mockserver'
+include ':common',
+        ':network', ':storage',
+        ':image', ':av',
+        ':location',
+        ':chatroom', ':uicomponent', ':login'
 println("settings end")
