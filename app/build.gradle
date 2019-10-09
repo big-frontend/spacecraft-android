@@ -48,6 +48,7 @@ def srcDirs = [
         "paging-lib",
         "workmanager",
         "workmanager-lib",
+        "mvvm",
 
 ]
 

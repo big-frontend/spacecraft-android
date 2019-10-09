@@ -116,6 +116,7 @@
 
         <activity android:name="com.example.background.SelectImageActivity"/>
         <activity android:name="com.example.background.FilterActivity"/>
+        <activity android:name=".vm.MVVMActivity"/>
     </application>
 
 </manifest>
