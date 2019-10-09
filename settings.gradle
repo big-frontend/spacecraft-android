@@ -4,9 +4,7 @@ if (!isComponentMode.toBoolean()) {
 }
 include ':gradle_plugin', ':annotations', ':processor'
 include ':mockserver'
-include ':common',
-        ':network', ':storage',
-        ':image', ':av',
-        ':location',
+include ':common', ':network', ':storage',
+        ':image', ':av', ':map',
         ':chatroom', ':uicomponent', ':login'
 println("settings end")

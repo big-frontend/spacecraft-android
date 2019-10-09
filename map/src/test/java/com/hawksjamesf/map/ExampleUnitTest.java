@@ -1,4 +1,4 @@
-package com.hawksjamesf.location;
+package com.hawksjamesf.map;
 
 import org.junit.Test;
 

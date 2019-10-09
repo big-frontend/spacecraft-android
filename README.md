@@ -9,26 +9,32 @@ SpacecraftAndroid
 
 # To be Architect
 > 驽马十驾功在不舍
-
-## 通用库模块
+## 基础模块
+### 通用库模块
 - [x] 工具类
 - [ ] mvp、mvvm：20%
-- [x] 模块设计之登入模块
 - [x] 异步:kotlin协程、RxJava、AsyncTask
 - [ ] 序列化:可存储(json/protobuf)、不存储(Parcelable/Serializable) 
-## 网络模块
+### 网络模块
 - [x] 提供mock环境、real环境、real local server环境
-- [x] 模块设计之网络模块(Retrofit+RxJava2)
+- [x] 模块设计之网络模块：Retrofit+RxJava2
 - [x] 抓包工具stetho
 - [ ] mock工具
 
-## 存储模块
+### 存储模块
 - [ ] 模块设计之数据存储：Room/Realm,SharedPreference
-## 定位模块
-- [ ] 模块设计之定位系统
-## UI组件模块
+
+### 地图(map)模块
+
+### 图像(image) & 图形(graphic)模块
+
+### 音频(audio) & 视频(video)模块
+
+## 业务模块
+### UI组件模块
 - [x] 提供自定义组件，音视频组件
-## 图像模块
+### 登入模块
+- [x] 模块设计之登入模块
 
 ## 提升开发效率
 - [ ] 解耦：高内聚低耦合

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.hawksjamesf.location">
+          package="com.hawksjamesf.map">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 </manifest>

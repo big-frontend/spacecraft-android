@@ -226,7 +226,7 @@ configurations {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':location')
+    implementation project(path: ':map')
     implementation project(path: ':chatroom')
     implementation project(path: ':network')
     implementation project(path: ':storage')

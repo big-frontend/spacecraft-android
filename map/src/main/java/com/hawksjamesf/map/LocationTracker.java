@@ -1,4 +1,4 @@
-package com.hawksjamesf.location;
+package com.hawksjamesf.map;
 
 import android.Manifest;
 import android.content.Context;
