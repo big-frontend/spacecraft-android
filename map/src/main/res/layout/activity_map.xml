@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layerType="hardware"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/map_fragment"
+        android:name="com.amap.api.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.amap.api.maps.TextureMapView
+        android:id="@+id/map_texture"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/map_texture_fragment"
+        android:name="com.amap.api.maps.TextureMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

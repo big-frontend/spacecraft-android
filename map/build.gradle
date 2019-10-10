@@ -26,6 +26,14 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+        buildConfigField('String', 'AMAP_KEY', '"84198333a8ab4404cd35829dbb4ec435"')
+        manifestPlaceholders = [
+                'AMAP_KEY': '84198333a8ab4404cd35829dbb4ec435',
+        ]
 
     }
 
@@ -49,6 +57,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(path: ':common')
+    api 'com.amap.api:location:4.7.2'
+    api 'com.amap.api:search:6.9.2'
+    api 'com.amap.api:3dmap:6.9.4'
 
 }
 println("lib location end")

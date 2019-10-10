@@ -14,9 +14,9 @@ import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.util.ActivityUtil;
+import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.storage.FirebaseDatabaseActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -81,7 +81,7 @@ public class SplashActivity extends BaseActivity {
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
                         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-                        ActivityUtil.startActivity(FirebaseDatabaseActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(MapActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        TransitionForActivityActivity.startActivity(SplashActivity.this);
                         finish();
                     }

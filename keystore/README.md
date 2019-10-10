@@ -1,0 +1,1 @@
+keytool -v -list -keystore debug.jks
