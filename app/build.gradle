@@ -1,3 +1,6 @@
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+
 println("app start")
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
@@ -38,6 +41,25 @@ tasks.withType(FindBugs) {
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 apply plugin: 'io.fabric'
+
+apply plugin: 'com.tencent.matrix-plugin'
+ext.unusedResourcesSet = new HashSet<String>();
+matrix {
+    trace {
+        enable = true    //if you don't want to use trace canary, set false
+        baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
+        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+    }
+    removeUnusedResources {
+        enable true
+        variant = "debug"
+        needSign true
+        shrinkArsc true
+        apksignerPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${android.getBuildToolsVersion()}/apksigner"
+        unusedResources = project.ext.unusedResourcesSet
+        ignoreResources = ["R.id.*", "R.bool.*"]
+    }
+}
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
@@ -213,14 +235,48 @@ android {
         }
     }
     /**
-     * 渠道包 start
+     * 渠道包 end
      */
 
     packagingOptions {
         exclude 'META-INF/proguard/coroutines.pro'
     }
+
+    applicationVariants.all { variant ->
+        if (variant.name.equalsIgnoreCase("debug")) {
+            packageDebug.doLast {
+                ProcessBuilder processBuilder = new ProcessBuilder();
+                println configurations.apkCheckerDependency.getAt(0).getAbsolutePath()
+                processBuilder.command("java",
+                        "-jar", configurations.apkCheckerDependency.getAt(0).getAbsolutePath(),
+                        "--apk", variant.outputs.first().outputFile.getAbsolutePath(),
+                        "--output", project.getProjectDir().getAbsolutePath() + "/unused_resources",
+                        "--format", "json",
+                        "-unusedResources", "--rTxt", project.getBuildDir().getAbsolutePath() + "/intermediates/symbols/${variant.name}/R.txt");
+                Process process = processBuilder.start();
+                process.waitFor();
+                File outputFile = new File(project.getProjectDir().getAbsolutePath() + "/unused_resources.json");
+                if (outputFile.exists()) {
+                    Gson gson = new Gson();
+                    JsonArray jsonArray = gson.fromJson(outputFile.text, JsonArray.class);
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        if (jsonArray.get(i).asJsonObject.get("taskType").asInt == 12) {
+                            JsonArray resList = jsonArray.get(i).asJsonObject.get("unused-resources").asJsonArray;
+                            for (int j = 0; j < resList.size(); j++) {
+                                project.ext.unusedResourcesSet.add(resList.get(j).asString);
+                            }
+                            println "find unused resources:\n" + unusedResourcesSet
+                            break;
+                        }
+                    }
+                    outputFile.delete();
+                }
+            }
+        }
+    }
 }
 configurations {
+    apkCheckerDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
 }
 
@@ -237,7 +293,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    kapt 'androidx.room:room-compiler:2.2.0-rc01'
     kapt "com.github.bumptech.glide:compiler:4.10.0"
 
     api 'com.crashlytics.sdk.android:crashlytics:2.10.0'
@@ -245,6 +300,7 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     annotationProcessor project(path: ':processor')
     implementation project(path: ':annotations')
+    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version:"0.6.0", changing: true
 
 }
 apply plugin: 'com.google.gms.google-services'

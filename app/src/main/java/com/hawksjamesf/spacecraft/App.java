@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.hawksjamesf.common.DynamicConfigImplDemo;
+import com.hawksjamesf.common.TestPluginListener;
 import com.hawksjamesf.common.util.Util;
 import com.hawksjamesf.network.DaggerNetComponent;
 import com.hawksjamesf.network.NetComponent;
@@ -20,6 +22,17 @@ import com.hawksjamesf.network.NetModule;
 import com.hawksjamesf.spacecraft.ui.observable.AppLifecycleObserver;
 import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.matrix.Matrix;
+import com.tencent.matrix.iocanary.IOCanaryPlugin;
+import com.tencent.matrix.iocanary.config.IOConfig;
+import com.tencent.matrix.resource.ResourcePlugin;
+import com.tencent.matrix.resource.config.ResourceConfig;
+import com.tencent.matrix.trace.TracePlugin;
+import com.tencent.matrix.trace.config.TraceConfig;
+import com.tencent.matrix.util.MatrixLog;
+import com.tencent.sqlitelint.SQLiteLint;
+import com.tencent.sqlitelint.SQLiteLintPlugin;
+import com.tencent.sqlitelint.config.SQLiteLintConfig;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -128,6 +141,67 @@ public class App extends MultiDexApplication {
                         Log.i(TAG, "onCanceled");
                     }
                 });
+
+
+        MatrixLog.i(TAG, "MatrixApplication.onCreate");
+        DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo();
+        boolean matrixEnable = dynamicConfig.isMatrixEnable();
+        boolean fpsEnable = dynamicConfig.isFPSEnable();
+        boolean traceEnable = dynamicConfig.isTraceEnable();
+        //io
+        IOCanaryPlugin ioCanaryPlugin = new IOCanaryPlugin(new IOConfig.Builder()
+//                .dynamicConfig(dynamicConfig)
+                .build());
+        //trace
+        TracePlugin tracePlugin = (new TracePlugin(new TraceConfig.Builder()
+//                .dynamicConfig(dynamicConfig)
+                .enableFPS(fpsEnable)
+                .enableEvilMethodTrace(traceEnable)
+                .enableAnrTrace(traceEnable)
+                .enableStartup(traceEnable)
+                .splashActivities("sample.tencent.matrix.SplashActivity;")
+                .isDebug(true)
+                .isDevEnv(false)
+                .build()));
+        //resource
+        ResourcePlugin resourcePlugin = new ResourcePlugin(new ResourceConfig.Builder()
+                .dynamicConfig(dynamicConfig)
+                .setDumpHprof(false)
+                .setDetectDebuger(true)     //only set true when in sample, not in your app
+                .build());
+        ResourcePlugin.activityLeakFixer(this);
+        // prevent api 19 UnsatisfiedLinkError
+        //sqlite
+        SQLiteLintConfig config = initSQLiteLintConfig();
+        SQLiteLintPlugin sqLiteLintPlugin = new SQLiteLintPlugin(config);
+
+//        ThreadWatcher threadWatcher = new ThreadWatcher(new ThreadConfig.Builder().dynamicConfig(dynamicConfig).build());
+        Matrix matrix = new Matrix.Builder(this)
+                .patchListener(new TestPluginListener(this)) // add general pluginListener
+                .plugin(ioCanaryPlugin)
+                .plugin(tracePlugin)
+                .plugin(resourcePlugin)
+//                .plugin(threadWatcher)
+                .build();
+        Matrix.init(matrix);
+        ioCanaryPlugin.start();
+//        Matrix.with().getPluginByClass(ThreadWatcher.class).start();
+        MatrixLog.i("Matrix.HackCallback", "end:%s", System.currentTimeMillis());
+
+    }
+
+    private static SQLiteLintConfig initSQLiteLintConfig() {
+        try {
+            /**
+             * HOOK模式下，SQLiteLint会自己去获取所有已执行的sql语句及其耗时(by hooking sqlite3_profile)
+             * @see 而另一个模式：SQLiteLint.SqlExecutionCallbackMode.CUSTOM_NOTIFY , 则需要调用 {@link SQLiteLint#notifySqlExecution(String, String, int)}来通知
+             * SQLiteLint 需要分析的、已执行的sql语句及其耗时
+             * @see TestSQLiteLintActivity#doTest()
+             */
+            return new SQLiteLintConfig(SQLiteLint.SqlExecutionCallbackMode.HOOK);
+        } catch (Throwable t) {
+            return new SQLiteLintConfig(SQLiteLint.SqlExecutionCallbackMode.HOOK);
+        }
     }
 
     /**
