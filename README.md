@@ -16,7 +16,7 @@ SpacecraftAndroid
 - [x] 异步:kotlin协程、RxJava、AsyncTask
 - [ ] 序列化:可存储(json/protobuf)、不存储(Parcelable/Serializable) 
 ### 网络模块
-- [x] 提供mock环境、real环境、real local server环境
+~- [x] 提供mock环境、real环境、real local server环境~
 - [x] 模块设计之网络模块：Retrofit+RxJava2
 - [x] 抓包工具stetho
 - [ ] mock工具
@@ -35,6 +35,8 @@ SpacecraftAndroid
 - [x] 提供自定义组件，音视频组件
 ### 登入模块
 - [x] 模块设计之登入模块
+### 即时通讯模块
+- [] 模块设计之即时通讯模块
 
 ## 提升开发效率
 - [ ] 解耦：高内聚低耦合
