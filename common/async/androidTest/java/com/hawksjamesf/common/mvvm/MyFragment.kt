@@ -50,7 +50,7 @@ class MyFragment: Fragment() {
 
         }
 
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             try {
                 // Call some suspend functions.
             } finally {
