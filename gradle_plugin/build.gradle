@@ -44,7 +44,7 @@ dependencies {
     implementation 'commons-codec:commons-codec:1.10'
 //    implementation 'org.ow2.asm:asm:7.0'
 //    implementation 'org.javassist:javassist:3.18.2-GA'
-    implementation 'com.android.tools.build:gradle:3.5.0'
+    implementation 'com.android.tools.build:gradle:3.5.2'
 }
 
 
