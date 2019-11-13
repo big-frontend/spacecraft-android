@@ -45,6 +45,7 @@
             android:exported="true"/>
         <activity android:name=".ParallaxActivity"/>
         <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity"/>
+        <activity android:name="com.hawksjamesf.uicomponent.BottomUpActivity"/>
 
     </application>
 </manifest>
