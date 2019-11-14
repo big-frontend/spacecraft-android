@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
     }
 }
@@ -40,13 +40,27 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
     implementation 'com.google.guava:guava:24.1-jre'
-    implementation 'commons-io:commons-io:2.5'
+    implementation 'commons-io:commons-io:2.6'
     implementation 'commons-codec:commons-codec:1.10'
-//    implementation 'org.ow2.asm:asm:7.0'
+    implementation 'org.ow2.asm:asm:7.1'
 //    implementation 'org.javassist:javassist:3.18.2-GA'
     implementation 'com.android.tools.build:gradle:3.5.2'
 }
 
-
-
+group = "com.hawksjamesf.plugin"
+version "1.0.0"
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+//            repository(url: mavenLocal().url)
+            pom.project {
+                groupId project.group
+                artifactId "perf"
+                version project.version
+            }
+            repository(url: uri('../repo')) //仓库的路径，此处是项目根目录下的 repo 的文件夹
+        }
+    }
+}
 //apply from: 'upload.gradle'

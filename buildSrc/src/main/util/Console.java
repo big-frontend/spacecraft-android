@@ -11,9 +11,9 @@ import java.util.Arrays;
  */
 public class Console {
 
-    private static final String TAG_J = "--> version plugin for java\n";
-    private static final String TAG_K = "--> version plugin for kotlin\n";
-    private static final String TAG_G = "--> version plugin for groovy\n";
+    private static final String TAG_J = "----------------> version plugin for java\n";
+    private static final String TAG_K = "----------------> version plugin for kotlin\n";
+    private static final String TAG_G = "----------------> version plugin for groovy\n";
 
     public static void printJ(String... args) {
         print(TAG_J + Arrays.toString(args));
@@ -25,7 +25,7 @@ public class Console {
 
 
     private static void print(String... args) {
-        System.out.println(Arrays.toString(args) + "\n<--");
+        System.out.println(Arrays.toString(args) + "\n<----------------");
 
     }
 }

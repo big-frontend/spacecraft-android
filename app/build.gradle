@@ -3,7 +3,6 @@ import com.google.gson.JsonArray
 
 println("app start")
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
@@ -60,6 +59,10 @@ matrix {
         ignoreResources = ["R.id.*", "R.bool.*"]
     }
 }
+
+apply plugin: 'com.google.firebase.firebase-perf'
+//apply plugin: 'com.hawksjamesf.plugin.perf'
+//apply plugin: 'performanceplugin'
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
