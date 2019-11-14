@@ -4,6 +4,11 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,10 +43,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -183,8 +184,8 @@ public class App extends MultiDexApplication {
                 .plugin(resourcePlugin)
 //                .plugin(threadWatcher)
                 .build();
-        Matrix.init(matrix);
-        ioCanaryPlugin.start();
+//        Matrix.init(matrix);
+//        ioCanaryPlugin.start();
 //        Matrix.with().getPluginByClass(ThreadWatcher.class).start();
         MatrixLog.i("Matrix.HackCallback", "end:%s", System.currentTimeMillis());
 

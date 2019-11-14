@@ -15,6 +15,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.locks.Lock;
 
 public class JavaConcurrenceTest {
     ExecutorService executorService;
@@ -25,15 +26,21 @@ public class JavaConcurrenceTest {
     public static final boolean usingWorkStealingPool = false;
     private int runnableCount = 0;
     private int callableCount = 0;
+    private Object object = new Object();
     //=========================================task start
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+//            try {
+//                object.wait(4000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             System.out.println("runnable:" + (++runnableCount));
         }
     };
@@ -128,7 +135,6 @@ public class JavaConcurrenceTest {
     @Test
     @MainThread
     public void testJavaConcurrence() {
-        FutureTask futureTask0 = new FutureTask<Integer>(runnable, null);
         for (int i = 0; i < 10; i++) {
             FutureTask<Integer> futureTask1 = new SimpleFutureTask<Integer>(callable);
             executorService.submit(futureTask1);
@@ -142,11 +148,23 @@ public class JavaConcurrenceTest {
 //            }
 
         }
-        executorService.submit(runnable);
+        FutureTask futureTask0 = new SimpleFutureTask<Integer>(runnable, null);
+        Future<?> submit = executorService.submit(futureTask0);
+        futureTask0.cancel(false);
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    //可中断 sleep、join 、 Lock.lockInterruptibly(Lock.tryLock(long time, TimeUnit unit))
+    //不可中断 synchronized 、 Lock.lock 、 InputStream.read
+    private Lock lock ;
+    public synchronized void  getValue(){
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 }

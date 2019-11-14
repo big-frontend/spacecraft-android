@@ -1,16 +1,16 @@
 package com.hawksjamesf.uicomponent;
 
+import android.app.Activity;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.google.firebase.perf.metrics.AddTrace;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Copyright ® $ 2017
@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author: hawks.jamesf
  * @since: Nov/25/2018  Sun
  */
-public class TransitionForViewActivity extends AppCompatActivity {
+public class TransitionForViewActivity extends Activity {
     @AddTrace(name = "_transitionForViewActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
