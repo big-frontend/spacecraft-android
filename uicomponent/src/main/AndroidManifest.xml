@@ -1,51 +1,54 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.hawksjamesf.uicomponent">
+    package="com.hawksjamesf.uicomponent">
 
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application>
         <activity
             android:name=".DrawableActivity"
             android:label="@string/title_activity_drawable"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity android:name=".AnimActivity"/>
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".AnimActivity" />
         <activity
             android:name=".DetailActivity"
-            android:theme="@style/BaseAppTheme.DetailTheme"/>
-        <activity android:name=".LottieActivity"/>
-        <activity android:name=".FrameAnimationActivity"/>
+            android:theme="@style/BaseAppTheme.DetailTheme" />
+        <activity android:name=".LottieActivity" />
+        <activity android:name=".FrameAnimationActivity" />
         <activity
             android:name=".TransitionForViewActivity"
-            android:theme="@style/BaseAppTheme"/>
+            android:theme="@style/BaseAppTheme" />
 
         <activity
             android:name=".TransitionForActivityActivity"
-            android:theme="@style/BaseAppTheme.ListTheme"
-            />
+            android:theme="@style/BaseAppTheme.ListTheme" />
 
-        <activity android:name=".ScrollableActivity"/>
+        <activity android:name=".ScrollableActivity" />
 
         <activity
             android:name=".ConstraintAndFlexBoxActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ConstraintPerformanceActivity"
             android:exported="true"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".CoordinatorLayoutActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".PagerViewActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ViewPagerActivity"
-            android:exported="true"/>
-        <activity android:name=".ParallaxActivity"/>
-        <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity"/>
-        <activity android:name="com.hawksjamesf.uicomponent.BottomUpActivity"/>
+            android:exported="true" />
+        <activity android:name=".ParallaxActivity" />
+        <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity" />
+        <activity android:name="com.hawksjamesf.uicomponent.BottomUpActivity" />
+        <activity android:name="com.hawksjamesf.uicomponent.FirstActivity" />
+        <activity android:name="com.hawksjamesf.uicomponent.SecondaryActivity" />
+        <activity android:name="com.hawksjamesf.uicomponent.ThirdActivity" />
+        <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)：如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
+        <!--            android:launchMode="singleTask" -->
+        <activity android:name="com.hawksjamesf.uicomponent.FourthActivity" />
 
     </application>
 </manifest>

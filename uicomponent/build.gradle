@@ -15,6 +15,7 @@ def srcDirs = [
         "navigation",
         "paging",
         "bottomupDialog",
+        "launchmode",
 
 ]
 android {
