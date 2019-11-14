@@ -46,7 +46,7 @@
         <activity android:name="com.hawksjamesf.uicomponent.FirstActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.SecondaryActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.ThirdActivity" />
-        <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)：如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
+        <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)：如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
         <!--            android:launchMode="singleTask" -->
         <activity android:name="com.hawksjamesf.uicomponent.FourthActivity" />
 

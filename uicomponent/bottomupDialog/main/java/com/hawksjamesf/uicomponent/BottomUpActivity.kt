@@ -12,18 +12,13 @@ class BottomUpActivity : AppCompatActivity() {
         const val fragmentTag = "BottomUpDialogFragment"
     }
     val dialogFragment  = BottomUpDialogFragment.newInstance()
+    val dialogFragment2 = BottomUpFragment.newInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_up_dialog)
         button2.setOnClickListener {
-//            var findFragmentByTag = supportFragmentManager.findFragmentByTag(fragmentTag)
-//            if (findFragmentByTag == null) {
-//                findFragmentByTag = BottomUpDialogFragment.newInstance()
-//            }
-//            supportFragmentManager.beginTransaction()
-//                    .add(findFragmentByTag, fragmentTag)
-//                    .commitAllowingStateLoss()
-            dialogFragment.show(supportFragmentManager,fragmentTag)
+            dialogFragment2.show(supportFragmentManager,fragmentTag)
+//            dialogFragment.show(supportFragmentManager,fragmentTag)
             if (isDialog) {
 
             } else if (isPopupWindow) {
