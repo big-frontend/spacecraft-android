@@ -16,6 +16,7 @@ def srcDirs = [
         "paging",
         "bottomupDialog",
         "launchmode",
+        "fragmentx",
 
 ]
 android {
