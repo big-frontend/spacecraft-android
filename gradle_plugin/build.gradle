@@ -53,13 +53,13 @@ apply plugin: 'maven'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: mavenLocal().url)
+//            repository(url: mavenLocal().url)
+            repository(url: uri('../repo'))
             pom.project {
-                groupId project.group
+                groupId "com.hawksjamesf.plugin"
                 artifactId "perf"
-                version project.version
+                version "1.0.0"
             }
-//            repository(url: uri('../repo')) //仓库的路径，此处是项目根目录下的 repo 的文件夹
         }
     }
 }
