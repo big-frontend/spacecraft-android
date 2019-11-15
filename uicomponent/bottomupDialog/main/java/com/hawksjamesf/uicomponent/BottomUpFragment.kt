@@ -1,6 +1,7 @@
 package com.hawksjamesf.uicomponent
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.dialog_bottom_up.*
 
-class BottomUpFragment : Fragment() {
+class BottomUpFragment : Fragment() ,DialogInterface.OnCancelListener,DialogInterface.OnDismissListener,DialogInterface.OnShowListener{
     companion object {
         @JvmStatic
         fun newInstance(): BottomUpFragment {
@@ -33,12 +34,16 @@ class BottomUpFragment : Fragment() {
         Log.d(TAG, "onViewCreated")
         fl_container.setBackgroundColor(Color.CYAN)
         fl_container.layoutParams.height = 400
-        AlertDialog.Builder(context)
+        val dialog = AlertDialog.Builder(context)
                 .setTitle("asdfsaf")
                 .setIcon(R.drawable.tmp)
                 .setMessage("sadfsaf")
                 .create()
-                .show()
+        dialog.setOnCancelListener(this)
+        dialog.setOnDismissListener(this)
+        dialog.setOnShowListener(this)
+        dialog.show()
+
     }
 
     override fun onStart() {
@@ -64,6 +69,21 @@ class BottomUpFragment : Fragment() {
     fun show(fragmentManager: FragmentManager, tag: String) {
         fragmentManager.beginTransaction()
                 .add(this, tag)
+                .commitAllowingStateLoss()
+    }
+
+    override fun onCancel(dialog: DialogInterface?) {
+        Log.d(TAG, "onCancel")
+    }
+
+    override fun onShow(dialog: DialogInterface?) {
+        Log.d(TAG, "onShow")
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        Log.d(TAG, "onDismiss")
+        parentFragmentManager.beginTransaction()
+                .remove(this)
                 .commitAllowingStateLoss()
     }
 }
