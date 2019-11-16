@@ -61,8 +61,8 @@ matrix {
 }
 
 apply plugin: 'com.google.firebase.firebase-perf'
-//apply plugin: 'com.hawksjamesf.plugin.perf'
-//apply plugin: 'performanceplugin'
+//apply plugin: com.hawksjamesf.plugin.PerformancePlugin
+apply plugin: 'perfplugin'
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
