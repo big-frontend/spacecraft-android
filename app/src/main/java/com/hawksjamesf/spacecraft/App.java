@@ -1,13 +1,9 @@
 package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCanceledListener;
@@ -43,6 +39,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.provider.FontRequest;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.text.FontRequestEmojiCompatConfig;
+import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -188,6 +193,29 @@ public class App extends MultiDexApplication {
 //        ioCanaryPlugin.start();
 //        Matrix.with().getPluginByClass(ThreadWatcher.class).start();
         MatrixLog.i("Matrix.HackCallback", "end:%s", System.currentTimeMillis());
+
+        FontRequest fontRequest = new FontRequest(
+                "com.google.android.gms.fonts",
+                "com.google.android.gms",
+                "emoji compat Font Query",
+                R.array.com_google_android_gms_fonts_certs);
+        EmojiCompat.Config emojiCompatConfig = new FontRequestEmojiCompatConfig(this, fontRequest)
+                .setReplaceAll(true)
+                .setEmojiSpanIndicatorColor(Color.GREEN)
+                .registerInitCallback(new EmojiCompat.InitCallback() {
+                    @Override
+                    public void onInitialized() {
+                        super.onInitialized();
+                    }
+
+                    @Override
+                    public void onFailed(@Nullable Throwable throwable) {
+                        super.onFailed(throwable);
+                    }
+                })
+                .setEmojiSpanIndicatorEnabled(true);
+        EmojiCompat.Config bundledEmojiCompatConfig = new BundledEmojiCompatConfig(this);
+        EmojiCompat.init(emojiCompatConfig);
 
     }
 

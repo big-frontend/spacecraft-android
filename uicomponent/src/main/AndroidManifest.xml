@@ -50,6 +50,11 @@
         <!--            android:launchMode="singleTask" -->
         <activity android:name="com.hawksjamesf.uicomponent.FourthActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.FragmentNotAttachActivity" />
+        <activity android:name="com.hawksjamesf.uicomponent.TextStyleActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 </manifest>
