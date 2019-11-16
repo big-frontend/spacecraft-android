@@ -14,7 +14,12 @@ import kotlinx.android.synthetic.main.activity_text_style.*
  */
 class TextStyleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        layoutInflater.factory2 = MyLayoutInflaterFactoryV2()
+//        layoutInflater.factory = MyLayoutInflaterFactory()
         super.onCreate(savedInstanceState)
+//        val field = LayoutInflater::class.java.getDeclaredField("mFactorySet")
+//        field.isAccessible = true
+//        field.setBoolean(layoutInflater, false)
         setContentView(R.layout.activity_text_style)
         tv_font.setOnClickListener{
 //            val request = FontRequest(
@@ -39,4 +44,5 @@ class TextStyleActivity : AppCompatActivity() {
         }
 
     }
+
 }
