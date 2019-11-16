@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -68,11 +69,28 @@ public class DetailActivity extends Activity {
     ImageView ivCover;
     TextView tvText;
 
-    public static void startActivity(Activity activity, ImageView iv, TextView tv) {
+    public static void startActivityWithSharedElement(Activity activity, ImageView iv, TextView tv) {
         Pair<View, String> pair0 = Pair.create((View) iv, IV_TRANSITIONNAME);
         Pair<View, String> pair1 = Pair.create((View) tv, TV_TRANSITIONNAME);
-        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class),
-                ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair0, pair1).toBundle());
+        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair0, pair1).toBundle());
+    }
+
+    public static void startActivityWithCustom(Activity activity, int enterResId, int exitResId) {
+        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeCustomAnimation(activity, enterResId, exitResId).toBundle());
+    }
+
+    public static void startActivityWithClipReveal(Activity activity, View source, int startX, int startY, int startWidth, int startHeight) {
+        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeClipRevealAnimation(source, startX, startY, startWidth, startHeight).toBundle());
+
+    }
+
+    public static void startActivityWithScaleUp(Activity activity, View source, int startX, int startY, int startWidth, int startHeight) {
+        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeScaleUpAnimation(source, startX, startY, startWidth, startHeight).toBundle());
+
+    }
+
+    public static void startActivityWithThumbnailScaleUp(Activity activity, View source, Bitmap thumbnail, int startX, int startY) {
+        ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeThumbnailScaleUpAnimation(source, thumbnail, startX, startY).toBundle());
     }
 
     @Override
@@ -192,6 +210,14 @@ public class DetailActivity extends Activity {
         dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
         rvContent.addItemDecoration(dividerItemDecoration);
     }
+
+
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        ActivityCompat.finishAfterTransition(this);
+//    }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
 

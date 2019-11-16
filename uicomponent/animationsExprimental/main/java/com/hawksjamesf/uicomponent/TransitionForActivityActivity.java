@@ -117,8 +117,26 @@ public class TransitionForActivityActivity extends Activity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
             ViewModel viewModel = dataList.get(position);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int remain = position % 5;
+                    if (remain == 0) {
+                        DetailActivity.startActivityWithSharedElement(TransitionForActivityActivity.this, holder.iv, holder.tv);
+                    } else if (remain == 1) {
+//                        DetailActivity.startActivityWithCustom(TransitionForActivityActivity.this,R.animator.slide_in_up,R.animator.slide_out_down);
+                        DetailActivity.startActivityWithCustom(TransitionForActivityActivity.this,android.R.anim.slide_in_left,android.R.anim.slide_in_left);
+                    } else if (remain == 2) {
+                        DetailActivity.startActivityWithClipReveal(TransitionForActivityActivity.this,holder.iv,holder.iv.getWidth()/2,holder.iv.getHeight()/2,1000,1000);
+                    } else if (remain == 3) {
+                        DetailActivity.startActivityWithScaleUp(TransitionForActivityActivity.this,holder.iv,holder.iv.getWidth()/2,holder.iv.getHeight()/2,200,200);
+                    } else if (remain == 4) {
+                        DetailActivity.startActivityWithThumbnailScaleUp(TransitionForActivityActivity.this,holder.iv,holder.iv.getDrawingCache(),holder.iv.getWidth()/2,holder.iv.getHeight()/2);
+                    }
+                }
+            });
             holder.iv.setImageResource(viewModel.drawableRes);
             holder.tv.setText(viewModel.text);
 
@@ -138,13 +156,6 @@ public class TransitionForActivityActivity extends Activity {
             super(itemView);
             iv = itemView.findViewById(R.id.iv);
             tv = itemView.findViewById(R.id.tv_text);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DetailActivity.startActivity(TransitionForActivityActivity.this, iv, tv);
-                }
-            });
         }
     }
 
