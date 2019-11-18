@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.photo;
+package com.hawksjamesf.uicomponent;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,21 +10,21 @@ import androidx.fragment.app.FragmentPagerAdapter;
  *
  * @author: hawks.jamesf
  * @since: Nov/06/2018  Tue
+ *
  */
+public class SectionsPagerAdapterv2 extends FragmentPagerAdapter {
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-    public SectionsPagerAdapter(FragmentManager fm) {
+    public SectionsPagerAdapterv2(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return PhotoFragment.newInstance(position + 1);
+        return Inner1Fragment.newInstance();
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 1;
     }
 }

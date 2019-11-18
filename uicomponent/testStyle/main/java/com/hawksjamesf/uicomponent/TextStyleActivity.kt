@@ -1,5 +1,6 @@
 package com.hawksjamesf.uicomponent
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -43,6 +44,10 @@ class TextStyleActivity : AppCompatActivity() {
             tv_font.typeface =font
         }
 
+    }
+
+    override fun onApplyThemeResource(theme: Resources.Theme?, resid: Int, first: Boolean) {
+        super.onApplyThemeResource(theme, resid, first)
     }
 
 }

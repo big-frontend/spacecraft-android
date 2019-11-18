@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
  *
  * @author: hawks.jamesf
  * @since: Nov/06/2018  Tue
- *
  */
+
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     public SectionsPagerAdapter(FragmentManager fm) {
@@ -20,11 +20,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return Inner1Fragment.newInstance();
+        return PhotoFragment.newInstance(position + 1);
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return 3;
     }
 }

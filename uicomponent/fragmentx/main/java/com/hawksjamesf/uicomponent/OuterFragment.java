@@ -23,7 +23,7 @@ public class OuterFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_outer, container, false);
     }
 
-    SectionsPagerAdapter mSectionsPagerAdapter;
+    SectionsPagerAdapterv2 mSectionsPagerAdapter;
     ViewPager mViewPager;
     RecyclerView rv;
 
@@ -31,7 +31,7 @@ public class OuterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewPager = view.findViewById(R.id.vp_container);
-//        mSectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
+//        mSectionsPagerAdapter = new SectionsPagerAdapterv2(getActivity().getSupportFragmentManager());
 //        mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setAdapter(new SectionsPagerAdapter(getParentFragmentManager()));
         rv = view.findViewById(R.id.rv);

@@ -1,8 +1,6 @@
-package com.hawksjamesf.spacecraft.photo;
+package com.hawksjamesf.uicomponent;
 
 import android.os.Bundle;
-
-import com.hawksjamesf.spacecraft.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;

@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.photo;
+package com.hawksjamesf.uicomponent;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hawksjamesf.spacecraft.R;
 
 import androidx.fragment.app.Fragment;
 

@@ -18,6 +18,7 @@ def srcDirs = [
         "launchmode",
         "fragmentx",
         "testStyle",
+        "photo",
 
 ]
 android {
