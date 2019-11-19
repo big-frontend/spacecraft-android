@@ -4,6 +4,10 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".DrawableActivity"
             android:label="@string/title_activity_drawable"
@@ -52,9 +56,14 @@
         <activity android:name="com.hawksjamesf.uicomponent.FragmentNotAttachActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.TextStyleActivity" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
+        <activity
+            android:name=".PhotoActivity"
+            android:label="PhoteoActivity"
+            android:theme="@style/PhotoTheme" />
+        <activity
+            android:name=".VideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:supportsPictureInPicture="true"
+            android:theme="@style/VideoTheme" />
     </application>
 </manifest>

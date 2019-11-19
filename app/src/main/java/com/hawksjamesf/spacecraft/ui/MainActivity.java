@@ -5,20 +5,21 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.photo.PhotoActivity;
 import com.hawksjamesf.spacecraft.ui.person.SettingsActivity;
+import com.hawksjamesf.uicomponent.PhotoActivity;
 import com.hawksjamesf.uicomponent.VideoActivity;
 import com.hawksjamesf.uicomponent.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
 import io.reactivex.disposables.Disposable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
