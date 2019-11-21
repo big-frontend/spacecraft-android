@@ -1,15 +1,7 @@
 package com.hawksjamesf.uicomponent;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -43,17 +35,6 @@ public class PhotoActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        FirebaseStorage storage = FirebaseStorage.getInstance("gs://spacecraft-22dc1.appspot.com");
-        StorageReference storageRef = storage.getReference();
-//        storageRef.getPath()
-//        Uri result = storageRef.getDownloadUrl().getResult();
-        storageRef.child("WechatIMG168.jpeg").getDownloadUrl()
-                .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        Log.d("hawks", "url:" + task.getResult().toString());
-                    }
-                });
 
 //        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
 //            @Override
