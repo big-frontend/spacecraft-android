@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -19,12 +16,14 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.uicomponent.PhotoActivity;
+import com.hawksjamesf.uicomponent.PhotoListActivity;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -82,7 +81,7 @@ public class SplashActivity extends BaseActivity {
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
                         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-                        ActivityUtil.startActivity(PhotoActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(PhotoListActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        TransitionForActivityActivity.startActivity(SplashActivity.this);
                         finish();
                     }

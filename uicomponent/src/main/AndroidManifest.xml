@@ -65,5 +65,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:supportsPictureInPicture="true"
             android:theme="@style/VideoTheme" />
+        <activity android:name=".PhotoListActivity"/>
     </application>
 </manifest>
