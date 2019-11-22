@@ -37,13 +37,8 @@ import android.text.style.TypefaceSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.text.style.UpdateAppearance;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.WeakReference;
+import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -52,7 +47,15 @@ import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.ref.WeakReference;
 
 /**
  * Copyright ® $ 2017
@@ -128,6 +131,7 @@ import androidx.core.content.ContextCompat;
  * - BulletSpan,每行的小原点
  */
 public class SpanUtil {
+
     private static final int COLOR_DEFAULT = 0xFEFFFFFF;
     public static final int ALIGN_BOTTOM = 0;
     public static final int ALIGN_BASELINE = 1;
@@ -202,10 +206,29 @@ public class SpanUtil {
     public @interface Type {
     }
 
+    private TextView mTextView;
+
+    private SpanUtil(TextView textView) {
+        this();
+        mTextView = textView;
+    }
+
     public SpanUtil() {
         mBuilder = new SpannableStringBuilder();
         mText = "";
         setDefault();
+    }
+
+    public SpannableStringBuilder create() {
+        applyLast();
+        if (mTextView != null) {
+            mTextView.setText(mBuilder);
+        }
+        return mBuilder;
+    }
+
+    public static SpanUtil with(final TextView textView) {
+        return new SpanUtil(textView);
     }
 
     private void setDefault() {
@@ -256,6 +279,17 @@ public class SpanUtil {
 
     public SpanUtil setBackgroundColor(@ColorInt final int color) {
         this.backgroundColor = color;
+        return this;
+    }
+
+    int bgColor;
+    int textColor;
+    int textSize;
+
+    public SpanUtil setRoundBackgroundColorSpan(@ColorInt final int bgColor, @ColorInt final int textColor,@Px int textSize) {
+        this.bgColor = bgColor;
+        this.textColor = textColor;
+        this.textSize = textSize;
         return this;
     }
 
@@ -495,11 +529,6 @@ public class SpanUtil {
         setDefault();
     }
 
-    public SpannableStringBuilder create() {
-        applyLast();
-        return mBuilder;
-    }
-
     private void updateCharSequence() {
         if (mText.length() == 0) return;
         int start = mBuilder.length();
@@ -539,6 +568,9 @@ public class SpanUtil {
         if (shader != null) mBuilder.setSpan(new ShaderSpan(shader), start, end, flag);
         if (shadowRadius != -1)
             mBuilder.setSpan(new ShadowSpan(shadowRadius, shadowDx, shadowDy, shadowColor), start, end, flag);
+        if (bgColor != COLOR_DEFAULT && textColor != COLOR_DEFAULT && textSize != -1) {
+            mBuilder.setSpan(new RoundBackgroundColorSpan(bgColor, textColor, textSize),start,end,flag);
+        }
         if (spans != null) {
             for (Object span :
                     spans) {
@@ -952,10 +984,64 @@ public class SpanUtil {
             int color = paint.getColor();
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(color);
-            canvas.drawRect(x,top,x+width,bottom,paint);
+            canvas.drawRect(x, top, x + width, bottom, paint);
             paint.setColor(color);
             paint.setStyle(style);
 
+        }
+    }
+
+   public static class RoundBackgroundColorSpan extends ReplacementSpan {
+        int bgColor;
+        int textColor;
+        int contextSize;
+        private float mScale;
+
+        public RoundBackgroundColorSpan(@ColorInt int bgColor, @ColorInt int textColor,@Px int contextSize) {
+            this.contextSize = contextSize;
+            this.bgColor = bgColor;
+            this.textColor = textColor;
+        }
+       @Override
+        public int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
+            int size= (int) paint.measureText(text, start, end);
+            return size;
+        }
+
+        @Override
+        public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
+            int originalColor = paint.getColor();
+            float originalTextSize = paint.getTextSize();
+            float originalBottom = paint.getFontMetrics().bottom;
+            float height = bottom - top;
+            mScale = contextSize / paint.getTextSize();
+            if (mScale > 1) {
+                mScale = 1f;
+            }
+
+            paint.setTextSize((float) contextSize);
+            //记录文字的偏移量~
+            float excursionL = paint.measureText(text, start, end) / 2f;
+
+            //计算缩放后的偏移量~
+            float excursionP = (height - (paint.getFontMetrics().bottom - paint.getFontMetrics().top)) / 2;
+
+            //y 需要bottom
+//            canvas.drawCircle(x + excursionL, y + originalBottom - (height / 2), radius * mScale, paint);
+            paint.setColor(Color.BLACK);
+//            paint.setColor(textColor);
+            canvas.drawText(text.toString(), x, y , paint);
+
+            paint.setColor(bgColor);
+            float rectLeft= x;
+            float rectTop=top;
+            float rectRight=y;
+            float rectBottom=bottom;
+            Log.d("cjf",""+rectLeft+"/"+rectTop+"/"+rectRight+"/"+rectBottom+"---》"+paint.getTextAlign());
+            canvas.drawRoundRect(rectLeft,rectTop,rectRight ,rectBottom,10,10,paint);
+
+            paint.setColor(originalColor);
+            paint.setTextSize(originalTextSize);
         }
     }
 }
