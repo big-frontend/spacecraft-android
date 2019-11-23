@@ -33,7 +33,7 @@ class ViewPagerAdapterv2 : PagerAdapter() {
         container.removeView(`object` as View?)
     }
 
-    override fun getCount() = 4
+    override fun getCount() = 8
 
     override fun getPageTitle(position: Int): CharSequence? {
         return "page tilte $position"

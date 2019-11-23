@@ -17,7 +17,7 @@ class ViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         return ViewPagerFragment.newInstance(position + 1)
     }
 
-    override fun getCount() = 4
+    override fun getCount() = 6
     override fun getPageTitle(position: Int): CharSequence? {
         return "page tilte $position"
     }
