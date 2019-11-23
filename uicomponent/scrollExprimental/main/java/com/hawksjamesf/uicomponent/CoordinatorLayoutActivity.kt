@@ -1,10 +1,10 @@
 package com.hawksjamesf.uicomponent
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.colorpicker.ColorPickerDialog
+import androidx.viewpager.widget.ViewPager
+import com.hawksjamesf.uicomponent.coordinator.ViewPagerAdapterv2
+import kotlinx.android.synthetic.main.activity_coordinatorlayout.*
 
 /**
  * Copyright ® $ 2019
@@ -15,66 +15,15 @@ import com.android.colorpicker.ColorPickerDialog
  * @since: Feb/16/2019  Sat
  */
 class CoordinatorLayoutActivity : AppCompatActivity() {
-    lateinit var linearLayoutManager: LinearLayoutManager
-    var dataList: MutableList<Int> = object : ArrayList<Int>() {
-        init {
-            for (i in 0..30) {
-                add(i)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coordinatorlayout)
-
-//        val mRvContent = findViewById<RecyclerView>(R.id.rv_content)
-//        val linearLayoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-//        mRvContent.layoutManager = linearLayoutManager
-//        mRvContent.adapter = mContentAdapter
-//        val pagerSnapHelper = PagerSnapHelper()
-//        pagerSnapHelper.attachToRecyclerView(mRvContent)
-//
-//        bt.setOnClickListener {
-//            linearLayoutManager.orientation = RecyclerView.VERTICAL
-//        }
-//        var value:IntArray =
-        val value = intArrayOf(
-                Color.GRAY,
-                Color.BLACK,
-                Color.BLUE,
-                Color.YELLOW,
-                Color.GRAY,
-                Color.BLACK,
-                Color.BLUE,
-                Color.YELLOW,
-                Color.GRAY,
-                Color.BLACK,
-                Color.BLUE,
-                Color.YELLOW,
-                Color.GRAY,
-                Color.BLACK,
-                Color.BLUE,
-                Color.YELLOW,
-                Color.GRAY,
-                Color.BLACK,
-                Color.BLUE,
-                Color.YELLOW,
-                Color.GRAY,
-                Color.BLACK,
-                Color.BLUE,
-                Color.YELLOW
-        )
-        val newInstance = ColorPickerDialog.newInstance(R.string.color_picker_default_title, value, Color.BLUE, 4, value.size)
-//        newInstance.show(supportFragmentManager, "asdf")
-//        newInstance.showPaletteView()
-//
-//        bt.setOnClickListener {
-//            newInstance.show(supportFragmentManager, "asdf")
-//        }
+       val  mSectionsPagerAdapter = ViewPagerAdapterv2()
+        val mViewPager = findViewById<ViewPager>(R.id.container)
+        tablayout.setupWithViewPager(mViewPager)
+        mViewPager.adapter = mSectionsPagerAdapter
 
 
     }
-
 
 }
