@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.annotation.FloatRange
 import androidx.core.math.MathUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -137,6 +138,7 @@ class CollapsingBarsLayout : RelativeLayout {
         }
 
         var collapseMode: Int = COLLAPSE_MODE_OFF
+        @FloatRange(from = 0.0, to = 1.0)
         var parallaxMultiplier: Float = DEFAULT_PARALLAX_MULTIPLIER
 
         constructor(c: Context, attrs: AttributeSet?) : super(c, attrs) {
