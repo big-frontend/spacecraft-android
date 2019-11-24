@@ -13,7 +13,7 @@ buildscript {
         maven { url uri("$rootDir/repo")}
     }
     ext {
-        compileSdkVersion = 28
+        compileSdkVersion = 29
         buildToolsVersion = '29.0.2'
         minSdkVersion = 23//19:kk,21:L,23:M,24:N,26:O,28:P
         targetSdkVersion = 29

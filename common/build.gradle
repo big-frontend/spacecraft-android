@@ -240,7 +240,7 @@ dependencies {
 //    api group: "com.tencent.matrix", name: "matrix-thread-canary", version: "0.6.0", changing: true
     api group: "com.tencent.matrix", name: "matrix-io-canary", version: "0.6.0", changing: true
     api group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk", version: "0.6.0", changing: true
-    releaseApi group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: "0.6.0", changing: true
+//    releaseApi group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: "0.6.0", changing: true
 
     /**
      * ===============================monitor end=============================
