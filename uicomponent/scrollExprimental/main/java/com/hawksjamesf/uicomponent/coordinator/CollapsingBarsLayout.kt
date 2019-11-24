@@ -1,16 +1,19 @@
 package com.hawksjamesf.uicomponent.coordinator
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.math.MathUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.AppBarLayout
+import com.hawksjamesf.uicomponent.R
 import kotlin.math.roundToInt
 
 /**
@@ -29,10 +32,6 @@ class CollapsingBarsLayout : RelativeLayout {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
-
-//    constructor(context: Context?) : this(context, null, -1)
-//    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, -1)
-//    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
         Log.d(TAG, "init")
@@ -66,14 +65,14 @@ class CollapsingBarsLayout : RelativeLayout {
     }
 
     override fun checkLayoutParams(p: ViewGroup.LayoutParams?): Boolean {
-        return p is CollapsingBarsLayoutLayoutParams
+        return p is LayoutParams
     }
 
-    override fun generateDefaultLayoutParams() = CollapsingBarsLayoutLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    override fun generateDefaultLayoutParams() = LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
 
-    override fun generateLayoutParams(attrs: AttributeSet?) = CollapsingBarsLayoutLayoutParams(context, attrs)
+    override fun generateLayoutParams(attrs: AttributeSet?) = LayoutParams(context, attrs)
 
-    override fun generateLayoutParams(lp: ViewGroup.LayoutParams?) = CollapsingBarsLayoutLayoutParams(lp)
+    override fun generateLayoutParams(lp: ViewGroup.LayoutParams?) = LayoutParams(lp)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -94,24 +93,28 @@ class CollapsingBarsLayout : RelativeLayout {
     }
 
 
+    fun updateScrimVisibility() {
+
+    }
+
     inner class OffsetUpdateListener : AppBarLayout.OnOffsetChangedListener {
         override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
             currentOffset = verticalOffset
             val insetTop = lastInsets?.systemWindowInsetTop ?: 0
             for (index in 0 until childCount) {
                 val child = getChildAt(index)
-                val layoutParams = child.layoutParams as CollapsingBarsLayoutLayoutParams
+                val layoutParams = child.layoutParams as LayoutParams
                 val offsetHelper = child.getViewOffsetHelper()
                 Log.d(TAG, "onOffsetChanged$verticalOffset ${layoutParams.collapseMode}")
                 when (layoutParams.collapseMode) {
-                    CollapsingBarsLayoutLayoutParams.COLLAPSE_MODE_OFF -> {
+                    LayoutParams.COLLAPSE_MODE_OFF -> {
 
                     }
-                    CollapsingBarsLayoutLayoutParams.COLLAPSE_MODE_PIN -> {
+                    LayoutParams.COLLAPSE_MODE_PIN -> {
                         offsetHelper.setTopAndBottomOffset(MathUtils.clamp(-verticalOffset, 0, child.getMaxOffsetForPinChild(height)))
 
                     }
-                    CollapsingBarsLayoutLayoutParams.COLLAPSE_MODE_PARALLAX -> {
+                    LayoutParams.COLLAPSE_MODE_PARALLAX -> {
                         offsetHelper.setTopAndBottomOffset((-verticalOffset * layoutParams.parallaxMultiplier).roundToInt())
 
                     }
@@ -124,7 +127,36 @@ class CollapsingBarsLayout : RelativeLayout {
 
     }
 
-    fun updateScrimVisibility() {
+    class LayoutParams : RelativeLayout.LayoutParams {
+
+        companion object {
+            const val COLLAPSE_MODE_OFF = 0
+            const val COLLAPSE_MODE_PIN = 1
+            const val COLLAPSE_MODE_PARALLAX = 2
+            const val DEFAULT_PARALLAX_MULTIPLIER = 0.5f
+        }
+
+        var collapseMode: Int = COLLAPSE_MODE_OFF
+        var parallaxMultiplier: Float = DEFAULT_PARALLAX_MULTIPLIER
+
+        constructor(c: Context, attrs: AttributeSet?) : super(c, attrs) {
+            val a: TypedArray = c.obtainStyledAttributes(attrs, R.styleable.CollapsingBarsLayout_Layout)
+            collapseMode = a.getInt(R.styleable.CollapsingBarsLayout_Layout_hotel_layout_collapseMode, COLLAPSE_MODE_OFF)
+            parallaxMultiplier = a.getFloat(R.styleable.CollapsingBarsLayout_Layout_hotel_layout_collapseParallaxMultiplier, DEFAULT_PARALLAX_MULTIPLIER)
+            a.recycle()
+        }
+
+        constructor(width: Int, height: Int) : super(width, height)
+        //        constructor(width: Int, height: Int, weight: Float) : super(width, height, weight)
+        constructor(p: ViewGroup.LayoutParams?) : super(p)
+
+        constructor(source: ViewGroup.MarginLayoutParams?) : super(source)
+        constructor(source: LinearLayout.LayoutParams?) : super(source)
+
+        init {
+
+        }
 
     }
+
 }

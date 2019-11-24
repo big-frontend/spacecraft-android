@@ -21,7 +21,7 @@ fun View.getViewOffsetHelper(): ViewOffsetHelper {
 
 fun View.getMaxOffsetForPinChild(containerHeight:Int): Int {
     val offsetHelper = getViewOffsetHelper()
-    val lp = layoutParams as CollapsingBarsLayoutLayoutParams
+    val lp = layoutParams as CollapsingBarsLayout.LayoutParams
     return containerHeight - offsetHelper.layoutTop - height - lp.bottomMargin
 
 }
