@@ -38,7 +38,10 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle
 //    }
 //}
 
+def srcDirs = [
+        "printlogs",
 
+]
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -62,6 +65,16 @@ android {
     }
     sourceSets {
         main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
             java {
                 //${protobuf.generatedFilesBaseDir}：
                 // /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/network/build/generated/source/proto
@@ -72,6 +85,20 @@ android {
                 //gson
                 srcDirs += "src/main/gson"
             }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
         }
     }
     flavorDimensions "data_access"
