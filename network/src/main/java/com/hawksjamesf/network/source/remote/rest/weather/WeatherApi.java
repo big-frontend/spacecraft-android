@@ -1,7 +1,7 @@
 package com.hawksjamesf.network.source.remote.rest.weather;
 
 
-import com.hawksjamesf.network.ListRes;
+import com.hawksjamesf.network.gson.ListRes;
 import com.hawksjamesf.network.home.WeatherData;
 
 import io.reactivex.Observable;

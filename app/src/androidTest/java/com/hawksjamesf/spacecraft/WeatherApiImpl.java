@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.hawksjamesf.common.util.RestServiceTestHelper;
-import com.hawksjamesf.network.ListRes;
+import com.hawksjamesf.network.gson.ListRes;
 import com.hawksjamesf.network.home.WeatherData;
 import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
 

@@ -1,4 +1,4 @@
-package com.hawksjamesf.network
+package com.hawksjamesf.network.gson
 
 import com.hawksjamesf.spacecraft.data.bean.weather.City
 

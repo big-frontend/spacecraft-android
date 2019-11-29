@@ -1,4 +1,4 @@
-package com.hawksjamesf.network;
+package com.hawksjamesf.network.wire;
 
 import com.squareup.wire.FieldEncoding;
 import com.squareup.wire.Message;

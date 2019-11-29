@@ -105,7 +105,7 @@ dependencies {
    *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
    *解决方法：需要exclude掉v4包
     */
-    api "com.google.android.material:material:1.1.0-alpha10"
+    api "com.google.android.material:material:1.2.0-alpha02"
     api 'androidx.vectordrawable:vectordrawable:1.1.0'
 
     //animotor

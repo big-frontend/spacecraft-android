@@ -40,6 +40,7 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle
 
 def srcDirs = [
         "printlogs",
+        "protocol"
 
 ]
 android {
@@ -81,9 +82,9 @@ android {
                 //protobuf
 //                srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
                 //wire
-                srcDirs += "src/main/wire"
+//                srcDirs += "src/main/wire"
                 //gson
-                srcDirs += "src/main/gson"
+//                srcDirs += "src/main/gson"
             }
         }
         androidTest {

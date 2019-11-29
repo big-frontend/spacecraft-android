@@ -1,4 +1,4 @@
-package com.hawksjamesf.network;
+package com.hawksjamesf.network.wire;
 
 /**
  * Copyright ® $ 2017

@@ -15,7 +15,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
 import com.hawksjamesf.common.mvp.RxActivity;
 import com.hawksjamesf.common.util.BarUtil;
-import com.hawksjamesf.network.ListRes;
+import com.hawksjamesf.network.gson.ListRes;
 import com.hawksjamesf.network.home.WeatherData;
 import com.hawksjamesf.network.source.WeatherDataSource;
 import com.hawksjamesf.spacecraft.App;
