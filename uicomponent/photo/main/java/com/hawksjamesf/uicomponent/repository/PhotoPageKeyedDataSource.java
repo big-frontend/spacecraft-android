@@ -7,7 +7,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.hawksjamesf.uicomponent.PhotoListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,6 @@ import androidx.paging.PageKeyedDataSource;
  */
 public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, String> {
     NetworkApi api;
-
-    public PhotoPageKeyedDataSource(NetworkApi api) {
-        this.api = api;
-    }
-
     List<String> urlList = new ArrayList<String>() {
         {
             add("https://firebasestorage.googleapis.com/v0/b/spacecraft-22dc1.appspot.com/o/WechatIMG168.jpeg?alt=media&token=2a28b72e-d8a5-4c0f-b919-853722c850a2");
@@ -39,6 +33,12 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, String
         }
     };
 
+    private static final String BASE_URL = "gs://spacecraft-22dc1.appspot.com";
+
+    public PhotoPageKeyedDataSource(NetworkApi api) {
+        this.api = api;
+    }
+
     @Override
     public void loadInitial(@NonNull LoadInitialParams<String> params, @NonNull LoadInitialCallback<String, String> callback) {
         Log.d("hawks", "PhotoPageKeyedDataSource:loadInitial:");
@@ -47,7 +47,7 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, String
         if (!urlList.isEmpty()) {
             callback.onResult(urlList, "23", "asdfsdf");
         } else {
-            FirebaseStorage storage = FirebaseStorage.getInstance(PhotoListActivity.BASE_URL);
+            FirebaseStorage storage = FirebaseStorage.getInstance(BASE_URL);
             StorageReference storageRef = storage.getReference();
 //        storageRef.getPath()
 //        Uri result = storageRef.getDownloadUrl().getResult();

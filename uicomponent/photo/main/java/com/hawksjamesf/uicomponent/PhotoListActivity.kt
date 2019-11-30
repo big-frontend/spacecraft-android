@@ -2,7 +2,6 @@ package com.hawksjamesf.uicomponent
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
@@ -31,7 +30,7 @@ class PhotoListActivity : AppCompatActivity() {
             override fun areContentsTheSame(oldItem: String, newItem: String) = oldItem == newItem
 
         }
-        const val BASE_URL = "gs://spacecraft-22dc1.appspot.com"
+
     }
 
     lateinit var rvPhotoList: RecyclerView
@@ -45,8 +44,6 @@ class PhotoListActivity : AppCompatActivity() {
 
         }
     }
-    //    lateinit var pagedList :PagedList
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,13 +65,11 @@ class PhotoListActivity : AppCompatActivity() {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.itemList.value?.remove(viewHolder.itemView.tag)
+                viewModel.itemList?.value?.remove(viewHolder.itemView.tag)
             }
         }).attachToRecyclerView(rvPhotoList)
         val observer = Observer(adapter::submitList)
-        viewModel.getAny()?.observe(this, Observer<PagedList<String>> {
-            Log.d("hawks","observe")
-        })
+        viewModel.getAny()?.observe(this, observer)
     }
 
     inner class PhotoListAdapter : PagedListAdapter<String, RecyclerView.ViewHolder>(diffCallback) {
@@ -93,12 +88,12 @@ class PhotoListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val linearLayout = (holder.itemView as HorizontalScrollView).getChildAt(0) as LinearLayout
-            holder.itemView.tag = viewModel.itemList.value?.get(position)
+            holder.itemView.tag = viewModel.itemList?.value?.get(position)
             for (index in 0 until itemCount) {
                 val imageView = linearLayout.getChildAt(index) as? ImageView
                 imageView ?: continue
                 Glide.with(imageView.context)
-                        .load(viewModel.itemList.value?.get(index))
+                        .load(viewModel.itemList?.value?.get(index))
                         .into(imageView)
             }
         }
