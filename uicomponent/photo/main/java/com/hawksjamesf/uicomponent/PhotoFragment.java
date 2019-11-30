@@ -27,8 +27,6 @@ public class PhotoFragment extends Fragment {
     private Uri uri;
     private int resourceId;
 
-    public PhotoFragment() {
-    }
 
     public static PhotoFragment newInstance(int sectionNumber) {
         PhotoFragment fragment = new PhotoFragment();
@@ -41,7 +39,6 @@ public class PhotoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_photo, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_photo, container, false);
     }
 }
