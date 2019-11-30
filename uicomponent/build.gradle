@@ -86,13 +86,13 @@ dependencies {
     /**
      * ================================ui start=====================================
      */
-    api "androidx.recyclerview:recyclerview:1.0.0"
-    api 'androidx.navigation:navigation-fragment:2.0.0-rc02'
-    api 'androidx.navigation:navigation-ui:2.0.0-rc02'
-    api 'androidx.navigation:navigation-common-ktx:2.0.0-rc02'
-    api 'androidx.navigation:navigation-runtime-ktx:2.0.0-rc02'
-    api 'androidx.navigation:navigation-fragment-ktx:2.0.0-rc02'
-    api 'androidx.navigation:navigation-ui-ktx:2.0.0-rc02'
+    api "androidx.recyclerview:recyclerview:1.1.0"
+    api 'androidx.navigation:navigation-fragment:2.2.0-rc02'
+    api 'androidx.navigation:navigation-ui:2.2.0-rc02'
+    api 'androidx.navigation:navigation-common-ktx:2.2.0-rc02'
+    api 'androidx.navigation:navigation-runtime-ktx:2.2.0-rc02'
+    api 'androidx.navigation:navigation-fragment-ktx:2.2.0-rc02'
+    api 'androidx.navigation:navigation-ui-ktx:2.2.0-rc02'
 
     //layout start
     api 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
