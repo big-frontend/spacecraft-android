@@ -69,7 +69,7 @@ class PhotoListActivity : AppCompatActivity() {
             }
         }).attachToRecyclerView(rvPhotoList)
         val observer = Observer(adapter::submitList)
-        viewModel.getAny()?.observe(this, observer)
+        viewModel.itemList?.observe(this, observer)
     }
 
     inner class PhotoListAdapter : PagedListAdapter<String, RecyclerView.ViewHolder>(diffCallback) {

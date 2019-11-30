@@ -59,8 +59,6 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
                         enablePlaceholders = false,
                         initialLoadSizeHint = 30 * 2),
                 fetchExecutor = executor)
-
-//        dataSourceFactory.sourceLiveData?.value?.invalidate()
         return toLiveData
     }
 
