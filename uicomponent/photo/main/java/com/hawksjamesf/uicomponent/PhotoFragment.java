@@ -1,14 +1,13 @@
 package com.hawksjamesf.uicomponent;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -17,21 +16,21 @@ import androidx.fragment.app.Fragment;
  *
  * @author: hawks.jamesf
  * @since: Nov/06/2018  Tue
- *
+ * <p>
  * bitmap，drawable、uri、resource id
  */
 public class PhotoFragment extends Fragment {
+    public static final String TAG="PhotoFragment";
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private Bitmap mBitmap;
-    private Drawable mDrawable;
-    private Uri uri;
-    private int resourceId;
+    private static final String ARG_PAGE = "page";
+    private Page page;
+    ImageView ivPhoto;
 
-
-    public static PhotoFragment newInstance(int sectionNumber) {
+    public static PhotoFragment newInstance(int sectionNumber, Page page) {
         PhotoFragment fragment = new PhotoFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        args.putParcelable(ARG_PAGE, page);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,4 +40,23 @@ public class PhotoFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_photo, container, false);
     }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Bundle arguments = getArguments();
+        if (arguments ==null) return;
+        page = arguments.getParcelable(ARG_PAGE);
+        ivPhoto= view.findViewById(R.id.iv_photo);
+        ivPhoto.setImageBitmap(page.thumbnailBitmap);
+
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
 }

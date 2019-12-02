@@ -1,6 +1,14 @@
 package com.hawksjamesf.uicomponent;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -10,6 +18,25 @@ public class PhotoActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
+
+    public static final String EXTRA_THUMBNAILBITMAP = "thumbnailBitmap";
+    public static final String EXTRA_URLLIST = "urlList";
+    public static final String EXTRA_CURPOSITION = "curPosition";
+    private ArrayList<Bitmap> mThumbnailBitmapList;
+    private ArrayList<String> mUrlList;
+    private int curPosition;
+
+    public static void startActivity(Activity activity, ArrayList<Bitmap> thumbnailBitmapList, final ArrayList<String> urlList, final int curPosition) {
+        Intent intent = new Intent(activity, PhotoActivity.class);
+        Log.d("cjf", "size:" + thumbnailBitmapList.size());
+        if (thumbnailBitmapList.size() > 7) {
+            thumbnailBitmapList = (ArrayList<Bitmap>) thumbnailBitmapList.subList(0, 6);
+        }
+        intent.putParcelableArrayListExtra(EXTRA_THUMBNAILBITMAP, thumbnailBitmapList);
+        intent.putStringArrayListExtra(EXTRA_URLLIST, urlList);
+        intent.putExtra(EXTRA_CURPOSITION, curPosition);
+        activity.startActivity(intent);
+    }
 
 
     @Override
@@ -27,13 +54,30 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mThumbnailBitmapList = getIntent().getParcelableArrayListExtra(EXTRA_THUMBNAILBITMAP);
+        mUrlList = getIntent().getStringArrayListExtra(EXTRA_URLLIST);
+        curPosition = getIntent().getIntExtra(EXTRA_CURPOSITION, 0);
+        ArrayList<Page> pages = new ArrayList<>(mThumbnailBitmapList.size());
+        try {
+            for (int i = 0, thumbnailsize = mThumbnailBitmapList.size(), urlSize = mUrlList.size(); i < urlSize; ++i) {
+                URL url = new URL(mUrlList.get(i));
+                Bitmap bitmap = null;
+                if (i < thumbnailsize) {
+                    bitmap = mThumbnailBitmapList.get(i);
+                }
+                pages.add(new Page(bitmap, url));
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_photo);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
+        mSectionsPagerAdapter.setDataList(pages);
+        mViewPager.setCurrentItem(curPosition);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 //        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -53,29 +97,6 @@ public class PhotoActivity extends AppCompatActivity {
 //            }
 //        });
     }
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_photo, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
 
 }

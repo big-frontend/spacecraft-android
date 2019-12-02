@@ -1,8 +1,11 @@
 package com.hawksjamesf.uicomponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 /**
  * Copyright ® $ 2017
@@ -12,7 +15,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
  * @since: Nov/06/2018  Tue
  */
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+    List<Page> dataList = new ArrayList<>();
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -20,11 +24,24 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PhotoFragment.newInstance(position + 1);
+        return PhotoFragment.newInstance(position,dataList.get(position));
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return dataList.size();
     }
+
+    public void setDataList(List<Page> dataList) {
+        if (dataList == null || dataList.isEmpty()) {
+            this.dataList.clear();
+            return;
+        }
+
+        this.dataList.clear();
+        this.dataList.addAll(dataList);
+        notifyDataSetChanged();
+    }
+
+
 }

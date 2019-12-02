@@ -1,5 +1,6 @@
 package com.hawksjamesf.uicomponent
 
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
@@ -8,13 +9,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
+import androidx.core.view.drawToBitmap
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -58,29 +60,33 @@ class PhotoListActivity : AppCompatActivity() {
 
         //init data
 
-        ItemTouchHelper(object : ItemTouchHelper.Callback() {
-            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int =
-                    makeMovementFlags(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
-
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = false
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.itemList?.value?.remove(viewHolder.itemView.tag)
-            }
-        }).attachToRecyclerView(rvPhotoList)
+//        ItemTouchHelper(object : ItemTouchHelper.Callback() {
+//            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int =
+//                    makeMovementFlags(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+//
+//            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = false
+//
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+////                viewModel.itemList?.value?.remove(viewHolder.itemView.tag)
+//            }
+//        }).attachToRecyclerView(rvPhotoList)
         val observer = Observer(adapter::submitList)
         viewModel.itemList?.observe(this, observer)
     }
 
     inner class PhotoListAdapter : PagedListAdapter<String, RecyclerView.ViewHolder>(diffCallback) {
+
+        val thumbnailBitmapList = arrayListOf<Bitmap>()
+        val urlList = arrayListOf<String>()
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val scrollView = HorizontalScrollView(parent.context)
             val linearLayout = LinearLayout(parent.context)
             linearLayout.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200)
             linearLayout.orientation = LinearLayout.HORIZONTAL
             scrollView.addView(linearLayout, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-            repeat(itemCount) { _ ->
+            repeat(3) {
                 val image = ImageView(parent.context)
+                image.tag = it
                 linearLayout.addView(image, LinearLayout.LayoutParams(200, 200))
             }
             return object : RecyclerView.ViewHolder(scrollView) {}
@@ -95,6 +101,17 @@ class PhotoListActivity : AppCompatActivity() {
                 Glide.with(imageView.context)
                         .load(viewModel.itemList?.value?.get(index))
                         .into(imageView)
+                viewModel.itemList?.value?.get(index)?.let { urlList.add(it) }
+
+                imageView.setOnClickListener {
+
+
+                    linearLayout.children.forEach {
+                        thumbnailBitmapList.add((it as ImageView).drawToBitmap())
+
+                    }
+                    PhotoActivity.startActivity(this@PhotoListActivity, thumbnailBitmapList, urlList, imageView.tag as Int)
+                }
             }
         }
 
