@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,11 +21,13 @@ import androidx.fragment.app.Fragment;
  * bitmap，drawable、uri、resource id
  */
 public class PhotoFragment extends Fragment {
-    public static final String TAG="PhotoFragment";
+    public static final String TAG = "PhotoFragment";
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_PAGE = "page";
-    private Page page;
+    Page page;
+    int sectionNumber = -1;
     ImageView ivPhoto;
+    TextView tvText;
 
     public static PhotoFragment newInstance(int sectionNumber, Page page) {
         PhotoFragment fragment = new PhotoFragment();
@@ -46,10 +49,21 @@ public class PhotoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle arguments = getArguments();
-        if (arguments ==null) return;
+        if (arguments == null) return;
         page = arguments.getParcelable(ARG_PAGE);
-        ivPhoto= view.findViewById(R.id.iv_photo);
-        ivPhoto.setImageBitmap(page.thumbnailBitmap);
+        sectionNumber = arguments.getInt(ARG_SECTION_NUMBER);
+        ivPhoto = view.findViewById(R.id.iv_photo);
+        tvText = view.findViewById(R.id.tv_text);
+        if (page.thumbnailBitmap == null) {
+            tvText.setText(String.valueOf(sectionNumber));
+            tvText.setVisibility(View.VISIBLE);
+            ivPhoto.setVisibility(View.GONE);
+        } else {
+            tvText.setVisibility(View.GONE);
+            ivPhoto.setVisibility(View.VISIBLE);
+            ivPhoto.setImageBitmap(page.thumbnailBitmap);
+
+        }
 
 
     }

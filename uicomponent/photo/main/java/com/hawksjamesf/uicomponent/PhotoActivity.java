@@ -10,27 +10,34 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 public class PhotoActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
 
     public static final String EXTRA_THUMBNAILBITMAP = "thumbnailBitmap";
     public static final String EXTRA_URLLIST = "urlList";
     public static final String EXTRA_CURPOSITION = "curPosition";
+    private static final int threshold = 2;
     private ArrayList<Bitmap> mThumbnailBitmapList;
     private ArrayList<String> mUrlList;
     private int curPosition;
 
-    public static void startActivity(Activity activity, ArrayList<Bitmap> thumbnailBitmapList, final ArrayList<String> urlList, final int curPosition) {
+
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    private ViewPager mViewPager;
+
+    public static void startActivity(@NonNull Activity activity, @NonNull final ArrayList<Bitmap> thumbnailBitmapList, final ArrayList<String> urlList, final int curPosition) {
         Intent intent = new Intent(activity, PhotoActivity.class);
-        Log.d("cjf", "size:" + thumbnailBitmapList.size());
-        if (thumbnailBitmapList.size() > 7) {
-            thumbnailBitmapList = (ArrayList<Bitmap>) thumbnailBitmapList.subList(0, 6);
+        Log.d(Constants.TAG, "size:" + thumbnailBitmapList.size() + "/curPosition:" + curPosition);
+        if (thumbnailBitmapList.size() > threshold) {
+            for (int i = 0, size = thumbnailBitmapList.size(); i < size; i++) {
+                if (curPosition <= i && i < threshold + curPosition) continue;
+                thumbnailBitmapList.set(i, null);
+            }
         }
         intent.putParcelableArrayListExtra(EXTRA_THUMBNAILBITMAP, thumbnailBitmapList);
         intent.putStringArrayListExtra(EXTRA_URLLIST, urlList);
@@ -76,9 +83,9 @@ public class PhotoActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = findViewById(R.id.container);
-        mSectionsPagerAdapter.setDataList(pages);
-        mViewPager.setCurrentItem(curPosition);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mSectionsPagerAdapter.setDataList(pages);
+        mViewPager.setCurrentItem(curPosition, true);
 
 //        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
 //            @Override

@@ -84,7 +84,7 @@ class PhotoListActivity : AppCompatActivity() {
             linearLayout.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200)
             linearLayout.orientation = LinearLayout.HORIZONTAL
             scrollView.addView(linearLayout, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-            repeat(3) {
+            repeat(itemCount) {
                 val image = ImageView(parent.context)
                 image.tag = it
                 linearLayout.addView(image, LinearLayout.LayoutParams(200, 200))
@@ -93,6 +93,7 @@ class PhotoListActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
             val linearLayout = (holder.itemView as HorizontalScrollView).getChildAt(0) as LinearLayout
             holder.itemView.tag = viewModel.itemList?.value?.get(position)
             for (index in 0 until itemCount) {
@@ -104,11 +105,9 @@ class PhotoListActivity : AppCompatActivity() {
                 viewModel.itemList?.value?.get(index)?.let { urlList.add(it) }
 
                 imageView.setOnClickListener {
-
-
+                    thumbnailBitmapList.clear()
                     linearLayout.children.forEach {
                         thumbnailBitmapList.add((it as ImageView).drawToBitmap())
-
                     }
                     PhotoActivity.startActivity(this@PhotoListActivity, thumbnailBitmapList, urlList, imageView.tag as Int)
                 }
@@ -119,6 +118,5 @@ class PhotoListActivity : AppCompatActivity() {
             super.onCurrentListChanged(previousList, currentList)
         }
     }
-
 
 }
