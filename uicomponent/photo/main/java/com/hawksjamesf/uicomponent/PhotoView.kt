@@ -47,13 +47,13 @@ class PhotoView : AppCompatImageView {
     }
 
     //    var rawResId: Int = -1
-    var rawResId: Int = R.raw.WechatIMG211
+    var rawResId: Int = R.raw.wechatimg211
 
     fun showRegionBitmap() {
         if (rawResId == -1) throw  IllegalArgumentException("rawResId must not null")
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(resources, R.raw.WechatIMG211, options);
+        BitmapFactory.decodeResource(resources, R.raw.wechatimg211, options);
         val rawWidth = options.outWidth
         val rawHeight = options.outHeight
 

@@ -18,6 +18,6 @@ class LargePhotoActivity : AppCompatActivity() {
         val photoview = PhotoView(this)
         val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         setContentView(photoview, lp)
-        photoview.setRaw(R.raw.WechatIMG211)
+        photoview.setRaw(R.raw.wechatimg211)
     }
 }
