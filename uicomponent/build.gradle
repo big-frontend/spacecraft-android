@@ -110,6 +110,7 @@ dependencies {
 
     //animotor
     api 'com.airbnb.android:lottie:2.8.0'
+    api 'com.github.Almeros:android-gesture-detectors:v1.0'
 
     //rx ui
     api 'com.jakewharton.rxbinding3:rxbinding-core:3.0.0'
