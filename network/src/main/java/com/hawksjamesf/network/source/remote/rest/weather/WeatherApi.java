@@ -1,11 +1,6 @@
 package com.hawksjamesf.network.source.remote.rest.weather;
 
 
-import com.hawksjamesf.network.gson.ListRes;
-import com.hawksjamesf.network.home.WeatherData;
-
-import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

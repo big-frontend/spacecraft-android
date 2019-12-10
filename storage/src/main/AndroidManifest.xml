@@ -3,5 +3,8 @@
 
     <application>
         <activity android:name=".FirebaseDatabaseActivity" />
+        <activity
+            android:name=".LogDBActivity"
+            android:theme="@style/Theme.AppCompat.DayNight" />
     </application>
 </manifest>
