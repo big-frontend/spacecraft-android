@@ -1,10 +1,13 @@
 package com.hawksjamesf.storage.platform
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.DatabaseErrorHandler
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
+import android.provider.BaseColumns
+import android.util.Log
 import androidx.annotation.RequiresApi
 
 class LogHelper : SQLiteOpenHelper {
@@ -17,6 +20,8 @@ class LogHelper : SQLiteOpenHelper {
 
     companion object {
         val any = Any()
+        fun init(context: Context?): LogHelper? = getInstance(context)
+
         private var instance: LogHelper? = null
         fun getInstance(context: Context?): LogHelper? {
             synchronized(any::class.java) {
@@ -27,14 +32,43 @@ class LogHelper : SQLiteOpenHelper {
             }
         }
 
-        fun getDB(context: Context?, writable: Boolean = true): SQLiteDatabase? {
+        fun getDB(context: Context? = null, writable: Boolean = true): SQLiteDatabase? {
             return if (writable) {
                 getInstance(context)?.writableDatabase
             } else {
                 getInstance(context)?.readableDatabase
             }
         }
+    }
 
+    fun save() {
+        val db = getDB()
+        db?.delete(LogContract.LogEntry.TABLE_NAME, null, null)
+        repeat(10) {
+            val values = ContentValues()
+            values.put(LogContract.LogEntry.COLUMNS_SERVICE_CODE, it)
+            values.put(LogContract.LogEntry.COLUMNS_ENTRY_TYPE, "request")
+            db?.insertOrThrow(LogContract.LogEntry.TABLE_NAME, null, values)
+        }
+    }
+
+    fun query() {
+        val db = getDB()
+        val cursor = db?.query(LogContract.LogEntry.TABLE_NAME,
+                null,
+                null,null,
+//                "${LogContract.LogEntry.COLUMNS_ENTRY_TYPE}=?", arrayOf("request"),
+                null, null, null, null)
+        Log.d("query", "count:${cursor?.count} ${cursor?.columnCount}")
+        if (cursor?.moveToFirst() == true && cursor.count > 0) {
+            do {
+                val entrytype = cursor.getString(cursor.getColumnIndex(LogContract.LogEntry.COLUMNS_ENTRY_TYPE))
+                val id = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID))
+                Log.d("query", "entiry:$entrytype ")
+            } while (cursor?.moveToNext())
+
+            cursor.close()
+        }
     }
 
 
@@ -44,4 +78,6 @@ class LogHelper : SQLiteOpenHelper {
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
+
+
 }
