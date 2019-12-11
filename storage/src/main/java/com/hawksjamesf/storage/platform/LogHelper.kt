@@ -16,6 +16,24 @@ class LogHelper : SQLiteOpenHelper {
     constructor(context: Context?, name: String?, version: Int, openParams: SQLiteDatabase.OpenParams) : super(context, name, version, openParams)
 
     companion object {
+        val any = Any()
+        private var instance: LogHelper? = null
+        fun getInstance(context: Context?): LogHelper? {
+            synchronized(any::class.java) {
+                if (instance == null) {
+                    instance = LogHelper(context, LogContract.DB_NAME, null, LogContract.DB_VERSION)
+                }
+                return instance
+            }
+        }
+
+        fun getDB(context: Context?, writable: Boolean = true): SQLiteDatabase? {
+            return if (writable) {
+                getInstance(context)?.writableDatabase
+            } else {
+                getInstance(context)?.readableDatabase
+            }
+        }
 
     }
 
