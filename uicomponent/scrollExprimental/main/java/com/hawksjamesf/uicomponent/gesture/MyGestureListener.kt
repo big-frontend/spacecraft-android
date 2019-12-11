@@ -10,7 +10,7 @@ import android.view.MotionEvent
  * @author: hawks.jamesf
  * @since: Dec/11/2019  Wed
  */
-class MyGestureListener : GestureDetector.OnGestureListener {
+class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
     // GestureDetector.OnGestureListener end
     override fun onShowPress(e: MotionEvent?) {
 

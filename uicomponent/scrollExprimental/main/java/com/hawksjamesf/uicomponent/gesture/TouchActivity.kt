@@ -1,16 +1,14 @@
-package com.hawksjamesf.uicomponent
+package com.hawksjamesf.uicomponent.gesture
 
 import android.graphics.Color
+import android.graphics.Matrix
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.almeros.android.multitouch.MoveGestureDetector
 import com.almeros.android.multitouch.RotateGestureDetector
 import com.almeros.android.multitouch.ShoveGestureDetector
-import com.almeros.android.multitouch.TwoFingerGestureDetector
-import com.hawksjamesf.uicomponent.gesture.MyContextClickListener
-import com.hawksjamesf.uicomponent.gesture.MyDoubleTapListener
-import com.hawksjamesf.uicomponent.gesture.MyGestureListener
 
 
 /**
@@ -25,7 +23,8 @@ class TouchActivity : AppCompatActivity(), View.OnTouchListener, View.OnGenericM
     private lateinit var mScaleDetector: ScaleGestureDetector
     private lateinit var mRotateDetector: RotateGestureDetector
     private lateinit var mShoveDetector: ShoveGestureDetector
-    private lateinit var mTwoFingerGestureDetector: TwoFingerGestureDetector
+    private lateinit var mMoveGestureDetector: MoveGestureDetector
+    private var matrix=Matrix()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +37,22 @@ class TouchActivity : AppCompatActivity(), View.OnTouchListener, View.OnGenericM
         mGestureDetector = GestureDetector(this, MyGestureListener())
         mGestureDetector.setOnDoubleTapListener(MyDoubleTapListener())
         mGestureDetector.setContextClickListener(MyContextClickListener())
+
+        mScaleDetector= ScaleGestureDetector(this,MyScaleListener())
+        mRotateDetector = RotateGestureDetector(this,MyRotateListener())
+        mShoveDetector = ShoveGestureDetector(this,MyShoveListener())
+        mMoveGestureDetector= MoveGestureDetector(this,MyMoveListener())
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         mGestureDetector.onTouchEvent(event)
+        mScaleDetector.onTouchEvent(event)
+        mRotateDetector.onTouchEvent(event)
+        mShoveDetector.onTouchEvent(event)
+        mMoveGestureDetector.onTouchEvent(event)
 
-        return false
+
+        return true
     }
 
     override fun onGenericMotion(v: View?, event: MotionEvent?): Boolean {
