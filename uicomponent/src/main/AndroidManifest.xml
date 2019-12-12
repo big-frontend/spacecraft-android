@@ -67,5 +67,6 @@
             android:theme="@style/VideoTheme" />
         <activity android:name=".PhotoListActivity"/>
         <activity android:name=".LargePhotoActivity"/>
+        <activity android:name=".SearchActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 </manifest>
