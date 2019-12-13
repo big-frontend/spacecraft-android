@@ -65,8 +65,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:supportsPictureInPicture="true"
             android:theme="@style/VideoTheme" />
-        <activity android:name=".PhotoListActivity"/>
-        <activity android:name=".LargePhotoActivity"/>
-        <activity android:name=".SearchActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".PhotoListActivity" />
+        <activity android:name=".LargePhotoActivity" />
+        <activity
+            android:name=".SearchActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 </manifest>
