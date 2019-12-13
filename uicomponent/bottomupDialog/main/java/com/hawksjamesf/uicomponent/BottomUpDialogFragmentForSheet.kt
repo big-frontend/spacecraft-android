@@ -7,17 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_rn.*
 
-class RNFragment : Fragment() {
+class BottomUpDialogFragmentForSheet : BottomSheetDialogFragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(): RNFragment {
+        fun newInstance(): BottomUpDialogFragmentForSheet {
             val args = Bundle()
-            val fragment = RNFragment()
+            val fragment = BottomUpDialogFragmentForSheet()
             fragment.arguments = args
             return fragment
         }
@@ -51,10 +50,10 @@ class RNFragment : Fragment() {
             ll_container.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT, 400)
         }
     }
-    fun show(fragmentManager: FragmentManager, tag: String) {
-        fragmentManager.beginTransaction()
-//                .add(android.R.id.content, tag)
-                .add(android.R.id.content,this)
-                .commitAllowingStateLoss()
-    }
+//    fun show(fragmentManager: FragmentManager, tag: String) {
+//        fragmentManager.beginTransaction()
+////                .add(android.R.id.content, tag)
+//                .add(android.R.id.content,this)
+//                .commitAllowingStateLoss()
+//    }
 }

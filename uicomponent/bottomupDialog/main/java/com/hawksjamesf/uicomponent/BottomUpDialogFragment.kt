@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 
+/**
+ *DialogFragment的设计是为了将业务代码放到fragment，通过fragment的生命周期管理。让dialog更纯粹。
+ */
 class BottomUpDialogFragment : DialogFragment() {
     companion object {
         @JvmStatic
@@ -20,7 +23,7 @@ class BottomUpDialogFragment : DialogFragment() {
         }
 
         const val TAG = "BottomUpDialogFragment"
-        const val fragmentTag = "RNFragment"
+        const val fragmentTag = "${TAG}_RNFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,8 @@ class BottomUpDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         Log.d(TAG, "onCreateDialog")
-        return context?.let { BottomUpDialog(it) } ?: super.onCreateDialog(savedInstanceState)
+        return context?.let { BottomUpDialog(it, theme) }
+                ?: super.onCreateDialog(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,12 +50,12 @@ class BottomUpDialogFragment : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "onActivityCreated:${view}")
-        var findFragmentByTag = childFragmentManager.findFragmentByTag(fragmentTag)
+        var findFragmentByTag = childFragmentManager.findFragmentByTag(fragmentTag) as RNFragment
         if (findFragmentByTag == null) {
             findFragmentByTag = RNFragment.newInstance()
         }
         childFragmentManager.beginTransaction()
-                .add(R.id.fl_container, findFragmentByTag, fragmentTag)
+                .replace(R.id.fl_container,findFragmentByTag, fragmentTag)
                 .commitAllowingStateLoss()
     }
 }

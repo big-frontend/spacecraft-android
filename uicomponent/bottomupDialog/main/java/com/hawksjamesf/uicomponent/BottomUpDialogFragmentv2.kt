@@ -1,6 +1,7 @@
 package com.hawksjamesf.uicomponent
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
@@ -12,17 +13,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.dialog_bottom_up.*
 
-class BottomUpFragment : Fragment() ,DialogInterface.OnCancelListener,DialogInterface.OnDismissListener,DialogInterface.OnShowListener{
+class BottomUpDialogFragmentv2 : Fragment() ,DialogInterface.OnCancelListener,DialogInterface.OnDismissListener,DialogInterface.OnShowListener{
     companion object {
         @JvmStatic
-        fun newInstance(): BottomUpFragment {
+        fun newInstance(): BottomUpDialogFragmentv2 {
             val args = Bundle()
-            val fragment = BottomUpFragment()
+            val fragment = BottomUpDialogFragmentv2()
             fragment.arguments = args
             return fragment
         }
 
         const val TAG = "BottomUpFragment"
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d(TAG, "onAttach"+context)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -66,10 +73,16 @@ class BottomUpFragment : Fragment() ,DialogInterface.OnCancelListener,DialogInte
         Log.d(TAG, "onStop")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy")
+    }
+
     fun show(fragmentManager: FragmentManager, tag: String) {
         fragmentManager.beginTransaction()
                 .add(this, tag)
                 .commitAllowingStateLoss()
+
     }
 
     override fun onCancel(dialog: DialogInterface?) {
