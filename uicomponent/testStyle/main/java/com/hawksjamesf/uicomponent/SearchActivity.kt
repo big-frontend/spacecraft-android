@@ -202,7 +202,6 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener {
         contentSpan.setSpan(RelativeSizeSpan(1.5f), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         contentSpan.setSpan(DrawableBackgroundSpan(strokeColor = getColor(R.color.apricot), strokeWith = 2, dashWidth = 2, dashGap = 1, textColor = Color.RED), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         contentSpan.setSpan(EmbossMaskFilter(floatArrayOf(3f, 3f, 3f), 4f, 8f, 3f), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        contentSpan.setSpan(ForegroundColorSpan(Color.RED), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         tv_content.text = contentSpan
         sv_content_container.smoothScrollTo(0, tv_content.lineHeight * curLine)
         Log.d("cjf", "curindex:$curindex / indexLine:$curLine / scrollY:${sv_content_container.scrollY}\n start:$start / end:$end / map size:${map.size()}")

@@ -5,7 +5,6 @@ import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.text.TextPaint
 import android.text.style.ReplacementSpan
-import android.util.Log
 import androidx.annotation.ColorInt
 import com.hawksjamesf.common.util.ConvertUtil
 import com.hawksjamesf.common.util.DP
@@ -37,7 +36,6 @@ class DrawableBackgroundSpan(val bgColor: Int = -1, @DP val strokeWith: Int = -1
         val originalTextSize = paint.textSize
         val originalStyle = paint.style
         val originalStrokeWith = paint.strokeWidth
-        Log.d("cjf", "originalColor$originalColor")
 
         if (textColor != -1) {
             paint.color = textColor
