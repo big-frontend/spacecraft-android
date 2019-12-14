@@ -40,6 +40,13 @@ import android.text.style.UpdateAppearance;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.ref.WeakReference;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
@@ -49,13 +56,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.WeakReference;
 
 /**
  * Copyright ® $ 2017
@@ -105,8 +105,7 @@ import java.lang.ref.WeakReference;
  * - ReplacementSpan,
  * - DynamicDrawableSpan,
  * - ImageSpan 支持四种Bitmap/Drawable/Uri/resourceId动态加载图片的方式
- * - EmojiSpan
- * -TypefaceEmojiSpan
+ * - EmojiSpan /TypefaceEmojiSpan
  * <p>
  * - SuggestionSpan,
  * <p>
