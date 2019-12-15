@@ -37,7 +37,6 @@ import android.text.style.TypefaceSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.text.style.UpdateAppearance;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -1036,7 +1035,6 @@ public class SpanUtil {
             float rectTop=top;
             float rectRight=y;
             float rectBottom=bottom;
-            Log.d("cjf",""+rectLeft+"/"+rectTop+"/"+rectRight+"/"+rectBottom+"---》"+paint.getTextAlign());
             canvas.drawRoundRect(rectLeft,rectTop,rectRight ,rectBottom,10,10,paint);
 
             paint.setColor(originalColor);

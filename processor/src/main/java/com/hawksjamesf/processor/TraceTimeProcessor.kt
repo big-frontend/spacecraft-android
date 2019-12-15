@@ -26,12 +26,12 @@ class TraceTimeProcessor : AbstractProcessor() {
 
     override fun init(p0: ProcessingEnvironment?) {
         super.init(p0)
-        println("cjf-init")
+        println("hawks-init")
 
     }
 
     override fun process(p0: MutableSet<out TypeElement>?, p1: RoundEnvironment?): Boolean {
-        println("cjf-process")
+        println("hawks-process")
         return false
     }
 

@@ -32,13 +32,13 @@ public class TraceTime2Processor extends AbstractProcessor {
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
-        System.out.println("cjf-init 2");
+        System.out.println("hawks-init 2");
         super.init(processingEnvironment);
     }
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        System.out.println("cjf-process 2");
+        System.out.println("hawks-process 2");
         return false;
     }
 

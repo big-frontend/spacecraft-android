@@ -193,7 +193,7 @@ public class HeadBubbleView extends FrameLayout {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         if (createAnimView()) return;
-                        Log.d("cjf", "long" + aLong);
+                        Log.d("hawks", "long" + aLong);
                     }
                 });
     }

@@ -5,10 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_content_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/json_string"
+        android:visibility="invisible" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_content_container"
@@ -21,6 +27,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
 
             <TextView
                 android:id="@+id/tv_content"
@@ -67,19 +74,19 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <com.google.android.material.bottomappbar.BottomAppBar-->
-<!--        android:id="@+id/bab_bar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        app:navigationIcon="@android:drawable/ic_menu_sort_by_size"-->
-<!--        app:fabAlignmentMode="end"-->
-<!--        />-->
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_anchor="@id/bab_bar"-->
-<!--        />-->
+    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+    <!--        android:id="@+id/bab_bar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        app:navigationIcon="@android:drawable/ic_menu_sort_by_size"-->
+    <!--        app:fabAlignmentMode="end"-->
+    <!--        />-->
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fab_button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_anchor="@id/bab_bar"-->
+    <!--        />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
