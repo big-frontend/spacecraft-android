@@ -22,6 +22,7 @@ import androidx.core.util.isNotEmpty
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.serialization.toUtf8Bytes
+import org.json.JSONObject
 import java.util.regex.Pattern
 
 /**
@@ -131,7 +132,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener {
         json_string = resources.openRawResource(R.raw.data).reader().buffered().readText()
 
         Log.d("hawks", "file length: ${json_string.toUtf8Bytes().size / 1024f} kb")
-        tv_content.text = json_string
+        tv_content.text = JSONObject(json_string).toString(4)
         lineHeight = tv_content.lineHeight
         et_search.setOnEditorActionListener(this)
         til_search_container.addOnEndIconChangedListener { textInputLayout, previousIcon ->

@@ -1,11 +1,15 @@
 package com.hawksjamesf.spacecraft;
 
 import android.content.Context;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
+import android.content.Intent;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,11 +20,14 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+    @Rule
+    public ActivityTestRule<StethoActivity> activityRule = new ActivityTestRule<>(StethoActivity.class, true, false);
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
+        activityRule.launchActivity(new Intent());
         assertEquals("com.hawksjamesf.location.test", appContext.getPackageName());
     }
 }

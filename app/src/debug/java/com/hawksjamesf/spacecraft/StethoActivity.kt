@@ -3,15 +3,15 @@ package com.hawksjamesf.spacecraft
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
+import android.os.Bundle
 import android.provider.CalendarContract
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.stetho.InspectorModulesProvider
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.inspector.database.ContentProviderDatabaseDriver
 import com.facebook.stetho.inspector.database.ContentProviderSchema
 import com.facebook.stetho.inspector.protocol.ChromeDevtoolsDomain
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
-import com.orhanobut.logger.PrettyFormatStrategy
+import com.hawksjamesf.storage.DBDumperPlugin
 
 
 /**
@@ -21,23 +21,18 @@ import com.orhanobut.logger.PrettyFormatStrategy
  * @author: hawks.jamesf
  * @since: Aug/03/2019  Sat
  */
-class DebugableApp : App() {
+class StethoActivity : AppCompatActivity() {
     companion object {
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        Logger.addLogAdapter(object : AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
-            override fun isLoggable(priority: Int, tag: String?): Boolean {
-                return BuildConfig.DEBUG
-            }
-        })
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         //        UETool.showUETMenu();
 //        Stetho.initializeWithDefaults(this)
         Stetho.initialize(Stetho.newInitializerBuilder(this)
                 .enableDumpapp {
                     Stetho.DefaultDumperPluginsBuilder(this)
-//                            .provide()
+                            .provide(DBDumperPlugin(contentResolver))
                             .finish()
                 }
 //                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))

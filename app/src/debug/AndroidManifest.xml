@@ -1,11 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.hawksjamesf.spacecraft">
+    package="com.hawksjamesf.spacecraft">
 
-    <application
-        android:name=".DebugableApp"
-        tools:replace="android:name">
-
-
+    <application>
+        <activity android:name=".StethoActivity" />
     </application>
 </manifest>
