@@ -72,6 +72,14 @@ class LogContentProvider : ContentProvider() {
         return -1
     }
 
+    /**
+     * example:
+     * ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>();
+     *  operations.add(
+    ContentProviderOperation.newDelete(APODContract.CONTENT_URI)
+    .build());
+     * mContentResolver.applyBatch(AUTHORITY, operations);
+     */
     override fun applyBatch(operations: ArrayList<ContentProviderOperation>): Array<ContentProviderResult> {
         Log.d("LogContentProvider", "applyBatch:1 param")
         logDB?.beginTransaction()
