@@ -10,6 +10,7 @@ def srcDirs = [
         "async",
         "serialization",
         "apm",
+        "ypose",
 
 ]
 android {
@@ -23,6 +24,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14"
+            }
+        }
+
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
     }
 
     buildTypes {
@@ -54,6 +66,7 @@ android {
                 aidl.srcDirs += "$projectDir/$it/main/aidl"
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
+                jni.srcDirs +=  "$projectDir/$it/main/jni"
             }
         }
 //        main.java.srcDirs += ["src/main/kotlin"]

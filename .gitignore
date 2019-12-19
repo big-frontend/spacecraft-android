@@ -57,3 +57,4 @@ freeline_project_description.json
 viewpagerindicator_library
 .DS_Store
 /generation_version.properties
+common/.cxx
