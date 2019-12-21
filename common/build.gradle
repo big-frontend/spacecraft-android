@@ -34,6 +34,7 @@ android {
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
+            //path 'src/main/cpp/CMakeLists.txt'
         }
     }
 
@@ -67,6 +68,8 @@ android {
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
                 jni.srcDirs +=  "$projectDir/$it/main/jni"
+                jniLibs.srcDirs +=  "$projectDir/$it/main/jniLibs"
+
             }
         }
 //        main.java.srcDirs += ["src/main/kotlin"]

@@ -33,7 +33,7 @@ public class NetModule {
     @Provides
     @Singleton
     public SignInDataSource provideSignInDataSource() {
-        if (BuildConfig.MOCKED_DATA_ACCESS) {
+        if (false) {
             return new MockSignInDataSource(Util.getApp(), new UncertaintyConditions.UncertaintyParams(
                     0f, 0, 1500L, 500L
             ));
@@ -46,7 +46,7 @@ public class NetModule {
     @Provides
     @Singleton
     public WeatherDataSource provideWeatherDataSource() {
-        if (BuildConfig.MOCKED_DATA_ACCESS) {
+        if (false) {
             return new MockWeatherDataSource(Util.getApp(), new UncertaintyConditions.UncertaintyParams(
                     0f, 0, 1500L, 500L
             ));

@@ -206,16 +206,17 @@ android {
      * 渠道包 start
      */
     defaultPublishConfig 'xiaomiRealRelease'
-    flavorDimensions 'channel', 'data_access'
+//    flavorDimensions 'channel', 'data_access'
+    flavorDimensions 'channel'
     productFlavors {
-        mocked {
-            dimension 'data_access'
-            matchingFallbacks = ['mocked']
-        }
-        real {
-            dimension 'data_access'
-            matchingFallbacks = ['real']
-        }
+//        mocked {
+//            dimension 'data_access'
+//            matchingFallbacks = ['mocked']
+//        }
+//        real {
+//            dimension 'data_access'
+//            matchingFallbacks = ['real']
+//        }
         xiaomi {
             dimension 'channel'
             manifestPlaceholders = [

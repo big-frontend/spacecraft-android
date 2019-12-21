@@ -2,7 +2,6 @@ package com.hawksjamesf.spacecraft.ui.signin
 
 import androidx.annotation.MainThread
 import com.hawksjamesf.common.util.Util
-import com.hawksjamesf.network.BuildConfig
 import com.hawksjamesf.network.signin.*
 import com.hawksjamesf.network.source.SignInDataSource
 import com.hawksjamesf.network.source.mock.MockSignInDataSource
@@ -26,7 +25,7 @@ class SignInPresenter private constructor(
     private val communicationTimeoutSeconds: Long = 10
 
     companion object {
-        var INSTANCE = SignInPresenter(if (BuildConfig.MOCKED_DATA_ACCESS) {
+        var INSTANCE = SignInPresenter(if (false) {
             MockSignInDataSource(Util.getApp(), UncertaintyConditions.UncertaintyParams(
                     0f, 0f, 1500L, 500L
             ))

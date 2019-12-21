@@ -19,6 +19,7 @@ class YPoseActivity : AppCompatActivity() {
      * which is packaged with this application.
      */
     external fun stringFromJNI(): String
+    fun stringFromJava()="string  from java"
 
     companion object {
 
