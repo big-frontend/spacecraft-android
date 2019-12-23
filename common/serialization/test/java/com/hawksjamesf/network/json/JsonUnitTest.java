@@ -1,6 +1,6 @@
 package com.hawksjamesf.network.json;
 
-import com.hawksjamesf.network.PrintExtensionKt;
+import com.hawksjamesf.network.PrintUtil;
 import com.hawksjamesf.network.ServiceApi;
 
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class JsonUnitTest {
                             e.printStackTrace();
                         }
                         //
-                        PrintExtensionKt.printInfo("耗时:" + (System.currentTimeMillis() - start));
+                        PrintUtil.printInfo("耗时:" + (System.currentTimeMillis() - start));
 
                         return 2;
                     }

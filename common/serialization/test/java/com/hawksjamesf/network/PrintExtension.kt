@@ -1,3 +1,4 @@
+@file:JvmName("PrintUtil")
 package com.hawksjamesf.network
 
 /**
