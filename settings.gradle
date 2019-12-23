@@ -8,3 +8,4 @@ include ':common', ':network', ':storage',
         ':image', ':av', ':map',
         ':chatroom', ':uicomponent', ':login'
 println("settings end")
+include ':ypose'

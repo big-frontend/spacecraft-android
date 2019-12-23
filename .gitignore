@@ -58,3 +58,4 @@ viewpagerindicator_library
 .DS_Store
 /generation_version.properties
 common/.cxx
+ypose/.cxx
