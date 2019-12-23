@@ -26,7 +26,8 @@ android {
 
         externalNativeBuild {
             cmake {
-                cppFlags "-std=c++14"
+//                cppFlags "-std=c++14"
+//                cppFlags "-std=gnu++11"
                 targets "hawks","native-lib"
             }
         }
