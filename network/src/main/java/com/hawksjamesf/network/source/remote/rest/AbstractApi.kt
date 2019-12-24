@@ -7,7 +7,6 @@ import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
-import okhttp3.Protocol
 import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -50,7 +49,7 @@ abstract class AbstractApi<T : Any> {
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .pingInterval(1, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
-                .protocols(listOf(Protocol.HTTP_2))
+//                .protocols(listOf(Protocol.HTTP_2))
                 .addInterceptor(URLInterceptor())
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addNetworkInterceptor(StethoInterceptor())

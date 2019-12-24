@@ -21,7 +21,8 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_hawksjamesf_common_YPoseActivity_s
     pthread_attr_init(&threadAttr_);
     pthread_attr_setdetachstate(&threadAttr_, PTHREAD_CREATE_DETACHED);
 //    pthread_mutex_init(&g_ctx)
-    int result = pthread_create(&threadInfo_, &threadAttr_, update,);
+//    int result = pthread_create(&threadInfo_, &threadAttr_, update,);
+    int result = 0;
     assert(result == 0);
     pthread_attr_destroy(&threadAttr_);
     std::string hello = "Hello from C++";
