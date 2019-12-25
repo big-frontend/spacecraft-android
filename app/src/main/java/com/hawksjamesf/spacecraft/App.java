@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -216,6 +217,8 @@ public class App extends MultiDexApplication {
                 .setEmojiSpanIndicatorEnabled(true);
         EmojiCompat.Config bundledEmojiCompatConfig = new BundledEmojiCompatConfig(this);
         EmojiCompat.init(emojiCompatConfig);
+
+        Fresco.initialize(this);
 
     }
 
