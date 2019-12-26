@@ -7,8 +7,8 @@
             android:name=".LogDBActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
         <provider
-            android:authorities="com.hawksjamesf.storage.log"
+            android:authorities="${applicationId}.storage.log"
             android:exported="false"
-            android:name="LogContentProvider"/>
+            android:name=".LogContentProvider"/>
     </application>
 </manifest>

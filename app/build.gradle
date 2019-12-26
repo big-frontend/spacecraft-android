@@ -63,6 +63,11 @@ matrix {
 apply plugin: 'com.google.firebase.firebase-perf'
 //apply plugin: com.hawksjamesf.plugin.PerformancePlugin
 apply plugin: 'perfplugin'
+apply plugin: 'bugly'
+bugly {
+    appId = '3d62251014'
+    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+}
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
@@ -139,7 +144,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf', 'BUGLY_ENABLE_DEBUG': 'false']
             signingConfig signingConfigs.releaseSigningConfig
