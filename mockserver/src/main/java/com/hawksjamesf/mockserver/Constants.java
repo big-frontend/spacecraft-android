@@ -15,4 +15,5 @@ public class Constants {
     public final static String CURRENT_DATA_JSON = "current_data.json";
     public static final String FIVE_DATA_URL_PATH="/data/2.5/forecast";
     public static final String FIVE_DATA_JSON = "five_data.json";
+    public static final String TAG="Mock";
 }

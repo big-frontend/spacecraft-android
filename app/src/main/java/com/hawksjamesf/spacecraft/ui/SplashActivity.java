@@ -16,7 +16,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.storage.LogDBActivity;
+import com.hawksjamesf.mockserver.LogDBActivity;
 
 import org.jetbrains.annotations.NotNull;
 

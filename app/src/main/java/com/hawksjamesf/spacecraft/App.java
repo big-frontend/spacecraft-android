@@ -5,16 +5,6 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.provider.FontRequest;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.text.FontRequestEmojiCompatConfig;
-import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
-
 import com.crashlytics.android.Crashlytics;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.tasks.OnCanceledListener;
@@ -33,6 +23,9 @@ import com.hawksjamesf.network.NetComponent;
 import com.hawksjamesf.network.NetModule;
 import com.hawksjamesf.spacecraft.ui.observable.AppLifecycleObserver;
 import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.matrix.Matrix;
 import com.tencent.matrix.iocanary.IOCanaryPlugin;
@@ -50,6 +43,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.provider.FontRequest;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.text.FontRequestEmojiCompatConfig;
+import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -95,7 +97,12 @@ public class App extends MultiDexApplication {
                 .appModule(new AppModule(this))
                 .sigInModule(new SigInModule())
                 .build();
-
+        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
 //        Utils.init(this);
         Util.init(this);
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());

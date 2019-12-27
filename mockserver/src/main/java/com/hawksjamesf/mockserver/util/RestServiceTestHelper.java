@@ -1,4 +1,4 @@
-package com.hawksjamesf.mockserver;
+package com.hawksjamesf.mockserver.util;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft;
+package com.hawksjamesf.network;
 
 import android.content.Context;
 

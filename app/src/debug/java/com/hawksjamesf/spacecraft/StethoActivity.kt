@@ -11,7 +11,7 @@ import com.facebook.stetho.Stetho
 import com.facebook.stetho.inspector.database.ContentProviderDatabaseDriver
 import com.facebook.stetho.inspector.database.ContentProviderSchema
 import com.facebook.stetho.inspector.protocol.ChromeDevtoolsDomain
-import com.hawksjamesf.storage.DBDumperPlugin
+import com.hawksjamesf.mockserver.DBDumperPlugin
 
 
 /**

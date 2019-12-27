@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.hawksjamesf.common.util.TextUtil;
@@ -107,6 +108,7 @@ public class MockService extends IntentService {
         super.onCreate();
         dispatcher = DispatcherImpl.getInstance(getApplicationContext());
         Logger.t(TAG).d("onCreate");
+        Log.d("hawks","service:onCreate");
     }
 
     @Nullable

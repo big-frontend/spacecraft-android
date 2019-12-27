@@ -1,5 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android-extensions"
+apply plugin: 'kotlin-kapt'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+
+def srcDirs=[
+        "printlogs",
+]
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -19,6 +26,34 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
         }
     }
 

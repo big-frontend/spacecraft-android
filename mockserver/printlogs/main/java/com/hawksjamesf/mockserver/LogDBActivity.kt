@@ -1,4 +1,4 @@
-package com.hawksjamesf.storage
+package com.hawksjamesf.mockserver
 
 import android.annotation.TargetApi
 import android.content.ContentValues
@@ -14,9 +14,9 @@ import com.facebook.stetho.Stetho
 import com.facebook.stetho.inspector.database.ContentProviderDatabaseDriver
 import com.facebook.stetho.inspector.database.ContentProviderSchema
 import com.facebook.stetho.inspector.protocol.ChromeDevtoolsDomain
-import com.hawksjamesf.storage.platform.LogDBContract
-import com.hawksjamesf.storage.platform.LogDBHelper
-import com.hawksjamesf.storage.platform.save
+import com.hawksjamesf.mockserver.platform.LogDBContract
+import com.hawksjamesf.mockserver.platform.LogDBHelper
+import com.hawksjamesf.mockserver.platform.save
 
 class LogDBActivity : AppCompatActivity() {
     val logDB = LogDBHelper.getDB(this)

@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.orhanobut.logger.Logger;
@@ -23,7 +24,7 @@ import java.util.List;
  * @since: Sep/27/2018  Thu
  */
 public class MockManager {
-    private static final String TAG = "MockManager";
+    private static final String TAG = Constants.TAG+"/MockManager";
     MockServiceCon connection = new MockServiceCon();
     private IMockApi iMockApi;
     private static final String PROCESS_1 = "com.hawksjamesf.spacecraft.debug";
@@ -44,6 +45,7 @@ public class MockManager {
     public static void init(Context context,boolean debugable) {
         if (!debugable) return;
         String processName = getProcessName(context);
+        Log.d("hawks","oncrea:"+processName);
         Logger.t(TAG).d(processName);
         if (!TextUtils.isEmpty(processName)) {
             if (processName.equals(PROCESS_1)) {

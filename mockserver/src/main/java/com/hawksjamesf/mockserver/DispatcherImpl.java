@@ -2,6 +2,7 @@ package com.hawksjamesf.mockserver;
 
 import android.content.Context;
 
+import com.hawksjamesf.mockserver.util.RestServiceTestHelper;
 import com.orhanobut.logger.Logger;
 
 import java.net.URL;
@@ -23,7 +24,7 @@ import okhttp3.mockwebserver.RecordedRequest;
  * 比如该项目中的mockserver模块中的Dispatcher在mock_server进程，测试模块中的Dispatcher在测试进程中，客户端在A进程，测试模块和mockserver模块中的Dispatcher就都可以使用。
  */
 public class DispatcherImpl extends Dispatcher {
-    public static final String TAG = "DispatcherImpl";
+    public static final String TAG = Constants.TAG+"/DispatcherImpl";
 
     Context context;
 

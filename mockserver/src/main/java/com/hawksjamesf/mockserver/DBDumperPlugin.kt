@@ -1,4 +1,4 @@
-package com.hawksjamesf.storage
+package com.hawksjamesf.mockserver
 
 import android.content.ContentResolver
 import android.database.Cursor
@@ -6,7 +6,7 @@ import com.facebook.stetho.dumpapp.ArgsHelper
 import com.facebook.stetho.dumpapp.DumpUsageException
 import com.facebook.stetho.dumpapp.DumperContext
 import com.facebook.stetho.dumpapp.DumperPlugin
-import com.hawksjamesf.storage.platform.LogDBContract
+import com.hawksjamesf.mockserver.platform.LogDBContract
 import java.io.PrintStream
 
 /**

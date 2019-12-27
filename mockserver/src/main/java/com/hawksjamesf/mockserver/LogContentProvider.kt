@@ -1,4 +1,4 @@
-package com.hawksjamesf.storage
+package com.hawksjamesf.mockserver
 
 import android.content.ContentProvider
 import android.content.ContentProviderOperation
@@ -7,9 +7,9 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
-import android.util.Log
-import com.hawksjamesf.storage.platform.LogDBContract
-import com.hawksjamesf.storage.platform.LogDBHelper
+import com.hawksjamesf.mockserver.platform.LogDBContract
+import com.hawksjamesf.mockserver.platform.LogDBHelper
+import com.orhanobut.logger.Logger
 import java.util.*
 
 /**
@@ -22,20 +22,25 @@ import java.util.*
 class LogContentProvider : ContentProvider() {
     var logHelper: LogDBHelper? = null
     var logDB: SQLiteDatabase? = null
+
+    companion object {
+        const val TAG = "${Constants.TAG}/LogProvider"
+    }
+
     override fun onCreate(): Boolean {
         logHelper = LogDBHelper.getInstance(context)
         logDB = LogDBHelper.getDB(context)
-        Log.d("LogContentProvider", "databaseName:${logHelper?.databaseName}")
+        Logger.t(TAG).d("onCreate--->databaseName:${logHelper?.databaseName}")
         return true
     }
 
     override fun getType(uri: Uri): String? {
-        Log.d("LogContentProvider", "getType")
+        Logger.t(TAG).d("getType")
         return null
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        Log.d("LogContentProvider", "insert")
+        Logger.t(TAG).d("insert")
         if (logDB == null) return null
         val id: Long = logDB!!.insert(LogDBContract.TABLE_NAME, null /* nullColumnHack */, values)
         notifyChange()
@@ -43,7 +48,7 @@ class LogContentProvider : ContentProvider() {
     }
 
     override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor? {
-        Log.d("LogContentProvider", "query")
+        Logger.t(TAG).d("query")
         val cursor = logDB?.query(
                 LogDBContract.TABLE_NAME,
                 projection,
@@ -61,13 +66,13 @@ class LogContentProvider : ContentProvider() {
 
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-        Log.d("LogContentProvider", "update")
+        Logger.t(TAG).d("update")
         notifyChange()
         return -1
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        Log.d("LogContentProvider", "delete")
+        Logger.t(TAG).d("delete")
         notifyChange()
         return -1
     }
@@ -81,7 +86,7 @@ class LogContentProvider : ContentProvider() {
      * mContentResolver.applyBatch(AUTHORITY, operations);
      */
     override fun applyBatch(operations: ArrayList<ContentProviderOperation>): Array<ContentProviderResult> {
-        Log.d("LogContentProvider", "applyBatch:1 param")
+        Logger.t(TAG).d("applyBatch:1 param")
         logDB?.beginTransaction()
         val results = super.applyBatch(operations)
         logDB?.setTransactionSuccessful()
@@ -91,7 +96,7 @@ class LogContentProvider : ContentProvider() {
     }
 
     override fun applyBatch(authority: String, operations: ArrayList<ContentProviderOperation>): Array<ContentProviderResult> {
-        Log.d("LogContentProvider", "applyBatch:2 params")
+        Logger.t(TAG).d("applyBatch:2 params")
         logDB?.beginTransaction()
         val results = super.applyBatch(authority, operations)
         logDB?.setTransactionSuccessful()

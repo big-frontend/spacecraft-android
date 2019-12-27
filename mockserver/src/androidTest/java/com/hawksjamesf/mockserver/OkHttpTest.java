@@ -1,12 +1,10 @@
-package com.hawksjamesf.spacecraft;
+package com.hawksjamesf.mockserver;
 
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 
-import com.hawksjamesf.mockserver.DispatcherImpl;
-import com.hawksjamesf.mockserver.RestServiceTestHelper;
-import com.hawksjamesf.spacecraft.ui.home.HomeActivity;
+import com.hawksjamesf.mockserver.util.RestServiceTestHelper;
 import com.orhanobut.logger.Logger;
 
 import org.junit.After;
@@ -29,11 +27,11 @@ import okhttp3.mockwebserver.MockWebServer;
 //@RunWith(AndroidJUnit4.class)
 public class OkHttpTest  {
 
-    public static final String TAG = "com.hawksjamesf.spacecraft.OkHttpTest";
+    public static final String TAG = "com.hawksjamesf.mockserver.OkHttpTest";
     MockWebServer mockWebServer;
 
     @Rule
-    public ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class, true, false);
+    public ActivityTestRule<LogDBActivity> activityRule = new ActivityTestRule<>(LogDBActivity.class, true, false);
     DispatcherImpl dispatcher;
     Instrumentation instrumentation;
     Context context;

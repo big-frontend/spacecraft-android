@@ -1,4 +1,4 @@
-package com.hawksjamesf.storage.platform
+package com.hawksjamesf.mockserver.platform
 
 import android.net.Uri
 import android.provider.BaseColumns

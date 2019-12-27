@@ -1,4 +1,4 @@
-package com.hawksjamesf.storage.platform
+package com.hawksjamesf.mockserver.platform
 
 import android.content.Context
 import android.database.DatabaseErrorHandler
