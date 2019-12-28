@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.home.factor
+package com.hawksjamesf.mockserver.model.factor
 
 /**
  * Copyright ® $ 2017

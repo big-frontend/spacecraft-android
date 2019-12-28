@@ -1,5 +1,7 @@
 package com.hawksjamesf.mockserver.control;
 
+import com.hawksjamesf.annotations.TraceTime;
+import com.hawksjamesf.annotations.TraceTime2;
 import com.hawksjamesf.mockserver.Constants;
 import com.hawksjamesf.mockserver.Control;
 import com.hawksjamesf.mockserver.util.RestServiceTestHelper;
@@ -17,6 +19,9 @@ import retrofit2.http.GET;
  * @since: 2017/7/4
  */
 @Control
+@com.hawksjamesf.annotations.Control
+@TraceTime
+@TraceTime2
 public class WeatherControl {
 
     @GET("/data/2.5/weather")

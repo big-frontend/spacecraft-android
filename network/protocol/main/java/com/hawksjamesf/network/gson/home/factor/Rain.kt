@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.home.factor
+package com.hawksjamesf.network.gson.home.factor
 
 /**
  * Copyright ® $ 2017

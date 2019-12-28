@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.data.bean.weather
+package com.hawksjamesf.mockserver.model.weather
 
 /**
  * Copyright ® $ 2017

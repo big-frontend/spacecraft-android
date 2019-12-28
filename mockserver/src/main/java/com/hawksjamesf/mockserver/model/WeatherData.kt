@@ -1,10 +1,10 @@
-package com.hawksjamesf.network.home
+package com.hawksjamesf.mockserver.model
 
-import com.hawksjamesf.network.home.factor.Clouds
-import com.hawksjamesf.network.home.factor.Wind
-import com.hawksjamesf.spacecraft.data.bean.weather.Coordinate
-import com.hawksjamesf.spacecraft.data.bean.weather.Main
-import com.hawksjamesf.spacecraft.data.bean.weather.Weather
+import com.hawksjamesf.mockserver.model.factor.Clouds
+import com.hawksjamesf.mockserver.model.factor.Wind
+import com.hawksjamesf.mockserver.model.weather.Coordinate
+import com.hawksjamesf.mockserver.model.weather.Main
+import com.hawksjamesf.mockserver.model.weather.Weather
 
 /**
  * Copyright ® $ 2017

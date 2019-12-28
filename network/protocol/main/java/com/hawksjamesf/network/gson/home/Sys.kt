@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.home
+package com.hawksjamesf.network.gson.home
 
 /**
  * Copyright ® $ 2017

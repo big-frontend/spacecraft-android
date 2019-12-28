@@ -1,7 +1,7 @@
 package com.hawksjamesf.network.source
 
 import com.hawksjamesf.network.gson.ListRes
-import com.hawksjamesf.network.home.WeatherData
+import com.hawksjamesf.mockserver.model.WeatherData
 import io.reactivex.Observable
 import io.reactivex.Single
 

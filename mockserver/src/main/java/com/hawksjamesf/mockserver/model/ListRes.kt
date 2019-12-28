@@ -1,6 +1,6 @@
 package com.hawksjamesf.mockserver.model
 
-import com.hawksjamesf.spacecraft.data.bean.weather.City
+import com.hawksjamesf.mockserver.model.weather.City
 
 /**
  * Copyright ® $ 2017

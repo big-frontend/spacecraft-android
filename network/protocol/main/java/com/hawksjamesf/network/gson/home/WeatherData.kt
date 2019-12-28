@@ -1,10 +1,10 @@
-package com.hawksjamesf.network.home
+package com.hawksjamesf.network.gson.home
 
-import com.hawksjamesf.network.home.factor.Clouds
-import com.hawksjamesf.network.home.factor.Wind
-import com.hawksjamesf.spacecraft.data.bean.weather.Coordinate
-import com.hawksjamesf.spacecraft.data.bean.weather.Main
-import com.hawksjamesf.spacecraft.data.bean.weather.Weather
+import com.hawksjamesf.network.gson.home.factor.Clouds
+import com.hawksjamesf.network.gson.home.factor.Wind
+import com.hawksjamesf.network.gson.home.weather.Coordinate
+import com.hawksjamesf.network.gson.home.weather.Main
+import com.hawksjamesf.network.gson.home.weather.Weather
 
 /**
  * Copyright ® $ 2017

@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.home
+package com.hawksjamesf.mockserver.model
 
 /**
  * Copyright ® $ 2017
