@@ -42,9 +42,13 @@ import retrofit2.mock.NetworkBehavior;
  * @since: Sep/25/2018  Tue
  * <p>
  * MockService的启动一定要快与有网络请求的组件，不然有网络请求的组件在连接MockServer时会报错导致crash
+ * <p>
+ * Note:
+ * IntentService is subject to all the background execution limits imposed with Android 8.0 (API level 26).
+ * In most cases, you are better off using JobIntentService,which uses jobs instead of services when running on Android 8.0 or higher.
  */
 public class MockService extends IntentService {
-    private static final String TAG = "MockService";
+    private static final String TAG = Constants.TAG+"/MockService";
 
     private IMockApiImpl mBinder = new IMockApiImpl();
     IMockServerCallback callback;
@@ -61,7 +65,7 @@ public class MockService extends IntentService {
         super("mock_service");
         mockWebServer = new MockWebServer();
         try {
-            mockWebServer.useHttps(sslContext("","").getSocketFactory(), false);
+            mockWebServer.useHttps(sslContext("", "").getSocketFactory(), false);
             mockWebServer.setBodyLimit(12);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
@@ -108,7 +112,6 @@ public class MockService extends IntentService {
         super.onCreate();
         dispatcher = DispatcherImpl.getInstance(getApplicationContext());
         Logger.t(TAG).d("onCreate");
-        Log.d("hawks","service:onCreate");
     }
 
     @Nullable
@@ -121,6 +124,7 @@ public class MockService extends IntentService {
     //work thread
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        Log.d("hawks", "onHandleIntent--->" + mockWebServer.getHostName() + ":" + mockWebServer.getPort());
         //okhttp
         try {
 //            mockWebServer.start();
@@ -138,6 +142,7 @@ public class MockService extends IntentService {
             if (callback != null) {
                 callback.onStartMockServer();
             }
+            Log.d("hawks", "onHandleIntent--->" + mockWebServer.getHostName() + ":" + mockWebServer.getPort());
             mockWebServer.setDispatcher(dispatcher);
 //            mockWebServer.enqueue();
 

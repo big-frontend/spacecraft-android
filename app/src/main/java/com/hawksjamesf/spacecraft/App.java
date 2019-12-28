@@ -77,6 +77,10 @@ public class App extends MultiDexApplication {
         return app;
     }
 
+    private static final String PROCESS_1 = "com.hawksjamesf.spacecraft.debug";
+    private static final String PROCESS_2 = ":mock_server";
+    private static final String PROCESS_3 = ":mock_jobserver";
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -86,6 +90,15 @@ public class App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
+        String processName = getProcessName(android.os.Process.myPid());
+        Logger.t(TAG).d("processName：" + processName);
+        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
         app = this;
 
         sNetComponent = DaggerNetComponent.builder()
@@ -97,12 +110,7 @@ public class App extends MultiDexApplication {
                 .appModule(new AppModule(this))
                 .sigInModule(new SigInModule())
                 .build();
-        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
-            @Override
-            public boolean isLoggable(int priority, String tag) {
-                return BuildConfig.DEBUG;
-            }
-        });
+
 //        Utils.init(this);
         Util.init(this);
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
@@ -110,7 +118,6 @@ public class App extends MultiDexApplication {
         strategy.setBuglyLogUpload(true);
         String packageName = getApplicationContext().getPackageName();
         strategy.setAppPackageName(packageName);
-        String processName = getProcessName(android.os.Process.myPid());
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
 //        strategy.setAppReportDelay(20000);   //改为20s
         strategy.setAppChannel("huawei");
@@ -118,7 +125,6 @@ public class App extends MultiDexApplication {
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         CrashReport.initCrashReport(getApplicationContext(), strategy);
         Fabric.with(this, new Crashlytics());
-//        MockManager.init(getApplicationContext(),BuildConfig.DEBUG);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
 

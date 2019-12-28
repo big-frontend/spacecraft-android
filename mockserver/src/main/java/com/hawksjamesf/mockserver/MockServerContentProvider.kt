@@ -20,7 +20,7 @@ class MockServerContentProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         Logger.t(TAG).e( "onCreate")
-        MockManager.init(context, BuildConfig.DEBUG)
+
         return true
     }
 

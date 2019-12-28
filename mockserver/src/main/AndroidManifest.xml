@@ -1,22 +1,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.hawksjamesf.mockserver">
+    package="com.hawksjamesf.mockserver">
 
     <application>
         <service
             android:name=".MockService"
             android:process=":mock_server"
             />
+        <service
+            android:name=".MockJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":mock_jobserver"
+            />
+
         <activity
             android:name="com.hawksjamesf.mockserver.LogDBActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
+
         <provider
+            android:name="com.hawksjamesf.mockserver.LogContentProvider"
             android:authorities="${applicationId}.mockserver.log"
-            android:exported="false"
-            android:name="com.hawksjamesf.mockserver.LogContentProvider"/>
+            android:exported="false" />
         <provider
+            android:name="com.hawksjamesf.mockserver.MockServerContentProvider"
             android:authorities="${applicationId}.mockserver.mocker"
-            android:exported="false"
-            android:name="com.hawksjamesf.mockserver.MockServerContentProvider"/>
-<!--            android:multiprocess="true"-->
+            android:exported="false" />
+        <!--            android:multiprocess="true"-->
     </application>
 </manifest>

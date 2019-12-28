@@ -2,6 +2,10 @@ package com.hawksjamesf.spacecraft.ui.observable;
 
 import android.util.Log;
 
+import com.hawksjamesf.mockserver.BuildConfig;
+import com.hawksjamesf.mockserver.MockManager;
+import com.hawksjamesf.spacecraft.App;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -17,8 +21,9 @@ import androidx.lifecycle.OnLifecycleEvent;
 public class AppLifecycleObserver implements LifecycleObserver {
     //can receive zero or one argument
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void connectListener() {
+    public void connectListener(LifecycleOwner lifecycleOwner) {
         Log.d("AppLifecycleObserver", "connectListener");
+        MockManager.init(App.getInstance(), BuildConfig.DEBUG);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
