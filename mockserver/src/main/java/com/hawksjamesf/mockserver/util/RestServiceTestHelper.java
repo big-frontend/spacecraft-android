@@ -1,6 +1,6 @@
 package com.hawksjamesf.mockserver.util;
 
-import android.content.Context;
+import com.hawksjamesf.mockserver.DispatcherImpl;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,9 +25,8 @@ public class RestServiceTestHelper {
         return sb.toString();
     }
 
-    public static String getStringFromFile(Context context, String filePath) throws Exception {
-        final InputStream stream = context.getResources().getAssets().open(filePath);
-
+    public static String getStringFromFile(String filePath) throws Exception {
+        final InputStream stream = DispatcherImpl.getContext().getResources().getAssets().open(filePath);
         String ret = convertStreamToString(stream);
         //Make sure you close all streams.
         stream.close();

@@ -2,16 +2,24 @@ package com.hawksjamesf.mockserver;
 
 import android.content.Context;
 
+import com.hawksjamesf.mockserver.control.WeatherControl;
 import com.hawksjamesf.mockserver.util.RestServiceTestHelper;
 import com.orhanobut.logger.Logger;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.RecordedRequest;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 /**
  * Copyright ® $ 2017
@@ -26,9 +34,13 @@ import okhttp3.mockwebserver.RecordedRequest;
  * 比如该项目中的mockserver模块中的Dispatcher在mock_server进程，测试模块中的Dispatcher在测试进程中，客户端在A进程，测试模块和mockserver模块中的Dispatcher就都可以使用。
  */
 public class DispatcherImpl extends Dispatcher {
-    public static final String TAG = Constants.TAG+"/DispatcherImpl";
+    public static final String TAG = Constants.TAG + "/DispatcherImpl";
 
-    Context context;
+    private static Context mContext;
+
+    public static Context getContext() {
+        return mContext;
+    }
 
     private static DispatcherImpl dispatcher;
 
@@ -52,46 +64,69 @@ public class DispatcherImpl extends Dispatcher {
 
     }
 
+    Map<String, Method> annotationMap = new HashMap<>();
+    WeatherControl mWeatherControl = new WeatherControl();
+
     private DispatcherImpl(Context context) {
-        this.context = context;
+
+        for (Method method : WeatherControl.class.getDeclaredMethods()) {
+            Annotation[] annotations = method.getAnnotations();
+            for (Annotation annotation : annotations) {
+                if (annotation instanceof GET) {
+                    String value = ((GET) annotation).value();
+                    annotationMap.put(value, method);
+                } else if (annotation instanceof POST) {
+                    String value = ((POST) annotation).value();
+                    annotationMap.put(value, method);
+                }
+            }
+        }
+        mContext = context;
     }
 
     @NotNull
     @Override
     public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
+        MockResponse errorMockResponse = genErrorMockResponse();
+        if (request == null || request.getRequestUrl() == null) {
+            return errorMockResponse;
+        }
         URL url = request.getRequestUrl().url();
         Logger.t(TAG).i(url.getPath());
+        Method method = annotationMap.get(url.getPath().trim());
+        if (method != null) {
+            method.setAccessible(true);
+            try {
+                MockResponse mockResponse = (MockResponse) method.invoke(mWeatherControl, request);
+                Logger.t(TAG).i("method:" + method.getName());
+                if (mockResponse == null) {
+                    return errorMockResponse;
+                } else {
 
-        String fileName;
-        int code = 200;
-        switch (url.getPath()) {
-            case Constants.CURRENT_DATA_URL_PATH: {
-                fileName = Constants.CURRENT_DATA_JSON;
-                break;
+                    return mockResponse;
+                }
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
             }
-
-            case Constants.FIVE_DATA_URL_PATH: {
-                fileName = Constants.FIVE_DATA_JSON;
-                break;
-            }
-
-            default:
-                fileName = Constants.ERROR_JSON;
-                code = 404;
         }
-        Logger.t(TAG).i(fileName);
+
+        return errorMockResponse;
+
+    }
+
+
+    private MockResponse genErrorMockResponse() {
         String stringFromFile = "";
         try {
-            stringFromFile = RestServiceTestHelper.getStringFromFile(context, fileName);
-
+            stringFromFile = RestServiceTestHelper.getStringFromFile(Constants.ERROR_JSON);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return new MockResponse()
-                .setResponseCode(code)
+                .setResponseCode(404)
                 .addHeader("Content-Type", "application/json; charset=utf-8")
                 .addHeader("Cache-Control", "no-cache")
                 .setBody(stringFromFile);
+
     }
 }

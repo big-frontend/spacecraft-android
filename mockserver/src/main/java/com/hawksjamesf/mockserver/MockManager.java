@@ -23,6 +23,9 @@ import java.util.List;
  *
  * @author: hawskjamesf
  * @since: Sep/27/2018  Thu
+ *
+ *
+ * 由于MockManager和MockService不在用一个进程，所以MockManager中的静态方法不能给MockService使用。java的单例只存在于单个进程中，多进程不能使用。
  */
 public class MockManager {
     private static final String TAG = Constants.TAG + "/MockManager";
@@ -33,8 +36,6 @@ public class MockManager {
     public static MockManager manager = new MockManager();
     private static JobScheduler mJobScheduler;
     private static final boolean USE_JOBSCHEDULER = false;
-
-
     private MockManager() {
     }
 

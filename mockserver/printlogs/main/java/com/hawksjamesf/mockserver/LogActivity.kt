@@ -1,4 +1,4 @@
-package com.hawksjamesf.network
+package com.hawksjamesf.mockserver
 
 import androidx.appcompat.app.AppCompatActivity
 
