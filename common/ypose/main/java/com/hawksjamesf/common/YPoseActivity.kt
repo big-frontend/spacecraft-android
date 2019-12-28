@@ -1,17 +1,24 @@
 package com.hawksjamesf.common
 
 import android.os.Bundle
+import android.util.TypedValue
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class YPoseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val textView = TextView(this)
+        textView.text = "y pose  activity"
+        textView.id = R.id.tv_text
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
+        setContentView(textView)
+        textView.text = stringFromJNI()
+//        setContentView(R.layout.activity_main)
 
         // Example of a call to a native method
-        sample_text.text = stringFromJNI()
+//        sample_text.text = stringFromJNI()
     }
 
     /**
