@@ -1,2 +1,3 @@
 com.hawksjamesf.processor.TraceTimeProcessor
 com.hawksjamesf.processor.TraceTime2Processor
+com.hawksjamesf.processor.ControlProcessor

@@ -64,4 +64,6 @@ dependencies {
     api project(path: ':common')
     api "com.squareup.okhttp3:mockwebserver:4.0.1"
     api "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
+    annotationProcessor project(path: ':processor')
+    implementation project(path: ':annotations')
 }
