@@ -5,6 +5,8 @@ import android.content.Context;
 import com.hawksjamesf.mockserver.util.RestServiceTestHelper;
 import com.orhanobut.logger.Logger;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.URL;
 
 import okhttp3.mockwebserver.Dispatcher;
@@ -54,6 +56,7 @@ public class DispatcherImpl extends Dispatcher {
         this.context = context;
     }
 
+    @NotNull
     @Override
     public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
         URL url = request.getRequestUrl().url();
@@ -76,7 +79,7 @@ public class DispatcherImpl extends Dispatcher {
                 fileName = Constants.ERROR_JSON;
                 code = 404;
         }
-        Logger.t(TAG).d(fileName);
+        Logger.t(TAG).i(fileName);
         String stringFromFile = "";
         try {
             stringFromFile = RestServiceTestHelper.getStringFromFile(context, fileName);

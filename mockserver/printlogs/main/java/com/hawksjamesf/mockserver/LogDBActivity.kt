@@ -9,6 +9,7 @@ import android.provider.CalendarContract
 import android.util.TypedValue
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.SPUtils
 import com.facebook.stetho.InspectorModulesProvider
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.inspector.database.ContentProviderDatabaseDriver
@@ -17,9 +18,18 @@ import com.facebook.stetho.inspector.protocol.ChromeDevtoolsDomain
 import com.hawksjamesf.mockserver.platform.LogDBContract
 import com.hawksjamesf.mockserver.platform.LogDBHelper
 import com.hawksjamesf.mockserver.platform.save
+import com.orhanobut.logger.Logger
+import okhttp3.*
+import java.io.IOException
 
 class LogDBActivity : AppCompatActivity() {
+    //    private RecyclerView mrvHome;
     val logDB = LogDBHelper.getDB(this)
+
+    companion object {
+        const val TAG = "LogDBActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val textView = TextView(this)
@@ -49,6 +59,28 @@ class LogDBActivity : AppCompatActivity() {
             logDB?.save(values)
         }
 //        logDB?.query()
+
+        textView.setOnClickListener {
+            val url = "${SPUtils.getInstance().getString(Constants.PRE_BASE_URL)}data/2.5/weather"
+            Logger.t(TAG).i(url)
+            OkHttpClient.Builder()
+//                    .dns(Dns.SYSTEM)//spacecraft.com
+                    .connectionSpecs(arrayListOf(ConnectionSpec.CLEARTEXT))
+                    .build()
+                    .newCall(Request.Builder()
+                            .url(url)
+                            .build()
+                    ).enqueue(object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
+                            Logger.t("$TAG---onFailure").i(e.message)
+                        }
+
+                        override fun onResponse(call: Call, response: Response) {
+                            Logger.t("$TAG---onResponse").i(response.isSuccessful.toString())
+                        }
+
+                    })
+        }
     }
 
     override fun onDestroy() {

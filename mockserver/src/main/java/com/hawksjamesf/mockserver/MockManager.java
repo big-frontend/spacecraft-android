@@ -32,7 +32,7 @@ public class MockManager {
     //eager load
     public static MockManager manager = new MockManager();
     private static JobScheduler mJobScheduler;
-    private static final boolean USE_JOBSCHEDULER = true;
+    private static final boolean USE_JOBSCHEDULER = false;
 
 
     private MockManager() {

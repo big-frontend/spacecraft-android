@@ -4,10 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.util.Log;
 
-import com.blankj.utilcode.util.NetworkUtils;
-import com.hawksjamesf.common.util.TextUtil;
+import com.blankj.utilcode.util.SPUtils;
 import com.orhanobut.logger.Logger;
 
 import java.io.FileInputStream;
@@ -48,7 +46,7 @@ import retrofit2.mock.NetworkBehavior;
  * In most cases, you are better off using JobIntentService,which uses jobs instead of services when running on Android 8.0 or higher.
  */
 public class MockService extends IntentService {
-    private static final String TAG = Constants.TAG+"/MockService";
+    private static final String TAG = Constants.TAG + "/MockService";
 
     private IMockApiImpl mBinder = new IMockApiImpl();
     IMockServerCallback callback;
@@ -65,9 +63,12 @@ public class MockService extends IntentService {
         super("mock_service");
         mockWebServer = new MockWebServer();
         try {
-            mockWebServer.useHttps(sslContext("", "").getSocketFactory(), false);
-            mockWebServer.setBodyLimit(12);
-        } catch (GeneralSecurityException | IOException e) {
+            mockWebServer.start(getLocalInetAddress(), 50195);
+//            mockWebServer.useHttps(sslContext("", "").getSocketFactory(), false);
+//            mockWebServer.setBodyLimit(12);
+//        } catch (GeneralSecurityException | IOException e) {
+//            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         mockRetrofit = new MockRetrofit.Builder(
@@ -124,31 +125,21 @@ public class MockService extends IntentService {
     //work thread
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.d("hawks", "onHandleIntent--->" + mockWebServer.getHostName() + ":" + mockWebServer.getPort());
         //okhttp
         try {
-//            mockWebServer.start();
-            mockWebServer.start(50195);
-            HttpUrl url;
-            if (TextUtil.isEmpty(NetworkUtils.getIpAddressByWifi())) {
-                url = mockWebServer.url("/");
-            } else {
-                url = mockWebServer.url(NetworkUtils.getIpAddressByWifi());
-            }
-            Logger.t(TAG).i(url.toString());
-//            SPUtils.getInstance().clear();
-//            SPUtils.getInstance().put(Constants.PRE_BASE_URL, mockWebServer.url("/").toString());
-
+            HttpUrl url = mockWebServer.url("/");
+            SPUtils.getInstance().clear();
+            SPUtils.getInstance().put(Constants.PRE_BASE_URL, url.toString());
             if (callback != null) {
                 callback.onStartMockServer();
             }
-            Log.d("hawks", "onHandleIntent--->" + mockWebServer.getHostName() + ":" + mockWebServer.getPort());
+            Logger.t(TAG).i("onHandleIntent--->" + "url:" + url + " , " + getLocalIP() + ":" + mockWebServer.getPort());
             mockWebServer.setDispatcher(dispatcher);
-//            mockWebServer.enqueue();
 
 
         } catch (Exception e) {
             e.printStackTrace();
+            Logger.t(TAG).e(e.getMessage());
         }
         //retrofit
 
@@ -197,6 +188,10 @@ public class MockService extends IntentService {
     }
 
     String getLocalIP() {
+        return getLocalInetAddress() == null ? "" : getLocalInetAddress().getHostAddress();
+    }
+
+    InetAddress getLocalInetAddress() {
 //        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 //        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 //        Logger.t(TAG).i(NetworkUtils.getIpAddressByWifi()+"/"+NetworkUtils.getIPAddress(true)+"/"+NetworkUtils.getBroadcastIpAddress());
@@ -212,18 +207,18 @@ public class MockService extends IntentService {
                     InetAddress address = addresses.nextElement();
                     if (!address.isLoopbackAddress()) {
                         if (address.isSiteLocalAddress()) {
-                            return address.getHostAddress();
+                            return address;
                         } else if (result == null) {
                             result = address;
                         }
                     }
                 }
             }
-            return (result != null ? result : InetAddress.getLocalHost()).getHostAddress();
+            return (result != null ? result : InetAddress.getLocalHost());
 
         } catch (SocketException | UnknownHostException e) {
             e.printStackTrace();
-            return "";
+            return null;
         }
     }
 }
