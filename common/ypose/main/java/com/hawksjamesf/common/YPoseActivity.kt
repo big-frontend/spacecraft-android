@@ -15,24 +15,18 @@ class YPoseActivity : AppCompatActivity() {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
         setContentView(textView)
         textView.text = stringFromJNI()
-//        setContentView(R.layout.activity_main)
-
-        // Example of a call to a native method
-//        sample_text.text = stringFromJNI()
+        textView.setOnClickListener {
+            NetClient.getInstance().sendRequest()
+        }
     }
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
     external fun stringFromJNI(): String
     fun stringFromJava()="string  from java"
 
     companion object {
 
-        // Used to load the 'native-lib' library on application startup.
         init {
-            System.loadLibrary("native-lib")
+            System.loadLibrary("hotfix")
         }
     }
 }

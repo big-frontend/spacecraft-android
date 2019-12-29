@@ -5,7 +5,7 @@
 #ifndef SPACECRAFTANDROID_HAWKS_H
 #define SPACECRAFTANDROID_HAWKS_H
 
-
+#include <android/log.h>
 
 class hawks {
 

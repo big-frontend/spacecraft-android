@@ -1,0 +1,99 @@
+#include <string>
+#include <jni.h>
+#include <string.h>
+#include <inttypes.h>
+#include <pthread.h>
+#include <android/log.h>
+#include <assert.h>
+#include <time.h>
+#include "include/logutil.h"
+#include "include/art_method.h"
+#include "hawks.h"
+
+/**
+ *
+ *  java    | jni     | 内存分配
+ *  |---|---|---|---|
+ *  boolean | jboolean| 1byte  |无符号8位整型 uint8_t
+ *  byte    | jbyte   | 1byte  |有符号8位整型 int8_t
+ *  char    | jchar   | 2bytes |无符号16位整型 uint16_t
+ *  short   | jshort  | 2bytes |有符号8位整型 int16_t
+ *  int     | jint    | 4bytes |有符号32位整型 int32_t
+ *  long    | jlong   | 8bytes |有符号64位整型 int64_t
+ *  float   | jfloat  | 4bytes |32位浮点型    float
+ *  double  | jdouble | 8bytes |64位浮点型    double
+ *
+ *  Object  | jobject
+ *  Class   | jclass
+ *  String  | jstring
+ *  Object[]| jobjectArray
+ *  boolean[]|jbooleanArray
+ *  byte[]   |jbyteArray
+ *  char[]   |jcharArray
+ *  short[]  |jshortArray
+ *  int[]    |jintArray
+ *  long[]   |jlongArray
+ *  float[]  |jfloatArray
+ *  double[] |jdoubleArray
+ *  void     | void
+ *
+ *## The Value Type
+ *typedef union jvalue {
+    jboolean z;
+    jbyte    b;
+    jchar    c;
+    jshort   s;
+    jint     i;
+    jlong    j;
+    jfloat   f;
+    jdouble  d;
+    jobject  l;
+ * } jvalue;
+ *
+ *
+ *
+ */
+
+
+
+/*
+* JNI registration.
+*/
+static JNINativeMethod gMethods[] = {
+        /* name, signature, funcPtr */
+//        {"setup",         "(ZI)Z",                                                   (void *) setup},
+//        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
+//        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
+};
+
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
+    JNIEnv *env;
+    if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) return JNI_ERR;
+    jclass netClientclazz = env->FindClass("com/hawksjamesf/common/NetClient");
+    art::ArtMethod *artMethod = (art::ArtMethod *) env->GetMethodID(netClientclazz, "sendRequest","()V");
+
+    jclass hookNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient_sendRequest");
+    art::ArtMethod *hookArtMethod = (art::ArtMethod *) env->GetMethodID(hookNetClientclazz,"sendRequest", "()V");
+    artMethod->declaring_class_ = hookArtMethod->declaring_class_;
+//    artMethod->dex_cache_resolved_methods= artMethod->dex_cache_resolved_methods;
+//    artMethod->access_flags_ = hookArtMethod->access_flags_;
+    artMethod->dex_code_item_offset_ = hookArtMethod->dex_code_item_offset_;
+    artMethod->method_index_ = hookArtMethod->method_index_;
+    artMethod->dex_method_index_ = hookArtMethod->dex_method_index_;
+    return JNI_VERSION_1_6;
+}
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_hawksjamesf_common_YPoseActivity_stringFromJNI(
+        JNIEnv *env, jobject ypostActivity /* this */) {
+    std::string hello = "Hello from C++";
+    jclass clz = env->FindClass("com/hawksjamesf/common/YPoseActivity");
+    jobject gloablRef = env->NewGlobalRef(ypostActivity);
+    jmethodID stringFromJavaFun = env->GetMethodID(clz, "stringFromJava", "()Ljava/lang/String;");
+    jstring result = static_cast<jstring>(env->CallObjectMethod(ypostActivity, stringFromJavaFun));
+//    env->RegisterNatives()
+
+
+    struct timeval Time;
+
+    return env->NewStringUTF(hello.c_str());
+}
