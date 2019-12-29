@@ -34,7 +34,9 @@ notifications:
 
 
 before_install:
-- curl https://gist.github.com/HawksJamesf/bc84feb175270e991030a6fc42c966db | sh
+- curl https://gist.github.com/HawksJamesf/bc84feb175270e991030a6fc42c966db >> android-sdk-license.sh
+- chmod +x android-sdk-license.sh
+- sh android-sdk-license.sh
 - echo "before_install"
 - cd $TRAVIS_BUILD_DIR
 #- wget -c https://raw.githubusercontent.com/Pgyer/TravisFile/master/pgyer_upload.sh -O pgyer_upload.sh
