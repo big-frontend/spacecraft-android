@@ -10,6 +10,7 @@
 #include "include/art_8.0r1.h"
 //#include "include/art_10.h"
 #include "hawks.h"
+#include "include/HotFix.h"
 
 /**
  *
@@ -66,23 +67,35 @@ static JNINativeMethod gMethods[] = {
 //        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
 //        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
 };
+
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     JNIEnv *env;
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) return JNI_ERR;
     jclass srcNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient");
-    art::ArtMethod *srcArtMethod = (art::ArtMethod *) env->GetMethodID(srcNetClientclazz, "sendRequest", "()V");
+    art::ArtMethod *srcArtMethod = (art::ArtMethod *) env->GetMethodID(srcNetClientclazz,
+                                                                       "sendRequest", "()V");
 
     jclass destNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient_sendRequest");
-    art::ArtMethod *destArtMethod = (art::ArtMethod *) env->GetMethodID(destNetClientclazz, "sendRequest", "()V");
+    art::ArtMethod *destArtMethod = (art::ArtMethod *) env->GetMethodID(destNetClientclazz,
+                                                                        "sendRequest", "()V");
 //    srcArtMethod->declaring_class_ = destArtMethod->declaring_class_;
-    srcArtMethod->access_flags_ = destArtMethod->access_flags_| 0x0001;
+    srcArtMethod->access_flags_ = destArtMethod->access_flags_ | 0x0001;
 //    srcArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_=destArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_;
     srcArtMethod->dex_code_item_offset_ = destArtMethod->dex_code_item_offset_;
     srcArtMethod->method_index_ = destArtMethod->method_index_;
     srcArtMethod->dex_method_index_ = destArtMethod->dex_method_index_;
-    __android_log_print(ANDROID_LOG_DEBUG,"hotfix","init jni ---> src:%d dest:%d ",srcArtMethod->declaring_class_,destArtMethod->declaring_class_ );
+    __android_log_print(ANDROID_LOG_DEBUG, "hotfix", "JNI_OnLoad ---> src:%d dest:%d ",
+                        srcArtMethod->declaring_class_, destArtMethod->declaring_class_);
+    throw "Division by zero condition!";
+    HotFix *hotFix= nullptr;
+    __android_log_print(ANDROID_LOG_DEBUG, "hotfix", "JNI_OnLoad %d", hotFix->c);
     return JNI_VERSION_1_6;
 }
+
+JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
+    __android_log_print(ANDROID_LOG_DEBUG, "hotfix", "JNI_OnUnload");
+}
+
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_hawksjamesf_common_YPoseActivity_stringFromJNI(
         JNIEnv *env, jobject ypostActivity /* this */) {

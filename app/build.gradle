@@ -39,7 +39,7 @@ tasks.withType(FindBugs) {
 }
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-apply plugin: 'io.fabric'
+
 
 apply plugin: 'com.tencent.matrix-plugin'
 ext.unusedResourcesSet = new HashSet<String>();
@@ -63,10 +63,14 @@ matrix {
 apply plugin: 'com.google.firebase.firebase-perf'
 //apply plugin: com.hawksjamesf.plugin.PerformancePlugin
 apply plugin: 'perfplugin'
-apply plugin: 'bugly'
-bugly {
-    appId = '3d62251014'
-    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+//apply plugin: 'bugly'
+//bugly {
+//    appId = '3d62251014'
+//    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+//}
+apply plugin: 'io.fabric'
+crashlytics {
+    enableNdk true
 }
 
 def getVersion() {
@@ -102,13 +106,6 @@ android {
         applicationId "com.hawksjamesf.spacecraft"
         testApplicationId "com.hawksjamesf.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-//             设置支持的SO库架构
-            abiFilters 'x86_64'
-            abiFilters 'x86'
-            abiFilters 'armeabi-v7a'
-            abiFilters 'arm64-v8a'
-        }
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
 //        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
@@ -228,12 +225,29 @@ android {
             manifestPlaceholders = [
                     'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
             ]
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-std=c++14"
+//                cppFlags "-std=gnu++11"
+//                targets "hawks","hotfix"
+                    abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
+                }
+            }
+
         }
         huawei {
             dimension 'channel'
             manifestPlaceholders = [
                     'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
             ]
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-std=c++14"
+//                cppFlags "-std=gnu++11"
+//                targets "hawks","hotfix"
+                    abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
+                }
+            }
         }
     }
     variantFilter { variant ->
@@ -306,7 +320,8 @@ dependencies {
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     kapt "com.github.bumptech.glide:compiler:4.10.0"
 
-    api 'com.crashlytics.sdk.android:crashlytics:2.10.0'
+    api 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    api 'com.crashlytics.sdk.android:crashlytics-ndk:2.1.1'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     annotationProcessor project(path: ':processor')

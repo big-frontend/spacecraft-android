@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
-
+#file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/hotfix/*.cpp)
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -17,7 +17,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        hotfixmain.cpp hotfixmainv2.c)
+        hotfixmain.cpp hotfixmainv2.c HotFix.cpp )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -32,7 +32,7 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log )
 
-target_include_directories(hotfix PUBLIC ../hawks/include)
+target_include_directories(hotfix PUBLIC ../hawks/include HotFix.h)
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
