@@ -8,6 +8,7 @@
 #include <time.h>
 #include "include/logutil.h"
 #include "include/art_8.0r1.h"
+//#include "include/art_10.h"
 #include "hawks.h"
 
 /**
@@ -65,7 +66,6 @@ static JNINativeMethod gMethods[] = {
 //        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
 //        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
 };
-
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     JNIEnv *env;
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) return JNI_ERR;
@@ -74,13 +74,13 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 
     jclass destNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient_sendRequest");
     art::ArtMethod *destArtMethod = (art::ArtMethod *) env->GetMethodID(destNetClientclazz, "sendRequest", "()V");
-    srcArtMethod->declaring_class_ = destArtMethod->declaring_class_;
+//    srcArtMethod->declaring_class_ = destArtMethod->declaring_class_;
     srcArtMethod->access_flags_ = destArtMethod->access_flags_| 0x0001;
-    srcArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_=destArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_;
+//    srcArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_=destArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_;
     srcArtMethod->dex_code_item_offset_ = destArtMethod->dex_code_item_offset_;
     srcArtMethod->method_index_ = destArtMethod->method_index_;
     srcArtMethod->dex_method_index_ = destArtMethod->dex_method_index_;
-    __android_log_print(ANDROID_LOG_DEBUG,"hotfix","init jni");
+    __android_log_print(ANDROID_LOG_DEBUG,"hotfix","init jni ---> src:%d dest:%d ",srcArtMethod->declaring_class_,destArtMethod->declaring_class_ );
     return JNI_VERSION_1_6;
 }
 
