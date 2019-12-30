@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.4.1)
 set(CMAKE_VERBOSE_MAKEFILE on)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/ypose/jniLibs/${ANDROID_ABI})
 
-set(lib_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/ypose/main/jni)
+set(lib_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/ypose/main/cpp)
 set(lib_build_dir $ENV{HOME}/tmp/${ANDROID_ABI})
 file(MAKE_DIRECTORY ${lib_build_dir})
 add_subdirectory(${lib_src_dir}/hotfix ${lib_build_dir}/hotfix)

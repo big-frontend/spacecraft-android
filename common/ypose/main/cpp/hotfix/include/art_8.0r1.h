@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
+#ifndef ART_RUNTIME_ART_METHOD_H_
+#define ART_RUNTIME_ART_METHOD_H_
 
 #include <cstddef>
-#include <jni.h>
-
-//#include <android-base/logging.h>
-#include <cstdint>
-#include <iostream>
-#include <atomic>
 
 
 namespace art {
-
-    class DexFile;
 
     template<class T>
     class Handle;
 
     class ImtConflictTable;
 
-    enum InvokeType : uint32_t;
     union JValue;
 
     class OatQuickMethodHeader;
@@ -42,6 +35,8 @@ namespace art {
 
     class ScopedObjectAccessAlreadyRunnable;
 
+    class StringPiece;
+
     class ShadowFrame;
 
     namespace mirror {
@@ -49,32 +44,17 @@ namespace art {
 
         class Class;
 
-        class ClassLoader;
-
-        class DexCache;
-
         class IfTable;
 
-        class Object;
-
-        template<typename MirrorType>
-        class ObjectArray;
-
         class PointerArray;
-
-        class String;
-
-        template<typename T>
-        struct NativeDexCachePair;
-//        using MethodDexCachePair = NativeDexCachePair<ArtMethod>;
-//        using MethodDexCacheType = std::atomic<MethodDexCachePair>;
     }  // namespace mirror
 
-    class ArtMethod final {
+    class ArtMethod {
     public:
         // Field order required by test "ValidateFieldOrderOfJavaCppUnionClasses".
         // The class we are a part of.
-        GcRoot <mirror::Class> declaring_class_;
+//        GcRoot <mirror::Class> declaring_class_;
+        uint32_t declaring_class_;
 
         // Access flags; low 16 bits are defined by spec.
         // Getting and setting this flag needs to be atomic when concurrency is
@@ -97,32 +77,30 @@ namespace art {
         // ifTable.
         uint16_t method_index_;
 
-        union {
-            // Non-abstract methods: The hotness we measure for this method. Not atomic,
-            // as we allow missing increments: if the method is hot, we will see it eventually.
-            uint16_t hotness_count_;
-            // Abstract methods: IMT index (bitwise negated) or zero if it was not cached.
-            // The negation is needed to distinguish zero index and missing cached entry.
-            uint16_t imt_index_;
-        };
+        // The hotness we measure for this method. Managed by the interpreter. Not atomic, as we allow
+        // missing increments: if the method is hot, we will see it eventually.
+        uint16_t hotness_count_;
 
         // Fake padding field gets inserted here.
 
         // Must be the last fields in the method.
         struct PtrSizedFields {
-            // Depending on the method type, the data is
-            //   - native method: pointer to the JNI function registered to this method
-            //                    or a function to resolve the JNI function,
-            //   - conflict method: ImtConflictTable,
-            //   - abstract/interface method: the single-implementation if any,
-            //   - proxy method: the original interface method or constructor,
-            //   - other methods: the profiling data.
+            // Short cuts to declaring_class_->dex_cache_ member for fast compiled code access.
+            ArtMethod** dex_cache_resolved_methods_;
+
+            // Pointer to JNI function registered to this method, or a function to resolve the JNI function,
+            // or the profiling data for non-native methods, or an ImtConflictTable, or the
+            // single-implementation of an abstract/interface method.
             void *data_;
 
             // Method dispatch from quick compiled code invokes this pointer which may cause bridging into
             // the interpreter.
             void *entry_point_from_quick_compiled_code_;
         } ptr_sized_fields_;
+
+
     };
 
 }  // namespace art
+
+#endif  // ART_RUNTIME_ART_METHOD_H_

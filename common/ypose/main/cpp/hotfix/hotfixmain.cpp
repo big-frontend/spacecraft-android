@@ -7,7 +7,7 @@
 #include <assert.h>
 #include <time.h>
 #include "include/logutil.h"
-#include "include/art_method.h"
+#include "include/art_8.0r1.h"
 #include "hawks.h"
 
 /**
@@ -69,17 +69,18 @@ static JNINativeMethod gMethods[] = {
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     JNIEnv *env;
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) return JNI_ERR;
-    jclass netClientclazz = env->FindClass("com/hawksjamesf/common/NetClient");
-    art::ArtMethod *artMethod = (art::ArtMethod *) env->GetMethodID(netClientclazz, "sendRequest","()V");
+    jclass srcNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient");
+    art::ArtMethod *srcArtMethod = (art::ArtMethod *) env->GetMethodID(srcNetClientclazz, "sendRequest", "()V");
 
-    jclass hookNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient_sendRequest");
-    art::ArtMethod *hookArtMethod = (art::ArtMethod *) env->GetMethodID(hookNetClientclazz,"sendRequest", "()V");
-    artMethod->declaring_class_ = hookArtMethod->declaring_class_;
-//    artMethod->dex_cache_resolved_methods= artMethod->dex_cache_resolved_methods;
-//    artMethod->access_flags_ = hookArtMethod->access_flags_;
-    artMethod->dex_code_item_offset_ = hookArtMethod->dex_code_item_offset_;
-    artMethod->method_index_ = hookArtMethod->method_index_;
-    artMethod->dex_method_index_ = hookArtMethod->dex_method_index_;
+    jclass destNetClientclazz = env->FindClass("com/hawksjamesf/common/NetClient_sendRequest");
+    art::ArtMethod *destArtMethod = (art::ArtMethod *) env->GetMethodID(destNetClientclazz, "sendRequest", "()V");
+    srcArtMethod->declaring_class_ = destArtMethod->declaring_class_;
+    srcArtMethod->access_flags_ = destArtMethod->access_flags_| 0x0001;
+    srcArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_=destArtMethod->ptr_sized_fields_.dex_cache_resolved_methods_;
+    srcArtMethod->dex_code_item_offset_ = destArtMethod->dex_code_item_offset_;
+    srcArtMethod->method_index_ = destArtMethod->method_index_;
+    srcArtMethod->dex_method_index_ = destArtMethod->dex_method_index_;
+    __android_log_print(ANDROID_LOG_DEBUG,"hotfix","init jni");
     return JNI_VERSION_1_6;
 }
 
@@ -91,8 +92,6 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_hawksjamesf_common_YPoseActivity_s
     jmethodID stringFromJavaFun = env->GetMethodID(clz, "stringFromJava", "()Ljava/lang/String;");
     jstring result = static_cast<jstring>(env->CallObjectMethod(ypostActivity, stringFromJavaFun));
 //    env->RegisterNatives()
-
-
     struct timeval Time;
 
     return env->NewStringUTF(hello.c_str());

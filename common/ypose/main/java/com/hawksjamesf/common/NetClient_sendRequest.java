@@ -19,7 +19,7 @@ public class NetClient_sendRequest {
 
     }
     public void sendRequest(){
-        Log.d("hawks","sendRequest");
+        Log.d("hawks","NetClient_sendRequest");
     }
 
 }
