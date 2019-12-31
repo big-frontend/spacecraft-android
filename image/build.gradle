@@ -6,7 +6,7 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle
 
 
 def srcDirs = [
-//        "carousel",
+        "gif",
 //        "video",
 //        "colorpicker",
 //        "drawable",
@@ -25,7 +25,21 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14"
+//                cppFlags "-std=gnu++11"
+//                targets "hawks","hotfix"
+                abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
+            }
+        }
 
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            //path 'src/main/cpp/CMakeLists.txt'
+        }
     }
 
     buildTypes {
