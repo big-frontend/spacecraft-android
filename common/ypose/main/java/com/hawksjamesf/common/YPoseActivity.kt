@@ -3,8 +3,9 @@ package com.hawksjamesf.common
 import android.os.Bundle
 import android.util.TypedValue
 import android.widget.TextView
+import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
-
+@Keep
 class YPoseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,7 @@ class YPoseActivity : AppCompatActivity() {
         }
     }
 
+    @Keep
     external fun stringFromJNI(): String
     fun stringFromJava()="string  from java"
 

@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.hawksjamesf.common.util.ConvertUtil;
 import com.hawksjamesf.uicomponent.widget.ChaplinVideoView;
 import com.hawksjamesf.uicomponent.widget.Constants;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -127,8 +126,8 @@ public class ParallaxActivity extends AppCompatActivity {
 
                     }
 
-                    CrashReport.setUserSceneTag(ParallaxActivity.this, 111685); // 上报后的Crash会显示该标签
-                    CrashReport.testJavaCrash();
+//                    CrashReport.setUserSceneTag(ParallaxActivity.this, 111685); // 上报后的Crash会显示该标签
+//                    CrashReport.testJavaCrash();
                 }
             }
 

@@ -86,9 +86,9 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     srcArtMethod->dex_method_index_ = destArtMethod->dex_method_index_;
     __android_log_print(ANDROID_LOG_DEBUG, "hotfix", "JNI_OnLoad ---> src:%d dest:%d ",
                         srcArtMethod->declaring_class_, destArtMethod->declaring_class_);
-    throw "Division by zero condition!";
-    HotFix *hotFix= nullptr;
-    __android_log_print(ANDROID_LOG_DEBUG, "hotfix", "JNI_OnLoad %d", hotFix->c);
+//    throw "Division by zero condition!";
+//    HotFix *hotFix= nullptr;
+//    __android_log_print(ANDROID_LOG_DEBUG, "hotfix", "JNI_OnLoad %d", hotFix->c);
     return JNI_VERSION_1_6;
 }
 

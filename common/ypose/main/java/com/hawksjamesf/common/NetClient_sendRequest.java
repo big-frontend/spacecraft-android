@@ -2,6 +2,8 @@ package com.hawksjamesf.common;
 
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -9,6 +11,7 @@ import android.util.Log;
  * @author: hawks.jamesf
  * @since: Dec/28/2019  Sat
  */
+@Keep
 public class NetClient_sendRequest {
     public static final String className="com.hawksjamesf.common.NetClient";
     public static final String methodName="sendRequest";
@@ -18,6 +21,7 @@ public class NetClient_sendRequest {
         Log.d("hawks","hook");
 
     }
+    @Keep
     public void sendRequest(){
         Log.d("hawks","NetClient_sendRequest");
     }
