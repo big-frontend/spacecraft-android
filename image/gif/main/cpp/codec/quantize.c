@@ -55,8 +55,7 @@ static int SortCmpRtn(const void *Entry1, const void *Entry2);
    Also non of the parameter are allocated by this routine.
    This function returns GIF_OK if successful, GIF_ERROR otherwise.
 ******************************************************************************/
-int
-GifQuantizeBuffer(unsigned int Width,
+int GifQuantizeBuffer(unsigned int Width,
                unsigned int Height,
                int *ColorMapSize,
                GifByteType * RedInput,

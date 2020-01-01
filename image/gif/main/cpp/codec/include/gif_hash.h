@@ -10,7 +10,7 @@ gif_hash.h - magfic constants and declarations for GIF LZW
 #include <unistd.h>
 #include <stdint.h>
 
-#define HT_SIZE			8192	   /* 12bits = 4096 or twice as big! */
+#define HT_SIZE			8192	   /* 12bits = 4096 or twice as big! 26bits=0x2000 */
 #define HT_KEY_MASK		0x1FFF			      /* 13bits keys */
 #define HT_KEY_NUM_BITS		13			      /* 13bits keys */
 #define HT_MAX_KEY		8191	/* 13bits - 1, maximal code possible */

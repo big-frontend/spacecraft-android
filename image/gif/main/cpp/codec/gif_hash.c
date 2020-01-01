@@ -34,12 +34,11 @@ static int KeyItem(uint32_t Item);
 /******************************************************************************
  Initialize HashTable - allocate the memory needed and clear it.	      *
 ******************************************************************************/
-GifHashTableType *_InitHashTable(void)
+GifHashTableType* _InitHashTable(void)
 {
-    GifHashTableType *HashTable;
+    GifHashTableType* HashTable;
 
-    if ((HashTable = (GifHashTableType *) malloc(sizeof(GifHashTableType)))
-	== NULL)
+    if ((HashTable = (GifHashTableType *) malloc(sizeof(GifHashTableType))) == NULL)
 	return NULL;
 
     _ClearHashTable(HashTable);
