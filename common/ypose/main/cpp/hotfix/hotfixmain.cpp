@@ -16,7 +16,7 @@
  *
  *  java    | jni     | 内存分配
  *  |---|---|---|---|
- *  boolean | jboolean| 1byte  |无符号8位整型 uint8_t
+ *  boolean(1bit) | jboolean| 1byte  |无符号8位整型 uint8_t
  *  byte    | jbyte   | 1byte  |有符号8位整型 int8_t
  *  char    | jchar   | 2bytes |无符号16位整型 uint16_t
  *  short   | jshort  | 2bytes |有符号8位整型 int16_t
@@ -67,7 +67,6 @@ static JNINativeMethod gMethods[] = {
 //        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
 //        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
 };
-
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     JNIEnv *env;
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) return JNI_ERR;

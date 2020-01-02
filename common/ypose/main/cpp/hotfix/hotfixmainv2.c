@@ -5,7 +5,7 @@
 #include <android/log.h>
 #include <assert.h>
 #include <time.h>
-
+#include <stdbool.h>
 
 
 /**
@@ -37,7 +37,6 @@
  * wchar_t       |               | 2 或 4 个字节
  * void* 为对象地址
  */
-
 //
 // Created by hawks.jamesf on 12/29/19.
 //

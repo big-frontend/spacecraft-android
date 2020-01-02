@@ -12,9 +12,7 @@ gif_err.c - handle error reporting for the GIF library.
 /*****************************************************************************
  Return a string description of  the last GIF error
 *****************************************************************************/
-const char *
-GifErrorString(int ErrorCode)
-{
+const char* GifErrorString(int ErrorCode){
     const char *Err;
 
     switch (ErrorCode) {

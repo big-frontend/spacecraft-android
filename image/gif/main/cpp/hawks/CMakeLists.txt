@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.4.1)
 add_library( # Sets the name of the library.
         hawks
         SHARED
-        hawks.cpp)
+        AssetUtil.cpp hawks.cpp)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -39,5 +39,7 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        gifcodec
+        gifcodec android z EGL vulkan jnigraphics sync camera2ndk mediandk
+        OpenMAXAL
+        nativewindow
         ${log-lib} )
