@@ -4,7 +4,7 @@
 
 #include "include/HotFix.h"
 #include <iostream>
-//#include <jni.h>
+#include <jni.h>
 using namespace std;
 
 HotFix::HotFix(void) {
@@ -14,5 +14,4 @@ HotFix::HotFix(void) {
 
 HotFix::~HotFix(void) {
     cout << "decoustruct" << endl;
-
 }

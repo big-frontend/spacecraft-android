@@ -28,7 +28,6 @@ gif_hash.h - magfic constants and declarations for GIF LZW
 typedef struct GifHashTableType {
     uint32_t HTable[HT_SIZE];
 } GifHashTableType;
-
 GifHashTableType *_InitHashTable(void);
 void _ClearHashTable(GifHashTableType *HashTable);
 void _InsertHashTable(GifHashTableType *HashTable, uint32_t Key, int Code);

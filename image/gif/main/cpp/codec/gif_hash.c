@@ -50,7 +50,8 @@ GifHashTableType* _InitHashTable(void)
  Routine to clear the HashTable to an empty state.			      *
  This part is a little machine depended. Use the commented part otherwise.   *
 ******************************************************************************/
-void _ClearHashTable(GifHashTableType *HashTable)
+void
+_ClearHashTable(GifHashTableType *HashTable)
 {
     memset(HashTable -> HTable, 0xFF, HT_SIZE * sizeof(uint32_t));
 }
