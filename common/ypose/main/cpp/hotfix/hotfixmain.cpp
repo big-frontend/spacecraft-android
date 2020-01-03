@@ -6,7 +6,6 @@
 #include <android/log.h>
 #include <assert.h>
 #include <time.h>
-#include "include/logutil.h"
 #include "include/art_8.0r1.h"
 //#include "include/art_10.h"
 #include "hawks.h"

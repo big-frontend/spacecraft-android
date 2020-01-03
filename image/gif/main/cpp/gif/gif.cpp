@@ -7,7 +7,10 @@
 #include <stdlib.h>
 #include <android/trace.h>
 #include <zlib.h>
+#include "logutil.h"
 
+
+#define MODULE_NAME  "gif"
 //void openAssets() {
 //    ATrace_beginSection("openAssets");
 //    AAssetDir *assetDir = AAssetManager_openDir(mgr, "");
@@ -26,3 +29,13 @@
 //
 //    ATrace_endSection();
 //}
+JNIEXPORT jint JNICALL JNI_Onload(JavaVM *vm, void *reserved) {}
+
+JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {}
+
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageView,
+                                                  jstring assetName) {
+    LOGD(MODULE_NAME,"assetName: %s",env->GetStringUTFChars(assetName,0));
+}

@@ -20,6 +20,7 @@
 #include <string>
 #include <vector>
 #include <android/asset_manager.h>
+#include <android/asset_manager_jni.h>
 
 bool AssetEnumerateFileType(AAssetManager * assetManager,
                         const char* type, std::vector<std::string> & files);

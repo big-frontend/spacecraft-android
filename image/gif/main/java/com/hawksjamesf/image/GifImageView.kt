@@ -34,7 +34,7 @@ class GifImageView : AppCompatImageView {
     fun setSource(url:URL) {}
 //    fun setSource(assetName:String) {}
 
-    external fun setSource(assetName: String):Unit
+    external fun setSource(assetName: String)
     fun start() {
         handler.sendEmptyMessage(MSG_START)
 

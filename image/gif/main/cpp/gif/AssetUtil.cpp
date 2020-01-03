@@ -16,24 +16,22 @@
  */
 #include <algorithm>
 #include "AssetUtil.h"
-#include "android_debug.h"
+#include "logutil.h"
 
-
+#define MODULE_NAME  "assetsutil"
 #define IS_LOW_CHAR(c) ((c) >= 'a' && (c) <= 'z')
 #define TO_UPPER_CHAR(c) (c + 'A' - 'a')
 
 void StringToUpper(std::string &str) {
     for (auto &ch: str) {
-        if (IS_LOW_CHAR(ch))
-            ch = TO_UPPER_CHAR(ch);
+        if (IS_LOW_CHAR(ch)) ch = TO_UPPER_CHAR(ch);
     }
 }
 
 bool AssetEnumerateFileType(AAssetManager *assetManager,
                             const char *type, std::vector<std::string> &files) {
 
-    if (!assetManager || !type || !*type)
-        return false;
+    if (!assetManager || !type || !*type) return false;
 
     std::string fileType(type);
     if (fileType[0] != '.') {
@@ -48,16 +46,15 @@ bool AssetEnumerateFileType(AAssetManager *assetManager,
         std::string assetName(name);
         if (assetName.length() <= fileType.length())
             continue;
-        std::string assetType =
-                assetName.substr(assetName.length() - fileType.length(),
-                                 fileType.length());
+        std::string assetType = assetName.substr(assetName.length() - fileType.length(),
+                                                 fileType.length());
         StringToUpper(assetType);
 
         if (assetType == fileType) {
             files.push_back(assetName);
         }
     }
-    LOGI("Found %d PNG Files", static_cast<uint32_t>(files.size()));
+    LOGI(MODULE_NAME,"Found %d PNG Files", static_cast<uint32_t>(files.size()));
 
     AAssetDir_close(dir);
     return true;
@@ -70,7 +67,7 @@ bool AssetReadFile(AAssetManager *assetManager,
     AAsset *assetDescriptor = AAssetManager_open(assetManager,
                                                  assetName.c_str(),
                                                  AASSET_MODE_BUFFER);
-    ASSERT(assetDescriptor, "%s does not exist in %s",
+    ASSERT(MODULE_NAME,assetDescriptor, "%s does not exist in %s",
            assetName.c_str(), __FUNCTION__);
     size_t fileLength = AAsset_getLength(assetDescriptor);
 

@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}   -Wno-format -Wno-sign-compare -Wno-unused-parameter -DHAVE_CONFIG_H")
-message(hawks  ${CMAKE_CXX_FLAGS})
+message(gif  ${CMAKE_CXX_FLAGS})
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
