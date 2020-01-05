@@ -1,13 +1,12 @@
 package com.hawksjamesf.image
 
 import android.content.Context
-import android.content.res.AssetFileDescriptor
+import android.content.res.AssetManager
 import android.os.Handler
 import android.os.Message
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
-import java.io.InputStream
-import java.net.URL
+import java.net.URI
 
 class GifImageView : AppCompatImageView {
     companion object {
@@ -19,6 +18,7 @@ class GifImageView : AppCompatImageView {
             System.loadLibrary("gif")
         }
     }
+
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -29,12 +29,13 @@ class GifImageView : AppCompatImageView {
 
     }
 
-    fun setSource(assetFd:AssetFileDescriptor) {}
-    fun setSource(inputSteam:InputStream) {}
-    fun setSource(url:URL) {}
-//    fun setSource(assetName:String) {}
+    //来自网络的地址，来自sdcard的地址
+    fun setSource(uri: URI) {
+        setSource1(uri.toString())
+    }
+    external fun setSource(assetName: String, manager: AssetManager)
+    external fun setSource1(uriPath: String)
 
-    external fun setSource(assetName: String)
     fun start() {
         handler.sendEmptyMessage(MSG_START)
 
@@ -48,7 +49,8 @@ class GifImageView : AppCompatImageView {
         handler.removeMessages(MSG_START)
         handler.removeMessages(MSG_PAUSE)
     }
-     class UIHandler : Handler() {
+
+    class UIHandler : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             when (msg.what) {

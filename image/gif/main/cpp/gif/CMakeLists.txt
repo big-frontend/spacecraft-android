@@ -9,10 +9,9 @@ cmake_minimum_required(VERSION 3.4.1)
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
-add_library( # Sets the name of the library.
-        gif
-        SHARED
-        AssetUtil.cpp gif.cpp)
+add_library(gif SHARED
+        assetutil.cpp gif_jni.cpp androidmain.cpp
+        GifCodecFromAssets.cpp GifCodecFromUri.cpp)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -28,7 +27,10 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log )
 
-target_include_directories(gif PRIVATE ../codec/include)
+target_include_directories(gif PRIVATE
+
+        ${ANDROID_NDK}/sources/android/native_app_glue
+        ../codec/include)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this

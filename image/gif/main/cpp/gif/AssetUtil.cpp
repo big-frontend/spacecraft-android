@@ -15,7 +15,7 @@
  *
  */
 #include <algorithm>
-#include "AssetUtil.h"
+#include "assetutil.h"
 #include "logutil.h"
 
 #define MODULE_NAME  "assetsutil"
@@ -54,7 +54,7 @@ bool AssetEnumerateFileType(AAssetManager *assetManager,
             files.push_back(assetName);
         }
     }
-    LOGI(MODULE_NAME,"Found %d PNG Files", static_cast<uint32_t>(files.size()));
+    LOGI(MODULE_NAME, "Found %d PNG Files", static_cast<uint32_t>(files.size()));
 
     AAssetDir_close(dir);
     return true;
@@ -67,7 +67,7 @@ bool AssetReadFile(AAssetManager *assetManager,
     AAsset *assetDescriptor = AAssetManager_open(assetManager,
                                                  assetName.c_str(),
                                                  AASSET_MODE_BUFFER);
-    ASSERT(MODULE_NAME,assetDescriptor, "%s does not exist in %s",
+    ASSERT(MODULE_NAME, assetDescriptor, "%s does not exist in %s",
            assetName.c_str(), __FUNCTION__);
     size_t fileLength = AAsset_getLength(assetDescriptor);
 
@@ -77,3 +77,11 @@ bool AssetReadFile(AAssetManager *assetManager,
     AAsset_close(assetDescriptor);
     return (readSize == buf.size());
 }
+
+
+AAsset *aasset_create(AAssetManager *aAssetManager, char *assetName, AASSET_MODE mode) {
+    AAsset *aAsset;
+    aAsset = AAssetManager_open(aAssetManager, assetName, mode);
+    return aAsset;
+}
+

@@ -22,9 +22,23 @@
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 
-bool AssetEnumerateFileType(AAssetManager * assetManager,
-                        const char* type, std::vector<std::string> & files);
-bool AssetReadFile(AAssetManager* assetManager,
-              std::string& name, std::vector<uint8_t>& buf);
+enum AASSET_MODE {
+    /** No specific information about how data will be accessed. **/
+            _UNKNOWN = AASSET_MODE_UNKNOWN,
+    /** Read chunks, and seek forward and backward. */
+            RANDOM = AASSET_MODE_RANDOM,
+    /** Read sequentially, with an occasional forward seek. */
+            STREAMING = AASSET_MODE_STREAMING,
+    /** Caller plans to ask for a read-only buffer with all data. */
+            BUFFER = AASSET_MODE_BUFFER
+};
+
+bool AssetEnumerateFileType(AAssetManager *assetManager,
+                            const char *type, std::vector<std::string> &files);
+
+bool AssetReadFile(AAssetManager *assetManager,
+                   std::string &name, std::vector<uint8_t> &buf);
+
+AAsset *aasset_create(AAssetManager *aAssetManager, char *assetName, AASSET_MODE mode);
 
 #endif // __ASSET__UTIL_H__
