@@ -32,8 +32,6 @@ Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageV
                                                   jobject assetManagerFromJava) {
     char *assetName = const_cast<char *>(env->GetStringUTFChars(assetNameFromJava, 0));
     AAssetManager *assetManager = AAssetManager_fromJava(env, assetManagerFromJava);
-    GifCodec gifCodec2 = GifCodecFromAssets(assetName, assetManager);
-    gifCodec2.fileName;
     GifCodec *gifCodec = new GifCodecFromAssets(assetName, assetManager);
     gifCodec->fileName;
     GifFileType *gifFileType = gifCodec->decodingGif();

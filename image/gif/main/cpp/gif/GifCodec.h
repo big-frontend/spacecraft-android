@@ -75,7 +75,8 @@ protected:
         GifFileType *gifFileType = DGifOpen(mAsset, fileRead, &error);
 //    GifFileType *gifFileType  = DGifOpenFileName(fd, &error);
 //    DGifCloseFile(gifFileType, &error);
-        LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
+        LOGE(MODULE_NAME, "error: %s", GifErrorString(gifFileType->Error));
+//        LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
         return gifFileType;
 
     }
