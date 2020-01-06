@@ -33,9 +33,8 @@ Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageV
     char *assetName = const_cast<char *>(env->GetStringUTFChars(assetNameFromJava, 0));
     AAssetManager *assetManager = AAssetManager_fromJava(env, assetManagerFromJava);
     GifCodec *gifCodec = new GifCodecFromAssets(assetName, assetManager);
-    gifCodec->fileName;
     GifFileType *gifFileType = gifCodec->decodingGif();
-    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", assetName, gifCodec->getFileSize());
+    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes",  gifCodec->fileName, gifCodec->getFileSize());
     LOGD(MODULE_NAME,
          "width: %d,height: %d,left %d,top:%d,right:%d,bottom:%d \ncolor resloution: %d, background color: %d,AspectByte %d",
          gifFileType->SWidth, gifFileType->SHeight, gifFileType->Image.Left, gifFileType->Image.Top,
@@ -99,14 +98,11 @@ Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageV
         );
     }
 
-
-
 //    off_t start = 0, length = 0;
 //    int fd = AAsset_openFileDescriptor(aAsset, &start, &length);
 //    lseek(fd, start, SEEK_CUR);
 //    decodingGif(fd, false);
-    int error = -1;
-    DGifCloseFile(gifFileType, &error);
+    DGifCloseFile(gifFileType, &gifFileType->Error);
     delete gifCodec;
 }
 /**
