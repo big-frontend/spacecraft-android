@@ -2,6 +2,7 @@ package com.hawksjamesf.image
 
 import android.content.Context
 import android.content.res.AssetManager
+import android.graphics.Bitmap
 import android.os.Handler
 import android.os.Message
 import android.util.AttributeSet
@@ -35,10 +36,10 @@ class GifImageView : AppCompatImageView {
     }
     external fun setSource(assetName: String, manager: AssetManager)
     external fun setSource1(uriPath: String)
+    external fun updateBitmap(bitmap:Bitmap)
 
     fun start() {
         handler.sendEmptyMessage(MSG_START)
-
     }
 
     fun pause() {
@@ -50,11 +51,12 @@ class GifImageView : AppCompatImageView {
         handler.removeMessages(MSG_PAUSE)
     }
 
-    class UIHandler : Handler() {
+    inner class UIHandler : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             when (msg.what) {
                 MSG_START -> {
+//                    setImageBitmap(updateBitmap())
                     sendEmptyMessage(MSG_START)
                 }
                 MSG_PAUSE -> {

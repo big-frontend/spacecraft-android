@@ -16,6 +16,8 @@
 
 #define  MODULE_NAME "module_gif"
 
+#include <android/bitmap.h>
+
 JNIEXPORT jint JNICALL JNI_Onload(JavaVM *vm, void *reserved) {
     ATrace_beginSection("JNI_Onload");
     ATrace_endSection();
@@ -34,7 +36,8 @@ Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageV
     AAssetManager *assetManager = AAssetManager_fromJava(env, assetManagerFromJava);
     GifCodec *gifCodec = new GifCodecFromAssets(assetName, assetManager);
     GifFileType *gifFileType = gifCodec->decodingGif();
-    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes",  gifCodec->fileName, gifCodec->getFileSize());
+    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", gifCodec->fileName,
+         gifCodec->getFileSize());
     LOGD(MODULE_NAME,
          "width: %d,height: %d,left %d,top:%d,right:%d,bottom:%d \ncolor resloution: %d, background color: %d,AspectByte %d",
          gifFileType->SWidth, gifFileType->SHeight, gifFileType->Image.Left, gifFileType->Image.Top,
@@ -117,5 +120,22 @@ Java_com_hawksjamesf_image_GifImageView_setSource1(JNIEnv *env, jobject gifImage
 //    LOGD(MODULE_NAME, "file name: %s, file size %d bytes", uriPath,
 //         gifFileType->ExtensionBlocks->ByteCount);
 //    LOGD(MODULE_NAME, "screen-->width: %d,height: %d", gifFileType->SWidth, gifFileType->SHeight);
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_hawksjamesf_image_GifImageView_updateBitmap(JNIEnv *env, jobject thiz, jobject bitmap) {
+    AndroidBitmapInfo bitmapInfo;
+    void *pixels;
+    AndroidBitmap_getInfo(env, bitmap, &bitmapInfo);
+    AndroidBitmap_lockPixels(env, bitmap, &pixels);
+    bitmapInfo.flags;
+    bitmapInfo.format;
+    bitmapInfo.stride;
+    bitmapInfo.width;
+    bitmapInfo.height;
+    AndroidBitmap_unlockPixels(env,bitmap);
+
 }
 
