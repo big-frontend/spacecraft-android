@@ -17,8 +17,8 @@
 #define  MODULE_NAME "module_gif"
 
 JNIEXPORT jint JNICALL JNI_Onload(JavaVM *vm, void *reserved) {
-    ATrace_beginSection("JNI_Onload");
-    ATrace_endSection();
+//    ATrace_beginSection("JNI_Onload");
+//    ATrace_endSection();
 }
 
 JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {}

@@ -9,17 +9,15 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toolbar;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -30,6 +28,13 @@ import androidx.core.util.Pair;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.hawksjamesf.uicomponent.transitions.ScaleUpTransition;
+import com.hawksjamesf.uicomponent.transitions.ScaleUpTransitionv2;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Copyright ® $ 2019
@@ -42,6 +47,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class DetailActivity extends Activity {
     public static final String IV_TRANSITIONNAME = "image";
     public static final String TV_TRANSITIONNAME = "text";
+    public static final String SCALEUP_TRANSITIONNAME = "scale_up";
     private List<ViewModel> dataList = new ArrayList<ViewModel>() {
         {
             add(new ViewModel(R.drawable.tmp, "图片"));
@@ -75,6 +81,11 @@ public class DetailActivity extends Activity {
         ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair0, pair1).toBundle());
     }
 
+    public static void startActivityWithScene(Activity activity,View itemView,int startX, int startY, int startWidth, int startHeight) {
+        Pair<View, String> pair0 = Pair.create((View) itemView, SCALEUP_TRANSITIONNAME);
+        ActivityCompat.startActivity(activity,new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair0).toBundle());
+    }
+
     public static void startActivityWithCustom(Activity activity, int enterResId, int exitResId) {
         ActivityCompat.startActivity(activity, new Intent(activity, DetailActivity.class), ActivityOptionsCompat.makeCustomAnimation(activity, enterResId, exitResId).toBundle());
     }
@@ -99,11 +110,19 @@ public class DetailActivity extends Activity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
 
         ivCover = findViewById(R.id.iv_cover);
         tvText = findViewById(R.id.tv_text);
         ivCover.setTransitionName(IV_TRANSITIONNAME);
         tvText.setTransitionName(TV_TRANSITIONNAME);
+
 //        postponeEnterTransition();
 //        iv.getViewTreeObserver().addOnPreDrawListener(
 //                new ViewTreeObserver.OnPreDrawListener() {
@@ -209,6 +228,21 @@ public class DetailActivity extends Activity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
         rvContent.addItemDecoration(dividerItemDecoration);
+
+        LinearLayout llrootVIew=findViewById(R.id.ll_rootview);
+        llrootVIew.setTransitionName(SCALEUP_TRANSITIONNAME);
+        Transition scaleUpTransition = new ScaleUpTransition();
+//        getWindow().setEnterTransition(scaleUpTransition);
+//        getWindow().setReturnTransition(scaleUpTransition);
+        Transition scaleUpTransitionv2 = new ScaleUpTransitionv2();
+        getWindow().setSharedElementEnterTransition(scaleUpTransitionv2);
+        getWindow().setSharedElementReturnTransition(scaleUpTransitionv2);
+//        Transition scaleup = TransitionInflater.from(this).inflateTransition(R.transition.enter_share_element_detail);
+        Transition scaleup = new ChangeBounds();
+        scaleup.excludeTarget(android.R.id.statusBarBackground,true);
+        scaleup.addTarget(llrootVIew);
+//        getWindow().setSharedElementEnterTransition(scaleup);
+//        getWindow().setSharedElementReturnTransition(scaleup);
     }
 
 

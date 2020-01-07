@@ -14,12 +14,6 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ScreenUtils;
-import com.google.firebase.perf.metrics.AddTrace;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,8 +21,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import com.google.firebase.perf.metrics.AddTrace;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright ® $ 2017
@@ -86,7 +86,9 @@ public class TransitionForActivityActivity extends Activity {
         setContentView(R.layout.activity_transition_for_activity);
         rv = (RecyclerView) findViewById(R.id.rv_image_text);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
-        rv.setLayoutManager(staggeredGridLayoutManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        rv.setLayoutManager(staggeredGridLayoutManager);
+        rv.setLayoutManager(linearLayoutManager);
         Adapter adapter = new Adapter();
         rv.setAdapter(adapter);
         rv.setHasFixedSize(true);
@@ -109,10 +111,10 @@ public class TransitionForActivityActivity extends Activity {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(TransitionForActivityActivity.this).inflate(R.layout.item_image_and_text, parent, false);
-            int spanCount = staggeredGridLayoutManager.getSpanCount();
-            ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
-            layoutParams.width = ScreenUtils.getScreenWidth() / spanCount;
-            itemView.setLayoutParams(layoutParams);
+//            int spanCount = staggeredGridLayoutManager.getSpanCount();
+//            ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
+//            layoutParams.width = ScreenUtils.getScreenWidth() / spanCount;
+//            itemView.setLayoutParams(layoutParams);
             return new ViewHolder(itemView);
         }
 
@@ -123,6 +125,7 @@ public class TransitionForActivityActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     int remain = position % 5;
+                    remain =-1;
                     if (remain == 0) {
                         DetailActivity.startActivityWithSharedElement(TransitionForActivityActivity.this, holder.iv, holder.tv);
                     } else if (remain == 1) {
@@ -133,7 +136,10 @@ public class TransitionForActivityActivity extends Activity {
                     } else if (remain == 3) {
                         DetailActivity.startActivityWithScaleUp(TransitionForActivityActivity.this,holder.iv,holder.iv.getWidth()/2,holder.iv.getHeight()/2,200,200);
                     } else if (remain == 4) {
-                        DetailActivity.startActivityWithThumbnailScaleUp(TransitionForActivityActivity.this,holder.iv,holder.iv.getDrawingCache(),holder.iv.getWidth()/2,holder.iv.getHeight()/2);
+                        DetailActivity.startActivityWithThumbnailScaleUp(TransitionForActivityActivity.this, holder.iv, holder.iv.getDrawingCache(), holder.iv.getWidth() / 2, holder.iv.getHeight() / 2);
+                    }else {
+//                        DetailActivity.startActivityWithScaleUp(TransitionForActivityActivity.this,holder.itemView,0,0,holder.iv.getWidth(),holder.iv.getHeight());
+                        DetailActivity.startActivityWithScene(TransitionForActivityActivity.this,holder.itemView,0,0,holder.iv.getWidth(),holder.iv.getHeight());
                     }
                 }
             });

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center_horizontal"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_rootview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@android:color/white"
         app:logo="@mipmap/ic_launcher"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
-        android:background="@android:color/white"
         app:subtitle="subtitle"
-        app:title="title"/>
+        app:title="title" />
 
     <ImageView
         android:id="@+id/iv_cover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/tmp"
-        />
+        android:src="@drawable/tmp" />
 
     <TextView
         android:id="@+id/tv_text"
@@ -31,8 +31,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:text="你好吗我很好，她不好asdfasfasfdasfddasfasfd"
-        android:textColor="@color/lightGreyBlue"
-        />
+        android:textColor="@color/lightGreyBlue" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_content"
@@ -40,8 +39,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         tools:itemCount="9"
-        tools:listitem="@layout/item_detail_content"
-        />
+        tools:listitem="@layout/item_detail_content" />
 
 
 </LinearLayout>

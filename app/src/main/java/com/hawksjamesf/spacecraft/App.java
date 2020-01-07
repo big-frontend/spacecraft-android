@@ -5,6 +5,16 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.provider.FontRequest;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.text.FontRequestEmojiCompatConfig;
+import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.crashlytics.android.Crashlytics;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.tasks.OnCanceledListener;
@@ -36,22 +46,12 @@ import com.tencent.matrix.trace.TracePlugin;
 import com.tencent.matrix.trace.config.TraceConfig;
 import com.tencent.matrix.util.MatrixLog;
 import com.tencent.sqlitelint.SQLiteLint;
-import com.tencent.sqlitelint.SQLiteLintPlugin;
 import com.tencent.sqlitelint.config.SQLiteLintConfig;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.provider.FontRequest;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.text.FontRequestEmojiCompatConfig;
-import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -193,8 +193,8 @@ public class App extends MultiDexApplication {
         ResourcePlugin.activityLeakFixer(this);
         // prevent api 19 UnsatisfiedLinkError
         //sqlite
-        SQLiteLintConfig config = initSQLiteLintConfig();
-        SQLiteLintPlugin sqLiteLintPlugin = new SQLiteLintPlugin(config);
+//        SQLiteLintConfig config = initSQLiteLintConfig();
+//        SQLiteLintPlugin sqLiteLintPlugin = new SQLiteLintPlugin(config);
 
 //        ThreadWatcher threadWatcher = new ThreadWatcher(new ThreadConfig.Builder().dynamicConfig(dynamicConfig).build());
         Matrix matrix = new Matrix.Builder(this)
