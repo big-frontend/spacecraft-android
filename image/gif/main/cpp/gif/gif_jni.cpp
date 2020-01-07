@@ -29,15 +29,14 @@ JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {}
  * 来自asset
  */
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageView,
-                                                  jstring assetNameFromJava,
-                                                  jobject assetManagerFromJava) {
+Java_com_hawksjamesf_image_GifPlayer_setSource(JNIEnv *env, jobject gifplayer,
+                                               jstring assetNameFromJava,
+                                               jobject assetManagerFromJava) {
     char *assetName = const_cast<char *>(env->GetStringUTFChars(assetNameFromJava, 0));
     AAssetManager *assetManager = AAssetManager_fromJava(env, assetManagerFromJava);
     GifCodec *gifCodec = new GifCodecFromAssets(assetName, assetManager);
     GifFileType *gifFileType = gifCodec->decodingGif();
-    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", gifCodec->fileName,
-         gifCodec->getFileSize());
+//    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", gifCodec->fileName,gifCodec->getFileSize());
     LOGD(MODULE_NAME,
          "width: %d,height: %d,left %d,top:%d,right:%d,bottom:%d \ncolor resloution: %d, background color: %d,AspectByte %d",
          gifFileType->SWidth, gifFileType->SHeight, gifFileType->Image.Left, gifFileType->Image.Top,
@@ -112,8 +111,8 @@ Java_com_hawksjamesf_image_GifImageView_setSource(JNIEnv *env, jobject gifImageV
  *  来自网络的地址，来自sdcard的地址
  */
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifImageView_setSource1(JNIEnv *env, jobject gifImageView,
-                                                   jstring uriPathFromJava) {
+Java_com_hawksjamesf_image_GifPlayer_setSource1(JNIEnv *env, jobject gifplayer,
+                                                jstring uriPathFromJava) {
     char *uriPath = const_cast<char *>(env->GetStringUTFChars(uriPathFromJava, 0));
 //    GifCodec *gifCodec = new GifCodec(uriPath);
 //    GifFileType *gifFileType = gifCodec->decodingGif();
@@ -122,20 +121,48 @@ Java_com_hawksjamesf_image_GifImageView_setSource1(JNIEnv *env, jobject gifImage
 //    LOGD(MODULE_NAME, "screen-->width: %d,height: %d", gifFileType->SWidth, gifFileType->SHeight);
 }
 
+// function contents
+static int jniGetFDFromFileDescriptor(JNIEnv * env, jobject fileDescriptor) {
+    jint fd = -1;
+    jclass fdClass = env->FindClass("java/io/FileDescriptor");
 
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifImageView_updateBitmap(JNIEnv *env, jobject thiz, jobject bitmap) {
+    if (fdClass != NULL) {
+        jfieldID fdClassDescriptorFieldID = env->GetFieldID(fdClass, "fd", "I");
+        if (fdClassDescriptorFieldID != NULL && fileDescriptor != NULL) {
+            fd = env->GetIntField(fileDescriptor, fdClassDescriptorFieldID);
+        }
+    }
+
+    return fd;
+}
+extern "C" JNIEXPORT void JNICALL
+Java_com_hawksjamesf_image_GifPlayer_setDataSource(JNIEnv *env, jobject gifplayer,
+                                                   jobject fileDescriptor, jlong offset, jlong length) {
+    int fd=jniGetFDFromFileDescriptor(env,fileDescriptor);
+}
+
+extern "C" JNIEXPORT jint JNICALL
+Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject gifplayer) {}
+extern "C" JNIEXPORT jint JNICALL
+Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject gifplayer) {}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_hawksjamesf_image_GifPlayer_setBitmap(JNIEnv *env, jobject thiz,jobject jbitmap) {
     AndroidBitmapInfo bitmapInfo;
     void *pixels;
-    AndroidBitmap_getInfo(env, bitmap, &bitmapInfo);
-    AndroidBitmap_lockPixels(env, bitmap, &pixels);
+    AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
+    AndroidBitmap_lockPixels(env, jbitmap, &pixels);
     bitmapInfo.flags;
     bitmapInfo.format;
     bitmapInfo.stride;
     bitmapInfo.width;
     bitmapInfo.height;
-    AndroidBitmap_unlockPixels(env,bitmap);
+    AndroidBitmap_unlockPixels(env, jbitmap);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject thiz) {
 
 }
 

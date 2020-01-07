@@ -9,7 +9,7 @@
         android:text="start"
         android:layout_height="wrap_content"/>
 
-    <com.hawksjamesf.image.GifImageView
+    <ImageView
         android:id="@+id/iv_gif"
         android:layout_width="200dp"
         android:layout_height="200dp" />
