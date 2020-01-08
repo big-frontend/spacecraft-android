@@ -136,8 +136,7 @@ static int jniGetFDFromFileDescriptor(JNIEnv * env, jobject fileDescriptor) {
     return fd;
 }
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setDataSource(JNIEnv *env, jobject gifplayer,
-                                                   jobject fileDescriptor, jlong offset, jlong length) {
+Java_com_hawksjamesf_image_GifPlayer_setDataSource(JNIEnv *env, jobject gifplayer,jobject fileDescriptor, jlong offset, jlong length) {
     int fd=jniGetFDFromFileDescriptor(env,fileDescriptor);
 }
 
