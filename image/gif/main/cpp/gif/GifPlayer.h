@@ -7,14 +7,34 @@
 
 #include <android/asset_manager_jni.h>
 #include <android/asset_manager.h>
+#include <android/bitmap.h>
 
 class GifPlayer {
 public:
     void setDataSource(char *assetName, AAssetManager *assetManager);
-    void setDataSource(char *assetName,  AAsset *aAsset);
+
+    void setDataSource(char *assetName, AAsset *aAsset);
+
     void start();
+
     void pause();
+
     void stop();
+
+    static GifPlayer *
+    createAndBind(AndroidBitmapInfo *bitmapInfo, char *assetName, AAssetManager *assetManager){
+        GifPlayer *gifPlayer = new GifPlayer(bitmapInfo);
+        gifPlayer->setDataSource(assetName, assetManager);
+        return gifPlayer;
+    }
+
+private:
+    AndroidBitmapInfo *mBitmapInfo;
+
+    GifPlayer(AndroidBitmapInfo *bitmapInfo):mBitmapInfo(bitmapInfo){};
+
+    ~GifPlayer(){};
+
 
 };
 
