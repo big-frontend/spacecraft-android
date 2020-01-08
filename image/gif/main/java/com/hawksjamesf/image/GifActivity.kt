@@ -7,17 +7,20 @@ import kotlinx.android.synthetic.main.activity_gif.*
 class GifActivity : AppCompatActivity() {
 
 
-
+    lateinit var player: GifPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gif)
 //        iv_gif.setSource("tenor.gif")
-        iv_gif.setSource("tenor.gif",assets)
-
+//        iv_gif.setSource("tenor.gif",assets)
+//
         bt_start.setOnClickListener {
-            iv_gif.start()
+            player.start()
 
         }
+        player = GifPlayer()
+        player.createAndBind(this,iv_gif,"tenor.gif", assets)
+
 
     }
 }
