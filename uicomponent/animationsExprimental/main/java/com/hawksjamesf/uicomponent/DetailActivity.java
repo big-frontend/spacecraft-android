@@ -230,6 +230,7 @@ public class DetailActivity extends Activity {
         rvContent.addItemDecoration(dividerItemDecoration);
 
         LinearLayout llrootVIew=findViewById(R.id.ll_rootview);
+        llrootVIew.setVisibility(View.GONE);
         llrootVIew.setTransitionName(SCALEUP_TRANSITIONNAME);
         Transition scaleUpTransition = new ScaleUpTransition();
 //        getWindow().setEnterTransition(scaleUpTransition);
@@ -243,6 +244,7 @@ public class DetailActivity extends Activity {
         scaleup.addTarget(llrootVIew);
 //        getWindow().setSharedElementEnterTransition(scaleup);
 //        getWindow().setSharedElementReturnTransition(scaleup);
+        llrootVIew.setVisibility(View.VISIBLE);
     }
 
 
