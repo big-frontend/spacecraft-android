@@ -17,14 +17,16 @@ UriGifPlayer::~UriGifPlayer() {
 void UriGifPlayer::setDataSource(char *uriPath) {
     std::string assetNameString(uriPath);
     mUriPath = assetNameString;
-}
 
-static GifPlayer *UriGifPlayer::createAndBind(
-        AndroidBitmapInfo *bitmapInfo,
-        char* uriPath) {
-    GifPlayer *gifPlayer = new UriGifPlayer(bitmapInfo);
-    gifPlayer->setDataSource(uriPath);
-    return gifPlayer;
+    if (mUriPath.empty()) {
+        LOGE(MODULE_NAME, "exception:uri path must be not empty");
+        throw "uri path must be not empty";
+    }
+    int error = -1;
+    gifFileType = DGifOpenFileName(mUriPath.c_str(), &error);
+//    GifFileType *gifFileType  = DGifOpenFileName(fd, &error);
+//    DGifCloseFile(gifFileType, &error);
+    LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
 }
 
 off_t UriGifPlayer::getFileSize() {

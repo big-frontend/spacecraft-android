@@ -26,14 +26,8 @@ using namespace ::std;
 
 class GifPlayer {
 protected:
-    AndroidBitmapInfo *bitmapInfo;
-public:
 
-    std::string fileName;
-
-    virtual GifFileType *decodingGif() = 0;
-
-    virtual off_t getFileSize() = 0;
+    GifFileType *gifFileType;
 
     virtual void setDataSource(char *assetName, AAssetManager *assetManager) = 0;
 
@@ -47,23 +41,17 @@ public:
 
     virtual void stop() = 0;
 
-//    static GifPlayer *createAndBind(
-//            AndroidBitmapInfo *bitmapInfo,
-//            char *assetName,
-//            AAssetManager *assetManager) {
-//
-//        GifPlayer *gifPlayer = new GifPlayer(bitmapInfo);
-//        gifPlayer->setDataSource(assetName, assetManager);
-//
-//        return gifPlayer;
-//    }
+public:
 
+    std::string fileName;
+
+    virtual off_t getFileSize() = 0;
 };
 
 class AssetsGifPlayer : public GifPlayer {
 private:
     AAsset *mAsset;
-
+    AndroidBitmapInfo *bitmapInfo;
 //    static int fileRead(GifFileType *gif, GifByteType *buf, int size);
     AssetsGifPlayer(AndroidBitmapInfo *binfo) : bitmapInfo(binfo) {};
 
@@ -73,27 +61,10 @@ private:
 
     ~AssetsGifPlayer();
 
+    int fileRead(GifFileType *gif, GifByteType *buf, int size);
 
-protected:
-    static int fileRead(GifFileType *gif, GifByteType *buf, int size) {
-        AAsset *asset = (AAsset *) gif->UserData;
-        return AAsset_read(asset, buf, (size_t) size);
-    };
 
-    GifFileType *decodingGif() override {
-        if (mAsset == nullptr) {
-            LOGE(MODULE_NAME, "exception:asset must be not empty");
-            throw "asset must be not empty";
-        }
-        int error = -1;
-        GifFileType *gifFileType = DGifOpen(mAsset, fileRead, &error);
-//    GifFileType *gifFileType  = DGifOpenFileName(fd, &error);
-//    DGifCloseFile(gifFileType, &error);
-        LOGE(MODULE_NAME, "error: %s", GifErrorString(gifFileType->Error));
-//        LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
-        return gifFileType;
-
-    }
+public:
 
     off_t getFileSize() override;
 
@@ -110,40 +81,24 @@ protected:
     static GifPlayer *createAndBind(
             AndroidBitmapInfo *bitmapInfo,
             char *assetName,
-            AAssetManager *assetManager);
-
-
+            AAssetManager *assetManager) {
+        GifPlayer *gifPlayer = new AssetsGifPlayer(bitmapInfo);
+        gifPlayer->setDataSource(assetName, assetManager);
+        return gifPlayer;
+    }
 };
 
 class UriGifPlayer : GifPlayer {
 private:
     std::string mUriPath;
-
+    AndroidBitmapInfo *bitmapInfo;
     UriGifPlayer(AndroidBitmapInfo *binfo);
 
     UriGifPlayer(char *uriPath);
 
     ~UriGifPlayer();
 
-private:
-
-    GifFileType *decodingGif() override {
-        if (mUriPath.empty()) {
-            LOGE(MODULE_NAME, "exception:uri path must be not empty");
-            throw "uri path must be not empty";
-        }
-        int error = -1;
-        GifFileType *gifFileType = DGifOpenFileName(mUriPath.c_str(), &error);
-//    GifFileType *gifFileType  = DGifOpenFileName(fd, &error);
-//    DGifCloseFile(gifFileType, &error);
-        LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
-        return gifFileType;
-
-    }
-
-    static GifPlayer *createAndBind(
-            AndroidBitmapInfo *bitmapInfo,
-            char *uriPath);
+public:
 
     off_t getFileSize() override;
 
@@ -154,6 +109,14 @@ private:
     void pause() override;
 
     void stop() override;
+
+    static GifPlayer *createAndBind(
+            AndroidBitmapInfo *bitmapInfo,
+            char *uriPath) {
+        GifPlayer *gifPlayer = new UriGifPlayer(bitmapInfo);
+        gifPlayer->setDataSource(uriPath);
+        return gifPlayer;
+    }
 };
 
 
