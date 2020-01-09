@@ -12,11 +12,23 @@
 #include "gif_lib.h"
 #include <algorithm>
 #include "assetutil.h"
-#include "GifCodec.h"
+#include "GifPlayer.h"
+#include <android/bitmap.h>
+#include <hash_map>
+#include <map>
+#include <unordered_map>
+#include <iostream>
+#include <set>
+#include <hash_set>
+#include <unordered_set>
+#include <iterator>
+#include "GifPlayer.h"
 
 #define  MODULE_NAME "module_gif"
 
-#include <android/bitmap.h>
+using namespace ::std;
+static map<jobject, GifPlayer *> gifmap;
+static set<jobject> gifset;
 
 JNIEXPORT jint JNICALL JNI_Onload(JavaVM *vm, void *reserved) {
 //    ATrace_beginSection("JNI_Onload");
@@ -29,11 +41,29 @@ JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {}
  * 来自asset
  */
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setSource(JNIEnv *env, jobject gifplayer,
-                                               jstring assetNameFromJava,
-                                               jobject assetManagerFromJava) {
-    char *assetName = const_cast<char *>(env->GetStringUTFChars(assetNameFromJava, 0));
-    AAssetManager *assetManager = AAssetManager_fromJava(env, assetManagerFromJava);
+Java_com_hawksjamesf_image_GifPlayer_setDataSource__Ljava_lang_String_2Landroid_content_res_AssetManager_2Landroid_graphics_Bitmap_2(
+        JNIEnv *env, jobject jgifplayer,
+        jstring jassetName,
+        jobject jassetManager, jobject jbitmap) {
+    GifPlayer *gifPlayer = gifmap[jgifplayer];
+    if (gifPlayer == nullptr) {
+        AndroidBitmapInfo bitmapInfo;
+        AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
+        char *assetName = const_cast<char *>(env->GetStringUTFChars(jassetName, 0));
+        AAssetManager *assetManager = AAssetManager_fromJava(env, jassetManager);
+        gifPlayer = GifPlayer::createAndBind(&bitmapInfo, assetName, assetManager);
+        gifmap[jgifplayer] = gifPlayer;
+    }
+
+//    void *pixels;
+//    AndroidBitmap_lockPixels(env, jbitmap, &pixels);
+//    bitmapInfo.flags;
+//    bitmapInfo.format;
+//    bitmapInfo.stride;
+//    bitmapInfo.width;
+//    bitmapInfo.height;
+//    AndroidBitmap_unlockPixels(env, jbitmap);
+
     GifCodec *gifCodec = new GifCodecFromAssets(assetName, assetManager);
     GifFileType *gifFileType = gifCodec->decodingGif();
 //    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", gifCodec->fileName,gifCodec->getFileSize());
@@ -111,7 +141,7 @@ Java_com_hawksjamesf_image_GifPlayer_setSource(JNIEnv *env, jobject gifplayer,
  *  来自网络的地址，来自sdcard的地址
  */
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setSource1(JNIEnv *env, jobject gifplayer,
+Java_com_hawksjamesf_image_GifPlayer_setSource1(JNIEnv *env, jobject jgifplayer,
                                                 jstring uriPathFromJava) {
     char *uriPath = const_cast<char *>(env->GetStringUTFChars(uriPathFromJava, 0));
 //    GifCodec *gifCodec = new GifCodec(uriPath);
@@ -122,7 +152,7 @@ Java_com_hawksjamesf_image_GifPlayer_setSource1(JNIEnv *env, jobject gifplayer,
 }
 
 // function contents
-static int jniGetFDFromFileDescriptor(JNIEnv * env, jobject fileDescriptor) {
+static int jniGetFDFromFileDescriptor(JNIEnv *env, jobject fileDescriptor) {
     jint fd = -1;
     jclass fdClass = env->FindClass("java/io/FileDescriptor");
 
@@ -135,29 +165,19 @@ static int jniGetFDFromFileDescriptor(JNIEnv * env, jobject fileDescriptor) {
 
     return fd;
 }
+
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setDataSource(JNIEnv *env, jobject gifplayer,jobject fileDescriptor, jlong offset, jlong length) {
-    int fd=jniGetFDFromFileDescriptor(env,fileDescriptor);
+Java_com_hawksjamesf_image_GifPlayer_setDataSource__Ljava_io_FileDescriptor_2JJ(
+        JNIEnv *env, jobject jgifplayer,
+        jobject fileDescriptor, jlong offset,
+        jlong length) {
+    int fd = jniGetFDFromFileDescriptor(env, fileDescriptor);
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject gifplayer) {}
+Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer) {}
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject gifplayer) {}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setBitmap(JNIEnv *env, jobject thiz,jobject jbitmap) {
-    AndroidBitmapInfo bitmapInfo;
-    void *pixels;
-    AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
-    AndroidBitmap_lockPixels(env, jbitmap, &pixels);
-    bitmapInfo.flags;
-    bitmapInfo.format;
-    bitmapInfo.stride;
-    bitmapInfo.width;
-    bitmapInfo.height;
-    AndroidBitmap_unlockPixels(env, jbitmap);
-}
+Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplayer) {}
 
 extern "C"
 JNIEXPORT void JNICALL

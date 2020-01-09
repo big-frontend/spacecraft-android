@@ -46,7 +46,7 @@ class GifPlayer : BitmapListener {
     }
 
 
-    external fun setSource(assetName: String, manager: AssetManager)
+    external fun setDataSource(assetName: String, manager: AssetManager,bitmap: Bitmap?)
     //    public external setDataSource(afd:AssetFileDescriptor )
     private external fun setDataSource(fd: FileDescriptor, offset: Long, length: Long)
 
@@ -54,7 +54,7 @@ class GifPlayer : BitmapListener {
     external fun getGifWidth(): Int
     external fun getGifHeight(): Int
     external fun start()
-    external fun setBitmap(bitmap: Bitmap?)
+//    external fun setBitmap(bitmap: Bitmap?)
 //    fun start() {
 //        mEventHandler.sendEmptyMessage(MSG_START)
 //    }
@@ -74,14 +74,14 @@ class GifPlayer : BitmapListener {
     }
 
     fun createAndBind(context: Context, ivGif: ImageView, assetName: String, assetManager: AssetManager): GifPlayer {
-        setSource(assetName, assetManager)//setSource 之后才能拿到width、height
+        val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
+        setDataSource(assetName, assetManager,bitmap)//setSource 之后才能拿到width、height
         bindImageView(ivGif)
         return this
     }
 
     fun bindImageView(imageView: ImageView) {
-        val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
-        setBitmap(bitmap)
+//        setBitmap(bitmap)
         mImageView = imageView
     }
 
