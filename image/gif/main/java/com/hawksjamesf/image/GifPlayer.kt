@@ -8,7 +8,6 @@ import android.os.Looper
 import android.os.Message
 import android.widget.ImageView
 import java.io.FileDescriptor
-import java.net.URI
 
 /**
  * Copyright ® $ 2017
@@ -50,7 +49,7 @@ class GifPlayer : BitmapListener {
     //    public external setDataSource(afd:AssetFileDescriptor )
     private external fun setDataSource(fd: FileDescriptor, offset: Long, length: Long)
 
-    external fun setSource1(uriPath: String)
+    external fun setDataSource(uriPath: String,bitmap: Bitmap?)
     external fun getGifWidth(): Int
     external fun getGifHeight(): Int
     external fun start()
@@ -68,14 +67,18 @@ class GifPlayer : BitmapListener {
         mEventHandler.removeMessages(MSG_PAUSE)
     }
 
-    //来自网络的地址，来自sdcard的地址
-    fun setSource(uri: URI) {
-        setSource1(uri.toString())
-    }
+
 
     fun createAndBind(context: Context, ivGif: ImageView, assetName: String, assetManager: AssetManager): GifPlayer {
         val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
         setDataSource(assetName, assetManager,bitmap)//setSource 之后才能拿到width、height
+        bindImageView(ivGif)
+        return this
+    }
+    //来自网络的地址，来自sdcard的地址
+    fun createAndBind(context: Context, ivGif: ImageView,uri: String ): GifPlayer {
+        val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
+        setDataSource(uri,bitmap)//setSource 之后才能拿到width、height
         bindImageView(ivGif)
         return this
     }

@@ -26,34 +26,40 @@ using namespace ::std;
 
 class GifPlayer {
 protected:
-
     GifFileType *gifFileType;
+    AndroidBitmapInfo *bitmapInfo;
+public:
+    std::string fileName;
 
-    virtual void setDataSource(char *assetName, AAssetManager *assetManager) = 0;
+    GifPlayer(AndroidBitmapInfo *bitmapInfo) : bitmapInfo(bitmapInfo) {}
 
-    virtual void setDataSource(char *assetName, AAsset *aAsset) = 0;
+    GifPlayer() {}
+    ~GifPlayer(){
+        DGifCloseFile(gifFileType, &gifFileType->Error);
+    };
 
-    virtual void setDataSource(char *uriPath) = 0;
+    virtual void setDataSource(char *assetName, AAssetManager *assetManager) {};
 
-    virtual void start() = 0;
+    virtual void setDataSource(char *assetName, AAsset *aAsset) {};// a normal virtual method
+
+    virtual void setDataSource(char *uriPath) {};
+
+    virtual void start() = 0;// a pure virtual method
 
     virtual void pause() = 0;
 
     virtual void stop() = 0;
 
-public:
-
-    std::string fileName;
-
     virtual off_t getFileSize() = 0;
+    virtual  int  getGifHeight()=0;
+    virtual  int  getGifWidth()=0;
 };
 
 class AssetsGifPlayer : public GifPlayer {
 private:
     AAsset *mAsset;
-    AndroidBitmapInfo *bitmapInfo;
-//    static int fileRead(GifFileType *gif, GifByteType *buf, int size);
-    AssetsGifPlayer(AndroidBitmapInfo *binfo) : bitmapInfo(binfo) {};
+
+    AssetsGifPlayer(AndroidBitmapInfo *binfo);
 
     AssetsGifPlayer(char *assetName, AAsset *aAsset);
 
@@ -61,12 +67,13 @@ private:
 
     ~AssetsGifPlayer();
 
-    int fileRead(GifFileType *gif, GifByteType *buf, int size);
-
-
 public:
+    static int fileRead(GifFileType *gif, GifByteType *buf, int size);
 
-    off_t getFileSize() override;
+    static GifPlayer *createAndBind(AndroidBitmapInfo *bitmapInfo,
+                                    char *assetName, AAssetManager *assetManager);
+
+    off_t getFileSize() override;// a normal non-virtual method
 
     void setDataSource(char *assetName, AAssetManager *assetManager) override;
 
@@ -78,27 +85,23 @@ public:
 
     void stop() override;
 
-    static GifPlayer *createAndBind(
-            AndroidBitmapInfo *bitmapInfo,
-            char *assetName,
-            AAssetManager *assetManager) {
-        GifPlayer *gifPlayer = new AssetsGifPlayer(bitmapInfo);
-        gifPlayer->setDataSource(assetName, assetManager);
-        return gifPlayer;
-    }
+    int getGifHeight() override;
+
+    int getGifWidth() override;
 };
 
-class UriGifPlayer : GifPlayer {
+class UriGifPlayer : public GifPlayer {
 private:
     std::string mUriPath;
-    AndroidBitmapInfo *bitmapInfo;
-    UriGifPlayer(AndroidBitmapInfo *binfo);
+
+    UriGifPlayer(AndroidBitmapInfo *binfo) : GifPlayer(binfo) {};
 
     UriGifPlayer(char *uriPath);
 
     ~UriGifPlayer();
 
 public:
+    static GifPlayer *createAndBind(AndroidBitmapInfo *bitmapInfo, char *uriPath);
 
     off_t getFileSize() override;
 
@@ -110,14 +113,10 @@ public:
 
     void stop() override;
 
-    static GifPlayer *createAndBind(
-            AndroidBitmapInfo *bitmapInfo,
-            char *uriPath) {
-        GifPlayer *gifPlayer = new UriGifPlayer(bitmapInfo);
-        gifPlayer->setDataSource(uriPath);
-        return gifPlayer;
-    }
-};
+    int getGifHeight() override;
 
+    int getGifWidth() override;
+
+};
 
 #endif //SPACECRAFTANDROID_GIFPLAYER_H

@@ -43,112 +43,33 @@ JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {}
 extern "C" JNIEXPORT void JNICALL
 Java_com_hawksjamesf_image_GifPlayer_setDataSource__Ljava_lang_String_2Landroid_content_res_AssetManager_2Landroid_graphics_Bitmap_2(
         JNIEnv *env, jobject jgifplayer,
-        jstring jassetName,
-        jobject jassetManager, jobject jbitmap) {
+        jstring jassetName, jobject jassetManager,
+        jobject jbitmap) {
     GifPlayer *gifPlayer = gifmap[jgifplayer];
     if (gifPlayer == nullptr) {
         AndroidBitmapInfo bitmapInfo;
         AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
         char *assetName = const_cast<char *>(env->GetStringUTFChars(jassetName, 0));
         AAssetManager *assetManager = AAssetManager_fromJava(env, jassetManager);
-        gifPlayer = GifPlayer::createAndBind(&bitmapInfo, assetName, assetManager);
+        gifPlayer = AssetsGifPlayer::createAndBind(&bitmapInfo, assetName, assetManager);
         gifmap[jgifplayer] = gifPlayer;
     }
-
-//    void *pixels;
-//    AndroidBitmap_lockPixels(env, jbitmap, &pixels);
-//    bitmapInfo.flags;
-//    bitmapInfo.format;
-//    bitmapInfo.stride;
-//    bitmapInfo.width;
-//    bitmapInfo.height;
-//    AndroidBitmap_unlockPixels(env, jbitmap);
-
-    GifCodec *gifCodec = new GifCodecFromAssets(assetName, assetManager);
-    GifFileType *gifFileType = gifCodec->decodingGif();
-//    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", gifCodec->fileName,gifCodec->getFileSize());
-    LOGD(MODULE_NAME,
-         "width: %d,height: %d,left %d,top:%d,right:%d,bottom:%d \ncolor resloution: %d, background color: %d,AspectByte %d",
-         gifFileType->SWidth, gifFileType->SHeight, gifFileType->Image.Left, gifFileType->Image.Top,
-         gifFileType->Image.Width, gifFileType->Image.Height, gifFileType->SColorResolution,
-         gifFileType->SBackGroundColor,
-         gifFileType->AspectByte);
-
-    DGifSlurp(gifFileType);
-    LOGD(MODULE_NAME,
-         "width: %d,height: %d,left %d,top:%d,right:%d,bottom:%d \ncolor resloution: %d, background color: %d,AspectByte %d",
-         gifFileType->SWidth, gifFileType->SHeight, gifFileType->Image.Left, gifFileType->Image.Top,
-         gifFileType->Image.Width, gifFileType->Image.Height, gifFileType->SColorResolution,
-         gifFileType->SBackGroundColor,
-         gifFileType->AspectByte);
-
-//    for (int i = 0; i < gifFileType->SColorResolution; ++i) {
-//        for (int j = 0; j < gifFileType->SColorMap[i].ColorCount; ++j) {
-//            LOGD(MODULE_NAME,"SColorMap--->i/j: %d/%d,ColorCount: %d,BitsPerPixel: %d,SortFlag: %d, rgb: %d %d %d",
-//                 i, j,
-//                 gifFileType->SColorMap[i].ColorCount,
-//                 gifFileType->SColorMap[i].BitsPerPixel,
-//                 gifFileType->SColorMap[i].SortFlag,
-//                 gifFileType->SColorMap[i].Colors[j].Red,
-//                 gifFileType->SColorMap[i].Colors[j].Green,
-//                 gifFileType->SColorMap[i].Colors[j].Blue
-//            );
-//        }
-//    }
-    for (int i = 0; i < gifFileType->ImageCount; ++i) {
-        for (int j = 0; j < gifFileType->SavedImages[i].ExtensionBlockCount; ++j) {
-            LOGD(MODULE_NAME,
-                 "SavedImages--->i/j: %d/%d, left: %d ,top: %d ,right %d,bottom: %d,\nExtensionBlockCount: %d,ByteCount : %d ,Bytes: %d,Function: %d",
-                 i, j,
-                 gifFileType->SavedImages[i].ImageDesc.Left,
-                 gifFileType->SavedImages[i].ImageDesc.Top,
-                 gifFileType->SavedImages[i].ImageDesc.Width,
-                 gifFileType->SavedImages[i].ImageDesc.Height,
-                 gifFileType->SavedImages[i].ExtensionBlockCount,
-                 gifFileType->SavedImages[i].ExtensionBlocks[j].ByteCount,
-                 gifFileType->SavedImages[i].ExtensionBlocks[j].Bytes,
-                 gifFileType->SavedImages[i].ExtensionBlocks[j].Function
-            );
-        }
-
-    }
-    for (int i = 0; i < gifFileType->SColorMap->ColorCount; ++i) {
-        LOGD(MODULE_NAME, "SColorMap--->index: %d,color rgb: %d , %d , %d",
-             i,
-             gifFileType->SColorMap->Colors[i].Red,
-             gifFileType->SColorMap->Colors[i].Green,
-             gifFileType->SColorMap->Colors[i].Blue
-        );
-    }
-
-    for (int i = 0; i < gifFileType->ExtensionBlockCount; ++i) {
-        LOGD(MODULE_NAME, "ExtensionBlock--->index: %d,ByteCount : %d ,Bytes: %d,Function: %d ",
-             i,
-             gifFileType->ExtensionBlocks[i].ByteCount,
-             gifFileType->ExtensionBlocks[i].Bytes,
-             gifFileType->ExtensionBlocks[i].Function
-        );
-    }
-
-//    off_t start = 0, length = 0;
-//    int fd = AAsset_openFileDescriptor(aAsset, &start, &length);
-//    lseek(fd, start, SEEK_CUR);
-//    decodingGif(fd, false);
-    DGifCloseFile(gifFileType, &gifFileType->Error);
-    delete gifCodec;
 }
 /**
  *  来自网络的地址，来自sdcard的地址
  */
 extern "C" JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setSource1(JNIEnv *env, jobject jgifplayer,
-                                                jstring uriPathFromJava) {
-    char *uriPath = const_cast<char *>(env->GetStringUTFChars(uriPathFromJava, 0));
-//    GifCodec *gifCodec = new GifCodec(uriPath);
-//    GifFileType *gifFileType = gifCodec->decodingGif();
-//    LOGD(MODULE_NAME, "file name: %s, file size %d bytes", uriPath,
-//         gifFileType->ExtensionBlocks->ByteCount);
-//    LOGD(MODULE_NAME, "screen-->width: %d,height: %d", gifFileType->SWidth, gifFileType->SHeight);
+Java_com_hawksjamesf_image_GifPlayer_setDataSource__Ljava_lang_String_2Landroid_graphics_Bitmap_2(
+        JNIEnv *env, jobject jgifplayer,
+        jstring juriPath, jobject jbitmap) {
+    GifPlayer *gifPlayer = gifmap[jgifplayer];
+    if (gifPlayer == nullptr) {
+        AndroidBitmapInfo bitmapInfo;
+        AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
+        char *uriPath = const_cast<char *>(env->GetStringUTFChars(juriPath, 0));
+        gifPlayer = UriGifPlayer::createAndBind(&bitmapInfo, uriPath);
+        gifmap[jgifplayer] = gifPlayer;
+    }
 }
 
 // function contents
@@ -175,13 +96,23 @@ Java_com_hawksjamesf_image_GifPlayer_setDataSource__Ljava_io_FileDescriptor_2JJ(
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer) {}
+Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer) {
+    GifPlayer *gifPlayer = gifmap[jgifplayer];
+    if (gifPlayer == nullptr) throw "jgifplayer must not be null";
+    return gifPlayer->getGifWidth();
+}
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplayer) {}
+Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplayer) {
+    GifPlayer *gifPlayer = gifmap[jgifplayer];
+    if (gifPlayer == nullptr) throw "jgifplayer must not be null";
+    return gifPlayer->getGifHeight();
+}
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject thiz) {
-
+Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer) {
+    GifPlayer *gifPlayer = gifmap[jgifplayer];
+    if (gifPlayer == nullptr) throw "jgifplayer must not be null";
+    gifPlayer->start();
 }
 

@@ -4,11 +4,23 @@
 
 #include "GifPlayer.h"
 
+
+//static start
+
+GifPlayer *UriGifPlayer::createAndBind(
+        AndroidBitmapInfo *bitmapInfo,
+        char *uriPath) {
+    GifPlayer *gifPlayer = new UriGifPlayer(bitmapInfo);
+    gifPlayer->setDataSource(uriPath);
+    return gifPlayer;
+}
+
+//static end
+
 UriGifPlayer::UriGifPlayer(char *uriPath) {
     std::string assetNameString(uriPath);
     mUriPath = assetNameString;
 }
-UriGifPlayer::UriGifPlayer(AndroidBitmapInfo *binfo):bitmapInfo(bitmapInfo){};
 
 UriGifPlayer::~UriGifPlayer() {
 
@@ -24,6 +36,7 @@ void UriGifPlayer::setDataSource(char *uriPath) {
     }
     int error = -1;
     gifFileType = DGifOpenFileName(mUriPath.c_str(), &error);
+    DGifSlurp(gifFileType);
 //    GifFileType *gifFileType  = DGifOpenFileName(fd, &error);
 //    DGifCloseFile(gifFileType, &error);
     LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
@@ -38,3 +51,12 @@ void UriGifPlayer::start() {}
 void UriGifPlayer::pause() {}
 
 void UriGifPlayer::stop() {}
+
+int UriGifPlayer::getGifHeight() {
+    return 0;
+}
+
+int UriGifPlayer::getGifWidth() {
+    return 0;
+}
+
