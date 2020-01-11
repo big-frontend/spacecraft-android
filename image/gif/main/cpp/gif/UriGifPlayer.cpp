@@ -2,6 +2,7 @@
 // Created by hawks.jamesf on 1/5/20.
 //
 
+#include <LogUtil.h>
 #include "GifPlayer.h"
 
 
@@ -51,12 +52,4 @@ void UriGifPlayer::start() {}
 void UriGifPlayer::pause() {}
 
 void UriGifPlayer::stop() {}
-
-int UriGifPlayer::getGifHeight() {
-    return 0;
-}
-
-int UriGifPlayer::getGifWidth() {
-    return 0;
-}
 

@@ -5,21 +5,19 @@
 #ifndef SPACECRAFTANDROID_GIFPLAYER_H
 #define SPACECRAFTANDROID_GIFPLAYER_H
 
-#include <android/asset_manager_jni.h>
 #include <android/asset_manager.h>
+#include <android/asset_manager_jni.h>
 #include <android/bitmap.h>
-#include <string>
-#include <android/asset_manager.h>
-#include <android/asset_manager_jni.h>
 #include <algorithm>
 #include <stdio.h>
 #include <stdlib.h>
 #include <android/trace.h>
 #include <zlib.h>
 #include <unistd.h>
+#include <string>
+
+
 #include "gif_lib.h"
-#include "assetutil.h"
-#include "logutil.h"
 
 #define MODULE_NAME  "gif_player"
 using namespace ::std;
@@ -34,7 +32,8 @@ public:
     GifPlayer(AndroidBitmapInfo *bitmapInfo) : bitmapInfo(bitmapInfo) {}
 
     GifPlayer() {}
-    ~GifPlayer(){
+
+    ~GifPlayer() {
         DGifCloseFile(gifFileType, &gifFileType->Error);
     };
 
@@ -51,8 +50,10 @@ public:
     virtual void stop() = 0;
 
     virtual off_t getFileSize() = 0;
-    virtual  int  getGifHeight()=0;
-    virtual  int  getGifWidth()=0;
+
+    int getGifHeight();
+
+    int getGifWidth();
 };
 
 class AssetsGifPlayer : public GifPlayer {
@@ -85,9 +86,6 @@ public:
 
     void stop() override;
 
-    int getGifHeight() override;
-
-    int getGifWidth() override;
 };
 
 class UriGifPlayer : public GifPlayer {
@@ -112,11 +110,6 @@ public:
     void pause() override;
 
     void stop() override;
-
-    int getGifHeight() override;
-
-    int getGifWidth() override;
-
 };
 
 #endif //SPACECRAFTANDROID_GIFPLAYER_H

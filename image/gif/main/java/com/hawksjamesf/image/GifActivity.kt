@@ -2,6 +2,7 @@ package com.hawksjamesf.image
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.ReflectUtils
 import kotlinx.android.synthetic.main.activity_gif.*
 
 class GifActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class GifActivity : AppCompatActivity() {
         player = GifPlayer()
         player.createAndBind(this,iv_gif,"tenor.gif", assets)
 
-
+        ReflectUtils.reflect(this)
+                .method("")
     }
 }

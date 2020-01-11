@@ -16,4 +16,5 @@ interface BitmapListener {
 
     fun onBitmapDestroyed(bitmap: Bitmap?): Boolean
     fun onBitmapUpdated(bitmap: Bitmap?)
+
 }

@@ -1,19 +1,12 @@
 //
 // Created by hawks.jamesf on 12/31/19.
 //
-#include <android/asset_manager.h>
-#include <android/asset_manager_jni.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <android/trace.h>
 #include <zlib.h>
 #include <unistd.h>
-#include "logutil.h"
-#include "gif_lib.h"
 #include <algorithm>
-#include "assetutil.h"
-#include "GifPlayer.h"
-#include <android/bitmap.h>
 #include <hash_map>
 #include <map>
 #include <unordered_map>
@@ -22,7 +15,12 @@
 #include <hash_set>
 #include <unordered_set>
 #include <iterator>
+
+
 #include "GifPlayer.h"
+#include "../utils/include/LogUtil.h"
+#include "gif_lib.h"
+#include "../utils/include/AssetUtil.h"
 
 #define  MODULE_NAME "module_gif"
 

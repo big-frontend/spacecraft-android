@@ -15,8 +15,11 @@
  *
  */
 #include <algorithm>
-#include "assetutil.h"
-#include "logutil.h"
+#include <string>
+#include "include/AssetUtil.h"
+#include "include/LogUtil.h"
+
+
 
 #define MODULE_NAME  "assetsutil"
 #define IS_LOW_CHAR(c) ((c) >= 'a' && (c) <= 'z')

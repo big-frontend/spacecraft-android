@@ -9,3 +9,4 @@ set(lib_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/gif/main/cpp)
 
 add_subdirectory(${lib_src_dir}/codec)
 add_subdirectory(${lib_src_dir}/gif)
+add_subdirectory(${lib_src_dir}/utils)

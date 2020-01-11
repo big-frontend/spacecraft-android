@@ -2,6 +2,8 @@
 // Created by hawks.jamesf on 1/8/20.
 //
 
+#include <LogUtil.h>
+#include <AssetUtil.h>
 #include "GifPlayer.h"
 
 // static start
@@ -60,6 +62,7 @@ void AssetsGifPlayer::setDataSource(char *assetName, AAssetManager *assetManager
 };
 
 void logGifFileType(GifFileType *gifFileType);
+
 void AssetsGifPlayer::setDataSource(char *assetName, AAsset *aAsset) {
     if (mAsset == nullptr) {
         LOGE(MODULE_NAME, "exception:asset must be not empty");
@@ -74,23 +77,17 @@ void AssetsGifPlayer::setDataSource(char *assetName, AAsset *aAsset) {
     logGifFileType(gifFileType);
 //    GifFileType *gifFileType  = DGifOpenFileName(fd, &error);
 //    DGifCloseFile(gifFileType, &error);
-    LOGE(MODULE_NAME, "error: %s", GifErrorString(gifFileType->Error));
-//        LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
+//    LOGE(MODULE_NAME, "error: %s", GifErrorString(gifFileType->Error));
+    LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
 };
 
-void AssetsGifPlayer::start() {}
+void AssetsGifPlayer::start() {
+
+}
 
 void AssetsGifPlayer::pause() {}
 
 void AssetsGifPlayer::stop() {}
-
-int AssetsGifPlayer::getGifHeight() {
-    return 0;
-}
-
-int AssetsGifPlayer::getGifWidth() {
-    return 0;
-}
 
 void logGifFileType(GifFileType *gifFileType) {
     //    LOGD(MODULE_NAME, "file name: %s, file size: %d bytes", gifCodec->fileName,gifCodec->getFileSize());

@@ -10,8 +10,9 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 add_library(gif_jni SHARED
-        assetutil.cpp gif_jni.cpp androidmain.cpp
-        AssetsGifPlayer.cpp UriGifPlayer.cpp)
+        gif_jni.cpp androidmain.cpp
+        EventBus.cpp
+        GifPlayer.cpp AssetsGifPlayer.cpp UriGifPlayer.cpp)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -25,12 +26,14 @@ find_library( # Sets the name of the path variable.
 
         # Specifies the name of the NDK library that
         # you want CMake to locate.
-        log )
+        log)
 
 target_include_directories(gif_jni PRIVATE
 
         ${ANDROID_NDK}/sources/android/native_app_glue
-        ../codec/include)
+        ../codec/include
+        ../utils/include
+        )
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
@@ -41,10 +44,12 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        gifcodec android z EGL  jnigraphics   mediandk
+        gifcodec android z EGL jnigraphics mediandk
         OpenMAXAL
-#        vulkan
-#        sync
-#        camera2ndk
-#        nativewindow
-        ${log-lib} )
+        #        vulkan
+        #        sync
+        #        camera2ndk
+        #        nativewindow
+        ${log-lib}
+        utils
+        )

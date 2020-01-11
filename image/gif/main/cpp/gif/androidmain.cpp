@@ -2,7 +2,7 @@
 // Created by hawks.jamesf on 1/4/20.
 //
 #include <android_native_app_glue.h>
-#include "logutil.h"
+#include "../utils/include/LogUtil.h"
 #define MODULE_NAME "spacecraft_app"
 void android_main(struct android_app* state){
     LOGI(MODULE_NAME,"android_main");
