@@ -94,6 +94,12 @@ Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer) {
     gifPlayer->start();
 }
 
+
+/**
+ * =======================================================================
+ * jni init
+ * =======================================================================
+ */
 JNINativeMethod method[] = {
         {"setDataSource", "(Ljava/lang/String;Landroid/content/res/AssetManager;Landroid/graphics/Bitmap;)V", (void *) setDataSource},
 //        {"setDataSource", "(Ljava/lang/String;Landroid/graphics/Bitmap;)V", (void *) setDataSource},
