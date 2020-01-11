@@ -13,11 +13,10 @@ int AssetsGifPlayer::fileRead(GifFileType *gif, GifByteType *buf, int size) {
     return AAsset_read(asset, buf, (size_t) size);
 };
 
-GifPlayer *AssetsGifPlayer::createAndBind(
-        AndroidBitmapInfo *bitmapInfo,
-        char *assetName, AAssetManager *assetManager) {
+GifPlayer *AssetsGifPlayer::createAndBind(char *assetName, AAssetManager *assetManager,
+                                          AndroidBitmapInfo *bitmapInfo, jobject bitmapListener) {
 //    AssetsGifPlayer *gifPlayer=&assetsGifPlayer;
-    AssetsGifPlayer *gifPlayer = new AssetsGifPlayer(bitmapInfo);
+    AssetsGifPlayer *gifPlayer = new AssetsGifPlayer(bitmapInfo, bitmapListener);
     gifPlayer->setDataSource(assetName, assetManager);
     return gifPlayer;
 }
@@ -36,16 +35,16 @@ AssetsGifPlayer::AssetsGifPlayer(AndroidBitmapInfo *bitmapInfo) : GifPlayer(bitm
 //    AndroidBitmap_unlockPixels(env, jbitmap);
 };
 
-AssetsGifPlayer::AssetsGifPlayer(char *assetName, AAsset *aAsset) : mAsset(aAsset) {
-    std::string assetNameString(assetName);
-    fileName = assetNameString;
-};
-
-AssetsGifPlayer::AssetsGifPlayer(char *assetName, AAssetManager *assetManager) : mAsset(
-        aasset_create(assetManager, assetName, AASSET_MODE::STREAMING)) {
-    std::string assetNameString(assetName);
-    fileName = assetNameString;
-};
+//AssetsGifPlayer::AssetsGifPlayer(char *assetName, AAsset *aAsset) : mAsset(aAsset) {
+//    std::string assetNameString(assetName);
+//    fileName = assetNameString;
+//};
+//
+//AssetsGifPlayer::AssetsGifPlayer(char *assetName, AAssetManager *assetManager) : mAsset(
+//        aasset_create(assetManager, assetName, AASSET_MODE::STREAMING)) {
+//    std::string assetNameString(assetName);
+//    fileName = assetNameString;
+//};
 
 AssetsGifPlayer::~AssetsGifPlayer() {
     if (mAsset != nullptr) {
@@ -64,7 +63,7 @@ void AssetsGifPlayer::setDataSource(char *assetName, AAssetManager *assetManager
 void logGifFileType(GifFileType *gifFileType);
 
 void AssetsGifPlayer::setDataSource(char *assetName, AAsset *aAsset) {
-    if (mAsset == nullptr) {
+    if (aAsset == nullptr) {
         LOGE(MODULE_NAME, "exception:asset must be not empty");
         throw "asset must be not empty";
     }
@@ -81,8 +80,16 @@ void AssetsGifPlayer::setDataSource(char *assetName, AAsset *aAsset) {
     LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
 };
 
+ void retZFunc(jboolean result){
+     LOGE(MODULE_NAME, "retZFunc: %d", result);
+ };
 void AssetsGifPlayer::start() {
-
+     LOGE(MODULE_NAME, "start:");
+    jobject  bitmap;
+    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapAvailable_methodName,onBitmapAvailable_sig,1,3,4);
+    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapSizeChanged_methodName,onBitmapSizeChanged_sig,bitmap,getGifWidth(),getGifHeight());
+    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapDestroyed_methodName,onBitmapDestroyed_sig,retZFunc,bitmap);
+    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapUpdated_methodName,onBitmapUpdated_sig,bitmap);
 }
 
 void AssetsGifPlayer::pause() {}

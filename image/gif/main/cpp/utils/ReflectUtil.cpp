@@ -14,7 +14,7 @@ ReflectUtil ReflectUtil::reflect(jclass type) {
     return ReflectUtil(type);
 }
 
-ReflectUtil *ReflectUtil::reflect(jobject object) {
+ReflectUtil* ReflectUtil::reflect(jobject object) {
     return new ReflectUtil(env->GetObjectClass(object), object);
 }
 
@@ -286,13 +286,8 @@ ReflectUtil *ReflectUtil::field(string name, jdoubleArray value, bool isStatic =
     return this;
 }
 
-
-jmethodID ReflectUtil::exactMethod(va_list args, jvalue parameterType) {
-    return nullptr;
-}
-
 ReflectUtil *
-ReflectUtil::method(string name, string sig, RetZFunc retFunc, bool isStatic = false, ...) {
+ReflectUtil::method(bool isStatic,string name, string sig, RetZFunc retFunc, ...) {
     va_list args;
     va_start(args, isStatic);
     if (isStatic) {
@@ -309,7 +304,7 @@ ReflectUtil::method(string name, string sig, RetZFunc retFunc, bool isStatic = f
 }
 
 ReflectUtil *
-ReflectUtil::method(string name, string sig, RetBFunc retFunc, bool isStatic = false, ...) {
+ReflectUtil::method(bool isStatic,string name, string sig, RetBFunc retFunc, ...) {
     va_list args;
     va_start(args, isStatic);
     if (isStatic) {
@@ -325,7 +320,7 @@ ReflectUtil::method(string name, string sig, RetBFunc retFunc, bool isStatic = f
 }
 
 ReflectUtil *
-ReflectUtil::method(string name, string sig, bool isStatic, ...) {
+ReflectUtil::method(bool isStatic,string name, string sig,  ...) {
     va_list args;
     va_start(args, isStatic);
     if (isStatic) {
@@ -334,6 +329,7 @@ ReflectUtil::method(string name, string sig, bool isStatic, ...) {
     } else {
         jmethodID methodID = env->GetMethodID(type, name.c_str(), sig.c_str());
         env->CallVoidMethodV(object, methodID, args);
+    env->CallVoidMethod(object,methodID,1,2,3);
     }
 //    env->CallNonvirtualBooleanMethodV(object,type,methodID,args);
     va_end(args);

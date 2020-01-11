@@ -15,6 +15,9 @@
 #include <zlib.h>
 #include <unistd.h>
 #include <string>
+#include <map>
+
+#include "ReflectUtil.h"
 
 
 #include "gif_lib.h"
@@ -24,14 +27,26 @@ using namespace ::std;
 
 class GifPlayer {
 protected:
+    static map<jobject, GifPlayer*> bitmapListenerMap;
+    static ReflectUtil* reflectUtil;
+    static string onBitmapAvailable_sig;
+    static string onBitmapAvailable_methodName;
+    static string onBitmapSizeChanged_sig;
+    static string onBitmapSizeChanged_methodName;
+    static string onBitmapDestroyed_sig;
+    static string onBitmapDestroyed_methodName;
+    static string onBitmapUpdated_sig;
+    static string onBitmapUpdated_methodName;
     GifFileType *gifFileType;
     AndroidBitmapInfo *bitmapInfo;
+    jobject bitmapListener;//是native层通知java层的观察者
 public:
     std::string fileName;
 
-    GifPlayer(AndroidBitmapInfo *bitmapInfo) : bitmapInfo(bitmapInfo) {}
-
     GifPlayer() {}
+
+    GifPlayer(AndroidBitmapInfo *bitmapInfo) : bitmapInfo(bitmapInfo) {}
+    GifPlayer(AndroidBitmapInfo *bitmapInfo,jobject bitmapListener) : bitmapInfo(bitmapInfo),bitmapListener(bitmapListener) {}
 
     ~GifPlayer() {
         DGifCloseFile(gifFileType, &gifFileType->Error);
@@ -61,18 +76,19 @@ private:
     AAsset *mAsset;
 
     AssetsGifPlayer(AndroidBitmapInfo *binfo);
+    AssetsGifPlayer(AndroidBitmapInfo *binfo,jobject bitmapListener): GifPlayer(binfo,bitmapListener) {};;
 
-    AssetsGifPlayer(char *assetName, AAsset *aAsset);
-
-    AssetsGifPlayer(char *assetName, AAssetManager *assetManager);
+//    AssetsGifPlayer(char *assetName, AAsset *aAsset);
+//    AssetsGifPlayer(char *assetName, AAssetManager *assetManager);
 
     ~AssetsGifPlayer();
 
 public:
     static int fileRead(GifFileType *gif, GifByteType *buf, int size);
 
-    static GifPlayer *createAndBind(AndroidBitmapInfo *bitmapInfo,
-                                    char *assetName, AAssetManager *assetManager);
+    static GifPlayer *createAndBind(
+            char *assetName, AAssetManager *assetManager,
+            AndroidBitmapInfo *bitmapInfo, jobject bitmapListener);
 
     off_t getFileSize() override;// a normal non-virtual method
 
@@ -93,8 +109,9 @@ private:
     std::string mUriPath;
 
     UriGifPlayer(AndroidBitmapInfo *binfo) : GifPlayer(binfo) {};
+    UriGifPlayer(AndroidBitmapInfo *binfo,jobject bitmapListener) : GifPlayer(binfo,bitmapListener) {};
 
-    UriGifPlayer(char *uriPath);
+//    UriGifPlayer(char *uriPath);
 
     ~UriGifPlayer();
 

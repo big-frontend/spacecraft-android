@@ -64,7 +64,6 @@ public:
 //    jfieldID getField(string name);
 //    jfieldID getAccessibleField(string name);
 
-    jmethodID exactMethod(va_list args, jvalue parameterType);
 
 public:
     static void init(JNIEnv *jniEnv) { env = jniEnv; };
@@ -127,11 +126,11 @@ public:
     ReflectUtil *field(string name, jdoubleArray value, bool isStatic);
 
 //    ReflectUtil *field(string name, bool isStatic,...);
-    ReflectUtil *method(string name, string sig, bool isStatic = false, ...);
+    ReflectUtil *method(bool isStatic, string name, string sig, ...);
 
-    ReflectUtil *method(string name, string sig, RetZFunc retFunc, bool isStatic, ...);
+    ReflectUtil *method(bool isStatic, string name, string sig, RetZFunc retFunc, ...);
 
-    ReflectUtil *method(string name, string sig, RetBFunc retFunc, bool isStatic, ...);
+    ReflectUtil *method(bool isStatic, string name, string sig, RetBFunc retFunc, ...);
 
 };
 

@@ -17,12 +17,6 @@ GifPlayer *UriGifPlayer::createAndBind(
 }
 
 //static end
-
-UriGifPlayer::UriGifPlayer(char *uriPath) {
-    std::string assetNameString(uriPath);
-    mUriPath = assetNameString;
-}
-
 UriGifPlayer::~UriGifPlayer() {
 
 }

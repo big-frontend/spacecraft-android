@@ -4,7 +4,8 @@
 #include <jni.h>
 #include <map>
 #include <string>
-#include <ReflectUtil.h>
+#include "ReflectUtil.h"
+#include "GifPlayer.h"
 
 using namespace ::std;
 
@@ -12,7 +13,7 @@ using namespace ::std;
 class EventBus {
 
 private:
-    static map<jobject, jclass> bitmapListenerMap;
+    static map<jobject, GifPlayer *> bitmapListenerMap;
     static ReflectUtil *reflectUtil;
     static string onBitmapAvailable_sig;
     static string onBitmapAvailable_methodName;
@@ -27,7 +28,7 @@ public:
 
 public:
 
-    static void init(JNIEnv *env, jobject jbitmapListener);
+    static void init(JNIEnv *env, jobject jbitmapListener, GifPlayer *gifPlayer);
 
     static void sendEventBitmapAvailable();
 

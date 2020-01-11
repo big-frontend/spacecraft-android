@@ -6,8 +6,8 @@ import android.graphics.Bitmap
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.util.Log
 import android.widget.ImageView
-import java.io.FileDescriptor
 
 /**
  * Copyright ® $ 2017
@@ -45,14 +45,12 @@ class GifPlayer : BitmapListener {
     }
 
 
-    external fun setDataSource(assetName: String, manager: AssetManager,bitmap: Bitmap?)
-    //    public external setDataSource(afd:AssetFileDescriptor )
-    private external fun setDataSource(fd: FileDescriptor, offset: Long, length: Long)
-
-    external fun setDataSource(uriPath: String,bitmap: Bitmap?)
+    external fun setDataSource(assetName: String, manager: AssetManager, bitmap: Bitmap?)
+    external fun setDataSource(uriPath: String, bitmap: Bitmap?)
     external fun getGifWidth(): Int
     external fun getGifHeight(): Int
     external fun start()
+
 //    external fun setBitmap(bitmap: Bitmap?)
 //    fun start() {
 //        mEventHandler.sendEmptyMessage(MSG_START)
@@ -68,17 +66,17 @@ class GifPlayer : BitmapListener {
     }
 
 
-
     fun createAndBind(context: Context, ivGif: ImageView, assetName: String, assetManager: AssetManager): GifPlayer {
-        val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
-        setDataSource(assetName, assetManager,bitmap)//setSource 之后才能拿到width、height
+        val bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888)
+        setDataSource(assetName, assetManager, bitmap)//setSource 之后才能拿到width、height
         bindImageView(ivGif)
         return this
     }
+
     //来自网络的地址，来自sdcard的地址
-    fun createAndBind(context: Context, ivGif: ImageView,uri: String ): GifPlayer {
+    fun createAndBind(context: Context, ivGif: ImageView, uri: String): GifPlayer {
         val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
-        setDataSource(uri,bitmap)//setSource 之后才能拿到width、height
+        setDataSource(uri, bitmap)//setSource 之后才能拿到width、height
         bindImageView(ivGif)
         return this
     }
@@ -113,17 +111,21 @@ class GifPlayer : BitmapListener {
     }
 
     override fun onBitmapAvailable(bitmap: Bitmap?, width: Int, height: Int) {
+        Log.d("hawks", "onBitmapAvailable:$bitmap--$width/$height")
 
     }
 
     override fun onBitmapSizeChanged(bitmap: Bitmap?, width: Int, height: Int) {
+        Log.d("hawks", "onBitmapSizeChanged:$bitmap--$width/$height")
     }
 
     override fun onBitmapDestroyed(bitmap: Bitmap?): Boolean {
+        Log.d("hawks", "onBitmapDestroyed:$bitmap")
         return true
     }
 
     override fun onBitmapUpdated(bitmap: Bitmap?) {
         mImageView?.setImageBitmap(bitmap)
+        Log.d("hawks", "onBitmapUpdated:$bitmap")
     }
 }
