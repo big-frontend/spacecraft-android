@@ -36,7 +36,7 @@ extern "C" JNIEXPORT jlong JNICALL
 setDataSource(JNIEnv *env, jobject jgifplayer, jstring jassetName, jobject jassetManager) {
     char *assetName = const_cast<char *>(env->GetStringUTFChars(jassetName, 0));
     AAssetManager *assetManager = AAssetManager_fromJava(env, jassetManager);
-    jlong nativePlayerAddress = (jlong) AssetsGifPlayer::create(env, assetName, assetManager);
+    jlong nativePlayerAddress = (jlong) GifPlayer::create(env, assetName, assetManager);
     LOGI(MODULE_NAME, "setDataSource-->assetName:%s , nativePlayerAddress: %d", assetName,
          nativePlayerAddress);
     return nativePlayerAddress;
@@ -45,10 +45,10 @@ setDataSource(JNIEnv *env, jobject jgifplayer, jstring jassetName, jobject jasse
  *  来自网络的地址，来自sdcard的地址
  */
 extern "C" JNIEXPORT jlong JNICALL
-Java_com_hawksjamesf_image_GifPlayer_setDataSource(
-        JNIEnv *env, jobject jgifplayer, jstring juriPath) {
+Java_com_hawksjamesf_image_GifPlayer_setDataSource(JNIEnv *env, jobject jgifplayer,
+                                                   jstring juriPath) {
     char *uriPath = const_cast<char *>(env->GetStringUTFChars(juriPath, 0));
-    jlong nativePlayerAddress = (jlong) UriGifPlayer::create(env, uriPath);
+    jlong nativePlayerAddress = (jlong) GifPlayer::create(env, uriPath);
     LOGI(MODULE_NAME, "setDataSource-->uriPath: %s , nativePlayerAddress: %d", uriPath,
          nativePlayerAddress);
     return nativePlayerAddress;
@@ -56,6 +56,7 @@ Java_com_hawksjamesf_image_GifPlayer_setDataSource(
 extern "C" JNIEXPORT void JNICALL
 bindBitmap(JNIEnv *env, jobject jgifplayer, jlong nativePlayerAddress, jobject jbitmap) {
     GifPlayer *gifPlayer = (GifPlayer *) nativePlayerAddress;
+    gifPlayer->refreshReflectUtil(ReflectUtil::reflect(jgifplayer));
     gifPlayer->bindBitmap(jbitmap);
     LOGI(MODULE_NAME, "bindBitmap-->nativePlayerAddress: %d", nativePlayerAddress);
 }
@@ -72,7 +73,7 @@ Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer
     return gifPlayer->getGifWidth();
 }
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplaye,
+Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplayer,
                                                   jlong nativePlayerAddress) {
     GifPlayer *gifPlayer = (GifPlayer *) nativePlayerAddress;
     if (gifPlayer == nullptr) {
@@ -82,8 +83,7 @@ Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplaye
     return gifPlayer->getGifHeight();
 }
 
-extern "C"
-JNIEXPORT void JNICALL
+extern "C" JNIEXPORT void JNICALL
 Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer,
                                            jlong nativePlayerAddress) {
     LOGI(MODULE_NAME, "start-->jgifplayer:%d , nativePlayerAddress: %d", jgifplayer,

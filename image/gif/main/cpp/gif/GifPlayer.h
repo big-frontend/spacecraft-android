@@ -17,18 +17,22 @@
 #include <string>
 #include <map>
 
+#include "gif_lib.h"
 #include "ReflectUtil.h"
 #include "LogUtil.h"
-
-
-#include "gif_lib.h"
 
 #define MODULE_NAME  "native/gif_player"
 using namespace ::std;
 
 class GifPlayer {
-protected:
-    static map<jobject, GifPlayer *> bitmapListenerMap;
+private:
+    AAsset *mAsset;
+    std::string mUriPath;
+
+    GifPlayer(JNIEnv *env) : jniEnv(env) {};
+
+    ~GifPlayer();
+
     static string onBitmapAvailable_sig;
     static string onBitmapAvailable_methodName;
     static string onBitmapSizeChanged_sig;
@@ -37,94 +41,47 @@ protected:
     static string onBitmapDestroyed_methodName;
     static string onBitmapUpdated_sig;
     static string onBitmapUpdated_methodName;
-    GifFileType *gifFileType;
     JNIEnv *jniEnv;
+    GifFileType *gifFileType;
     jobject jbitmap;
     ReflectUtil *reflectUtil;
+
 public:
+    static int fileRead(GifFileType *gif, GifByteType *buf, int size);
+
+    static GifPlayer *create(JNIEnv *env, char *assetName, AAssetManager *assetManager);
+
+    static GifPlayer *create(JNIEnv *env, char *uriPath);
+
     std::string fileName;
-
-    GifPlayer(JNIEnv *env) :jniEnv(env) {};
-
-    ~GifPlayer() {
-        DGifCloseFile(gifFileType, &gifFileType->Error);
-    };
 
     /**
      * 解析gif图片的所有信息
      * @param assetName
      * @param assetManager
      */
-    virtual void setDataSource(char *assetName, AAssetManager *assetManager) {};
+    void setDataSource(char *assetName, AAssetManager *assetManager);
 
-    virtual void setDataSource(char *assetName, AAsset *aAsset) {};// a normal virtual method
+    void setDataSource(char *assetName, AAsset *aAsset);// a normal virtual method
 
-    virtual void setDataSource(char *uriPath) {};
+    void setDataSource(char *uriPath);
 
-    virtual void start() = 0;// a pure virtual method
+    void start();// a pure  method
 
-    virtual void pause() = 0;
+    void pause();
 
-    virtual void stop() = 0;
+    void stop();
 
-    virtual off_t getFileSize() = 0;
+    off_t getFileSize();
 
     int getGifHeight();
 
     int getGifWidth();
 
     void bindBitmap(jobject jbitmap);
-    void refreshReflectUtil( ReflectUtil *reflectUtil);
-};
 
-class AssetsGifPlayer : public GifPlayer {
-private:
-    AAsset *mAsset;
+    void refreshReflectUtil(ReflectUtil *reflectUtil);
 
-    AssetsGifPlayer(JNIEnv *env) : GifPlayer(env) {};
-
-    ~AssetsGifPlayer();
-
-public:
-    static int fileRead(GifFileType *gif, GifByteType *buf, int size);
-
-    static GifPlayer *create(JNIEnv *env,char *assetName, AAssetManager *assetManager);
-
-    off_t getFileSize() override;// a normal non-virtual method
-
-    void setDataSource(char *assetName, AAssetManager *assetManager) override;
-
-    void setDataSource(char *assetName, AAsset *aAsset) override;
-
-    void start() override;
-
-    void pause() override;
-
-    void stop() override;
-
-};
-
-class UriGifPlayer : public GifPlayer {
-private:
-    std::string mUriPath;
-
-    UriGifPlayer(JNIEnv *env) : GifPlayer(env) {};
-
-//    UriGifPlayer(char *uriPath);
-    ~UriGifPlayer();
-
-public:
-    static GifPlayer *create(JNIEnv *env,char *uriPath);
-
-    off_t getFileSize() override;
-
-    void setDataSource(char *uriPath) override;
-
-    void start() override;
-
-    void pause() override;
-
-    void stop() override;
 };
 
 #endif //SPACECRAFTANDROID_GIFPLAYER_H
