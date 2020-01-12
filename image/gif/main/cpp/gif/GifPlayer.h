@@ -19,7 +19,7 @@
 
 #include "gif_lib.h"
 #include "ReflectUtil.h"
-#include "LogUtil.h"
+
 
 #define MODULE_NAME  "native/gif_player"
 using namespace ::std;
@@ -32,15 +32,6 @@ private:
     GifPlayer(JNIEnv *env) : jniEnv(env) {};
 
     ~GifPlayer();
-
-    static string onBitmapAvailable_sig;
-    static string onBitmapAvailable_methodName;
-    static string onBitmapSizeChanged_sig;
-    static string onBitmapSizeChanged_methodName;
-    static string onBitmapDestroyed_sig;
-    static string onBitmapDestroyed_methodName;
-    static string onBitmapUpdated_sig;
-    static string onBitmapUpdated_methodName;
     JNIEnv *jniEnv;
     GifFileType *gifFileType;
     jobject jbitmap;

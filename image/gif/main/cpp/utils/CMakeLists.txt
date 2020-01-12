@@ -11,6 +11,7 @@ add_library( # Sets the name of the library.
         utils
         STATIC
         AssetUtil.cpp
+        ThreadUtil.cpp
         ReflectUtil.cpp)
 find_library( # Sets the name of the path variable.
         log-lib

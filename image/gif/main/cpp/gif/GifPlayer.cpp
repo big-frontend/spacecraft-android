@@ -5,18 +5,12 @@
 #include <AssetUtil.h>
 
 #include "GifPlayer.h"
+#include "Constants.h"
+#include "LogUtil.h"
 
 /**
  * static start
  */
-string GifPlayer::onBitmapAvailable_sig = "(II)V";
-string GifPlayer::onBitmapAvailable_methodName = "onBitmapAvailable";
-string GifPlayer::onBitmapSizeChanged_sig = "(II)V";
-string GifPlayer::onBitmapSizeChanged_methodName = "onBitmapSizeChanged";
-string GifPlayer::onBitmapDestroyed_sig = "()Z";
-string GifPlayer::onBitmapDestroyed_methodName = "onBitmapDestroyed";
-string GifPlayer::onBitmapUpdated_sig = "()V";
-string GifPlayer::onBitmapUpdated_methodName = "onBitmapUpdated";
 
 int GifPlayer::fileRead(GifFileType *gif, GifByteType *buf, int size) {
     AAsset *asset = (AAsset *) gif->UserData;
