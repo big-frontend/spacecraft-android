@@ -14,11 +14,10 @@ class GifActivity : AppCompatActivity() {
 //        iv_gif.setSource("tenor.gif")
 //        iv_gif.setSource("tenor.gif",assets)
 //
+        player= GifPlayer.createAndBind(this,iv_gif,"tenor.gif", assets)
         bt_start.setOnClickListener {
             player.start()
-
         }
-        player = GifPlayer()
-        player.createAndBind(this,iv_gif,"tenor.gif", assets)
+
     }
 }

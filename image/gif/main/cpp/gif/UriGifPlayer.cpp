@@ -8,10 +8,8 @@
 
 //static start
 
-GifPlayer *UriGifPlayer::createAndBind(
-        AndroidBitmapInfo *bitmapInfo,
-        char *uriPath) {
-    GifPlayer *gifPlayer = new UriGifPlayer(bitmapInfo);
+GifPlayer *UriGifPlayer::create(JNIEnv *env,char *uriPath) {
+    GifPlayer *gifPlayer = new UriGifPlayer(env);
     gifPlayer->setDataSource(uriPath);
     return gifPlayer;
 }

@@ -15,6 +15,8 @@
 #include <hash_set>
 #include <unordered_set>
 #include <iterator>
+#include <exception>
+#include <stdexcept>
 
 
 #include "gif_lib.h"
@@ -23,49 +25,46 @@
 #include "LogUtil.h"
 #include "AssetUtil.h"
 
-#define  MODULE_NAME "module_gif"
+#define  MODULE_NAME "native/gif_jni"
 
 using namespace ::std;
-static map<jobject, GifPlayer *> gifmap;
 
 /**
  * 来自asset
  */
-extern "C" JNIEXPORT void JNICALL
-setDataSource(JNIEnv *env, jobject jgifplayer, jstring jassetName, jobject jassetManager,
-              jobject jbitmap) {
-    GifPlayer *gifPlayer = gifmap[jgifplayer];
-    if (gifPlayer == nullptr) {
-        AndroidBitmapInfo bitmapInfo;
-        AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
-        char *assetName = const_cast<char *>(env->GetStringUTFChars(jassetName, 0));
-        AAssetManager *assetManager = AAssetManager_fromJava(env, jassetManager);
-        gifPlayer = AssetsGifPlayer::createAndBind(assetName, assetManager, &bitmapInfo,
-                                                   jgifplayer);
-        gifmap[jgifplayer] = gifPlayer;
-    }
+extern "C" JNIEXPORT jlong JNICALL
+setDataSource(JNIEnv *env, jobject jgifplayer, jstring jassetName, jobject jassetManager) {
+    char *assetName = const_cast<char *>(env->GetStringUTFChars(jassetName, 0));
+    AAssetManager *assetManager = AAssetManager_fromJava(env, jassetManager);
+    jlong nativePlayerAddress = (jlong) AssetsGifPlayer::create(env, assetName, assetManager);
+    LOGI(MODULE_NAME, "setDataSource-->assetName:%s , nativePlayerAddress: %d", assetName,
+         nativePlayerAddress);
+    return nativePlayerAddress;
 }
 /**
  *  来自网络的地址，来自sdcard的地址
  */
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jlong JNICALL
 Java_com_hawksjamesf_image_GifPlayer_setDataSource(
-        JNIEnv *env, jobject jgifplayer,
-        jstring juriPath, jobject jbitmap) {
-    GifPlayer *gifPlayer = gifmap[jgifplayer];
-    if (gifPlayer == nullptr) {
-        AndroidBitmapInfo bitmapInfo;
-        AndroidBitmap_getInfo(env, jbitmap, &bitmapInfo);
-        char *uriPath = const_cast<char *>(env->GetStringUTFChars(juriPath, 0));
-        gifPlayer = UriGifPlayer::createAndBind(&bitmapInfo, uriPath);
-        gifmap[jgifplayer] = gifPlayer;
-    }
+        JNIEnv *env, jobject jgifplayer, jstring juriPath) {
+    char *uriPath = const_cast<char *>(env->GetStringUTFChars(juriPath, 0));
+    jlong nativePlayerAddress = (jlong) UriGifPlayer::create(env, uriPath);
+    LOGI(MODULE_NAME, "setDataSource-->uriPath: %s , nativePlayerAddress: %d", uriPath,
+         nativePlayerAddress);
+    return nativePlayerAddress;
+}
+extern "C" JNIEXPORT void JNICALL
+bindBitmap(JNIEnv *env, jobject jgifplayer, jlong nativePlayerAddress, jobject jbitmap) {
+    GifPlayer *gifPlayer = (GifPlayer *) nativePlayerAddress;
+    gifPlayer->bindBitmap(jbitmap);
+    LOGI(MODULE_NAME, "bindBitmap-->nativePlayerAddress: %d", nativePlayerAddress);
 }
 
+
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer) {
-    LOGI(MODULE_NAME, "player getwidth: %d", jgifplayer);
-    GifPlayer *gifPlayer = gifmap[jgifplayer];
+Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer,
+                                                 jlong nativePlayerAddress) {
+    GifPlayer *gifPlayer = (GifPlayer *) nativePlayerAddress;
     if (gifPlayer == nullptr) {
         LOGE(MODULE_NAME, "jgifplayer must not be null");
         return 0;
@@ -73,9 +72,9 @@ Java_com_hawksjamesf_image_GifPlayer_getGifWidth(JNIEnv *env, jobject jgifplayer
     return gifPlayer->getGifWidth();
 }
 extern "C" JNIEXPORT jint JNICALL
-Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplayer) {
-    LOGI(MODULE_NAME, "player getheight: %d", jgifplayer);
-    GifPlayer *gifPlayer = gifmap[jgifplayer];
+Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplaye,
+                                                  jlong nativePlayerAddress) {
+    GifPlayer *gifPlayer = (GifPlayer *) nativePlayerAddress;
     if (gifPlayer == nullptr) {
         LOGE(MODULE_NAME, "jgifplayer must not be null");
         return 0;
@@ -85,12 +84,17 @@ Java_com_hawksjamesf_image_GifPlayer_getGifHeight(JNIEnv *env, jobject jgifplaye
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer) {
-    GifPlayer *gifPlayer = gifmap[jgifplayer];
+Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer,
+                                           jlong nativePlayerAddress) {
+    LOGI(MODULE_NAME, "start-->jgifplayer:%d , nativePlayerAddress: %d", jgifplayer,
+         nativePlayerAddress);
+//    GifPlayer *gifPlayer = (GifPlayer *)nativePlayerAddress;
+    GifPlayer *gifPlayer = reinterpret_cast<GifPlayer *>(nativePlayerAddress);
     if (gifPlayer == nullptr) {
         LOGE(MODULE_NAME, "jgifplayer must not be null");
-        return;
+        throw runtime_error("jgifplayer must not be null");
     }
+    gifPlayer->refreshReflectUtil(ReflectUtil::reflect(jgifplayer));
     gifPlayer->start();
 }
 
@@ -101,8 +105,9 @@ Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer) {
  * =======================================================================
  */
 JNINativeMethod method[] = {
-        {"setDataSource", "(Ljava/lang/String;Landroid/content/res/AssetManager;Landroid/graphics/Bitmap;)V", (void *) setDataSource},
+        {"setDataSource", "(Ljava/lang/String;Landroid/content/res/AssetManager;)J", (void *) setDataSource},
 //        {"setDataSource", "(Ljava/lang/String;Landroid/graphics/Bitmap;)V", (void *) setDataSource},
+        {"bindBitmap",    "(JLandroid/graphics/Bitmap;)V",                           (void *) bindBitmap},
 };
 
 jint registerNativeMethod(JNIEnv *env) {
@@ -125,9 +130,11 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
 //    ATrace_beginSection("JNI_OnLoad");
     JNIEnv *env;
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) == JNI_OK) {
+        ReflectUtil::init(env);
         registerNativeMethod(env);
         return JNI_VERSION_1_6;
     } else if (vm->GetEnv((void **) &env, JNI_VERSION_1_4) == JNI_OK) {
+        ReflectUtil::init(env);
         registerNativeMethod(env);
         return JNI_VERSION_1_4;
     }

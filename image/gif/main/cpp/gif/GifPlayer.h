@@ -18,17 +18,17 @@
 #include <map>
 
 #include "ReflectUtil.h"
+#include "LogUtil.h"
 
 
 #include "gif_lib.h"
 
-#define MODULE_NAME  "gif_player"
+#define MODULE_NAME  "native/gif_player"
 using namespace ::std;
 
 class GifPlayer {
 protected:
-    static map<jobject, GifPlayer*> bitmapListenerMap;
-    static ReflectUtil* reflectUtil;
+    static map<jobject, GifPlayer *> bitmapListenerMap;
     static string onBitmapAvailable_sig;
     static string onBitmapAvailable_methodName;
     static string onBitmapSizeChanged_sig;
@@ -38,20 +38,23 @@ protected:
     static string onBitmapUpdated_sig;
     static string onBitmapUpdated_methodName;
     GifFileType *gifFileType;
-    AndroidBitmapInfo *bitmapInfo;
-    jobject bitmapListener;//是native层通知java层的观察者
+    JNIEnv *jniEnv;
+    jobject jbitmap;
+    ReflectUtil *reflectUtil;
 public:
     std::string fileName;
 
-    GifPlayer() {}
-
-    GifPlayer(AndroidBitmapInfo *bitmapInfo) : bitmapInfo(bitmapInfo) {}
-    GifPlayer(AndroidBitmapInfo *bitmapInfo,jobject bitmapListener) : bitmapInfo(bitmapInfo),bitmapListener(bitmapListener) {}
+    GifPlayer(JNIEnv *env) :jniEnv(env) {};
 
     ~GifPlayer() {
         DGifCloseFile(gifFileType, &gifFileType->Error);
     };
 
+    /**
+     * 解析gif图片的所有信息
+     * @param assetName
+     * @param assetManager
+     */
     virtual void setDataSource(char *assetName, AAssetManager *assetManager) {};
 
     virtual void setDataSource(char *assetName, AAsset *aAsset) {};// a normal virtual method
@@ -69,26 +72,23 @@ public:
     int getGifHeight();
 
     int getGifWidth();
+
+    void bindBitmap(jobject jbitmap);
+    void refreshReflectUtil( ReflectUtil *reflectUtil);
 };
 
 class AssetsGifPlayer : public GifPlayer {
 private:
     AAsset *mAsset;
 
-    AssetsGifPlayer(AndroidBitmapInfo *binfo);
-    AssetsGifPlayer(AndroidBitmapInfo *binfo,jobject bitmapListener): GifPlayer(binfo,bitmapListener) {};;
-
-//    AssetsGifPlayer(char *assetName, AAsset *aAsset);
-//    AssetsGifPlayer(char *assetName, AAssetManager *assetManager);
+    AssetsGifPlayer(JNIEnv *env) : GifPlayer(env) {};
 
     ~AssetsGifPlayer();
 
 public:
     static int fileRead(GifFileType *gif, GifByteType *buf, int size);
 
-    static GifPlayer *createAndBind(
-            char *assetName, AAssetManager *assetManager,
-            AndroidBitmapInfo *bitmapInfo, jobject bitmapListener);
+    static GifPlayer *create(JNIEnv *env,char *assetName, AAssetManager *assetManager);
 
     off_t getFileSize() override;// a normal non-virtual method
 
@@ -108,15 +108,13 @@ class UriGifPlayer : public GifPlayer {
 private:
     std::string mUriPath;
 
-    UriGifPlayer(AndroidBitmapInfo *binfo) : GifPlayer(binfo) {};
-    UriGifPlayer(AndroidBitmapInfo *binfo,jobject bitmapListener) : GifPlayer(binfo,bitmapListener) {};
+    UriGifPlayer(JNIEnv *env) : GifPlayer(env) {};
 
 //    UriGifPlayer(char *uriPath);
-
     ~UriGifPlayer();
 
 public:
-    static GifPlayer *createAndBind(AndroidBitmapInfo *bitmapInfo, char *uriPath);
+    static GifPlayer *create(JNIEnv *env,char *uriPath);
 
     off_t getFileSize() override;
 

@@ -18,3 +18,4 @@ interface BitmapListener {
     fun onBitmapUpdated(bitmap: Bitmap?)
 
 }
+typealias onBitmapUpdated = (bitmap: Bitmap) -> Unit

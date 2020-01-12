@@ -3,14 +3,13 @@
 //
 #include "GifPlayer.h"
 
-ReflectUtil* GifPlayer::reflectUtil=0;
-string GifPlayer::onBitmapAvailable_sig = "(Landroid/graphics/Bitmap;II)V";
+string GifPlayer::onBitmapAvailable_sig = "(II)V";
 string GifPlayer::onBitmapAvailable_methodName = "onBitmapAvailable";
-string GifPlayer::onBitmapSizeChanged_sig = "(Landroid/graphics/Bitmap;II)V";
+string GifPlayer::onBitmapSizeChanged_sig = "(II)V";
 string GifPlayer::onBitmapSizeChanged_methodName = "onBitmapSizeChanged";
-string GifPlayer::onBitmapDestroyed_sig = "(Landroid/graphics/Bitmap;)Z";
+string GifPlayer::onBitmapDestroyed_sig = "()Z";
 string GifPlayer::onBitmapDestroyed_methodName = "onBitmapDestroyed";
-string GifPlayer::onBitmapUpdated_sig = "(Landroid/graphics/Bitmap;)V";
+string GifPlayer::onBitmapUpdated_sig = "()V";
 string GifPlayer::onBitmapUpdated_methodName = "onBitmapUpdated";
 
 int GifPlayer::getGifHeight() {
@@ -19,5 +18,13 @@ int GifPlayer::getGifHeight() {
 
 int GifPlayer::getGifWidth() {
     return gifFileType->SWidth;
+};
+
+void GifPlayer::bindBitmap(jobject bitmap) {
+    jbitmap = bitmap;
+}
+
+void GifPlayer::refreshReflectUtil(ReflectUtil *ru) {
+    reflectUtil = ru;
 };
 

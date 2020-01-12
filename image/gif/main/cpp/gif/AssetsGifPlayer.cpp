@@ -13,38 +13,14 @@ int AssetsGifPlayer::fileRead(GifFileType *gif, GifByteType *buf, int size) {
     return AAsset_read(asset, buf, (size_t) size);
 };
 
-GifPlayer *AssetsGifPlayer::createAndBind(char *assetName, AAssetManager *assetManager,
-                                          AndroidBitmapInfo *bitmapInfo, jobject bitmapListener) {
+GifPlayer *AssetsGifPlayer::create(JNIEnv *env, char *assetName, AAssetManager *assetManager) {
 //    AssetsGifPlayer *gifPlayer=&assetsGifPlayer;
-    AssetsGifPlayer *gifPlayer = new AssetsGifPlayer(bitmapInfo, bitmapListener);
+    AssetsGifPlayer *gifPlayer = new AssetsGifPlayer(env);
     gifPlayer->setDataSource(assetName, assetManager);
     return gifPlayer;
 }
 
 // static end
-
-
-AssetsGifPlayer::AssetsGifPlayer(AndroidBitmapInfo *bitmapInfo) : GifPlayer(bitmapInfo) {
-//    void *pixels;
-//    AndroidBitmap_lockPixels(env, jbitmap, &pixels);
-//    bitmapInfo.flags;
-//    bitmapInfo.format;
-//    bitmapInfo.stride;
-//    bitmapInfo.width;
-//    bitmapInfo.height;
-//    AndroidBitmap_unlockPixels(env, jbitmap);
-};
-
-//AssetsGifPlayer::AssetsGifPlayer(char *assetName, AAsset *aAsset) : mAsset(aAsset) {
-//    std::string assetNameString(assetName);
-//    fileName = assetNameString;
-//};
-//
-//AssetsGifPlayer::AssetsGifPlayer(char *assetName, AAssetManager *assetManager) : mAsset(
-//        aasset_create(assetManager, assetName, AASSET_MODE::STREAMING)) {
-//    std::string assetNameString(assetName);
-//    fileName = assetNameString;
-//};
 
 AssetsGifPlayer::~AssetsGifPlayer() {
     if (mAsset != nullptr) {
@@ -80,16 +56,30 @@ void AssetsGifPlayer::setDataSource(char *assetName, AAsset *aAsset) {
     LOGE(MODULE_NAME, "error: %s", GifErrorString(error));
 };
 
- void retZFunc(jboolean result){
-     LOGE(MODULE_NAME, "retZFunc: %d", result);
- };
+void retZFunc(jboolean result) {
+    LOGE(MODULE_NAME, "retZFunc: %d", result);
+};
+
 void AssetsGifPlayer::start() {
-     LOGE(MODULE_NAME, "start:");
-    jobject  bitmap;
-    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapAvailable_methodName,onBitmapAvailable_sig,1,3,4);
-    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapSizeChanged_methodName,onBitmapSizeChanged_sig,bitmap,getGifWidth(),getGifHeight());
-    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapDestroyed_methodName,onBitmapDestroyed_sig,retZFunc,bitmap);
-    ReflectUtil::reflect(bitmapListener)->method(false,onBitmapUpdated_methodName,onBitmapUpdated_sig,bitmap);
+//    AndroidBitmapInfo info;
+//    AndroidBitmap_getInfo(jniEnv,jbitmap,&info);
+//    void *pixels;
+//    AndroidBitmap_lockPixels(jniEnv, jbitmap, &pixels);
+//    info.flags;
+//    info.format;
+//    info.stride;
+//    info.width;
+//    info.height;
+//    AndroidBitmap_unlockPixels(jniEnv, jbitmap);
+
+    reflectUtil->method(false, onBitmapAvailable_methodName, onBitmapAvailable_sig, 1, 3, 4);
+    reflectUtil->method(false, onBitmapSizeChanged_methodName,
+                        onBitmapSizeChanged_sig, jbitmap, getGifWidth(),
+                        getGifHeight());
+    reflectUtil->method(false, onBitmapDestroyed_methodName,
+                        onBitmapDestroyed_sig, retZFunc, jbitmap);
+    reflectUtil->method(false, onBitmapUpdated_methodName,
+                        onBitmapUpdated_sig, jbitmap);
 }
 
 void AssetsGifPlayer::pause() {}

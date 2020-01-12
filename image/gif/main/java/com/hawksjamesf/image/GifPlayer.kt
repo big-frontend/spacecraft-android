@@ -16,7 +16,7 @@ import android.widget.ImageView
  * @author: hawks.jamesf
  * @since: Jan/07/2020  Tue
  */
-class GifPlayer : BitmapListener {
+class GifPlayer : InnerBitmapListener {
     companion object {
         const val MSG_START = 0
         const val MSG_PAUSE = 1
@@ -25,10 +25,34 @@ class GifPlayer : BitmapListener {
         init {
             System.loadLibrary("gif_jni")
         }
+
+        fun createAndBind(context: Context, ivGif: ImageView, assetName: String, assetManager: AssetManager): GifPlayer {
+            val player = GifPlayer()
+            player.nativePlayerAddress = player.setDataSource(assetName, assetManager)//setSource 之后才能拿到width、height
+            val bitmap = Bitmap.createBitmap(player.getGifWidth(player.nativePlayerAddress), player.getGifHeight(player.nativePlayerAddress), Bitmap.Config.ARGB_8888)
+            player.bindImageView(ivGif, bitmap)
+            return player
+        }
+
+        //来自网络的地址，来自sdcard的地址
+        fun createAndBind(context: Context, ivGif: ImageView, uri: String): GifPlayer {
+            val player = GifPlayer()
+            player.nativePlayerAddress = player.setDataSource(uri)//setSource 之后才能拿到width、height
+            player.bindImageView(ivGif)
+            return player
+        }
     }
 
     var mEventHandler: EventHandler
-    private var mImageView: ImageView? = null
+    private lateinit var mImageView: ImageView
+    private lateinit var mBitmap: Bitmap
+    private var nativePlayerAddress: Long = 0
+    private var mBitmapListener: BitmapListener? = null
+    fun setBitmapListener(listener: BitmapListener) {
+        mBitmapListener = listener
+    }
+
+    private var startblock: onBitmapUpdated? = null
 
     init {
         mEventHandler = when {
@@ -44,17 +68,29 @@ class GifPlayer : BitmapListener {
         }
     }
 
+    external fun setDataSource(assetName: String, manager: AssetManager): Long
+    external fun setDataSource(uriPath: String): Long
+    fun bindImageView(imageView: ImageView) {
+        val bitmap = Bitmap.createBitmap(getGifWidth(nativePlayerAddress), getGifHeight(nativePlayerAddress), Bitmap.Config.ARGB_8888)
+                ?: throw  IllegalArgumentException("bitmap must be not null")
+        bindImageView(imageView, bitmap)
+    }
 
-    external fun setDataSource(assetName: String, manager: AssetManager, bitmap: Bitmap?)
-    external fun setDataSource(uriPath: String, bitmap: Bitmap?)
-    external fun getGifWidth(): Int
-    external fun getGifHeight(): Int
-    external fun start()
+    fun bindImageView(imageView: ImageView, bitmap: Bitmap) {
+        mImageView = imageView
+        mBitmap = bitmap
+        imageView.setImageBitmap(bitmap)
+        bindBitmap(nativePlayerAddress, bitmap)
+    }
 
-//    external fun setBitmap(bitmap: Bitmap?)
-//    fun start() {
-//        mEventHandler.sendEmptyMessage(MSG_START)
-//    }
+    private external fun bindBitmap(nativePlayerAddress: Long, bitmap: Bitmap?)
+    private external fun getGifWidth(nativePlayerAddress: Long): Int
+    private external fun getGifHeight(nativePlayerAddress: Long): Int
+    private external fun start(nativePlayerAddress: Long)
+    fun start(block: onBitmapUpdated? = null) {
+        start(nativePlayerAddress)
+        startblock = block
+    }
 
     fun pause() {
         mEventHandler.sendEmptyMessage(MSG_PAUSE)
@@ -63,27 +99,6 @@ class GifPlayer : BitmapListener {
     fun stop() {
         mEventHandler.removeMessages(MSG_START)
         mEventHandler.removeMessages(MSG_PAUSE)
-    }
-
-
-    fun createAndBind(context: Context, ivGif: ImageView, assetName: String, assetManager: AssetManager): GifPlayer {
-        val bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888)
-        setDataSource(assetName, assetManager, bitmap)//setSource 之后才能拿到width、height
-        bindImageView(ivGif)
-        return this
-    }
-
-    //来自网络的地址，来自sdcard的地址
-    fun createAndBind(context: Context, ivGif: ImageView, uri: String): GifPlayer {
-        val bitmap = Bitmap.createBitmap(getGifWidth(), getGifHeight(), Bitmap.Config.ARGB_8888)
-        setDataSource(uri, bitmap)//setSource 之后才能拿到width、height
-        bindImageView(ivGif)
-        return this
-    }
-
-    fun bindImageView(imageView: ImageView) {
-//        setBitmap(bitmap)
-        mImageView = imageView
     }
 
 
@@ -110,22 +125,22 @@ class GifPlayer : BitmapListener {
         }
     }
 
-    override fun onBitmapAvailable(bitmap: Bitmap?, width: Int, height: Int) {
-        Log.d("hawks", "onBitmapAvailable:$bitmap--$width/$height")
 
+    override fun onBitmapAvailable(width: Int, height: Int) {
+        Log.d("hawks", "onBitmapAvailable:${mBitmap.byteCount}--$width/$height")
     }
 
-    override fun onBitmapSizeChanged(bitmap: Bitmap?, width: Int, height: Int) {
-        Log.d("hawks", "onBitmapSizeChanged:$bitmap--$width/$height")
+    override fun onBitmapSizeChanged(width: Int, height: Int) {
+        Log.d("hawks", "onBitmapSizeChanged:${mBitmap.byteCount}--$width/$height")
     }
 
-    override fun onBitmapDestroyed(bitmap: Bitmap?): Boolean {
-        Log.d("hawks", "onBitmapDestroyed:$bitmap")
+    override fun onBitmapDestroyed(): Boolean {
+        Log.d("hawks", "onBitmapDestroyed:${mBitmap.byteCount}")
         return true
     }
 
-    override fun onBitmapUpdated(bitmap: Bitmap?) {
-        mImageView?.setImageBitmap(bitmap)
-        Log.d("hawks", "onBitmapUpdated:$bitmap")
+    override fun onBitmapUpdated() {
+//        mImageView?.setImageBitmap(mBitmap)
+        Log.d("hawks", "onBitmapUpdated:${mBitmap.byteCount}")
     }
 }
