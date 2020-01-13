@@ -11,7 +11,6 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 add_library(gif_jni SHARED
         gif_jni.cpp androidmain.cpp
-        EventBus.cpp
         GifPlayer.cpp)
 
 
