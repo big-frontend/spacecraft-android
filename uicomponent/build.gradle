@@ -19,6 +19,7 @@ def srcDirs = [
         "fragmentx",
         "testStyle",
         "photo",
+        "feedback",
 
 ]
 android {
