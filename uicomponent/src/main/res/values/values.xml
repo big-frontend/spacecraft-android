@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CollapsingBarsLayout_Layout">
-        <attr name="hotel_layout_collapseParallaxMultiplier" format="float" />
-        <attr name="hotel_layout_collapseMode" format="reference">
+        <attr name="cbl_layout_collapseParallaxMultiplier" format="float" />
+        <attr name="cbl_layout_collapseMode" format="reference">
             <enum name="none" value="0" />
             <enum name="pin" value="1" />
             <enum name="parallax" value="2" />

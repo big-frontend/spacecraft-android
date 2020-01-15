@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 
+import androidx.annotation.Nullable;
+
 import com.blankj.utilcode.util.SPUtils;
 import com.orhanobut.logger.Logger;
 
@@ -24,7 +26,6 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
-import androidx.annotation.Nullable;
 import okhttp3.HttpUrl;
 import okhttp3.internal.Util;
 import okhttp3.mockwebserver.MockWebServer;
@@ -61,16 +62,7 @@ public class MockService extends IntentService {
      */
     public MockService() {
         super("mock_service");
-        mockWebServer = new MockWebServer();
-        try {
-            mockWebServer.start(getLocalInetAddress(), 50195);
-//            mockWebServer.useHttps(sslContext("", "").getSocketFactory(), false);
-//            mockWebServer.setBodyLimit(12);
-//        } catch (GeneralSecurityException | IOException e) {
-//            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         mockRetrofit = new MockRetrofit.Builder(
                 new Retrofit.Builder()
                         .baseUrl(BuildConfig.BASE_URL)
@@ -125,6 +117,16 @@ public class MockService extends IntentService {
     //work thread
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        mockWebServer = new MockWebServer();
+        try {
+            mockWebServer.start(getLocalInetAddress(), 50195);
+//            mockWebServer.useHttps(sslContext("", "").getSocketFactory(), false);
+//            mockWebServer.setBodyLimit(12);
+//        } catch (GeneralSecurityException | IOException e) {
+//            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //okhttp
         try {
             HttpUrl url = mockWebServer.url("/");

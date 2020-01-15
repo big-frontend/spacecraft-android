@@ -143,8 +143,8 @@ class CollapsingBarsLayout : RelativeLayout {
 
         constructor(c: Context, attrs: AttributeSet?) : super(c, attrs) {
             val a: TypedArray = c.obtainStyledAttributes(attrs, R.styleable.CollapsingBarsLayout_Layout)
-            collapseMode = a.getInt(R.styleable.CollapsingBarsLayout_Layout_hotel_layout_collapseMode, COLLAPSE_MODE_OFF)
-            parallaxMultiplier = a.getFloat(R.styleable.CollapsingBarsLayout_Layout_hotel_layout_collapseParallaxMultiplier, DEFAULT_PARALLAX_MULTIPLIER)
+            collapseMode = a.getInt(R.styleable.CollapsingBarsLayout_Layout_cbl_layout_collapseMode, COLLAPSE_MODE_OFF)
+            parallaxMultiplier = a.getFloat(R.styleable.CollapsingBarsLayout_Layout_cbl_layout_collapseParallaxMultiplier, DEFAULT_PARALLAX_MULTIPLIER)
             a.recycle()
         }
 
