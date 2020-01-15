@@ -19,7 +19,6 @@
 
 #include "gif_lib.h"
 #include "GifPlayer.h"
-#include "EventBus.h"
 #include "LogUtil.h"
 #include "AssetUtil.h"
 
