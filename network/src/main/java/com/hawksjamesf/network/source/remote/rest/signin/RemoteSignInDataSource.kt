@@ -18,15 +18,15 @@ class RemoteSignInDataSource : SignInDataSource, AbstractApi<SignInApi>() {
 
 
     override fun getClass(): KClass<SignInApi> = SignInApi::class
-    override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
+    override fun sendCode(sendCodeReq: SendCodeReqBody): Single<SendCodeRespBody> {
         return api.sendCode(sendCodeReq)
     }
 
-    override fun signUp(signUpReq: SignUpReq): Single<Profile> {
+    override fun signUp(signUpReq: SignUpReqBody): Single<Profile> {
         return api.signUp(signUpReq)
     }
 
-    override fun signIn(loginReq: SignInReq): Single<Profile> {
+    override fun signIn(loginReq: SignInReqBody): Single<Profile> {
         return api.signIn(loginReq)
     }
 

@@ -7,7 +7,7 @@ package com.hawksjamesf.network.signin
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-data class SignInReq(
+data class SignInReqBody(
         val mobile: String,
         val password: String
 ) {

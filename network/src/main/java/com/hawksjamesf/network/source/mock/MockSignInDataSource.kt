@@ -41,7 +41,7 @@ class MockSignInDataSource(
     }
 
     val countDown: Long = 15//TimeUnit.SECONDS
-    override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
+    override fun sendCode(sendCodeReq: SendCodeReqBody): Single<SendCodeRespBody> {
         Logger.t(TAG).d("send code--->sendCode")
         return uncertainty()
                 .flatMapObservable { Observable.fromIterable(mStore.records) }
@@ -68,13 +68,13 @@ class MockSignInDataSource(
                     mStore.records.add(Record(Profile(profileId, sendCodeReq.mobile, null, null), "", code))
                     Logger.t(TAG).d("send code--->map $code")
                     Toast.makeText(mContext, "${TAG}打印的验证码为${code}", Toast.LENGTH_LONG).show()
-                    return@map SendCodeResp(1, mobile = sendCodeReq.mobile)
+                    return@map SendCodeRespBody(1, mobile = sendCodeReq.mobile)
                 }
 
 
     }
 
-    override fun signUp(signUpReq: SignUpReq): Single<Profile> {
+    override fun signUp(signUpReq: SignUpReqBody): Single<Profile> {
         return uncertainty()
                 .flatMapObservable { Observable.fromIterable(mStore.records) }
                 .filter { it.code == signUpReq.verificationCode }
@@ -96,7 +96,7 @@ class MockSignInDataSource(
 
     }
 
-    override fun signIn(signinReq: SignInReq): Single<Profile> {
+    override fun signIn(signinReq: SignInReqBody): Single<Profile> {
         return uncertainty()
                 .flatMapObservable { Observable.fromIterable(mStore.records) }
                 .filter { it.profile.mobile == signinReq.mobile && it.password == signinReq.password }

@@ -50,13 +50,13 @@ interface SignInContract {
             get() = stateDataSubject.value!!
             set(value) = stateDataSubject.onNext(value)
 
-        abstract fun signUp(signUpReq: SignUpReq): Single<Profile>
+        abstract fun signUp(signUpReq: SignUpReqBody): Single<Profile>
 
-        abstract fun signIn(signInReq: SignInReq): Single<Profile>
+        abstract fun signIn(signInReq: SignInReqBody): Single<Profile>
 
         abstract fun signOut()
 
-        abstract fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp>
+        abstract fun sendCode(sendCodeReq: SendCodeReqBody): Single<SendCodeRespBody>
 
 
     }

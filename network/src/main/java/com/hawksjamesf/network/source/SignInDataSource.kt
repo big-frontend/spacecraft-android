@@ -11,11 +11,11 @@ import io.reactivex.Single
  * @since: Nov/10/2018  Sat
  */
 interface SignInDataSource : DataSource {
-    fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp>
+    fun sendCode(sendCodeReq: SendCodeReqBody): Single<SendCodeRespBody>
 
-    fun signUp(signUpReq: SignUpReq): Single<Profile>
+    fun signUp(signUpReq: SignUpReqBody): Single<Profile>
 
-    fun signIn(signinReq: SignInReq): Single<Profile>
+    fun signIn(signinReq: SignInReqBody): Single<Profile>
 
     fun signOut()
 }

@@ -13,7 +13,7 @@ import com.hawksjamesf.common.util.openActivity
 import com.hawksjamesf.common.util.subscribeBy
 import com.hawksjamesf.network.signin.ClientException
 import com.hawksjamesf.network.signin.ClientState
-import com.hawksjamesf.network.signin.SignInReq
+import com.hawksjamesf.network.signin.SignInReqBody
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.view.visibility
 import com.jakewharton.rxbinding2.widget.editorActions
@@ -71,7 +71,7 @@ class SignInActivity : SignInContract.View() {
                 .publish().apply {
                     subscribe { hideSoftInput() }
                     filter { !TextUtil.isEmpty(atv_mobile.text.toString(), et_password.text.toString()) }
-                            .subscribe { signin(SignInReq(atv_mobile.text.toString(), et_password.text.toString())) }
+                            .subscribe { signin(SignInReqBody(atv_mobile.text.toString(), et_password.text.toString())) }
 
                 }.connect(autoDisposable)
 
@@ -87,7 +87,7 @@ class SignInActivity : SignInContract.View() {
 
 //    private fun isValidate(mobile: CharSequence, password: CharSequence) = mobile.isNotBlank() && password.isNotBlank()
 
-    fun signin(signInReq: SignInReq) {
+    fun signin(signInReq: SignInReqBody) {
         presenter.signIn(signInReq)
                 .subscribeBy(
                         onSubscribe = { presenter.stateData = StateData(signinginDisposable = it) },

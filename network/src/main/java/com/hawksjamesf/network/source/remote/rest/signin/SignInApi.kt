@@ -15,11 +15,11 @@ import retrofit2.http.POST
 interface SignInApi {
 
     @POST("/sendcode")
-    abstract fun sendCode(@Body req: SendCodeReq): Single<SendCodeResp>
+    abstract fun sendCode(@Body reqbody: SendCodeReqBody): Single<SendCodeRespBody>
 
     @POST("/signup")
-    abstract fun signUp(@Body req: SignUpReq): Single<Profile>
+    abstract fun signUp(@Body reqbody: SignUpReqBody): Single<Profile>
 
     @POST("/signin")
-    abstract fun signIn(@Body req: SignInReq): Single<Profile>
+    abstract fun signIn(@Body reqbody: SignInReqBody): Single<Profile>
 }

@@ -48,7 +48,7 @@ class SignInPresenter private constructor(
     }
 
     @MainThread
-    override fun sendCode(sendCodeReq: SendCodeReq): Single<SendCodeResp> {
+    override fun sendCode(sendCodeReq: SendCodeReqBody): Single<SendCodeRespBody> {
         Logger.t(TAG).d("send code--->req:$sendCodeReq")
         stateData.apply {
             signinginDisposable?.dispose()
@@ -62,7 +62,7 @@ class SignInPresenter private constructor(
     }
 
     @MainThread
-    override fun signUp(signUpReq: SignUpReq): Single<Profile> {
+    override fun signUp(signUpReq: SignUpReqBody): Single<Profile> {
         Logger.t(TAG).d("sign up--->req:$signUpReq")
         stateData.apply {
             signinginDisposable?.dispose()
@@ -79,7 +79,7 @@ class SignInPresenter private constructor(
     }
 
     @MainThread
-    override fun signIn(signInReq: SignInReq): Single<Profile> {
+    override fun signIn(signInReq: SignInReqBody): Single<Profile> {
         Logger.t(TAG).d("sign in--->req:$signInReq")
         stateData.apply {
             signinginDisposable?.dispose()

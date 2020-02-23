@@ -29,7 +29,7 @@ class SignUpActivity : SignInContract.View() {
         setContentView(R.layout.activity_signup)
     }
 
-    var sendCodeResp: SendCodeResp? = null
+    var sendCodeResp: SendCodeRespBody? = null
     override fun handleCallback(autoDisposable: AutoDisposable) {
 
         atv_mobile.textChanges()
@@ -39,7 +39,7 @@ class SignUpActivity : SignInContract.View() {
 
         bt_send_code.clicks()
                 .subscribe {
-                    presenter.sendCode(SendCodeReq(atv_mobile.text.toString())).subscribeBy(
+                    presenter.sendCode(SendCodeReqBody(atv_mobile.text.toString())).subscribeBy(
                             onSubscribe = {
 
                             },
@@ -78,7 +78,7 @@ class SignUpActivity : SignInContract.View() {
                 .mergeWith(bt_sign_up.clicks())
                 .publish().apply {
                     subscribe { hideSoftInput() }
-                    filter { !TextUtil.isEmpty(atv_mobile.text.toString(), et_password.text.toString(), et_confirm_password.toString()) }.subscribe { signup(SignUpReq(profileId = sendCodeResp?.profileId, password = et_password.text.toString(), verificationCode = et_verification_code.text.toString().toInt())) }
+                    filter { !TextUtil.isEmpty(atv_mobile.text.toString(), et_password.text.toString(), et_confirm_password.toString()) }.subscribe { signup(SignUpReqBody(profileId = sendCodeResp?.profileId, password = et_password.text.toString(), verificationCode = et_verification_code.text.toString().toInt())) }
 
                 }.connect(autoDisposable)
 
@@ -92,7 +92,7 @@ class SignUpActivity : SignInContract.View() {
 
     }
 
-    fun signup(signUpReq: SignUpReq) {
+    fun signup(signUpReq: SignUpReqBody) {
         presenter.signUp(signUpReq)
                 .subscribeBy(
                         onError = {
@@ -103,7 +103,7 @@ class SignUpActivity : SignInContract.View() {
                             presenter.stateData = StateData(profile = it)
                             Logger.t(TAG).d("sign up--->resp:$it and state:${presenter.stateData}")
                             //todo:将新的Profile存入到数据库
-                            presenter.signIn(SignInReq(it.mobile, signUpReq.password))
+                            presenter.signIn(SignInReqBody(it.mobile, signUpReq.password))
                         },
                         onSubscribe = { presenter.stateData = StateData(signingupDisposable = it) }
 
