@@ -1,0 +1,1 @@
+图片占用memory的size会比占用disk的size 大，应该flush到disk时通过jpeg、png、bmp等format
