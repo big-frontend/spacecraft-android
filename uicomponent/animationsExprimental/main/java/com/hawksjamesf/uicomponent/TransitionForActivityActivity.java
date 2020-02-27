@@ -22,6 +22,8 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -103,6 +105,22 @@ public class TransitionForActivityActivity extends Activity {
         Transition slideRight = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(slideRight);
 
+        final PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        findViewById(R.id.bt_PageSnap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pagerSnapHelper.attachToRecyclerView(rv);
+            }
+        });
+        final LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+        findViewById(R.id.bt_linearSnap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearSnapHelper.attachToRecyclerView(rv);
+            }
+        });
+
+
     }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
@@ -144,7 +162,7 @@ public class TransitionForActivityActivity extends Activity {
                 }
             });
             holder.iv.setImageResource(viewModel.drawableRes);
-            holder.tv.setText(viewModel.text);
+            holder.tv.setText(viewModel.text+"=======>"+position);
 
         }
 

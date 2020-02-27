@@ -32,6 +32,7 @@
             android:id="@+id/tv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/apricot"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="你好吗我很好，她不好"/>
