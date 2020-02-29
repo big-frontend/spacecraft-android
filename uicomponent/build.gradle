@@ -88,15 +88,15 @@ dependencies {
      * ================================ui start=====================================
      */
     api "androidx.recyclerview:recyclerview:1.1.0"
-    api 'androidx.navigation:navigation-fragment:2.2.0-rc02'
-    api 'androidx.navigation:navigation-ui:2.2.0-rc02'
-    api 'androidx.navigation:navigation-common-ktx:2.2.0-rc02'
-    api 'androidx.navigation:navigation-runtime-ktx:2.2.0-rc02'
-    api 'androidx.navigation:navigation-fragment-ktx:2.2.0-rc02'
-    api 'androidx.navigation:navigation-ui-ktx:2.2.0-rc02'
+    api 'androidx.navigation:navigation-fragment:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-ui:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-common-ktx:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-runtime-ktx:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha02'
 
     //layout start
-    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
     api 'com.google.android:flexbox:1.1.0'
     //layout end
 
@@ -106,7 +106,7 @@ dependencies {
    *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
    *解决方法：需要exclude掉v4包
     */
-    api "com.google.android.material:material:1.2.0-alpha02"
+    api "com.google.android.material:material:1.2.0-alpha05"
     api 'androidx.vectordrawable:vectordrawable:1.1.0'
 
     //animotor
@@ -123,16 +123,16 @@ dependencies {
     api 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.0.0'
     api 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.0.0'
 
-    api "androidx.paging:paging-runtime:2.1.0" // For Kotlin use paging-runtime-ktx
-    api "androidx.paging:paging-runtime-ktx:2.1.0"
-    testImplementation "androidx.paging:paging-common:2.1.0" // For Kotlin use paging-common-ktx
-    api "androidx.paging:paging-rxjava2:2.1.0" // For Kotlin use paging-rxjava2-ktx
+    api "androidx.paging:paging-runtime:2.1.1" // For Kotlin use paging-runtime-ktx
+    api "androidx.paging:paging-runtime-ktx:2.1.1"
+    testImplementation "androidx.paging:paging-common:2.1.1" // For Kotlin use paging-common-ktx
+    api "androidx.paging:paging-rxjava2:2.1.1" // For Kotlin use paging-rxjava2-ktx
 
-    api "androidx.work:work-runtime:2.2.0"
-    api "androidx.work:work-runtime-ktx:2.2.0"
-    api "androidx.work:work-rxjava2:2.2.0"
-    api "androidx.work:work-gcm:2.2.0"
-    androidTestImplementation "androidx.work:work-testing:2.2.0"
+    api "androidx.work:work-runtime:2.3.2"
+    api "androidx.work:work-runtime-ktx:2.3.2"
+    api "androidx.work:work-rxjava2:2.3.2"
+    api "androidx.work:work-gcm:2.3.2"
+    androidTestImplementation "androidx.work:work-testing:2.3.2"
 //    api "androidx.work:work-firebase:2.2.0"
 
     api 'com.firebaseui:firebase-ui-database:6.0.2'
