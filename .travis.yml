@@ -47,9 +47,11 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_ec71dae743a4_key -iv $encrypted_ec71dae743a4_iv -in google-services.json.enc -out app/google-services.json -d
 install: echo "install"
 - sudo apt-get install libncurses5
-- ln -s /usr/lib/libncurses++w.so.6.1 /usr/lib/libtinfo.so.5
-- ln -s /usr/lib/libncurses++w.so.6.1 /usr/lib/libncurses.so.5
-- ldconfig
+- ldconfig -p | grep ncurses
+- ldconfig -p | grep libtinfo
+- cd /home/tom/Android/Sdk/build-tools/29.0.2/lib64
+- ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 libncurses.so.5
+- ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 libtinfo.so.5
 before_script: echo "before_script"
 script:
 - echo "build the script"
