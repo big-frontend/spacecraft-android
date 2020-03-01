@@ -46,6 +46,7 @@ before_install:
 - tar xvf secrets.tar
 - openssl aes-256-cbc -K $encrypted_ec71dae743a4_key -iv $encrypted_ec71dae743a4_iv -in google-services.json.enc -out app/google-services.json -d
 install: echo "install"
+- sudo apt-get install libncurses5
 before_script: echo "before_script"
 script:
 - echo "build the script"
