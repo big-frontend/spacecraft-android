@@ -44,4 +44,3 @@ SpacecraftAndroid
 - [ ] hybrid
 - [ ] ReactNative/Flutter
 
-
