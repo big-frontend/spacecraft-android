@@ -1,0 +1,40 @@
+[submodule "network/okhttp"]
+	path = network/okhttp
+	url = git@github.com:square/okhttp.git
+[submodule "network/retrofit"]
+	path = network/retrofit
+	url = git@github.com:square/retrofit.git
+[submodule "network/volley"]
+	path = network/volley
+	url = git@github.com:google/volley.git
+
+[submodule "network/FileDownloader"]
+	path = network/FileDownloader
+	url = git@github.com:lingochamp/FileDownloader.git
+[submodule "network/RxDownload"]
+	path = network/RxDownload
+	url = git@github.com:ssseasonnn/RxDownload.git
+
+[submodule "image/glide"]
+	path = image/glide
+	url = git@github.com:bumptech/glide.git
+
+[submodule "image/PictureSelector"]
+	path = image/PictureSelector
+	url = git@github.com:LuckSiege/PictureSelector.git
+[submodule "common/serialization/wire"]
+	path = common/serialization/wire
+	url = git@github.com:square/wire.git
+
+[submodule "storage/greenDAO"]
+	path = storage/greenDAO
+	url = git@github.com:greenrobot/greenDAO.git
+[submodule "storage/realm/realm-android-adapters"]
+	path = storage/realm/realm-android-adapters
+	url = git@github.com:realm/realm-android-adapters.git
+[submodule "storage/realm/realm-java"]
+	path = storage/realm/realm-java
+	url = git@github.com:realm/realm-java.git
+[submodule "storage/android-lite-orm"]
+	path = storage/android-lite-orm
+	url = git@github.com:litesuits/android-lite-orm.git
