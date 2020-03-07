@@ -7,7 +7,6 @@
 [submodule "network/volley"]
 	path = network/volley
 	url = git@github.com:google/volley.git
-
 [submodule "network/FileDownloader"]
 	path = network/FileDownloader
 	url = git@github.com:lingochamp/FileDownloader.git
