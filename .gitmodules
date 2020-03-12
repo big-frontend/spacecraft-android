@@ -37,3 +37,6 @@
 [submodule "storage/android-lite-orm"]
 	path = storage/android-lite-orm
 	url = git@github.com:litesuits/android-lite-orm.git
+[submodule "network/stetho"]
+	path = network/stetho
+	url = git@github.com:facebook/stetho.git
