@@ -3,5 +3,6 @@
 
     <application>
         <activity android:name=".GifActivity" />
+        <activity android:name=".FrescoActivity" />
     </application>
 </manifest>
