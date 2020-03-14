@@ -40,3 +40,6 @@
 [submodule "network/stetho"]
 	path = network/stetho
 	url = git@github.com:facebook/stetho.git
+[submodule "common/kotlinx.coroutines"]
+	path = common/kotlinx.coroutines
+	url = git@github.com:Kotlin/kotlinx.coroutines.git
