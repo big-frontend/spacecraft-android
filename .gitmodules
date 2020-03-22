@@ -43,3 +43,6 @@
 [submodule "common/kotlinx.coroutines"]
 	path = common/kotlinx.coroutines
 	url = git@github.com:Kotlin/kotlinx.coroutines.git
+[submodule "image/fresco"]
+	path = image/fresco
+	url = git@github.com:facebook/fresco.git
