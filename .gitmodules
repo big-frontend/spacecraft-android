@@ -46,3 +46,6 @@
 [submodule "image/fresco"]
 	path = image/fresco
 	url = git@github.com:facebook/fresco.git
+[submodule "image/picasso"]
+	path = image/picasso
+	url = git@github.com:square/picasso.git
