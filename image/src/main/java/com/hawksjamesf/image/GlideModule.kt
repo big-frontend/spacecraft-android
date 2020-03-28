@@ -16,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions
  * @author: hawks.jamesf
  * @since: Mar/28/2020  Sat
  */
-@GlideModule
+@GlideModule(glideName = "HawksGlideModule")
 class GlideModule : AppGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         super.applyOptions(context, builder)
