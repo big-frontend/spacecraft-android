@@ -1,6 +1,5 @@
 package com.hawksjamesf.image
-import com.squareup.picasso3.Picasso
-import com.squareup.picasso3.stats.StatsEventListener
+import com.squareup.picasso.Picasso
 
 /**
  * This instance is automatically initialized with defaults that are suitable to most
@@ -23,7 +22,7 @@ object PicassoProvider {
 
     Picasso
         .Builder(PicassoContentProvider.autoContext!!)
-        .addEventListener(StatsEventListener())
+//        .addEventListener(StatsEventListener())
         .build()
   }
 

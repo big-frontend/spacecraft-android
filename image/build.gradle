@@ -88,18 +88,18 @@ dependencies {
     /**
      * ===============================image start=============================
      */
-    api "com.github.bumptech.glide:glide:4.10.0"
-    kapt "com.github.bumptech.glide:compiler:4.10.0"
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
     api 'androidx.exifinterface:exifinterface:1.1.0'
-    api "com.github.bumptech.glide:recyclerview-integration:4.9.0"
+    api 'com.github.bumptech.glide:recyclerview-integration:4.11.0'
 
-    api 'com.facebook.fresco:fresco:0.12.0'
-    api 'com.facebook.fresco:animated-gif:0.12.0'
+    api 'com.facebook.fresco:fresco:2.0.0'
+    api 'com.facebook.fresco:animated-gif:2.2.0'
     // 支持 WebP （静态图+动图），需要添加
-    api 'com.facebook.fresco:animated-webp:0.12.0'
-    api 'com.facebook.fresco:webpsupport:0.12.0'
-    api 'com.squareup.picasso:picasso:2.71828'
-    api 'com.squareup.picasso:picasso-pollexor:2.71828'
+    api 'com.facebook.fresco:animated-webp:2.1.0'
+    api 'com.facebook.fresco:webpsupport:2.2.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso-pollexor:2.71828'
     /**
      * ===============================image end=============================
      */
