@@ -8,7 +8,6 @@ buildscript {
         maven { url "https://jitpack.io" }
         maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'https://maven.fabric.io/public' }
         mavenLocal()
         maven { url uri("$rootDir/repo")}
     }
@@ -47,20 +46,25 @@ buildscript {
         grpcVersion = '1.20.0'
     }
     dependencies {
+        //该插件不再使用 ProGuard 来执行编译时代码优化，而是与 R8 编译器协同工作来处理以下编译时任务:
+        //1.代码缩减（即摇树优化）：从应用及其库依赖项中检测并安全地移除未使用的类、字段、方法和属性（这使其成为了一个对于规避 64k 引用限制非常有用的工具）。例如，如果您仅使用某个库依赖项的少数几个 API，缩减功能可以识别应用“未”使用的库代码并仅从应用中移除这部分代码。如需了解详情，请转到介绍如何缩减代码的部分。
+        //2.资源缩减：从封装应用中移除不使用的资源，包括应用库依赖项中的不使用的资源。此功能可与代码缩减功能结合使用，这样一来，移除不使用的代码后，也可以安全地移除不再引用的所有资源。如需了解详情，请转到介绍如何缩减资源的部分。
+        //3.混淆处理：缩短类和成员的名称，从而减小 DEX 文件的大小。如需了解详情，请转到介绍如何对代码进行混淆处理的部分。
+        //4.优化：检查并重写代码，以进一步减小应用的 DEX 文件的大小。例如，如果 R8 检测到从未采用过给定 if/else 语句的 else {} 分支，则会移除 else {} 分支的代码。如需了解详情，请转到介绍代码优化的部分。
         classpath 'com.android.tools.build:gradle:3.5.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70"
 //        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.60-eap-25"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:1.3.50"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.3.70"
         classpath "io.realm:realm-gradle-plugin:5.7.0"
 //        classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.8"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
 
         classpath 'com.google.gms:google-services:4.3.3'
-        classpath 'io.fabric.tools:gradle:1.28.1'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.0.0-beta03'
         classpath 'com.google.firebase:perf-plugin:1.3.1'
         classpath 'com.hawksjamesf.plugin:perf:1.0.0'
 //        classpath 'com.google.firebase:firebase-plugins:1.1.5'
-        classpath ("com.tencent.matrix:matrix-gradle-plugin:0.6.0") { changing = true }
+        classpath("com.tencent.matrix:matrix-gradle-plugin:0.6.0") { changing = true }
 //        classpath 'com.tencent.bugly:symtabfileuploader:1.3.7'
     }
 }
@@ -72,7 +76,6 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'https://maven.fabric.io/public' }
         mavenLocal()
         maven { url uri("$rootDir/repo")}
     }

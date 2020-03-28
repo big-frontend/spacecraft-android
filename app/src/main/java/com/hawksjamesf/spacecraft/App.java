@@ -5,17 +5,6 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.provider.FontRequest;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.text.FontRequestEmojiCompatConfig;
-import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
-
-import com.crashlytics.android.Crashlytics;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,7 +41,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import io.fabric.sdk.android.Fabric;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.provider.FontRequest;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.text.FontRequestEmojiCompatConfig;
+import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 
 /**
  * Copyright ® $ 2017
@@ -124,8 +123,10 @@ public class App extends MultiDexApplication {
 //        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         CrashReport.initCrashReport(getApplicationContext(), strategy);
-        Fabric.with(this, new Crashlytics());
+        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+        crashlytics.setCrashlyticsCollectionEnabled(true);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+
 
 
         sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();

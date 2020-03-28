@@ -54,3 +54,6 @@
 
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
+
+#You can specify any path and filename.
+-printconfiguration ./build/tmp/full-r8-config.txt

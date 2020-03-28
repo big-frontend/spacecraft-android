@@ -1,9 +1,10 @@
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/console.gradle"
+printInfo("==>>>>>>>>>>>>>>>>image start")
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-
 
 def srcDirs = [
         "gif",
@@ -97,9 +98,13 @@ dependencies {
     // 支持 WebP （静态图+动图），需要添加
     api 'com.facebook.fresco:animated-webp:0.12.0'
     api 'com.facebook.fresco:webpsupport:0.12.0'
+    api 'com.squareup.picasso:picasso:2.71828'
+    api 'com.squareup.picasso:picasso-pollexor:2.71828'
     /**
      * ===============================image end=============================
      */
 
 
 }
+printInfo("==>>>>>>>>>>>>>>>>image end")
+
