@@ -9,7 +9,7 @@
 
 异步，说的是调用者所在线程不会被调用的函数block，实现non block的方式可以使进程或者线程池。Rxjava、kotlin-coroutines
 
-|   |  Java |  Android  | Kotlin
+| platform  |  Java |  Android  | Kotlin
 |---|---|---|---|
 异步|   java nio 、okio、Rxjava(Scheduler) | AsyncTask(Loop Handler) | coroutines
 并发|   Executor| NA|NA

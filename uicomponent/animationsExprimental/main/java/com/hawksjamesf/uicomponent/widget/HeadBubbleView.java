@@ -1,4 +1,4 @@
-package com.hawksjamesf.common.widget;
+package com.hawksjamesf.uicomponent.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,8 +14,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-
 import com.hawksjamesf.common.util.ConvertUtil;
 
 import java.util.ArrayList;
@@ -23,6 +21,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -193,7 +192,7 @@ public class HeadBubbleView extends FrameLayout {
                     @Override
                     public void accept(Long aLong) throws Exception {
                         if (createAnimView()) return;
-                        Log.d("hawks", "long" + aLong);
+                        Log.d("", "long" + aLong);
                     }
                 });
     }

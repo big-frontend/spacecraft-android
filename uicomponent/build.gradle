@@ -110,7 +110,7 @@ dependencies {
     api 'androidx.vectordrawable:vectordrawable:1.1.0'
 
     //animotor
-    api 'com.airbnb.android:lottie:2.8.0'
+    api 'com.airbnb.android:lottie:3.2.2'
     api 'com.github.Almeros:android-gesture-detectors:v1.0'
 
     //rx ui
