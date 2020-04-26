@@ -211,10 +211,10 @@ android {
     /**
      * 渠道包 start
      */
-    defaultPublishConfig 'xiaomiRealRelease'
+//    defaultPublishConfig 'xiaomiRealRelease'
 //    flavorDimensions 'channel', 'data_access'
-    flavorDimensions 'channel'
-    productFlavors {
+//    flavorDimensions 'channel'
+//    productFlavors {
 //        mocked {
 //            dimension 'data_access'
 //            matchingFallbacks = ['mocked']
@@ -223,36 +223,36 @@ android {
 //            dimension 'data_access'
 //            matchingFallbacks = ['real']
 //        }
-        xiaomi {
-            dimension 'channel'
-            manifestPlaceholders = [
-                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
-            ]
-            externalNativeBuild {
-                cmake {
-                    cppFlags "-std=c++14"
-//                cppFlags "-std=gnu++11"
-//                targets "hawks","hotfix"
-                    abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
-                }
-            }
-
-        }
-        huawei {
-            dimension 'channel'
-            manifestPlaceholders = [
-                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
-            ]
-            externalNativeBuild {
-                cmake {
-                    cppFlags "-std=c++14"
-//                cppFlags "-std=gnu++11"
-//                targets "hawks","hotfix"
-                    abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
-                }
-            }
-        }
-    }
+//        xiaomi {
+//            dimension 'channel'
+//            manifestPlaceholders = [
+//                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
+//            ]
+//            externalNativeBuild {
+//                cmake {
+//                    cppFlags "-std=c++14"
+////                cppFlags "-std=gnu++11"
+////                targets "hawks","hotfix"
+//                    abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
+//                }
+//            }
+//
+//        }
+//        huawei {
+//            dimension 'channel'
+//            manifestPlaceholders = [
+//                    'BUGLY_APP_CHANNEL': 'asdfasdfsdaf',
+//            ]
+//            externalNativeBuild {
+//                cmake {
+//                    cppFlags "-std=c++14"
+////                cppFlags "-std=gnu++11"
+////                targets "hawks","hotfix"
+//                    abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
+//                }
+//            }
+//        }
+//    }
     variantFilter { variant ->
         def names = variant.flavors*.name
         def buildType = variant.buildType.name

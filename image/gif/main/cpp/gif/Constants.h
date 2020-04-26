@@ -14,4 +14,15 @@ string onBitmapDestroyed_methodName = "onBitmapDestroyed";
 string onBitmapUpdated_sig = "()V";
 string onBitmapUpdated_methodName = "onBitmapUpdated";
 
+//GifPlayer.java
+static struct {
+    jclass clazz;
+
+    jmethodID onBitmapAvailable;
+    jmethodID onBitmapSizeChanged;
+    jmethodID onBitmapDestroyed;
+    jmethodID onBitmapUpdated;
+} gGifPlayerClassInfo;
+
+
 #endif //SPACECRAFTANDROID_CONSTANTS_H

@@ -23,9 +23,9 @@
 #include "AssetUtil.h"
 
 #define  MODULE_NAME "native/gif_jni"
-
 using namespace ::std;
 
+static jlong nativePlayerAddress;
 /**
  * 来自asset
  */
@@ -95,55 +95,23 @@ Java_com_hawksjamesf_image_GifPlayer_start(JNIEnv *env, jobject jgifplayer,
     gifPlayer->start();
 }
 
-
 /**
  * =======================================================================
- * jni init
+ *                  map native method to java method
  * =======================================================================
  */
-JNINativeMethod method[] = {
+JNINativeMethod gifplayer_method_map[] = {
         {"setDataSource", "(Ljava/lang/String;Landroid/content/res/AssetManager;)J", (void *) setDataSource},
 //        {"setDataSource", "(Ljava/lang/String;Landroid/graphics/Bitmap;)V", (void *) setDataSource},
         {"bindBitmap",    "(JLandroid/graphics/Bitmap;)V",                           (void *) bindBitmap},
 };
 
-jint registerNativeMethod(JNIEnv *env) {
+int register_com_hawksjamesf_image_DisplayEventReceiver(JNIEnv *env) {
     jclass cl = env->FindClass("com/hawksjamesf/image/GifPlayer");
-    if ((env->RegisterNatives(cl, method, sizeof(method) / sizeof(method[0]))) < 0) {
+    if ((env->RegisterNatives(cl, gifplayer_method_map,
+                              sizeof(gifplayer_method_map) / sizeof(gifplayer_method_map[0]))) < 0) {
         return -1;
     }
     return 0;
 }
 
-jint unRegisterNativeMethod(JNIEnv *env) {
-    jclass cl = env->FindClass("com/hawksjamesf/image/GifPlayer");
-    env->UnregisterNatives(cl);
-    return 0;
-}
-
-extern "C"
-JNIEXPORT jint JNICALL
-JNI_OnLoad(JavaVM *vm, void *reserved) {
-//    ATrace_beginSection("JNI_OnLoad");
-    JNIEnv *env;
-    if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) == JNI_OK) {
-        ReflectUtil::init(env);
-        registerNativeMethod(env);
-        return JNI_VERSION_1_6;
-    } else if (vm->GetEnv((void **) &env, JNI_VERSION_1_4) == JNI_OK) {
-        ReflectUtil::init(env);
-        registerNativeMethod(env);
-        return JNI_VERSION_1_4;
-    }
-//    ATrace_endSection();
-    return JNI_ERR;
-}
-
-JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
-    JNIEnv *env;
-    if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) == JNI_OK) {
-        unRegisterNativeMethod(env);
-    } else if (vm->GetEnv((void **) &env, JNI_VERSION_1_4) == JNI_OK) {
-        unRegisterNativeMethod(env);
-    }
-}

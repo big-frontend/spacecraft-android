@@ -10,8 +10,10 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 add_library(gif_jni SHARED
-        gif_jni.cpp androidmain.cpp
-        GifPlayer.cpp)
+        jni_load.cpp com_hawksjamesf_image_GifPlayer.cpp androidmain.cpp
+        GifPlayer.cpp
+
+        )
 
 
 # Searches for a specified prebuilt library and stores the path as a
