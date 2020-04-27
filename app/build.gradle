@@ -144,7 +144,8 @@ android {
             manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf', 'BUGLY_ENABLE_DEBUG': 'false']
             signingConfig signingConfigs.releaseSigningConfig
             firebaseCrashlytics {
-                nativeSymbolUploadEnabled true
+                nativeSymbolUploadEnabled false
+                mappingFileUploadEnabled false
             }
 
 
@@ -158,6 +159,8 @@ android {
                     'BUGLY_ENABLE_DEBUG': 'true'
             ]
 //            signingConfig signingConfigs.debugSigningConfig
+            ext.alwaysUpdateBuildId = false
+            ext.enableCrashlytics = false
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
             }
@@ -177,7 +180,7 @@ android {
                 aidl.srcDirs += "$projectDir/$it/main/aidl"
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
-                renderscript.srcDirs +="$projectDir/$it/main/rs"
+                renderscript.srcDirs += "$projectDir/$it/main/rs"
             }
         }
         androidTest {
@@ -202,9 +205,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-//    useLibrary 'android.test.runner'
-//    useLibrary 'android.test.base'
-//    useLibrary 'android.test.mock'
     dataBinding {
         enabled = true
     }
@@ -310,7 +310,7 @@ configurations {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':map')
-    implementation project(path: ':chatroom')
+//    implementation project(path: ':chatroom')
     implementation project(path: ':network')
     implementation project(path: ':storage')
     implementation project(path: ':uicomponent')
@@ -323,9 +323,9 @@ dependencies {
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     kapt "com.github.bumptech.glide:compiler:4.10.0"
 
-    api 'com.google.firebase:firebase-analytics:17.2.3'
-    api 'com.google.firebase:firebase-crashlytics:17.0.0-beta02'
-    api 'com.google.firebase:firebase-crashlytics-ndk:17.0.0-beta01'
+    api 'com.google.firebase:firebase-analytics:17.4.0'
+    api 'com.google.firebase:firebase-crashlytics:17.0.0'
+    api 'com.google.firebase:firebase-crashlytics-ndk:17.0.0'
     //crash and anr
     api 'com.tencent.bugly:nativecrashreport:3.7.1'
     api 'com.tencent.bugly:crashreport:3.0.0'
@@ -333,7 +333,7 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     annotationProcessor project(path: ':processor')
     implementation project(path: ':annotations')
-    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version:"0.6.0", changing: true
+    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
 
 }
 apply plugin: 'com.google.gms.google-services'

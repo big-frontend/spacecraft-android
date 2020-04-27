@@ -32,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "28459008283-n8822bo5q9nn3smrgk17rr21m5b9mp9m.apps.googleusercontent.com",
+              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.hawksjamesf.spacecraft"
+                "bundle_id": "com.hawksjamesf.spacecraft.debug"
               }
             }
           ]
@@ -68,10 +68,10 @@
               "client_type": 3
             },
             {
-              "client_id": "28459008283-n8822bo5q9nn3smrgk17rr21m5b9mp9m.apps.googleusercontent.com",
+              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.hawksjamesf.spacecraft"
+                "bundle_id": "com.hawksjamesf.spacecraft.debug"
               }
             }
           ]

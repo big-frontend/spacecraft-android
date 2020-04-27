@@ -11,6 +11,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -50,7 +53,6 @@ import androidx.emoji.text.FontRequestEmojiCompatConfig;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 
 /**
@@ -99,7 +101,6 @@ public class App extends MultiDexApplication {
         Logger.t(TAG).d("processName：" + processName);
         if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
         app = this;
-
         sNetComponent = DaggerNetComponent.builder()
                 .netModule(new NetModule())
                 .build();
@@ -112,6 +113,7 @@ public class App extends MultiDexApplication {
 
 //        Utils.init(this);
         Util.init(this);
+
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppVersion(BuildConfig.VERSION_NAME);
         strategy.setBuglyLogUpload(true);
@@ -123,6 +125,13 @@ public class App extends MultiDexApplication {
 //        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         CrashReport.initCrashReport(getApplicationContext(), strategy);
+        FirebaseOptions firebaseOptions = new FirebaseOptions.Builder()
+                .setApplicationId(BuildConfig.APPLICATION_ID)
+                .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
+                .setProjectId("spacecraft-22dc1")
+                .setStorageBucket("spacecraft-22dc1.appspot.com")
+                .build();
+        FirebaseApp.initializeApp(this,firebaseOptions);
         FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
         crashlytics.setCrashlyticsCollectionEnabled(true);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());

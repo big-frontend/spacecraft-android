@@ -1,5 +1,8 @@
 println("lib location start")
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android-extensions"
+apply plugin: 'kotlin-kapt'
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 
 
