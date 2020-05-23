@@ -125,53 +125,53 @@ public class App extends MultiDexApplication {
 //        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
         CrashReport.initCrashReport(getApplicationContext(), strategy);
-        FirebaseOptions firebaseOptions = new FirebaseOptions.Builder()
-                .setApplicationId(BuildConfig.APPLICATION_ID)
-                .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
-                .setProjectId("spacecraft-22dc1")
-                .setStorageBucket("spacecraft-22dc1.appspot.com")
-                .build();
-        FirebaseApp.initializeApp(this,firebaseOptions);
-        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
-        crashlytics.setCrashlyticsCollectionEnabled(true);
-        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+//        FirebaseOptions firebaseOptions = new FirebaseOptions.Builder()
+//                .setApplicationId(BuildConfig.APPLICATION_ID)
+//                .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
+//                .setProjectId("spacecraft-22dc1")
+//                .setStorageBucket("spacecraft-22dc1.appspot.com")
+//                .build();
+//        FirebaseApp.initializeApp(this,firebaseOptions);
+//        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+//        crashlytics.setCrashlyticsCollectionEnabled(true);
+//        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
 
 
-        sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600)
-                .setFetchTimeoutInSeconds(60 * 60)
-                .build();
-        sFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
-        sFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
-        sFirebaseRemoteConfig.ensureInitialized();
-        sFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        Log.i(TAG, "onComplete-perf_enable:" + sFirebaseRemoteConfig.getBoolean("perf_enable"));
-                        FirebasePerformance.getInstance().setPerformanceCollectionEnabled(sFirebaseRemoteConfig.getBoolean("perf_enable"));
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.i(TAG, "onFailure");
-                    }
-                })
-                .addOnSuccessListener(new OnSuccessListener<Boolean>() {
-                    @Override
-                    public void onSuccess(Boolean aBoolean) {
-                        Log.i(TAG, "onSuccess:" + aBoolean);
-                    }
-                })
-                .addOnCanceledListener(new OnCanceledListener() {
-                    @Override
-                    public void onCanceled() {
-                        Log.i(TAG, "onCanceled");
-                    }
-                });
+//        sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+//        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+//                .setMinimumFetchIntervalInSeconds(3600)
+//                .setFetchTimeoutInSeconds(60 * 60)
+//                .build();
+//        sFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+//        sFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+//        sFirebaseRemoteConfig.ensureInitialized();
+//        sFirebaseRemoteConfig.fetchAndActivate()
+//                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Boolean> task) {
+//                        Log.i(TAG, "onComplete-perf_enable:" + sFirebaseRemoteConfig.getBoolean("perf_enable"));
+//                        FirebasePerformance.getInstance().setPerformanceCollectionEnabled(sFirebaseRemoteConfig.getBoolean("perf_enable"));
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.i(TAG, "onFailure");
+//                    }
+//                })
+//                .addOnSuccessListener(new OnSuccessListener<Boolean>() {
+//                    @Override
+//                    public void onSuccess(Boolean aBoolean) {
+//                        Log.i(TAG, "onSuccess:" + aBoolean);
+//                    }
+//                })
+//                .addOnCanceledListener(new OnCanceledListener() {
+//                    @Override
+//                    public void onCanceled() {
+//                        Log.i(TAG, "onCanceled");
+//                    }
+//                });
 
 
         MatrixLog.i(TAG, "MatrixApplication.onCreate");

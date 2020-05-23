@@ -30,12 +30,12 @@ android {
         }
 
     }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-            //path 'src/main/cpp/CMakeLists.txt'
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//            //path 'src/main/cpp/CMakeLists.txt'
+//        }
+//    }
 
     buildTypes {
         release {

@@ -8,20 +8,20 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 
-apply plugin: 'versionplugin'
+//apply plugin: 'versionplugin'
 //apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
-apply plugin: 'versionpluginforjava'
-versionPlugin {
-    buildTypeMatcher = 'debug'
-//        '$appName/project/buildType-v_$versionName-c_$versionCode'
-//        fileFormat = '$appName-v_$versionName-c_$versionCode'
-    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
-}
-
-versionPluginForJava {
-    buildTypeMatcher = "debug"
-    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
-}
+//apply plugin: 'versionpluginforjava'
+//versionPlugin {
+//    buildTypeMatcher = 'debug'
+////        '$appName/project/buildType-v_$versionName-c_$versionCode'
+////        fileFormat = '$appName-v_$versionName-c_$versionCode'
+//    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
+//}
+//
+//versionPluginForJava {
+//    buildTypeMatcher = "debug"
+//    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
+//}
 apply plugin: 'findbugs'
 findbugs {
     ignoreFailures = false
@@ -317,6 +317,7 @@ dependencies {
     implementation project(path: ':common')
     implementation project(path: ':login')
     implementation project(path: ':image')
+    implementation project(path: ':ypose')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"

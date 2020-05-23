@@ -53,7 +53,7 @@ abstract class AbstractApi<T : Any> {
                 .addInterceptor(URLInterceptor())
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addNetworkInterceptor(StethoInterceptor())
-                .addNetworkInterceptor(MetricInterceptor())
+//                .addNetworkInterceptor(MetricInterceptor())
 //                .socketFactory(SocketFactory.getDefault())
                 .sslSocketFactory(sslSocketFactory, trustManager)
                 .hostnameVerifier(OkHostnameVerifier)

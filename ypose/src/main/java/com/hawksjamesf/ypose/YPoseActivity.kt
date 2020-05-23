@@ -2,7 +2,6 @@ package com.hawksjamesf.ypose
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class YPoseActivity : AppCompatActivity() {
 
@@ -11,14 +10,14 @@ class YPoseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Example of a call to a native method
-        sample_text.text = stringFromJNI()
+//        sample_text.text = stringFromJNI()
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    external fun stringFromJNI(): String
+//    external fun stringFromJNI(): String
     fun stringFromJava()="string  from java"
 
     companion object {

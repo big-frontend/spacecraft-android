@@ -1,6 +1,7 @@
 package com.hawksjamesf.spacecraft.ui;
 
 import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -61,34 +62,36 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-        myTrace = FirebasePerformance.getInstance().newTrace("loadData");
-        myTrace.start();
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        mHttpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
-        mHttpMetric.start();
-        onDestroyDisposable.add(Observable.timer(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        //todo:需要通过refresh token来判断进入那个界面
-                        myTrace.incrementMetric("started activity", 1);
-                        mHttpMetric.setHttpResponseCode(200);
-                        mHttpMetric.setResponseContentType("application/x-protobuf");
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id");
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
-                        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
-                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-                        ActivityUtil.startActivity(LocationActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-//                        TransitionForActivityActivity.startActivity(SplashActivity.this);
-                        finish();
-                    }
-                }));
-        fetchWelcome();
-        myTrace.stop();
-        mHttpMetric.stop();
+        ActivityUtil.startActivity(LocationActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+        finish();
+//        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
+//        myTrace.start();
+//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+//        mHttpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
+//        mHttpMetric.start();
+//        onDestroyDisposable.add(Observable.timer(1, TimeUnit.SECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(Long aLong) throws Exception {
+//                        //todo:需要通过refresh token来判断进入那个界面
+//                        myTrace.incrementMetric("started activity", 1);
+//                        mHttpMetric.setHttpResponseCode(200);
+//                        mHttpMetric.setResponseContentType("application/x-protobuf");
+//
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id");
+//                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
+//                        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+//                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+//                        ActivityUtil.startActivity(LocationActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+////                        TransitionForActivityActivity.startActivity(SplashActivity.this);
+//                        finish();
+//                    }
+//                }));
+//        fetchWelcome();
+//        myTrace.stop();
+//        mHttpMetric.stop();
 
 //        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event);
     }
