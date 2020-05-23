@@ -80,6 +80,11 @@ android {
         }
     }
 }
+//task pushSD(dependsOn: ':app:assemble', type: Exec) {
+task pushSD(type: Exec) {
+    commandLine "${project.projectDir}/push_sd.sh"
+    args "${rootProject}/app/build/outputs/apk/debug/app-debug.apk", "/sdcard/demoPlugin-debug.apk"
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
