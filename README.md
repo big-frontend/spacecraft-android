@@ -39,7 +39,11 @@ SpacecraftAndroid
 
 ## Improve Development Efficiency  
 - [ ] decoupling：component 
-- [ ] gradle plugin：0%
+- [ ] gradle plugin：
+1. file lines counter plugin
+2. rename apk plugin
+3. upload bugly mapping or so file plugin
+4. performance plugin , doing
 - [x] CI / CD
 - [ ] hybrid
 - [ ] ReactNative/Flutter
