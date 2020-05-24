@@ -69,6 +69,10 @@ apply plugin: 'perfplugin'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'counterplugin'
+//counterConfig{
+//
+//}
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]

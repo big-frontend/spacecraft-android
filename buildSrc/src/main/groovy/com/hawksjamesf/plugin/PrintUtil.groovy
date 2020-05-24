@@ -19,23 +19,23 @@ interface Color {
     public static final String  ANSI_CYAN_BACKGROUND = "\u001B[46m"
     public static final String  ANSI_WHITE_BACKGROUND = "\u001B[47m"
 }
-def printError(Object message) {
+static def printError(Object message) {
     println("${Color.ANSI_RED}${message}${Color.ANSI_RESET}")
 }
 
-def printWarn(Object message) {
+static def printWarn(Object message) {
     println("${Color.ANSI_YELLOW}$message${Color.ANSI_RESET}")
 }
 
-def printInfo(Object message) {
+static def printInfo(Object message) {
     println("${Color.ANSI_GREEN}$message${Color.ANSI_RESET}")
 }
 
-def printDebug(Object message) {
+static def printDebug(Object message) {
     println("${Color.ANSI_BLUE}$message${Color.ANSI_RESET}")
 }
 
-def printVerbose(Object message) {
+static def printVerbose(Object message) {
     println(message)
 }
 

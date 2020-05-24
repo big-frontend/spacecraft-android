@@ -6,7 +6,7 @@ import org.gradle.api.Project
 
 class VersionPlugin implements Plugin<Project> {
     void apply(Project project) {
-
+        PrintUtil.printInfo("VersionPlugin apply start")
         def versionPlugin = project.extensions.create("versionPlugin", VersionPluginExtension)
 
         //rename app name
@@ -38,8 +38,8 @@ class VersionPlugin implements Plugin<Project> {
 
             }
 
-
         }
+        PrintUtil.printInfo("VersionPlugin apply end")
     }
 
     def releaseTime() {

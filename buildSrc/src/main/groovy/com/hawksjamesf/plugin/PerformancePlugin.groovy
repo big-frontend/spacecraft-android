@@ -7,10 +7,10 @@ class PerformancePlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        println "PerformancePlugin apply start"
+        PrintUtil.printInfo("PerformancePlugin apply start")
 //        project.extensions.create()
 //        project.android.registerTransform(new PerformanceTransform(project))
 
-        println "PerformancePlugin apply end"
+        PrintUtil.printInfo("PerformancePlugin apply end")
     }
 }
