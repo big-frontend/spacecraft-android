@@ -19,23 +19,16 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++14"
+                abiFilters "arm64-v8a", "armeabi-v7a"
             }
         }
-        ndk {
-//             设置支持的SO库架构
-            abiFilters 'x86_64'
-            abiFilters 'x86'
-            abiFilters 'armeabi-v7a'
-            abiFilters 'arm64-v8a'
-        }
-
     }
-//    externalNativeBuild {
-//        cmake {
-//            path "CMakeLists.txt"
-//            //path 'src/main/cpp/CMakeLists.txt'
-//        }
-//    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            //path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
 
     buildTypes {
         release {

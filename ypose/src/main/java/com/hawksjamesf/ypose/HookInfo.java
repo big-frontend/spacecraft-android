@@ -1,4 +1,4 @@
-package lab.galaxy.yahfa;
+package com.hawksjamesf.ypose;
 
 public class HookInfo {
     public static final String TAG = "HookInfo";

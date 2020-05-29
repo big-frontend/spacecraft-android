@@ -1,4 +1,4 @@
-package lab.galaxy.yahfa;
+package com.hawksjamesf.ypose;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
