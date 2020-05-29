@@ -1,7 +1,7 @@
 //
 // Created by liuruikai756 on 05/07/2017.
 //
-#include "../../../../../../../../Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h"
+#include <android/log.h>
 
 #ifndef YAHFA_COMMON_H
 #define YAHFA_COMMON_H
