@@ -8,7 +8,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.blankj.utilcode.util.NetworkUtils
 import com.hawksjamesf.common.util.CryptoUtil
+import com.hawksjamesf.common.util.DeviceUtil
 
 /**
  * Copyright ® $ 2017
@@ -18,6 +20,9 @@ import com.hawksjamesf.common.util.CryptoUtil
  * @since: Apr/27/2020  Mon
  */
 class LocationActivity : Activity() {
+    companion object {
+        const val TAG = "LocationAty-packageinfo"
+    }
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,10 +60,20 @@ class LocationActivity : Activity() {
                 }
             }
 
-            Log.d("LocationAty-packageinfo", "onCreate: >>> $i $packagename  $messageDigest $firstInstallTime  $lastUpdateTime \n ${sb.toString()} \n ${sb2} \n$sb3")
+//            Log.d("LocationAty-packageinfo", "onCreate: >>> $i $packagename  $messageDigest $firstInstallTime  $lastUpdateTime \n ${sb.toString()} \n ${sb2} \n$sb3")
         }
 
+        val ipAddressByWifi = NetworkUtils.getIpAddressByWifi()
+        val ipAddressipv4 = NetworkUtils.getIPAddress(true)
+        val ipAddressipv6 = NetworkUtils.getIPAddress(false)
+        Log.d(TAG, "onCreate: " + ipAddressByWifi + "  " + ipAddressipv4 + " " + ipAddressipv6)
+        val macAddressByNetworkInterface = DeviceUtil.getMacAddressByNetworkInterface()
+        val macAddressByInetAddress = DeviceUtil.getMacAddressByInetAddress()
+        val macAddressByWifiInfo = DeviceUtil.getMacAddressByWifiInfo()
+        val getMacAddressByFile = DeviceUtil.getMacAddressByFile()
+        Log.d(TAG, "onCreate: 网卡：" + macAddressByNetworkInterface+"\n网络地址:"+macAddressByInetAddress+"\nwifi:" +macAddressByWifiInfo +"\nfile:"+getMacAddressByFile)
     }
+
 
 
     fun getRawSignature(ctx: Context?, packageName: String?): Array<Signature?>? {

@@ -2,10 +2,10 @@ package com.hawksjamesf.network;
 
 import android.content.Context;
 
+import com.blankj.utilcode.util.ResourceUtils;
 import com.google.gson.Gson;
-import com.hawksjamesf.common.util.RestServiceTestHelper;
-import com.hawksjamesf.network.gson.ListRes;
 import com.hawksjamesf.mockserver.model.WeatherData;
+import com.hawksjamesf.network.gson.ListRes;
 import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
 
 import io.reactivex.Observable;
@@ -32,7 +32,8 @@ public class WeatherApiImpl implements WeatherApi {
     public Single<WeatherData> getCurrentWeatherDate(String city) {
         String file = null;
         try {
-            file = RestServiceTestHelper.getStringFromFile(context, "current_data.json");
+
+            file = ResourceUtils.readAssets2String("current_data.json");
         } catch (Exception e) {
             e.printStackTrace();
         }

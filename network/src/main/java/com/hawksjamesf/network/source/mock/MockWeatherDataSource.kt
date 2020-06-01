@@ -1,11 +1,11 @@
 package com.hawksjamesf.network.source.mock
 
 import android.content.Context
+import com.blankj.utilcode.util.ResourceUtils
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
-import com.hawksjamesf.common.util.RestServiceTestHelper
-import com.hawksjamesf.network.gson.ListRes
 import com.hawksjamesf.mockserver.model.WeatherData
+import com.hawksjamesf.network.gson.ListRes
 import com.hawksjamesf.network.source.WeatherDataSource
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -91,7 +91,7 @@ class MockWeatherDataSource(
         return uncertainty()
                 .flatMapObservable {
                     Observable.just(
-                            mGson.fromJson(RestServiceTestHelper.getStringFromFile(mContext, com.hawksjamesf.network.source.mock.Constants.CURRENT_DATA_JSON), WeatherData::class.java)
+                            mGson.fromJson(ResourceUtils.readAssets2String(Constants.CURRENT_DATA_JSON), WeatherData::class.java)
                     )
                 }
                 .filter {
@@ -108,7 +108,8 @@ class MockWeatherDataSource(
         return uncertainty()
                 .flatMapObservable {
                     Observable.just(
-                            mGson.fromJson<ListRes<WeatherData>>(RestServiceTestHelper.getStringFromFile(mContext, com.hawksjamesf.network.source.mock.Constants.FIVE_DATA_JSON), type)
+
+                            mGson.fromJson<ListRes<WeatherData>>(ResourceUtils.readAssets2String(Constants.FIVE_DATA_JSON), type)
                     )
                 }
                 .filter { it.city.name == city }

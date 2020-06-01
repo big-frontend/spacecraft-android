@@ -1,0 +1,3604 @@
+{
+  "results": [
+    {
+      "objectId": "dUYUVwHnxb",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 8563724,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -78,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.225014,
+        "lon": 121.344552,
+        "accu": 191,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 0
+      },
+      "createdAt": "2020-04-27T10:59:20.115Z",
+      "updatedAt": "2020-04-27T10:59:20.115Z"
+    },
+    {
+      "objectId": "6KTeINcyFo",
+      "myId": 2,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 8563724,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -80,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.223987,
+        "lon": 121.345196,
+        "accu": 1192,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-27T11:00:00.175Z",
+      "updatedAt": "2020-04-27T11:00:00.175Z"
+    },
+    {
+      "objectId": "P7ZyOzZoJ5",
+      "myId": 3,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 8563724,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -91,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.224964,
+        "lon": 121.343635,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 312.6673278808594,
+        "speed": 21.574312210083008
+      },
+      "createdAt": "2020-04-27T11:00:40.037Z",
+      "updatedAt": "2020-04-27T11:00:40.037Z"
+    },
+    {
+      "objectId": "IA1DR8HCE2",
+      "myId": 4,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9357068,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -65,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.225773,
+        "lon": 121.339968,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 282.0193176269531,
+        "speed": 27.505840301513672
+      },
+      "createdAt": "2020-04-27T11:03:19.857Z",
+      "updatedAt": "2020-04-27T11:03:19.857Z"
+    },
+    {
+      "objectId": "FfchkJLJNH",
+      "myId": 5,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 185717074,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -83,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.226048,
+        "lon": 121.335743,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 274.3325500488281,
+        "speed": 36.240055084228516
+      },
+      "createdAt": "2020-04-27T11:03:59.991Z",
+      "updatedAt": "2020-04-27T11:03:59.991Z"
+    },
+    {
+      "objectId": "KnSOybuD0n",
+      "myId": 6,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 185717064,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -85,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.226137,
+        "lon": 121.334359,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 272.1766052246094,
+        "speed": 11.822267532348633
+      },
+      "createdAt": "2020-04-27T11:05:20.030Z",
+      "updatedAt": "2020-04-27T11:05:20.030Z"
+    },
+    {
+      "objectId": "4ya4sDAIUi",
+      "myId": 7,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 185890396,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -82,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.225424,
+        "lon": 121.327953,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 262.621826171875,
+        "speed": 55.318782806396484
+      },
+      "createdAt": "2020-04-27T11:06:00.091Z",
+      "updatedAt": "2020-04-27T11:06:00.091Z"
+    },
+    {
+      "objectId": "eswHpwCWwV",
+      "myId": 8,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 185890396,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -97,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.2245,
+        "lon": 121.325434,
+        "accu": 75,
+        "altit": 0,
+        "bearing": 243.5998992919922,
+        "speed": 22.98991584777832
+      },
+      "createdAt": "2020-04-27T11:06:39.911Z",
+      "updatedAt": "2020-04-27T11:06:39.911Z"
+    },
+    {
+      "objectId": "tCexlBFNk9",
+      "myId": 9,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 8751628,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -79,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.224561,
+        "lon": 121.323628,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 270.0914001464844,
+        "speed": 12.543519020080566
+      },
+      "createdAt": "2020-04-27T11:09:20.003Z",
+      "updatedAt": "2020-04-27T11:09:20.003Z"
+    },
+    {
+      "objectId": "QrRSIj9oIz",
+      "myId": 10,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13012748,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -95,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.223897,
+        "lon": 121.319627,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 266.645263671875,
+        "speed": 37.34782028198242
+      },
+      "createdAt": "2020-04-27T11:11:59.917Z",
+      "updatedAt": "2020-04-27T11:11:59.917Z"
+    },
+    {
+      "objectId": "Qvo860GpNu",
+      "myId": 11,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13014796,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -84,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.222745,
+        "lon": 121.313628,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 257.40533447265625,
+        "speed": 52.76066589355469
+      },
+      "createdAt": "2020-04-27T11:12:39.913Z",
+      "updatedAt": "2020-04-27T11:12:39.913Z"
+    },
+    {
+      "objectId": "7L1io5y49n",
+      "myId": 12,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13014796,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -70,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.22909,
+        "lon": 121.313374,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 357.5552978515625,
+        "speed": 62.80973815917969
+      },
+      "createdAt": "2020-04-27T11:13:19.958Z",
+      "updatedAt": "2020-04-27T11:13:19.958Z"
+    },
+    {
+      "objectId": "bKvTrZMhV6",
+      "myId": 13,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13014796,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -66,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.22224,
+        "lon": 121.3126,
+        "accu": 325,
+        "altit": 0,
+        "bearing": 185.54623413085938,
+        "speed": 68.95069885253906
+      },
+      "createdAt": "2020-04-27T11:14:00.035Z",
+      "updatedAt": "2020-04-27T11:14:00.035Z"
+    },
+    {
+      "objectId": "iLSK7Sv4SS",
+      "myId": 14,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13014796,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -81,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.221231,
+        "lon": 121.309782,
+        "accu": 325,
+        "altit": 0,
+        "bearing": 247.3820343017578,
+        "speed": 26.090431213378906
+      },
+      "createdAt": "2020-04-27T11:14:40.115Z",
+      "updatedAt": "2020-04-27T11:14:40.115Z"
+    },
+    {
+      "objectId": "4LYFDSuFqS",
+      "myId": 15,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13298720,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -87,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.216679,
+        "lon": 121.307068,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 213.30343627929688,
+        "speed": 57.11186599731445
+      },
+      "createdAt": "2020-04-27T11:15:20.253Z",
+      "updatedAt": "2020-04-27T11:15:20.253Z"
+    },
+    {
+      "objectId": "UP6QCmN7Fj",
+      "myId": 16,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9144332,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -88,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.220107,
+        "lon": 121.307067,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 359.9856262207031,
+        "speed": 33.73349380493164
+      },
+      "createdAt": "2020-04-27T11:16:01.189Z",
+      "updatedAt": "2020-04-27T11:16:01.189Z"
+    },
+    {
+      "objectId": "pAnaOofUn6",
+      "myId": 17,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13044502,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -87,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.219575,
+        "lon": 121.304127,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 258.1104431152344,
+        "speed": 26.07736587524414
+      },
+      "createdAt": "2020-04-27T11:16:40.025Z",
+      "updatedAt": "2020-04-27T11:16:40.025Z"
+    },
+    {
+      "objectId": "mx6teY7rgS",
+      "myId": 18,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 10199052,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -83,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.220008,
+        "lon": 121.298249,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 274.9007263183594,
+        "speed": 50.658103942871094
+      },
+      "createdAt": "2020-04-27T11:17:19.987Z",
+      "updatedAt": "2020-04-27T11:17:19.987Z"
+    },
+    {
+      "objectId": "gHsAZd9poz",
+      "myId": 19,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 10199062,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -79,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.216722,
+        "lon": 121.289786,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 245.68899536132812,
+        "speed": 79.49871063232422
+      },
+      "createdAt": "2020-04-27T11:18:00.013Z",
+      "updatedAt": "2020-04-27T11:18:00.013Z"
+    },
+    {
+      "objectId": "WGwtWHfiuM",
+      "myId": 20,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13005600,
+            "lac": 6171,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -67,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.214354,
+        "lon": 121.282355,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 249.59320068359375,
+        "speed": 70.94351959228516
+      },
+      "createdAt": "2020-04-27T11:18:39.928Z",
+      "updatedAt": "2020-04-27T11:18:39.928Z"
+    },
+    {
+      "objectId": "NMhwvLEfsK",
+      "myId": 21,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9412640,
+            "lac": 6171,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -88,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.205885,
+        "lon": 121.26192,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 244.262451171875,
+        "speed": 97.11557006835938
+      },
+      "createdAt": "2020-04-27T11:19:59.903Z",
+      "updatedAt": "2020-04-27T11:19:59.903Z"
+    },
+    {
+      "objectId": "6BnB1Vexg0",
+      "myId": 22,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9412640,
+            "lac": 6171,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -95,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.205585,
+        "lon": 121.259737,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 247.6014404296875,
+        "speed": 70.10298156738281
+      },
+      "createdAt": "2020-04-27T11:20:40.084Z",
+      "updatedAt": "2020-04-27T11:20:40.084Z"
+    },
+    {
+      "objectId": "6UNVJSRoe0",
+      "myId": 23,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 13338124,
+            "lac": 6153,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -73,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.216269,
+        "lon": 121.250953,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 324.75592041015625,
+        "speed": 131.01405334472656
+      },
+      "createdAt": "2020-04-27T11:21:19.895Z",
+      "updatedAt": "2020-04-27T11:21:19.895Z"
+    },
+    {
+      "objectId": "14XRV04Jhy",
+      "myId": 24,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9841676,
+            "lac": 6153,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -76,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.218749,
+        "lon": 121.250656,
+        "accu": 250,
+        "altit": 0,
+        "bearing": 351.8025207519531,
+        "speed": 26.25461196899414
+      },
+      "createdAt": "2020-04-27T11:21:59.843Z",
+      "updatedAt": "2020-04-27T11:21:59.843Z"
+    },
+    {
+      "objectId": "D9tJnHWv5o",
+      "myId": 25,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9498902,
+            "lac": 6153,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -91,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.223426,
+        "lon": 121.242234,
+        "accu": 672,
+        "altit": 0,
+        "bearing": 304.7297668457031,
+        "speed": 78.87782287597656
+      },
+      "createdAt": "2020-04-27T11:22:40.131Z",
+      "updatedAt": "2020-04-27T11:22:40.131Z"
+    },
+    {
+      "objectId": "0JJICTE6RU",
+      "myId": 26,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9498902,
+            "lac": 6153,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -99,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.221343,
+        "lon": 121.227722,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 260.5215148925781,
+        "speed": 123.5473861694336
+      },
+      "createdAt": "2020-04-27T11:23:20.882Z",
+      "updatedAt": "2020-04-27T11:23:20.882Z"
+    },
+    {
+      "objectId": "3DlSIBvYYj",
+      "myId": 27,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 10183456,
+            "lac": 6153,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -82,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.226418,
+        "lon": 121.224702,
+        "accu": 361,
+        "altit": 0,
+        "bearing": 332.9162902832031,
+        "speed": 58.10794448852539
+      },
+      "createdAt": "2020-04-27T11:23:59.937Z",
+      "updatedAt": "2020-04-27T11:23:59.937Z"
+    },
+    {
+      "objectId": "DOljJguU5E",
+      "myId": 28,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 185805639,
+            "lac": 6153,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -62,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.2191,
+        "lon": 121.2068,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 244.56544494628906,
+        "speed": 170.0792694091797
+      },
+      "createdAt": "2020-04-27T11:24:39.836Z",
+      "updatedAt": "2020-04-27T11:24:39.836Z"
+    },
+    {
+      "objectId": "URumaQ13QM",
+      "myId": 29,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9262603,
+            "lac": 6271,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -79,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.217714,
+        "lon": 121.195117,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 262.1435546875,
+        "speed": 101.06958770751953
+      },
+      "createdAt": "2020-04-27T11:25:19.949Z",
+      "updatedAt": "2020-04-27T11:25:19.949Z"
+    },
+    {
+      "objectId": "8rApJ7MCaI",
+      "myId": 30,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9260831,
+            "lac": 6271,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -72,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.217022,
+        "lon": 121.184638,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 265.4086608886719,
+        "speed": 91.9954833984375
+      },
+      "createdAt": "2020-04-27T11:25:59.897Z",
+      "updatedAt": "2020-04-27T11:25:59.897Z"
+    },
+    {
+      "objectId": "GlmHWhNrl2",
+      "myId": 31,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9262357,
+            "lac": 6271,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -81,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.218067,
+        "lon": 121.173776,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 278.4516296386719,
+        "speed": 87.6576919555664
+      },
+      "createdAt": "2020-04-27T11:26:39.939Z",
+      "updatedAt": "2020-04-27T11:26:39.939Z"
+    },
+    {
+      "objectId": "Y40YCCj0A9",
+      "myId": 32,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9262367,
+            "lac": 6271,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -75,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.217145,
+        "lon": 121.160667,
+        "accu": 500,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 123.92472076416016
+      },
+      "createdAt": "2020-04-27T11:27:19.943Z",
+      "updatedAt": "2020-04-27T11:27:19.943Z"
+    },
+    {
+      "objectId": "ft5zGiuwNu",
+      "myId": 33,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 10171147,
+            "lac": 6271,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -77,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.218759,
+        "lon": 121.153414,
+        "accu": 200,
+        "altit": 0,
+        "bearing": 272.54547119140625,
+        "speed": 86.9376449584961
+      },
+      "createdAt": "2020-04-27T11:27:59.847Z",
+      "updatedAt": "2020-04-27T11:27:59.847Z"
+    },
+    {
+      "objectId": "wC0CPmyGvC",
+      "myId": 34,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9233173,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -68,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.220438,
+        "lon": 121.138595,
+        "accu": 565,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 118.67534637451172
+      },
+      "createdAt": "2020-04-27T11:28:40.022Z",
+      "updatedAt": "2020-04-27T11:28:40.022Z"
+    },
+    {
+      "objectId": "nIkPWOWOLA",
+      "myId": 35,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9472533,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -69,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.219761,
+        "lon": 121.127205,
+        "accu": 1070,
+        "altit": 0,
+        "bearing": 270.4418029785156,
+        "speed": 105.65062713623047
+      },
+      "createdAt": "2020-04-27T11:29:19.913Z",
+      "updatedAt": "2020-04-27T11:29:19.913Z"
+    },
+    {
+      "objectId": "prcvsKEirA",
+      "myId": 36,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9472523,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -84,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.220131,
+        "lon": 121.124318,
+        "accu": 1337,
+        "altit": 0,
+        "bearing": 278.482666015625,
+        "speed": 25.040279388427734
+      },
+      "createdAt": "2020-04-27T11:29:59.879Z",
+      "updatedAt": "2020-04-27T11:29:59.879Z"
+    },
+    {
+      "objectId": "NuUECEemRN",
+      "myId": 37,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 185846855,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -78,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.224176,
+        "lon": 121.108616,
+        "accu": 102,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 142.33070373535156
+      },
+      "createdAt": "2020-04-27T11:30:40.087Z",
+      "updatedAt": "2020-04-27T11:30:40.087Z"
+    },
+    {
+      "objectId": "BRxWUxxS3b",
+      "myId": 38,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 186019655,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -69,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.227712,
+        "lon": 121.096293,
+        "accu": 172,
+        "altit": 0,
+        "bearing": 287.4801330566406,
+        "speed": 125.94145965576172
+      },
+      "createdAt": "2020-04-27T11:31:19.850Z",
+      "updatedAt": "2020-04-27T11:31:19.850Z"
+    },
+    {
+      "objectId": "dU1q1UV9uE",
+      "myId": 39,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 9945355,
+            "lac": 59394,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -73,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.228782,
+        "lon": 121.085734,
+        "accu": 161,
+        "altit": 0,
+        "bearing": 276.728271484375,
+        "speed": 91.41825103759766
+      },
+      "createdAt": "2020-04-27T11:31:59.759Z",
+      "updatedAt": "2020-04-27T11:31:59.759Z"
+    },
+    {
+      "objectId": "0hRh5PIE7k",
+      "myId": 40,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 12919061,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -87,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.22644,
+        "lon": 121.079622,
+        "accu": 1369,
+        "altit": 0,
+        "bearing": 245.9691619873047,
+        "speed": 56.45960235595703
+      },
+      "createdAt": "2020-04-27T11:32:40.466Z",
+      "updatedAt": "2020-04-27T11:32:40.466Z"
+    },
+    {
+      "objectId": "ExjL8KvzW8",
+      "myId": 41,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 12919071,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -85,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.222638,
+        "lon": 121.064755,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 251.15428161621094,
+        "speed": 152.45558166503906
+      },
+      "createdAt": "2020-04-27T11:32:49.445Z",
+      "updatedAt": "2020-04-27T11:32:49.445Z"
+    },
+    {
+      "objectId": "Xj7WXHKJWQ",
+      "myId": 42,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 12919071,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -85,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.225064699537697,
+        "lon": 121.07160470511666,
+        "accu": 35,
+        "altit": 65.92635843809694,
+        "bearing": 255.36512756347656,
+        "speed": 24.661556243896484
+      },
+      "createdAt": "2020-04-27T11:32:50.379Z",
+      "updatedAt": "2020-04-27T11:32:50.379Z"
+    },
+    {
+      "objectId": "obIpxtcfCv",
+      "myId": 43,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 12919072,
+            "lac": 6152,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -91,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.222969,
+        "lon": 121.065117,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 254.44332885742188,
+        "speed": 130.8686981201172
+      },
+      "createdAt": "2020-04-27T11:33:19.875Z",
+      "updatedAt": "2020-04-27T11:33:19.875Z"
+    },
+    {
+      "objectId": "kSJo2CLlyh",
+      "myId": 44,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92910623,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -82,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.221985,
+        "lon": 121.05363,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 264.3105773925781,
+        "speed": 99.00821685791016
+      },
+      "createdAt": "2020-04-27T11:33:59.902Z",
+      "updatedAt": "2020-04-27T11:33:59.902Z"
+    },
+    {
+      "objectId": "Cz7v5XKjwp",
+      "myId": 45,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92944405,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -74,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.222446,
+        "lon": 121.039333,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 274.9593811035156,
+        "speed": 118.07537078857422
+      },
+      "createdAt": "2020-04-27T11:34:39.829Z",
+      "updatedAt": "2020-04-27T11:34:39.829Z"
+    },
+    {
+      "objectId": "TbBYKDrn4o",
+      "myId": 46,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85620747,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -80,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.222192,
+        "lon": 121.032914,
+        "accu": 373,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 134.1767120361328
+      },
+      "createdAt": "2020-04-27T11:35:19.874Z",
+      "updatedAt": "2020-04-27T11:35:19.874Z"
+    },
+    {
+      "objectId": "LEVgc7n8dq",
+      "myId": 47,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85620767,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -93,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.220724,
+        "lon": 121.021949,
+        "accu": 461,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 95.3189468383789
+      },
+      "createdAt": "2020-04-27T11:35:59.864Z",
+      "updatedAt": "2020-04-27T11:35:59.864Z"
+    },
+    {
+      "objectId": "u8m1WZkbCC",
+      "myId": 48,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85571615,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -82,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.221129,
+        "lon": 121.01251,
+        "accu": 297,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 81.0125961303711
+      },
+      "createdAt": "2020-04-27T11:36:39.866Z",
+      "updatedAt": "2020-04-27T11:36:39.866Z"
+    },
+    {
+      "objectId": "JGZJ70YHe1",
+      "myId": 49,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218406933,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -96,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.219063,
+        "lon": 120.998723,
+        "accu": 1098,
+        "altit": 0,
+        "bearing": 266.47076416015625,
+        "speed": 94.25567626953125
+      },
+      "createdAt": "2020-04-27T11:37:20.134Z",
+      "updatedAt": "2020-04-27T11:37:20.134Z"
+    },
+    {
+      "objectId": "urrZZ74MWG",
+      "myId": 50,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218406943,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -105,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.219429,
+        "lon": 120.988869,
+        "accu": 489,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 85.77741241455078
+      },
+      "createdAt": "2020-04-27T11:38:00.035Z",
+      "updatedAt": "2020-04-27T11:38:00.035Z"
+    },
+    {
+      "objectId": "n5B4dNMZIz",
+      "myId": 51,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218107925,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -78,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.222229,
+        "lon": 120.959744,
+        "accu": 272,
+        "altit": 0,
+        "bearing": 275.4092102050781,
+        "speed": 112.06219482421875
+      },
+      "createdAt": "2020-04-27T11:39:19.882Z",
+      "updatedAt": "2020-04-27T11:39:19.882Z"
+    },
+    {
+      "objectId": "pDjPsjQ3J4",
+      "myId": 52,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218107915,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -76,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.224711,
+        "lon": 120.947492,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 284.46942138671875,
+        "speed": 107.27590942382812
+      },
+      "createdAt": "2020-04-27T11:40:00.012Z",
+      "updatedAt": "2020-04-27T11:40:00.012Z"
+    },
+    {
+      "objectId": "h0mF3TVBHF",
+      "myId": 53,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92915467,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -77,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.221845,
+        "lon": 120.937115,
+        "accu": 152,
+        "altit": 0,
+        "bearing": 268.8746337890625,
+        "speed": 97.20570373535156
+      },
+      "createdAt": "2020-04-27T11:40:39.810Z",
+      "updatedAt": "2020-04-27T11:40:39.810Z"
+    },
+    {
+      "objectId": "KaFnmPgIOR",
+      "myId": 54,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92949525,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -92,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.22624,
+        "lon": 120.924829,
+        "accu": 1339,
+        "altit": 0,
+        "bearing": 292.60357666015625,
+        "speed": 113.72341918945312
+      },
+      "createdAt": "2020-04-27T11:41:20.723Z",
+      "updatedAt": "2020-04-27T11:41:20.723Z"
+    },
+    {
+      "objectId": "LE7gjk0GhH",
+      "myId": 55,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92911893,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -89,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.231562,
+        "lon": 120.909054,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 291.43914794921875,
+        "speed": 145.68275451660156
+      },
+      "createdAt": "2020-04-27T11:41:59.856Z",
+      "updatedAt": "2020-04-27T11:41:59.856Z"
+    },
+    {
+      "objectId": "uz5oJbrGoy",
+      "myId": 56,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 93194773,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -69,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.236263,
+        "lon": 120.899571,
+        "accu": 225,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 93.33216857910156
+      },
+      "createdAt": "2020-04-27T11:42:39.862Z",
+      "updatedAt": "2020-04-27T11:42:39.862Z"
+    },
+    {
+      "objectId": "8jIKFnDCfJ",
+      "myId": 57,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92911883,
+            "lac": 55340,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -87,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.23601,
+        "lon": 120.888071,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 284.0956726074219,
+        "speed": 93.4683837890625
+      },
+      "createdAt": "2020-04-27T11:43:19.863Z",
+      "updatedAt": "2020-04-27T11:43:19.863Z"
+    },
+    {
+      "objectId": "NTSXr4ceio",
+      "myId": 58,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85356053,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -81,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.245557,
+        "lon": 120.876063,
+        "accu": 513,
+        "altit": 0,
+        "bearing": 296.284423828125,
+        "speed": 105.10771179199219
+      },
+      "createdAt": "2020-04-27T11:43:59.897Z",
+      "updatedAt": "2020-04-27T11:43:59.897Z"
+    },
+    {
+      "objectId": "rQaQhuRMkk",
+      "myId": 59,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 93241375,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -63,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.24723,
+        "lon": 120.8651,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 280.0747375488281,
+        "speed": 95.51168060302734
+      },
+      "createdAt": "2020-04-27T11:44:39.842Z",
+      "updatedAt": "2020-04-27T11:44:39.842Z"
+    },
+    {
+      "objectId": "DeUjyj3rER",
+      "myId": 60,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92836885,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -74,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.249675,
+        "lon": 120.853769,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 284.1016540527344,
+        "speed": 100.20796966552734
+      },
+      "createdAt": "2020-04-27T11:45:19.856Z",
+      "updatedAt": "2020-04-27T11:45:19.856Z"
+    },
+    {
+      "objectId": "2gcZtGdeDE",
+      "myId": 61,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 93041941,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -87,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.253947,
+        "lon": 120.842644,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 292.487548828125,
+        "speed": 104.11619567871094
+      },
+      "createdAt": "2020-04-27T11:45:59.863Z",
+      "updatedAt": "2020-04-27T11:45:59.863Z"
+    },
+    {
+      "objectId": "K6CHn6ErQg",
+      "myId": 62,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218656287,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -91,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.257106,
+        "lon": 120.831955,
+        "accu": 1385,
+        "altit": 0,
+        "bearing": 290.82794189453125,
+        "speed": 66.24603271484375
+      },
+      "createdAt": "2020-04-27T11:46:39.957Z",
+      "updatedAt": "2020-04-27T11:46:39.957Z"
+    },
+    {
+      "objectId": "PwXc6av87c",
+      "myId": 63,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218863391,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -83,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.260338,
+        "lon": 120.82849,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 317.356689453125,
+        "speed": 179.59918212890625
+      },
+      "createdAt": "2020-04-27T11:46:49.832Z",
+      "updatedAt": "2020-04-27T11:46:49.832Z"
+    },
+    {
+      "objectId": "Lq5pDGAF9N",
+      "myId": 64,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218863391,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -83,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.25762118039871,
+        "lon": 120.82763662813174,
+        "accu": 23,
+        "altit": 24.496711377054453,
+        "bearing": 280.950927734375,
+        "speed": 28.536806106567383
+      },
+      "createdAt": "2020-04-27T11:46:50.242Z",
+      "updatedAt": "2020-04-27T11:46:50.242Z"
+    },
+    {
+      "objectId": "PHs6tdr1l0",
+      "myId": 65,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218505739,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -66,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.25839,
+        "lon": 120.820271,
+        "accu": 967,
+        "altit": 0,
+        "bearing": 254.57772827148438,
+        "speed": 96.84101867675781
+      },
+      "createdAt": "2020-04-27T11:47:19.792Z",
+      "updatedAt": "2020-04-27T11:47:19.792Z"
+    },
+    {
+      "objectId": "YB2LhzyU5p",
+      "myId": 66,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85618453,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -94,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.258407,
+        "lon": 120.806626,
+        "accu": 135,
+        "altit": 0,
+        "bearing": 270.0866394042969,
+        "speed": 116.99301147460938
+      },
+      "createdAt": "2020-04-27T11:47:59.825Z",
+      "updatedAt": "2020-04-27T11:47:59.825Z"
+    },
+    {
+      "objectId": "NrALHyVl6O",
+      "myId": 67,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85618453,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -72,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.256921,
+        "lon": 120.802032,
+        "accu": 1066,
+        "altit": 0,
+        "bearing": 249.36795043945312,
+        "speed": 42.11561584472656
+      },
+      "createdAt": "2020-04-27T11:48:39.747Z",
+      "updatedAt": "2020-04-27T11:48:39.747Z"
+    },
+    {
+      "objectId": "jpkE2N9aMX",
+      "myId": 68,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85616395,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -67,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.248806,
+        "lon": 120.786066,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 239.394287109375,
+        "speed": 158.28668212890625
+      },
+      "createdAt": "2020-04-27T11:49:19.925Z",
+      "updatedAt": "2020-04-27T11:49:19.925Z"
+    },
+    {
+      "objectId": "SDOpxIrfal",
+      "myId": 69,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85616415,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -68,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.244864,
+        "lon": 120.772972,
+        "accu": 100,
+        "altit": 0,
+        "bearing": 250.71795654296875,
+        "speed": 116.64582061767578
+      },
+      "createdAt": "2020-04-27T11:49:59.801Z",
+      "updatedAt": "2020-04-27T11:49:59.801Z"
+    },
+    {
+      "objectId": "BIQT0iDOuA",
+      "myId": 70,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 222217237,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -98,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.24307,
+        "lon": 120.774896,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 239.13623046875,
+        "speed": 55.64329147338867
+      },
+      "createdAt": "2020-04-27T11:50:40.422Z",
+      "updatedAt": "2020-04-27T11:50:40.422Z"
+    },
+    {
+      "objectId": "R3prEvns0R",
+      "myId": 71,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 222217237,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -71,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.247125,
+        "lon": 120.773588,
+        "accu": 155,
+        "altit": 0,
+        "bearing": 344.51031494140625,
+        "speed": 42.21329116821289
+      },
+      "createdAt": "2020-04-27T11:51:19.966Z",
+      "updatedAt": "2020-04-27T11:51:19.966Z"
+    },
+    {
+      "objectId": "lcOFqGTzhr",
+      "myId": 72,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 222217247,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -83,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.253752,
+        "lon": 120.775188,
+        "accu": 139,
+        "altit": 0,
+        "bearing": 11.674607276916504,
+        "speed": 74.47675323486328
+      },
+      "createdAt": "2020-04-27T11:52:39.962Z",
+      "updatedAt": "2020-04-27T11:52:39.962Z"
+    },
+    {
+      "objectId": "TLM4mJYwwy",
+      "myId": 73,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85285919,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -67,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.25368,
+        "lon": 120.773979,
+        "accu": 468,
+        "altit": 5e-324,
+        "bearing": 359,
+        "speed": 35.4748649597168
+      },
+      "createdAt": "2020-04-27T11:53:19.823Z",
+      "updatedAt": "2020-04-28T00:27:38.991Z"
+    },
+    {
+      "objectId": "pkHrJyhicY",
+      "myId": 74,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 93237525,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -80,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.266143,
+        "lon": 120.776864,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 6.627165794372559,
+        "speed": 62.26436233520508
+      },
+      "createdAt": "2020-04-27T11:53:59.884Z",
+      "updatedAt": "2020-04-27T11:53:59.884Z"
+    },
+    {
+      "objectId": "E6vYlQpeP6",
+      "myId": 75,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 222260757,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -80,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.273989,
+        "lon": 120.771437,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 329.2860412597656,
+        "speed": 90.818359375
+      },
+      "createdAt": "2020-04-27T11:54:40.086Z",
+      "updatedAt": "2020-04-27T11:54:40.086Z"
+    },
+    {
+      "objectId": "Sy7qnzF36K",
+      "myId": 76,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85045013,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -66,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.280687,
+        "lon": 120.772055,
+        "accu": 1101,
+        "altit": 0,
+        "bearing": 4.5307722091674805,
+        "speed": 67.11721801757812
+      },
+      "createdAt": "2020-04-27T11:55:19.935Z",
+      "updatedAt": "2020-04-27T11:55:19.935Z"
+    },
+    {
+      "objectId": "iHsnAc8oX7",
+      "myId": 77,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 92941579,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -62,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.2885,
+        "lon": 120.7666,
+        "accu": 30,
+        "altit": 0,
+        "bearing": 329.053955078125,
+        "speed": 91.04366302490234
+      },
+      "createdAt": "2020-04-27T11:55:59.913Z",
+      "updatedAt": "2020-04-27T11:55:59.913Z"
+    },
+    {
+      "objectId": "Ga6BuZmbUS",
+      "myId": 78,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218493451,
+            "lac": 20780,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -74,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.296894,
+        "lon": 120.766243,
+        "accu": 375,
+        "altit": 0,
+        "bearing": 358.5791931152344,
+        "speed": 85.30259704589844
+      },
+      "createdAt": "2020-04-27T11:56:40.893Z",
+      "updatedAt": "2020-04-27T11:56:40.893Z"
+    },
+    {
+      "objectId": "GsDg1bKUxv",
+      "myId": 79,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 85062421,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -99,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.301522,
+        "lon": 120.766253,
+        "accu": 75,
+        "altit": 0,
+        "bearing": 0.10630280524492264,
+        "speed": 46.23242950439453
+      },
+      "createdAt": "2020-04-27T11:57:20.065Z",
+      "updatedAt": "2020-04-27T11:57:20.065Z"
+    },
+    {
+      "objectId": "iANMfXxdGK",
+      "myId": 80,
+      "auth": "Basic X2FuZHJvaWQubnVsbDpIVUFXRUktTkVYVVMtbnVsbA==",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 218598421,
+            "lac": 55336,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -93,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.304018,
+        "lon": 120.76601,
+        "accu": 50,
+        "altit": 0,
+        "bearing": 355.22161865234375,
+        "speed": 25.04698371887207
+      },
+      "createdAt": "2020-04-27T11:57:59.975Z",
+      "updatedAt": "2020-04-28T00:27:33.739Z"
+    },
+    {
+      "objectId": "7pa7omXYGL",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11606027,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -87,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.223956,
+        "lon": 121.346774,
+        "accu": 71.61167907714844,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-28T02:13:27.613Z",
+      "updatedAt": "2020-04-28T02:13:27.613Z"
+    },
+    {
+      "objectId": "D4w7NNKBTw",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11606027,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -91,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.223943,
+        "lon": 121.34677,
+        "accu": 69.94743347167969,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-28T02:15:44.155Z",
+      "updatedAt": "2020-04-28T02:15:44.155Z"
+    },
+    {
+      "objectId": "ErsXhFOLtb",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11606027,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -88,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.224076,
+        "lon": 121.34683,
+        "accu": 40,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-28T08:56:14.195Z",
+      "updatedAt": "2020-04-28T08:56:14.195Z"
+    },
+    {
+      "objectId": "mixDPSdVkm",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11606027,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -89,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.223921,
+        "lon": 121.346766,
+        "accu": 71.58940124511719,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-28T12:29:59.030Z",
+      "updatedAt": "2020-04-28T12:29:59.030Z"
+    },
+    {
+      "objectId": "7Bldrwpv1q",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 186282823,
+            "lac": 6219,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -77,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.162347,
+        "lon": 121.39456,
+        "accu": 62.394535064697266,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-29T00:27:10.706Z",
+      "updatedAt": "2020-04-29T00:27:10.706Z"
+    },
+    {
+      "objectId": "2cxbW9y3WQ",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 186307685,
+            "lac": 6216,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -91,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.147144,
+        "lon": 121.380074,
+        "accu": 62.15749740600586,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-29T01:10:27.765Z",
+      "updatedAt": "2020-04-29T01:10:27.765Z"
+    },
+    {
+      "objectId": "Uy5lWgK8h0",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11113237,
+            "lac": 6174,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -74,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.142847,
+        "lon": 121.387376,
+        "accu": 42.45515060424805,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-29T01:33:24.648Z",
+      "updatedAt": "2020-04-29T01:33:24.648Z"
+    },
+    {
+      "objectId": "3qZn2I5CXE",
+      "myId": 2,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11113258,
+            "lac": 6174,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -102,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.146022,
+        "lon": 121.384751,
+        "accu": 40,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-29T01:35:55.894Z",
+      "updatedAt": "2020-04-29T01:35:55.894Z"
+    },
+    {
+      "objectId": "qsTFBk3d0F",
+      "myId": 3,
+      "auth": "Basic X2FuZHJvaWQuODY5MjExMDQzMDM1OTU4OkhVQVdFSS1ORVhVUy04NjkyMTEwNDMwMzU5NTg=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11113524,
+            "lac": 6264,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -97,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.15769,
+        "lon": 121.388226,
+        "accu": 936,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-29T01:36:31.666Z",
+      "updatedAt": "2020-04-29T01:36:31.666Z"
+    },
+    {
+      "objectId": "OZGolNdQxF",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 11606027,
+            "lac": 6188,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -95,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.224252,
+        "lon": 121.346789,
+        "accu": 29,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-29T11:30:45.367Z",
+      "updatedAt": "2020-04-29T11:30:45.367Z"
+    },
+    {
+      "objectId": "OEKnFbklNG",
+      "myId": 1,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 184672348,
+            "lac": 6180,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -95,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.195862,
+        "lon": 121.3162,
+        "accu": 25,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T02:45:51.295Z",
+      "updatedAt": "2020-04-30T02:45:51.295Z"
+    },
+    {
+      "objectId": "DrMK2CQdkB",
+      "myId": 2,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 184673617,
+            "lac": 6180,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -84,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.194913,
+        "lon": 121.315423,
+        "accu": 961,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T05:17:22.567Z",
+      "updatedAt": "2020-04-30T05:17:22.567Z"
+    },
+    {
+      "objectId": "VeJIbyuGwE",
+      "myId": 3,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 186990939,
+            "lac": 6382,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -79,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 31.033722,
+        "lon": 121.287339,
+        "accu": 784,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T05:29:11.243Z",
+      "updatedAt": "2020-04-30T05:29:11.243Z"
+    },
+    {
+      "objectId": "Z9WuuqmmL6",
+      "myId": 4,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 209763645,
+            "lac": 22439,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -96,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 30.738117,
+        "lon": 120.85948,
+        "accu": 2821,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T05:43:53.123Z",
+      "updatedAt": "2020-04-30T05:43:53.123Z"
+    },
+    {
+      "objectId": "XDj7OEdRMM",
+      "myId": 5,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 210302475,
+            "lac": 59270,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -111,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 30.435451,
+        "lon": 120.390691,
+        "accu": 550,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T06:05:36.201Z",
+      "updatedAt": "2020-04-30T06:05:36.201Z"
+    },
+    {
+      "objectId": "gV9HA9z7FD",
+      "myId": 6,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 204184843,
+            "lac": 22278,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -95,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 30.293337,
+        "lon": 120.210288,
+        "accu": 500,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T06:26:26.485Z",
+      "updatedAt": "2020-04-30T06:26:26.485Z"
+    },
+    {
+      "objectId": "1x6ixX5Ok1",
+      "myId": 7,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 205667892,
+            "lac": 22325,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -100,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 30.101285,
+        "lon": 121.165114,
+        "accu": 500,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T07:01:36.985Z",
+      "updatedAt": "2020-04-30T07:01:36.985Z"
+    },
+    {
+      "objectId": "H5J8bEcN6T",
+      "myId": 8,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 204969483,
+            "lac": 59047,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -99,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 29.942345,
+        "lon": 121.534972,
+        "accu": 1030,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T07:16:35.103Z",
+      "updatedAt": "2020-04-30T07:16:35.103Z"
+    },
+    {
+      "objectId": "g7D6xMyN83",
+      "myId": 2,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 56235410,
+            "lac": 22907,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -115,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 27.129409,
+        "lon": 120.220502,
+        "accu": 860,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T10:09:49.090Z",
+      "updatedAt": "2020-04-30T10:09:49.090Z"
+    },
+    {
+      "objectId": "fD3yoL06f3",
+      "myId": 3,
+      "auth": "Basic X2FuZHJvaWQuODY4MTMyMDQwMDIwNzYyOkhVQVdFSS1ORVhVUy04NjgxMzIwNDAwMjA3NjI=",
+      "appCellInfos": [
+        [
+          {
+            "bid": 0,
+            "cdmalat": 0,
+            "cdmalon": 0,
+            "cgiage": 0,
+            "cid": 139451905,
+            "lac": 22795,
+            "mcc": 460,
+            "mnc": 1,
+            "nci": 0,
+            "nid": 0,
+            "pci": 0,
+            "radio_type": "gsm_lte",
+            "rss": -81,
+            "sid": 0,
+            "tac": 0
+          }
+        ]
+      ],
+      "AppLocation": {
+        "lat": 25.805453,
+        "lon": 119.416011,
+        "accu": 4100,
+        "altit": 0,
+        "bearing": 0,
+        "speed": 0
+      },
+      "createdAt": "2020-04-30T11:40:49.359Z",
+      "updatedAt": "2020-04-30T11:40:49.359Z"
+    }
+  ]
+}
