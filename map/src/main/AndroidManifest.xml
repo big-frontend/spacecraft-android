@@ -15,12 +15,29 @@
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application android:hardwareAccelerated="true">
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="${AMAP_KEY}" />
 
-        <activity android:name=".MapActivity" android:hardwareAccelerated="true"/>
-        <activity android:name=".LocationActivity" android:hardwareAccelerated="true"/>
+        <activity
+            android:name=".MapActivity"
+            android:hardwareAccelerated="true">\
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".LocationActivity"
+            android:hardwareAccelerated="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

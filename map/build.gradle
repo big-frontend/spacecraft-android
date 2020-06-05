@@ -42,11 +42,20 @@ android {
 //            java.srcDirs += ['src/component/java']
 //        }
 //    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(path: ':common')
+    api project(path: ':uicomponent')
+    api project(path: ':storage')
     api 'com.amap.api:location:4.7.2'
     api 'com.amap.api:search:6.9.2'
     api 'com.amap.api:3dmap:6.9.4'

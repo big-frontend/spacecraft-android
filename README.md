@@ -23,7 +23,7 @@ SpacecraftAndroid
 ### 3. Storage Module
 - [ ] Room/Realm,SharedPreference
 
-### 4. Map Module
+### 4. LBS(Location & Map) Module
 
 ### 5. Image & Graphic Module
 

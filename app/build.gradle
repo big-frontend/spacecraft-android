@@ -101,7 +101,7 @@ android {
     defaultConfig {
         (minSdkVersion, targetSdkVersion, versionCode, versionName) = getVersion()
 
-        multiDexEnabled = true
+        multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeepFile.txt')
 //        multiDexKeepProguard file('multiDexKeep.pro')
         applicationId "com.hawksjamesf.spacecraft"
