@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 
     <application android:hardwareAccelerated="true">
         <meta-data
@@ -24,20 +25,45 @@
 
         <activity
             android:name=".MapActivity"
-            android:hardwareAccelerated="true">\
+            android:label="map page"
+            android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
+        <activity-alias
+            android:name="MapActivity2"
+            android:targetActivity=".MapActivity"
+            android:label="map page2"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <activity
+            android:label="location page"
             android:name=".LocationActivity"
             android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <service
+            android:foregroundServiceType="location"
+            android:name=".service.LbsIntentServices"
+            />
+        <service
+            android:foregroundServiceType="location"
+            android:name=".service.LbsJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:foregroundServiceType="location"
+            android:name=".service.LbsJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 </manifest>

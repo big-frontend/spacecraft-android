@@ -35,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         // For Singleton instantiation
         @Volatile private var instance: AppDatabase? = null
-        const val DATABASE_NAME="app-db"
+        const val DATABASE_NAME="app_db"
 
         fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {

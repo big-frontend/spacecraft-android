@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 object LogDBContract {
     const val AUTHORITY = "com.hawksjamesf.storage.log"
     val CONTENT_URI = Uri.parse("content://$AUTHORITY")
-    const val DB_NAME = "log.db"
+    const val DB_NAME = "log_db"
     const val DB_VERSION = 1
     const val TABLE_NAME = "log_table"
     const val SQL_CREATE_ENTRIES = "CREATE TABLE $TABLE_NAME (" +

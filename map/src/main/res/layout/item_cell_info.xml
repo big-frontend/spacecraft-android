@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="8dp"
-        android:text="lac"
+        android:text="radio_type"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="20sp" />
 

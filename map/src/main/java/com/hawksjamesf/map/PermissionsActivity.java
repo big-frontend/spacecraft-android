@@ -1,17 +1,18 @@
 package com.hawksjamesf.map;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 
+import com.blankj.utilcode.util.PhoneUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import com.blankj.utilcode.util.PhoneUtils;
 
 public class PermissionsActivity extends AppCompatActivity {
     public static final String TAG = "LBS_collection";
@@ -30,7 +31,7 @@ public class PermissionsActivity extends AppCompatActivity {
     }
 
     private static String createAuthoritySeed() {
-        String realImei = PhoneUtils.getIMEI();
+        @SuppressLint("MissingPermission") String realImei = PhoneUtils.getIMEI();
         return "_android." + realImei + ":" + "HUAWEI" + "-" + "NEXUS" + "-" + realImei;
     }
 

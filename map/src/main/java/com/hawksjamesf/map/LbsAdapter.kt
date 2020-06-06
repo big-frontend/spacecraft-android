@@ -27,24 +27,20 @@ class LbsAdapter : PagedListAdapter<LBS, LbsAdapter.LbsViewHolder>(diffCallback)
     override fun onBindViewHolder(holder: LbsViewHolder, position: Int) {
         val item = getItem(position)
         val info = item?.appCellInfo
-        if (info != null) {
-            if ("gsm".equals(info.radio_type, ignoreCase = true)
-                    || "gsm_lte".equals(info.radio_type, ignoreCase = true)
-                    || "gsm_wcdma".equals(info.radio_type, ignoreCase = true)) {
-                holder.tv_radio_type.setText("radio_type:\n" + info.radio_type)
-                holder.tv_lac.setText("lac:" + info.lac)
-                holder.tv_cid.setText("cid:" + info.cid)
-            } else if ("cdma".equals(info.radio_type, ignoreCase = true)) {
-                holder.tv_radio_type.setText("radio_type:\n" + info.radio_type)
-                holder.tv_lac.setText("lat:" + info.cdmalat)
-                holder.tv_cid.setText("lon:" + info.cdmalon)
-            }
+        if ("gsm".equals(info?.radio_type, ignoreCase = true)
+                || "gsm_lte".equals(info?.radio_type, ignoreCase = true)
+                || "gsm_wcdma".equals(info?.radio_type, ignoreCase = true)) {
+            holder.tv_radio_type.text = "index:${position}\nradio_type:\n" + info?.radio_type
+            holder.tv_lac.text = "lac:" + info?.lac
+            holder.tv_cid.text = "cid:" + info?.cid
+        } else if ("cdma".equals(info?.radio_type, ignoreCase = true)) {
+            holder.tv_radio_type.text = "index:${position}\nradio_type:\n" + info?.radio_type
+            holder.tv_lac.text = "lat:" + info?.cdmalat
+            holder.tv_cid.text = "lon:" + info?.cdmalon
         }
         val appLocation = item?.appLocation
-        if (appLocation != null) {
-            holder.tv_lat.setText("lat: " + appLocation.lat)
-            holder.tv_lon.setText("lon:" + appLocation.lon)
-        }
+        holder.tv_lat.text = "lat: " + appLocation?.lat
+        holder.tv_lon.text = "lon:" + appLocation?.lon
 
     }
 

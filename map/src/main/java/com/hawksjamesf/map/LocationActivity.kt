@@ -6,6 +6,7 @@ import android.os.RemoteException
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.NetworkUtils
 import com.hawksjamesf.common.util.DeviceUtil
 import com.hawksjamesf.map.model.AppCellInfo
@@ -35,8 +36,10 @@ class LocationActivity : PermissionsActivity() {
 
         @Throws(RemoteException::class)
         override fun onLocationChanged(appLocation: AppLocation?, appCellInfo: AppCellInfo?, count: Long) {
-            this@LocationActivity.runOnUiThread(Runnable { bt_cellInfos.text = "统计次数：$count" })
+//            this@LocationActivity.runOnUiThread(Runnable { bt_cellInfos.text = "统计次数：$count" })
             Log.d(TAG, "onLocationChanged:" + count + "\n" + appLocation?.lat + " , " + appLocation?.lon)
+            bt_cellInfos.text = "统计次数：$count"
+            viewModel.insert(appCellInfo,appLocation)
 //            FileIOUtils.write2File(lbsFile, location, cellInfoList, count, auth)
         }
 
@@ -73,14 +76,15 @@ class LocationActivity : PermissionsActivity() {
         rv_cellinfos.adapter = adapter
         val observer = Observer(adapter::submitList)
         viewModel.allLbsDatas.observe(this, observer)
+        viewModel.clearAll()
         srf_cellinfos.setOnRefreshListener {
             srf_cellinfos.isRefreshing = false
         }
-        val lbsDir = File(Environment.getExternalStorageDirectory().absoluteFile, "lbsPath")
-        if (!lbsDir.exists()) {
-            lbsDir.mkdir()
-        }
-        this.lbsFile = File(lbsDir, "lbsPath_" + System.currentTimeMillis() + ".json")
+//        val lbsDir = File(Environment.getExternalStorageDirectory().absoluteFile, "lbsPath")
+//        if (!lbsDir.exists()) {
+//            lbsDir.mkdir()
+//        }
+//        this.lbsFile = File(lbsDir, "lbsPath_" + System.currentTimeMillis() + ".json")
         connection.listener = ibsListenerStub
         LbsIntentServices.startAndBindService(this, connection)
         LbsJobService.startService(this)

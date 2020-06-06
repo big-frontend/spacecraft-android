@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.hawksjamesf.map.model.LBS
 
-@Database(entities = [LBS::class], version = 1)
+@Database(entities = [LBS::class], version = 1,exportSchema = false)
 abstract class LbsDb : RoomDatabase() {
     abstract fun lbsDao(): LbsDao
 
@@ -17,7 +17,7 @@ abstract class LbsDb : RoomDatabase() {
         @Synchronized
         fun get(context: Context): LbsDb {
             if (instance == null) {
-                instance = Room.databaseBuilder(context, LbsDb::class.java, "LbsDb")
+                instance = Room.databaseBuilder(context, LbsDb::class.java, "lbs_db")
                         .addCallback(object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 Log.d("", "onCreate")

@@ -15,7 +15,14 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 
     buildTypes {
@@ -46,6 +53,7 @@ dependencies {
     testImplementation 'androidx.room:room-testing:2.2.5'
     api 'androidx.room:room-runtime:2.2.5'
     api 'androidx.room:room-rxjava2:2.2.5'
+    api "androidx.room:room-ktx:2.2.5"
     kapt 'androidx.room:room-compiler:2.2.5'
 
     //realm database
