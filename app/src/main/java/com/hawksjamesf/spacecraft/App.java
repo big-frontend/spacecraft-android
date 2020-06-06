@@ -6,24 +6,13 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hawksjamesf.common.DynamicConfigImplDemo;
 import com.hawksjamesf.common.TestPluginListener;
 import com.hawksjamesf.common.util.Util;
 import com.hawksjamesf.network.DaggerNetComponent;
 import com.hawksjamesf.network.NetComponent;
 import com.hawksjamesf.network.NetModule;
-import com.hawksjamesf.spacecraft.ui.observable.AppLifecycleObserver;
 import com.hawksjamesf.spacecraft.ui.signin.SigInModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -50,9 +39,9 @@ import androidx.core.provider.FontRequest;
 import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
 import androidx.emoji.text.FontRequestEmojiCompatConfig;
-import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
+import androidx.work.Configuration;
 
 
 /**
@@ -64,7 +53,7 @@ import androidx.multidex.MultiDexApplication;
  * @since: 2017/7/4
  */
 
-public class App extends MultiDexApplication {
+public class App extends MultiDexApplication implements Configuration.Provider {
     protected static final String TAG = "SpacecraftApp---";
     private static AppComponent sAppComponent;
     private static NetComponent sNetComponent;
@@ -302,5 +291,11 @@ public class App extends MultiDexApplication {
         return sFirebaseRemoteConfig;
     }
 
-
+    @NonNull
+    @Override
+    public Configuration getWorkManagerConfiguration() {
+        return new Configuration.Builder()
+                .setMinimumLoggingLevel(Log.VERBOSE)
+                .build();
+    }
 }

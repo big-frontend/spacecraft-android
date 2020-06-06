@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
+import com.example.background.SelectImageActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -16,12 +14,13 @@ import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.util.ActivityUtil;
-import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.reactivex.disposables.Disposable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -56,7 +55,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-        ActivityUtil.startActivity(MapActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+        ActivityUtil.startActivity(SelectImageActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
         finish();
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
 //        myTrace.start();

@@ -1,16 +1,16 @@
 package com.hawksjamesf.map
 
 import android.os.Bundle
-import android.os.Environment
 import android.os.RemoteException
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.paging.PagedList
 import com.blankj.utilcode.util.NetworkUtils
 import com.hawksjamesf.common.util.DeviceUtil
 import com.hawksjamesf.map.model.AppCellInfo
 import com.hawksjamesf.map.model.AppLocation
+import com.hawksjamesf.map.model.LBS
 import com.hawksjamesf.map.model.LBSViewModel
 import com.hawksjamesf.map.service.LbsIntentServices
 import com.hawksjamesf.map.service.LbsJobIntentService
@@ -37,15 +37,18 @@ class LocationActivity : PermissionsActivity() {
         @Throws(RemoteException::class)
         override fun onLocationChanged(appLocation: AppLocation?, appCellInfo: AppCellInfo?, count: Long) {
 //            this@LocationActivity.runOnUiThread(Runnable { bt_cellInfos.text = "统计次数：$count" })
-            Log.d(TAG, "onLocationChanged:" + count + "\n" + appLocation?.lat + " , " + appLocation?.lon)
+            Log.d(TAG, "onLocationChanged:index:" + count + "\n" +
+                    "${appLocation?.lat},${appLocation?.lon}\n" +
+                    "${appCellInfo?.lac},${appCellInfo?.cid}")
             bt_cellInfos.text = "统计次数：$count"
-            viewModel.insert(appCellInfo,appLocation)
+            viewModel.insert(appCellInfo, appLocation)
+            ReportApi.reportLocation(appLocation,appCellInfo,count, auth)
 //            FileIOUtils.write2File(lbsFile, location, cellInfoList, count, auth)
         }
 
         @Throws(RemoteException::class)
         override fun onStatusChanged(s: String, i: Int, bundle: Bundle) {
-            Log.d(TAG, "onStatusChanged:$s  $i $bundle")
+//            Log.d(TAG, "onStatusChanged:$s  $i $bundle")
         }
 
         @Throws(RemoteException::class)
@@ -75,7 +78,12 @@ class LocationActivity : PermissionsActivity() {
         val adapter = LbsAdapter()
         rv_cellinfos.adapter = adapter
         val observer = Observer(adapter::submitList)
-        viewModel.allLbsDatas.observe(this, observer)
+        viewModel.allLbsDatas.observe(this, Observer<PagedList<LBS>> { p ->
+            adapter.submitList(p)
+            if (p.size > 2) {
+                rv_cellinfos.smoothScrollToPosition(p.size - 1)
+            }
+        })
         viewModel.clearAll()
         srf_cellinfos.setOnRefreshListener {
             srf_cellinfos.isRefreshing = false
@@ -86,6 +94,7 @@ class LocationActivity : PermissionsActivity() {
 //        }
 //        this.lbsFile = File(lbsDir, "lbsPath_" + System.currentTimeMillis() + ".json")
         connection.listener = ibsListenerStub
+        //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
         LbsIntentServices.startAndBindService(this, connection)
         LbsJobService.startService(this)
         LbsJobIntentService.startService(this)

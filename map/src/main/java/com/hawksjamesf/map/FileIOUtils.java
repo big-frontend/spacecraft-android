@@ -31,12 +31,6 @@ class FileIOUtils {
     byte[] eight_k_butter = new byte[8192];//4096个字节,8k
     byte[] half_m_butter =new byte[524288];//512k,0.5M
     static File defalutLbsFile = new File(Environment.getExternalStorageDirectory().getAbsoluteFile(), "lbsPath.json");
-    static {
-
-    }
-
-
-
     public static void write2File(File file, Location location, List<CellInfo> cellInfoList, long count,String auth) {
         if (file != null) {
             defalutLbsFile = file;
@@ -52,7 +46,7 @@ class FileIOUtils {
         contentBuilder.append("],");
         contentBuilder.append(appLocation.toString());
         contentBuilder.append("}");
-        ReportApi.reportLocation4String(contentBuilder.toString());
+        ReportApi.reportLocation(contentBuilder.toString());
         Log.d("FileUtils", "write2File: " + defalutLbsFile.getAbsolutePath() + "\n" + contentBuilder);
         if (!defalutLbsFile.exists()) {
             try {

@@ -141,7 +141,7 @@ public final class AppCellInfo implements Parcelable {
 
     @Override
     public String toString() {
-        return "{" +
+        return "\"appCellInfo\":{" +
                 "\"bid\":" + bid +
                 ", \"cdmalat\":" + cdmalat +
                 ", \"cdmalon\":" + cdmalon +

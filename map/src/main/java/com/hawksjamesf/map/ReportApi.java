@@ -5,6 +5,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hawksjamesf.common.util.Util;
+import com.hawksjamesf.map.model.AppCellInfo;
+import com.hawksjamesf.map.model.AppLocation;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,12 +15,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 class ReportApi {
-    public static final String urlStr = "https://appdownload.coctopus.cn/parse/classes/AndroidGPS";
+    public static final String urlStr = "https://appdownload.coctopus.cn/parse/classes/AndroidGPSv2";
     public static final String applicationIdValue = "Bms5ZwgoXFRpTBN0bqB1kDSIp81eBrlzecRO4vKA";
     public static final String contentTypeValue = "application/json";
     public static final String TAG = "ReportApi";
 
-    public static void reportLocation4String(final String content) {
+    public static void reportLocation(final AppLocation appLocation, AppCellInfo appCellInfo, long count, String auth) {
+        StringBuilder contentBuilder = new StringBuilder();
+        contentBuilder.append("{");
+        contentBuilder.append("\"index\":" + count + ",");
+        contentBuilder.append("\"auth\":" + "\"" + auth + "\"" + ",");
+        contentBuilder.append(appCellInfo.toString());
+        contentBuilder.append(",");
+        contentBuilder.append(appLocation.toString());
+        contentBuilder.append("}");
+        ReportApi.reportLocation(contentBuilder.toString());
+    }
+
+    public static void reportLocation(final String content) {
         if (content == null || content.length() <= 0) {
             return;
         }
@@ -56,8 +70,7 @@ class ReportApi {
         });
     }
 
-    public static void reportLocation(String lbsPath) {
-        final File lbsFile = new File(lbsPath);
+    public static void reportLocation(File lbsFile) {
         if (!lbsFile.exists()) {
             Toast.makeText(Util.getApp(), "file no exists,report error", Toast.LENGTH_SHORT).show();
             return;

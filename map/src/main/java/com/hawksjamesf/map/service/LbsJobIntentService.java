@@ -23,8 +23,6 @@ public class LbsJobIntentService extends JobIntentService {
     private static final int JOB_ID = 2;
     LocationManager locationManager;
     TelephonyManager telephonyManager;
-    public static final int minTimes = 1000;
-    public static final int minDistance = 1000;
 
     public static void startService(Activity activity) {
         Intent intent = new Intent(activity, LbsJobIntentService.class);
@@ -43,12 +41,12 @@ public class LbsJobIntentService extends JobIntentService {
     protected void onHandleWork(@NonNull Intent intent) {
         boolean b = Looper.getMainLooper().getThread() == Thread.currentThread();
         Log.d(TAG_service, "onHandleWork: Is it main thread ? " + b);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, minTimes, minDistance, new LocationListener() {
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, Constants.MIN_TIMES, Constants.MIN_DISTANCE, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 boolean b = Looper.getMainLooper().getThread() == Thread.currentThread();
-                Log.d(TAG_service, "multi onLocationChanged: Is it main thread ? " + b);
-                Log.d(TAG_service, "multi onLocationChanged: location" + location.getLatitude() + " , " + location.getLongitude());
+                Log.d(TAG_service, "JobIntentService onLocationChanged: Is it main thread ? " + b);
+                Log.d(TAG_service, "JobIntentService onLocationChanged: location" + location.getLatitude() + " , " + location.getLongitude());
             }
 
             @Override

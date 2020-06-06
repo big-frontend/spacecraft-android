@@ -32,8 +32,6 @@ public class LbsJobService extends JobService {
     private static JobScheduler mJobScheduler;
     LocationManager locationManager;
     TelephonyManager telephonyManager;
-    public static final int minTimes =1000;
-    public static final int minDistance =1000;
     public static void startService(Activity activity) {
         mJobScheduler = (JobScheduler) activity.getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
@@ -63,12 +61,12 @@ public class LbsJobService extends JobService {
     public boolean onStartJob(JobParameters jobParameters) {
         boolean b = Looper.getMainLooper().getThread() == Thread.currentThread();
         Log.d(TAG_service, "onStartJob: Is it main thread ? " + b);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, minTimes, minDistance, new LocationListener() {
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, Constants.MIN_TIMES, Constants.MIN_DISTANCE, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 boolean b = Looper.getMainLooper().getThread() == Thread.currentThread();
-                Log.d(TAG_service, "onStartJob multi onLocationChanged: Is it main thread ? " + b);
-                Log.d(TAG_service, "onStartJob multi onLocationChanged: location" + location.getLatitude() +" , "+location.getLongitude());
+                Log.d(TAG_service, "JobService  onLocationChanged: Is it main thread ? " + b);
+                Log.d(TAG_service, "JobService  onLocationChanged: location" + location.getLatitude() +" , "+location.getLongitude());
             }
 
             @Override
