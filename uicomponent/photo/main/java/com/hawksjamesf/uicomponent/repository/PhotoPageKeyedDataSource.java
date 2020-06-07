@@ -40,7 +40,7 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> 
             items.add(new Item(uriList.subList(0, 3)));
             items.add(new Item(uriList.subList(3,4)));
             items.add(new Item(uriList.subList(4,7)));
-            items.add(new Item(uriList.subList(7,15)));
+            items.add(new Item(uriList.subList(0,uriList.size())));
             items.add(new Item(uriList.subList(uriList.size()-8,uriList.size()-2)));
             items.add(new Item(uriList.subList(uriList.size()-2,uriList.size())));
             callback.onResult(items, "23", "asdfsdf");

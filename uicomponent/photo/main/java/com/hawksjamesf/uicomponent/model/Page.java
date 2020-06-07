@@ -1,10 +1,10 @@
 package com.hawksjamesf.uicomponent.model;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.net.URL;
 
 /**
  * Copyright ® $ 2017
@@ -15,11 +15,11 @@ import java.net.URL;
  */
 public class Page implements Parcelable {
     public Bitmap thumbnailBitmap;
-    public URL url;
+    public Uri uri;
 
-    public Page(Bitmap thumbnailBitmap, URL url) {
+    public Page(Bitmap thumbnailBitmap, Uri uri) {
         this.thumbnailBitmap = thumbnailBitmap;
-        this.url = url;
+        this.uri = uri;
     }
 
 
@@ -31,12 +31,12 @@ public class Page implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.thumbnailBitmap, flags);
-        dest.writeSerializable(this.url);
+        dest.writeParcelable(this.uri,flags);
     }
 
     protected Page(Parcel in) {
         this.thumbnailBitmap = in.readParcelable(Bitmap.class.getClassLoader());
-        this.url = (URL) in.readSerializable();
+        this.uri = (Uri) in.readParcelable(Uri.class.getClassLoader());
     }
 
     public static final Creator<Page> CREATOR = new Creator<Page>() {

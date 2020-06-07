@@ -8,9 +8,6 @@
 
     </style>
 
-    <style name="PhotoTheme" parent="AppTheme.BarsTransparent">
-    </style>
-
     <style name="HomeTheme" parent="AppTheme.BarsTransparent">
         <item name="android:windowTranslucentNavigation">false</item>
     </style>

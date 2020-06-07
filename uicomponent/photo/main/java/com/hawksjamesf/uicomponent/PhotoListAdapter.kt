@@ -3,6 +3,7 @@ package com.hawksjamesf.uicomponent
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.util.ViewPreloadSizeProvider
+import com.hawksjamesf.common.constants.MemoryUnit
 import com.hawksjamesf.uicomponent.model.Item
 
 /**
@@ -72,7 +74,23 @@ class PhotoListAdapter(
                 linearLayout.children.forEach {
                     thumbnailBitmapList.add((it as ImageView).drawToBitmap())
                 }
-                PhotoActivity.startActivity(context as Activity, thumbnailBitmapList, item.uriList, i)
+                var bitmapsize = 0f
+                for (bitmap in thumbnailBitmapList) {
+                    bitmapsize += bitmap.byteCount.toFloat()
+                }
+                bitmapsize /= MemoryUnit.KB
+                Log.d(Constants.TAG_PHOTO_ACTIVITY, "size:${thumbnailBitmapList.size} curPosition:$i bitmap size:${bitmapsize}k")
+                PhotoActivity.startActivityWithThumbnailScaleUp(
+                        context as Activity, it,
+                        (it as ImageView).drawToBitmap(), it.width / 2, it.height / 2,
+                        item.uriList, i
+                )
+//                PhotoActivity.startActivityWithScaleUp(
+//                        context as Activity, it,
+//                        it.width / 2, it.height / 2,
+//                        it.width,it.height,
+//                        item.uriList, i
+//                )
             }
         }
 

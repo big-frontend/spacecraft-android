@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hawksjamesf.uicomponent.model.Page;
 
 import androidx.annotation.NonNull;
@@ -55,16 +56,29 @@ public class PhotoFragment extends Fragment {
         sectionNumber = arguments.getInt(ARG_SECTION_NUMBER);
         ivPhoto = view.findViewById(R.id.iv_photo);
         tvText = view.findViewById(R.id.tv_text);
-        if (page.thumbnailBitmap == null) {
+
+        if (page.uri == null) {
             tvText.setText(String.valueOf(sectionNumber));
             tvText.setVisibility(View.VISIBLE);
             ivPhoto.setVisibility(View.GONE);
         } else {
             tvText.setVisibility(View.GONE);
             ivPhoto.setVisibility(View.VISIBLE);
-            ivPhoto.setImageBitmap(page.thumbnailBitmap);
+            Glide.with(ivPhoto.getContext())
+                    .load(page.uri)
+                    .into(ivPhoto);
 
         }
+//        if (page.thumbnailBitmap == null) {
+//            tvText.setText(String.valueOf(sectionNumber));
+//            tvText.setVisibility(View.VISIBLE);
+//            ivPhoto.setVisibility(View.GONE);
+//        } else {
+//            tvText.setVisibility(View.GONE);
+//            ivPhoto.setVisibility(View.VISIBLE);
+//            ivPhoto.setImageBitmap(page.thumbnailBitmap);
+//
+//        }
 
 
     }

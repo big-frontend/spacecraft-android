@@ -90,14 +90,6 @@
     </style>
     <!--=====================full screen========================================-->
 
-
-    <!--=====================PhotoTheme screen========================================-->
-    <style name="PhotoTheme" parent="AppTheme">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-    <!--=====================PhotoTheme screen========================================-->
-
     <!--=====================VideoTheme screen========================================-->
     <style name="VideoTheme" parent="AppTheme">
         <!--<item name="android:actionBarStyle">@style/VideoActionBarStyle</item>-->
