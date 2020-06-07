@@ -27,8 +27,6 @@ import java.io.InputStream
  * 对于长图应该做到，支持滚动
  */
 class PhotoView : AppCompatImageView {
-
-
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -36,12 +34,11 @@ class PhotoView : AppCompatImageView {
     init {
         val maxMemory = Runtime.getRuntime().maxMemory()
         val freeMemory = Runtime.getRuntime().freeMemory()
-
     }
 
     var openRawResource: InputStream? = null
     fun setRaw(@RawRes rawResId: Int) {
-        openRawResource = context.resources.openRawResource(rawResId)
+        openRawResource = resources.openRawResource(rawResId)
         val bitmap = ImageUtils.getBitmap(openRawResource)
 
     }

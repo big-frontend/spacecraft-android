@@ -40,16 +40,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity-alias
-            android:name="MapActivity2"
-            android:targetActivity=".MapActivity"
-            android:label="map page2"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias>
+<!--        <activity-alias-->
+<!--            android:name="MapActivity2"-->
+<!--            android:targetActivity=".MapActivity"-->
+<!--            android:label="map page2"-->
+<!--            >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity-alias>-->
 
         <activity
             android:label="location page"
@@ -58,7 +58,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+<!--                <category android:name="android.intent.category.DEFAULT"/>-->
             </intent-filter>
         </activity>
         <service

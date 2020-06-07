@@ -1,9 +1,11 @@
 package com.hawksjamesf.uicomponent.repository
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.paging.Config
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
+import com.hawksjamesf.uicomponent.model.Item
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
@@ -16,10 +18,9 @@ import java.util.concurrent.Executors
  */
 interface PhotoRepository {
 
-
     fun getNetworkApi(): NetworkApi
 
-    fun getAny():LiveData<PagedList<String>>?
+    fun getAny(): LiveData<PagedList<Item>>
 }
 
 class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
@@ -35,7 +36,6 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
     }
 
     init {
-
         executor = when (region) {
             CacheRegion.IN_MEMORY_BY_PAGE -> {
                 NETWORK_IO
@@ -50,16 +50,15 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
     }
 
     override fun getNetworkApi() = api
-
-    override fun getAny():LiveData<PagedList<String>>?{
+    @MainThread
+    override fun getAny(): LiveData<PagedList<Item>> {
         dataSourceFactory = PhotoDataSourceFactory(region, api)
-        val toLiveData = dataSourceFactory.toLiveData(
+        return dataSourceFactory.toLiveData(
                 config = Config(
                         pageSize = 30,
                         enablePlaceholders = false,
                         initialLoadSizeHint = 30 * 2),
                 fetchExecutor = executor)
-        return toLiveData
     }
 
 }

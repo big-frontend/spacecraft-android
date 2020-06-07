@@ -2,6 +2,8 @@ package com.hawksjamesf.uicomponent;
 
 import android.util.Log;
 
+import com.hawksjamesf.uicomponent.model.Page;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
             this.dataList.clear();
             return;
         }
-        Log.d(Constants.TAG,"page size:"+dataList.size());
+        Log.d(Constants.TAG_PHOTO_ACTIVITY,"page size:"+dataList.size());
         this.dataList.clear();
         this.dataList.addAll(dataList);
         notifyDataSetChanged();

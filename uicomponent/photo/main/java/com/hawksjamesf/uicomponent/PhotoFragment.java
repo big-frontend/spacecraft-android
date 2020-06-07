@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hawksjamesf.uicomponent.model.Page;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,7 +23,6 @@ import androidx.fragment.app.Fragment;
  * bitmap，drawable、uri、resource id
  */
 public class PhotoFragment extends Fragment {
-    public static final String TAG = "PhotoFragment";
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_PAGE = "page";
     Page page;

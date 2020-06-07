@@ -16,6 +16,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
+import com.hawksjamesf.uicomponent.PhotoListActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -55,10 +56,10 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-        ActivityUtil.startActivity(SelectImageActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+        ActivityUtil.startActivity(PhotoListActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
         finish();
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
-//        myTrace.start();
+//        myTrace.start();r
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 //        mHttpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
 //        mHttpMetric.start();

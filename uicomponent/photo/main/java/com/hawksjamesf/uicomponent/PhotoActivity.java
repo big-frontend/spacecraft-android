@@ -3,12 +3,16 @@ package com.hawksjamesf.uicomponent;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.hawksjamesf.uicomponent.model.Page;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,17 +34,21 @@ public class PhotoActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
-    public static void startActivity(@NonNull Activity activity, @NonNull final ArrayList<Bitmap> thumbnailBitmapList, final ArrayList<String> urlList, final int curPosition) {
+    public static void startActivity(@NonNull Activity activity, @NonNull final ArrayList<Bitmap> thumbnailBitmapList, final List<Uri> urlList, final int curPosition) {
         Intent intent = new Intent(activity, PhotoActivity.class);
-        Log.d(Constants.TAG, "size:" + thumbnailBitmapList.size() + "/curPosition:" + curPosition);
+        Log.d(Constants.TAG_PHOTO_ACTIVITY, "size:" + thumbnailBitmapList.size() + "/curPosition:" + curPosition);
         if (thumbnailBitmapList.size() > threshold) {
             for (int i = 0, size = thumbnailBitmapList.size(); i < size; i++) {
                 if (curPosition <= i && i < threshold + curPosition) continue;
                 thumbnailBitmapList.set(i, null);
             }
         }
+        ArrayList<String> uriStrList=new ArrayList<>();
+        for (Uri uri : urlList) {
+            uriStrList.add(uri.toString());
+        }
         intent.putParcelableArrayListExtra(EXTRA_THUMBNAILBITMAP, thumbnailBitmapList);
-        intent.putStringArrayListExtra(EXTRA_URLLIST, urlList);
+        intent.putStringArrayListExtra(EXTRA_URLLIST, uriStrList);
         intent.putExtra(EXTRA_CURPOSITION, curPosition);
         activity.startActivity(intent);
     }

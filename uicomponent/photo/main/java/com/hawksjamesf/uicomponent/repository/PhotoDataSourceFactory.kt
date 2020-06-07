@@ -1,7 +1,9 @@
 package com.hawksjamesf.uicomponent.repository
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import com.hawksjamesf.uicomponent.model.Item
 
 /**
  * Copyright ® $ 2017
@@ -13,11 +15,11 @@ import androidx.paging.DataSource
 class PhotoDataSourceFactory(
         private val region: CacheRegion,
         private val api: NetworkApi
-) : DataSource.Factory<String, String>() {
+) : DataSource.Factory<String, Item>() {
 
-    val sourceLiveData = MutableLiveData<DataSource<String, String>>()
-    override fun create(): DataSource<String, String> {
-        val datasource:DataSource<String, String> = when (region) {
+    val sourceLiveData = MutableLiveData<DataSource<String, Item>>()
+    override fun create(): DataSource<String, Item> {
+        val datasource:DataSource<String, Item> = when (region) {
             CacheRegion.IN_MEMORY_BY_ITEM -> {
                 PhotoItemKeyedDataSource(api)
             }
