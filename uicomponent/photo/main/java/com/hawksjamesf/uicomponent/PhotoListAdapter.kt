@@ -3,8 +3,6 @@ package com.hawksjamesf.uicomponent
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
@@ -16,11 +14,8 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.ListPreloader
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.util.ViewPreloadSizeProvider
 import com.hawksjamesf.uicomponent.model.Item
-import java.util.*
 
 /**
  * Copyright ® $ 2017
@@ -31,7 +26,7 @@ import java.util.*
  */
 class PhotoListAdapter(
         val context: Context
-) : PagedListAdapter<Item, RecyclerView.ViewHolder>(diffCallback), ListPreloader.PreloadModelProvider<Item> {
+) : PagedListAdapter<Item, RecyclerView.ViewHolder>(diffCallback)/* ,ListPreloader.PreloadModelProvider<Uri> */ {
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
             override fun areItemsTheSame(oldItem: Item, newItem: Item) = oldItem == newItem
@@ -57,16 +52,17 @@ class PhotoListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position) ?: return
         val linearLayout = (holder.itemView as HorizontalScrollView).getChildAt(0) as LinearLayout
-//        holder.itemView.tag = viewModel.itemList?.value?.get(position)
-        for (uri in item.uriList) {
+        for (i in 0 until item.uriList.size) {
+            val uri = item.uriList[i]
             val imageView = ImageView(linearLayout.context)
+            imageView.tag = i
             linearLayout.addView(imageView, LinearLayout.LayoutParams(200, 200))
             Glide.with(imageView.context)
                     .load(uri)
                     .into(imageView)
-//                requestBuilder.load(holder.itemView.tag as String?)
-//                        .into(imageView)
-//                        .clearOnDetach()
+            requestBuilder.load(uri)
+                    .into(imageView)
+                    .clearOnDetach()
             preloadSizeProvider.setView(imageView)
 
 //            viewModel.itemList?.value?.get(index)?.let { urlList.add(it) }
@@ -76,7 +72,7 @@ class PhotoListAdapter(
                 linearLayout.children.forEach {
                     thumbnailBitmapList.add((it as ImageView).drawToBitmap())
                 }
-                PhotoActivity.startActivity(context as Activity, thumbnailBitmapList, item.uriList, imageView.tag as Int)
+                PhotoActivity.startActivity(context as Activity, thumbnailBitmapList, item.uriList, i)
             }
         }
 
@@ -85,8 +81,7 @@ class PhotoListAdapter(
     override fun onCurrentListChanged(previousList: PagedList<Item>?, currentList: PagedList<Item>?) {
         super.onCurrentListChanged(previousList, currentList)
     }
-
-    //    override fun getPreloadItems(position: Int): MutableList<Item> = Collections.singletonList(uriList[position])
-    override fun getPreloadItems(position: Int): MutableList<Item> = Collections.emptyList()
-    override fun getPreloadRequestBuilder(item: Item): RequestBuilder<Drawable>? = requestBuilder.load(item)
+//
+//    override fun getPreloadItems(position: Int): MutableList<Uri> = Collections.singletonList(getItem(position))
+//    override fun getPreloadRequestBuilder(item: Uri): RequestBuilder<Drawable>? = requestBuilder.load(item)
 }

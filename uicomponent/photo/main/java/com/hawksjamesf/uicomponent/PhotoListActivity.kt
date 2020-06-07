@@ -46,8 +46,8 @@ class PhotoListActivity : AppCompatActivity() {
 
         val adapter = PhotoListAdapter(this)
         rvPhotoList.adapter = adapter
-        val preloader = RecyclerViewPreloader(adapter.glideRequest, adapter, adapter.preloadSizeProvider, 4)
-        rvPhotoList.addOnScrollListener(preloader)
+//        val preloader = RecyclerViewPreloader(adapter.glideRequest, adapter, adapter.preloadSizeProvider, 4)
+//        rvPhotoList.addOnScrollListener(preloader)
         rvPhotoList.setRecyclerListener { holder ->
             (holder.itemView as HorizontalScrollView).children.forEach {
                 adapter.glideRequest.clear(it)
