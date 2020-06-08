@@ -16,6 +16,10 @@ android:
   - android-29
   - extra-android-m2repository
   - extra-google-m2repository
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 jdk:
 - oraclejdk8
 
@@ -54,20 +58,6 @@ install: echo "install"
 #- cd /home/tom/Android/Sdk/build-tools/29.0.2/lib64
 #- ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 libncurses.so.5
 #- ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 libtinfo.so.5
-- export ANDROID_HOME=/usr/local/android-sdk
-- PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
-- yes | sdkmanager --update
-- yes | sdkmanager --licenses
-- ./gradlew dependencies || true
-- sdkmanager "emulator" "tools" "platform-tools" > /dev/null
-- sdkmanager --list | head -20
-- sdkmanager "build-tools;$BUILD_TOOLS_VERSION" "platforms;android-$29" > /dev/null
-- sdkmanager "system-images;android-$EMULATOR_API;$ABI" > /dev/null
-- sdkmanager --list | head -15
-- mkdir "$ANDROID_HOME/licenses" || true
-- echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-- echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-before_script: echo "before_script"
 script:
 - echo "build the script"
 - ./gradlew exportVarToShell -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
