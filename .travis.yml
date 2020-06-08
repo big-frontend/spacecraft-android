@@ -52,7 +52,7 @@ install: echo "install"
 #- cd /home/tom/Android/Sdk/build-tools/29.0.2/lib64
 #- ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 libncurses.so.5
 #- ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 libtinfo.so.5
-- export ANDROID_HOME=~/android-sdk-linux
+- export ANDROID_HOME=/usr/local/android-sdk
 - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 - yes | sdkmanager --update
 - yes | sdkmanager --licenses
