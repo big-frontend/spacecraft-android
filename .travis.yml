@@ -59,7 +59,7 @@ install: echo "install"
 - ./gradlew dependencies || true
 - sdkmanager "emulator" "tools" "platform-tools" > /dev/null
 - sdkmanager --list | head -20
-- sdkmanager "build-tools;$BUILD_TOOLS_VERSION" "platforms;android-$28" > /dev/null
+- sdkmanager "build-tools;$BUILD_TOOLS_VERSION" "platforms;android-$29" > /dev/null
 - sdkmanager "system-images;android-$EMULATOR_API;$ABI" > /dev/null
 - sdkmanager --list | head -15
 - mkdir "$ANDROID_HOME/licenses" || true
