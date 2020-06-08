@@ -3,6 +3,7 @@ env:
   global:
   - secure: e6btVM8Wzk7yN9pdoDRTLoU27WxfAWDN7xq8VZ2f//ZgsT0gJU3byRMSh20kGKecN2VVVTwDNTCE3+5YEG/HJUd4Hf8eDhkjRCc1dahCib8RcYijQ+iq4aHhSi7UiT/AGpz3o/Uf3B26SumBuEzVjyyH5oysxPa8n950D2doooL6ArlkTBJpvTjubRhImYvi8UYpuBlmH2icOG3BnD0RZ4LfWlRXO0UffLVNg12/VWftU0HclrzG5YQ7vPLsc6/z+Z09ocoaCAHVShiYQTZVLvCne6fFOkc+9sYnO4z5HWZOzhbPHkpa6DgaCtuMk2xgVGcXeJlp2x5AE1HuADZKEM7l3NDzw4b9c7B6G3+jBouIoRldsHmDKw3iOL9z1jbQ54rd0URZcrDZVTUPb5+UGYlHydWqCGuvlph0gd7pB8JLLN4yI5Y+Pmw2DyTAIqhYlnLVnZ1O16uwu3Kqg+/9bvy3mW+xbN18XloQZQqaxpiYOLUog6ANEsF+pcJIfE/+llSr+CGg22km19bttz+bMEMKZi0K+KiON6JCg69Grz93ZkLZmcqdDvJzcGJbTNSzfat9p+CDW+J0Pn2/fUTdSQFrj8H4PawCsgWMT3R3ILvjuoBEAA0FtkPA8YVhaxPoeX2hj7uu3ZqIQJk9H4n7hEPb2LyVWqAHo5qg9OSPEfQ=
   - secure: fmiaKVtCdcfr8XTRUU88cbKSTXGMho1iBI/zhXm9EffmN53hwLCyXz8nEPfq5/QsWkNQXtgtA6OmYNCfWwRNGu04/GN7L5llxSKwFtJFFNlvUnwQA8MIgi16dDPAGRgEff96rlWd6Gnxlzfup6qe/LlBtuZK0NIxOymy/l7vw2CzVm8VXPmVe7tCteGwiinc7ry20KpEAh1vvVQ4iWLbURvEoL8lUBz+leVTforf3wkGVRntZIX7AD/r3ePdDCXVTy0VowsQtHZZ0sO2PkMX0orvY5EuqjGIsxdKdGodT2qr/OIPN8tvH93Wz3h74iB9lCCFVGcoBL97UNQDhN7zsn6KTUHiBdsvj+CPy9+X0DFYNMh/QrA5Ny26zzJIMU0GC6NH0kr7BRRW+YoXNMxpcafmXngC/T/7WsuEUq/dVrulMDspwbkbEqkdMbYXYIcwvl2x8Zt+yAazGy404E+fLDCpkxPIheY4YQcx17og0aZPisaLsscbzx3yGFzkDppy687607PMxDH/ryXOAqoBiHcbq6SgxKUsziiySk/IuuNFPIaUMBqhEKHbzpX7pUrTuLtcwXyEAyOvlWg5XZawIf/DDDC9TYpZpIIw6er1aWLd9DW72SjCaEyC/Es8ziNOdySUN3ncIEHIUrixGivTC1SQOhu/0WWIO2/kfH5lKOI=
+  - BUILD_TOOLS_VERSION=29.0.3
 
 sudo: required
 
@@ -58,6 +59,22 @@ install: echo "install"
 #- cd /home/tom/Android/Sdk/build-tools/29.0.2/lib64
 #- ln -s /usr/lib/x86_64-linux-gnu/libncurses.so.6 libncurses.so.5
 #- ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 libtinfo.so.5
+- export ANDROID_HOME=~/android-sdk-linux
+- wget -q "https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip" -O android-sdk-tools.zip
+- unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}
+- rm android-sdk-tools.zip
+- PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+- yes | sdkmanager --update
+- yes | sdkmanager --licenses
+- ./gradlew dependencies || true
+- sdkmanager "emulator" "tools" "platform-tools" > /dev/null
+- sdkmanager --list | head -20
+- sdkmanager "build-tools;$BUILD_TOOLS_VERSION" "platforms;android-$29" > /dev/null
+- sdkmanager "system-images;android-$EMULATOR_API;$ABI" > /dev/null
+- sdkmanager --list | head -15
+- mkdir "$ANDROID_HOME/licenses" || true
+- echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+- echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 script:
 - echo "build the script"
 - ./gradlew exportVarToShell -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
