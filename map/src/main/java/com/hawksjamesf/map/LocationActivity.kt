@@ -94,12 +94,16 @@ class LocationActivity : PermissionsActivity() {
 //        }
 //        this.lbsFile = File(lbsDir, "lbsPath_" + System.currentTimeMillis() + ".json")
         connection.listener = ibsListenerStub
+
+    }
+
+    override fun onResult() {
+        super.onResult()
         //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
         LbsIntentServices.startAndBindService(this, connection)
         LbsJobService.startService(this)
         LbsJobIntentService.startService(this)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

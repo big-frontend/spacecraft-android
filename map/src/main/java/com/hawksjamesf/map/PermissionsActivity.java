@@ -6,15 +6,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.Toast;
-
-import com.blankj.utilcode.util.PhoneUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import com.blankj.utilcode.util.PhoneUtils;
 
 public class PermissionsActivity extends AppCompatActivity {
     public static final String TAG = "LBS_collection";
@@ -62,6 +61,7 @@ public class PermissionsActivity extends AppCompatActivity {
         } else {
             String seed = createAuthoritySeed();
             auth = "Basic " + Base64.encodeToString(seed.getBytes(), Base64.NO_WRAP);
+            onResult();
         }
     }
 
@@ -95,7 +95,10 @@ public class PermissionsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (REQUEST_CODE_PERMISSIONS == requestCode) {
-//            requestPermissionsIfNecessary();
+            requestPermissionsIfNecessary();
         }
+    }
+    protected void onResult(){
+
     }
 }
