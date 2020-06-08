@@ -44,6 +44,8 @@ before_install:
 #- openssl aes-256-cbc -K $encrypted_0386f21c48b8_key -iv $encrypted_0386f21c48b8_iv -in secrets.tar.enc -out secrets.tar -d
 - openssl aes-256-cbc -K $encrypted_a09437c08557_key -iv $encrypted_a09437c08557_iv -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
+- echo $encrypted_ec71dae743a4_iv
+- echo $encrypted_ec71dae743a4_key
 - openssl aes-256-cbc -K $encrypted_ec71dae743a4_key -iv $encrypted_ec71dae743a4_iv -in google-services.json.enc -out app/google-services.json -d
 install: echo "install"
 - sudo apt-get install lib32ncurses5
