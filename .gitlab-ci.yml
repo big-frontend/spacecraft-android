@@ -10,14 +10,15 @@ before_script:
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
 #  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
   - wget --quiet --output-document=commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}.zip
-  - unzip -d commandlinetools commandlinetools.zip
-  - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin/
-  - export PATH=$PATH:$PWD/${ANDROID_CMDTOOLS}
-  - commandlinetools/tools/bin/sdkmanager --update
   - mkdir android-sdk-linux
+  - unzip -d commandlinetools commandlinetools.zip
+  - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin
+  - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export PATH=$PATH:${ANDROID_CMDTOOLS}:${ANDROID_HOME}
+  - commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}
+  - commandlinetools/tools/bin/sdkmanager --update
 #  - android-sdk-linux/tools/bin/sdkmanager "platform-tools" "platforms;android-29"
   - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
-  - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
   - chmod +x ./gradlew
   # temporarily disable checking for EPIPE error and use yes to accept all licenses
