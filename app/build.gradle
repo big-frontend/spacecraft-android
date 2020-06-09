@@ -88,7 +88,7 @@ def srcDirs = [
 ]
 
 
-task exportVarToShell(type: Exec) {
+task exportVarToShell(dependsOn: ':app:assembleRelease',type: Exec) {
     commandLine "${rootProject.getRootDir().getAbsolutePath()}/script/export_var.sh"
     args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
 //        args = "VERSION_NAME=${rootProject.ext.versionName}"
