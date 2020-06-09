@@ -8,16 +8,12 @@ variables:
 before_script:
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
-#  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
   - wget --quiet --output-document=commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}.zip
-#  - mkdir android-sdk-linux
   - export REPO_OS_OVERRIDE="linux"
   - unzip -d android-sdk-linux commandlinetools.zip
-#  - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin
   - export ANDROID_HOME=$PWD/android-sdk-linux
-#  - export PATH=$PATH:${ANDROID_CMDTOOLS}:${ANDROID_HOME}
-  - echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools"  "platforms;android-#{ANDROID_COMPILE_SDK}" --sdk_root=${ANDROID_HOME}
-  - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" --sdk_root=${ANDROID_HOME}
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools"  "platforms;android-${ANDROID_COMPILE_SDK}" --sdk_root=${ANDROID_HOME} >/dev/null
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" --sdk_root=${ANDROID_HOME} >/dev/null
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
   - chmod +x ./gradlew
   # temporarily disable checking for EPIPE error and use yes to accept all licenses
