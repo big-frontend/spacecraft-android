@@ -15,7 +15,8 @@ before_script:
   - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:${ANDROID_CMDTOOLS}:${ANDROID_HOME}
-  - commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}
+#  - commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}
+  - yes | commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --version
   - commandlinetools/tools/bin/sdkmanager --update
 #  - android-sdk-linux/tools/bin/sdkmanager "platform-tools" "platforms;android-29"
   - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
