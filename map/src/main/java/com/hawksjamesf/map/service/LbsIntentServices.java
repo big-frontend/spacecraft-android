@@ -24,6 +24,8 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.hawksjamesf.map.ILbsListener;
 import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.map.R;
@@ -31,8 +33,6 @@ import com.hawksjamesf.map.model.AppCellInfo;
 import com.hawksjamesf.map.model.AppLocation;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 import static com.hawksjamesf.map.LbsUtils.TAG_service;
 import static com.hawksjamesf.map.service.Constants.MIN_DISTANCE;

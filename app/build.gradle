@@ -81,8 +81,8 @@ def srcDirs = [
         "navigation",
         "paging",
         "paging-lib",
-        "workmanager",
-        "workmanager-lib",
+//        "workmanager",
+//        "workmanager-lib",
         "mvvm",
 
 ]

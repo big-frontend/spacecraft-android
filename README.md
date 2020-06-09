@@ -24,7 +24,7 @@ SpacecraftAndroid
 - [ ] Room/Realm,SharedPreference
 
 ### 4. LBS(Location & Map) Module
-
+- collection location 、 wifi 、 cell info
 ### 5. Image & Graphic Module
 
 ### 6. Audio & Video Module
