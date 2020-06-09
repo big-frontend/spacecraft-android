@@ -146,7 +146,7 @@ android {
                 mappingFileUploadEnabled false
             }
             firebaseAppDistribution {
-                releaseNotesFile="/path/to/releasenotes.txt"
+//                releaseNotesFile="/path/to/releasenotes.txt"
                 testers="hawksjamesf@gmail.com"
                 serviceCredentialsFile="${projectDir}/spacecraft-22dc1-e7362822612d.json"
             }
