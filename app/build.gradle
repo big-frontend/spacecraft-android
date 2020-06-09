@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.firebase.appdistribution'
 
 //apply plugin: 'versionplugin'
 //apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
@@ -143,6 +144,11 @@ android {
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled false
                 mappingFileUploadEnabled false
+            }
+            firebaseAppDistribution {
+                releaseNotesFile="/path/to/releasenotes.txt"
+                testers="hawksjamesf@gmail.com"
+                serviceCredentialsFile="${projectDir}/spacecraft-22dc1-e7362822612d.json"
             }
 
 
