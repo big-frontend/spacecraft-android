@@ -11,7 +11,7 @@ before_script:
 #  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
   - wget --quiet --output-document=commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}.zip
   - unzip -d android-sdk-linux commandlinetools.zip
-  - android-sdk-linux/tools/bin/sdkmanager --update
+#  - android-sdk-linux/tools/bin/sdkmanager --update
   - echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null
   - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
   - export ANDROID_HOME=$PWD/android-sdk-linux
