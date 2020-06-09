@@ -49,15 +49,15 @@ matrix {
         baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
         blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
     }
-    removeUnusedResources {
-        enable true
-        variant = "debug"
-        needSign true
-        shrinkArsc true
-        apksignerPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${android.getBuildToolsVersion()}/apksigner"
-        unusedResources = project.ext.unusedResourcesSet
-        ignoreResources = ["R.id.*", "R.bool.*"]
-    }
+//    removeUnusedResources {
+//        enable true
+//        variant = "debug"
+//        needSign true
+//        shrinkArsc true
+//        apksignerPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${rootProject.buildToolsVersion}/apksigner"
+//        unusedResources = project.ext.unusedResourcesSet
+//        ignoreResources = ["R.id.*", "R.bool.*"]
+//    }
 }
 
 apply plugin: 'com.google.firebase.firebase-perf'
@@ -298,11 +298,17 @@ android {
             }
         }
         if (variant.buildType.name == 'release') {
-            def exportVarToShell = tasks.create(type: Exec) {
-                commandLine "${rootProject.getRootDir().getAbsolutePath()}${File.separator}script${File.separator}export_var.sh"
-                args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
-            }
-            exportVarToShell.mustRunAfter ':assembleRelease'
+//            def exportVarToShell = tasks.create(type: Exec) {
+//                commandLine "${rootProject.getRootDir().getAbsolutePath()}${File.separator}script${File.separator}export_var.sh"
+//                args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
+//            }
+//            exportVarToShell.mustRunAfter ':assembleRelease'
+            new File(rootProject.getRootDir().getAbsolutePath(), "generation_version.properties")
+                    .withWriter('utf-8') { writer ->
+                        writer.writeLine "${rootProject.ext.versionName}"
+//                      writer.writeLine 'A frog jumps'
+//                      writer.writeLine 'Water’s sound!'
+                    }
         }
     }
 }
