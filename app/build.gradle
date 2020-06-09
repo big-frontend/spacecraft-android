@@ -77,6 +77,7 @@ apply plugin: 'counterplugin'
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
 }
+
 def srcDirs = [
         "navigation",
         "paging",
@@ -87,14 +88,6 @@ def srcDirs = [
 
 ]
 
-
-task exportVarToShell(dependsOn: ':app:assembleRelease',type: Exec) {
-    commandLine "${rootProject.getRootDir().getAbsolutePath()}/script/export_var.sh"
-    args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
-//        args = "VERSION_NAME=${rootProject.ext.versionName}"
-//    }
-//}
-}
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -304,12 +297,27 @@ android {
                 }
             }
         }
+        if (variant.buildType.name == 'release') {
+            def exportVarToShell = tasks.create(type: Exec) {
+                commandLine "${rootProject.getRootDir().getAbsolutePath()}${File.separator}script${File.separator}export_var.sh"
+                args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
+            }
+            exportVarToShell.mustRunAfter ':assembleRelease'
+        }
     }
 }
 configurations {
     apkCheckerDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
 }
+
+//task exportVarToShell(type: Exec) {
+//        commandLine "${rootProject.getRootDir().getAbsolutePath()}${File.separator}script${File.separator}export_var.sh"
+//        args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
+////        args = "VERSION_NAME=${rootProject.ext.versionName}"
+////    }
+////}
+//}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
