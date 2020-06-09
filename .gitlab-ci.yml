@@ -11,6 +11,7 @@ before_script:
 #  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
   - wget --quiet --output-document=commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}.zip
   - mkdir android-sdk-linux
+  - export REPO_OS_OVERRIDE="linux"
   - unzip -d commandlinetools commandlinetools.zip
   - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin
   - export ANDROID_HOME=$PWD/android-sdk-linux
