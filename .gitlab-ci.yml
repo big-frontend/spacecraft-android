@@ -13,7 +13,7 @@ before_script:
   - unzip -d commandlinetools commandlinetools.zip
   - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin/
   - export PATH=$PATH:$PWD/${ANDROID_CMDTOOLS}
-  - sdkmanager --update
+  - commandlinetools/tools/bin/sdkmanager --update
   - mkdir android-sdk-linux
 #  - android-sdk-linux/tools/bin/sdkmanager "platform-tools" "platforms;android-29"
   - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
