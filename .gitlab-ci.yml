@@ -18,8 +18,8 @@ before_script:
 #  - commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}
   - yes | commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --version
   - commandlinetools/tools/bin/sdkmanager --update
-#  - android-sdk-linux/tools/bin/sdkmanager "platform-tools" "platforms;android-29"
-  - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
+  - commandlinetools/tools/bin/sdkmanager "platform-tools" "platforms;android-#{ANDROID_COMPILE_SDK}"
+  - echo y | commandlinetools/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
   - chmod +x ./gradlew
   # temporarily disable checking for EPIPE error and use yes to accept all licenses
