@@ -18,7 +18,7 @@ before_script:
   - chmod +x ./gradlew
   # temporarily disable checking for EPIPE error and use yes to accept all licenses
   - set +o pipefail
-  - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
+  - yes | android-sdk-linux/tools/bin/sdkmanager --licenses --sdk_root=${ANDROID_HOME} >/dev/null
   - set -o pipefail
 #  - apt-get install lib32ncurses5
 #  - apt install zlib1g-dev libncurses5-dev lib32z1 lib32ncurses6 -y
@@ -34,8 +34,8 @@ stages:
 assembleDebug:
   stage: build
   script:
-#    - ./gradlew app:assembleRelease -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
-    - ./gradlew assembleDebug
+    - ./gradlew app:assembleRelease -PRELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS -PRELEASE_STORE_FILE=$RELEASE_STORE_FILE -PRELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD -PRELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD -PDEBUG_KEY_ALIAS=$DEBUG_KEY_ALIAS -PDEBUG_STORE_FILE=$DEBUG_STORE_FILE -PDEBUG_KEY_PASSWORD=$DEBUG_KEY_PASSWORD -PDEBUG_STORE_PASSWORD=$DEBUG_STORE_PASSWORD
+#    - ./gradlew assembleDebug
   artifacts:
     paths:
     - app/build/outputs/
