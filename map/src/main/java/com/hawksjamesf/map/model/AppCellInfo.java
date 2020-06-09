@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class AppCellInfo implements Parcelable {
+    public boolean isRegistered;
     public long bid;
     public long cdmalat;
     public long cdmalon;
@@ -79,6 +80,7 @@ public final class AppCellInfo implements Parcelable {
 
     public static AppCellInfo convertSysCellInfo(CellInfo cellInfo) {
         AppCellInfo cellInfo2 = new AppCellInfo();
+        cellInfo2.isRegistered = cellInfo.isRegistered();
         if (cellInfo instanceof CellInfoGsm) {
             CellInfoGsm cellInfoGsm = (CellInfoGsm) cellInfo;
             CellIdentityGsm cellIdentity = cellInfoGsm.getCellIdentity();
@@ -142,7 +144,8 @@ public final class AppCellInfo implements Parcelable {
     @Override
     public String toString() {
         return "\"appCellInfo\":{" +
-                "\"bid\":" + bid +
+                "\"isRegistered\":" + isRegistered +
+                ", \"bid\":" + bid +
                 ", \"cdmalat\":" + cdmalat +
                 ", \"cdmalon\":" + cdmalon +
                 ", \"cgiage\":" + cgiage +
@@ -168,6 +171,7 @@ public final class AppCellInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte(this.isRegistered ? (byte) 1 : (byte) 0);
         dest.writeLong(this.bid);
         dest.writeLong(this.cdmalat);
         dest.writeLong(this.cdmalon);
@@ -189,6 +193,7 @@ public final class AppCellInfo implements Parcelable {
     }
 
     protected AppCellInfo(Parcel in) {
+        this.isRegistered = in.readByte() != 0;
         this.bid = in.readLong();
         this.cdmalat = in.readLong();
         this.cdmalon = in.readLong();

@@ -13,4 +13,5 @@ class LBS {
     @Embedded
     var appLocation: AppLocation? = null
 
+
 }

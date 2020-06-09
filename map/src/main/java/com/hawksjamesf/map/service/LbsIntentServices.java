@@ -32,6 +32,7 @@ import com.hawksjamesf.map.R;
 import com.hawksjamesf.map.model.AppCellInfo;
 import com.hawksjamesf.map.model.AppLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hawksjamesf.map.LbsUtils.TAG_service;
@@ -46,15 +47,16 @@ public class LbsIntentServices extends IntentService {
     TelephonyManager telephonyManager;
     NotificationManager notificationManager;
 
+
     public static void startAndBindService(Activity activity, ServiceConnection connection) {
         Intent intent = new Intent(activity, LbsIntentServices.class);
         activity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
-        Toast.makeText(activity, "start &  bind  foreground service", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "start &  bind  foreground service", Toast.LENGTH_LONG).show();
         } else {
             activity.startService(intent);
-        Toast.makeText(activity, "start &  bind  service", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "start &  bind  service", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -89,8 +91,10 @@ public class LbsIntentServices extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        Context applicationContext = getApplicationContext();
+        locationManager = (LocationManager) applicationContext.getSystemService(Context.LOCATION_SERVICE);
+        telephonyManager = (TelephonyManager) applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
+
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
@@ -109,8 +113,8 @@ public class LbsIntentServices extends IntentService {
                     .setTicker("this is ticker")
                     .build();
             startForeground(ONGOING_NOTIFICATION_ID, notification);
-//            stopForeground(ONGOING_NOTIFICATION_ID);
         }
+        WifiReceiver.registerReceiver(this);
     }
 
     @SuppressLint("MissingPermission")
@@ -143,10 +147,9 @@ public class LbsIntentServices extends IntentService {
                     ILbsListener l = iLbsApi.listenerlist.getBroadcastItem(i);
                     if (l != null) {
                         try {
-                            AppCellInfo appCellInfo = null;
-                            List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
-                            if (!allCellInfo.isEmpty()) {
-                                appCellInfo = AppCellInfo.convertSysCellInfo(allCellInfo.get(0));
+                            List<AppCellInfo> appCellInfo = new ArrayList<>();
+                            for (CellInfo cell : telephonyManager.getAllCellInfo()) {
+                                appCellInfo.add(AppCellInfo.convertSysCellInfo(cell));
                             }
                             count += 1;
                             l.onLocationChanged(AppLocation.convertSysLocation(location), appCellInfo, count);

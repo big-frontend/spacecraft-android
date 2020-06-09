@@ -302,7 +302,7 @@ android {
 //                commandLine "${rootProject.getRootDir().getAbsolutePath()}${File.separator}script${File.separator}export_var.sh"
 //                args "${rootProject.ext.versionName}", "${rootProject.getRootDir().getAbsolutePath()}"
 //            }
-//            exportVarToShell.mustRunAfter ':assembleRelease'
+//            exportVarToShell.mustRunAfter variant.assembleRelease
             new File(rootProject.getRootDir().getAbsolutePath(), "generation_version.properties")
                     .withWriter('utf-8') { writer ->
                         writer.writeLine "${rootProject.ext.versionName}"

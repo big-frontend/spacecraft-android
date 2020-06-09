@@ -35,11 +35,20 @@ class LocationActivity : PermissionsActivity() {
             get() = android.os.Process.myPid()
 
         @Throws(RemoteException::class)
-        override fun onLocationChanged(appLocation: AppLocation?, appCellInfo: AppCellInfo?, count: Long) {
+        override fun onLocationChanged(appLocation: AppLocation?, appCellInfos: List<AppCellInfo>?, count: Long) {
 //            this@LocationActivity.runOnUiThread(Runnable { bt_cellInfos.text = "统计次数：$count" })
+            val s = StringBuffer()
+            var appCellInfo:AppCellInfo?=null
+            for (index in 0 until (appCellInfos?.size?:0)){
+                s.append("${appCellInfos?.get(index)?.lac},${appCellInfos?.get(index)?.cid}  ")
+                val theCell = appCellInfos?.get(index)
+                if (theCell?.isRegistered == true){
+                    appCellInfo =theCell
+                }
+            }
             Log.d(TAG, "onLocationChanged:index:" + count + "\n" +
                     "${appLocation?.lat},${appLocation?.lon}\n" +
-                    "${appCellInfo?.lac},${appCellInfo?.cid}")
+                    s)
             bt_cellInfos.text = "统计次数：$count"
             viewModel.insert(appCellInfo, appLocation)
             ReportApi.reportLocation(appLocation,appCellInfo,count, auth)
