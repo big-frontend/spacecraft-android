@@ -16,10 +16,10 @@ before_script:
   - export ANDROID_CMDTOOLS=$PWD/commandlinetools/tools/bin
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:${ANDROID_CMDTOOLS}:${ANDROID_HOME}
+  - commandlinetools/tools/bin/sdkmanager "platform-tools" --sdk_root=${ANDROID_HOME}
+  - commandlinetools/tools/bin/sdkmanager --update
 #  - commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}
-  - commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}
 #  - yes | commandlinetools/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --version
-#  - commandlinetools/tools/bin/sdkmanager --update
   - echo yes
   - echo y | commandlinetools/tools/bin/sdkmanager "platform-tools" "platforms;android-#{ANDROID_COMPILE_SDK}" >/dev/null
   - echo y | commandlinetools/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
