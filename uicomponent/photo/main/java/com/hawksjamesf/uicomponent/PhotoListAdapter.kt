@@ -3,11 +3,13 @@ package com.hawksjamesf.uicomponent
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.drawToBitmap
 import androidx.paging.PagedList
@@ -54,32 +56,36 @@ class PhotoListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position) ?: return
         val linearLayout = (holder.itemView as HorizontalScrollView).getChildAt(0) as LinearLayout
+        linearLayout.removeAllViews()
+        val textview = TextView(linearLayout.context)
+        textview.text = "$position"
+        textview.setTextColor(Color.BLACK)
+        linearLayout.addView(textview, LinearLayout.LayoutParams(200, 200))
         for (i in 0 until item.uriList.size) {
             val uri = item.uriList[i]
             val imageView = ImageView(linearLayout.context)
-            imageView.tag = i
+            imageView.tag = uri
             linearLayout.addView(imageView, LinearLayout.LayoutParams(200, 200))
-            Glide.with(imageView.context)
-                    .load(uri)
-                    .into(imageView)
             requestBuilder.load(uri)
                     .into(imageView)
                     .clearOnDetach()
-            preloadSizeProvider.setView(imageView)
+//            preloadSizeProvider.setView(imageView)
 
 //            viewModel.itemList?.value?.get(index)?.let { urlList.add(it) }
 
-            imageView.setOnClickListener {
+            imageView.setOnClickListener { it ->
                 thumbnailBitmapList.clear()
                 linearLayout.children.forEach {
-                    thumbnailBitmapList.add((it as ImageView).drawToBitmap())
+                    if (it is ImageView) {
+                        thumbnailBitmapList.add(it.drawToBitmap())
+                    }
                 }
                 var bitmapsize = 0f
                 for (bitmap in thumbnailBitmapList) {
                     bitmapsize += bitmap.byteCount.toFloat()
                 }
                 bitmapsize /= MemoryUnit.KB
-                Log.d(Constants.TAG_PHOTO_ACTIVITY, "size:${thumbnailBitmapList.size} curPosition:$i bitmap size:${bitmapsize}k")
+//                Log.d(Constants.TAG_PHOTO_ACTIVITY, "size:${thumbnailBitmapList.size} curPosition:$i bitmap size:${bitmapsize}k")
                 PhotoActivity.startActivityWithThumbnailScaleUp(
                         context as Activity, it,
                         (it as ImageView).drawToBitmap(), it.width / 2, it.height / 2,

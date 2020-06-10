@@ -28,7 +28,6 @@ public class PhotoActivity extends AppCompatActivity {
     public static final String EXTRA_URLLIST = "urlList";
     public static final String EXTRA_CURPOSITION = "curPosition";
     private static final int threshold = 2;
-//    private ArrayList<Bitmap> mThumbnailBitmapList;
     private ArrayList<String> mUrlList;
     private int curPosition;
     public static final String IV_TRANSITIONNAME = "image";
@@ -39,7 +38,7 @@ public class PhotoActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
-
+    //android binder 大小限制：525k是最为安全的，512k-1M 可能出错或者闪退，大于1m throw exception。
     public static Intent newIntent(@NonNull Activity activity, final List<Uri> urlList, final int curPosition) {
         Intent intent = new Intent(activity, PhotoActivity.class);
         ArrayList<String> uriStrList = new ArrayList<>();
@@ -130,18 +129,8 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mThumbnailBitmapList = getIntent().getParcelableArrayListExtra(EXTRA_THUMBNAILBITMAP);
         mUrlList = getIntent().getStringArrayListExtra(EXTRA_URLLIST);
         curPosition = getIntent().getIntExtra(EXTRA_CURPOSITION, 0);
-//        ArrayList<Page> pages = new ArrayList<>(mThumbnailBitmapList.size());
-//        for (int i = 0, thumbnailsize = mThumbnailBitmapList.size(), urlSize = mUrlList.size(); i < urlSize; ++i) {
-//            Uri uri = Uri.parse(mUrlList.get(i));
-//            Bitmap bitmap = null;
-//            if (i < thumbnailsize) {
-//                bitmap = mThumbnailBitmapList.get(i);
-//            }
-//            pages.add(new Page(bitmap, uri));
-//        }
         int urlSize = mUrlList.size();
         ArrayList<Page> pages = new ArrayList<>(urlSize);
         for (int i = 0; i < urlSize; ++i) {

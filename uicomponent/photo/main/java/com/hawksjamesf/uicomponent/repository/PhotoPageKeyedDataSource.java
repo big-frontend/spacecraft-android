@@ -37,9 +37,13 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> 
         List<Uri> uriList = StockImages.uriList;
         if (!uriList.isEmpty()) {
             ArrayList<Item> items = new ArrayList<>();
+            items.add(new Item(uriList.subList(uriList.size()-2,uriList.size())));
             items.add(new Item(uriList.subList(0, 3)));
             items.add(new Item(uriList.subList(3,4)));
-            items.add(new Item(uriList.subList(4,7)));
+            for (int i = 0; i < 20; i++) {
+                items.add(new Item(uriList.subList(3,4)));
+                items.add(new Item(uriList.subList(4,7)));
+            }
             items.add(new Item(uriList.subList(0,uriList.size())));
             items.add(new Item(uriList.subList(uriList.size()-8,uriList.size()-2)));
             items.add(new Item(uriList.subList(uriList.size()-2,uriList.size())));

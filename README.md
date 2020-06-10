@@ -26,7 +26,7 @@ SpacecraftAndroid
 - [ ] Room/Realm,SharedPreference
 
 ### 4. LBS(Location & Map) Module
-- collection location 、 wifi 、 cell info
+- [x] collection location 、 wifi 、 cell info
 ### 5. Image & Graphic Module
 
 ### 6. Audio & Video Module
@@ -41,7 +41,7 @@ SpacecraftAndroid
 
 ## Improve Development Efficiency  
 - [ ] decoupling：component 
-- [ ] gradle plugin：
+- [x] gradle plugin：
 1. file lines counter plugin
 2. rename apk plugin
 3. upload bugly mapping or so file plugin
