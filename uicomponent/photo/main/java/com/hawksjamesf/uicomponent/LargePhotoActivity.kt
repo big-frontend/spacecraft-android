@@ -1,10 +1,6 @@
 package com.hawksjamesf.uicomponent
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.BitmapRegionDecoder
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 
@@ -16,17 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
  * @since: Dec/03/2019  Tue
  */
 class LargePhotoActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         val photoview = PhotoView(this)
         val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        photoview.setRawRes(R.raw.wechatimg212)
         setContentView(photoview, lp)
-        photoview.setRaw(R.raw.wechatimg211)
-        val openRawResource = resources.openRawResource(R.raw.wechatimg211)
-        val bitmapRegionDecoder=BitmapRegionDecoder.newInstance(openRawResource,false)
-
-        val options=BitmapFactory.Options()
-        options.inPreferredConfig =Bitmap.Config.RGB_565
-//        bitmapRegionDecoder.decodeRegion(options)
     }
 }
