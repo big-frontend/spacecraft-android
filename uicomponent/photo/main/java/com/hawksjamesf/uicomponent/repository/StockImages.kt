@@ -52,9 +52,9 @@ object StockImages {
             Uri.parse("file:///android_asset/images/parting_ways.jpg"),
             Uri.parse("file:///android_asset/images/wrong_way.jpg"),
             Uri.parse("file:///android_asset/images/jack_beach.jpg"),
-            Uri.parse("file:///android_asset/images/jack_blur.jpg"),
-            Uri.parse("file:///android_asset/images/jack_road.jpg"),
-            Uri.parse("file:///android_asset/images/wechatimg211.jpeg"),
+            Uri.parse("file:///android_asset/images/webp/jack_blur.webp"),
+            Uri.parse("file:///android_asset/images/webp/jack_road.webp"),
+            Uri.parse("file:///android_asset/images/webp/wechatimg211.webp"),
             Uri.parse("file:///android_asset/images/wechatimg212.png")
     )
 
