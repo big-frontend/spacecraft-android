@@ -5,6 +5,8 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+
 public final class AppLocation implements Parcelable {
     public double lat;
     public double lon;
@@ -12,6 +14,8 @@ public final class AppLocation implements Parcelable {
     public double altit;
     public double bearing;
     public double speed;
+    @ColumnInfo(name="is_location_mock")
+    public boolean isMockData;
 
     public static AppLocation convertSysLocation(Location location) {
         AppLocation appLocation = new AppLocation();
@@ -51,6 +55,7 @@ public final class AppLocation implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte(this.isMockData ? (byte) 1 : (byte) 0);
         dest.writeDouble(this.lat);
         dest.writeDouble(this.lon);
         dest.writeDouble(this.accu);
@@ -63,6 +68,7 @@ public final class AppLocation implements Parcelable {
     }
 
     protected AppLocation(Parcel in) {
+        this.isMockData = in.readByte() != 0;
         this.lat = in.readDouble();
         this.lon = in.readDouble();
         this.accu = in.readDouble();

@@ -25,8 +25,6 @@ import com.hawksjamesf.map.model.AppCellInfo;
 import com.hawksjamesf.map.model.AppLocation;
 import com.hawksjamesf.map.model.MapViewModel;
 import com.hawksjamesf.map.service.LbsIntentServices;
-import com.hawksjamesf.map.service.LbsJobIntentService;
-import com.hawksjamesf.map.service.LbsJobService;
 import com.hawksjamesf.map.service.LbsServiceConnection;
 
 import java.util.List;
@@ -70,8 +68,7 @@ public class MapActivity extends PermissionsActivity {
                     "${appLocation?.lat},${appLocation?.lon}\n" + s);
             bt_cellInfos.setText("不许点击喔：" + count);
             mapViewModel.insert(appCellInfo, appLocation);
-//            ReportApi.reportLocation(appLocation,appCellInfo,count, auth)
-//            FileIOUtils.write2File(lbsFile, location, cellInfoList, count, auth)
+            ReportApi.reportLocation(appLocation,appCellInfo,count, auth);
             MapUtil.addMarker(map, appLocation, appCellInfo);
         }
 
@@ -196,8 +193,8 @@ public class MapActivity extends PermissionsActivity {
 //        mMapView.onResume();
         //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
         LbsIntentServices.startAndBindService(this, connection);
-        LbsJobService.startService(this);
-        LbsJobIntentService.startService(this);
+//        LbsJobService.startService(this);
+//        LbsJobIntentService.startService(this);
     }
 
     @Override

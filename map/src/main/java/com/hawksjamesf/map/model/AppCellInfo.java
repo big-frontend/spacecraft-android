@@ -17,6 +17,8 @@ import android.telephony.CellLocation;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 
+import androidx.room.ColumnInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,8 @@ public final class AppCellInfo implements Parcelable {
     public long rss;
     public long sid;
     public int tac;
+    @ColumnInfo(name="is_cell_mock")
+    public boolean isMockData;
 
     public static AppCellInfo convertSysCellLocation(CellLocation cellLocation) {
         AppCellInfo cellInfo2 = new AppCellInfo();
@@ -172,6 +176,7 @@ public final class AppCellInfo implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeByte(this.isRegistered ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isMockData ? (byte) 1 : (byte) 0);
         dest.writeLong(this.bid);
         dest.writeLong(this.cdmalat);
         dest.writeLong(this.cdmalon);
@@ -194,6 +199,7 @@ public final class AppCellInfo implements Parcelable {
 
     protected AppCellInfo(Parcel in) {
         this.isRegistered = in.readByte() != 0;
+        this.isMockData = in.readByte() != 0;
         this.bid = in.readLong();
         this.cdmalat = in.readLong();
         this.cdmalon = in.readLong();

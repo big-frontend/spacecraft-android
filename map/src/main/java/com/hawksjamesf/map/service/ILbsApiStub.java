@@ -59,9 +59,11 @@ public class ILbsApiStub extends ILbsApi.Stub {
                     appCellInfo.cid = cid;
                     appCellInfo.lac = lac;
                     appCellInfo.isRegistered = true;
+                    appCellInfo.isMockData = true;
                     AppLocation appLocation = new AppLocation();
                     appLocation.lat = lat;
                     appLocation.lon = lon;
+                    appLocation.isMockData = true;
                     ++count;
                     l.onLocationChanged(appLocation, Collections.singletonList(appCellInfo), count);
                 }

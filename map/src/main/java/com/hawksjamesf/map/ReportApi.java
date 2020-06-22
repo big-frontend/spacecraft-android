@@ -21,6 +21,7 @@ class ReportApi {
     public static final String TAG = "ReportApi";
 
     public static void reportLocation(final AppLocation appLocation, AppCellInfo appCellInfo, long count, String auth) {
+        if (appLocation.isMockData || appCellInfo.isMockData) return;
         StringBuilder contentBuilder = new StringBuilder();
         contentBuilder.append("{");
         contentBuilder.append("\"index\":" + count + ",");
