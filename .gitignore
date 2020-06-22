@@ -61,3 +61,5 @@ common/.cxx
 ypose/.cxx
 app/BuglyUploadLog.txt
 image/.cxx
+map/src/main/assets/l7_list_trip.json
+map/src/main/java/com/hawksjamesf/map/model/L7_trip.java

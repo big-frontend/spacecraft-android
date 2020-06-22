@@ -8,4 +8,5 @@ interface ILbsApi {
 
     void registerListener(ILbsListener listener);
     void unregisterListener(ILbsListener listener);
+    void sendImportMockJson();
 }

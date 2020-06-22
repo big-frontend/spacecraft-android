@@ -51,7 +51,7 @@ class LocationActivity : PermissionsActivity() {
                     s)
             bt_cellInfos.text = "统计次数：$count"
             viewModel.insert(appCellInfo, appLocation)
-            ReportApi.reportLocation(appLocation,appCellInfo,count, auth)
+//            ReportApi.reportLocation(appLocation,appCellInfo,count, auth)
 //            FileIOUtils.write2File(lbsFile, location, cellInfoList, count, auth)
         }
 

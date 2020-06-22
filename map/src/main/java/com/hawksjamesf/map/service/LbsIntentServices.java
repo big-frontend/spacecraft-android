@@ -41,7 +41,7 @@ import static com.hawksjamesf.map.service.Constants.MIN_TIMES;
 
 
 public class LbsIntentServices extends IntentService {
-    ILbsApiStub iLbsApi = new ILbsApiStub();
+    ILbsApiStub iLbsApi;
     long count = 0;
     LocationManager locationManager;
     TelephonyManager telephonyManager;
@@ -50,7 +50,7 @@ public class LbsIntentServices extends IntentService {
 
     public static void startAndBindService(Activity activity, ServiceConnection connection) {
         Intent intent = new Intent(activity, LbsIntentServices.class);
-        activity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        activity.bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
             Toast.makeText(activity, "start &  bind  foreground service", Toast.LENGTH_LONG).show();
@@ -76,12 +76,18 @@ public class LbsIntentServices extends IntentService {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        iLbsApi = new ILbsApiStub();
         return (IBinder) iLbsApi;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         return super.onUnbind(intent);
+    }
+
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
     }
 
     public static final int ONGOING_NOTIFICATION_ID = 100;
@@ -117,9 +123,14 @@ public class LbsIntentServices extends IntentService {
         WifiReceiver.registerReceiver(this);
     }
 
-    @SuppressLint("MissingPermission")
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        realRequestLocation(intent);
+    }
+
+    @SuppressLint("MissingPermission")
+    private void realRequestLocation(Intent intent) {
         List<String> enableProviders = locationManager.getProviders(true);
         List<String> allProviders = locationManager.getAllProviders();
         Log.d("LBS_collection", "onHandleIntent: enable provider:" + enableProviders.toString());
@@ -147,12 +158,12 @@ public class LbsIntentServices extends IntentService {
                     ILbsListener l = iLbsApi.listenerlist.getBroadcastItem(i);
                     if (l != null) {
                         try {
-                            List<AppCellInfo> appCellInfo = new ArrayList<>();
+                            List<AppCellInfo> appCellInfos = new ArrayList<>();
                             for (CellInfo cell : telephonyManager.getAllCellInfo()) {
-                                appCellInfo.add(AppCellInfo.convertSysCellInfo(cell));
+                                appCellInfos.add(AppCellInfo.convertSysCellInfo(cell));
                             }
                             count += 1;
-                            l.onLocationChanged(AppLocation.convertSysLocation(location), appCellInfo, count);
+                            l.onLocationChanged(AppLocation.convertSysLocation(location), appCellInfos, count);
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
@@ -213,24 +224,7 @@ public class LbsIntentServices extends IntentService {
 
             }
         }, Looper.getMainLooper());
-//        while (true) {
-//            try {
-//                Thread.sleep(500);
-//                AppCellInfo appCellInfo = new AppCellInfo();
-//                appCellInfo.cid = 12321231;
-//                appCellInfo.lac = 12321;
-//                AppLocation appLocation = new AppLocation();
-//                appLocation.lat = 12312321.123;
-//                appLocation.lon = 78437790.237;
-//                LBS lbs = new LBS();
-//                lbs.setAppCellInfo(appCellInfo);
-//                lbs.setAppLocation(appLocation);
-//                LbsDb.Companion.get(this).lbsDao().insert(lbs);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            Log.d("LbsIntentServices", "onHandleIntent:" + count);
-//        }
     }
+
 
 }

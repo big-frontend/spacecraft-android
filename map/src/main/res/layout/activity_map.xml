@@ -1,34 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-<!--    <com.amap.api.maps.MapView-->
-<!--        android:id="@+id/map_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layerType="hardware"-->
-<!--        android:layout_weight="1" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/map_fragment"-->
-<!--        android:name="com.amap.api.maps.MapFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1" />-->
-
-    <com.amap.api.maps.TextureMapView
-        android:id="@+id/map_texture"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:background="@color/apricot">
 
-<!--    <fragment-->
-<!--        android:id="@+id/map_texture_fragment"-->
-<!--        android:name="com.amap.api.maps.TextureMapFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1" />-->
+        <!--    <com.amap.api.maps.MapView-->
+        <!--        android:id="@+id/map_view"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="0dp"-->
+        <!--        android:layerType="hardware"-->
+        <!--        android:layout_weight="1" />-->
 
-</LinearLayout>
+        <!--    <fragment-->
+        <!--        android:id="@+id/map_fragment"-->
+        <!--        android:name="com.amap.api.maps.MapFragment"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="0dp"-->
+        <!--        android:layout_weight="1" />-->
+
+        <com.amap.api.maps.TextureMapView
+            android:id="@+id/map_texture"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!--    <fragment-->
+        <!--        android:id="@+id/map_texture_fragment"-->
+        <!--        android:name="com.amap.api.maps.TextureMapFragment"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="0dp"-->
+        <!--        android:layout_weight="1" />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="210dp"
+        android:layout_height="400dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_cellInfos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="不许点击喔" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srf_cellinfos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_cellinfos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="3dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_import"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_mood_black_24dp" />
+
+        <Button
+            android:id="@+id/bt_mylocation"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_my_location_black_24dp" />
+    </LinearLayout>
+</FrameLayout>

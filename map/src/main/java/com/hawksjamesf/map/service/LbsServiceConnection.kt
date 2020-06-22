@@ -26,4 +26,8 @@ class LbsServiceConnection : ServiceConnection {
             e.printStackTrace()
         }
     }
+
+    fun sendImportMockJson() {
+        iLbsApi.sendImportMockJson()
+    }
 }
