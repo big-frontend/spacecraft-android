@@ -11,6 +11,7 @@ import com.amap.api.maps.model.CameraPosition
 import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.MarkerOptions
 import com.blankj.utilcode.util.Utils
+import com.hawksjamesf.map.LBSActivity.TAG
 import com.hawksjamesf.map.model.AppCellInfo
 import com.hawksjamesf.map.model.AppLocation
 import java.util.*
@@ -39,7 +40,7 @@ fun AMap.addMarker(lat: Double, lon: Double, cid: Long, lac: Long, filters: Stri
         val geocoder = Geocoder(Utils.getApp().applicationContext, Locale.CHINESE)
         val add = geocoder.reverseGeocode2String(lat, lon)
         if ("all" != filters && !add.contains(filters)) return@pool
-        Log.d(PermissionsActivity.TAG, "$add  $lat,$lon $cid,$lac")
+        Log.d(TAG, "$add  $lat,$lon $cid,$lac")
         this.addMarker(MarkerOptions().position(latLng).title(add).snippet("$latLng\ncid/lac:($cid,$lac)"))
     }
 }

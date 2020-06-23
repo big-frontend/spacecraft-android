@@ -1,11 +1,9 @@
-package com.hawksjamesf.map;
+package com.hawksjamesf.spacecraft.ui;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Base64;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,11 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.blankj.utilcode.util.PhoneUtils;
-
-public class PermissionsActivity extends AppCompatActivity {
-    public static final String TAG = "LBS_collection";
-    protected String auth;
+abstract class AbsPermissionsActivity extends AppCompatActivity {
     private String[] mPermissions = new String[]{
             Manifest.permission.ACCESS_MEDIA_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE,
@@ -59,21 +53,8 @@ public class PermissionsActivity extends AppCompatActivity {
                         "        and grant access to Storage.", Toast.LENGTH_LONG).show();
             }
         } else {
-            String seed = createAuthoritySeed();
-            auth = "Basic " + Base64.encodeToString(seed.getBytes(), Base64.NO_WRAP);
-            onResult();
+            onRequestPermissionsResult();
         }
-    }
-
-    private String createAuthoritySeed() {
-        String realImei;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            realImei = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        } else {
-            // Caused by: java.lang.SecurityException: getUniqueDeviceId: The user 10313 does not meet the requirements to access device identifiers.
-            realImei = PhoneUtils.getIMEI();
-        }
-        return "_android." + realImei + ":" + "HUAWEI" + "-" + "NEXUS" + "-" + realImei;
     }
 
     private boolean hasPermission() {
@@ -98,7 +79,5 @@ public class PermissionsActivity extends AppCompatActivity {
             requestPermissionsIfNecessary();
         }
     }
-    protected void onResult(){
-
-    }
+    abstract protected void onRequestPermissionsResult();
 }

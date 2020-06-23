@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -13,18 +16,9 @@ import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.util.ActivityUtil;
+import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.uicomponent.PhotoListActivity;
-
-import org.jetbrains.annotations.NotNull;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import io.reactivex.disposables.Disposable;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
-import com.hawksjamesf.uicomponent.LargePhotoActivity;
 
 /**
  * Copyright ® $ 2017
@@ -34,29 +28,22 @@ import com.hawksjamesf.uicomponent.LargePhotoActivity;
  * @author: hawks jamesf
  * @since: 2017/7/4
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AbsPermissionsActivity {
     public static final String TAG = "SplashActivity";
     private FirebaseAnalytics mFirebaseAnalytics;
     private Trace myTrace;
     private HttpMetric mHttpMetric;
     private FirebaseRemoteConfig mFirebaseRemoteConfig= App.getFirebaseRemoteConfig();
 
-    @AddTrace(name = "_splashActivity_initComponentTrace", enabled = true /* optional */)
+    @AddTrace(name = "_splashActivity_onCreate", enabled = true /* optional */)
     @Override
-    protected void initComponent(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
     }
-
-
-    @Override
-    protected void handleCallback(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-
-    }
-
-    @Override
-    protected void loadData(@NotNull Function1<? super Disposable, Unit> autoDisposable) {
-        ActivityUtil.startActivity(LargePhotoActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+    protected void onRequestPermissionsResult(){
+        ActivityUtil.startActivity(MapActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
         finish();
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
 //        myTrace.start();r
@@ -88,6 +75,7 @@ public class SplashActivity extends BaseActivity {
 //        mHttpMetric.stop();
 
 //        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event);
+
     }
 
     // Remote Config keys

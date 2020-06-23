@@ -53,10 +53,10 @@ public class LbsIntentServices extends IntentService {
         activity.bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
-            Toast.makeText(activity, "start &  bind  foreground service", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "start &  bind  foreground service", Toast.LENGTH_SHORT).show();
         } else {
             activity.startService(intent);
-            Toast.makeText(activity, "start &  bind  service", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "start &  bind  service", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -65,7 +65,7 @@ public class LbsIntentServices extends IntentService {
         Intent intent = new Intent(activity, LbsIntentServices.class);
         activity.stopService(intent);
         activity.unbindService(connection);
-        Toast.makeText(activity, "stop & unbind service", Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, "stop & unbind service", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -123,6 +123,11 @@ public class LbsIntentServices extends IntentService {
         WifiReceiver.registerReceiver(this);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        WifiReceiver.unregisterReceiver(this);
+    }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {

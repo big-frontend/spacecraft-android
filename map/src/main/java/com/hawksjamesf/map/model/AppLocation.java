@@ -15,7 +15,7 @@ public final class AppLocation implements Parcelable {
     public double bearing;
     public double speed;
     @ColumnInfo(name="is_location_mock")
-    public boolean isMockData;
+    public boolean isMockData =false;
 
     public static AppLocation convertSysLocation(Location location) {
         AppLocation appLocation = new AppLocation();

@@ -15,11 +15,12 @@ class WifiReceiver : BroadcastReceiver() {
     companion object {
         const val TAG = "wifi_receiver"
         lateinit var wifiManager: WifiManager
+        val receiver = WifiReceiver()
         @JvmStatic
         fun registerReceiver(context: Context) {
             wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
             context.registerReceiver(
-                    WifiReceiver(),
+                    receiver,
                     IntentFilter().apply {
                         //wifi密码验证
                         addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION)
@@ -34,6 +35,11 @@ class WifiReceiver : BroadcastReceiver() {
                     })
             wifiManager.startScan()
 //            WifiNetworkSuggestion.Builder().setIsAppInteractionRequired(true).build()
+        }
+
+        @JvmStatic
+        fun unregisterReceiver(context: Context) {
+            context.unregisterReceiver(receiver)
         }
     }
 
@@ -66,8 +72,8 @@ class WifiReceiver : BroadcastReceiver() {
                 stringBuffer.append("net state change:${netInfo}")
             }
             WifiManager.WIFI_STATE_CHANGED_ACTION -> {
-                val preState = intent.getIntExtra(WifiManager.EXTRA_PREVIOUS_WIFI_STATE,-1)
-                val curState=intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE,-1)
+                val preState = intent.getIntExtra(WifiManager.EXTRA_PREVIOUS_WIFI_STATE, -1)
+                val curState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, -1)
                 stringBuffer.append("wifi state change  extra:${preState} ${curState} ")
 
             }
@@ -84,7 +90,7 @@ class WifiReceiver : BroadcastReceiver() {
                             .append("/")
                             .append(result.level)
                             .append("dBm ")
-                            .append(WifiManager.calculateSignalLevel(result.level,5))
+                            .append(WifiManager.calculateSignalLevel(result.level, 5))
                             .append("")
                             .append('\t')
 

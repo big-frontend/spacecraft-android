@@ -40,7 +40,7 @@ public final class AppCellInfo implements Parcelable {
     public long sid;
     public int tac;
     @ColumnInfo(name="is_cell_mock")
-    public boolean isMockData;
+    public boolean isMockData = false;
 
     public static AppCellInfo convertSysCellLocation(CellLocation cellLocation) {
         AppCellInfo cellInfo2 = new AppCellInfo();

@@ -7,8 +7,10 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -23,6 +25,7 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.hawksjamesf.map.model.AppCellInfo;
 import com.hawksjamesf.map.model.AppLocation;
+import com.hawksjamesf.map.model.LBS;
 import com.hawksjamesf.map.model.MapViewModel;
 import com.hawksjamesf.map.service.LbsIntentServices;
 import com.hawksjamesf.map.service.LbsServiceConnection;
@@ -36,7 +39,7 @@ import java.util.List;
  * @author: hawks.jamesf
  * @since: Oct/10/2019  Thu
  */
-public class MapActivity extends PermissionsActivity {
+public class MapActivity extends LBSActivity {
     private MapView mMapView;
     private TextureMapView textureMapView;
     private MyLocationStyle myLocationStyle;
@@ -52,7 +55,6 @@ public class MapActivity extends PermissionsActivity {
         }
 
         public void onLocationChanged(AppLocation appLocation, List<AppCellInfo> appCellInfos, long count) throws RemoteException {
-//            this@LocationActivity.runOnUiThread(Runnable { bt_cellInfos.text = "统计次数：$count" })
             StringBuffer s = new StringBuffer();
             AppCellInfo appCellInfo = null;
             if (appCellInfos != null && appCellInfos.size() > 0) {
@@ -66,9 +68,13 @@ public class MapActivity extends PermissionsActivity {
             }
             Log.d(TAG, "onLocationChanged:index:" + count + "\n" +
                     "${appLocation?.lat},${appLocation?.lon}\n" + s);
-            bt_cellInfos.setText("不许点击喔：" + count);
-            mapViewModel.insert(appCellInfo, appLocation);
-            ReportApi.reportLocation(appLocation,appCellInfo,count, auth);
+            boolean needUpload;
+            if (appCellInfo == null) {
+                needUpload = false;
+            } else {
+                needUpload = !appCellInfo.isMockData && !appLocation.isMockData;
+            }
+            mapViewModel.insert(needUpload, appCellInfo, appLocation);
             MapUtil.addMarker(map, appLocation, appCellInfo);
         }
 
@@ -89,7 +95,8 @@ public class MapActivity extends PermissionsActivity {
     LatLng shanghai = new LatLng(31.02069, 121.780261);
     LatLng fuzhou = new LatLng(25.805453, 119.416011);
     LatLng myLocation = fuzhou;
-    boolean is_import=false;
+    boolean is_import = false;
+    boolean stopAutoSmoothToEnd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +142,30 @@ public class MapActivity extends PermissionsActivity {
 
 
         RecyclerView rv_cellinfos = findViewById(R.id.rv_cellinfos);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                return makeMovementFlags(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int adapterPosition = viewHolder.getAdapterPosition();
+                mapViewModel.delete(adapterPosition);
+                stopAutoSmoothToEnd =true;
+
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(rv_cellinfos);
+        MapAdapter adapter = new MapAdapter(this, map);
+        rv_cellinfos.setAdapter(adapter);
+        rv_cellinfos.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
         SwipeRefreshLayout srf_cellinfos = findViewById(R.id.srf_cellinfos);
         bt_cellInfos = findViewById(R.id.bt_cellInfos);
         bt_cellInfos.setOnClickListener(v -> Toast.makeText(MapActivity.this, "是不是傻,不让点你还敢点", Toast.LENGTH_LONG).show());
@@ -152,21 +183,43 @@ public class MapActivity extends PermissionsActivity {
         });
         bt_import = findViewById(R.id.bt_import);
         bt_import.setOnClickListener(view -> {
-            if (is_import) return;
-            is_import=true;
-            Toast.makeText(MapActivity.this, "彩蛋,正在导入数据", Toast.LENGTH_LONG).show();
+            if (is_import) {
+                Toast.makeText(MapActivity.this, "蛋已经领取啦，咋还想领", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            is_import = true;
+            Toast.makeText(MapActivity.this, "彩蛋,正在导入数据", Toast.LENGTH_SHORT).show();
             connection.sendImportMockJson();
         });
-        MapAdapter adapter = new MapAdapter(this, map);
-        rv_cellinfos.setAdapter(adapter);
-        rv_cellinfos.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mapViewModel.getAllLbsDatas().observe(this, p -> {
+            bt_cellInfos.setText("不许点击喔：" + p.size());
             adapter.submitList(p);
-            if (p.size() > 2) {
+            if (!stopAutoSmoothToEnd && p.size() > 5) {
                 rv_cellinfos.smoothScrollToPosition(p.size() - 1);
             }
+            stopAutoSmoothToEnd =false;
         });
-        mapViewModel.clearAll();
+        mapViewModel.getNeedUploadDatas().observe(this, p -> {
+            if (p == null || p.size() == 0) return;
+            Log.d(TAG, "getNeedUploadDatas: " + p.size());
+            for (int i = 0; i < p.size(); i++) {
+                LBS lbs = p.get(i);
+                ReportApi.reportLocation(lbs.appLocation(), lbs.appCellInfo(), lbs.index(), auth, new ReportApi.Callback() {
+                    @Override
+                    public void onFailure() {
+                    }
+
+                    @Override
+                    public void onResponse() {
+                        lbs.setNeedUpload(false);
+                        mapViewModel.update(lbs);
+                    }
+                });
+
+            }
+
+        });
+
         srf_cellinfos.setOnRefreshListener(() -> srf_cellinfos.setRefreshing(false));
         connection.setListener(ibsListenerStub);
         //        Type jsonType = new TypeToken<List<L7_trip>>() {}.getType();
@@ -174,6 +227,10 @@ public class MapActivity extends PermissionsActivity {
 //        for (L7_trip l7_1 : L7_1s) {
 //            addMarker(l7_1.getLat(), l7_1.getLon(), l7_1.getCid(), l7_1.getLac(),"南京");
 //        }
+        //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
+        LbsIntentServices.startAndBindService(this, connection);
+//        LbsJobService.startService(this);
+//        LbsJobIntentService.startService(this);
     }
 
 
@@ -182,8 +239,9 @@ public class MapActivity extends PermissionsActivity {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
 //        mMapView.onDestroy();
-
         LbsIntentServices.stopAndUnbindService(this, connection);
+        //        mapViewModel.clearAll();
+        mapViewModel.clearMockData();
     }
 
     @Override
@@ -191,10 +249,7 @@ public class MapActivity extends PermissionsActivity {
         super.onResume();
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
 //        mMapView.onResume();
-        //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
-        LbsIntentServices.startAndBindService(this, connection);
-//        LbsJobService.startService(this);
-//        LbsJobIntentService.startService(this);
+
     }
 
     @Override
