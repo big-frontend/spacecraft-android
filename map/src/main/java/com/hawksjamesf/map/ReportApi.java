@@ -35,6 +35,9 @@ class ReportApi {
         contentBuilder.append("}");
         ReportApi.reportLocation(contentBuilder.toString(), cb);
     }
+    public static void reportLocation(final String content) {
+        reportLocation(content);
+    }
     public static void reportLocation(final String content, final Callback cb) {
         if (content == null || content.length() <= 0) {
             return;

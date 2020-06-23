@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -29,7 +30,10 @@ import com.hawksjamesf.map.model.LBS;
 import com.hawksjamesf.map.model.MapViewModel;
 import com.hawksjamesf.map.service.LbsIntentServices;
 import com.hawksjamesf.map.service.LbsServiceConnection;
+import com.hawksjamesf.uicomponent.widget.HeadBubbleView;
+import com.hawksjamesf.uicomponent.widget.HeartLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -141,6 +145,35 @@ public class MapActivity extends LBSActivity {
         myLocationStyle.showMyLocation(false);
 
 
+        HeadBubbleView hbv_heartbeat = findViewById(R.id.hbv_heartbeat);
+        List<HeadBubbleView.BrowseEntity> be = new ArrayList<HeadBubbleView.BrowseEntity>() {
+            {
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_border_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_border_black_24dp, "启动1"));
+                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_border_black_24dp, "启动1"));
+            }
+        };
+        hbv_heartbeat.setDatas(be);
+        hbv_heartbeat.startAnimation(4000);
+        hbv_heartbeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hbv_heartbeat.startAnimation(2000);
+
+            }
+        });
+        HeartLayout heartLayout = (HeartLayout)findViewById(R.id.heart_layout);
+        findViewById(R.id.member_send_good).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                heartLayout.addFavor();
+            }
+        });
         RecyclerView rv_cellinfos = findViewById(R.id.rv_cellinfos);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
@@ -157,7 +190,7 @@ public class MapActivity extends LBSActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int adapterPosition = viewHolder.getAdapterPosition();
                 mapViewModel.delete(adapterPosition);
-                stopAutoSmoothToEnd =true;
+                stopAutoSmoothToEnd = true;
 
             }
         });
@@ -197,14 +230,14 @@ public class MapActivity extends LBSActivity {
             if (!stopAutoSmoothToEnd && p.size() > 5) {
                 rv_cellinfos.smoothScrollToPosition(p.size() - 1);
             }
-            stopAutoSmoothToEnd =false;
+            stopAutoSmoothToEnd = false;
         });
         mapViewModel.getNeedUploadDatas().observe(this, p -> {
             if (p == null || p.size() == 0) return;
             Log.d(TAG, "getNeedUploadDatas: " + p.size());
             for (int i = 0; i < p.size(); i++) {
                 LBS lbs = p.get(i);
-                ReportApi.reportLocation(auth,lbs, new ReportApi.Callback() {
+                ReportApi.reportLocation(auth, lbs, new ReportApi.Callback() {
                     @Override
                     public void onFailure() {
                     }
