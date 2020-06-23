@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-abstract class AbsPermissionsActivity extends AppCompatActivity {
+public abstract class AbsPermissionsActivity extends AppCompatActivity {
     private String[] mPermissions = new String[]{
             Manifest.permission.ACCESS_MEDIA_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE,
