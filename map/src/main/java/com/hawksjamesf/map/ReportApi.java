@@ -5,8 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hawksjamesf.common.util.Util;
-import com.hawksjamesf.map.model.AppCellInfo;
-import com.hawksjamesf.map.model.AppLocation;
+import com.hawksjamesf.map.model.LBS;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,26 +19,23 @@ class ReportApi {
     public static final String applicationIdValue = "Bms5ZwgoXFRpTBN0bqB1kDSIp81eBrlzecRO4vKA";
     public static final String contentTypeValue = "application/json";
     public static final String TAG = "ReportApi";
-    public static void reportLocation(final AppLocation appLocation, AppCellInfo appCellInfo, long count, String auth) {
-      reportLocation(appLocation,appCellInfo,count,auth,null);
-    }
-    public static void reportLocation(final AppLocation appLocation, AppCellInfo appCellInfo, long count, String auth, Callback cb) {
-        if (appLocation == null || appLocation.isMockData || appCellInfo ==null || appCellInfo.isMockData) return;
+
+    public static void reportLocation(String auth, LBS lbs, Callback cb) {
+        if (lbs == null ||
+                lbs.appLocation() == null || lbs.appLocation().isMockData
+                || lbs.appCellInfo() == null || lbs.appCellInfo().isMockData) return;
         StringBuilder contentBuilder = new StringBuilder();
         contentBuilder.append("{");
-        contentBuilder.append("\"index\":" + count + ",");
+        contentBuilder.append("\"index\":" + lbs.index() + ",");
         contentBuilder.append("\"auth\":" + "\"" + auth + "\"" + ",");
-        contentBuilder.append(appCellInfo.toString());
+        contentBuilder.append("\"address\":" + "\"" + lbs.add() + "\"" + ",");
+        contentBuilder.append(lbs.appCellInfo());
         contentBuilder.append(",");
-        contentBuilder.append(appLocation.toString());
+        contentBuilder.append(lbs.appLocation());
         contentBuilder.append("}");
-        ReportApi.reportLocation(contentBuilder.toString(),cb);
+        ReportApi.reportLocation(contentBuilder.toString(), cb);
     }
-
-    public static void reportLocation(final String content) {
-        reportLocation(content,null);
-    }
-    public static void reportLocation(final String content,final Callback cb) {
+    public static void reportLocation(final String content, final Callback cb) {
         if (content == null || content.length() <= 0) {
             return;
         }
@@ -64,11 +60,11 @@ class ReportApi {
                     String response = FileIOUtils.readIS(inputStream);
                     int responseCode = urlConnection.getResponseCode();
                     String responseMessage = urlConnection.getResponseMessage();
-                    Log.d(TAG, "response: code" + responseCode + " message:" + responseMessage+" \nbody:\n"+response);
+                    Log.d(TAG, "response: code" + responseCode + " message:" + responseMessage + " \nbody:\n" + response);
                     urlConnection.disconnect();
-                    if (response.contains("createdAt") && response.contains("objectId")){
+                    if (response.contains("createdAt") && response.contains("objectId")) {
                         cb.onResponse();
-                    }else {
+                    } else {
                         cb.onFailure();
                     }
 //            InputStream inputStream = urlConnection.getInputStream();

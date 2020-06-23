@@ -1,11 +1,14 @@
 package com.hawksjamesf.map.model
 
 import android.app.Application
+import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.hawksjamesf.map.dao.LbsDb
 import com.hawksjamesf.map.ioThread
+import com.hawksjamesf.map.reverseGeocode2String
+import java.util.*
 
 class MapViewModel(app: Application) : AndroidViewModel(app) {
     val dao = LbsDb.get(app).lbsDao()
@@ -18,12 +21,13 @@ class MapViewModel(app: Application) : AndroidViewModel(app) {
             pageSize = 200,
             enablePlaceholders = false
     ))
-
+    var geocoder: Geocoder = Geocoder(app.applicationContext, Locale.CHINESE)
     fun insert(needUpload: Boolean = false, appCellInfo: AppCellInfo?, appLocation: AppLocation?) = ioThread {
         val lbs = LBS()
         lbs.appCellInfo = appCellInfo
         lbs.appLocation = appLocation
         lbs.needUpload = needUpload
+        lbs.add = geocoder.reverseGeocode2String(appLocation?.lat?:0.0,appLocation?.lon?:0.0)
         dao.insert(lbs)
     }
     fun update(lbs: LBS) = ioThread {

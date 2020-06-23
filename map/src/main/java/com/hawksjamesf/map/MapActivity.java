@@ -204,7 +204,7 @@ public class MapActivity extends LBSActivity {
             Log.d(TAG, "getNeedUploadDatas: " + p.size());
             for (int i = 0; i < p.size(); i++) {
                 LBS lbs = p.get(i);
-                ReportApi.reportLocation(lbs.appLocation(), lbs.appCellInfo(), lbs.index(), auth, new ReportApi.Callback() {
+                ReportApi.reportLocation(auth,lbs, new ReportApi.Callback() {
                     @Override
                     public void onFailure() {
                     }

@@ -10,6 +10,8 @@ class LBS {
     @get:JvmName("index")
     var index: Int = 0
     var needUpload=false
+    @get:JvmName("add")
+    var add=""
     @Embedded
     @get:JvmName("appCellInfo")
     var appCellInfo: AppCellInfo? = null
@@ -18,6 +20,8 @@ class LBS {
     var appLocation: AppLocation? = null
 
     override fun toString(): String {
-        return "LBS(index=$index, needUpload=$needUpload, appCellInfo=$appCellInfo, appLocation=$appLocation)"
+        return "LBS(index=$index, needUpload=$needUpload, add='$add', appCellInfo=$appCellInfo, appLocation=$appLocation)"
     }
+
+
 }
