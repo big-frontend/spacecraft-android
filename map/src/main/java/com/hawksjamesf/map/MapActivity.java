@@ -1,20 +1,19 @@
 package com.hawksjamesf.map;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.telephony.CellInfo;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -38,10 +37,20 @@ import com.hawksjamesf.map.service.LbsServiceConnection;
 import com.hawksjamesf.uicomponent.widget.HeadBubbleView;
 import com.hawksjamesf.uicomponent.widget.HeartLayout;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * Copyright ® $ 2017
@@ -110,14 +119,18 @@ public class MapActivity extends LBSActivity {
     boolean stopAutoSmoothToEnd = false;
     public AMapLocationClient mlocationClient;
     public AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
+    TelephonyManager telephonyManager;
+    int count = 0;
 
     private void realRequestLocationForAmap(Intent intent) {
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mlocationClient = new AMapLocationClient(this);
         mlocationClient.setLocationListener(new AMapLocationListener() {
             // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
             // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
             // 在定位结束后，在合适的生命周期调用onDestroy()方法
             // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+            @SuppressLint("MissingPermission")
             @Override
             public void onLocationChanged(AMapLocation amapLocation) {
                 if (amapLocation != null) {
@@ -130,36 +143,55 @@ public class MapActivity extends LBSActivity {
                         Date date = new Date(amapLocation.getTime());
                         df.format(date);//定位时间
                         String locationTypeStr = "";
-//                        switch (locationType){
-////                            case 0:{locationTypeStr = "定位失败";}
-//                            case 1:{locationTypeStr = "GPS定位结果";}
-//                            case 2:{locationTypeStr = "前次定位结果";}
-////                            case 3:{locationTypeStr = "缓存定位结果";}
-//                            case 4:{locationTypeStr = "缓存定位结果";}
-//                            case 5:{locationTypeStr = "Wifi定位结果";}
-//                            case 6:{locationTypeStr = "基站定位结果";}
-////                            case 7:{locationTypeStr = "离线定位结果";}
-//                            case 8:{locationTypeStr = "离线定位结果";}
-//                            case 9:{locationTypeStr = "最后位置缓存";}
-//                            default:{locationTypeStr = "";}
-//                        }
-                        Log.d("TAG_service", "IntentService onLocationChanged: locationType:" + locationTypeStr + " location" + latitude + " , " + longitude + "");
+                        switch (locationType) {
+//                            case 0:{locationTypeStr = "定位失败";}
+                            case 1: { locationTypeStr = "GPS定位结果";break; }
+                            case 2: { locationTypeStr = "前次定位结果";break; }
+//                            case 3:{locationTypeStr = "缓存定位结果";}
+                            case 4: { locationTypeStr = "缓存定位结果";break; }
+                            case 5: { locationTypeStr = "Wifi定位结果";break; }
+                            case 6: { locationTypeStr = "基站定位结果";break; }
+//                            case 7:{locationTypeStr = "离线定位结果";}
+                            case 8: { locationTypeStr = "离线定位结果";break; }
+                            case 9: { locationTypeStr = "最后位置缓存";break; }
+                        }
+                        Log.d(TAG, "onLocationChanged: locationType:" + locationTypeStr + " lat,lon:" + latitude + " , " + longitude + "");
+                        List<AppCellInfo> appCellInfos = new ArrayList<>();
+                        for (CellInfo cell : telephonyManager.getAllCellInfo()) {
+                            appCellInfos.add(AppCellInfo.convertSysCellInfo(cell));
+                        }
+                        AppCellInfo appCellInfo = null;
+                        if (appCellInfos.size() > 0) {
+                            for (int index = 0; index < appCellInfos.size(); index++) {
+                                AppCellInfo theCell = appCellInfos.get(index);
+                                if (theCell.isRegistered) {
+                                    appCellInfo = theCell;
+                                }
+                            }
+                        }
+                        AppLocation appLocation = AppLocation.convertSysLocation(amapLocation);
+                        boolean needUpload;
+                        if (appCellInfo == null) {
+                            needUpload = false;
+                        } else {
+                            needUpload = !appCellInfo.isMockData && !appLocation.isMockData;
+                        }
+                        mapViewModel.insert(needUpload, appCellInfo, appLocation);
+                        MapUtil.addMarker(map, appLocation, appCellInfo);
 
                     } else {
                         //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                        Log.e("TAG_service", "location Error, ErrCode:"
+                        Log.e(TAG, "location Error, ErrCode:"
                                 + amapLocation.getErrorCode() + ", errInfo:"
                                 + amapLocation.getErrorInfo());
                     }
 
                 }
-                Log.d("TAG_service", "IntentService onLocationChanged:");
             }
         });
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.Sport);
         //设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(1000);
+        mLocationOption.setInterval(60*1000);
         mlocationClient.setLocationOption(mLocationOption);
         mlocationClient.startLocation();
 
@@ -338,6 +370,7 @@ public class MapActivity extends LBSActivity {
         LbsIntentServices.stopAndUnbindService(this, connection);
         //        mapViewModel.clearAll();
         mapViewModel.clearMockData();
+        mlocationClient.stopLocation();
     }
 
     @Override
@@ -356,7 +389,32 @@ public class MapActivity extends LBSActivity {
         super.onResume();
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
 //        mMapView.onResume();
+        Log.d(TAG, "sha1:" + sHA1(this));
 
+    }
+
+    public String sHA1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length() - 1);
+        } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

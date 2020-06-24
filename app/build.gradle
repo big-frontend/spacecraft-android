@@ -163,7 +163,7 @@ android {
                     'QQ_KEY'            : 'adf', 'WEXIN_KEY': 'adfaf',
                     'BUGLY_ENABLE_DEBUG': 'true'
             ]
-//            signingConfig signingConfigs.debugSigningConfig
+            signingConfig signingConfigs.debugSigningConfig
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
             firebaseCrashlytics {

@@ -24,8 +24,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -40,6 +38,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 import static com.hawksjamesf.map.LbsUtils.TAG_service;
 import static com.hawksjamesf.map.service.Constants.MIN_DISTANCE;
@@ -197,7 +197,7 @@ public class LbsIntentServices extends IntentService {
                         iLbsApi.listenerlist.finishBroadcast();
                     } else {
                         //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                        Log.e("TAG_service", "location Error, ErrCode:"
+                        Log.e(TAG_service, "location Error, ErrCode:"
                                 + amapLocation.getErrorCode() + ", errInfo:"
                                 + amapLocation.getErrorInfo());
                     }
@@ -207,7 +207,7 @@ public class LbsIntentServices extends IntentService {
         });
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(1000);
+        mLocationOption.setInterval(2000);
         mlocationClient.setLocationOption(mLocationOption);
         mlocationClient.startLocation();
 
