@@ -191,7 +191,7 @@ public class MapActivity extends LBSActivity {
         });
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(60*1000);
+        mLocationOption.setInterval(20*1000);
         mlocationClient.setLocationOption(mLocationOption);
         mlocationClient.startLocation();
 
