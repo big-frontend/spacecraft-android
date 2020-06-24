@@ -78,6 +78,7 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
         <RelativeLayout
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -114,6 +115,7 @@
             android:layout_marginBottom="10dp"
             android:id="@+id/hbv_heartbeat"
             android:layout_width="100dp"
+            android:visibility="gone"
             android:layout_height="100dp"/>
 <!--            android:background="@drawable/ic_favorite_border_black_24dp" -->
         <Button

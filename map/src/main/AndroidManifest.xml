@@ -20,17 +20,17 @@
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--用于访问GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
     <uses-permission android:name="android.permission.Device"/>
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
 
     <application android:hardwareAccelerated="true">
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="${AMAP_KEY}" />
 
         <activity
             android:name=".MapActivity"
@@ -74,5 +74,9 @@
             android:foregroundServiceType="location"
             android:name=".service.LbsJobIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:foregroundServiceType="location"
+            android:name="com.amap.api.location.APSService"
+            ></service>
     </application>
 </manifest>

@@ -1,5 +1,6 @@
 package com.hawksjamesf.map;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -15,6 +16,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -33,7 +38,9 @@ import com.hawksjamesf.map.service.LbsServiceConnection;
 import com.hawksjamesf.uicomponent.widget.HeadBubbleView;
 import com.hawksjamesf.uicomponent.widget.HeartLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -101,13 +108,69 @@ public class MapActivity extends LBSActivity {
     LatLng myLocation = fuzhou;
     boolean is_import = false;
     boolean stopAutoSmoothToEnd = false;
+    public AMapLocationClient mlocationClient;
+    public AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
+
+    private void realRequestLocationForAmap(Intent intent) {
+        mlocationClient = new AMapLocationClient(this);
+        mlocationClient.setLocationListener(new AMapLocationListener() {
+            // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+            // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
+            // 在定位结束后，在合适的生命周期调用onDestroy()方法
+            // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+            @Override
+            public void onLocationChanged(AMapLocation amapLocation) {
+                if (amapLocation != null) {
+                    if (amapLocation.getErrorCode() == 0) {
+                        //定位成功回调信息，设置相关消息
+                        int locationType = amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                        double latitude = amapLocation.getLatitude();//获取纬度
+                        double longitude = amapLocation.getLongitude();//获取经度
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date = new Date(amapLocation.getTime());
+                        df.format(date);//定位时间
+                        String locationTypeStr = "";
+//                        switch (locationType){
+////                            case 0:{locationTypeStr = "定位失败";}
+//                            case 1:{locationTypeStr = "GPS定位结果";}
+//                            case 2:{locationTypeStr = "前次定位结果";}
+////                            case 3:{locationTypeStr = "缓存定位结果";}
+//                            case 4:{locationTypeStr = "缓存定位结果";}
+//                            case 5:{locationTypeStr = "Wifi定位结果";}
+//                            case 6:{locationTypeStr = "基站定位结果";}
+////                            case 7:{locationTypeStr = "离线定位结果";}
+//                            case 8:{locationTypeStr = "离线定位结果";}
+//                            case 9:{locationTypeStr = "最后位置缓存";}
+//                            default:{locationTypeStr = "";}
+//                        }
+                        Log.d("TAG_service", "IntentService onLocationChanged: locationType:" + locationTypeStr + " location" + latitude + " , " + longitude + "");
+
+                    } else {
+                        //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                        Log.e("TAG_service", "location Error, ErrCode:"
+                                + amapLocation.getErrorCode() + ", errInfo:"
+                                + amapLocation.getErrorInfo());
+                    }
+
+                }
+                Log.d("TAG_service", "IntentService onLocationChanged:");
+            }
+        });
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.Sport);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(1000);
+        mlocationClient.setLocationOption(mLocationOption);
+        mlocationClient.startLocation();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
-
+        realRequestLocationForAmap(getIntent());
         //获取地图控件引用
 //        mMapView = findViewById(R.id.map_view);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
@@ -167,7 +230,7 @@ public class MapActivity extends LBSActivity {
 
             }
         });
-        HeartLayout heartLayout = (HeartLayout)findViewById(R.id.heart_layout);
+        HeartLayout heartLayout = (HeartLayout) findViewById(R.id.heart_layout);
         findViewById(R.id.member_send_good).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,6 +341,17 @@ public class MapActivity extends LBSActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
@@ -290,6 +364,7 @@ public class MapActivity extends LBSActivity {
         super.onPause();
         //在activity执行onPause时执行mMapView.onPause ()，暂停地图的绘制
 //        mMapView.onPause();
+        Log.d(TAG, "onPause");
     }
 
     @Override
@@ -297,5 +372,6 @@ public class MapActivity extends LBSActivity {
         super.onSaveInstanceState(outState);
         //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
 //        mMapView.onSaveInstanceState(outState);
+        mapViewModel.clearMockData();
     }
 }

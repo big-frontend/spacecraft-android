@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class ILbsApiStub extends ILbsApi.Stub {
+public class ILbsApiServer extends ILbsApi.Stub {
     long count = 0;
     public RemoteCallbackList<ILbsListener> listenerlist = new RemoteCallbackList<ILbsListener>();
 

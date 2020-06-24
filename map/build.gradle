@@ -19,10 +19,6 @@ android {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
-        buildConfigField('String', 'AMAP_KEY', '"84198333a8ab4404cd35829dbb4ec435"')
-        manifestPlaceholders = [
-                'AMAP_KEY': '84198333a8ab4404cd35829dbb4ec435',
-        ]
 
     }
 

@@ -26,13 +26,19 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.hawksjamesf.map.ILbsListener;
 import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.map.R;
 import com.hawksjamesf.map.model.AppCellInfo;
 import com.hawksjamesf.map.model.AppLocation;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.hawksjamesf.map.LbsUtils.TAG_service;
@@ -41,7 +47,7 @@ import static com.hawksjamesf.map.service.Constants.MIN_TIMES;
 
 
 public class LbsIntentServices extends IntentService {
-    ILbsApiStub iLbsApi;
+    ILbsApiServer iLbsApi;
     long count = 0;
     LocationManager locationManager;
     TelephonyManager telephonyManager;
@@ -76,7 +82,7 @@ public class LbsIntentServices extends IntentService {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        iLbsApi = new ILbsApiStub();
+        iLbsApi = new ILbsApiServer();
         return (IBinder) iLbsApi;
     }
 
@@ -127,11 +133,84 @@ public class LbsIntentServices extends IntentService {
     public void onDestroy() {
         super.onDestroy();
         WifiReceiver.unregisterReceiver(this);
+        mlocationClient.stopLocation();
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        realRequestLocation(intent);
+        realRequestLocationForAmap(intent);
+//        realRequestLocation(intent);
+    }
+
+    public AMapLocationClient mlocationClient = new AMapLocationClient(this);
+    public AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
+    @SuppressLint("MissingPermission")
+    private void realRequestLocationForAmap(Intent intent) {
+        mlocationClient.setLocationListener(new AMapLocationListener() {
+            // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+            // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
+            // 在定位结束后，在合适的生命周期调用onDestroy()方法
+            // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+            @Override
+            public void onLocationChanged(AMapLocation amapLocation) {
+                if (amapLocation != null) {
+                    if (amapLocation.getErrorCode() == 0) {
+                        //定位成功回调信息，设置相关消息
+                        int locationType = amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                        double latitude = amapLocation.getLatitude();//获取纬度
+                        double longitude = amapLocation.getLongitude();//获取经度
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date = new Date(amapLocation.getTime());
+                        df.format(date);//定位时间
+                        String locationTypeStr;
+                        switch (locationType){
+//                            case 0:{locationTypeStr = "定位失败";}
+                            case 1:{locationTypeStr = "GPS定位结果";}
+                            case 2:{locationTypeStr = "前次定位结果";}
+//                            case 3:{locationTypeStr = "缓存定位结果";}
+                            case 4:{locationTypeStr = "缓存定位结果";}
+                            case 5:{locationTypeStr = "Wifi定位结果";}
+                            case 6:{locationTypeStr = "基站定位结果";}
+//                            case 7:{locationTypeStr = "离线定位结果";}
+                            case 8:{locationTypeStr = "离线定位结果";}
+                            case 9:{locationTypeStr = "最后位置缓存";}
+                            default:{locationTypeStr = "";}
+                        }
+                        Log.d(TAG_service, "IntentService onLocationChanged: locationType:"+locationTypeStr+" location" + latitude + " , " + longitude+"");
+                        if (iLbsApi.listenerlist == null) return;
+                        final int N = iLbsApi.listenerlist.beginBroadcast();
+                        for (int i = 0; i < N; i++) {
+                            ILbsListener l = iLbsApi.listenerlist.getBroadcastItem(i);
+                            if (l != null) {
+                                try {
+                                    List<AppCellInfo> appCellInfos = new ArrayList<>();
+                                    for (CellInfo cell : telephonyManager.getAllCellInfo()) {
+                                        appCellInfos.add(AppCellInfo.convertSysCellInfo(cell));
+                                    }
+                                    count += 1;
+                                    l.onLocationChanged(AppLocation.convertSysLocation(amapLocation), appCellInfos, count);
+                                } catch (RemoteException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        iLbsApi.listenerlist.finishBroadcast();
+                    } else {
+                        //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                        Log.e("TAG_service", "location Error, ErrCode:"
+                                + amapLocation.getErrorCode() + ", errInfo:"
+                                + amapLocation.getErrorInfo());
+                    }
+
+                }
+            }
+        });
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(1000);
+        mlocationClient.setLocationOption(mLocationOption);
+        mlocationClient.startLocation();
+
     }
 
     @SuppressLint("MissingPermission")
