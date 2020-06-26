@@ -1,11 +1,17 @@
 package com.hawksjamesf.map;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.telephony.CellInfo;
@@ -46,6 +52,7 @@ import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -121,7 +128,11 @@ public class MapActivity extends LBSActivity {
     public AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
     TelephonyManager telephonyManager;
     int count = 0;
-
+    public static final int ONGOING_NOTIFICATION_ID = 100;
+    public static final String channelId = "channelId";
+    public static final String channelName = "channelName";
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("MissingPermission")
     private void realRequestLocationForAmap(Intent intent) {
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mlocationClient = new AMapLocationClient(this);
@@ -130,7 +141,6 @@ public class MapActivity extends LBSActivity {
             // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
             // 在定位结束后，在合适的生命周期调用onDestroy()方法
             // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-            @SuppressLint("MissingPermission")
             @Override
             public void onLocationChanged(AMapLocation amapLocation) {
                 if (amapLocation != null) {
@@ -193,6 +203,23 @@ public class MapActivity extends LBSActivity {
         //设置定位间隔,单位毫秒,默认为2000ms
         mLocationOption.setInterval(20*1000);
         mlocationClient.setLocationOption(mLocationOption);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        Intent notificationIntent = new Intent(this, MapActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        notificationManager.createNotificationChannel(chan);
+        Notification notification = new Notification.Builder(this, channelId)
+                .setContentTitle("this is title")
+                .setContentText("this is text")
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentIntent(pendingIntent)
+                .setTicker("this is ticker")
+                .build();
+        mlocationClient.enableBackgroundLocation(12324,notification);
         mlocationClient.startLocation();
 
     }
@@ -202,7 +229,9 @@ public class MapActivity extends LBSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
-        realRequestLocationForAmap(getIntent());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            realRequestLocationForAmap(getIntent());
+        }
         //获取地图控件引用
 //        mMapView = findViewById(R.id.map_view);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
@@ -356,7 +385,7 @@ public class MapActivity extends LBSActivity {
 //            addMarker(l7_1.getLat(), l7_1.getLon(), l7_1.getCid(), l7_1.getLac(),"南京");
 //        }
         //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
-        LbsIntentServices.startAndBindService(this, connection);
+       // LbsIntentServices.startAndBindService(this, connection);
 //        LbsJobService.startService(this);
 //        LbsJobIntentService.startService(this);
     }
