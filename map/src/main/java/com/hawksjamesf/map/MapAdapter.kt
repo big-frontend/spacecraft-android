@@ -37,6 +37,8 @@ class MapAdapter(context: Context, val map: AMap) : PagedListAdapter<LBS, MapAda
         val appLocation = item?.appLocation
         val lat = appLocation?.lat ?: 0.0
         val lon = appLocation?.lon ?: 0.0
+        val lac = info?.lac ?: 0
+        val cid = info?.cid ?: 0
         val add = geocoder.reverseGeocode2String(lat, lon)
         SpanUtils.with(holder.tv_block)
                 .append(">>>> index:$position  ")
@@ -50,7 +52,7 @@ class MapAdapter(context: Context, val map: AMap) : PagedListAdapter<LBS, MapAda
                 .append("radio: ${info?.radio_type} lac,cid: ${info?.lac},${info?.cid}")
                 .create()
         holder.itemView.setOnClickListener { view ->
-            map.move(lat, lon)
+            map.move(lat, lon,lac,cid)
         }
     }
 

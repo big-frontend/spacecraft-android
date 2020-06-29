@@ -34,6 +34,11 @@ public class ILbsApiServer extends ILbsApi.Stub {
     @Override
     public void sendImportMockJson() throws RemoteException {
         mockRequestLocation();
+        //        Type jsonType = new TypeToken<List<L7_trip>>() {}.getType();
+//        List<L7_trip> L7_1s = new Gson().fromJson(ResourceUtils.readAssets2String("l7_list_trip.json"), jsonType);
+//        for (L7_trip l7_1 : L7_1s) {
+//            addMarker(l7_1.getLat(), l7_1.getLon(), l7_1.getCid(), l7_1.getLac(),"南京");
+//        }
     }
 
     private void mockRequestLocation() {

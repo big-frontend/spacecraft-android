@@ -12,10 +12,7 @@ import com.hawksjamesf.map.model.AppCellInfo
 import com.hawksjamesf.map.model.AppLocation
 import com.hawksjamesf.map.model.LBS
 import com.hawksjamesf.map.model.LBSViewModel
-import com.hawksjamesf.map.service.LbsIntentServices
-import com.hawksjamesf.map.service.LbsJobIntentService
-import com.hawksjamesf.map.service.LbsJobService
-import com.hawksjamesf.map.service.LbsServiceConnection
+import com.hawksjamesf.map.service.*
 import kotlinx.android.synthetic.main.activity_location.*
 import java.io.File
 
@@ -28,8 +25,6 @@ import java.io.File
  */
 class LocationActivity : LBSActivity() {
     private val viewModel by viewModels<LBSViewModel>()
-    private val connection = LbsServiceConnection()
-    lateinit var lbsFile: File
     var ibsListenerStub: ILbsListener.Stub = object : ILbsListener.Stub() {
         val pid: Int
             get() = android.os.Process.myPid()
@@ -102,16 +97,11 @@ class LocationActivity : LBSActivity() {
 //            lbsDir.mkdir()
 //        }
 //        this.lbsFile = File(lbsDir, "lbsPath_" + System.currentTimeMillis() + ".json")
-        connection.listener = ibsListenerStub
-        LbsIntentServices.startAndBindService(this, connection)
-        LbsJobService.startService(this)
-        LbsJobIntentService.startService(this)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
-        LbsIntentServices.stopAndUnbindService(this, connection)
     }
 
 }

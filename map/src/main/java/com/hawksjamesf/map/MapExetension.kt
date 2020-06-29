@@ -45,6 +45,11 @@ fun AMap.addMarker(lat: Double, lon: Double, cid: Long, lac: Long, filters: Stri
     }
 }
 
+fun AMap?.move(lat: Double, lon: Double,lac:Long,cid:Long) {
+    move(LatLng(lat, lon))
+    this?.addMarker(lat, lon, cid, lac,"all")
+
+}
 fun AMap?.move(lat: Double, lon: Double) {
     move(LatLng(lat, lon))
 }

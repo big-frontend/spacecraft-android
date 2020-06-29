@@ -38,8 +38,7 @@ import com.hawksjamesf.map.model.AppCellInfo;
 import com.hawksjamesf.map.model.AppLocation;
 import com.hawksjamesf.map.model.LBS;
 import com.hawksjamesf.map.model.MapViewModel;
-import com.hawksjamesf.map.service.LbsIntentServices;
-import com.hawksjamesf.map.service.LbsServiceConnection;
+import com.hawksjamesf.map.service.ILbsApiClient;
 import com.hawksjamesf.uicomponent.widget.HeadBubbleView;
 import com.hawksjamesf.uicomponent.widget.HeartLayout;
 
@@ -75,12 +74,9 @@ public class MapActivity extends LBSActivity {
     Button bt_cellInfos;
     Button bt_mylocation;
     Button bt_import;
-    private LbsServiceConnection connection = new LbsServiceConnection();
-    ILbsListener.Stub ibsListenerStub = new ILbsListener.Stub() {
-        int getPid() {
-            return android.os.Process.myPid();
-        }
+    ILbsApiClient iLbsApiClient;
 
+    ILbsApiClient.Listener ibsListener = new ILbsApiClient.Listener(){
         public void onLocationChanged(AppLocation appLocation, List<AppCellInfo> appCellInfos, long count) throws RemoteException {
             StringBuffer s = new StringBuffer();
             AppCellInfo appCellInfo = null;
@@ -104,19 +100,69 @@ public class MapActivity extends LBSActivity {
             mapViewModel.insert(needUpload, appCellInfo, appLocation);
             MapUtil.addMarker(map, appLocation, appCellInfo);
         }
+    };
+    AMapLocationListener aMapLocationListener =new AMapLocationListener() {
+        // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
+        // 在定位结束后，在合适的生命周期调用onDestroy()方法
+        // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onLocationChanged(AMapLocation amapLocation) {
+            if (amapLocation != null) {
+                if (amapLocation.getErrorCode() == 0) {
+                    //定位成功回调信息，设置相关消息
+                    int locationType = amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                    double latitude = amapLocation.getLatitude();//获取纬度
+                    double longitude = amapLocation.getLongitude();//获取经度
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date = new Date(amapLocation.getTime());
+                    df.format(date);//定位时间
+                    String locationTypeStr = "";
+                    switch (locationType) {
+//                            case 0:{locationTypeStr = "定位失败";}
+                        case 1: { locationTypeStr = "GPS定位结果";break; }
+                        case 2: { locationTypeStr = "前次定位结果";break; }
+//                            case 3:{locationTypeStr = "缓存定位结果";}
+                        case 4: { locationTypeStr = "缓存定位结果";break; }
+                        case 5: { locationTypeStr = "Wifi定位结果";break; }
+                        case 6: { locationTypeStr = "基站定位结果";break; }
+//                            case 7:{locationTypeStr = "离线定位结果";}
+                        case 8: { locationTypeStr = "离线定位结果";break; }
+                        case 9: { locationTypeStr = "最后位置缓存";break; }
+                    }
+                    Log.d(TAG, "onLocationChanged: locationType:" + locationTypeStr + " lat,lon:" + latitude + " , " + longitude + "");
+                    List<AppCellInfo> appCellInfos = new ArrayList<>();
+                    for (CellInfo cell : telephonyManager.getAllCellInfo()) {
+                        appCellInfos.add(AppCellInfo.convertSysCellInfo(cell));
+                    }
+                    AppCellInfo appCellInfo = null;
+                    if (appCellInfos.size() > 0) {
+                        for (int index = 0; index < appCellInfos.size(); index++) {
+                            AppCellInfo theCell = appCellInfos.get(index);
+                            if (theCell.isRegistered) {
+                                appCellInfo = theCell;
+                            }
+                        }
+                    }
+                    AppLocation appLocation = AppLocation.convertSysLocation(amapLocation);
+                    boolean needUpload;
+                    if (appCellInfo == null) {
+                        needUpload = false;
+                    } else {
+                        needUpload = !appCellInfo.isMockData && !appLocation.isMockData;
+                    }
+                    mapViewModel.insert(needUpload, appCellInfo, appLocation);
+                    MapUtil.addMarker(map, appLocation, appCellInfo);
 
+                } else {
+                    //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                    Log.e(TAG, "location Error, ErrCode:"
+                            + amapLocation.getErrorCode() + ", errInfo:"
+                            + amapLocation.getErrorInfo());
+                }
 
-        public void onStatusChanged(String s, int i, Bundle bundle) throws RemoteException {
-//            Log.d(TAG, "onStatusChanged:$s  $i $bundle")
-        }
-
-        public void onProviderEnabled(String s) throws RemoteException {
-            Log.d(TAG, "onProviderEnabled:$s");
-        }
-
-
-        public void onProviderDisabled(String s) throws RemoteException {
-            Log.d(TAG, "onProviderDisabled:$s");
+            }
         }
     };
     LatLng shanghai = new LatLng(31.02069, 121.780261);
@@ -126,109 +172,14 @@ public class MapActivity extends LBSActivity {
     boolean stopAutoSmoothToEnd = false;
     public AMapLocationClient mlocationClient;
     public AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
-    TelephonyManager telephonyManager;
-    int count = 0;
-    public static final int ONGOING_NOTIFICATION_ID = 100;
-    public static final String channelId = "channelId";
-    public static final String channelName = "channelName";
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @SuppressLint("MissingPermission")
-    private void realRequestLocationForAmap(Intent intent) {
-        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        mlocationClient = new AMapLocationClient(this);
-        mlocationClient.setLocationListener(new AMapLocationListener() {
-            // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-            // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-            // 在定位结束后，在合适的生命周期调用onDestroy()方法
-            // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-            @Override
-            public void onLocationChanged(AMapLocation amapLocation) {
-                if (amapLocation != null) {
-                    if (amapLocation.getErrorCode() == 0) {
-                        //定位成功回调信息，设置相关消息
-                        int locationType = amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                        double latitude = amapLocation.getLatitude();//获取纬度
-                        double longitude = amapLocation.getLongitude();//获取经度
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        Date date = new Date(amapLocation.getTime());
-                        df.format(date);//定位时间
-                        String locationTypeStr = "";
-                        switch (locationType) {
-//                            case 0:{locationTypeStr = "定位失败";}
-                            case 1: { locationTypeStr = "GPS定位结果";break; }
-                            case 2: { locationTypeStr = "前次定位结果";break; }
-//                            case 3:{locationTypeStr = "缓存定位结果";}
-                            case 4: { locationTypeStr = "缓存定位结果";break; }
-                            case 5: { locationTypeStr = "Wifi定位结果";break; }
-                            case 6: { locationTypeStr = "基站定位结果";break; }
-//                            case 7:{locationTypeStr = "离线定位结果";}
-                            case 8: { locationTypeStr = "离线定位结果";break; }
-                            case 9: { locationTypeStr = "最后位置缓存";break; }
-                        }
-                        Log.d(TAG, "onLocationChanged: locationType:" + locationTypeStr + " lat,lon:" + latitude + " , " + longitude + "");
-                        List<AppCellInfo> appCellInfos = new ArrayList<>();
-                        for (CellInfo cell : telephonyManager.getAllCellInfo()) {
-                            appCellInfos.add(AppCellInfo.convertSysCellInfo(cell));
-                        }
-                        AppCellInfo appCellInfo = null;
-                        if (appCellInfos.size() > 0) {
-                            for (int index = 0; index < appCellInfos.size(); index++) {
-                                AppCellInfo theCell = appCellInfos.get(index);
-                                if (theCell.isRegistered) {
-                                    appCellInfo = theCell;
-                                }
-                            }
-                        }
-                        AppLocation appLocation = AppLocation.convertSysLocation(amapLocation);
-                        boolean needUpload;
-                        if (appCellInfo == null) {
-                            needUpload = false;
-                        } else {
-                            needUpload = !appCellInfo.isMockData && !appLocation.isMockData;
-                        }
-                        mapViewModel.insert(needUpload, appCellInfo, appLocation);
-                        MapUtil.addMarker(map, appLocation, appCellInfo);
-
-                    } else {
-                        //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                        Log.e(TAG, "location Error, ErrCode:"
-                                + amapLocation.getErrorCode() + ", errInfo:"
-                                + amapLocation.getErrorInfo());
-                    }
-
-                }
-            }
-        });
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        //设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(20*1000);
-        mlocationClient.setLocationOption(mLocationOption);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        Intent notificationIntent = new Intent(this, MapActivity.class);
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-        notificationManager.createNotificationChannel(chan);
-        Notification notification = new Notification.Builder(this, channelId)
-                .setContentTitle("this is title")
-                .setContentText("this is text")
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentIntent(pendingIntent)
-                .setTicker("this is ticker")
-                .build();
-        mlocationClient.enableBackgroundLocation(12324,notification);
-        mlocationClient.startLocation();
-
-    }
+    private TelephonyManager telephonyManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
+        telephonyManager= (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             realRequestLocationForAmap(getIntent());
         }
@@ -346,7 +297,7 @@ public class MapActivity extends LBSActivity {
             }
             is_import = true;
             Toast.makeText(MapActivity.this, "彩蛋,正在导入数据", Toast.LENGTH_SHORT).show();
-            connection.sendImportMockJson();
+            iLbsApiClient.sendImportMockJson();
         });
         mapViewModel.getAllLbsDatas().observe(this, p -> {
             bt_cellInfos.setText("不许点击喔：" + p.size());
@@ -361,33 +312,58 @@ public class MapActivity extends LBSActivity {
             Log.d(TAG, "getNeedUploadDatas: " + p.size());
             for (int i = 0; i < p.size(); i++) {
                 LBS lbs = p.get(i);
-                ReportApi.reportLocation(auth, lbs, new ReportApi.Callback() {
-                    @Override
-                    public void onFailure() {
-                    }
-
-                    @Override
-                    public void onResponse() {
-                        lbs.setNeedUpload(false);
-                        mapViewModel.update(lbs);
-                    }
-                });
+//                ReportApi.reportLocation(auth, lbs, new ReportApi.Callback() {
+//                    @Override
+//                    public void onFailure() {
+//                    }
+//
+//                    @Override
+//                    public void onResponse() {
+//                        lbs.setNeedUpload(false);
+//                        mapViewModel.update(lbs);
+//                    }
+//                });
 
             }
 
         });
 
         srf_cellinfos.setOnRefreshListener(() -> srf_cellinfos.setRefreshing(false));
-        connection.setListener(ibsListenerStub);
-        //        Type jsonType = new TypeToken<List<L7_trip>>() {}.getType();
-//        List<L7_trip> L7_1s = new Gson().fromJson(ResourceUtils.readAssets2String("l7_list_trip.json"), jsonType);
-//        for (L7_trip l7_1 : L7_1s) {
-//            addMarker(l7_1.getLat(), l7_1.getLon(), l7_1.getCid(), l7_1.getLac(),"南京");
-//        }
-        //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
-       // LbsIntentServices.startAndBindService(this, connection);
-//        LbsJobService.startService(this);
-//        LbsJobIntentService.startService(this);
+    }
+    public static final int ONGOING_NOTIFICATION_ID = 100;
+    public static final String channelId = "channelId";
+    public static final String channelName = "channelName";
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void realRequestLocationForAmap(Intent intent) {
+        mlocationClient = new AMapLocationClient(this);
+        mlocationClient.setLocationListener(aMapLocationListener);
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(20*1000);
+        mlocationClient.setLocationOption(mLocationOption);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        Intent notificationIntent = new Intent(this, MapActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        notificationManager.createNotificationChannel(chan);
+        Notification notification = new Notification.Builder(this, channelId)
+                .setContentTitle("this is title")
+                .setContentText("this is text")
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentIntent(pendingIntent)
+                .setTicker("this is ticker")
+                .build();
+        mlocationClient.enableBackgroundLocation(12324,notification);
+        mlocationClient.startLocation();
+
+        iLbsApiClient=new ILbsApiClient(this);
+        iLbsApiClient.startLocation();
+        iLbsApiClient.setListener(ibsListener);
+
     }
 
 
@@ -396,10 +372,10 @@ public class MapActivity extends LBSActivity {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
 //        mMapView.onDestroy();
-        LbsIntentServices.stopAndUnbindService(this, connection);
         //        mapViewModel.clearAll();
         mapViewModel.clearMockData();
         mlocationClient.stopLocation();
+        iLbsApiClient.stopLocation();
     }
 
     @Override
