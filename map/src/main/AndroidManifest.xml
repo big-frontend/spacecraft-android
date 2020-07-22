@@ -64,7 +64,7 @@
         </activity>
         <service
             android:foregroundServiceType="location"
-            android:name=".service.LbsIntentServices"
+            android:name=".service.LbsServices"
             />
         <service
             android:foregroundServiceType="location"

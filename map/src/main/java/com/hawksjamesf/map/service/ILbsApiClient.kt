@@ -77,12 +77,12 @@ class ILbsApiClient(
 
     fun startLocation() {
         //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
-        LbsIntentServices.startAndBindService(activity, connection);
+        LbsServices.startAndBindService(activity, connection);
 //        LbsJobService.startService(this);
 //        LbsJobIntentService.startService(this);
     }
 
     fun stopLocation() {
-        LbsIntentServices.stopAndUnbindService(activity, connection)
+        LbsServices.stopAndUnbindService(activity, connection)
     }
 }

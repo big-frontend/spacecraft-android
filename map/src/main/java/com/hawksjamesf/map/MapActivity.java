@@ -362,7 +362,7 @@ public class MapActivity extends LBSActivity {
 
         iLbsApiClient=new ILbsApiClient(this);
         iLbsApiClient.startLocation();
-        iLbsApiClient.setListener(ibsListener);
+//        iLbsApiClient.setListener(ibsListener);
 
     }
 
@@ -376,6 +376,7 @@ public class MapActivity extends LBSActivity {
         mapViewModel.clearMockData();
         mlocationClient.stopLocation();
         iLbsApiClient.stopLocation();
+        Log.d(TAG, "onDestroy");
     }
 
     @Override

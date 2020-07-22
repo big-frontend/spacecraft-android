@@ -2,11 +2,11 @@ package com.hawksjamesf.map.service;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -46,16 +46,15 @@ import static com.hawksjamesf.map.service.Constants.MIN_DISTANCE;
 import static com.hawksjamesf.map.service.Constants.MIN_TIMES;
 
 
-public class LbsIntentServices extends IntentService {
+public class LbsServices extends Service {
     ILbsApiServer iLbsApi;
     long count = 0;
     LocationManager locationManager;
     TelephonyManager telephonyManager;
     NotificationManager notificationManager;
 
-
     public static void startAndBindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, LbsIntentServices.class);
+        Intent intent = new Intent(activity, LbsServices.class);
         activity.bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
@@ -68,15 +67,9 @@ public class LbsIntentServices extends IntentService {
     }
 
     public static void stopAndUnbindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, LbsIntentServices.class);
+        Intent intent = new Intent(activity, LbsServices.class);
         activity.stopService(intent);
         activity.unbindService(connection);
-        Toast.makeText(activity, "stop & unbind service", Toast.LENGTH_SHORT).show();
-
-    }
-
-    public LbsIntentServices() {
-        super("LbsServices");
     }
 
     @Nullable
@@ -103,6 +96,7 @@ public class LbsIntentServices extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG_service,"onCreate");
         Context applicationContext = getApplicationContext();
         locationManager = (LocationManager) applicationContext.getSystemService(Context.LOCATION_SERVICE);
         telephonyManager = (TelephonyManager) applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
@@ -127,6 +121,15 @@ public class LbsIntentServices extends IntentService {
             startForeground(ONGOING_NOTIFICATION_ID, notification);
         }
         WifiReceiver.registerReceiver(this);
+        realRequestLocationForAmap();
+        realRequestLocation();
+
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG_service,"onStartCommand");
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
@@ -134,18 +137,15 @@ public class LbsIntentServices extends IntentService {
         super.onDestroy();
         WifiReceiver.unregisterReceiver(this);
         mlocationClient.stopLocation();
+        Log.d(TAG_service,"onDestroy");
+        Toast.makeText(this, "stop & unbind service", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        realRequestLocationForAmap(intent);
-//        realRequestLocation(intent);
-    }
 
     public AMapLocationClient mlocationClient = new AMapLocationClient(this);
     public AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
     @SuppressLint("MissingPermission")
-    private void realRequestLocationForAmap(Intent intent) {
+    private void realRequestLocationForAmap() {
         mlocationClient.setLocationListener(new AMapLocationListener() {
             // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
             // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
@@ -214,7 +214,7 @@ public class LbsIntentServices extends IntentService {
     }
 
     @SuppressLint("MissingPermission")
-    private void realRequestLocation(Intent intent) {
+    private void realRequestLocation() {
         List<String> enableProviders = locationManager.getProviders(true);
         List<String> allProviders = locationManager.getAllProviders();
         Log.d("LBS_collection", "onHandleIntent: enable provider:" + enableProviders.toString());
