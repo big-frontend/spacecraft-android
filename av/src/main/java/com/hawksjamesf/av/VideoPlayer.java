@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.widget;
+package com.hawksjamesf.av;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;

@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.widget;
+package com.hawksjamesf.av.widget;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.hawksjamesf.uicomponent.R;
+import com.hawksjamesf.av.OnMediaPlayerListener;
+import com.hawksjamesf.av.R;
+import com.hawksjamesf.av.ScaleType;
+import com.hawksjamesf.av.State;
+import com.hawksjamesf.av.VideoPlayer;
 
 import java.io.FileDescriptor;
 import java.util.Map;
@@ -111,17 +115,17 @@ public class ChaplinVideoView extends FrameLayout {
         mMPForTexture = VideoPlayer.createAndBind(getContext(), mTvTexture);
         mMPForTexture.setOnMediaPlayerListener(new OnMediaPlayerListener() {
             @Override
-            protected void onPrepared(MediaPlayer mp) {
+            public void onPrepared(MediaPlayer mp) {
 
             }
 
             @Override
-            protected void onFirstFrame(MediaPlayer mp) {
+            public void onFirstFrame(MediaPlayer mp) {
                 animatePlay();
             }
 
             @Override
-            protected void onCompletion(MediaPlayer mp) {
+            public void onCompletion(MediaPlayer mp) {
                 mIvVideoState.setVisibility(View.VISIBLE);
 
             }

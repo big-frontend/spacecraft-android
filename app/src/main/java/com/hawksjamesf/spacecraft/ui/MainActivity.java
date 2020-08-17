@@ -15,7 +15,7 @@ import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.ui.person.SettingsActivity;
 import com.hawksjamesf.uicomponent.PhotoActivity;
-import com.hawksjamesf.uicomponent.VideoActivity;
+import com.hawksjamesf.av.VideoActivity;
 import com.hawksjamesf.uicomponent.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;

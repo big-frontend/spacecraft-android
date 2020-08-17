@@ -1,16 +1,20 @@
-package com.hawksjamesf.uicomponent.widget;
+package com.hawksjamesf.av.widget;
 
 import android.content.Context;
+import android.graphics.SurfaceTexture;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.view.Surface;
+import android.view.TextureView;
 import android.widget.LinearLayout;
+
+import com.hawksjamesf.av.OnLogListener;
+import com.hawksjamesf.av.OnMediaPlayerListener;
+import com.hawksjamesf.av.State;
 
 import java.io.IOException;
 import java.util.Map;
@@ -27,12 +31,9 @@ import androidx.annotation.RequiresApi;
  * @since: Mar/02/2019  Sat
  */
 @Deprecated
-public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
+public class VideoTextureView extends TextureView implements TextureView.SurfaceTextureListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnVideoSizeChangedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
+    public static final String TAG = "Chaplin/SurfaceTexture";
 
-    private static final String TAG = "Chaplin/Surface";
-
-    public int surfaceWidth;
-    public int surfaceHeight;
     public int videoWidth;
     public int videoHeight;
     private boolean hasStickyMessage = false;
@@ -43,7 +44,8 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     private int mAudioSessionId;
     private AudioAttributes mAudioAttributes;
     private MediaPlayer mMediaPlayer;
-    private SurfaceHolder mSurfaceHolder;
+    private SurfaceTexture mSurfaceTexture;
+
 
     private OnLogListener mLogListener;
 
@@ -58,46 +60,45 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     }
 
-    public VideoSurfaceView(Context context) {
+    public VideoTextureView(Context context) {
         super(context);
         initView(null, 0);
     }
 
-    public VideoSurfaceView(Context context, AttributeSet attrs) {
+    public VideoTextureView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(attrs, 0);
     }
 
-    public VideoSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public VideoTextureView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(attrs, defStyleAttr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public VideoSurfaceView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public VideoTextureView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
-        getHolder().addCallback(this);
+        setSurfaceTextureListener(this);
         setFocusable(true);
         setFocusableInTouchMode(true);
         requestFocus();
 
     }
 
+    //surface
     @Override
-    public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        Log.d(TAG, "surfaceCreated:" +
-                "surface is creating:" + surfaceHolder.isCreating()
-        );
-        mSurfaceHolder = surfaceHolder;
+    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
+        Log.d(TAG, "onSurfaceTextureAvailable:" + width + "/" + height);
+
         release(false);
-
+        mSurfaceTexture = surfaceTexture;
+        //setAudioAttributes->setAudioSessionId->setDataSource->setDisplay->prepare
         mMediaPlayer = MediaPlayer.create(getContext(), mUri);
-        mMediaPlayer.setDisplay(mSurfaceHolder);
-
-
+        mCurState = State.PREPARING;
+        mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
         mMediaPlayer.setScreenOnWhilePlaying(true);
         mMediaPlayer.setVolume(0, 0);
 
@@ -107,8 +108,19 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         mMediaPlayer.setOnCompletionListener(this);
         mMediaPlayer.setOnErrorListener(this);
         mMediaPlayer.setOnInfoListener(this);
-        mMediaPlayer.setOnVideoSizeChangedListener(this);
 
+        //drm
+//        mediaPlayer.setOnDrmInfoListener(this);
+//        mediaPlayer.setOnDrmConfigHelper(this);
+//        mediaPlayer.setOnDrmPreparedListener(this);
+
+        //video listener
+        mMediaPlayer.setOnVideoSizeChangedListener(this);
+//        mediaPlayer.addTimedTextSource();
+//        mediaPlayer.setOnTimedTextListener(this);//字幕
+//        mediaPlayer.setOnSubtitleDataListener(this);
+//        mediaPlayer.setOnMediaTimeDiscontinuityListener(this);
+//        mediaPlayer.setOnTimedMetaDataAvailableListener(this);
 
         if (mAudioSessionId != 0 && mAudioAttributes != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mMediaPlayer.setAudioSessionId(mAudioSessionId);
@@ -125,28 +137,34 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     }
 
-
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
-        Log.d(TAG, "surfaceChanged:" +
-                "surface size:" + width + "/" + height +
-                "--->parent frame size:" + ((LinearLayout) getParent()).getWidth() + "/" + ((LinearLayout) getParent()).getHeight() +
-                "--->surface is creating:" + surfaceHolder.isCreating()
-        );
-        surfaceWidth = width;
-        surfaceHeight = height;
-
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int width, int height) {
+        Log.d(TAG, "onSurfaceTextureSizeChanged surfaceTexture size:" + width + "/" + height +
+                "--->parent frame size:" + ((LinearLayout) getParent()).getWidth() + "/" + ((LinearLayout) getParent()).getHeight());
 
     }
 
     @Override
-    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        Log.d(TAG, "surfaceDestroyed:" +
-                "surface is creating:" + surfaceHolder.isCreating()
-        );
-        mSurfaceHolder = null;
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        Log.d(TAG, "onSurfaceTextureDestroyed");
+        mSurfaceTexture = null;
         release(true);
+        return false;
     }
+
+
+    /**
+     * 这个回调是实时的，而非用Camera的PreviewCallback这种2次回调的方式。从时间看，基本上每32ms左右上来一帧数据，即每秒30帧，跟本手机的Camera的性能吻合
+     *
+     * @param surfaceTexture
+     */
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+//        Log.d(TAG, "onSurfaceTextureUpdated");
+
+    }
+    //surface
+
 
     // media play start:
     /*
@@ -184,8 +202,8 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         videoHeight = height;
         //surface 面积越大，播放视频的性能越好
         if (videoWidth != 0 && videoHeight != 0) {
-            if (mSurfaceHolder != null) {
-                mSurfaceHolder.setFixedSize(videoWidth, videoHeight);
+            if (mSurfaceTexture != null) {
+                mSurfaceTexture.setDefaultBufferSize(videoWidth, videoHeight);
             }
         }
         if (mOnMediaPlayerListener != null) {
@@ -314,10 +332,4 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     }
     //</editor-fold>
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
-    }
 }

@@ -15,10 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.hawksjamesf.av.widget.ChaplinVideoView;
+import com.hawksjamesf.av.Constants;
 import com.hawksjamesf.uicomponent.adapter.CarouselPagerAdapter;
 import com.hawksjamesf.uicomponent.transformer.ZoomOutPageTransformer;
-import com.hawksjamesf.uicomponent.widget.ChaplinVideoView;
-import com.hawksjamesf.uicomponent.widget.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -181,7 +181,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 //        ((ImageView) findViewById(R.id.iv_compunt)).setImageDrawable(rotateDrawable);
         RotateDrawable rotateDrawable = (RotateDrawable) ((TextView) findViewById(R.id.tv_compunt)).getCompoundDrawables()[2];
 //        ((TextView) findViewById(R.id.tv_compunt)).setCompoundDrawables(null,null,rotateDrawable,null);
-        rotateDrawable.setLevel(10000/2);
+        rotateDrawable.setLevel(10000 / 2);
 //        ((TextView) findViewById(R.id.tv_compunt)).setBackground(rotateDrawable);
 
     }
@@ -198,7 +198,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         rotateDrawable.setPivotY(pivotY);
         rotateDrawable.setPivotXRelative(relativeX);
         rotateDrawable.setPivotYRelative(relativeY);
-        rotateDrawable.setLevel(10000/2);
+        rotateDrawable.setLevel(10000 / 2);
         return rotateDrawable;
     }
 

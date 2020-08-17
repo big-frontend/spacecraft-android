@@ -76,11 +76,6 @@
             android:name=".PhotoActivity"
             android:label="PhoteoActivity"
             android:theme="@style/PhotoTheme" />
-        <activity
-            android:name=".VideoActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:supportsPictureInPicture="true"
-            android:theme="@style/VideoTheme" />
         <activity android:name=".PhotoListActivity" />
         <activity android:name=".LargePhotoActivity" />
         <activity

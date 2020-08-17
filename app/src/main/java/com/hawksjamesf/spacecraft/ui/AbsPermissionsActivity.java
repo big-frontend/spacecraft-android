@@ -20,7 +20,8 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.CHANGE_WIFI_MULTICAST_STATE,Manifest.permission.CHANGE_WIFI_STATE,
             Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN,/* Manifest.permission.BLUETOOTH_PRIVILEGED,*/
             Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS,
-            Manifest.permission.RECEIVE_BOOT_COMPLETED
+            Manifest.permission.RECEIVE_BOOT_COMPLETED,
+            Manifest.permission.RECORD_AUDIO,
 
     };
     private int mPermissionRequestCount = 0;

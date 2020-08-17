@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.widget;
+package com.hawksjamesf.av;
 
 import android.media.MediaPlayer;
 
@@ -16,27 +16,27 @@ import androidx.annotation.WorkerThread;
  */
 public abstract class OnMediaPlayerListener {
     @MainThread
-    protected void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
 
     }
 
     @WorkerThread
-    protected void onBufferingUpdate(MediaPlayer mp, int percent) {
+    public void onBufferingUpdate(MediaPlayer mp, int percent) {
 
     }
 
     @MainThread
-    abstract protected void onPrepared(MediaPlayer mp);
+    abstract public void onPrepared(MediaPlayer mp);
 
     @MainThread
-    abstract protected void onFirstFrame(MediaPlayer mp);
+    abstract public void onFirstFrame(MediaPlayer mp);
 
     @MainThread
-    protected void onSeekComplete(MediaPlayer mp) {
+    public void onSeekComplete(MediaPlayer mp) {
 
     }
 
     @MainThread
-    abstract protected void onCompletion(MediaPlayer mp);
+    abstract public void onCompletion(MediaPlayer mp);
 
 }
