@@ -3,18 +3,12 @@ package com.hawksjamesf.av
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.media.MediaCodec
-import android.media.MediaFormat
 import android.media.projection.MediaProjectionManager
 import android.os.Bundle
-import android.os.Environment
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recoder.*
 import java.io.File
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
-import java.nio.ShortBuffer
+import kotlin.concurrent.thread
 
 
 /**
@@ -24,10 +18,8 @@ import java.nio.ShortBuffer
  * @author: hawks.jamesf
  * @since: Aug/15/2020  Sat
  */
-class RecoderActivity : Activity() {
+class RecorderActivity : Activity() {
     companion object {
-
-
         private const val REQUEST_MEDIA_PROJECTION = 1
     }
 
@@ -38,7 +30,7 @@ class RecoderActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recoder)
-        val recoder = Recoder
+        val recoder = Recorder
         mMediaProjectionManager = applicationContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         rg_type.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
@@ -50,17 +42,26 @@ class RecoderActivity : Activity() {
                 }
             }
         }
+        val videoRecoder = VideoRecorder(this@RecorderActivity)
+        videoRecoder.bindSurfaceView(sv_preview)
         bt_start_recoding.setOnClickListener { theView ->
-            requestMediaProjection()
-
+//            requestMediaProjection()
+//           thread {
+               videoRecoder.start()
+//           }
         }
         bt_stop_recoding.setOnClickListener { theView ->
-            RecoderService.stopService(this)
-            progress.visibility = View.GONE
+//            RecorderService.stopService(this)
+//            progress.visibility = View.GONE
+            thread {
+
+            videoRecoder.stop()
+            }
         }
         bt_play.setOnClickListener { theView ->
-            vv_video.setVideoPath(File(filesDir.absolutePath, "video.mp4").absolutePath)
-            vv_video.start()
+//            clv_video.setVideoPath()
+            File(filesDir.absolutePath, "video.mp4").absolutePath
+            clv_video.setDataSourceAndPlay(R.raw.wechatsight1)
 //            bt_play.setText( "size:${recoder.fileSize()} ")
         }
 
@@ -77,7 +78,7 @@ class RecoderActivity : Activity() {
             val service = Intent()
             service.putExtra("code", resultCode)
             service.putExtra("data", data)
-            RecoderService.startService(this, service)
+            RecorderService.startService(this, service)
             progress.visibility = View.VISIBLE
         }
     }

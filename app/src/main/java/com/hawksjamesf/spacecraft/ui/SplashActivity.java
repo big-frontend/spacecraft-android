@@ -15,7 +15,7 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.hawksjamesf.av.RecoderActivity;
+import com.hawksjamesf.av.RecorderActivity;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.spacecraft.App;
@@ -44,7 +44,7 @@ public class SplashActivity extends AbsPermissionsActivity {
 
     }
     protected void onRequestPermissionsResult(){
-        ActivityUtil.startActivity(RecoderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
         finish();
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
 //        myTrace.start();r

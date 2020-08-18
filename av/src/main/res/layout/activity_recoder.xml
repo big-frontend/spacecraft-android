@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="start recoding"
+            android:text="start playing"
             android:textAllCaps="false" />
     </LinearLayout>
 
@@ -70,8 +70,16 @@
         android:visibility="gone"
         android:indeterminate="false" />
     <!--        style="?android:attr/progressBarStyleHorizontal"-->
-    <VideoView
-        android:id="@+id/vv_video"
+<!--    <VideoView-->
+<!--        android:id="@+id/vv_video"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+    <com.hawksjamesf.av.widget.ChaplinVideoView
+        android:id="@+id/clv_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="200dp"/>
+    <SurfaceView
+        android:id="@+id/sv_preview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 </LinearLayout>

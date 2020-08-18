@@ -19,7 +19,7 @@ import java.nio.ShortBuffer
  * @author: hawks.jamesf
  * @since: Aug/15/2020  Sat
  */
-object Recoder {
+object Recorder {
 
     private const val DEFAULT_I_FRAME_INTERVAL = 10 // seconds
     private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms

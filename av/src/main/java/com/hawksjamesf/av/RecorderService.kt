@@ -14,12 +14,12 @@ import android.util.Log
 import android.widget.Toast
 import java.io.File
 
-class RecoderService : Service() {
+class RecorderService : Service() {
     lateinit var notificationManager: NotificationManager
     lateinit var mediaProjectionManager: MediaProjectionManager
     lateinit var mediaProjection: MediaProjection
 
-    val recoder = Recoder
+    val recoder = Recorder
     private val mProjectionCallback: MediaProjection.Callback = object : MediaProjection.Callback() {
         override fun onStop() {
         }
@@ -76,7 +76,7 @@ class RecoderService : Service() {
             val chan = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
             chan.lightColor = Color.BLUE
             chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
-            val notificationIntent = Intent(this, RecoderActivity::class.java)
+            val notificationIntent = Intent(this, RecorderActivity::class.java)
             val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
             notificationManager!!.createNotificationChannel(chan)
             val notification = Notification.Builder(this, channelId)
@@ -119,10 +119,11 @@ class RecoderService : Service() {
 
         fun startAndBindService(activity: Activity, connection: ServiceConnection?, dataIntent: Intent? = null) {
             val intent = Intent(dataIntent)
-            intent.component = ComponentName(activity, RecoderService::class.java)
+            intent.component = ComponentName(activity, RecorderService::class.java)
             if (connection != null) {
                 activity.bindService(intent, connection, Context.BIND_AUTO_CREATE or Context.BIND_IMPORTANT)
             }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 activity.startForegroundService(intent)
                 Toast.makeText(activity, "start &  bind  foreground service", Toast.LENGTH_SHORT).show()
@@ -138,7 +139,7 @@ class RecoderService : Service() {
         }
 
         fun stopAndUnbindService(activity: Activity, connection: ServiceConnection?) {
-            val intent = Intent(activity, RecoderService::class.java)
+            val intent = Intent(activity, RecorderService::class.java)
             activity.stopService(intent)
             if (connection != null) activity.unbindService(connection)
         }

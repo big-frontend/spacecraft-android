@@ -6,24 +6,42 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 public abstract class AbsPermissionsActivity extends AppCompatActivity {
-    private String[] mPermissions = new String[]{
-            Manifest.permission.ACCESS_MEDIA_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE,
-            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.INTERNET, Manifest.permission.ACCESS_NETWORK_STATE,
-            Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.CHANGE_WIFI_MULTICAST_STATE,Manifest.permission.CHANGE_WIFI_STATE,
-            Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN,/* Manifest.permission.BLUETOOTH_PRIVILEGED,*/
-            Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS,
-            Manifest.permission.RECEIVE_BOOT_COMPLETED,
-            Manifest.permission.RECORD_AUDIO,
+    private List<String> mPermissions = new ArrayList<String>() {
+        {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                add(Manifest.permission.ACCESS_MEDIA_LOCATION);
+                add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+                add(Manifest.permission.FOREGROUND_SERVICE);
+                add(Manifest.permission.READ_PHONE_NUMBERS);
+            }
+            add(Manifest.permission.ACCESS_FINE_LOCATION);
+            add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            add(Manifest.permission.READ_PHONE_STATE);
+            add(Manifest.permission.INTERNET);
+            add(Manifest.permission.ACCESS_NETWORK_STATE);
+            add(Manifest.permission.ACCESS_WIFI_STATE);
+            add(Manifest.permission.CHANGE_WIFI_MULTICAST_STATE);
+            add(Manifest.permission.CHANGE_WIFI_STATE);
+            add(Manifest.permission.BLUETOOTH);
+            add(Manifest.permission.BLUETOOTH_ADMIN);/* Manifest.permission.BLUETOOTH_PRIVILEGED,*/
+            add(Manifest.permission.RECEIVE_BOOT_COMPLETED);
+            add(Manifest.permission.RECORD_AUDIO);
+            add(Manifest.permission.CAMERA);
+        }
 
     };
+    private List<String> mFailurePermissions = new ArrayList<String>();
     private int mPermissionRequestCount = 0;
     private static final int MAX_NUMBER_REQUEST_PERMISSIONS = 2;
     private static final int REQUEST_CODE_PERMISSIONS = 101;
@@ -50,8 +68,12 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
                 ++mPermissionRequestCount;
                 requestPermission();
             } else {
-                Toast.makeText(this, "Go to Settings -> Apps and Notifications -> WorkManager Demo -> App Permissions\n" +
-                        "        and grant access to Storage.", Toast.LENGTH_LONG).show();
+                StringBuffer sb = new StringBuffer();
+                for (String p : mFailurePermissions) {
+                    sb.append(p);
+                    sb.append('\n');
+                }
+                Toast.makeText(this, "need permission:" + sb, Toast.LENGTH_LONG).show();
             }
         } else {
             onRequestPermissionsResult();
@@ -62,6 +84,9 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
         boolean hasPermission = true;
         for (String permission : mPermissions) {
             boolean b = (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED);
+            if (!b) {
+                mFailurePermissions.add(permission);
+            }
             hasPermission &= b;
         }
         return hasPermission;
@@ -69,7 +94,12 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
 
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(mPermissions, REQUEST_CODE_PERMISSIONS);
+            int size = mPermissions.size();
+            String[] a = new String[size];
+            for (int i = 0; i < size; ++i) {
+                a[i] = mPermissions.get(i);
+            }
+            requestPermissions(a, REQUEST_CODE_PERMISSIONS);
         }
     }
 
@@ -80,5 +110,6 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
             requestPermissionsIfNecessary();
         }
     }
+
     abstract protected void onRequestPermissionsResult();
 }

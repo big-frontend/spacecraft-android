@@ -4,11 +4,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <application>
-        <activity android:name=".RecoderActivity" />
+        <activity android:name=".RecorderActivity" />
         <service
             android:foregroundServiceType="mediaProjection"
-            android:name=".RecoderService"
+            android:name=".RecorderService"
             />
         <activity
             android:name="com.hawksjamesf.av.VideoActivity"
