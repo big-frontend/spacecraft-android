@@ -49,7 +49,6 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
     private State mTargetState = State.IDLE;
     private Uri mUri;
     private Map<String, String> mHeaders;
-
     private int mAudioSessionId;
     private AudioAttributes mAudioAttributes;
     private MediaPlayer mMediaPlayer;
@@ -291,7 +290,6 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
 
             if (mSurfaceHolder != null) {
                 mSurfaceHolder.setFixedSize(width, height);
-
             }
         }
         mUIHandler.post(new Runnable() {
@@ -586,7 +584,7 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         }
     }
 
-    public int getCurrentPositiono() {
+    public int getCurrentPosition() {
         if (isInPlaybackState()) {
             return mMediaPlayer.getCurrentPosition();
         } else {
@@ -681,29 +679,5 @@ public class VideoPlayer implements MediaPlayer.OnVideoSizeChangedListener,
         }
     }
 
-    /**
-     * @param context
-     * @param resid   R.raw.xxx
-     * @return
-     */
-    public static VideoPlayer create(Context context, @RawRes int resid) {
-        try {
-            VideoPlayer videoPlayer = new VideoPlayer(context);
-            AssetFileDescriptor afd = context.getResources().openRawResourceFd(resid);
-            if (afd == null) return null;
-            videoPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-            return videoPlayer;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static VideoPlayer create(Context context, Uri uri) {
-        VideoPlayer videoPlayer = new VideoPlayer(context);
-        videoPlayer.setDataSource(uri);
-        return videoPlayer;
-    }
     //</editor-fold>
 }

@@ -1,6 +1,10 @@
 package com.hawksjamesf.av
 
+import android.content.Context
 import android.media.MediaRecorder
+import android.net.Uri
+import androidx.annotation.RawRes
+import java.io.IOException
 
 /**
  * Copyright ® $ 2017
@@ -22,4 +26,24 @@ class AudioRecorder {
         recorder.reset();   // You can reuse the object by going back to setAudioSource() step
         recorder.release(); // Now the object cannot be reused
     }
+
+    /**
+     * @param context
+     * @param resid   R.raw.xxx
+     * @return
+     */
+//    @Throws(IOException::class)
+//    fun create(context: Context, @RawRes resid: Int): VideoRecorder {
+//        val videoPlayer = VideoRecorder(context)
+//        val afd = context.resources.openRawResourceFd(resid) ?: return videoPlayer
+//        videoPlayer.setOutput(afd.fileDescriptor, afd.startOffset, afd.length)
+//        afd.close()
+//        return videoPlayer
+//    }
+
+//    fun create(context: Context, uri: Uri): VideoRecorder {
+//        val videoPlayer = VideoRecorder(context)
+////        videoPlayer.setOutput(uri)
+//        return videoPlayer
+//    }
 }

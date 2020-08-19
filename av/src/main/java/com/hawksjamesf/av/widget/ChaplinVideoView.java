@@ -20,7 +20,10 @@ import com.hawksjamesf.av.ScaleType;
 import com.hawksjamesf.av.State;
 import com.hawksjamesf.av.VideoPlayer;
 
+import java.io.File;
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Map;
 
 import androidx.annotation.RawRes;
@@ -300,9 +303,26 @@ public class ChaplinVideoView extends FrameLayout {
 
 
     //<editor-fold desc="开放的接口，API">
+    public ChaplinVideoView setDataSourceAndPlay(final File file) {
+        return setDataSourceAndPlay(file, true);
+    }
+
+    public ChaplinVideoView setDataSourceAndPlay(final File file, boolean autoPlay) {
+        try {
+            FileDescriptor fd = new FileInputStream(file).getFD();
+            mMPForTexture.setDataSource(fd, 0, file.length());
+            if (autoPlay) {
+//        mMPForSurface.start();
+                mMPForTexture.start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
     public ChaplinVideoView setDataSourceAndPlay(final Uri uri) {
         return setDataSourceAndPlay(uri, null, true);
-
     }
 
     public ChaplinVideoView setDataSourceAndPlay(final Uri uri, boolean autoPlay) {

@@ -4,11 +4,19 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.media.projection.MediaProjectionManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
+import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recoder.*
 import java.io.File
-import kotlin.concurrent.thread
+import java.lang.IllegalArgumentException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -30,7 +38,6 @@ class RecorderActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recoder)
-        val recoder = Recorder
         mMediaProjectionManager = applicationContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         rg_type.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
@@ -42,27 +49,30 @@ class RecorderActivity : Activity() {
                 }
             }
         }
-        val videoRecoder = VideoRecorder(this@RecorderActivity)
-        videoRecoder.bindSurfaceView(sv_preview)
-        bt_start_recoding.setOnClickListener { theView ->
-//            requestMediaProjection()
-//           thread {
-               videoRecoder.start()
-//           }
+        var outputFile = File(getExternalFilesDir(null), "video.mp4")
+        if (!outputFile.exists()) {
+            outputFile.createNewFile()
         }
-        bt_stop_recoding.setOnClickListener { theView ->
-//            RecorderService.stopService(this)
-//            progress.visibility = View.GONE
-            thread {
-
+        val videoRecoder = VideoRecorder.createAndBindCameraFacingBack(this,  sv_preview)
+                .setOutput(outputFile)
+        bt_start_recoding_camera.setOnClickListener { theView ->
+            videoRecoder.start()
+        }
+        bt_stop_recoding_camera.setOnClickListener { theView ->
+            Toast.makeText(this@RecorderActivity, "file size: ${outputFile.length()}", Toast.LENGTH_LONG).show()
             videoRecoder.stop()
-            }
+        }
+        bt_start_recoding_sceen.setOnClickListener { theView ->
+            requestMediaProjection()
+        }
+        bt_stop_recoding_sceen.setOnClickListener { theView ->
+            RecorderService.stopService(this)
+
         }
         bt_play.setOnClickListener { theView ->
-//            clv_video.setVideoPath()
-            File(filesDir.absolutePath, "video.mp4").absolutePath
-            clv_video.setDataSourceAndPlay(R.raw.wechatsight1)
-//            bt_play.setText( "size:${recoder.fileSize()} ")
+            clv_video.setDataSourceAndPlay(outputFile)
+//        vv_video.setVideoPath(outputFile.absolutePath)
+//            vv_video.start()
         }
 
     }
@@ -79,7 +89,6 @@ class RecorderActivity : Activity() {
             service.putExtra("code", resultCode)
             service.putExtra("data", data)
             RecorderService.startService(this, service)
-            progress.visibility = View.VISIBLE
         }
     }
 
@@ -88,6 +97,33 @@ class RecorderActivity : Activity() {
 
     }
 
+    private fun getOutputMediaFile(type: Int): File {
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+
+        val mediaStorageDir = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "MyCameraApp"
+        )
+        mediaStorageDir.apply {
+            if (!exists()) {
+                if (!mkdirs()) {
+                    throw  IllegalArgumentException("failed to create directory")
+                }
+            }
+        }
+
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        return when (type) {
+            MEDIA_TYPE_IMAGE -> {
+                File("${mediaStorageDir.path}${File.separator}IMG_$timeStamp.jpg")
+            }
+            MEDIA_TYPE_VIDEO -> {
+                File("${mediaStorageDir.path}${File.separator}VID_$timeStamp.mp4")
+            }
+            else -> throw  IllegalArgumentException("no tyep")
+        }
+    }
 
 
 }

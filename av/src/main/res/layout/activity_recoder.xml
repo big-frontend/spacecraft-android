@@ -1,85 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-    <RadioGroup
-        android:id="@+id/rg_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rb_audio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="audio" />
-
-        <RadioButton
-            android:id="@+id/rb_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="video" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/bt_start_recoding"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="start recoding"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/bt_stop_recoding"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="stop recoding"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/bt_play"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="start playing"
-            android:textAllCaps="false" />
-    </LinearLayout>
-
-    <!--    <SeekBar-->
-    <!--        android:id="@+id/sb_process"-->
-    <!--        android:layout_width="100dp"-->
-    <!--        android:layout_height="100dp"-->
-    <!--        android:max="1000"-->
-    <!--        android:min="0"-->
-    <!--        android:progress="200" />-->
-    <ProgressBar
-        android:id="@android:id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:indeterminate="false" />
-    <!--        style="?android:attr/progressBarStyleHorizontal"-->
-<!--    <VideoView-->
-<!--        android:id="@+id/vv_video"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
-    <com.hawksjamesf.av.widget.ChaplinVideoView
-        android:id="@+id/clv_video"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
     <SurfaceView
         android:id="@+id/sv_preview"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:keepScreenOn="true" />
+    <!--    <TextureView-->
+    <!--        android:id="@+id/sv_preview"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"/>-->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rg_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_audio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="audio" />
+
+            <RadioButton
+                android:id="@+id/rb_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="video" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_start_recoding_camera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="start recoding camera"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt_stop_recoding_camera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="stop recoding camera"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt_start_recoding_sceen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="start recoding screen "
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/bt_stop_recoding_sceen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="stop recoding screen "
+                android:textAllCaps="false" />
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/bt_play"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="start playing"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!--    <SeekBar-->
+        <!--        android:id="@+id/sb_process"-->
+        <!--        android:layout_width="100dp"-->
+        <!--        android:layout_height="100dp"-->
+        <!--        android:max="1000"-->
+        <!--        android:min="0"-->
+        <!--        android:progress="200" />-->
+
+<!--        <VideoView-->
+<!--            android:id="@+id/vv_video"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp" />-->
+        <com.hawksjamesf.av.widget.ChaplinVideoView
+            android:id="@+id/clv_video"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
