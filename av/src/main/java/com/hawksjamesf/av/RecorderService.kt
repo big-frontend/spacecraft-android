@@ -6,20 +6,27 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.graphics.Color
-import android.hardware.display.DisplayManager
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
+import android.net.LocalServerSocket
+import android.net.LocalSocket
+import android.net.LocalSocketAddress
 import android.os.*
 import android.util.Log
 import android.widget.Toast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
+import java.io.IOException
+
 
 class RecorderService : Service() {
     lateinit var notificationManager: NotificationManager
     lateinit var mediaProjectionManager: MediaProjectionManager
     lateinit var mediaProjection: MediaProjection
 
-//    val recoder = Recorder
+    //    val recoder = Recorder
     lateinit var screenRecoder: VideoRecorder
     private val mProjectionCallback: MediaProjection.Callback = object : MediaProjection.Callback() {
         override fun onStop() {
@@ -32,7 +39,9 @@ class RecorderService : Service() {
             when (msg.what) {
                 MSG_START -> {
                     Log.d("cjf", "start...")
-//                    recoder.start()
+                    var outputFile = File(getExternalFilesDir(null), "video.mp4")
+                    screenRecoder = VideoRecorder.createAndBindScreen(this@RecorderService, mediaProjection, outputFile)
+                    screenRecoder.start()
                 }
                 MSG_STOP -> {
                     Log.d("cjf", "stop...")
@@ -40,6 +49,7 @@ class RecorderService : Service() {
 //                    recoder.release()
                     mediaProjection?.stop()
                     mediaProjection?.unregisterCallback(mProjectionCallback)
+                    screenRecoder.stop()
                 }
 
             }
@@ -102,10 +112,7 @@ class RecorderService : Service() {
 //            val display = this.mediaProjection?.createVirtualDisplay("jfc", 1080, 1920, 1, DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC, null, null, null)
 //            recoder.setOutput(File(filesDir.absolutePath, "video.mp4"))
 //            recoder.setDisplay(display)
-//            start()
-            var outputFile = File(getExternalFilesDir(null), "video.mp4")
-            screenRecoder = VideoRecorder.createAndBindScreen(this, mediaProjection,outputFile)
-            screenRecoder.start()
+            start()
 
         }
         return super.onStartCommand(intent, flags, startId)
@@ -114,7 +121,6 @@ class RecorderService : Service() {
 
     override fun onDestroy() {
         stop()
-        screenRecoder.stop()
         Toast.makeText(this, "stop & unbind service", Toast.LENGTH_SHORT).show()
     }
 
