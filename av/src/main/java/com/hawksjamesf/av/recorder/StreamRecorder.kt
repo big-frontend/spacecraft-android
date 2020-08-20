@@ -1,9 +1,10 @@
-package com.hawksjamesf.av
+package com.hawksjamesf.av.recorder
 
 import android.hardware.display.VirtualDisplay
 import android.media.*
 import android.util.Log
 import android.view.Surface
+import com.hawksjamesf.av.writeFully
 import java.io.File
 import java.io.FileDescriptor
 import java.io.IOException
@@ -19,20 +20,26 @@ import java.nio.ShortBuffer
  * @author: hawks.jamesf
  * @since: Aug/15/2020  Sat
  */
-object Recorder {
+class StreamRecorder : Recorder {
+    companion object {
 
-    private const val DEFAULT_I_FRAME_INTERVAL = 10 // seconds
-    private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
-    private const val KEY_MAX_FPS_TO_ENCODER = "max-fps-to-encoder"
-    private const val OK = 0
-    private const val ERROR_INPUT_INVALID = 100
-    private const val ERROR_OUTPUT_FAILED = 200
-    private const val ERROR_OPEN_CODEC = 300
+        private const val DEFAULT_I_FRAME_INTERVAL = 10 // seconds
+        private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
+        private const val KEY_MAX_FPS_TO_ENCODER = "max-fps-to-encoder"
+        private const val OK = 0
+        private const val ERROR_INPUT_INVALID = 100
+        private const val ERROR_OUTPUT_FAILED = 200
+        private const val ERROR_OPEN_CODEC = 300
+    }
 
 
     private lateinit var display: VirtualDisplay
     private lateinit var surface: Surface
     private lateinit var outputFile: File
+    fun setOutput(outputfd: FileDescriptor) {
+
+    }
+
     fun setOutput(outputPath: String) = setOutput(File(outputPath))
     fun setOutput(outputFile: File) {
         if (!outputFile.exists()) {

@@ -17,6 +17,7 @@ import android.view.TextureView
 import android.view.WindowManager
 import androidx.annotation.AnyThread
 import androidx.annotation.RequiresApi
+import com.hawksjamesf.av.recorder.StreamRecorder
 import java.io.File
 import java.io.FileDescriptor
 
@@ -84,6 +85,7 @@ class VideoRecorder constructor(val context: Context)
     }
 
     private val mMediaRecorder: MediaRecorder = MediaRecorder()
+    private val mStreamRecoder = StreamRecorder()
     private var mCameraId: Int = -1
     private val mCamera: Camera? by lazy {
         return@lazy try {
@@ -110,23 +112,29 @@ class VideoRecorder constructor(val context: Context)
 
     private fun bindScreen(mediaProjection: MediaProjection) {
         mMediaProjection = mediaProjection
-        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
-        mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE)
         val width = getScreenWidth()
         val height = getScreenHeight()
-        val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
-        profile.videoFrameWidth = width
-        profile.videoFrameHeight = height
-        mMediaRecorder.setProfile(profile)
+        val dpi = getScreenDensityDpi()
         if (mOutputFile != null) {
+            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
+            mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE)
+
+            val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
+            profile.videoFrameWidth = width
+            profile.videoFrameHeight = height
+            mMediaRecorder.setProfile(profile)
             mMediaRecorder.setOutputFile(mOutputFile!!.absolutePath)
+            mMediaRecorder.prepare()
+            val virtualDisplay = mMediaProjection.createVirtualDisplay(
+                    "MainScreen", width, height, dpi,
+                    DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, mMediaRecorder.surface,
+                    null, null)
         } else if (mOutputfd != null) {
-            mMediaRecorder.setOutputFile(mOutputfd)
+            val display = mMediaProjection.createVirtualDisplay("MainScreen", width, height, dpi, DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC, null, null, null)
+            mStreamRecoder.setOutput(mOutputfd!!)
+            mStreamRecoder.setDisplay(display)
         }
-        //                setVideoFrameRate()
-        mMediaRecorder.prepare()
-        val virtualDisplay = mMediaProjection.createVirtualDisplay("MainScreen", width, height, getScreenDensityDpi(),
-                DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, mMediaRecorder.surface, null, null)
+
 
     }
 
@@ -248,6 +256,7 @@ class VideoRecorder constructor(val context: Context)
 
     @AnyThread
     fun stop() {
+        mMediaProjection.stop()
         mMediaRecorder.stop()
         mMediaRecorder.release()
         if (mCameraId != -1) {

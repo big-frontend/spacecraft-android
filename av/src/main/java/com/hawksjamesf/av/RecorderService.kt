@@ -8,28 +8,22 @@ import android.content.ServiceConnection
 import android.graphics.Color
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
-import android.net.LocalServerSocket
-import android.net.LocalSocket
-import android.net.LocalSocketAddress
 import android.os.*
 import android.util.Log
 import android.widget.Toast
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.io.File
-import java.io.IOException
 
 
 class RecorderService : Service() {
     lateinit var notificationManager: NotificationManager
     lateinit var mediaProjectionManager: MediaProjectionManager
-    lateinit var mediaProjection: MediaProjection
+    var mediaProjection: MediaProjection? = null
 
-    //    val recoder = Recorder
+
     lateinit var screenRecoder: VideoRecorder
     private val mProjectionCallback: MediaProjection.Callback = object : MediaProjection.Callback() {
         override fun onStop() {
+            //todo:refresh ui
         }
     }
     val handlerThread = HandlerThread("handler_thread")
@@ -39,15 +33,12 @@ class RecorderService : Service() {
             when (msg.what) {
                 MSG_START -> {
                     Log.d("cjf", "start...")
-                    var outputFile = File(getExternalFilesDir(null), "video.mp4")
-                    screenRecoder = VideoRecorder.createAndBindScreen(this@RecorderService, mediaProjection, outputFile)
                     screenRecoder.start()
                 }
                 MSG_STOP -> {
                     Log.d("cjf", "stop...")
 //                    recoder.stop()
 //                    recoder.release()
-                    mediaProjection?.stop()
                     mediaProjection?.unregisterCallback(mProjectionCallback)
                     screenRecoder.stop()
                 }
@@ -104,17 +95,16 @@ class RecorderService : Service() {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         val resultCode = intent.getIntExtra("code", -1)
         val data = intent.getParcelableExtra<Intent>("data")
-        val mediaProjection: MediaProjection? = mediaProjectionManager.getMediaProjection(resultCode, data)
-        if (mediaProjection != null) {
+        mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)?.apply {
+            registerCallback(mProjectionCallback, Handler())
 
-            this.mediaProjection = mediaProjection
-            this.mediaProjection?.registerCallback(mProjectionCallback, Handler())
-//            val display = this.mediaProjection?.createVirtualDisplay("jfc", 1080, 1920, 1, DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC, null, null, null)
-//            recoder.setOutput(File(filesDir.absolutePath, "video.mp4"))
-//            recoder.setDisplay(display)
+            val outputFile = File(getExternalFilesDir(null), "video.mp4")
+            val connect = DesktopConnection.connect(DesktopConnection.SOCKET_NAME)
+            screenRecoder = VideoRecorder.createAndBindScreen(this@RecorderService, this, connect.fileDescriptor)
+//            screenRecoder = VideoRecorder.createAndBindScreen(this@RecorderService, this, outputFile)
             start()
-
         }
+
         return super.onStartCommand(intent, flags, startId)
     }
 

@@ -18,9 +18,9 @@ class DesktopConnection(
 
 ) : Closeable {
     companion object{
-        private const val SOCKET_NAME = "river"
+         const val SOCKET_NAME = "river"
         @Throws(IOException::class)
-        private fun connect(abstractName: String): LocalSocket {
+        fun connect(abstractName: String): LocalSocket {
             val localSocket = LocalSocket()
             localSocket.connect(LocalSocketAddress(abstractName))
             return localSocket
