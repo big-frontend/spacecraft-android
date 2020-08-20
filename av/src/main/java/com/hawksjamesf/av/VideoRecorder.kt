@@ -37,6 +37,12 @@ class VideoRecorder constructor(val context: Context)
             screenRecorder.bindScreen(mediaProjection)
             return screenRecorder
         }
+        fun createAndBindScreen(context: Context, mediaProjection: MediaProjection, outputfd: FileDescriptor): VideoRecorder {
+            val screenRecorder = VideoRecorder(context)
+            screenRecorder.setOutput(outputfd)
+            screenRecorder.bindScreen(mediaProjection)
+            return screenRecorder
+        }
 
         fun createAndBindCameraFacingBack(context: Context,
                                           surfaceView: SurfaceView) =
@@ -297,7 +303,7 @@ class VideoRecorder constructor(val context: Context)
         return point.y
     }
 
-    fun getScreenDensityDpi(): Int {
+    private fun getScreenDensityDpi(): Int {
         return Resources.getSystem().displayMetrics.densityDpi
     }
 
