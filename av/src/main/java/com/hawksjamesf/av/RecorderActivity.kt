@@ -53,8 +53,7 @@ class RecorderActivity : Activity() {
         if (!outputFile.exists()) {
             outputFile.createNewFile()
         }
-        val videoRecoder = VideoRecorder.createAndBindCameraFacingBack(this,  sv_preview)
-                .setOutput(outputFile)
+        val videoRecoder = VideoRecorder.createAndBindCameraFacingBack(this,outputFile,  sv_preview)
         bt_start_recoding_camera.setOnClickListener { theView ->
             videoRecoder.start()
         }

@@ -11,11 +11,12 @@ import android.media.MediaRecorder
 import android.media.projection.MediaProjection
 import android.os.Build
 import android.util.Log
-import android.view.*
+import android.view.SurfaceHolder
+import android.view.SurfaceView
+import android.view.TextureView
+import android.view.WindowManager
 import androidx.annotation.AnyThread
 import androidx.annotation.RequiresApi
-import com.blankj.utilcode.util.ScreenUtils
-import com.blankj.utilcode.util.Utils
 import java.io.File
 import java.io.FileDescriptor
 
@@ -37,6 +38,7 @@ class VideoRecorder constructor(val context: Context)
             screenRecorder.bindScreen(mediaProjection)
             return screenRecorder
         }
+
         fun createAndBindScreen(context: Context, mediaProjection: MediaProjection, outputfd: FileDescriptor): VideoRecorder {
             val screenRecorder = VideoRecorder(context)
             screenRecorder.setOutput(outputfd)
@@ -44,38 +46,40 @@ class VideoRecorder constructor(val context: Context)
             return screenRecorder
         }
 
-        fun createAndBindCameraFacingBack(context: Context,
+        fun createAndBindCameraFacingBack(context: Context, outputFile: File,
                                           surfaceView: SurfaceView) =
-                createAndBind(context,
+                createAndBind(context, outputFile,
                         surfaceView = surfaceView,
                         cameraId = Camera.CameraInfo.CAMERA_FACING_BACK)
 
-        fun createAndBindCameraFacingBack(context: Context,
+        fun createAndBindCameraFacingBack(context: Context, outputFile: File,
                                           textureView: TextureView) =
-                createAndBind(context,
+                createAndBind(context, outputFile,
                         textureView = textureView,
                         cameraId = Camera.CameraInfo.CAMERA_FACING_BACK)
 
-        fun createAndBindCameraFacingFront(context: Context,
+        fun createAndBindCameraFacingFront(context: Context, outputFile: File,
                                            surfaceView: SurfaceView) =
-                createAndBind(context,
+                createAndBind(context, outputFile,
                         surfaceView = surfaceView,
                         cameraId = Camera.CameraInfo.CAMERA_FACING_FRONT)
 
-        fun createAndBindCameraFacingFront(context: Context,
+        fun createAndBindCameraFacingFront(context: Context, outputFile: File,
                                            textureView: TextureView) =
-                createAndBind(context,
+                createAndBind(context, outputFile,
                         textureView = textureView,
                         cameraId = Camera.CameraInfo.CAMERA_FACING_FRONT)
 
-        private fun createAndBind(context: Context, surfaceView: SurfaceView? = null, textureView: TextureView? = null, cameraId: Int): VideoRecorder {
-            val recorder = VideoRecorder(context)
+        private fun createAndBind(context: Context, outputFile: File,
+                                  surfaceView: SurfaceView? = null, textureView: TextureView? = null,
+                                  cameraId: Int
+        ) = VideoRecorder(context).apply {
+            setOutput(outputFile)
             if (textureView != null) {
-                recorder.bindTextureView(textureView, cameraId)
+                bindTextureView(textureView, cameraId)
             } else if (surfaceView != null) {
-                recorder.bindSurfaceView(surfaceView, cameraId)
+                bindSurfaceView(surfaceView, cameraId)
             }
-            return recorder
         }
     }
 
@@ -106,7 +110,8 @@ class VideoRecorder constructor(val context: Context)
 
     private fun bindScreen(mediaProjection: MediaProjection) {
         mMediaProjection = mediaProjection
-        config()
+        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
+        mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE)
         val width = getScreenWidth()
         val height = getScreenHeight()
         val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
@@ -150,21 +155,11 @@ class VideoRecorder constructor(val context: Context)
 
     }
 
-    private fun config() {
-        if (mCameraId != -1) {
-            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
-            mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA)
-        } else {
-            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
-            mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE)
-        }
-
-    }
-
-
     override fun surfaceCreated(holder: SurfaceHolder) {
-        Log.d(TAG, "surfaceCreated");
+        Log.d(TAG, "surfaceCreated")
+        if (mCameraId == -1) return
         mSurfaceHolder = holder
+
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
@@ -174,28 +169,12 @@ class VideoRecorder constructor(val context: Context)
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
         Log.d(TAG, "surfaceChanged format:" + format + "--->surface size:" + width + "/" + height)
+        if (mCameraId == -1) return
         mSurfaceHolder = holder
-        if (mCameraId != -1) {
-            holder?.let { mCamera?.restartPreview(it) }
-        }
-        config()
+        mCamera?.restartPreview(holder)
         val optimalVideoSize = getOptimalVideoSize(mSupportedVideoSizes, mSupportedPreviewSizes, width, height)
         val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
-        profile.videoFrameWidth = optimalVideoSize?.width ?: 0
-        profile.videoFrameHeight = optimalVideoSize?.height ?: 0
-//        parameters.setPreviewSize(profile.videoFrameWidth, profile.videoFrameHeight);
-//        mCamera?.setParameters(parameters);
-
-        mMediaRecorder.setProfile(profile)
-        if (mOutputFile != null) {
-            mMediaRecorder.setOutputFile(mOutputFile!!.absolutePath)
-        } else if (mOutputfd != null) {
-            mMediaRecorder.setOutputFile(mOutputfd)
-        }
-//            mMediaRecorder.setVideoSize(width, height)
-        //                setVideoFrameRate()
-//        mMediaRecorder.setPreviewDisplay(Surface(mSurfaceTexture))
-        mMediaRecorder.prepare()
+        mMediaRecorder.initial2prepare(profile, mOutputFile, mOutputfd)
     }
 
     override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture?, width: Int, height: Int) {
@@ -217,24 +196,31 @@ class VideoRecorder constructor(val context: Context)
         if (mCameraId != -1) {
             surface?.let { mCamera?.restartPreview(it) }
         }
-        config()
         val optimalVideoSize = getOptimalVideoSize(mSupportedVideoSizes, mSupportedPreviewSizes, width, height)
-        val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
-//        profile.videoFrameWidth = optimalVideoSize?.width ?: 0
+        //        profile.videoFrameWidth = optimalVideoSize?.width ?: 0
 //        profile.videoFrameHeight = optimalVideoSize?.height ?: 0
 //        parameters.setPreviewSize(profile.videoFrameWidth, profile.videoFrameHeight);
 //        mCamera?.setParameters(parameters);
+        val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
+        mMediaRecorder.initial2prepare(profile, mOutputFile, mOutputfd)
 
-        mMediaRecorder.setProfile(profile)
-        if (mOutputFile != null) {
-            mMediaRecorder.setOutputFile(mOutputFile!!.absolutePath)
-        } else if (mOutputfd != null) {
-            mMediaRecorder.setOutputFile(mOutputfd)
+    }
+
+    private fun MediaRecorder?.initial2prepare(profile: CamcorderProfile,
+                                               outputFile: File?, outputfd: FileDescriptor?) {
+        if (this == null) return
+        reset()
+        setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
+        setVideoSource(MediaRecorder.VideoSource.CAMERA)
+        setProfile(profile)
+        if (outputFile != null) {
+            setOutputFile(outputFile.absolutePath)
+        } else if (outputfd != null) {
+            setOutputFile(outputfd)
         }
-//            mMediaRecorder.setVideoSize(width, height)
-        //                setVideoFrameRate()
-//        mMediaRecorder.setPreviewDisplay(Surface(mSurfaceTexture))
-        mMediaRecorder.prepare()
+//        setPreviewDisplay(Surface(mSurfaceTexture))
+        prepare()
+
     }
 
     override fun onError(mr: MediaRecorder?, what: Int, extra: Int) {
@@ -280,26 +266,16 @@ class VideoRecorder constructor(val context: Context)
     }
 
     private fun getScreenWidth(): Int {
-        val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
-                ?: return -1
+        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val point = Point()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            wm.defaultDisplay.getRealSize(point)
-        } else {
-            wm.defaultDisplay.getSize(point)
-        }
+        wm.defaultDisplay.getRealSize(point)
         return point.x
     }
 
     private fun getScreenHeight(): Int {
-        val wm = Utils.getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
-                ?: return -1
+        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val point = Point()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            wm.defaultDisplay.getRealSize(point)
-        } else {
-            wm.defaultDisplay.getSize(point)
-        }
+        wm.defaultDisplay.getRealSize(point)
         return point.y
     }
 
