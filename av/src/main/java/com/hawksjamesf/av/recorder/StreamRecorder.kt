@@ -1,13 +1,13 @@
 package com.hawksjamesf.av.recorder
 
 import android.hardware.display.VirtualDisplay
-import android.media.*
+import android.media.MediaCodec
+import android.media.MediaCodecInfo
+import android.media.MediaFormat
 import android.util.Log
 import android.view.Surface
 import com.hawksjamesf.av.writeFully
-import java.io.File
 import java.io.FileDescriptor
-import java.io.IOException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.ShortBuffer
@@ -22,44 +22,20 @@ import java.nio.ShortBuffer
  */
 class StreamRecorder : Recorder {
     companion object {
-
         private const val DEFAULT_I_FRAME_INTERVAL = 10 // seconds
         private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
         private const val KEY_MAX_FPS_TO_ENCODER = "max-fps-to-encoder"
-        private const val OK = 0
-        private const val ERROR_INPUT_INVALID = 100
-        private const val ERROR_OUTPUT_FAILED = 200
-        private const val ERROR_OPEN_CODEC = 300
     }
 
-
-    private lateinit var display: VirtualDisplay
-    private lateinit var surface: Surface
-    private lateinit var outputFile: File
-    fun setOutput(outputfd: FileDescriptor) {
-
+    private lateinit var outputfd: FileDescriptor
+    private lateinit var mCodec: MediaCodec
+    val surface:Surface by lazy {
+        mCodec.createInputSurface()
     }
-
-    fun setOutput(outputPath: String) = setOutput(File(outputPath))
-    fun setOutput(outputFile: File) {
-        if (!outputFile.exists()) {
-            outputFile.createNewFile()
-        }
-        this.outputFile = outputFile
+    private lateinit var mOutputFormat: MediaFormat
+    fun setOutput(outputfd: FileDescriptor) = apply {
+        this.outputfd = outputfd
     }
-
-    fun setDisplay(display: VirtualDisplay) {
-        surface = codec.createInputSurface()
-        display.surface = surface
-    }
-
-    var codec: MediaCodec
-
-    private var mOutputFormat: MediaFormat? = null
-    private val mMuxer: MediaMuxer by lazy {
-        MediaMuxer(outputFile.absolutePath, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
-    }
-
 
     init {
         val bitRate = 8
@@ -82,7 +58,7 @@ class StreamRecorder : Recorder {
             setInteger(MediaFormat.KEY_WIDTH, 1080)
             setInteger(MediaFormat.KEY_HEIGHT, 1920)
         }
-        codec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
+        mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        var codecList = MediaCodecList(MediaCodecList.REGULAR_CODECS)
 //         codecList = MediaCodecList(MediaCodecList.ALL_CODECS)
@@ -93,9 +69,8 @@ class StreamRecorder : Recorder {
 //        val findEncoderForFormat = codecList.findEncoderForFormat(f)
 //        MediaCodec.createByCodecName(findDecoderForFormat)
 //        asyncProcess(codec)
-        codec?.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
+        mCodec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
     }
-
 
     //Asynchronous Processing using Buffers
     private fun asyncProcess(codec: MediaCodec) {
@@ -126,6 +101,20 @@ class StreamRecorder : Recorder {
         })
     }
 
+    private fun getSamplesForChannel(codec: MediaCodec, bufferId: Int, channelIx: Int): ShortArray? {
+        val outputBuffer: ByteBuffer? = codec.getOutputBuffer(bufferId)
+        val format: MediaFormat = codec.getOutputFormat(bufferId)
+        val samples: ShortBuffer = outputBuffer?.order(ByteOrder.nativeOrder())?.asShortBuffer()!!
+        val numChannels: Int = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
+        if (channelIx < 0 || channelIx >= numChannels) {
+            return null
+        }
+        val res = ShortArray(samples.remaining() / numChannels)
+        for (i in res.indices) {
+            res[i] = samples.get(i * numChannels + channelIx)
+        }
+        return res
+    }
 
     //Synchronous Processing using Buffers
     private fun syncEncode(codec: MediaCodec, fd: FileDescriptor) {
@@ -148,104 +137,19 @@ class StreamRecorder : Recorder {
                 outputBufferId == MediaCodec.INFO_TRY_AGAIN_LATER -> {
                 }
             }
-
             eof = bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0
         }
     }
 
-
-    private fun syncDecode(codec: MediaCodec, fd: FileDescriptor) {
-        var eof = false
-        while (!eof) {
-            val inputBufferId = codec.dequeueInputBuffer(-1)
-//            eof = read(codec,fd,inputBufferId)
-        }
-    }
-
-    private fun read(codec: MediaCodec, fd: FileDescriptor, inputBufferId: Int) {
-        if (inputBufferId >= 0) {
-            val inputBuffer = codec.getInputBuffer(inputBufferId)
-            inputBuffer?.clear()
-//            readFully(fd, inputBuffer)
-            val sampleSize: Int = mExtractor.readSampleData(inputBuffer!!, 0)
-            if (sampleSize < 0) { //read end
-                codec.queueInputBuffer(inputBufferId, 0, 0, 0L,
-                        MediaCodec.BUFFER_FLAG_END_OF_STREAM)
-            } else {
-                codec.queueInputBuffer(inputBufferId, 0, sampleSize, mExtractor.getSampleTime(), 0)
-                mExtractor.advance()
-            }
-        }
-
-    }
-
-
-    private lateinit var mExtractor: MediaExtractor
-    private lateinit var mFormat: MediaFormat
-    private fun openInput(audioPath: String): Int {
-        var ret: Int
-//        if (OK !== checkPath(audioPath).also { ret = it }) {
-//            return ret
-//        }
-        mExtractor = MediaExtractor()
-        var audioTrack = -1
-        var hasAudio = false
-        try {
-            mExtractor.setDataSource(audioPath)
-            for (i in 0 until mExtractor.trackCount) {
-                val format: MediaFormat = mExtractor.getTrackFormat(i)
-                val mime = format.getString(MediaFormat.KEY_MIME)
-                if (mime.startsWith("audio/")) {
-                    audioTrack = i
-                    hasAudio = true
-                    mFormat = format
-                    break
-                }
-            }
-            if (!hasAudio) {
-                return ERROR_INPUT_INVALID
-            }
-            mExtractor.selectTrack(audioTrack)
-        } catch (e: IOException) {
-            return ERROR_INPUT_INVALID
-        }
-        return OK
-    }
-
-    private fun getSamplesForChannel(codec: MediaCodec, bufferId: Int, channelIx: Int): ShortArray? {
-        val outputBuffer: ByteBuffer? = codec.getOutputBuffer(bufferId)
-        val format: MediaFormat = codec.getOutputFormat(bufferId)
-        val samples: ShortBuffer = outputBuffer?.order(ByteOrder.nativeOrder())?.asShortBuffer()!!
-        val numChannels: Int = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
-        if (channelIx < 0 || channelIx >= numChannels) {
-            return null
-        }
-        val res = ShortArray(samples.remaining() / numChannels)
-        for (i in res.indices) {
-            res[i] = samples.get(i * numChannels + channelIx)
-        }
-        return res
-    }
-
     fun start() {
-        if (outputFile == null) return
-        codec.start()
-//        mMuxer.addTrack()
-//        mMuxer.start()
-        syncEncode(codec, outputFile?.outputStream()!!.fd)
+        mCodec.start()
+        syncEncode(mCodec, outputfd)
     }
 
-    fun fileSize() = outputFile?.length()
-
-    fun stop() = codec.stop()
+    fun stop() = mCodec.stop()
 
     fun release() {
-        surface.release()
-        display?.release()
-        codec.release()
-        outputFile?.deleteOnExit()
-        mMuxer.stop()
-        mMuxer.release()
+        mCodec.release()
     }
 
 
