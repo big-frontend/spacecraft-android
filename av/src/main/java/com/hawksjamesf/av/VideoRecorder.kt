@@ -155,32 +155,31 @@ class VideoRecorder constructor(val context: Context)
 
     private fun bindSurfaceView(surfaceView: SurfaceView, cameraId: Int) {
         mCameraId = cameraId
+        if (mCamera == null) return
         mSurfaceView = surfaceView
         mSurfaceView.holder.addCallback(this)
-        if (mCameraId != -1) {
-            val parameters = mCamera?.parameters
-            mSupportedVideoSizes = parameters!!.supportedVideoSizes
-            mSupportedPreviewSizes = parameters!!.supportedPreviewSizes
-            mMediaRecorder.setCamera(mCamera)
-        }
+        mMediaRecorder = MediaRecorder()
+        val parameters = mCamera?.parameters
+        mSupportedVideoSizes = parameters!!.supportedVideoSizes
+        mSupportedPreviewSizes = parameters!!.supportedPreviewSizes
+        mMediaRecorder.setCamera(mCamera)
     }
 
     private fun bindTextureView(textureView: TextureView, cameraId: Int) {
         mCameraId = cameraId
+        if (mCamera == null) return
         mTextureView = textureView
         mTextureView.surfaceTextureListener = this
-        if (mCameraId != -1) {
-            val parameters = mCamera?.parameters
-            mSupportedVideoSizes = parameters!!.supportedVideoSizes
-            mSupportedPreviewSizes = parameters!!.supportedPreviewSizes
-            mMediaRecorder.setCamera(mCamera)
-        }
+        mMediaRecorder = MediaRecorder()
+        val parameters = mCamera?.parameters
+        mSupportedVideoSizes = parameters!!.supportedVideoSizes
+        mSupportedPreviewSizes = parameters!!.supportedPreviewSizes
+        mMediaRecorder.setCamera(mCamera)
 
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
         Log.d(TAG, "surfaceCreated")
-        if (mCameraId == -1) return
         mSurfaceHolder = holder
 
     }
@@ -192,7 +191,6 @@ class VideoRecorder constructor(val context: Context)
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
         Log.d(TAG, "surfaceChanged format:" + format + "--->surface size:" + width + "/" + height)
-        if (mCameraId == -1) return
         mSurfaceHolder = holder
         mCamera?.restartPreview(holder)
         val optimalVideoSize = getOptimalVideoSize(mSupportedVideoSizes, mSupportedPreviewSizes, width, height)
@@ -216,9 +214,7 @@ class VideoRecorder constructor(val context: Context)
     override fun onSurfaceTextureAvailable(surface: SurfaceTexture?, width: Int, height: Int) {
         Log.d(TAG, "onSurfaceTextureAvailable");
         mSurfaceTexture = surface
-        if (mCameraId != -1) {
             surface?.let { mCamera?.restartPreview(it) }
-        }
         val optimalVideoSize = getOptimalVideoSize(mSupportedVideoSizes, mSupportedPreviewSizes, width, height)
         //        profile.videoFrameWidth = optimalVideoSize?.width ?: 0
 //        profile.videoFrameHeight = optimalVideoSize?.height ?: 0
