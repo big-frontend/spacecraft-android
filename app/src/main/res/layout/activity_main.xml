@@ -20,7 +20,6 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -75,6 +74,5 @@
         <!--android:background="?android:attr/windowBackground"-->
         <!--app:itemIconTint="@color/bottom_navigation_colors"-->
         <!--app:itemTextColor="@color/bottom_navigation_colors"-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.hawksjamesf.spacecraft.ui;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,11 +12,16 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
 
+import java.util.concurrent.TimeUnit;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Copyright ® $ 2017
@@ -32,7 +36,7 @@ public class SplashActivity extends AbsPermissionsActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private Trace myTrace;
     private HttpMetric mHttpMetric;
-    private FirebaseRemoteConfig mFirebaseRemoteConfig= App.getFirebaseRemoteConfig();
+    private FirebaseRemoteConfig mFirebaseRemoteConfig = App.getFirebaseRemoteConfig();
 
     @AddTrace(name = "_splashActivity_onCreate", enabled = true /* optional */)
     @Override
@@ -41,14 +45,17 @@ public class SplashActivity extends AbsPermissionsActivity {
         setContentView(R.layout.activity_splash);
 
     }
-    protected void onRequestPermissionsResult(){
-        Uri uri = Uri.parse("cjf://www.cjf.com/web");
-//        Uri uri = Uri.parse("https://i.meituan.com/c/ZDg0Y2FhNjMt");
-        Intent intent = new Intent(Intent.ACTION_VIEW,   uri);
-        intent.putExtra("url","https://i.meituan.com/c/ZDg0Y2FhNjMt");
-        startActivity(intent);
-//        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-        finish();
+
+    protected void onRequestPermissionsResult() {
+        Observable.timer(1, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        finish();
+                    }
+                });
+
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
 //        myTrace.start();r
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
