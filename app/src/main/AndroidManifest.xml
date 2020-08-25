@@ -86,13 +86,14 @@
             </intent-filter>
             <!--            launcher启动 end -->
             <!--            浏览器启动 start-->
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="hj"></data>
+                <data android:scheme="https" android:host="i.cjf.com" android:path="/home"/>
+                <data android:scheme="cjf" android:host="www.cjf.com" android:path="/home"/>
             </intent-filter>
             <!--            浏览器启动 end-->
             <!--            firebase app indexing启动 start-->
@@ -130,6 +131,16 @@
         <activity android:name="com.example.background.SelectImageActivity" />
         <activity android:name="com.example.background.FilterActivity" />
         <activity android:name=".vm.MVVMActivity" />
+        <activity android:name=".WebViewActivity" >
+            <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="cjf" android:host="www.cjf.com" android:path="/web"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

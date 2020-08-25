@@ -1,12 +1,10 @@
 package com.hawksjamesf.spacecraft.ui;
 
-import android.app.ActivityOptions;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,11 +13,11 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.hawksjamesf.av.RecorderActivity;
-import com.hawksjamesf.common.util.ActivityUtil;
-import com.hawksjamesf.map.MapActivity;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Copyright ® $ 2017
@@ -44,7 +42,12 @@ public class SplashActivity extends AbsPermissionsActivity {
 
     }
     protected void onRequestPermissionsResult(){
-        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+        Uri uri = Uri.parse("cjf://www.cjf.com/web");
+//        Uri uri = Uri.parse("https://i.meituan.com/c/ZDg0Y2FhNjMt");
+        Intent intent = new Intent(Intent.ACTION_VIEW,   uri);
+        intent.putExtra("url","http://www.baidu.com");
+        startActivity(intent);
+//        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
         finish();
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
 //        myTrace.start();r
