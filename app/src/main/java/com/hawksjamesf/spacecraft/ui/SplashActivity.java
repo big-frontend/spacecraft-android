@@ -45,7 +45,7 @@ public class SplashActivity extends AbsPermissionsActivity {
         Uri uri = Uri.parse("cjf://www.cjf.com/web");
 //        Uri uri = Uri.parse("https://i.meituan.com/c/ZDg0Y2FhNjMt");
         Intent intent = new Intent(Intent.ACTION_VIEW,   uri);
-        intent.putExtra("url","http://www.baidu.com");
+        intent.putExtra("url","https://i.meituan.com/c/ZDg0Y2FhNjMt");
         startActivity(intent);
 //        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
         finish();

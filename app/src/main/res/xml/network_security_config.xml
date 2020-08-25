@@ -4,6 +4,6 @@
         <domain includeSubdomains="true">android.bugly.qq.com</domain>
         <domain includeSubdomains="true">cdn.trojx.me</domain>
         <domain includeSubdomains="true">spacecraft.com</domain>
-        <domain includeSubdomains="true">www.baidu.com</domain>
+<!--        <domain includeSubdomains="true">www.baidu.com</domain>-->
     </domain-config>
 </network-security-config>
