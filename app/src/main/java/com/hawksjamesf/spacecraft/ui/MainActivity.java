@@ -51,8 +51,8 @@ public class MainActivity extends BaseActivity {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //        }
-//        Uri uri = Uri.parse("https://i.spacecraft.com/c/ZDg0Y2FhNjMt");
-        Uri uri = Uri.parse("https://i.meituan.com/c/ZDg0Y2FhNjMt");
+        Uri uri = Uri.parse("https://i.spacecraft.com/c/ZDg0Y2FhNjMt");
+//        Uri uri = Uri.parse("https://i.meituan.com/c/ZDg0Y2FhNjMt");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
         setContentView(R.layout.activity_main);

@@ -15,13 +15,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 public abstract class AbsPermissionsActivity extends AppCompatActivity {
-    private List<String> mPermissions = new ArrayList<String>() {
+    private final List<String> mPermissions = new ArrayList<String>() {
         {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                add(Manifest.permission.READ_PHONE_NUMBERS);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 add(Manifest.permission.ACCESS_MEDIA_LOCATION);
                 add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 add(Manifest.permission.FOREGROUND_SERVICE);
-                add(Manifest.permission.READ_PHONE_NUMBERS);
             }
             add(Manifest.permission.ACCESS_FINE_LOCATION);
             add(Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -41,7 +45,7 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
         }
 
     };
-    private List<String> mFailurePermissions = new ArrayList<String>();
+    private final List<String> mFailurePermissions = new ArrayList<String>();
     private int mPermissionRequestCount = 0;
     private static final int MAX_NUMBER_REQUEST_PERMISSIONS = 2;
     private static final int REQUEST_CODE_PERMISSIONS = 101;

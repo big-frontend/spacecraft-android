@@ -1,6 +1,6 @@
 package com.hawksjamesf.spacecraft.ui;
 
-import android.media.MediaExtractor;
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,12 +12,11 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.hawksjamesf.av.Formats;
-import com.hawksjamesf.av.MediaFileUtil;
+import com.hawksjamesf.av.RecorderActivity;
+import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.spacecraft.App;
 import com.hawksjamesf.spacecraft.R;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
@@ -55,8 +54,8 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-//                        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-//                        finish();
+                        ActivityUtil.startActivity(RecorderActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        finish();
                     }
                 });
 

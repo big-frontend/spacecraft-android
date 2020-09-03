@@ -4,8 +4,10 @@ import android.hardware.display.VirtualDisplay
 import android.media.MediaCodec
 import android.media.MediaCodecInfo
 import android.media.MediaFormat
+import android.media.MediaFormat.*
 import android.util.Log
 import android.view.Surface
+import com.blankj.utilcode.util.ScreenUtils
 import com.hawksjamesf.av.writeFully
 import java.io.FileDescriptor
 import java.nio.ByteBuffer
@@ -57,6 +59,8 @@ class StreamRecorder : Recorder {
             }
             setInteger(MediaFormat.KEY_WIDTH, 1080)
             setInteger(MediaFormat.KEY_HEIGHT, 1920)
+//            setInteger(MediaFormat.KEY_WIDTH, 576)
+//            setInteger(MediaFormat.KEY_HEIGHT, 1024)
         }
         mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
