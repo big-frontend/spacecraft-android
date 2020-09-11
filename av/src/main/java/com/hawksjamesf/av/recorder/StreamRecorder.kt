@@ -1,15 +1,13 @@
 package com.hawksjamesf.av.recorder
 
-import android.hardware.display.VirtualDisplay
 import android.media.MediaCodec
 import android.media.MediaCodecInfo
 import android.media.MediaFormat
-import android.media.MediaFormat.*
 import android.util.Log
 import android.view.Surface
-import com.blankj.utilcode.util.ScreenUtils
 import com.hawksjamesf.av.writeFully
 import java.io.FileDescriptor
+import java.io.IOException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.ShortBuffer
@@ -126,10 +124,12 @@ class StreamRecorder : Recorder {
         val bufferInfo = MediaCodec.BufferInfo()
         while (!eof) {
             val outputBufferId = codec.dequeueOutputBuffer(bufferInfo, -1)
+            eof = bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0
             when {
                 outputBufferId >= 0 -> {
                     val outputBuffer = codec.getOutputBuffer(outputBufferId)
                     val bufferFormat = codec.getOutputFormat(outputBufferId)
+                    writeFrameMeta(fd, bufferInfo, outputBuffer?.remaining()?:-1)
                     writeFully(fd, outputBuffer)
                     codec.releaseOutputBuffer(outputBufferId, false)
                 }
@@ -141,8 +141,29 @@ class StreamRecorder : Recorder {
                 outputBufferId == MediaCodec.INFO_TRY_AGAIN_LATER -> {
                 }
             }
-            eof = bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0
+
         }
+    }
+    private val headerBuffer = ByteBuffer.allocate(12)
+    private val NO_PTS = -1
+    private var ptsOrigin: Long = 0
+    @Throws(IOException::class)
+    private fun writeFrameMeta(fd: FileDescriptor, bufferInfo: MediaCodec.BufferInfo, packetSize: Int) {
+        headerBuffer.clear()
+        val pts: Long
+        if (bufferInfo.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0) {
+            pts = NO_PTS.toLong() // non-media data packet
+        } else {
+            if (ptsOrigin == 0L) {
+                ptsOrigin = bufferInfo.presentationTimeUs
+            }
+            pts = bufferInfo.presentationTimeUs - ptsOrigin
+        }
+        Log.d("cjf", "writeFrameMeta: $pts $packetSize")
+        headerBuffer.putLong(pts)
+        headerBuffer.putInt(packetSize)
+        headerBuffer.flip()
+        writeFully(fd, headerBuffer)
     }
 
     fun start() {
