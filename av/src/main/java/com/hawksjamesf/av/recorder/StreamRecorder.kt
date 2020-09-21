@@ -22,14 +22,17 @@ import java.nio.ShortBuffer
  */
 class StreamRecorder : Recorder {
     companion object {
-        private const val DEFAULT_I_FRAME_INTERVAL = 10 // seconds
+        private const val DEFAULT_I_FRAME_INTERVAL = 2 // seconds
         private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
+        private const val DEFAULT_MAX_FPS = 29
+        private const val DEFAULT_BIT_RATE = 2//Mbps=Mbits/s
+        private const val DEFAULT_FRAME_RATE = 60
         private const val KEY_MAX_FPS_TO_ENCODER = "max-fps-to-encoder"
     }
 
     private lateinit var outputfd: FileDescriptor
     private lateinit var mCodec: MediaCodec
-    val surface:Surface by lazy {
+    val surface: Surface by lazy {
         mCodec.createInputSurface()
     }
     private lateinit var mOutputFormat: MediaFormat
@@ -38,13 +41,15 @@ class StreamRecorder : Recorder {
     }
 
     init {
-        val bitRate = 8
-        val maxFps = 15
+
+        val bitRate = DEFAULT_BIT_RATE
+        val frameRate = DEFAULT_FRAME_RATE
+        val maxFps = DEFAULT_MAX_FPS
         val format = MediaFormat().apply {
             setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_AVC)
             setInteger(MediaFormat.KEY_BIT_RATE, bitRate)
             // must be present to configure the encoder, but does not impact the actual frame rate, which is variable
-            setInteger(MediaFormat.KEY_FRAME_RATE, 60)
+            setInteger(MediaFormat.KEY_FRAME_RATE, frameRate)
             setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface)
             setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, DEFAULT_I_FRAME_INTERVAL)
             // display the very first frame, and recover from bad quality when no new frames
@@ -55,10 +60,10 @@ class StreamRecorder : Recorder {
                 // <https://github.com/Genymobile/scrcpy/issues/488#issuecomment-567321437>
                 setFloat(KEY_MAX_FPS_TO_ENCODER, maxFps.toFloat())
             }
-            setInteger(MediaFormat.KEY_WIDTH, 1080)
-            setInteger(MediaFormat.KEY_HEIGHT, 1920)
-//            setInteger(MediaFormat.KEY_WIDTH, 576)
-//            setInteger(MediaFormat.KEY_HEIGHT, 1024)
+//            setInteger(MediaFormat.KEY_WIDTH, 1080)
+//            setInteger(MediaFormat.KEY_HEIGHT, 1920)
+            setInteger(MediaFormat.KEY_WIDTH, 720)
+            setInteger(MediaFormat.KEY_HEIGHT, 1280)
         }
         mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
@@ -129,7 +134,11 @@ class StreamRecorder : Recorder {
                 outputBufferId >= 0 -> {
                     val outputBuffer = codec.getOutputBuffer(outputBufferId)
                     val bufferFormat = codec.getOutputFormat(outputBufferId)
-                    writeFrameMeta(fd, bufferInfo, outputBuffer?.remaining()?:-1)
+                    writeFrameMeta(fd, bufferInfo, outputBuffer?.remaining() ?: -1)
+                    val ret = parseFrameType(outputBuffer?.get(4)?.toInt())
+                    if (ret == 3) {
+                        Log.d("cjf", "frame type I frame")
+                    }
                     writeFully(fd, outputBuffer)
                     codec.releaseOutputBuffer(outputBufferId, false)
                 }
@@ -144,9 +153,19 @@ class StreamRecorder : Recorder {
 
         }
     }
+
+    private fun parseFrameType(buffer: Int?): Int {
+        return if (buffer == null) {
+            0
+        } else {
+            (buffer and 0x60) shr 5
+        }
+    }
+
     private val headerBuffer = ByteBuffer.allocate(12)
     private val NO_PTS = -1
     private var ptsOrigin: Long = 0
+
     @Throws(IOException::class)
     private fun writeFrameMeta(fd: FileDescriptor, bufferInfo: MediaCodec.BufferInfo, packetSize: Int) {
         headerBuffer.clear()
@@ -159,7 +178,7 @@ class StreamRecorder : Recorder {
             }
             pts = bufferInfo.presentationTimeUs - ptsOrigin
         }
-        Log.d("cjf", "writeFrameMeta: $pts $packetSize")
+//        Log.d("cjf", "writeFrameMeta: $pts $packetSize")
         headerBuffer.putLong(pts)
         headerBuffer.putInt(packetSize)
         headerBuffer.flip()

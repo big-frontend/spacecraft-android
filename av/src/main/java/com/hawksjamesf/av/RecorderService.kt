@@ -98,7 +98,7 @@ class RecorderService : Service() {
         mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)?.apply {
             registerCallback(mProjectionCallback, Handler())
 
-            val outputFile = File(getExternalFilesDir(null), "video.mp4")
+//            val outputFile = File(getExternalFilesDir(null), "video.mp4")
             val connect = DesktopConnection.connect(DesktopConnection.SOCKET_NAME)
             screenRecoder = VideoRecorder.createAndBindScreen(this@RecorderService, this, connect.fileDescriptor)
 //            screenRecoder = VideoRecorder.createAndBindScreen(this@RecorderService, this, outputFile)

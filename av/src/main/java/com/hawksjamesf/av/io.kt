@@ -37,7 +37,7 @@ fun writeFully(fd: FileDescriptor?, from: ByteBuffer?) {
             remaining -= w
         } catch (e: ErrnoException) {
             if (e.errno != OsConstants.EINTR) {
-                throw IOException(e)
+//                throw IOException(e)
             }
         }
     }
