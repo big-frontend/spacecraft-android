@@ -22,10 +22,10 @@ import java.nio.ShortBuffer
  */
 class StreamRecorder : Recorder {
     companion object {
-        private const val DEFAULT_I_FRAME_INTERVAL = 0 // seconds
+        private const val DEFAULT_I_FRAME_INTERVAL = 2 // seconds
         private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
-        private const val DEFAULT_MAX_FPS = 29
-        private const val DEFAULT_BIT_RATE = 2//Mbps=Mbits/s
+        private const val DEFAULT_MAX_FPS = 15
+        private const val DEFAULT_BIT_RATE = 8//Mbps=Mbits/s
         private const val DEFAULT_FRAME_RATE = 60
         private const val KEY_MAX_FPS_TO_ENCODER = "max-fps-to-encoder"
     }
