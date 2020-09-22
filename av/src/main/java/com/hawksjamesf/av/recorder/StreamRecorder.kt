@@ -22,7 +22,7 @@ import java.nio.ShortBuffer
  */
 class StreamRecorder : Recorder {
     companion object {
-        private const val DEFAULT_I_FRAME_INTERVAL = 2 // seconds
+        private const val DEFAULT_I_FRAME_INTERVAL = 0 // seconds
         private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
         private const val DEFAULT_MAX_FPS = 29
         private const val DEFAULT_BIT_RATE = 2//Mbps=Mbits/s
@@ -60,10 +60,10 @@ class StreamRecorder : Recorder {
                 // <https://github.com/Genymobile/scrcpy/issues/488#issuecomment-567321437>
                 setFloat(KEY_MAX_FPS_TO_ENCODER, maxFps.toFloat())
             }
-//            setInteger(MediaFormat.KEY_WIDTH, 1080)
-//            setInteger(MediaFormat.KEY_HEIGHT, 1920)
-            setInteger(MediaFormat.KEY_WIDTH, 720)
-            setInteger(MediaFormat.KEY_HEIGHT, 1280)
+            setInteger(MediaFormat.KEY_WIDTH, 1080)
+            setInteger(MediaFormat.KEY_HEIGHT, 1920)
+//            setInteger(MediaFormat.KEY_WIDTH, 720)
+//            setInteger(MediaFormat.KEY_HEIGHT, 1280)
         }
         mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
