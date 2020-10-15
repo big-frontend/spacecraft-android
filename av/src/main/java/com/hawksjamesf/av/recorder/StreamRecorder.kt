@@ -24,10 +24,52 @@ class StreamRecorder : Recorder {
     companion object {
         private const val DEFAULT_I_FRAME_INTERVAL = 1 // seconds
         private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
-        private const val DEFAULT_MAX_FPS = 15
-        private const val DEFAULT_BIT_RATE = 8//Mbps=Mbits/s
-        private const val DEFAULT_FRAME_RATE = 60
+        private const val DEFAULT_MAX_FPS = 30
         private const val KEY_MAX_FPS_TO_ENCODER = "max-fps-to-encoder"
+
+        //        private const val DEFAULT_BIT_RATE = 56*1000//kbps=kbits/s
+//        private const val DEFAULT_BIT_RATE = 500*1000//kbps=kbits/s
+//        private const val DEFAULT_BIT_RATE = 2 * 1000 * 1000//Mbps=Mbits/s
+//        private const val DEFAULT_FRAME_RATE = 30
+
+    }
+
+    interface Config {
+        val bitRate: Int
+        val frameRate: Int
+        val width: Int
+        val height: Int
+    }
+
+    class SD_Low : Config {
+        override val bitRate: Int = 56_000//Kbps
+        override val frameRate: Int = 12//fps
+        override val width: Int = 144
+        override val height: Int = 176
+    }
+
+    class SD_Hight : Config {
+        override val bitRate: Int = 500_000//Kbps
+        override val frameRate: Int = 30//fps
+        override val width: Int = 360
+        override val height: Int = 480
+    }
+
+    class HD : Config {
+        override val bitRate: Int = 1_800_000//Mbps
+        override val frameRate: Int = 25//fps
+        override val width: Int = 720
+        override val height: Int = 1280
+    }
+    class Custom :Config{
+        override val bitRate: Int
+            get() = 1_800_000//Mbps
+        override val frameRate: Int
+            get() = 15
+        override val width: Int
+            get() = 1080
+        override val height: Int
+            get() = 1920
     }
 
     private lateinit var outputfd: FileDescriptor
@@ -41,9 +83,9 @@ class StreamRecorder : Recorder {
     }
 
     init {
-
-        val bitRate = DEFAULT_BIT_RATE
-        val frameRate = DEFAULT_FRAME_RATE
+        val config = Custom()
+        val bitRate = config.bitRate
+        val frameRate = config.frameRate
         val maxFps = DEFAULT_MAX_FPS
         val format = MediaFormat().apply {
             setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_AVC)
@@ -54,16 +96,14 @@ class StreamRecorder : Recorder {
             setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, DEFAULT_I_FRAME_INTERVAL)
             // display the very first frame, and recover from bad quality when no new frames
             setLong(MediaFormat.KEY_REPEAT_PREVIOUS_FRAME_AFTER, REPEAT_FRAME_DELAY_US.toLong()) // µs
-            if (maxFps > 0) {
-                // The key existed privately before Android 10:
-                // <https://android.googlesource.com/platform/frameworks/base/+/625f0aad9f7a259b6881006ad8710adce57d1384%5E%21/>
-                // <https://github.com/Genymobile/scrcpy/issues/488#issuecomment-567321437>
-                setFloat(KEY_MAX_FPS_TO_ENCODER, maxFps.toFloat())
-            }
-            setInteger(MediaFormat.KEY_WIDTH, 1080)
-            setInteger(MediaFormat.KEY_HEIGHT, 1920)
-//            setInteger(MediaFormat.KEY_WIDTH, 720)
-//            setInteger(MediaFormat.KEY_HEIGHT, 1280)
+//            if (maxFps > 0) {
+//                // The key existed privately before Android 10:
+//                // <https://android.googlesource.com/platform/frameworks/base/+/625f0aad9f7a259b6881006ad8710adce57d1384%5E%21/>
+//                // <https://github.com/Genymobile/scrcpy/issues/488#issuecomment-567321437>
+//                setFloat(KEY_MAX_FPS_TO_ENCODER, maxFps.toFloat())
+//            }
+            setInteger(MediaFormat.KEY_WIDTH, config.width)
+            setInteger(MediaFormat.KEY_HEIGHT, config.height)
         }
         mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
@@ -134,11 +174,7 @@ class StreamRecorder : Recorder {
                 outputBufferId >= 0 -> {
                     val outputBuffer = codec.getOutputBuffer(outputBufferId)
                     val bufferFormat = codec.getOutputFormat(outputBufferId)
-                    writeFrameMeta(fd, bufferInfo, outputBuffer?.remaining() ?: -1)
-                    val ret = parseFrameType(outputBuffer?.get(4)?.toInt())
-                    if (ret == 3) {
-                        Log.d("cjf", "frame type I frame")
-                    }
+                    writeFrameMeta(fd, bufferInfo, outputBuffer)
                     writeFully(fd, outputBuffer)
                     codec.releaseOutputBuffer(outputBufferId, false)
                 }
@@ -167,7 +203,8 @@ class StreamRecorder : Recorder {
     private var ptsOrigin: Long = 0
 
     @Throws(IOException::class)
-    private fun writeFrameMeta(fd: FileDescriptor, bufferInfo: MediaCodec.BufferInfo, packetSize: Int) {
+    private fun writeFrameMeta(fd: FileDescriptor, bufferInfo: MediaCodec.BufferInfo,outputBuffer:ByteBuffer?) {
+        val packetSize = outputBuffer?.remaining() ?: -1
         headerBuffer.clear()
         val pts: Long
         if (bufferInfo.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0) {
@@ -178,10 +215,15 @@ class StreamRecorder : Recorder {
             }
             pts = bufferInfo.presentationTimeUs - ptsOrigin
         }
-//        Log.d("cjf", "writeFrameMeta: $pts $packetSize")
         headerBuffer.putLong(pts)
         headerBuffer.putInt(packetSize)
         headerBuffer.flip()
+        val ret = parseFrameType(outputBuffer?.get(4)?.toInt())
+        when (ret) {
+//            0 -> Log.d("cjf", "$pts $packetSize frame type B frame $ret")
+//            2 -> Log.d("cjf", "$pts $packetSize frame type P frame $ret")
+            3 -> Log.d("cjf", "$pts $packetSize frame type I frame $ret")
+        }
         writeFully(fd, headerBuffer)
     }
 
