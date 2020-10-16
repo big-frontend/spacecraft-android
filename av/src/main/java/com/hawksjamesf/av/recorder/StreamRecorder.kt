@@ -62,10 +62,13 @@ class StreamRecorder : Recorder {
         override val height: Int = 1280
     }
     class Custom :Config{
+        //当bit rate为1_800_000时，app为后台时，i p帧出率低
         override val bitRate: Int
-            get() = 1_800_000//Mbps
+//            get() = 1_800_000//Mbps
+            get() = 500_000//Kbps
         override val frameRate: Int
-            get() = 15
+//            get() = 15
+            get() = 30
         override val width: Int
             get() = 1080
         override val height: Int
@@ -221,7 +224,7 @@ class StreamRecorder : Recorder {
         val ret = parseFrameType(outputBuffer?.get(4)?.toInt())
         when (ret) {
 //            0 -> Log.d("cjf", "$pts $packetSize frame type B frame $ret")
-//            2 -> Log.d("cjf", "$pts $packetSize frame type P frame $ret")
+            2 -> Log.d("cjf", "$pts $packetSize frame type P frame $ret")
             3 -> Log.d("cjf", "$pts $packetSize frame type I frame $ret")
         }
         writeFully(fd, headerBuffer)
