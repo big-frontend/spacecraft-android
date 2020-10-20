@@ -34,47 +34,6 @@ class StreamRecorder : Recorder {
 
     }
 
-    interface Config {
-        val bitRate: Int
-        val frameRate: Int
-        val width: Int
-        val height: Int
-    }
-
-    class SD_Low : Config {
-        override val bitRate: Int = 56_000//Kbps
-        override val frameRate: Int = 12//fps
-        override val width: Int = 144
-        override val height: Int = 176
-    }
-
-    class SD_Hight : Config {
-        override val bitRate: Int = 500_000//Kbps
-        override val frameRate: Int = 30//fps
-        override val width: Int = 360
-        override val height: Int = 480
-    }
-
-    class HD : Config {
-        override val bitRate: Int = 1_800_000//Mbps
-        override val frameRate: Int = 25//fps
-        override val width: Int = 720
-        override val height: Int = 1280
-    }
-    class Custom :Config{
-        //当bit rate为1_800_000时，app为后台时，i p帧出率低
-        override val bitRate: Int
-//            get() = 1_800_000//Mbps
-            get() = 500_000//Kbps
-        override val frameRate: Int
-//            get() = 15
-            get() = 30
-        override val width: Int
-            get() = 1080
-        override val height: Int
-            get() = 1920
-    }
-
     private lateinit var outputfd: FileDescriptor
     private lateinit var mCodec: MediaCodec
     val surface: Surface by lazy {
@@ -105,8 +64,8 @@ class StreamRecorder : Recorder {
 //                // <https://github.com/Genymobile/scrcpy/issues/488#issuecomment-567321437>
 //                setFloat(KEY_MAX_FPS_TO_ENCODER, maxFps.toFloat())
 //            }
-            setInteger(MediaFormat.KEY_WIDTH, config.width)
-            setInteger(MediaFormat.KEY_HEIGHT, config.height)
+            setInteger(MediaFormat.KEY_WIDTH, VIDEO_ENCODING_HEIGHT_1080.width)
+            setInteger(MediaFormat.KEY_HEIGHT, VIDEO_ENCODING_HEIGHT_1080.height)
         }
         mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
@@ -206,7 +165,7 @@ class StreamRecorder : Recorder {
     private var ptsOrigin: Long = 0
 
     @Throws(IOException::class)
-    private fun writeFrameMeta(fd: FileDescriptor, bufferInfo: MediaCodec.BufferInfo,outputBuffer:ByteBuffer?) {
+    private fun writeFrameMeta(fd: FileDescriptor, bufferInfo: MediaCodec.BufferInfo, outputBuffer: ByteBuffer?) {
         val packetSize = outputBuffer?.remaining() ?: -1
         headerBuffer.clear()
         val pts: Long
