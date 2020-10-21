@@ -18,7 +18,10 @@ import android.view.TextureView
 import android.view.WindowManager
 import androidx.annotation.AnyThread
 import androidx.annotation.RequiresApi
+import com.hawksjamesf.av.recorder.QUALITY
 import com.hawksjamesf.av.recorder.StreamRecorder
+import com.hawksjamesf.av.recorder.VIDEO_ENCODING_FULL_SCREEN
+import com.hawksjamesf.av.recorder.VIDEO_ENCODING_WIDTH_1080
 import java.io.File
 import java.io.FileDescriptor
 
@@ -144,13 +147,22 @@ class VideoRecorder constructor(val context: Context)
                         }
                     }, null)
         } else if (mOutputfd != null) {
-            mStreamRecoder = StreamRecorder()
+            mStreamRecoder = StreamRecorder(resolution = VIDEO_ENCODING_FULL_SCREEN,quality = Custom)
             mStreamRecoder.setOutput(mOutputfd!!)
             val display = mMediaProjection.createVirtualDisplay("MainScreen", width, height, dpi,
                     DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC, mStreamRecoder.surface, null, null)
         }
 
 
+    }
+    object Custom : QUALITY {
+        //当bit rate为1_800_000时，app为后台时，i p帧出率低
+        override val bitRate: Int
+            //            get() = 1_800_000//Mbps
+            get() = 500_000//Kbps
+        override val frameRate: Int
+            //            get() = 15
+            get() = 30
     }
 
     private fun bindSurfaceView(surfaceView: SurfaceView, cameraId: Int) {

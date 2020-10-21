@@ -5,6 +5,7 @@ import android.media.MediaCodecInfo
 import android.media.MediaFormat
 import android.util.Log
 import android.view.Surface
+import com.blankj.utilcode.util.ScreenUtils
 import com.hawksjamesf.av.writeFully
 import java.io.FileDescriptor
 import java.io.IOException
@@ -20,7 +21,10 @@ import java.nio.ShortBuffer
  * @author: hawks.jamesf
  * @since: Aug/15/2020  Sat
  */
-class StreamRecorder : Recorder {
+class StreamRecorder(
+        val resolution: Resolution,
+        val quality: QUALITY
+) : Recorder {
     companion object {
         private const val DEFAULT_I_FRAME_INTERVAL = 1 // seconds
         private const val REPEAT_FRAME_DELAY_US = 100000 // repeat after 100ms
@@ -45,15 +49,12 @@ class StreamRecorder : Recorder {
     }
 
     init {
-        val config = Custom()
-        val bitRate = config.bitRate
-        val frameRate = config.frameRate
         val maxFps = DEFAULT_MAX_FPS
         val format = MediaFormat().apply {
             setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_VIDEO_AVC)
-            setInteger(MediaFormat.KEY_BIT_RATE, bitRate)
+            setInteger(MediaFormat.KEY_BIT_RATE, quality.bitRate)
             // must be present to configure the encoder, but does not impact the actual frame rate, which is variable
-            setInteger(MediaFormat.KEY_FRAME_RATE, frameRate)
+            setInteger(MediaFormat.KEY_FRAME_RATE, quality.frameRate)
             setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface)
             setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, DEFAULT_I_FRAME_INTERVAL)
             // display the very first frame, and recover from bad quality when no new frames
@@ -64,8 +65,8 @@ class StreamRecorder : Recorder {
 //                // <https://github.com/Genymobile/scrcpy/issues/488#issuecomment-567321437>
 //                setFloat(KEY_MAX_FPS_TO_ENCODER, maxFps.toFloat())
 //            }
-            setInteger(MediaFormat.KEY_WIDTH, VIDEO_ENCODING_HEIGHT_1080.width)
-            setInteger(MediaFormat.KEY_HEIGHT, VIDEO_ENCODING_HEIGHT_1080.height)
+            setInteger(MediaFormat.KEY_WIDTH, resolution.width)
+            setInteger(MediaFormat.KEY_HEIGHT, resolution.height)
         }
         mCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
 //        MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
