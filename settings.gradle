@@ -2,7 +2,7 @@ println("settings start")
 if (!isComponentMode.toBoolean()) {
     include ':app'
 }
-include ':gradle_plugin', ':annotations', ':processor'
+include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
 include ':mockserver'
 include ':common', ':network', ':storage',
         ':image', ':av', ':map',

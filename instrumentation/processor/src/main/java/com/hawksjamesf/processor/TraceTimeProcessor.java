@@ -1,16 +1,18 @@
 package com.hawksjamesf.processor;
 
 import com.hawksjamesf.annotations.TraceTime;
-import com.hawksjamesf.annotations.TraceTime2;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
 
 /**
  * Copyright ® $ 2017
@@ -20,26 +22,36 @@ import javax.lang.model.element.TypeElement;
  * @since: Aug/17/2019  Sat
  */
 //@AutoService(Processor.class)
-public class TraceTime2Processor extends AbstractProcessor {
+public class TraceTimeProcessor extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> set = new LinkedHashSet<String>();
         set.add(TraceTime.class.getCanonicalName());
-        set.add(TraceTime2.class.getCanonicalName());
         return set;
     }
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
-        System.out.println("hawks-init 2");
+        System.out.println("cjf-init");
         super.init(processingEnvironment);
     }
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        System.out.println("hawks-process 2");
-        return false;
+        System.out.println("cjf- process");
+        // 准备在gradle的控制台打印信息
+        Messager messager = processingEnv.getMessager();
+        messager.printMessage(Diagnostic.Kind.NOTE, "开启日志: --------------");
+
+        // 打印注解
+        Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(TraceTime.class);
+        for (Element element : elements) {
+            String name = element.getSimpleName().toString();
+            String value = element.getAnnotation(TraceTime.class).value();
+            messager.printMessage(Diagnostic.Kind.NOTE, "cjf"+name + " --> " + value);
+        }
+        return true;
     }
 
     @Override

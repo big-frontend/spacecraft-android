@@ -104,6 +104,11 @@ android {
         //lower 5.x
 //        vectorDrawables.useSupportLibrary = true
 //        vectorDrawables.generatedDensities = []
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
     }
     def releaseKeySet = ['RELEASE_KEY_ALIAS', 'RELEASE_STORE_PASSWORD', 'RELEASE_KEY_PASSWORD']
     def debugKeySet = ['DEBUG_KEY_ALIAS', 'DEBUG_STORE_PASSWORD', 'DEBUG_KEY_PASSWORD']
@@ -345,8 +350,8 @@ dependencies {
     api 'com.tencent.bugly:crashreport:3.0.0'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    annotationProcessor project(path: ':processor')
-    implementation project(path: ':annotations')
+    kapt project(path: ':instrumentation:processor')
+    implementation project(path: ':instrumentation:annotations')
     apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
 
 }

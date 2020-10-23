@@ -1,7 +1,9 @@
 package com.hawksjamesf.annotations;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Copyright ® $ 2017
@@ -11,5 +13,7 @@ import java.lang.annotation.RetentionPolicy;
  * @since: Aug/17/2019  Sat
  */
 @Retention(RetentionPolicy.CLASS)
-public @interface TraceTime2 {
+@Target({ElementType.TYPE,ElementType.FIELD,ElementType.METHOD,ElementType.LOCAL_VARIABLE})
+public @interface TraceTime {
+    String  value() default "ssssss";
 }

@@ -147,9 +147,6 @@ static String getLocalIP() {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':annotations')
-    testImplementation project(path: ':annotations')
-    annotationProcessor project(path: ':processor')
     testImplementation files('libs/jsoup-1.12.1.jar')
     api project(path: ':common')
     api project(path: ':mockserver')
