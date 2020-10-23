@@ -65,7 +65,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':common')
+    implementation project(path: ':common')
     /**
      * ===============================av start=============================
      */

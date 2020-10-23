@@ -18,7 +18,7 @@ buildscript {
 
 sourceSets {
     main {
-        ["src/main/util", "src/main/kotlin","src/main/java"].forEach {
+        ["src/main/kotlin","src/main/java"].forEach {
             java.srcDirs += it
         }
     }

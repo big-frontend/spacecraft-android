@@ -9,7 +9,7 @@ class CounterPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project target) {
-        PrintUtil.printInfo("CounterPlugin apply start}")
+        PrintUtil.printInfo("CounterPlugin apply start")
         System.setProperty('org.gradle.color.error', 'RED')
         System.setProperty('org.gradle.color.warn', 'YELLOW')
         this.target = target
@@ -46,8 +46,8 @@ class CounterPlugin implements Plugin<Project> {
         }
         project.afterEvaluate {
             PrintUtil.printInfo("CounterPlugin project afterEvaluate start")
-            PrintUtil.printInfo("CounterPlugin project afterEvaluate end")
             createCounterTask("",project.android.sourceSets.main.java.srcDirs)
+            PrintUtil.printInfo("CounterPlugin project afterEvaluate end")
 
         }
         project.android.applicationVariants.all { variant ->

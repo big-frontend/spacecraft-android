@@ -1,5 +1,5 @@
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/console.gradle"
-printInfo("==>>>>>>>>>>>>>>>>image start")
+//printInfo("==>>>>>>>>>>>>>>>>image start")
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -107,5 +107,5 @@ dependencies {
 
 
 }
-printInfo("==>>>>>>>>>>>>>>>>image end")
+//printInfo("==>>>>>>>>>>>>>>>>image end")
 

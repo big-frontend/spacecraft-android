@@ -9,20 +9,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 
-//apply plugin: 'versionplugin'
-//apply plugin: com.hawksjamesf.plugin.VersionPluginForJava
-//apply plugin: 'versionpluginforjava'
-//versionPlugin {
-//    buildTypeMatcher = 'debug'
-////        '$appName/project/buildType-v_$versionName-c_$versionCode'
-////        fileFormat = '$appName-v_$versionName-c_$versionCode'
-//    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
-//}
-//
-//versionPluginForJava {
-//    buildTypeMatcher = "debug"
-//    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
-//}
+
 apply plugin: 'findbugs'
 findbugs {
     ignoreFailures = false
@@ -62,15 +49,15 @@ matrix {
 }
 
 apply plugin: 'com.google.firebase.firebase-perf'
-//apply plugin: com.hawksjamesf.plugin.PerformancePlugin
-apply plugin: 'perfplugin'
 //apply plugin: 'bugly'
 //bugly {
 //    appId = '3d62251014'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'counterplugin'
+apply plugin: 'perfplugin'
+//apply plugin: 'versionplugin'
+//apply plugin: 'counterplugin'
 //counterConfig{
 //
 //}

@@ -42,7 +42,7 @@ SpacecraftAndroid
 ## Improve Development Efficiency  
 - [ ] decoupling：component 
 - [x] gradle plugin：
-1. file lines counter plugin
+1. file lines counter plugin(./gradlew app:counter)
 2. rename apk plugin
 3. upload bugly mapping or so file plugin
 4. performance plugin , doing
