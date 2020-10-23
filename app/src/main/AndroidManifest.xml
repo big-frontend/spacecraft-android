@@ -140,8 +140,6 @@
             tools:node="remove"
             tools:targetApi="n" />
 
-        <activity android:name="com.example.background.SelectImageActivity" />
-        <activity android:name="com.example.background.FilterActivity" />
         <activity android:name=".vm.MVVMActivity" />
         <activity android:name=".WebViewActivity">
             <intent-filter android:autoVerify="true">

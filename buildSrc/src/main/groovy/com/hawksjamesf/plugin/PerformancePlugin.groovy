@@ -7,10 +7,11 @@ class PerformancePlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        PrintUtil.printInfo("PerformancePlugin apply start")
+        com.hawksjamesf.plugin.util.PrintUtil.printInfo("PerformancePlugin apply start")
 //        project.extensions.create()
 //        project.android.registerTransform(new PerformanceTransform(project))
-
-        PrintUtil.printInfo("PerformancePlugin apply end")
+        def mt = new MethodTrace()
+        mt.start()
+        com.hawksjamesf.plugin.util.PrintUtil.printInfo("PerformancePlugin apply end")
     }
 }
