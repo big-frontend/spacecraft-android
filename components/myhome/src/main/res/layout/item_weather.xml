@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        >
+
+
+        <TextView
+            android:id="@+id/realtime_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/realtime_city"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="2017-06-27"/>
+
+        <TextView
+            android:id="@+id/realtime_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/realtime_date"
+            android:layout_alignBottom="@+id/realtime_date"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/realtime_date"
+            android:text="Tuesday"/>
+
+        <TextView
+            android:id="@+id/realtime_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:text="Shanghai"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/realtime_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/realtime_date"
+            android:layout_alignStart="@+id/realtime_date"
+            android:layout_marginStart="17dp"
+            android:text="26"
+            android:textAllCaps="false"
+            android:textSize="36sp"
+            android:textStyle="normal|bold|italic"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/realtime_temperature"
+            android:layout_toEndOf="@+id/realtime_temperature"
+            android:text="0"/>
+
+        <ImageView
+            android:id="@+id/iv_realtime_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/w0"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="13dp"/>
+
+
+    </RelativeLayout>
+    <View android:layout_width="match_parent" android:layout_height="250dp"
+    android:background="@android:color/holo_blue_light"/>
+
+    <com.hawksjamesf.myhome.ui.home.view.forecast.FifteenDaysView
+        android:id="@+id/rv_fiften_days_forecast"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"/>
+
+    <!--<shenzhouiew.forecast.older.FifteenDaysView-->
+        <!--android:id="@+id/rv_fiften_days_forecast"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="5">-->
+        <!--<include android:id="@+id/day1" layout="@layout/item_fifteen_days_chart"/>-->
+        <!--<include android:id="@+id/day2" layout="@layout/item_fifteen_days_chart"/>-->
+        <!--<include android:id="@+id/day3" layout="@layout/item_fifteen_days_chart"/>-->
+        <!--<include android:id="@+id/day4" layout="@layout/item_fifteen_days_chart"/>-->
+        <!--<include android:id="@+id/day5" layout="@layout/item_fifteen_days_chart"/>-->
+    <!--</shenzhouiew.forecast.older.FifteenDaysView>-->
+
+</LinearLayout>

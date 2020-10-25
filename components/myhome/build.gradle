@@ -1,0 +1,43 @@
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/component.gradle"
+printInfo("==>>>>>>>>>>>>>>>>myhome start")
+def srcDirs = [
+//        "navigation",
+//        "workmanager",
+//        "workmanager-lib",
+//        "mvvm",
+
+]
+android {
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
+//    kapt "com.google.dagger:dagger-android-processor:2.16"
+}

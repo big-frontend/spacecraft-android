@@ -16,14 +16,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.hawksjamesf.spacecraft.App"
+        android:name="com.hawksjamesf.loader.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -63,101 +63,6 @@
         <!--            android:name="firebase_performance_collection_deactivated"-->
         <!--            android:value="true" />-->
 
-        <activity android:name="com.hawksjamesf.spacecraft.ui.person.SettingsActivity" />
-        <activity
-            android:name="com.hawksjamesf.spacecraft.ui.MainActivity"
-            android:label="@string/title_activity_main"
-            android:launchMode="singleTop" >
-            <!--            浏览器启动 start-->
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="i.spacecraft.com"
-                    android:path="/home"
-                    android:scheme="https" />
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/home"
-                    android:scheme="ispacecraft" />
-                <data
-                    android:host="i.spacecraft.com"
-                    android:pathPrefix="/c/"
-                    android:scheme="https" />
-            </intent-filter>
-            <!--            浏览器启动 end-->
-            <!--            firebase app indexing启动 start-->
-            <!--            firebase app indexing启动 end-->
-
-        </activity>
-        <activity
-            android:name="com.hawksjamesf.spacecraft.ui.home.HomeActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/HomeTheme" />
-
-        <activity
-            android:name="com.hawksjamesf.spacecraft.ui.SplashActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="adjustPan">
-            <!--            launcher启动 start-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <!--            launcher启动 end -->
-
-        </activity>
-        <activity
-            android:name="com.hawksjamesf.spacecraft.ui.SetupWizardActivity"
-            android:label="@string/title_activity_setup_wizard"
-            android:theme="@style/AppTheme" />
-
-
-        <activity
-            android:name="com.hawksjamesf.spacecraft.ui.signin.SignInActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity
-            android:name="com.hawksjamesf.spacecraft.ui.signin.SignUpActivity"
-            android:parentActivityName="com.hawksjamesf.spacecraft.ui.signin.SignInActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-
-        <activity android:name=".NavigationActivity" />
-        <activity android:name=".PagingActivity" />
-        <activity android:name=".sourceFromNetwork.NetworkActivity" />
-        <activity android:name=".sourceFromNetwork.reddit.ui.RedditActivity" />
-
-        <provider
-            android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="${applicationId}.workmanager-init"
-            android:directBootAware="false"
-            android:exported="false"
-            android:multiprocess="true"
-            tools:node="remove"
-            tools:targetApi="n" />
-
-        <activity android:name=".vm.MVVMActivity" />
-        <activity android:name=".WebViewActivity">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web"
-                    android:scheme="ispacecraft" />
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web/"
-                    android:scheme="ispacecraft" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
