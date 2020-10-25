@@ -1,7 +1,4 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/component.gradle"
 
 
 def srcDirs = [
@@ -15,24 +12,6 @@ def srcDirs = [
 
 ]
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     sourceSets {
         main {
             java.excludes = [
@@ -65,7 +44,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':common')
     implementation 'com.google.firebase:firebase-auth:17.0.0'
 
 }

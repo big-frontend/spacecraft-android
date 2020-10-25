@@ -6,6 +6,9 @@ include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:proc
 include ':mockserver'
 include ':common', ':network', ':storage',
         ':image', ':av', ':map',
-        ':chatroom', ':uicomponent', ':login'
+        ':chatroom', ':uicomponent'
+//include ':ypose'
+include ':framework:loader'
+include ':components:login',
+        ':components:myhome'
 println("settings end")
-include ':ypose'
