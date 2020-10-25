@@ -48,15 +48,15 @@ matrix {
 }
 
 apply plugin: 'com.google.firebase.firebase-perf'
-//apply plugin: 'bugly'
+//apply plugin: 'com.hawksjamesf.bugly'
 //bugly {
 //    appId = '3d62251014'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
 apply plugin: 'com.google.firebase.crashlytics'
-//apply plugin: 'perfplugin'
-//apply plugin: 'versionplugin'
-//apply plugin: 'counterplugin'
+//apply plugin: 'com.hawksjamesf.perfplugin'
+//apply plugin: 'com.hawksjamesf.versionplugin'
+//apply plugin: 'com.hawksjamesf.counterplugin'
 //counterConfig{
 //
 //}
