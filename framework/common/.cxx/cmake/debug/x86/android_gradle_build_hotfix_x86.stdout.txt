@@ -1,4 +1,0 @@
-[1/4] Building CXX object ypose/main/cpp/hotfix/CMakeFiles/hotfix.dir/hotfixmain.cpp.o
-[2/4] Building C object ypose/main/cpp/hotfix/CMakeFiles/hotfix.dir/hotfixmainv2.c.o
-[3/4] Building CXX object ypose/main/cpp/hotfix/CMakeFiles/hotfix.dir/HotFix.cpp.o
-[4/4] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/x86/libhotfix.so

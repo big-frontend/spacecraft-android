@@ -2,7 +2,7 @@ package com.hawksjamesf.myhome;
 
 import com.hawksjamesf.loader.App;
 import com.hawksjamesf.myhome.scopes.UserScope;
-import com.hawksjamesf.myhome.ui.signin.Client;
+import com.hawksjamesf.signin.Client;
 import com.hawksjamesf.network.source.SignInDataSource;
 
 import dagger.Module;

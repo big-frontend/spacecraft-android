@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import com.hawksjamesf.common.mvp.AutoDisposable
-import com.hawksjamesf.myhome.ui.signin.Client
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -23,7 +22,7 @@ abstract class BaseActivity : AppCompatActivity() {
     //自动关闭发送的rxjava数据，防止内存泄漏
     protected lateinit var onDestroyDisposable: CompositeDisposable
     protected lateinit var onPauseDisposable: CompositeDisposable
-    protected lateinit var client: Client
+//    protected lateinit var client: Client
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

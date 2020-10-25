@@ -3,5 +3,13 @@
 
     <application>
         <activity android:name=".LoginActivity" />
+
+        <activity
+            android:name="com.hawksjamesf.signin.SignInActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name="com.hawksjamesf.signin.SignUpActivity"
+            android:parentActivityName="com.hawksjamesf.signin.SignInActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
     </application>
 </manifest>

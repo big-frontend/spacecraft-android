@@ -1,8 +1,0 @@
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/common/.cxx/cmake/huaweiRelease/x86/CMakeFiles/edit_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/common/.cxx/cmake/huaweiRelease/x86/CMakeFiles/rebuild_cache.dir
-/Users/hawks.jamesf/tmp/x86/hotfix/CMakeFiles/edit_cache.dir
-/Users/hawks.jamesf/tmp/x86/hotfix/CMakeFiles/rebuild_cache.dir
-/Users/hawks.jamesf/tmp/x86/hotfix/CMakeFiles/hotfix.dir
-/Users/hawks.jamesf/tmp/x86/hawks/CMakeFiles/edit_cache.dir
-/Users/hawks.jamesf/tmp/x86/hawks/CMakeFiles/rebuild_cache.dir
-/Users/hawks.jamesf/tmp/x86/hawks/CMakeFiles/hawks.dir

@@ -4,9 +4,9 @@ import com.hawksjamesf.network.NetComponent;
 import com.hawksjamesf.myhome.scopes.UserScope;
 import com.hawksjamesf.myhome.ui.SplashActivity;
 import com.hawksjamesf.myhome.ui.home.HomeActivity;
-import com.hawksjamesf.myhome.ui.signin.Client;
-import com.hawksjamesf.myhome.ui.signin.SigInModule;
-import com.hawksjamesf.myhome.ui.signin.SignInActivity;
+import com.hawksjamesf.signin.Client;
+import com.hawksjamesf.signin.SigInModule;
+import com.hawksjamesf.signin.SignInActivity;
 
 import dagger.Component;
 

@@ -8,6 +8,7 @@ include ':mockserver'
 include ':framework:common', ':framework:network', ':framework:storage',
         ':framework:image', ':framework:av', ':framework:map',
         ':framework:chatroom', ':framework:uicomponent', ':framework:loader'
-include ':components:login',
-        ':components:myhome'
+include ':components:myhome',
+//        ':components:login'
+         'components:template'
 println("settings end")

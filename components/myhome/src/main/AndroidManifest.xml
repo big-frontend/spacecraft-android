@@ -37,14 +37,14 @@
         <activity
             android:name="com.hawksjamesf.myhome.ui.home.HomeActivity"
             android:launchMode="singleTop"
+            android:theme="@style/HomeTheme"
             />
-<!--            android:theme="@style/HomeTheme" -->
 
         <activity
             android:name="com.hawksjamesf.myhome.ui.SplashActivity"
             android:launchMode="singleTop"
+            android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="adjustPan">
-<!--            android:theme="@style/FullscreenTheme"-->
             <!--            launcher启动 start-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,16 +57,8 @@
         <activity
             android:name="com.hawksjamesf.myhome.ui.SetupWizardActivity"
             android:label="@string/title_activity_setup_wizard"
-            android:theme="@style/AppTheme" />
-
-
-        <activity
-            android:name="com.hawksjamesf.myhome.ui.signin.SignInActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity
-            android:name="com.hawksjamesf.myhome.ui.signin.SignUpActivity"
-            android:parentActivityName="com.hawksjamesf.myhome.ui.signin.SignInActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+            android:theme="@style/AppTheme"
+            />
 
         <activity android:name="com.hawksjamesf.spacecraft.NavigationActivity" />
         <activity android:name="com.hawksjamesf.spacecraft.vm.MVVMActivity" />

@@ -1,8 +1,0 @@
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/CMakeFiles/edit_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/CMakeFiles/rebuild_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/ypose/main/cpp/hotfix/CMakeFiles/edit_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/ypose/main/cpp/hotfix/CMakeFiles/rebuild_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/ypose/main/cpp/hotfix/CMakeFiles/hotfix.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/ypose/main/cpp/hawks/CMakeFiles/edit_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/ypose/main/cpp/hawks/CMakeFiles/rebuild_cache.dir
-/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64/ypose/main/cpp/hawks/CMakeFiles/hawks.dir
