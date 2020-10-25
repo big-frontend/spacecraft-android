@@ -1,0 +1,74 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/CMakeLists.txt",
+		"/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hotfix/CMakeLists.txt",
+		"/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hawks/CMakeLists.txt"
+	],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"hawks-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "hawks",
+			"buildCommand" : "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86 --target hawks",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dhawks_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hawks/hawks.cpp",
+					"workingDirectory" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86"
+				}
+			],
+			"output" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/component/obj/x86/libhawks.so",
+			"toolchain" : "10348326541997773679"
+		},
+		"hotfix-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "hotfix",
+			"buildCommand" : "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86 --target hotfix",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dhotfix_EXPORTS -I../../../../ypose/main/cpp/hotfix/../hawks/include -I../../../../ypose/main/cpp/hotfix/HotFix.h  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hotfix/hotfixmain.cpp",
+					"workingDirectory" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dhotfix_EXPORTS -I../../../../ypose/main/cpp/hotfix/../hawks/include -I../../../../ypose/main/cpp/hotfix/HotFix.h  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hotfix/hotfixmainv2.c",
+					"workingDirectory" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dhotfix_EXPORTS -I../../../../ypose/main/cpp/hotfix/../hawks/include -I../../../../ypose/main/cpp/hotfix/HotFix.h  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hotfix/HotFix.cpp",
+					"workingDirectory" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86"
+				}
+			],
+			"output" : "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/component/obj/x86/libhotfix.so",
+			"toolchain" : "10348326541997773679"
+		}
+	},
+	"toolchains" : 
+	{
+		"10348326541997773679" : 
+		{
+			"cCompilerExecutable" : "/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/hawks.jamesf/Library/Android/sdk/ndk/21.2.6472646/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}

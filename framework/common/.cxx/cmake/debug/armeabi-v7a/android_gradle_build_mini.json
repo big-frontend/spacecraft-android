@@ -1,0 +1,24 @@
+{
+  "buildFiles": [
+    "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/CMakeLists.txt",
+    "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hotfix/CMakeLists.txt",
+    "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hawks/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/debug/armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "hawks-Debug-armeabi-v7a": {
+      "artifactName": "hawks",
+      "buildCommand": "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/debug/armeabi-v7a --target hawks",
+      "abi": "armeabi-v7a",
+      "output": "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/debug/obj/armeabi-v7a/libhawks.so"
+    },
+    "hotfix-Debug-armeabi-v7a": {
+      "artifactName": "hotfix",
+      "buildCommand": "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/debug/armeabi-v7a --target hotfix",
+      "abi": "armeabi-v7a",
+      "output": "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/debug/obj/armeabi-v7a/libhotfix.so"
+    }
+  }
+}

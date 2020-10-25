@@ -1,0 +1,152 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+
+def srcDirs = [
+        "carousel",
+        "colorpicker",
+        "drawable",
+        "animationsExprimental",
+        "newLayoutExprimental",
+        "scrollExprimental",
+        "parallax",
+        "navigation",
+        "paging",
+        "bottomupDialog",
+        "launchmode",
+        "fragmentx",
+        "testStyle",
+        "photo",
+        "feedback",
+
+]
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        component {
+            initWith debug
+            debuggable true
+        }
+    }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':framework:common')
+    api project(path: ':framework:av')
+//    implementation project(path: ':image')
+    /**
+     * ================================ui start=====================================
+     */
+    api "androidx.recyclerview:recyclerview:1.1.0"
+    api 'androidx.navigation:navigation-fragment:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-ui:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-common-ktx:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-runtime-ktx:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha02'
+
+    //layout start
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    api 'com.google.android:flexbox:1.1.0'
+    //layout end
+
+    api 'androidx.palette:palette:1.0.0'
+    /*
+   *该库和`com.android.support:design:`都存在v4，编译时会报错：
+   *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
+   *解决方法：需要exclude掉v4包
+    */
+    api "com.google.android.material:material:1.2.0-alpha05"
+    api 'androidx.vectordrawable:vectordrawable:1.1.0'
+
+    //animotor
+    api 'com.airbnb.android:lottie:3.2.2'
+    api 'com.github.Almeros:android-gesture-detectors:v1.0'
+
+    //rx ui
+    api 'com.jakewharton.rxbinding3:rxbinding-core:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-appcompat:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-drawerlayout:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-leanback:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-recyclerview:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.0.0'
+    api 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.0.0'
+
+    api "androidx.paging:paging-runtime:2.1.1" // For Kotlin use paging-runtime-ktx
+    api "androidx.paging:paging-runtime-ktx:2.1.1"
+    testImplementation "androidx.paging:paging-common:2.1.1" // For Kotlin use paging-common-ktx
+    api "androidx.paging:paging-rxjava2:2.1.1" // For Kotlin use paging-rxjava2-ktx
+
+    api "androidx.work:work-runtime:2.3.2"
+    api "androidx.work:work-runtime-ktx:2.3.2"
+    api "androidx.work:work-rxjava2:2.3.2"
+    api "androidx.work:work-gcm:2.3.2"
+    androidTestImplementation "androidx.work:work-testing:2.3.2"
+//    api "androidx.work:work-firebase:2.2.0"
+
+    api 'com.firebaseui:firebase-ui-database:6.0.2'
+    api 'com.firebaseui:firebase-ui-firestore:6.0.2'
+    api 'com.firebaseui:firebase-ui-auth:6.0.2'
+    api 'com.firebaseui:firebase-ui-storage:6.0.2'
+
+    api 'androidx.emoji:emoji:1.0.0'
+    api 'androidx.emoji:emoji-appcompat:1.0.0'
+    api 'androidx.emoji:emoji-bundled:1.0.0'
+
+    /**
+     * ================================ui end=====================================
+     */
+
+
+}

@@ -1,0 +1,1 @@
+hawks--->/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/release/obj/x86

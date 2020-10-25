@@ -1,0 +1,2 @@
+[1/2] Building CXX object ypose/main/cpp/hawks/CMakeFiles/hawks.dir/hawks.cpp.o
+[2/2] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/x86/libhawks.so

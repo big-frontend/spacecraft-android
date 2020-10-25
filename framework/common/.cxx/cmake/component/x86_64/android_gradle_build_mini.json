@@ -1,0 +1,24 @@
+{
+  "buildFiles": [
+    "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/CMakeLists.txt",
+    "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hotfix/CMakeLists.txt",
+    "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/ypose/main/cpp/hawks/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64 --target clean"
+  ],
+  "libraries": {
+    "hotfix-Debug-x86_64": {
+      "artifactName": "hotfix",
+      "buildCommand": "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64 --target hotfix",
+      "abi": "x86_64",
+      "output": "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/component/obj/x86_64/libhotfix.so"
+    },
+    "hawks-Debug-x86_64": {
+      "artifactName": "hawks",
+      "buildCommand": "/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/component/x86_64 --target hawks",
+      "abi": "x86_64",
+      "output": "/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/build/intermediates/cmake/component/obj/x86_64/libhawks.so"
+    }
+  }
+}

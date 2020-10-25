@@ -28,13 +28,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':uicomponent')
-    //    implementation project(path: ':map')
-//    implementation project(path: ':chatroom')
-    api project(path: ':network')
-//    implementation project(path: ':storage')
-//    implementation project(path: ':login')
-//    implementation project(path: ':image')
+    api project(path: ':framework:uicomponent')
+    //    implementation project(path: ':framework:map')
+//    implementation project(path: ':framework:chatroom')
+    api project(path: ':framework:network')
+//    implementation project(path: ':framework:storage')
+//    implementation project(path: ':framework:image')
 //    implementation project(path: ':ypose')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"

@@ -1,0 +1,111 @@
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/console.gradle"
+printInfo("==>>>>>>>>>>>>>>>>image start")
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+
+def srcDirs = [
+        "gif",
+//        "video",
+//        "colorpicker",
+//        "drawable",
+//        "animationsExprimental",
+//        "newLayoutExprimental",
+//        "scrollExprimental",
+
+]
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+                cppFlags "-std=c++14","-fexceptions", "-frtti"
+                cFlags "-D__STDC_FORMAT_MACROS"
+//                cppFlags "-std=gnu++11"
+//                targets "hawks","hotfix"
+                abiFilters "arm64-v8a", "armeabi-v7a", "x86","x86_64"   //输出制定三种abi体系结构下的so库
+            }
+        }
+
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            //path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(path: ':framework:common')
+
+    /**
+     * ===============================image start=============================
+     */
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    api 'androidx.exifinterface:exifinterface:1.1.0'
+    api 'com.github.bumptech.glide:recyclerview-integration:4.11.0'
+
+    api 'com.facebook.fresco:fresco:2.0.0'
+    api 'com.facebook.fresco:animated-gif:2.2.0'
+    // 支持 WebP （静态图+动图），需要添加
+    api 'com.facebook.fresco:animated-webp:2.1.0'
+    api 'com.facebook.fresco:webpsupport:2.2.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso-pollexor:2.71828'
+    /**
+     * ===============================image end=============================
+     */
+
+
+}
+//printInfo("==>>>>>>>>>>>>>>>>image end")
+

@@ -1,0 +1,3 @@
+gif--->/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/image/build/intermediates/cmake/debug/obj/x86
+gif-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -fexceptions -frtti   -Wno-format -Wno-sign-compare -Wno-unused-parameter -DHAVE_CONFIG_H
+utils-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -fexceptions -frtti   -Wno-format -Wno-sign-compare -Wno-unused-parameter -DHAVE_CONFIG_H

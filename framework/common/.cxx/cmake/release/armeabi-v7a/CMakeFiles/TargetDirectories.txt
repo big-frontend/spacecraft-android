@@ -1,0 +1,8 @@
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/ypose/main/cpp/hotfix/CMakeFiles/edit_cache.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/ypose/main/cpp/hotfix/CMakeFiles/rebuild_cache.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/ypose/main/cpp/hotfix/CMakeFiles/hotfix.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/ypose/main/cpp/hawks/CMakeFiles/edit_cache.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/ypose/main/cpp/hawks/CMakeFiles/rebuild_cache.dir
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/framework/common/.cxx/cmake/release/armeabi-v7a/ypose/main/cpp/hawks/CMakeFiles/hawks.dir

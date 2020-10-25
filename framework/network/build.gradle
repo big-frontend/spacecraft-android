@@ -1,0 +1,194 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android-extensions"
+apply plugin: 'kotlin-kapt'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+
+//apply plugin: 'com.google.protobuf'
+//protobuf {
+//    protoc {
+//        // You still need protoc like in the non-Android case
+//        artifact = 'com.google.protobuf:protoc:3.7.1'
+//    }
+//    plugins {
+//        javalite {
+//            // The codegen for lite comes as a separate artifact
+//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//        }
+//        grpc {
+////            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+//            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
+//        }
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                // In most cases you don't need the full Java output
+//                // if you use the lite output.
+//                remove java
+//            }
+//            task.plugins {
+//                javalite {}
+//                grpc {
+//                    // Options added to --grpc_out
+//                    option 'lite'
+//                }
+//            }
+//        }
+//    }
+//}
+
+def srcDirs = [
+        "protocol"
+
+]
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+            }
+            java {
+                //${protobuf.generatedFilesBaseDir}：
+                // /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/network/build/generated/source/proto
+                //protobuf
+//                srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+                //wire
+//                srcDirs += "src/main/wire"
+                //gson
+//                srcDirs += "src/main/gson"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+//    flavorDimensions "data_access"
+//    productFlavors {
+//        mocked {
+//            dimension 'data_access'
+//            buildConfigField 'boolean', 'MOCKED_DATA_ACCESS', 'true'
+//            buildConfigField 'String', 'WEATHER_URL', '" "'
+//
+//        }
+//        real {
+//            dimension 'data_access'
+//            buildConfigField 'boolean', 'MOCKED_DATA_ACCESS', 'false'
+//            buildConfigField 'String', 'WEATHER_URL', '"https://api.openweathermap.org"'
+//
+//        }
+//
+//        realLocalServer{
+//            dimension 'data_access'
+//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
+//            buildConfigField 'String','WEATHER_URL',"\"http://${getLocalIP()}:8080\""
+//        }
+        println("getLocalIP--->${getLocalIP()}")
+
+//    }
+}
+
+static String getLocalIP() {
+    InetAddress result = null
+    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces()
+    while (interfaces.hasMoreElements()) {
+        Enumeration<InetAddress> addresses = interfaces.nextElement().getInetAddresses()
+        while (addresses.hasMoreElements()) {
+            InetAddress address = addresses.nextElement()
+            if (!address.isLoopbackAddress()) {
+                if (address.isSiteLocalAddress()) {
+                    return address.getHostAddress()
+                } else if (result == null) {
+                    result = address
+                }
+            }
+        }
+    }
+    return (result != null ? result : InetAddress.getLocalHost()).getHostAddress()
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation files('libs/jsoup-1.12.1.jar')
+    api project(path: ':framework:common')
+    api project(path: ':mockserver')
+
+    /**
+     *  ===============================network  start====================================
+     */
+
+    //    api 'com.squareup.okhttp3:okhttp:3.8.1'
+
+    //    api 'com.android.volley:volley:1.1.1'
+    api 'com.squareup.okhttp3:okhttp-tls:4.0.1'
+    testImplementation 'com.squareup.okhttp3:okhttp-dnsoverhttps:4.0.1'
+
+    /*
+         >>>>>> http style  start
+         */
+
+    //restful
+    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    //rpc
+    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
+//        exclude group:  'com.google.guava'
+//        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
+    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
+    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
+
+    /*
+        http style  end
+         */
+
+
+    /**
+     *  ===============================network end====================================
+     */
+    kapt "com.google.dagger:dagger-compiler:2.16"
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation "com.github.jnr:jnr-unixsocket:0.23"
+}

@@ -1,0 +1,15 @@
+Executable : /Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/cmake
+arguments : 
+-H/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/common
+-B/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/common/.cxx/cmake/huaweiRelease/x86
+-DANDROID_ABI=x86
+-DANDROID_PLATFORM=android-23
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/common/build/intermediates/cmake/huaweiRelease/obj/x86
+-DCMAKE_BUILD_TYPE=Release
+-DANDROID_NDK=/Users/hawks.jamesf/Library/Android/sdk/ndk-bundle
+-DCMAKE_CXX_FLAGS=-std=c++14 -std=c++14
+-DCMAKE_TOOLCHAIN_FILE=/Users/hawks.jamesf/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/hawks.jamesf/Library/Android/sdk/cmake/3.6.4111459/bin/ninja
+-GAndroid Gradle - Ninja
+jvmArgs : 
+

@@ -4,11 +4,10 @@ if (!isComponentMode.toBoolean()) {
 }
 include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
 include ':mockserver'
-include ':common', ':network', ':storage',
-        ':image', ':av', ':map',
-        ':chatroom', ':uicomponent'
 //include ':ypose'
-include ':framework:loader'
+include ':framework:common', ':framework:network', ':framework:storage',
+        ':framework:image', ':framework:av', ':framework:map',
+        ':framework:chatroom', ':framework:uicomponent', ':framework:loader'
 include ':components:login',
         ':components:myhome'
 println("settings end")
