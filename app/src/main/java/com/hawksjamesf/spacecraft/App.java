@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.DynamicConfigImplDemo;
 import com.hawksjamesf.common.TestPluginListener;
@@ -231,7 +230,7 @@ public class App extends MultiDexApplication implements Configuration.Provider {
         EmojiCompat.Config bundledEmojiCompatConfig = new BundledEmojiCompatConfig(this);
         EmojiCompat.init(emojiCompatConfig);
 
-        Fresco.initialize(this);
+//        Fresco.initialize(this);
 
     }
 

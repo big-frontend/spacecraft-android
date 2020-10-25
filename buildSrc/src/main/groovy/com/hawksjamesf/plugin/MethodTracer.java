@@ -12,7 +12,7 @@ import org.objectweb.asm.Opcodes;
  * @email: hawksjamesf@gmail.com
  * @since: Oct/23/2020  Fri
  */
-public class MethodTrace {
+public class MethodTracer {
 
     public void start(){
         System.out.println("cjf-MethodTrace");

@@ -1,7 +1,7 @@
 package com.hawksjamesf.plugin.util;
 
 
-public final class PrintUtil {
+public final class P {
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -22,28 +22,28 @@ public final class PrintUtil {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    public static void println(Object message) {
+    private static void println(Object message) {
         System.out.println(message);
 
     }
 
-    public static void printError(Object message) {
+    public static void error(Object message) {
         println(ANSI_RED + "" + message + "" + ANSI_RESET);
     }
 
-    public static void printWarn(Object message) {
+    public static void warn(Object message) {
         println(ANSI_YELLOW + "" + message + "" + ANSI_RESET);
     }
 
-    public static void printInfo(Object message) {
+    public static void info(Object message) {
         println(ANSI_GREEN + "" + message + "" + ANSI_RESET);
     }
 
-    public static void printDebug(Object message) {
+    public static void debug(Object message) {
         println(ANSI_BLUE + "" + message + "" + ANSI_RESET);
     }
 
-    public static void printVerbose(Object message) {
+    public static void verbose(Object message) {
         println(message);
     }
 

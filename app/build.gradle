@@ -8,7 +8,7 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
-
+apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'findbugs'
 findbugs {
@@ -68,8 +68,6 @@ def getVersion() {
 
 def srcDirs = [
         "navigation",
-        "paging",
-        "paging-lib",
 //        "workmanager",
 //        "workmanager-lib",
         "mvvm",
@@ -104,11 +102,6 @@ android {
         //lower 5.x
 //        vectorDrawables.useSupportLibrary = true
 //        vectorDrawables.generatedDensities = []
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath = true
-            }
-        }
     }
     def releaseKeySet = ['RELEASE_KEY_ALIAS', 'RELEASE_STORE_PASSWORD', 'RELEASE_KEY_PASSWORD']
     def debugKeySet = ['DEBUG_KEY_ALIAS', 'DEBUG_STORE_PASSWORD', 'DEBUG_KEY_PASSWORD']
@@ -336,10 +329,11 @@ dependencies {
 //    implementation project(path: ':login')
 //    implementation project(path: ':image')
 //    implementation project(path: ':ypose')
+    kapt project(path: ':instrumentation:processor')
+    implementation project(path: ':instrumentation:annotations')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     kapt "com.github.bumptech.glide:compiler:4.10.0"
 
     api 'com.google.firebase:firebase-analytics:17.4.0'
@@ -350,11 +344,9 @@ dependencies {
     api 'com.tencent.bugly:crashreport:3.0.0'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    kapt project(path: ':instrumentation:processor')
-    implementation project(path: ':instrumentation:annotations')
+
     apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
 
 }
-apply plugin: 'com.google.gms.google-services'
 println("app end")
 

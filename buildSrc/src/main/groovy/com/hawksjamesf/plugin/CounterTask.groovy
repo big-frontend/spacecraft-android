@@ -1,6 +1,7 @@
 package com.hawksjamesf.plugin
 
 import com.google.common.collect.ImmutableSet
+import com.hawksjamesf.plugin.util.P
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
@@ -23,11 +24,11 @@ class CounterTask extends DefaultTask {
 //        }
 
 //        PrintUtil.printInfo("CounterPlugin task action srcDir : ${srcDirs.size()} ")
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin task action start\n")
+        P.info("CounterPlugin task action start\n")
         srcDirs.each { srcDir ->
             printDirectoryTree(srcDir)
         }
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin task action end>>> totals : ${totals} lines\n\r")
+        P.info("CounterPlugin task action end>>> totals : ${totals} lines\n\r")
     }
 
     def printDirectoryTree(File dir) {
@@ -35,7 +36,7 @@ class CounterTask extends DefaultTask {
         int indent = 0
         StringBuilder sb = new StringBuilder()
         printDirectoryTree(dir, indent, sb);
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("${dir.path}\n$sb>>> lines : ${lines} lines\n\r")
+        P.info("${dir.path}\n$sb>>> lines : ${lines} lines\n\r")
         this.lines=0
 
     }

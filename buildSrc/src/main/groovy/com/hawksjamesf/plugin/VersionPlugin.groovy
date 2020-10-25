@@ -1,12 +1,13 @@
 package com.hawksjamesf.plugin
 
+import com.hawksjamesf.plugin.util.P
 import groovy.text.SimpleTemplateEngine
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class VersionPlugin implements Plugin<Project> {
     void apply(Project project) {
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("VersionPlugin apply start")
+        P.info("VersionPlugin apply start")
         def versionPlugin = project.extensions.create("versionPlugin", VersionPluginExtension)
 
         //rename app name
@@ -39,7 +40,7 @@ class VersionPlugin implements Plugin<Project> {
             }
 
         }
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("VersionPlugin apply end")
+        P.info("VersionPlugin apply end")
     }
 
     def releaseTime() {

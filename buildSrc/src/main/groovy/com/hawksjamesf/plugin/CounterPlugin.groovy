@@ -1,5 +1,6 @@
 package com.hawksjamesf.plugin
 
+import com.hawksjamesf.plugin.util.P
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -9,7 +10,7 @@ class CounterPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project target) {
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin apply start")
+        P.info("CounterPlugin apply start")
         System.setProperty('org.gradle.color.error', 'RED')
         System.setProperty('org.gradle.color.warn', 'YELLOW')
         this.target = target
@@ -20,8 +21,8 @@ class CounterPlugin implements Plugin<Project> {
             handleLibVar(target)
         } else {
             def srcDirs = target.android.sourceSets.main.java.srcDirs
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin otherVariants start")
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin otherVariants end")
+            P.info("CounterPlugin otherVariants start")
+            P.info("CounterPlugin otherVariants end")
         }
 //        target.getRootProject().allprojects.each { theproject ->
 //            def prop = theproject.getProperties()
@@ -33,21 +34,21 @@ class CounterPlugin implements Plugin<Project> {
 //            }
 //
 //        }
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin apply end")
+        P.info("CounterPlugin apply end")
     }
 
     def handleAppVar(Project project) {
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin applicationVariants start")
+        P.info("CounterPlugin applicationVariants start")
 
         project.beforeEvaluate {
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin project beforeEvaluate start")
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin project beforeEvaluate end")
+            P.info("CounterPlugin project beforeEvaluate start")
+            P.info("CounterPlugin project beforeEvaluate end")
 
         }
         project.afterEvaluate {
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin project afterEvaluate start")
+            P.info("CounterPlugin project afterEvaluate start")
             createCounterTask("",project.android.sourceSets.main.java.srcDirs)
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin project afterEvaluate end")
+            P.info("CounterPlugin project afterEvaluate end")
 
         }
         project.android.applicationVariants.all { variant ->
@@ -56,18 +57,18 @@ class CounterPlugin implements Plugin<Project> {
                 return
             }
 
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin applicationVariants ${buildType}")
+            P.info("CounterPlugin applicationVariants ${buildType}")
         }
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin applicationVariants end ")
+        P.info("CounterPlugin applicationVariants end ")
     }
 
     def handleLibVar(Project project) {
         def srcDirs = target.android.sourceSets.main.java.srcDirs
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin libraryVariants start")
+        P.info("CounterPlugin libraryVariants start")
         project.android.libraryVariants.all { variant ->
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin libraryVariants ${variant.buildType.name}")
+            P.info("CounterPlugin libraryVariants ${variant.buildType.name}")
         }
-        com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin libraryVariants end")
+        P.info("CounterPlugin libraryVariants end")
 
     }
 
@@ -75,10 +76,10 @@ class CounterPlugin implements Plugin<Project> {
         CounterTask counterTask = target.tasks.create("${name}counter", CounterTask)
         counterTask.doFirst {
             counterTask.srcDirs = srcDirs
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin task doFirst ${srcDirs.getClass()} ${srcDirs}")
+            P.info("CounterPlugin task doFirst ${srcDirs.getClass()} ${srcDirs}")
         }
         counterTask.doLast {
-            com.hawksjamesf.plugin.util.PrintUtil.printInfo("CounterPlugin task doLast")
+            P.info("CounterPlugin task doLast")
         }
     }
 }
