@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.home.view.refresh;
+package com.hawksjamesf.myhome.ui.home.view.refresh;
 
 import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,8 +13,8 @@ import com.hawksjamesf.spacecraft.R;
 import com.hawksjamesf.spacecraft.data.bean.RealTimeBean;
 import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.SkyConBean;
 import com.hawksjamesf.spacecraft.data.bean.fifteendaysbean.TempeBean;
-import com.hawksjamesf.spacecraft.ui.home.view.forecast.FifteenDaysAdapter;
-import com.hawksjamesf.spacecraft.ui.home.view.forecast.FifteenDaysView;
+import com.hawksjamesf.myhome.ui.home.view.forecast.FifteenDaysAdapter;
+import com.hawksjamesf.myhome.ui.home.view.forecast.FifteenDaysView;
 import com.hawksjamesf.common.util.ConditionUtils;
 import com.orhanobut.logger.Logger;
 

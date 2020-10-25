@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.ui.home.view.forecast;
+package com.hawksjamesf.myhome.ui.home.view.forecast;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.hawksjamesf.spacecraft.R;
-import com.hawksjamesf.spacecraft.ui.home.view.forecast.older.TemperatureView;
+import com.hawksjamesf.myhome.ui.home.view.forecast.older.TemperatureView;
 
 /**
  * TODO: document your custom view class.
