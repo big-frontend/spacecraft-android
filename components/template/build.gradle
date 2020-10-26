@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
 }
-
+apply plugin: 'com.hawksjamesf.perfplugin'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-
+    api project(path: ':instrumentation:annotations')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     testImplementation 'junit:junit:4.+'

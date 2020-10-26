@@ -1,14 +1,16 @@
 println("settings start")
-if (!isComponentMode.toBoolean()) {
-    include ':app'
-}
+include ':app'
 include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
-include ':mockserver'
 //include ':ypose'
-include ':framework:common', ':framework:network', ':framework:storage',
-        ':framework:image', ':framework:av', ':framework:map',
-        ':framework:chatroom', ':framework:uicomponent', ':framework:loader'
-include ':components:myhome',
+if (isHaHa.toBoolean()) {
+    include ':components:template'
+} else {
+    include ':mockserver'
+    include ':framework:common', ':framework:network', ':framework:storage',
+            ':framework:image', ':framework:av', ':framework:map',
+            ':framework:chatroom', ':framework:uicomponent', ':framework:loader'
+    include ':components:myhome'
 //        ':components:login'
-         'components:template'
+}
+
 println("settings end")

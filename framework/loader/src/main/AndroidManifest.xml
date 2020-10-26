@@ -2,4 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hawksjamesf.loader">
 
+    <application
+        android:name="com.hawksjamesf.loader.App"
+        android:theme="@style/AppTheme"></application>
 </manifest>

@@ -1,4 +1,4 @@
-package com.hawksjamesf.plugin;
+package com.hawksjamesf.plugin.trace;
 
 import com.android.build.api.transform.QualifiedContent;
 import com.android.build.api.transform.Transform;
@@ -12,10 +12,10 @@ import org.gradle.api.Project;
 import java.io.IOException;
 import java.util.Set;
 
-class TraceTransform extends Transform {
+class TemplateTransform extends Transform {
     Project project;
 
-    TraceTransform(Project project) {
+    TemplateTransform(Project project) {
         this.project = project;
     }
 

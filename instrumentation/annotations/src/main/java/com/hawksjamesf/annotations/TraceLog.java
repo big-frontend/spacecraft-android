@@ -13,7 +13,6 @@ import java.lang.annotation.Target;
  * @since: Aug/17/2019  Sat
  */
 @Retention(RetentionPolicy.CLASS)
-//@Target({ElementType.TYPE,ElementType.FIELD,ElementType.METHOD,ElementType.LOCAL_VARIABLE})
-@Target(ElementType.METHOD)
-public @interface TraceTime {
+@Target({ElementType.METHOD})
+public @interface TraceLog {
 }

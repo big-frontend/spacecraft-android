@@ -1,6 +1,3 @@
-import com.google.gson.Gson
-import com.google.gson.JsonArray
-
 println("app start")
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -28,24 +25,24 @@ tasks.withType(FindBugs) {
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 
 
-apply plugin: 'com.tencent.matrix-plugin'
+//apply plugin: 'com.tencent.matrix-plugin'
 ext.unusedResourcesSet = new HashSet<String>();
-matrix {
-    trace {
-        enable = true    //if you don't want to use trace canary, set false
-        baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
-        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
-    }
-//    removeUnusedResources {
-//        enable true
-//        variant = "debug"
-//        needSign true
-//        shrinkArsc true
-//        apksignerPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${rootProject.buildToolsVersion}/apksigner"
-//        unusedResources = project.ext.unusedResourcesSet
-//        ignoreResources = ["R.id.*", "R.bool.*"]
+//matrix {
+//    trace {
+//        enable = true    //if you don't want to use trace canary, set false
+//        baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
+//        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
 //    }
-}
+////    removeUnusedResources {
+////        enable true
+////        variant = "debug"
+////        needSign true
+////        shrinkArsc true
+////        apksignerPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${rootProject.buildToolsVersion}/apksigner"
+////        unusedResources = project.ext.unusedResourcesSet
+////        ignoreResources = ["R.id.*", "R.bool.*"]
+////    }
+//}
 
 apply plugin: 'com.google.firebase.firebase-perf'
 //apply plugin: 'com.hawksjamesf.bugly'
@@ -54,8 +51,14 @@ apply plugin: 'com.google.firebase.firebase-perf'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
 apply plugin: 'com.google.firebase.crashlytics'
-//apply plugin: 'com.hawksjamesf.perfplugin'
+apply plugin: 'com.hawksjamesf.perfplugin'
 //apply plugin: 'com.hawksjamesf.versionplugin'
+//versionPlugin {
+//    buildTypeMatcher = 'debug'
+////        '$appName/project/buildType-v_$versionName-c_$versionCode'
+////        fileFormat = '$appName-v_$versionName-c_$versionCode'
+//    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
+//}
 //apply plugin: 'com.hawksjamesf.counterplugin'
 //counterConfig{
 //
@@ -225,34 +228,34 @@ android {
 
     applicationVariants.all { variant ->
         if (variant.name.equalsIgnoreCase("debug")) {
-            packageDebug.doLast {
-                ProcessBuilder processBuilder = new ProcessBuilder();
-                println configurations.apkCheckerDependency.getAt(0).getAbsolutePath()
-                processBuilder.command("java",
-                        "-jar", configurations.apkCheckerDependency.getAt(0).getAbsolutePath(),
-                        "--apk", variant.outputs.first().outputFile.getAbsolutePath(),
-                        "--output", project.getProjectDir().getAbsolutePath() + "/unused_resources",
-                        "--format", "json",
-                        "-unusedResources", "--rTxt", project.getBuildDir().getAbsolutePath() + "/intermediates/symbols/${variant.name}/R.txt");
-                Process process = processBuilder.start();
-                process.waitFor();
-                File outputFile = new File(project.getProjectDir().getAbsolutePath() + "/unused_resources.json");
-                if (outputFile.exists()) {
-                    Gson gson = new Gson();
-                    JsonArray jsonArray = gson.fromJson(outputFile.text, JsonArray.class);
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        if (jsonArray.get(i).asJsonObject.get("taskType").asInt == 12) {
-                            JsonArray resList = jsonArray.get(i).asJsonObject.get("unused-resources").asJsonArray;
-                            for (int j = 0; j < resList.size(); j++) {
-                                project.ext.unusedResourcesSet.add(resList.get(j).asString);
-                            }
-                            println "find unused resources:\n" + unusedResourcesSet
-                            break;
-                        }
-                    }
-                    outputFile.delete();
-                }
-            }
+//            packageDebug.doLast {
+//                ProcessBuilder processBuilder = new ProcessBuilder();
+//                println configurations.apkCheckerDependency.getAt(0).getAbsolutePath()
+//                processBuilder.command("java",
+//                        "-jar", configurations.apkCheckerDependency.getAt(0).getAbsolutePath(),
+//                        "--apk", variant.outputs.first().outputFile.getAbsolutePath(),
+//                        "--output", project.getProjectDir().getAbsolutePath() + "/unused_resources",
+//                        "--format", "json",
+//                        "-unusedResources", "--rTxt", project.getBuildDir().getAbsolutePath() + "/intermediates/symbols/${variant.name}/R.txt");
+//                Process process = processBuilder.start();
+//                process.waitFor();
+//                File outputFile = new File(project.getProjectDir().getAbsolutePath() + "/unused_resources.json");
+//                if (outputFile.exists()) {
+//                    Gson gson = new Gson();
+//                    JsonArray jsonArray = gson.fromJson(outputFile.text, JsonArray.class);
+//                    for (int i = 0; i < jsonArray.size(); i++) {
+//                        if (jsonArray.get(i).asJsonObject.get("taskType").asInt == 12) {
+//                            JsonArray resList = jsonArray.get(i).asJsonObject.get("unused-resources").asJsonArray;
+//                            for (int j = 0; j < resList.size(); j++) {
+//                                project.ext.unusedResourcesSet.add(resList.get(j).asString);
+//                            }
+//                            println "find unused resources:\n" + unusedResourcesSet
+//                            break;
+//                        }
+//                    }
+//                    outputFile.delete();
+//                }
+//            }
         }
         if (variant.buildType.name == 'release') {
 //            def exportVarToShell = tasks.create(type: Exec) {
@@ -284,11 +287,15 @@ configurations {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    if (isHaHa.toBoolean()) {
+        implementation project(path: ':components:template')
+    } else {
+        implementation project(path: ':components:myhome')
 //    implementation project(path: ':components:login')
-    implementation project(path :':components:myhome')
-//    implementation project(path :':components:template')
+    }
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
+//    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
+
 
 }
 println("app end")
