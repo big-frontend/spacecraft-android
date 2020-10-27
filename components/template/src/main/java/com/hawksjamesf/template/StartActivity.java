@@ -33,7 +33,6 @@ public class StartActivity extends Activity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
 //        Log.d("cjf", "耗时:" + (System.currentTimeMillis() - start));
 

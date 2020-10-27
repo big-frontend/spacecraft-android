@@ -15,3 +15,9 @@
 [JVM基础知识和ASM修改字节码](https://blog.csdn.net/sweatOtt/article/details/88114002)
 [Introduction to Java Bytecode](https://dzone.com/articles/introduction-to-java-bytecode)
 [Java MethodVisitor.visitTypeInsn方法代码示例](https://vimsky.com/examples/detail/java-method-org.objectweb.asm.MethodVisitor.visitTypeInsn.html)
+
+插桩(instrumentation):
+源代码插桩 Source Code Instrumentation(SCI)
+二进制插桩（Binary Instrumentation）
+ - 静态二进制插桩[Static Binary Instrumentation(SBI)]
+ - 动态二进制插桩[Dynamic Binary Instrumentation(DBI)]
