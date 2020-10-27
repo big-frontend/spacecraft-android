@@ -30,6 +30,7 @@ SpacecraftAndroid
 ### 5. Image & Graphic Module
 
 ### 6. Audio & Video Module
+- [x] screen recorder
 
 ## Business Module
 ### 1.UI Component Module
@@ -45,7 +46,7 @@ SpacecraftAndroid
 1. file lines counter plugin(./gradlew app:counter)
 2. rename apk plugin
 3. upload bugly mapping or so file plugin
-4. performance plugin , doing
+4. performance plugin: trace method(instrumentation)
 - [x] CI / CD
 - [ ] hybrid
 - [ ] ReactNative/Flutter
