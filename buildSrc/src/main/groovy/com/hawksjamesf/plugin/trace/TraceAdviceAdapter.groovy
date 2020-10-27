@@ -14,9 +14,6 @@ class TraceAdviceAdapter extends AdviceAdapter {
     private boolean isInjected = false
 
     private int startTimeId
-
-    private int methodId
-
     private String className
 
     private String methodName
@@ -33,7 +30,7 @@ class TraceAdviceAdapter extends AdviceAdapter {
         this.methodName = methodName
         this.desc = desc
         argumentArrays = Type.getArgumentTypes(desc)
-        isStaticMethod = ((access & Opcodes.ACC_STATIC) != 0)
+        isStaticMethod = ((access & ACC_STATIC) != 0)
     }
 
     @Override
@@ -51,8 +48,7 @@ class TraceAdviceAdapter extends AdviceAdapter {
         if (!isInjected) return
         startTimeId = newLocal(Type.LONG_TYPE)
         mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false)
-        mv.visitIntInsn(LSTORE, startTimeId)
-
+        mv.visitVarInsn(LSTORE, startTimeId)
 //
 //        for (int i = 0; i < argumentArrays.length; i++) {
 //            Type type = argumentArrays[i]
@@ -95,6 +91,7 @@ class TraceAdviceAdapter extends AdviceAdapter {
     @Override
     protected void onMethodExit(int opcode) {
         if (!isInjected) return
+        P.info("onMethodExit:" + opcode)
 //        if (opcode == RETURN) {
 //            visitInsn(ACONST_NULL)
 //        } else if (opcode == ARETURN || opcode == ATHROW) {
@@ -107,21 +104,44 @@ class TraceAdviceAdapter extends AdviceAdapter {
 //            }
 //            box(Type.getReturnType(this.methodDesc))
 //        }
-        //        Log.d("cjf", "耗时:" + (System.currentTimeMillis() - start));
+//        Log.d("cjf", "耗时:" + (System.currentTimeMillis() - start));
         mv.visitLdcInsn("cjf")
+        mv.visitTypeInsn(NEW, 'java/lang/StringBuilder')
+        mv.visitInsn(DUP)
+        mv.visitMethodInsn(INVOKESPECIAL, 'java/lang/StringBuilder', "<init>", "()V", false);
         mv.visitLdcInsn("耗时:")
-//        mv.visitVarInsn(LLOAD,)
-        mv.visitMethodInsn(INVOKESTATIC, "android/util/Log", "d", "(Ljava/lang/String;Ljava/lang/String;)V", false)
-//        mv.visitLdcInsn(className)
-//        mv.visitLdcInsn(methodName)
-//        mv.visitLdcInsn(desc)
-//        mv.visitVarInsn(LLOAD, startTimeId)
-//        mv.visitVarInsn(ILOAD, methodId)
-//        mv.visitMethodInsn(INVOKESTATIC, "com/example/tracelibrary/core/MethodCache", "updateMethodInfo",
-//                "(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JI)V", false)
-//
-//        mv.visitVarInsn(ILOAD, methodId)
-//        mv.visitMethodInsn(INVOKESTATIC, "com/example/tracelibrary/core/MethodCache",
-//                "printMethodInfo", "(I)V", false)
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false)
+//        int endTimeId = newLocal(Type.LONG_TYPE)
+        mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false)
+//        mv.visitVarInsn(LSTORE, endTimeId)
+//        mv.visitVarInsn(LLOAD, endTimeId)
+        mv.visitVarInsn(LLOAD, startTimeId)
+        mv.visitInsn(LSUB)
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false)
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false)
+        mv.visitMethodInsn(INVOKESTATIC, "android/util/Log", "d", "(Ljava/lang/String;Ljava/lang/String;)I", false)
     }
+
+    void printSomething(String v) {
+        mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;")
+        mv.visitLdcInsn(v)
+        mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false)
+    }
+
+    private static void createIntegerObj(MethodVisitor mv, int argsPostion) {
+        mv.visitTypeInsn(Opcodes.NEW, "java/lang/Integer");
+        mv.visitInsn(Opcodes.DUP);
+        mv.visitVarInsn(Opcodes.ILOAD, argsPostion);
+        mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Integer", "<init>", "(I)V", false);
+        mv.visitInsn(Opcodes.AASTORE);
+    }
+
+    private static void createCharObj(MethodVisitor mv, int argsPostion) {
+        mv.visitTypeInsn(Opcodes.NEW, "java/lang/Character");
+        mv.visitInsn(Opcodes.DUP);
+        mv.visitVarInsn(Opcodes.ILOAD, argsPostion);
+        mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Character", "<init>", "(C)V");
+        mv.visitInsn(Opcodes.AASTORE);
+    }
+
 }

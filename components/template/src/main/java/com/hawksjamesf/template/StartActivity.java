@@ -28,6 +28,11 @@ public class StartActivity extends Activity {
         super.onStart();
 //        long start = System.currentTimeMillis();
         for (int i = 0; i < 10; ++i) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
 //        Log.d("cjf", "耗时:" + (System.currentTimeMillis() - start));
