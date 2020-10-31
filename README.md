@@ -45,7 +45,7 @@ SpacecraftAndroid
 - [x] gradle plugin：
 1. file lines counter plugin(./gradlew app:counter)
 2. rename apk plugin
-3. upload bugly mapping or so file plugin
+3. upload bugly mapping or so file plugin( ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug)
 4. performance plugin: trace method(instrumentation)
 - [x] CI / CD
 - [ ] hybrid
