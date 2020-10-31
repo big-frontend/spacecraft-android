@@ -1,9 +1,8 @@
-package com.hawksjamesf.template;
+package com.hawksjamesf.module1;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.Button;
 
 import com.hawksjamesf.annotations.TraceTime;
@@ -17,21 +16,13 @@ import androidx.annotation.Nullable;
  * @author: hawks.jamesf
  * @since: Oct/25/2020  Sun
  */
-public class StartActivity extends Activity {
+public class PageActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Button button = new Button(this);
-        button.setText("StartActivity");
+        button.setText("Module1Activity");
         button.setTextSize(30, TypedValue.COMPLEX_UNIT_SP);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Router.select("module1_page").go(StartActivity.this,new Callback(){
-//
-//                });
-            }
-        });
         setContentView(button);
     }
 

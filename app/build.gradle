@@ -51,7 +51,7 @@ bugly {
     appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 }
 apply plugin: 'com.google.firebase.crashlytics'
-//apply plugin: 'com.hawksjamesf.perfplugin'
+apply plugin: 'com.hawksjamesf.perfplugin'
 //apply plugin: 'com.hawksjamesf.versionplugin'
 //versionPlugin {
 //    buildTypeMatcher = 'debug'

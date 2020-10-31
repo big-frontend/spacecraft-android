@@ -4,6 +4,7 @@ include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:proc
 include ':ypose'
 if (isHaHa.toBoolean()) {
     include ':components:template'
+    include ':components:module1'
 } else {
     include ':mockserver'
     include ':framework:common', ':framework:network', ':framework:storage',
