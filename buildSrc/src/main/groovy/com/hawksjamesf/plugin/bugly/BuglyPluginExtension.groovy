@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.tencent.bugly.gradle
+package com.hawksjamesf.plugin.bugly
 
 /**
  * Represents extended properties of Bugly plugin.
@@ -32,10 +32,16 @@ class BuglyPluginExtension {
     String appId = null
     // App Key of Bugly platform.
     String appKey = null
-    // Switch for controlling execution of task created by Bugly plugin.
-    Boolean execute = true
-    // Switch for uploading symtab files.
-    Boolean upload = true
     // Directory where symbol files would be output to.
     String outputDir = null
+
+
+    @Override
+    String toString() {
+        return "BuglyPluginExtension{" +
+                "appId='" + appId + '\'' +
+                ", appKey='" + appKey + '\'' +
+                ", outputDir='" + outputDir + '\'' +
+                '}';
+    }
 }
