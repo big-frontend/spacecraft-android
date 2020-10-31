@@ -45,13 +45,13 @@ ext.unusedResourcesSet = new HashSet<String>();
 //}
 
 apply plugin: 'com.google.firebase.firebase-perf'
-//apply plugin: 'com.hawksjamesf.bugly'
-//bugly {
-//    appId = '3d62251014'
-//    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
-//}
+apply plugin: 'com.tencent.buglyplugin'
+bugly {
+    appId = '3d62251014'
+    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+}
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.hawksjamesf.perfplugin'
+//apply plugin: 'com.hawksjamesf.perfplugin'
 //apply plugin: 'com.hawksjamesf.versionplugin'
 //versionPlugin {
 //    buildTypeMatcher = 'debug'
@@ -60,7 +60,7 @@ apply plugin: 'com.hawksjamesf.perfplugin'
 //    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 //}
 //apply plugin: 'com.hawksjamesf.counterplugin'
-//counterConfig{
+//counter{
 //
 //}
 
@@ -136,7 +136,8 @@ android {
 
         }
         debug {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix = '.debug'
             manifestPlaceholders = [
@@ -289,6 +290,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     if (isHaHa.toBoolean()) {
         implementation project(path: ':components:template')
+        implementation project(path: ':ypose')
     } else {
         implementation project(path: ':components:myhome')
 //    implementation project(path: ':components:login')
