@@ -59,7 +59,7 @@ apply plugin: 'com.hawksjamesf.perfplugin'
 ////        fileFormat = '$appName-v_$versionName-c_$versionCode'
 //    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 //}
-//apply plugin: 'com.hawksjamesf.counterplugin'
+apply plugin: 'com.hawksjamesf.counterplugin'
 //counter{
 //
 //}

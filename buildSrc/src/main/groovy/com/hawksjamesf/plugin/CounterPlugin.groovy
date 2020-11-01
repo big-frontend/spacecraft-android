@@ -11,12 +11,10 @@ class CounterPlugin implements Plugin<Project> {
     @Override
     void apply(Project target) {
         P.info("CounterPlugin apply start")
-        System.setProperty('org.gradle.color.error', 'RED')
-        System.setProperty('org.gradle.color.warn', 'YELLOW')
         this.target = target
         counterExtension = target.extensions.create("counter", CounterExtension)
         if (target.android.hasProperty("applicationVariants")) {
-            handleAppVar(target)
+            handleAppVar(subProject)
         } else if (target.android.hasProperty("libraryVariants")) {
             handleLibVar(target)
         } else {
@@ -47,17 +45,14 @@ class CounterPlugin implements Plugin<Project> {
         }
         project.afterEvaluate {
             P.info("CounterPlugin project afterEvaluate start")
+//            project.getRootProject().getSubprojects().each{ subProject ->
+//                if (subProject.projectDir != null){
+//                    println"projectDir: $subProject.projectDir"
+//
+//                }
+//            }
             createCounterTask("",project.android.sourceSets.main.java.srcDirs)
             P.info("CounterPlugin project afterEvaluate end")
-
-        }
-        project.android.applicationVariants.all { variant ->
-            def buildType = variant.buildType.name
-            if (buildType.contains("debug")) {
-                return
-            }
-
-            P.info("CounterPlugin applicationVariants ${buildType}")
         }
         P.info("CounterPlugin applicationVariants end ")
     }
@@ -79,7 +74,6 @@ class CounterPlugin implements Plugin<Project> {
             P.info("CounterPlugin task doFirst ${srcDirs.getClass()} ${srcDirs}")
         }
         counterTask.doLast {
-            P.info("CounterPlugin task doLast")
         }
     }
 }
