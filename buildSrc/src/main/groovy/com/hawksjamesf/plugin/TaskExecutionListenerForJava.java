@@ -12,9 +12,9 @@ import org.gradle.api.tasks.TaskState;
  * @since: Oct/13/2018  Sat
  */
 public class TaskExecutionListenerForJava implements TaskExecutionListener {
+
     @Override
     public void beforeExecute(Task task) {
-//        util.Console.printJ("execution:"+task.toString());
     }
 
     @Override

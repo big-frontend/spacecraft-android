@@ -60,9 +60,9 @@ apply plugin: 'com.hawksjamesf.perfplugin'
 //    fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode-time_$releaseTime'
 //}
 apply plugin: 'com.hawksjamesf.counterplugin'
-//counter{
-//
-//}
+counterConfig {
+    seaSrcDirs = true
+}
 
 def getVersion() {
     [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]

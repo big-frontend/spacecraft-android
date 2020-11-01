@@ -1,14 +1,24 @@
-package com.hawksjamesf.plugin
+package com.hawksjamesf.plugin.counter
 
-import com.google.common.collect.ImmutableSet
+
 import com.hawksjamesf.plugin.util.P
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 class CounterTask extends DefaultTask {
-    public ImmutableSet<File> srcDirs
-    int totals = 0
-    int lines =0
+    public List<File> srcDirs
+    int l_totals = 0
+    int lines = 0
+
+    int j_l_totals = 0
+    int j_lines = 0
+    int j_f_totals = 0
+    int j_files = 0
+
+    int k_l_totals = 0
+    int k_lines = 0
+    int k_f_totals = 0
+    int k_files = 0
 
     @TaskAction
     def startCounting() {
@@ -28,7 +38,32 @@ class CounterTask extends DefaultTask {
         srcDirs.each { srcDir ->
             printDirectoryTree(srcDir)
         }
-        P.info("CounterPlugin task action end>>> totals : ${totals} lines\n\r")
+        P.info("CounterPlugin task action end>>> totals : ${j_f_totals} java/,${j_l_totals} lines, ${k_f_totals} kotlin/${k_l_totals} lines \n\r")
+        replace("${j_f_totals} |${j_l_totals}|", "${k_f_totals}|${k_l_totals}|")
+    }
+
+    def replace(def javaDes, def kotlinDes) {
+
+        File file = new File(project.rootDir.path, "README.md")
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        CharArrayWriter tempStream = new CharArrayWriter();
+        String line = null
+        while ((line = br.readLine()) != null) {
+            if (line.contains("|  java  |")) {
+                line = line.replace(line, "|  java  |" + javaDes)
+            }
+            if (line.contains("|  kotlin  |")) {
+                line = line.replace(line, " | kotlin  |" + kotlinDes)
+
+            }
+            tempStream.write(line)
+            tempStream.append(System.getProperty("line.separator"));
+        }
+        br.close()
+        FileWriter out = new FileWriter(file)
+        tempStream.writeTo(out)
+        out.close()
+
     }
 
     def printDirectoryTree(File dir) {
@@ -36,8 +71,12 @@ class CounterTask extends DefaultTask {
         int indent = 0
         StringBuilder sb = new StringBuilder()
         printDirectoryTree(dir, indent, sb);
-        P.info("${dir.path}\n$sb>>> lines : ${lines} lines\n\r")
-        this.lines=0
+        P.info("${dir.path}\n$sb>>> ${j_files} java/${j_lines} lines, ${k_files} kotlin/${k_lines} lines\n\r")
+        this.lines = 0
+        this.j_lines = 0
+        this.k_lines = 0
+        this.j_files = 0
+        this.k_files = 0
 
     }
 
@@ -61,8 +100,19 @@ class CounterTask extends DefaultTask {
 
     void printFile(File file, int indent, StringBuilder sb) {
         int lines = file.readLines().size()
-        totals += lines
-        this.lines +=lines
+        this.lines += lines
+        this.l_totals += lines
+        if (file.name.endsWith("kt")) {
+            this.k_lines += lines
+            this.k_l_totals += lines
+            this.k_files += 1
+            this.k_f_totals += 1
+        } else if (file.name.endsWith("java")) {
+            this.j_lines += lines
+            this.j_l_totals += lines
+            this.j_files += 1
+            this.j_f_totals += +1
+        }
         sb.append(getIndentString(indent))
                 .append("+--")
                 .append(file.getName())

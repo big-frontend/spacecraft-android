@@ -8,9 +8,9 @@ SpacecraftAndroid
 |  gitlab/SpacecraftAndroid master branch |  [![pipeline status](https://gitlab.com/spacecraft-plan/spacecraftandroid/badges/master/pipeline.svg)](https://gitlab.com/spacecraft-plan/spacecraftandroid/-/commits/master) |
 | feature/kotlin-gradle branch   |  [![Build Status](https://travis-ci.org/JamesfChen/Spacecraft.svg?branch=feature/kotlin-gradle)](https://travis-ci.org/JamesfChen/Spacecraft) |
 |  apk  |  [download url](https://www.pgyer.com/rDcO) |
-|  language  |  file total |
-|  java  | cjf124  |
-|  kotlin  |  cjf124 |
+|  language  |  files |lines|
+|  java  |8 |662|
+ | kotlin  |1|30|
 
 
 # To be Architect
