@@ -39,22 +39,26 @@ class CounterTask extends DefaultTask {
             printDirectoryTree(srcDir)
         }
         P.info("CounterPlugin task action end>>> totals : ${j_f_totals} java/,${j_l_totals} lines, ${k_f_totals} kotlin/${k_l_totals} lines \n\r")
-        replace("${j_f_totals} |${j_l_totals}|", "${k_f_totals}|${k_l_totals}|")
+        def map = new HashMap<String, String>()
+        map.put("|  java|", "|  java|${j_f_totals} |${j_l_totals}|")
+        map.put("|  kotlin|", "|  kotlin|${k_f_totals}|${k_l_totals}|")
+        File file = new File(project.rootDir.path, "README.md")
+        replace(file, map)
     }
 
-    def replace(def javaDes, def kotlinDes) {
-
-        File file = new File(project.rootDir.path, "README.md")
+    def replace(File file, HashMap<String, String> map) {
+        def keys = map.keySet()
         BufferedReader br = new BufferedReader(new FileReader(file));
         CharArrayWriter tempStream = new CharArrayWriter();
         String line = null
         while ((line = br.readLine()) != null) {
-            if (line.contains("|  java  |")) {
-                line = line.replace(line, "|  java  |" + javaDes)
-            }
-            if (line.contains("|  kotlin  |")) {
-                line = line.replace(line, " | kotlin  |" + kotlinDes)
-
+            for (int i = 0; i < keys.size(); i++) {
+                def k = keys[i]
+                if (line.contains(k)) {
+                    print(k + " " + line + "\n")
+                    line = line.replace(line, map.get(k))
+                    break
+                }
             }
             tempStream.write(line)
             tempStream.append(System.getProperty("line.separator"));
