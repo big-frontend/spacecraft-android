@@ -55,8 +55,8 @@ class CounterTask extends DefaultTask {
             for (int i = 0; i < keys.size(); i++) {
                 def k = keys[i]
                 if (line.contains(k)) {
-                    print(k + " " + line + "\n")
                     line = line.replace(line, map.get(k))
+                    print(k + " " + line + "\n")
                     break
                 }
             }
