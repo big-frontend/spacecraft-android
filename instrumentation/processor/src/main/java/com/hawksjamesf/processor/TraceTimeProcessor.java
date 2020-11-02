@@ -48,8 +48,8 @@ public class TraceTimeProcessor extends AbstractProcessor {
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(TraceTime.class);
         for (Element element : elements) {
             String name = element.getSimpleName().toString();
-            String value = element.getAnnotation(TraceTime.class).value();
-            messager.printMessage(Diagnostic.Kind.NOTE, "cjf"+name + " --> " + value);
+//            String value = element.getAnnotation(TraceTime.class).value();
+//            messager.printMessage(Diagnostic.Kind.NOTE, "cjf"+name + " --> " + value);
         }
         return true;
     }
