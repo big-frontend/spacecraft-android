@@ -3,8 +3,8 @@ package com.hawksjamesf.signin;
 import com.hawksjamesf.common.mvp.AbstractSpacecraftActivity
 import com.hawksjamesf.common.mvp.AbstractSpacecraftPresenter
 import com.hawksjamesf.common.mvp.SpacecraftView
-import com.hawksjamesf.network.event.SignInFailedEvent
-import com.hawksjamesf.network.event.SignUpFailedEvent
+import com.hawksjamesf.event.SignInFailedEvent
+import com.hawksjamesf.event.SignUpFailedEvent
 import com.hawksjamesf.network.signin.*
 import io.reactivex.Observable
 import io.reactivex.Single

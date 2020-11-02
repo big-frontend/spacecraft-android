@@ -7,8 +7,11 @@ import com.hawksjamesf.common.mvp.AutoDisposable
 import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
 import com.hawksjamesf.common.util.subscribeBy
-import com.hawksjamesf.myhome.R
+import com.hawksjamesf.login.R
 import com.hawksjamesf.network.signin.*
+import com.jakewharton.rxbinding2.view.clicks
+import com.jakewharton.rxbinding2.widget.editorActions
+import com.jakewharton.rxbinding2.widget.textChanges
 import com.orhanobut.logger.Logger
 import io.reactivex.rxkotlin.Observables
 import kotlinx.android.synthetic.main.activity_signup.*

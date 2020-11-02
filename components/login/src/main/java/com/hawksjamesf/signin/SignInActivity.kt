@@ -9,11 +9,13 @@ import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
 import com.hawksjamesf.common.util.openActivity
 import com.hawksjamesf.common.util.subscribeBy
-import com.hawksjamesf.myhome.R
-import com.hawksjamesf.myhome.ui.home.HomeActivity
+import com.hawksjamesf.login.R
 import com.hawksjamesf.network.signin.ClientException
 import com.hawksjamesf.network.signin.ClientState
 import com.hawksjamesf.network.signin.SignInReqBody
+import com.jakewharton.rxbinding2.view.clicks
+import com.jakewharton.rxbinding2.widget.editorActions
+import com.jakewharton.rxbinding2.widget.textChanges
 import com.orhanobut.logger.Logger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.Observables
@@ -108,7 +110,7 @@ class SignInActivity : SignInContract.View() {
                 pb_signin_progress.visibility = if (it) View.VISIBLE else View.GONE
             }.autoDisposable()
             map { it == ClientState.SIGNED_OUT }.subscribe { ll_signin.visibility }.autoDisposable()
-            filter { it == ClientState.SIGNED_IN }.subscribe { openActivity<HomeActivity>() }.autoDisposable()
+//            filter { it == ClientState.SIGNED_IN }.subscribe { openActivity<HomeActivity>() }.autoDisposable()
             filter { it == ClientState.SIGNING_UP }.subscribe { openActivity<SignUpActivity>(false) }.autoDisposable()
 
         }.connect(autoDisposable)

@@ -53,12 +53,12 @@
             app:cv_interval="5000"
             />
 
-        <com.hawksjamesf.uicomponent.widget.ChaplinVideoView
-            android:id="@+id/clv"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            />
+<!--        <com.hawksjamesf.uicomponent.widget.ChaplinVideoView-->
+<!--            android:id="@+id/clv"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            />-->
 
 
         <VideoView

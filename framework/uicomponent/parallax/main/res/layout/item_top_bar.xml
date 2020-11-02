@@ -21,9 +21,9 @@
             android:layout_marginTop="10dp"
             android:text="safsafasfdsadfdsaf"/>
 
-        <com.hawksjamesf.av.widget.ChaplinVideoView
-            android:id="@+id/clv"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+<!--        <com.hawksjamesf.av.widget.ChaplinVideoView-->
+<!--            android:id="@+id/clv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"/>-->
     </FrameLayout>
 </LinearLayout>

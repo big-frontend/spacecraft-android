@@ -3,10 +3,10 @@ package com.hawksjamesf.signin
 import androidx.annotation.MainThread
 import com.hawksjamesf.common.util.Util
 import com.hawksjamesf.network.signin.*
-import com.hawksjamesf.network.source.SignInDataSource
-import com.hawksjamesf.network.source.mock.MockSignInDataSource
-import com.hawksjamesf.network.source.mock.UncertaintyConditions
-import com.hawksjamesf.network.source.remote.rest.signin.RemoteSignInDataSource
+import com.hawksjamesf.source.SignInDataSource
+import com.hawksjamesf.source.mock.MockSignInDataSource
+import com.hawksjamesf.source.mock.UncertaintyConditions
+import com.hawksjamesf.source.remote.rest.signin.RemoteSignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit

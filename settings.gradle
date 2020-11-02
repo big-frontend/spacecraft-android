@@ -10,8 +10,8 @@ if (isHaHa.toBoolean()) {
     include ':framework:common', ':framework:network', ':framework:storage',
             ':framework:image', ':framework:av', ':framework:map',
             ':framework:chatroom', ':framework:uicomponent', ':framework:loader'
-    include ':components:myhome'
-//        ':components:login'
+    include ':components:myhome',
+            ':components:login'
 }
 
 println("settings end")

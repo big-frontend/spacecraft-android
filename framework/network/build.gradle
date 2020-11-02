@@ -170,7 +170,7 @@ dependencies {
     api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
     api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
     api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    api 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
     //rpc
     api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突

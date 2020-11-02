@@ -2,7 +2,7 @@ package com.hawksjamesf.signin
 
 import androidx.annotation.MainThread
 import com.hawksjamesf.network.signin.*
-import com.hawksjamesf.network.source.SignInDataSource
+import com.hawksjamesf.source.SignInDataSource
 import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit

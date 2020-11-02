@@ -10,6 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
@@ -17,14 +22,10 @@ import com.hawksjamesf.common.mvp.RxActivity;
 import com.hawksjamesf.common.util.BarUtil;
 import com.hawksjamesf.mockserver.model.WeatherData;
 import com.hawksjamesf.myhome.R;
+import com.hawksjamesf.myhome.api.WeatherDataSource;
 import com.hawksjamesf.network.gson.ListRes;
-import com.hawksjamesf.network.source.WeatherDataSource;
 import com.orhanobut.logger.Logger;
 
-import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.functions.Consumer;
 
 /**

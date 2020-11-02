@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RotateDrawable;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -15,19 +14,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.hawksjamesf.av.widget.ChaplinVideoView;
-import com.hawksjamesf.av.Constants;
-import com.hawksjamesf.uicomponent.adapter.CarouselPagerAdapter;
-import com.hawksjamesf.uicomponent.transformer.ZoomOutPageTransformer;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.hawksjamesf.uicomponent.adapter.CarouselPagerAdapter;
+import com.hawksjamesf.uicomponent.transformer.ZoomOutPageTransformer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright ® $ 2019
@@ -50,7 +47,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     CarouselView cv;
     VideoView vv;
-    ChaplinVideoView clv;
+//    ChaplinVideoView clv;
     PagerView pv;
 
     @Override
@@ -66,14 +63,14 @@ public class ViewPagerActivity extends AppCompatActivity {
         vv = findViewById(R.id.vv);
 //        MediaController mediaController = new MediaController(this);
 //        vv.setMediaController(mediaController);
-        vv.setVideoURI(Uri.parse(Constants.VIDEO_URL));
-        clv = findViewById(R.id.clv);
-        vv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clv.start();
-            }
-        });
+//        vv.setVideoURI(Uri.parse(Constants.VIDEO_URL));
+//        clv = findViewById(R.id.clv);
+//        vv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clv.start();
+//            }
+//        });
         vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -212,7 +209,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         vv.start();
-        clv.start();
+//        clv.start();
 
     }
 

@@ -3,7 +3,6 @@ package com.hawksjamesf.uicomponent;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,15 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hawksjamesf.common.util.ConvertUtil;
-import com.hawksjamesf.av.widget.ChaplinVideoView;
-import com.hawksjamesf.av.Constants;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.hawksjamesf.common.util.ConvertUtil;
 
 /**
  * Copyright ® 2019
@@ -39,8 +36,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ParallaxActivity extends AppCompatActivity {
     LinearLayout item_top_bar_for_recyclerview;
     LinearLayout item_top_bar_for_listview;
-    ChaplinVideoView clvForRecyclerView;
-    ChaplinVideoView clvForListView;
+//    ChaplinVideoView clvForRecyclerView;
+//    ChaplinVideoView clvForListView;
     RecyclerView rv;
     CustListView lv;
     private int mTouchMoveCount = 0;
@@ -60,12 +57,12 @@ public class ParallaxActivity extends AppCompatActivity {
 
 
         item_top_bar_for_recyclerview = findViewById(R.id.item_top_bar_for_recyclerview);
-        clvForRecyclerView = item_top_bar_for_recyclerview.findViewById(R.id.clv);
-        clvForRecyclerView.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL))
+//        clvForRecyclerView = item_top_bar_for_recyclerview.findViewById(R.id.clv);
+//        clvForRecyclerView.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL))
 //        clvForRecyclerView.setDataSourceAndPlay(R.raw.wechatsight1)
-                .bindLifecycle(getLifecycle());
+//                .bindLifecycle(getLifecycle());
         item_top_bar_for_listview = findViewById(R.id.item_top_bar_for_listview);
-        clvForListView = item_top_bar_for_listview.findViewById(R.id.clv);
+//        clvForListView = item_top_bar_for_listview.findViewById(R.id.clv);
 
         rv = findViewById(R.id.rv);
         final MyAdapter myAdapter = new MyAdapter();
@@ -387,22 +384,22 @@ public class ParallaxActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Log.d("ParallaxActivity", "RecyclerView:onBindViewHolder:position:" + position);
             holder.tvText.setText("RecyclerView:position:" + position);
-            holder.clv.setPosition(position);
-            if (holder.isFirstBoot && position == 0) {
-                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1)
-//                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
-                ;
-                holder.isFirstBoot = false;
-            } else if (position % 2 == 0) {
-//                holder.clv.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL), false)
-                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1, false)
-//                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
-                ;
-            } else {
-                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1, false)
-//                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
-                ;
-            }
+//            holder.clv.setPosition(position);
+//            if (holder.isFirstBoot && position == 0) {
+//                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1)
+////                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
+//                ;
+//                holder.isFirstBoot = false;
+//            } else if (position % 2 == 0) {
+////                holder.clv.setDataSourceAndPlay(Uri.parse(Constants.VIDEO_URL), false)
+//                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1, false)
+////                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
+//                ;
+//            } else {
+//                holder.clv.setDataSourceAndPlay(R.raw.wechatsight1, false)
+////                        .bindLifecycle(ParallaxActivity.this.getLifecycle())
+//                ;
+//            }
         }
 
         @Override
@@ -413,20 +410,20 @@ public class ParallaxActivity extends AppCompatActivity {
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvText;
-        ChaplinVideoView clv;
+//        ChaplinVideoView clv;
         boolean isFirstBoot;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvText = itemView.findViewById(R.id.tv_text);
-            clv = itemView.findViewById(R.id.clv);
+//            clv = itemView.findViewById(R.id.clv);
         }
 
         MyViewHolder(@NonNull View itemView, boolean isFirstBoot) {
             super(itemView);
             this.isFirstBoot = isFirstBoot;
             tvText = itemView.findViewById(R.id.tv_text);
-            clv = itemView.findViewById(R.id.clv);
+//            clv = itemView.findViewById(R.id.clv);
         }
     }
 
