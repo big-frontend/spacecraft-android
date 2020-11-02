@@ -1,22 +1,16 @@
 package com.hawksjamesf.myhome.api
 
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.hawksjamesf.network.BuildConfig
-import com.hawksjamesf.network.DefaultAuthenticator
-import com.hawksjamesf.network.DefaultDns
 import com.hawksjamesf.network.adapter.ObservableOrMainCallAdapterFactory
+import com.hawksjamesf.network.callFactory.UrlConnectionCallFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import okhttp3.internal.tls.OkHostnameVerifier
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
 import java.util.*
-import java.util.concurrent.TimeUnit
 import javax.net.ssl.*
 import kotlin.reflect.KClass
 
@@ -36,37 +30,34 @@ abstract class AbstractApi<T : Any> {
 
         val (sslSocketFactory, trustManager) = createMetadata()
 
-        /***
-         * 非对称密匙：
-         * 对称密匙：
-         */
-        val okHttpClient = OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .pingInterval(1, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true)
-//                .protocols(listOf(Protocol.HTTP_2))
-                .addInterceptor(URLInterceptor())
-                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addNetworkInterceptor(StethoInterceptor())
-//                .addNetworkInterceptor(MetricInterceptor())
-//                .socketFactory(SocketFactory.getDefault())
-                .sslSocketFactory(sslSocketFactory, trustManager)
-                .hostnameVerifier(OkHostnameVerifier)
-//                .certificatePinner(DefaultCertificatePinner())
-//                .eventListenerFactory(PrintingEventListener.FACTORY)
-//                .eventListener()
-                .authenticator(DefaultAuthenticator())
-                .dns(DefaultDns())
-//                .proxy(DefaultProxy())
-//                .proxyAuthenticator(DefaultProxyAuthenticator())
-//                .proxySelector(DefaultProxySelector())
-                .build()
+//        val okHttpClient = OkHttpClient.Builder()
+//                .connectTimeout(10, TimeUnit.SECONDS)
+//                .readTimeout(10, TimeUnit.SECONDS)
+//                .writeTimeout(10, TimeUnit.SECONDS)
+//                .pingInterval(1, TimeUnit.SECONDS)
+//                .retryOnConnectionFailure(true)
+////                .protocols(listOf(Protocol.HTTP_2))
+//                .addInterceptor(URLInterceptor())
+//                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .addNetworkInterceptor(StethoInterceptor())
+////                .addNetworkInterceptor(MetricInterceptor())
+////                .socketFactory(SocketFactory.getDefault())
+//                .sslSocketFactory(sslSocketFactory, trustManager)
+//                .hostnameVerifier(OkHostnameVerifier)
+////                .certificatePinner(DefaultCertificatePinner())
+////                .eventListenerFactory(PrintingEventListener.FACTORY)
+////                .eventListener()
+//                .authenticator(DefaultAuthenticator())
+//                .dns(DefaultDns())
+////                .proxy(DefaultProxy())
+////                .proxyAuthenticator(DefaultProxyAuthenticator())
+////                .proxySelector(DefaultProxySelector())
+//                .build()
+        val client = UrlConnectionCallFactory()
         api = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 //                .baseUrl("http://localhost:50195")
-                .callFactory(okHttpClient)
+                .callFactory(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
