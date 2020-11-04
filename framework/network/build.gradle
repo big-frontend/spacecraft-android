@@ -39,7 +39,12 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle
 //}
 
 def srcDirs = [
-        "protocol"
+        "protocol",
+        "retrofit/retrofit/src",
+        "retrofit/retrofit-adapters/rxjava3/src",
+        "retrofit/retrofit-converters/gson/src",
+        "retrofit/retrofit-converters/moshi/src",
+        "retrofit/retrofit-converters/wire/src"
 
 ]
 android {
@@ -101,29 +106,14 @@ android {
 
         }
     }
-//    flavorDimensions "data_access"
-//    productFlavors {
-//        mocked {
-//            dimension 'data_access'
-//            buildConfigField 'boolean', 'MOCKED_DATA_ACCESS', 'true'
-//            buildConfigField 'String', 'WEATHER_URL', '" "'
-//
-//        }
-//        real {
-//            dimension 'data_access'
-//            buildConfigField 'boolean', 'MOCKED_DATA_ACCESS', 'false'
-//            buildConfigField 'String', 'WEATHER_URL', '"https://api.openweathermap.org"'
-//
-//        }
-//
-//        realLocalServer{
-//            dimension 'data_access'
-//            buildConfigField 'boolean','MOCKED_DATA_ACCESS','false'
-//            buildConfigField 'String','WEATHER_URL',"\"http://${getLocalIP()}:8080\""
-//        }
-        println("getLocalIP--->${getLocalIP()}")
-
-//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    println("getLocalIP--->${getLocalIP()}")
 }
 
 static String getLocalIP() {
@@ -166,9 +156,9 @@ dependencies {
          */
 
     //restful
-    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:retrofit-converters:${rootProject.ext.retrofitVersion}"
+//    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
     api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingVersion}"
     api 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 

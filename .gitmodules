@@ -1,9 +1,6 @@
 [submodule "network/okhttp"]
 	path = network/okhttp
 	url = git@github.com:square/okhttp.git
-[submodule "network/retrofit"]
-	path = network/retrofit
-	url = git@github.com:square/retrofit.git
 [submodule "network/volley"]
 	path = network/volley
 	url = git@github.com:google/volley.git
