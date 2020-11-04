@@ -15,9 +15,6 @@
  */
 package retrofit2;
 
-import static retrofit2.Utils.methodError;
-import static retrofit2.Utils.parameterError;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -31,7 +28,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.annotation.Nullable;
+
 import kotlin.coroutines.Continuation;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -62,7 +61,10 @@ import retrofit2.http.QueryName;
 import retrofit2.http.Tag;
 import retrofit2.http.Url;
 
-final class RequestFactory {
+import static retrofit2.Utils.methodError;
+import static retrofit2.Utils.parameterError;
+
+public final class RequestFactory {
   static RequestFactory parseAnnotations(Retrofit retrofit, Method method) {
     return new Builder(retrofit, method).build();
   }

@@ -93,7 +93,7 @@ public final class Response<T> {
     return error(
         body,
         new okhttp3.Response.Builder() //
-            .body(new OkHttpCall.NoContentResponseBody(body.contentType(), body.contentLength()))
+            .body(new retrofit2.callFactory.OkHttpCall.NoContentResponseBody(body.contentType(), body.contentLength()))
             .code(code)
             .message("Response.error()")
             .protocol(Protocol.HTTP_1_1)

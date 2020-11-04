@@ -15,16 +15,18 @@
  */
 package retrofit2;
 
-import static retrofit2.Utils.getRawType;
-import static retrofit2.Utils.methodError;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+
 import javax.annotation.Nullable;
+
 import kotlin.coroutines.Continuation;
 import okhttp3.ResponseBody;
+
+import static retrofit2.Utils.getRawType;
+import static retrofit2.Utils.methodError;
 
 /** Adapts an invocation of an interface method into an HTTP call. */
 abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<ReturnT> {
@@ -63,8 +65,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
       adapterType = method.getGenericReturnType();
     }
 
-    CallAdapter<ResponseT, ReturnT> callAdapter =
-        createCallAdapter(retrofit, method, adapterType, annotations);
+    CallAdapter<ResponseT, ReturnT> callAdapter = createCallAdapter(retrofit, method, adapterType, annotations);
     Type responseType = callAdapter.responseType();
     if (responseType == okhttp3.Response.class) {
       throw methodError(

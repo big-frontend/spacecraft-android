@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package retrofit2;
+package retrofit2.callFactory;
 
-import static retrofit2.Utils.throwIfFatal;
 
 import java.io.IOException;
 import java.util.Objects;
+
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
+
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
@@ -29,8 +30,16 @@ import okio.BufferedSource;
 import okio.ForwardingSource;
 import okio.Okio;
 import okio.Timeout;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Converter;
+import retrofit2.RequestFactory;
+import retrofit2.Response;
+import retrofit2.Utils;
 
-final class OkHttpCall<T> implements Call<T> {
+import static io.reactivex.exceptions.Exceptions.throwIfFatal;
+
+public final class OkHttpCall<T> implements Call<T> {
   private final RequestFactory requestFactory;
   private final Object[] args;
   private final okhttp3.Call.Factory callFactory;

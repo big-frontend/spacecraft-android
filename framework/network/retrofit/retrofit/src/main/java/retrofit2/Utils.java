@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 import okhttp3.ResponseBody;
 import okio.Buffer;
 
-final class Utils {
+public final class Utils {
   static final Type[] EMPTY_TYPE_ARRAY = new Type[0];
 
   private Utils() {
@@ -318,7 +318,7 @@ final class Utils {
     return false;
   }
 
-  static ResponseBody buffer(final ResponseBody body) throws IOException {
+  public static ResponseBody buffer(final ResponseBody body) throws IOException {
     Buffer buffer = new Buffer();
     body.source().readAll(buffer);
     return ResponseBody.create(body.contentType(), body.contentLength(), buffer);
