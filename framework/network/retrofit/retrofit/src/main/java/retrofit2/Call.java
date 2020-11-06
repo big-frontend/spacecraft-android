@@ -16,7 +16,9 @@
 package retrofit2;
 
 import java.io.IOException;
+
 import okhttp3.Request;
+import okhttp3.ResponseBody;
 import okio.Timeout;
 
 /**
@@ -78,4 +80,7 @@ public interface Call<T> extends Cloneable {
    * retries all must complete within one timeout period.
    */
   Timeout timeout();
+  interface Factory {
+    <T> Call<T> newCall(Request request,Converter<ResponseBody, T>  responseConverter);
+  }
 }

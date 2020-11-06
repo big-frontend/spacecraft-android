@@ -15,6 +15,7 @@
  */
 package retrofit2;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -85,7 +86,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
     Converter<ResponseBody, ResponseT> responseConverter =
         createResponseConverter(retrofit, method, responseType);
 
-    okhttp3.Call.Factory callFactory = retrofit.callFactory;
+    Call.Factory callFactory = retrofit.callFactory;
     if (!isKotlinSuspendFunction) {
       return new CallAdapted<>(requestFactory, callFactory, responseConverter, callAdapter);
     } else if (continuationWantsResponse) {
@@ -129,12 +130,12 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
   }
 
   private final RequestFactory requestFactory;
-  private final okhttp3.Call.Factory callFactory;
+  private final Call.Factory callFactory;
   private final Converter<ResponseBody, ResponseT> responseConverter;
 
   HttpServiceMethod(
       RequestFactory requestFactory,
-      okhttp3.Call.Factory callFactory,
+      Call.Factory callFactory,
       Converter<ResponseBody, ResponseT> responseConverter) {
     this.requestFactory = requestFactory;
     this.callFactory = callFactory;
@@ -143,8 +144,13 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
   @Override
   final @Nullable ReturnT invoke(Object[] args) {
-    Call<ResponseT> call = new OkHttpCall<>(requestFactory, args, callFactory, responseConverter);
-    return adapt(call, args);
+      Call<ResponseT> call = null;
+      try {
+          call = callFactory.newCall(requestFactory.create(args), responseConverter);
+      } catch (IOException e) {
+          throw new RuntimeException("Unable to create request.", e);
+      }
+      return adapt(call, args);
   }
 
   protected abstract @Nullable ReturnT adapt(Call<ResponseT> call, Object[] args);
@@ -154,7 +160,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
     CallAdapted(
         RequestFactory requestFactory,
-        okhttp3.Call.Factory callFactory,
+        Call.Factory callFactory,
         Converter<ResponseBody, ResponseT> responseConverter,
         CallAdapter<ResponseT, ReturnT> callAdapter) {
       super(requestFactory, callFactory, responseConverter);
@@ -172,7 +178,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
     SuspendForResponse(
         RequestFactory requestFactory,
-        okhttp3.Call.Factory callFactory,
+        Call.Factory callFactory,
         Converter<ResponseBody, ResponseT> responseConverter,
         CallAdapter<ResponseT, Call<ResponseT>> callAdapter) {
       super(requestFactory, callFactory, responseConverter);
@@ -202,7 +208,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
     SuspendForBody(
         RequestFactory requestFactory,
-        okhttp3.Call.Factory callFactory,
+        Call.Factory callFactory,
         Converter<ResponseBody, ResponseT> responseConverter,
         CallAdapter<ResponseT, Call<ResponseT>> callAdapter,
         boolean isNullable) {

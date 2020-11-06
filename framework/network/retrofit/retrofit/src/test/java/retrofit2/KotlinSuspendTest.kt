@@ -16,12 +16,12 @@
 package retrofit2
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.SocketPolicy.DISCONNECT_AFTER_REQUEST
@@ -32,6 +32,7 @@ import org.junit.Assert.fail
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.callFactory.OkHttpCallFactory
 import retrofit2.helpers.ToStringConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -199,11 +200,11 @@ class KotlinSuspendTest {
     val okHttpClient = OkHttpClient()
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
-        .callFactory {
-          val newCall = okHttpClient.newCall(it)
-          call = newCall
-          newCall
-        }
+            .callFactory(OkHttpCallFactory.create {
+              val newCall = okHttpClient.newCall(it)
+              call = newCall
+              newCall
+            })
         .addConverterFactory(ToStringConverterFactory())
         .build()
     val example = retrofit.create(Service::class.java)

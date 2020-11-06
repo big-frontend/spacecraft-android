@@ -40,7 +40,9 @@ import okhttp3.ResponseBody;
 import okio.Buffer;
 import org.junit.Ignore;
 import org.junit.Test;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.helpers.NullObjectConverterFactory;
+
 import retrofit2.helpers.ToStringConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -3269,7 +3271,7 @@ public final class RequestFactoryTest {
           throw new UnsupportedOperationException("Not implemented");
         };
 
-    Retrofit retrofit = builder.callFactory(callFactory).build();
+    Retrofit retrofit = builder.callFactory(OkHttpCallFactory.create(callFactory)).build();
 
     Method method = TestingUtils.onlyMethod(cls);
     try {

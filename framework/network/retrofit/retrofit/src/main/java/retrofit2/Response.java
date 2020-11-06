@@ -16,11 +16,14 @@
 package retrofit2;
 
 import java.util.Objects;
+
 import javax.annotation.Nullable;
+
 import okhttp3.Headers;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
+import retrofit2.callFactory.OkHttpCallFactory;
 
 /** An HTTP response. */
 public final class Response<T> {
@@ -93,7 +96,7 @@ public final class Response<T> {
     return error(
         body,
         new okhttp3.Response.Builder() //
-            .body(new retrofit2.callFactory.OkHttpCall.NoContentResponseBody(body.contentType(), body.contentLength()))
+            .body(new OkHttpCallFactory.OkHttpCall.NoContentResponseBody(body.contentType(), body.contentLength()))
             .code(code)
             .message("Response.error()")
             .protocol(Protocol.HTTP_1_1)

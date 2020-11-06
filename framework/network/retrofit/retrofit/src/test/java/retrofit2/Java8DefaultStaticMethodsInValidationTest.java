@@ -20,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Rule;
 import org.junit.Test;
+
 import retrofit2.helpers.ToStringConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

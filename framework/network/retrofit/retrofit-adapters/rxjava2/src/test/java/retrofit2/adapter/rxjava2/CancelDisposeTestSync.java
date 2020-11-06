@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import retrofit2.Retrofit;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 
 public final class CancelDisposeTestSync {
@@ -44,7 +45,7 @@ public final class CancelDisposeTestSync {
             .baseUrl(server.url("/"))
             .addConverterFactory(new StringConverterFactory())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .callFactory(client)
+            .callFactory(OkHttpCallFactory.create(client))
             .build();
     service = retrofit.create(Service.class);
   }

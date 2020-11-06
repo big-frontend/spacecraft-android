@@ -15,6 +15,7 @@
  */
 package retrofit2;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;

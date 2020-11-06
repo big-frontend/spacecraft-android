@@ -45,6 +45,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.CompletableThrowingTest.ForwardingCompletableObserver;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 
 public final class AsyncTest {
@@ -73,7 +74,7 @@ public final class AsyncTest {
     Retrofit retrofit =
         new Retrofit.Builder()
             .baseUrl(server.url("/"))
-            .client(client)
+            .callFactory(OkHttpCallFactory.create(client))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .build();
     service = retrofit.create(Service.class);

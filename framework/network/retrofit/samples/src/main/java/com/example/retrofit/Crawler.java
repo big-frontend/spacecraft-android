@@ -41,6 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 
@@ -110,7 +111,7 @@ public final class Crawler {
         new Retrofit.Builder()
             .baseUrl(HttpUrl.get("https://example.com/"))
             .addConverterFactory(PageAdapter.FACTORY)
-            .client(okHttpClient)
+            .callFactory(OkHttpCallFactory.create(okHttpClient))
             .build();
 
     PageService pageService = retrofit.create(PageService.class);

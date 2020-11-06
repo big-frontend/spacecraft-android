@@ -24,6 +24,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Invocation;
 import retrofit2.Retrofit;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 
@@ -72,7 +73,7 @@ public final class InvocationMetrics {
     OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(invocationLogger).build();
 
     Retrofit retrofit =
-        new Retrofit.Builder().baseUrl("https://square.com/").callFactory(okHttpClient).build();
+        new Retrofit.Builder().baseUrl("https://square.com/").callFactory(OkHttpCallFactory.create(okHttpClient)).build();
 
     Browse browse = retrofit.create(Browse.class);
 

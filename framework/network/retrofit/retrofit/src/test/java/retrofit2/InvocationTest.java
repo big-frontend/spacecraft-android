@@ -27,6 +27,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.junit.Test;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -44,7 +45,7 @@ public final class InvocationTest {
     Retrofit retrofit =
         new Retrofit.Builder()
             .baseUrl("http://example.com/")
-            .callFactory(new OkHttpClient())
+            .callFactory(OkHttpCallFactory.create())
             .build();
 
     Example example = retrofit.create(Example.class);

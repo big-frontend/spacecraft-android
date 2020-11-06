@@ -43,6 +43,7 @@ import okio.ForwardingSource;
 import okio.Okio;
 import org.junit.Rule;
 import org.junit.Test;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.helpers.ToStringConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -357,7 +358,7 @@ public final class CallTest {
     Retrofit retrofit =
         new Retrofit.Builder()
             .baseUrl(server.url("/"))
-            .client(client)
+            .callFactory(OkHttpCallFactory.create(client))
             .addConverterFactory(
                 new ToStringConverterFactory() {
                   @Override
@@ -807,7 +808,7 @@ public final class CallTest {
     Retrofit retrofit =
         new Retrofit.Builder()
             .baseUrl(server.url("/"))
-            .client(client)
+            .callFactory(OkHttpCallFactory.create(client))
             .addConverterFactory(new ToStringConverterFactory())
             .build();
     Service service = retrofit.create(Service.class);

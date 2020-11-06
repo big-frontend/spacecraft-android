@@ -15,8 +15,6 @@
  */
 package retrofit2;
 
-import static java.util.Collections.unmodifiableList;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -33,15 +31,20 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
+
 import javax.annotation.Nullable;
+
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Url;
+
+import static java.util.Collections.unmodifiableList;
 
 /**
  * Retrofit adapts a Java interface to HTTP calls by using annotations on the declared methods to
@@ -66,7 +69,7 @@ import retrofit2.http.Url;
 public final class Retrofit {
   private final Map<Method, ServiceMethod<?>> serviceMethodCache = new ConcurrentHashMap<>();
 
-  final okhttp3.Call.Factory callFactory;
+  final Call.Factory callFactory;
   final HttpUrl baseUrl;
   final List<Converter.Factory> converterFactories;
   final List<CallAdapter.Factory> callAdapterFactories;
@@ -74,7 +77,7 @@ public final class Retrofit {
   final boolean validateEagerly;
 
   Retrofit(
-      okhttp3.Call.Factory callFactory,
+      Call.Factory callFactory,
       HttpUrl baseUrl,
       List<Converter.Factory> converterFactories,
       List<CallAdapter.Factory> callAdapterFactories,
@@ -210,7 +213,7 @@ public final class Retrofit {
    * The factory used to create {@linkplain okhttp3.Call OkHttp calls} for sending a HTTP requests.
    * Typically an instance of {@link OkHttpClient}.
    */
-  public okhttp3.Call.Factory callFactory() {
+  public Call.Factory callFactory() {
     return callFactory;
   }
 
@@ -426,7 +429,7 @@ public final class Retrofit {
    */
   public static final class Builder {
     private final Platform platform;
-    private @Nullable okhttp3.Call.Factory callFactory;
+    private @Nullable Call.Factory callFactory;
     private @Nullable HttpUrl baseUrl;
     private final List<Converter.Factory> converterFactories = new ArrayList<>();
     private final List<CallAdapter.Factory> callAdapterFactories = new ArrayList<>();
@@ -472,16 +475,11 @@ public final class Retrofit {
      *
      * <p>This is a convenience method for calling {@link #callFactory}.
      */
-    public Builder client(OkHttpClient client) {
-      return callFactory(Objects.requireNonNull(client, "client == null"));
-    }
+//    public Builder client(OkHttpClient client) {
+//      return callFactory(Objects.requireNonNull(client, "client == null"));
+//    }
 
-    /**
-     * Specify a custom call factory for creating {@link Call} instances.
-     *
-     * <p>Note: Calling {@link #client} automatically sets this value.
-     */
-    public Builder callFactory(okhttp3.Call.Factory factory) {
+    public Builder callFactory(Call.Factory factory) {
       this.callFactory = Objects.requireNonNull(factory, "factory == null");
       return this;
     }
@@ -612,20 +610,14 @@ public final class Retrofit {
       return this;
     }
 
-    /**
-     * Create the {@link Retrofit} instance using the configured values.
-     *
-     * <p>Note: If neither {@link #client} nor {@link #callFactory} is called a default {@link
-     * OkHttpClient} will be created and used.
-     */
     public Retrofit build() {
       if (baseUrl == null) {
         throw new IllegalStateException("Base URL required.");
       }
 
-      okhttp3.Call.Factory callFactory = this.callFactory;
+      Call.Factory callFactory = this.callFactory;
       if (callFactory == null) {
-        callFactory = new OkHttpClient();
+        callFactory =  OkHttpCallFactory.create();
       }
 
       Executor callbackExecutor = this.callbackExecutor;

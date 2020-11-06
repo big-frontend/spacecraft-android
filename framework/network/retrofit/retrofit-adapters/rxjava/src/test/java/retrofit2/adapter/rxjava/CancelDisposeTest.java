@@ -27,6 +27,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import retrofit2.Retrofit;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 import rx.Observable;
 import rx.Subscription;
@@ -49,7 +50,7 @@ public final class CancelDisposeTest {
             .baseUrl(server.url("/"))
             .addConverterFactory(new StringConverterFactory())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.createAsync())
-            .callFactory(client)
+            .callFactory(OkHttpCallFactory.create(client))
             .build();
     service = retrofit.create(Service.class);
   }

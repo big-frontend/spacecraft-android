@@ -24,6 +24,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.callFactory.OkHttpCallFactory;
 import retrofit2.http.GET;
 
 /**
@@ -63,7 +64,7 @@ public final class DynamicBaseUrl {
         new OkHttpClient.Builder().addInterceptor(hostSelectionInterceptor).build();
 
     Retrofit retrofit =
-        new Retrofit.Builder().baseUrl("http://www.github.com/").callFactory(okHttpClient).build();
+        new Retrofit.Builder().baseUrl("http://www.github.com/").callFactory(OkHttpCallFactory.create(okHttpClient)).build();
 
     Pop pop = retrofit.create(Pop.class);
 
