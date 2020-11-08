@@ -46,3 +46,6 @@
 [submodule "image/picasso"]
 	path = image/picasso
 	url = git@github.com:square/picasso.git
+[submodule "network/retrofit"]
+	path = network/retrofit
+	url = https://github.com/JamesfChen/super-retrofit.git

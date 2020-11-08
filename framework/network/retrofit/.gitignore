@@ -7,3 +7,6 @@ local.properties
 # Idea
 .idea
 *.iml
+retrofit/target/test-classes
+
+retrofit/target
