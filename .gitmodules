@@ -1,51 +1,52 @@
-[submodule "network/okhttp"]
-	path = network/okhttp
+[submodule "framework/network/okhttp"]
+	path = framework/network/okhttp
 	url = git@github.com:square/okhttp.git
-[submodule "network/volley"]
-	path = network/volley
+[submodule "framework/network/volley"]
+	path = framework/network/volley
 	url = git@github.com:google/volley.git
-[submodule "network/FileDownloader"]
-	path = network/FileDownloader
+[submodule "framework/network/FileDownloader"]
+	path = framework/network/FileDownloader
 	url = git@github.com:lingochamp/FileDownloader.git
-[submodule "network/RxDownload"]
-	path = network/RxDownload
+[submodule "framework/network/RxDownload"]
+	path = framework/network/RxDownload
 	url = git@github.com:ssseasonnn/RxDownload.git
 
-[submodule "image/glide"]
-	path = image/glide
+[submodule "framework/image/glide"]
+	path = framework/image/glide
 	url = git@github.com:bumptech/glide.git
 
-[submodule "image/PictureSelector"]
-	path = image/PictureSelector
+[submodule "framework/image/PictureSelector"]
+	path = framework/image/PictureSelector
 	url = git@github.com:LuckSiege/PictureSelector.git
-[submodule "common/serialization/wire"]
-	path = common/serialization/wire
+[submodule "framework/common/serialization/wire"]
+	path = framework/common/serialization/wire
 	url = git@github.com:square/wire.git
 
-[submodule "storage/greenDAO"]
-	path = storage/greenDAO
+[submodule "framework/storage/greenDAO"]
+	path = framework/storage/greenDAO
 	url = git@github.com:greenrobot/greenDAO.git
-[submodule "storage/realm/realm-android-adapters"]
-	path = storage/realm/realm-android-adapters
+[submodule "framework/storage/realm/realm-android-adapters"]
+	path = framework/storage/realm/realm-android-adapters
 	url = git@github.com:realm/realm-android-adapters.git
-[submodule "storage/realm/realm-java"]
-	path = storage/realm/realm-java
+[submodule "framework/storage/realm/realm-java"]
+	path = framework/storage/realm/realm-java
 	url = git@github.com:realm/realm-java.git
-[submodule "storage/android-lite-orm"]
-	path = storage/android-lite-orm
+[submodule "framework/storage/android-lite-orm"]
+	path = framework/storage/android-lite-orm
 	url = git@github.com:litesuits/android-lite-orm.git
-[submodule "network/stetho"]
-	path = network/stetho
+[submodule "framework/network/stetho"]
+	path = framework/network/stetho
 	url = git@github.com:facebook/stetho.git
-[submodule "common/kotlinx.coroutines"]
-	path = common/kotlinx.coroutines
+[submodule "framework/common/kotlinx.coroutines"]
+	path = framework/common/kotlinx.coroutines
 	url = git@github.com:Kotlin/kotlinx.coroutines.git
-[submodule "image/fresco"]
-	path = image/fresco
+[submodule "framework/image/fresco"]
+	path = framework/image/fresco
 	url = git@github.com:facebook/fresco.git
-[submodule "image/picasso"]
-	path = image/picasso
+[submodule "framework/image/picasso"]
+	path = framework/image/picasso
 	url = git@github.com:square/picasso.git
-[submodule "network/retrofit"]
-	path = network/retrofit
+
+[submodule "framework/network/super-retrofit"]
+	path = framework/network/super-retrofit
 	url = https://github.com/JamesfChen/super-retrofit.git
