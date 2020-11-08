@@ -706,7 +706,6 @@ public final class CallTest {
 
     call.cancel();
     assertThat(call.isCanceled()).isTrue();
-
     try {
       call.execute();
       fail();

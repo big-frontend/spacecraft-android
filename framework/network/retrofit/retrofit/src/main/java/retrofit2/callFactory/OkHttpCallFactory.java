@@ -16,6 +16,7 @@
 package retrofit2.callFactory;
 
 
+import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -24,10 +25,6 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.ResponseBody;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.ForwardingSource;
@@ -48,6 +45,29 @@ public final class OkHttpCallFactory implements Call.Factory {
         this.callFactory = callFactory;
     }
 
+    //        val okHttpClient = OkHttpClient.Builder()
+//                .connectTimeout(10, TimeUnit.SECONDS)
+//                .readTimeout(10, TimeUnit.SECONDS)
+//                .writeTimeout(10, TimeUnit.SECONDS)
+//                .pingInterval(1, TimeUnit.SECONDS)
+//                .retryOnConnectionFailure(true)
+////                .protocols(listOf(Protocol.HTTP_2))
+//                .addInterceptor(URLInterceptor())
+//                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                .addNetworkInterceptor(StethoInterceptor())
+////                .addNetworkInterceptor(MetricInterceptor())
+////                .socketFactory(SocketFactory.getDefault())
+//                .sslSocketFactory(sslSocketFactory, trustManager)
+//                .hostnameVerifier(OkHostnameVerifier)
+////                .certificatePinner(DefaultCertificatePinner())
+////                .eventListenerFactory(PrintingEventListener.FACTORY)
+////                .eventListener()
+//                .authenticator(DefaultAuthenticator())
+//                .dns(DefaultDns())
+////                .proxy(DefaultProxy())
+////                .proxyAuthenticator(DefaultProxyAuthenticator())
+////                .proxySelector(DefaultProxySelector())
+//                .build()
     public static OkHttpCallFactory create() {
         return new OkHttpCallFactory(new OkHttpClient());
     }
