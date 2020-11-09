@@ -1,4 +1,4 @@
-package com.hawksjamesf.network.interceptor
+package com.hawksjamesf.network.okhttp
 
 import okhttp3.Interceptor
 import okhttp3.Response
