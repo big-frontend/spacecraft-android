@@ -1,0 +1,91 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android-extensions"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlinx-serialization'
+
+apply plugin: 'com.tencent.buglyplugin'
+bugly {
+    appId = '3d62251014'
+    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+}
+def srcDirs=[]
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14"
+                abiFilters "arm64-v8a", "armeabi-v7a","x86","x86_64"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            //path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        component {
+            initWith debug
+            debuggable true
+        }
+    }
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+                jni.srcDirs +=  "$projectDir/$it/main/jni"
+                jniLibs.srcDirs +=  "$projectDir/$it/main/jniLibs"
+
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+            }
+        }
+        test {
+            srcDirs.forEach {
+//                res.srcDirs += "$projectDir/$it/test/resources"
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+}
+//task pushSD(dependsOn: ':app:assemble', type: Exec) {
+task pushSD(type: Exec) {
+    commandLine "${project.projectDir}/push_sd.sh"
+    args "${rootProject}/app/build/outputs/apk/debug/app-debug.apk", "/sdcard/demoPlugin-debug.apk"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(path: ':framework:common')
+//    api project(path: ':uicomponent')
+}

@@ -1,14 +1,6 @@
 package com.hawksjamesf.myhome.api
 
 import com.hawksjamesf.network.BuildConfig
-import com.hawksjamesf.network.adapter.ObservableOrMainCallAdapterFactory
-import com.hawksjamesf.network.callFactory.UrlConnectionCallFactory
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
 import java.util.*
 import javax.net.ssl.*
@@ -53,21 +45,21 @@ abstract class AbstractApi<T : Any> {
 ////                .proxyAuthenticator(DefaultProxyAuthenticator())
 ////                .proxySelector(DefaultProxySelector())
 //                .build()
-        val client = UrlConnectionCallFactory()
-        api = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                //                .baseUrl("http://localhost:50195")
-                .callFactory(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
-                //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .addConverterFactory(GsonConverterFactory.create())
-//                .addConverterFactory(MoshiConverterFactory.create())
-//                .addConverterFactory(ProtoConverterFactory.create())
-                .addConverterFactory(WireConverterFactory.create())
-                .build()
-                .create(getClass().java)
+//        val client = UrlConnectionCallFactory()
+//        api = Retrofit.Builder()
+//                .baseUrl(baseUrl)
+//                //                .baseUrl("http://localhost:50195")
+//                .callFactory(client)
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+//                .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
+//                //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+////                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//                .addConverterFactory(GsonConverterFactory.create())
+////                .addConverterFactory(MoshiConverterFactory.create())
+////                .addConverterFactory(ProtoConverterFactory.create())
+//                .addConverterFactory(WireConverterFactory.create())
+//                .build()
+//                .create(getClass().java)
     }
 
     abstract fun getClass(): KClass<T>

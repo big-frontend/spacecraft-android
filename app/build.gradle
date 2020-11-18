@@ -290,7 +290,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     if (isHaHa.toBoolean()) {
         implementation project(path: ':components:template')
-        implementation project(path: ':ypose')
+        implementation project(path: ':yposed')
     } else {
         implementation project(path: ':components:myhome')
         implementation project(path: ':components:login')

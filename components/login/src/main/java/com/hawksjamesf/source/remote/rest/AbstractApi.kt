@@ -6,12 +6,10 @@ import com.hawksjamesf.network.DefaultAuthenticator
 import com.hawksjamesf.network.DefaultDns
 import com.hawksjamesf.network.adapter.ObservableOrMainCallAdapterFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
@@ -66,7 +64,7 @@ abstract class AbstractApi<T : Any> {
                 .baseUrl(baseUrl)
                 //                .baseUrl("http://localhost:50195")
                 .client(okHttpClient)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .addCallAdapterFactory(CoroutineCallAdapterFactory())

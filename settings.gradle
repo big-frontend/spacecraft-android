@@ -1,7 +1,7 @@
 println("settings start")
 include ':app'
 include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
-include ':ypose'
+include ':yposed'
 if (isHaHa.toBoolean()) {
     include ':components:template'
     include ':components:module1'
