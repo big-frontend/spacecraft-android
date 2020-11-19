@@ -1,6 +1,5 @@
 package com.hawksjamesf.network.wire;
 
-import com.hawksjamesf.network.Profile;
 
 import org.junit.Before;
 

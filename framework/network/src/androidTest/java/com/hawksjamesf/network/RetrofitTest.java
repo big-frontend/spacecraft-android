@@ -3,8 +3,6 @@ package com.hawksjamesf.network;
 import android.app.Instrumentation;
 import android.content.Context;
 
-import com.hawksjamesf.network.source.remote.rest.weather.WeatherApi;
-
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
@@ -14,7 +12,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.mock.BehaviorDelegate;
 import retrofit2.mock.MockRetrofit;
 import retrofit2.mock.NetworkBehavior;
 
@@ -48,8 +45,8 @@ public class RetrofitTest  {
 
     @SmallTest
     public void testHttpIsOk() {
-        BehaviorDelegate<WeatherApi> delegate = mockRetrofit.create(WeatherApi.class);
-        WeatherApiImpl mockApi = new WeatherApiImpl(context, delegate);
+//        BehaviorDelegate<WeatherApi> delegate = mockRetrofit.create(WeatherApi.class);
+//        WeatherApiImpl mockApi = new WeatherApiImpl(context, delegate);
 //        mockApi.getCurrentWeatherDate("Shanghai")
 //                .subscribe(new Consumer<Response<WeatherData>>() {
 //                    @Override
