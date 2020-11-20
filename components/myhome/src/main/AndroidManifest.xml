@@ -88,6 +88,13 @@
             android:multiprocess="true"
             tools:node="remove"
             tools:targetApi="n" />
+        <activity android:name=".BlankActivity">
+            <intent-filter>
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
         <receiver
             android:name=".SetWallpaper"
             android:enabled="true"
