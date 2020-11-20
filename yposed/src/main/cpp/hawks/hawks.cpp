@@ -29,9 +29,11 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
     __android_log_print(ANDROID_LOG_DEBUG, "hawks", "JNI_OnUnload");
 }
-
+int i=0;
 extern "C" JNIEXPORT jstring JNICALL Java_com_hawksjamesf_yposed_YPosedActivity_stringFromJNI(
-        JNIEnv *env, jclass yposedActivity /* this */) {
-    std::string hello = "Hello from C++";
+        JNIEnv *env, jobject yposedActivity /* this */) {
+    std::string hello = "Hello from C++ ";
+    hello.append<int>(i,0x2E);
+    ++i;
     return env->NewStringUTF(hello.c_str());
 }

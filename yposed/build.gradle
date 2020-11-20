@@ -86,6 +86,8 @@ task pushSD(type: Exec) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':framework:common')
-//    api project(path: ':uicomponent')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:+"
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.annotation:annotation:1.0.1"
 }

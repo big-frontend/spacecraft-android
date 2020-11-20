@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hawksjamesf.template">
 
-    <application>
+    <application android:name=".App">
         <activity
             android:name="com.hawksjamesf.template.StartActivity"
             android:launchMode="singleTop"

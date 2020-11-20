@@ -109,7 +109,7 @@ class TraceAdviceAdapter extends AdviceAdapter {
         mv.visitTypeInsn(NEW, 'java/lang/StringBuilder')
         mv.visitInsn(DUP)
         mv.visitMethodInsn(INVOKESPECIAL, 'java/lang/StringBuilder', "<init>", "()V", false);
-        mv.visitLdcInsn("耗时:")
+        mv.visitLdcInsn("["+methodName+"] 耗时:")
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false)
 //        int endTimeId = newLocal(Type.LONG_TYPE)
         mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false)
