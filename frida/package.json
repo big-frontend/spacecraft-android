@@ -1,0 +1,19 @@
+{
+  "name": "frida",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run build",
+    "watch": "frida-compile agent/index.ts -o _agent.js -w",
+    "build": "frida-compile agent/index.ts -o _agent.js -c"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/frida-gum": "^16.2.0",
+    "@types/node": "^14.14.2",
+    "frida-compile": "^10.0.0"
+  }
+}
