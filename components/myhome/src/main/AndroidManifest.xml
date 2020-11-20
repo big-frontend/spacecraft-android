@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hawksjamesf.myhome">
-
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
     <application >
         <activity android:name="com.hawksjamesf.myhome.ui.person.SettingsActivity" />
         <activity
@@ -88,6 +88,16 @@
             android:multiprocess="true"
             tools:node="remove"
             tools:targetApi="n" />
+        <receiver
+            android:name=".SetWallpaper"
+            android:enabled="true"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="com.hawksjamesf.spacecraft.set_wallpaper"/>
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

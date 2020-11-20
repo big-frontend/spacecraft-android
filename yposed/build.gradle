@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
-
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 apply plugin: 'com.tencent.buglyplugin'
 bugly {
     appId = '3d62251014'
