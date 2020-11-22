@@ -10,7 +10,7 @@ import android.content.Context;
  * @author: hawks.jamesf
  * @since: Nov/22/2020  Sun
  */
-class DexShellApplication  extends Application {
+public class DexShellApplication  extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
