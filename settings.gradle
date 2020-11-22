@@ -15,3 +15,4 @@ if (isHaHa.toBoolean()) {
 }
 
 println("settings end")
+include ':dexshell'
