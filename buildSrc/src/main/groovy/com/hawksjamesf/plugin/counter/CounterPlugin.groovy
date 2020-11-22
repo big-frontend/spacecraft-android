@@ -19,13 +19,16 @@ class CounterPlugin implements Plugin<Project> {
             subProject.afterEvaluate {
                 if (counterExtension.seaSrcDirs) {
                     if (subProject.getSubprojects().size() == 0 && subProject.hasProperty("android")) {
-                        println("CounterPlugin subproject ${subProject.android.sourceSets.main.java.srcDirs}")
+                        println("CounterPlugin subproject java:${subProject.android.sourceSets.main.java.srcDirs} jni:${subProject.android.sourceSets.main.jni.srcDirs}")
+
                         total_srcDir.addAll(subProject.android.sourceSets.main.java.srcDirs)
+                        total_srcDir.addAll(subProject.android.sourceSets.main.jni.srcDirs)
                     }
                 }else {
                     if (subProject.name == project.name) {
-                        println("CounterPlugin subproject ${subProject.android.sourceSets.main.java.srcDirs}")
+                        println("CounterPlugin subproject java:${subProject.android.sourceSets.main.java.srcDirs} jni:${subProject.android.sourceSets.main.jni.srcDirs}")
                         total_srcDir.addAll(subProject.android.sourceSets.main.java.srcDirs)
+                        total_srcDir.addAll(subProject.android.sourceSets.main.jni.srcDirs)
                     }
                 }
             }

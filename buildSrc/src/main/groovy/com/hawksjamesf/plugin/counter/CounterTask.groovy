@@ -20,6 +20,11 @@ class CounterTask extends DefaultTask {
     int k_f_totals = 0
     int k_files = 0
 
+    int c_l_totals = 0
+    int c_lines = 0
+    int c_f_totals = 0
+    int c_files = 0
+
     @TaskAction
     def startCounting() {
         if (srcDirs == null || srcDirs.size() == 0) return
@@ -38,10 +43,13 @@ class CounterTask extends DefaultTask {
         srcDirs.each { srcDir ->
             printDirectoryTree(srcDir)
         }
-        P.info("CounterPlugin task action end>>> totals : ${j_f_totals} java/,${j_l_totals} lines, ${k_f_totals} kotlin/${k_l_totals} lines \n\r")
+        P.info("CounterPlugin task action end>>> totals : ${j_f_totals} java/${j_l_totals} lines, " +
+                "${k_f_totals} kotlin/${k_l_totals} lines," +
+                " ${c_f_totals} c or c++/${c_l_totals} lines  \n\r")
         def map = new HashMap<String, String>()
         map.put("|  java|", "|  java|${j_f_totals} |${j_l_totals}|")
         map.put("|  kotlin|", "|  kotlin|${k_f_totals}|${k_l_totals}|")
+        map.put("|  c or c++|", "|  c or c++|${c_f_totals}|${c_l_totals}|")
         File file = new File(project.rootDir.path, "README.md")
         replace(file, map)
     }
@@ -75,12 +83,17 @@ class CounterTask extends DefaultTask {
         int indent = 0
         StringBuilder sb = new StringBuilder()
         printDirectoryTree(dir, indent, sb);
-        P.info("${dir.path}\n$sb>>> ${j_files} java/${j_lines} lines, ${k_files} kotlin/${k_lines} lines\n\r")
+        P.info("${dir.path}\n$sb>>> ${j_files} java/${j_lines} lines, " +
+                "${k_files} kotlin/${k_lines} lines," +
+                "${c_files} kotlin/${c_lines} lines," +
+                "\n\r")
         this.lines = 0
         this.j_lines = 0
         this.k_lines = 0
         this.j_files = 0
         this.k_files = 0
+        this.c_lines = 0
+        this.c_files = 0
 
     }
 
@@ -116,6 +129,11 @@ class CounterTask extends DefaultTask {
             this.j_l_totals += lines
             this.j_files += 1
             this.j_f_totals += +1
+        } else if (file.name.endsWith("c") || file.name.endsWith("cpp") || file.name.endsWith("h")) {
+            this.c_lines += lines
+            this.c_l_totals += lines
+            this.c_files += 1
+            this.c_f_totals += +1
         }
         sb.append(getIndentString(indent))
                 .append("+--")
