@@ -32,7 +32,7 @@ function main() {
         origin_getPackageInfo.implementation = function (...args) {
 
             var packageInfo = origin_getPackageInfo.call(this, ...args)
-            console.log('getpackageinfo before', args[0], args[1], getFieldValue(packageInfo, 'firstInstallTime'), getFieldValue(packageInfo, 'lastUpdateTime'))
+            // console.log('getpackageinfo before', args[0], args[1], getFieldValue(packageInfo, 'firstInstallTime'), getFieldValue(packageInfo, 'lastUpdateTime'))
             if ("com.sankuai.meituan" == args[0] && args[1] == 64) {
                 //'android.content.pm.PackageInfo'
                 var Long = Java.use('java.lang.Long')
@@ -40,12 +40,23 @@ function main() {
                 setFieldValue(packageInfo, 'lastUpdateTime', Long.valueOf(1))
 
             }
-            console.log('getpackageinfo after', args[0], args[1], getFieldValue(packageInfo, 'firstInstallTime'), getFieldValue(packageInfo, 'lastUpdateTime'))
+            // console.log('getpackageinfo after', args[0], args[1], getFieldValue(packageInfo, 'firstInstallTime'), getFieldValue(packageInfo, 'lastUpdateTime'))
             return packageInfo
 
         };
+        // var PackageManagerService = Java.use('com.android.server.pm.PackageManagerService')
+        // PackageManagerService.getPackageInfo.overload("java.lang.String", "int", "int").implementation = function (...args) {
+        //     Log.v("cjf", "PackageManagerService getPackageInfo")
+        //     return this.getPackageInfo(args[0], args[1], args[2])
+        // }
+        // var IPackageManager = Java.use('android.content.pm.IPackageManager.Stub')
+        // IPackageManager.getPackageInfo.overload("java.lang.String", "int", "int").implementation = function (...args) {
+        //     Log.v("cjf", "IPackageManager getPackageInfo")
+        //     return this.getPackageInfo(args[0], args[1], args[2])
+        // }
     })
+
 
 }
 setImmediate(main);
-//frida - U - f com.hawksjamesf.spacecraft.debug--no - pause - l index.js
+//frida -U -f com.hawksjamesf.spacecraft.debug --no-pause -l index.js

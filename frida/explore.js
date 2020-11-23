@@ -21,13 +21,13 @@ Java.perform(function () {
     var Log = Java.use("android.util.Log");
     Log.v("cjf", "I'm in the process!");
 
-    
+
     var ApplicationPackageManager = Java.use('android.app.ApplicationPackageManager')
     var origin_getPackageInfo = ApplicationPackageManager.getPackageInfo.overload("java.lang.String", "int")
     origin_getPackageInfo.implementation = function (...args) {
         Log.v("cjf", "Inside getPackageInfo");
         var packageInfo = origin_getPackageInfo.call(this, ...args)
-        
+
         var StringBuilder = Java.use('java.lang.StringBuilder')
         var sb = StringBuilder.$new("hook getpackageinfo defore:")
         sb.append(args[0])
@@ -59,5 +59,15 @@ Java.perform(function () {
         return packageInfo
 
     };
+    var PackageManagerService = Java.use('com.android.server.pm.PackageManagerService')
+    PackageManagerService.getPackageInfo.overload("java.lang.String", "int", "int").implementation = function (...args) {
+        Log.v("cjf", "PackageManagerService getPackageInfo")
+        return this.getPackageInfo(args[0], args[1], args[2])
+    }
+    var IPackageManager = Java.use('android.content.pm.IPackageManager.Stub')
+    IPackageManager.getPackageInfo.overload("java.lang.String", "int", "int").implementation = function (...args) {
+        Log.v("cjf", "IPackageManager getPackageInfo")
+        return this.getPackageInfo(args[0], args[1], args[2])
+    }
 
 });
