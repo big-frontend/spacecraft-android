@@ -20,7 +20,7 @@ public class NetClient {
     private NetClient(){}
     @Keep
     public void sendRequest(){
-        Log.d("hawks","sendRequest");
+        Log.d("cjf","sendRequest");
     }
 
 }

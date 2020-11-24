@@ -44,6 +44,7 @@ buildscript {
         realmVersion = 'io.realm:realm-annotations:5.7.0'
         leakcanaryVersion = '1.6.2'
         grpcVersion = '1.20.0'
+        kotlin_version = '1.3.72'
     }
     dependencies {
         //该插件不再使用 ProGuard 来执行编译时代码优化，而是与 R8 编译器协同工作来处理以下编译时任务:
