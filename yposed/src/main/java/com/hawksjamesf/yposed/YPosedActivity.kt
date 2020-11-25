@@ -32,7 +32,7 @@ class YPosedActivity : AppCompatActivity() {
 
         init {
             System.loadLibrary("hawks")
-            System.loadLibrary("gadget")
+
         }
     }
 

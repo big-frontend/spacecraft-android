@@ -22,6 +22,7 @@ public class App extends Application{
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         initHotFix();
+        System.loadLibrary("gadget");
     }
     private void initHotFix() {
 
