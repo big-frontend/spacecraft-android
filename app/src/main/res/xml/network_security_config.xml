@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates
+                overridePins="true"
+                src="system" />
+            <certificates
+                overridePins="true"
+                src="user" />
+        </trust-anchors>
+    </base-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">android.bugly.qq.com</domain>
         <domain includeSubdomains="true">cdn.trojx.me</domain>
-        <domain includeSubdomains="true">spacecraft.com</domain>
-<!--        <domain includeSubdomains="true">www.baidu.com</domain>-->
     </domain-config>
+    <domain-config>
+        <domain includeSubdomains="true">spacecraft.com</domain>
+        <!--        <domain includeSubdomains="true">www.baidu.com</domain>-->
+        <!--        自定义可信 CA-->
+        <!--        <trust-anchors>-->
+        <!--            <certificates src="@raw/cjf_root" />-->
+        <!--        </trust-anchors>-->
+<!--        <pin-set expiration="2018-01-01">-->
+<!--            <pin digest="SHA-256">7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y=</pin>-->
+<!--            &lt;!&ndash; backup pin &ndash;&gt;-->
+<!--            <pin digest="SHA-256">fwza0LRMXouZHRC8Ei+4PyuldPDcf3UKgO/04cDM1oE=</pin>-->
+<!--        </pin-set>-->
+    </domain-config>
+
 </network-security-config>
