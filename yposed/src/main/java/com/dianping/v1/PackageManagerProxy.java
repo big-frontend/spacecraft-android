@@ -32,15 +32,15 @@ public class PackageManagerProxy implements InvocationHandler {
         Log.d("hook", "method name:" + method.getName());
         if ("getPackageInfo".equals(method.getName())) {
             Log.d("hook",args[0]+"  "+ (Integer) args[1]);
-            if (args.length == 3 && ((String)args[0]).contains("dianping") && (Integer) args[1] == 64) {
-//            if (args.length == 3 && "com.hawksjamesf.spacecraft.debug".equals(args[0]) && (Integer) args[1] == 64) {
+//            if (args.length == 3 && ((String)args[0]).contains("dianping") && (Integer) args[1] == 64) {
+            if (args.length == 3 && "com.hawksjamesf.spacecraft.debug".equals(args[0]) && (Integer) args[1] == 64) {
                 PackageInfo info = (PackageInfo) method.invoke(mPackageManager, args);
                 if (info == null) return null;
-                Log.d("hook", "hook " + method.getName() + " before:" + info.firstInstallTime + " " + info.lastUpdateTime + " \n" + sha1ToHexString(info.signatures[0].toByteArray()));
+                Log.d("cjf", "hook " + method.getName() + " before:" + info.firstInstallTime + " " + info.lastUpdateTime + " \n" + sha1ToHexString(info.signatures[0].toByteArray()));
 //                info.firstInstallTime = 1;
 //                info.lastUpdateTime = 11;
                 info.signatures[0] = new Signature(qqSign);
-                Log.d("hook", "hook " + method.getName() + " after:" + info.firstInstallTime + " " + info.lastUpdateTime + " \n" + sha1ToHexString(info.signatures[0].toByteArray()));
+                Log.d("cjf", "hook " + method.getName() + " after:" + info.firstInstallTime + " " + info.lastUpdateTime + " \n" + sha1ToHexString(info.signatures[0].toByteArray()));
                 return info;
             } else {
                 Log.d("hook", "getPackageInfo方法形参数量:" + args.length);
@@ -49,7 +49,7 @@ public class PackageManagerProxy implements InvocationHandler {
         return method.invoke(mPackageManager, args);
     }
 
-    static String sha1ToHexString(byte[] cert) {
+    public static String sha1ToHexString(byte[] cert) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA1");
             byte[] publicKey = md.digest(cert);
