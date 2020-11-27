@@ -5,6 +5,7 @@ package com.hawksjamesf.yposed
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
+import androidx.annotation.Keep
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -17,7 +18,7 @@ import java.util.*
  * @email: hawksjamesf@gmail.com
  * @since: Nov/27/2020  Fri
  */
-
+@Keep
 fun sha1ToHexString(cert: ByteArray): String? {
     try {
         val md = MessageDigest.getInstance("SHA1")
