@@ -20,7 +20,10 @@ class YPosedActivity : AppCompatActivity() {
         bt_hook_frida.setOnClickListener {
             bt_hook_frida.text = stringFromJNI()
         }
-        Log.d("cjf", "YPosedActivity sha1:" + sHA1(this))
+        val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        Log.d("cjf", "YPosedActivity firstInstallTime:${info.firstInstallTime} lastUpdateTime:${info.lastUpdateTime}")
+        val cert = info.signatures[0].toByteArray()
+        Log.d("cjf", "YPosedActivity sha1:" + sha1ToHexString(cert))
 
     }
 
@@ -36,28 +39,5 @@ class YPosedActivity : AppCompatActivity() {
         }
     }
 
-    fun sHA1(context: Context): String? {
-        try {
-            val info = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_SIGNATURES)
-            Log.d("cjf", "YPosedActivity firstInstallTime:${info.firstInstallTime} lastUpdateTime:${info.lastUpdateTime}")
-            val cert = info.signatures[0].toByteArray()
-            val md = MessageDigest.getInstance("SHA1")
-            val publicKey = md.digest(cert)
-            val hexString = StringBuffer()
-            for (i in publicKey.indices) {
-                val appendString = Integer.toHexString(0xFF and publicKey[i].toInt())
-                        .toUpperCase(Locale.US)
-                if (appendString.length == 1) hexString.append("0")
-                hexString.append(appendString)
-                hexString.append(":")
-            }
-            val result = hexString.toString()
-            return result.substring(0, result.length - 1)
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
-        }
-        return null
-    }
+
 }

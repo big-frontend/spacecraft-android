@@ -41,10 +41,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        component {
-            initWith debug
-            debuggable true
-        }
     }
     sourceSets {
         main {
@@ -77,6 +73,10 @@ android {
 
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -85,4 +85,21 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.annotation:annotation:1.0.1"
+    compileOnly project(path : ':yposedstub')
 }
+//afterEvaluate {
+//    project.android.libraryVariants.each { LibraryVariant variant ->
+//        variant.javaCompile.doFirst { JavaCompile javaCompile ->
+//            String projectAndroidStubPath = project.project(':yposedstub').projectDir.canonicalPath
+////            println "projectAndroidStubPath: ${projectAndroidStubPath}"
+//            File stubPath = javaCompile.classpath.find {
+//                it.canonicalPath.startsWith(projectAndroidStubPath)
+//            }
+//            if (stubPath == null) {
+//                throw new RuntimeException("reset bootclasspath error.")
+//            }
+//
+////            javaCompile.options.setBootstrapClasspath(Joiner.on(File.pathSeparator).join(stubPath, javaCompile.options.bootstrapClasspath))
+//        }
+//    }
+//}
