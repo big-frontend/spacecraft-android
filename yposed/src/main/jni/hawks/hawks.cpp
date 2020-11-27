@@ -18,7 +18,40 @@
 #define   LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 const char *RELEASE_SIGN = "E5:1B:40:36:1E:5E:E0:FF:82:54:64:65:06:B2:0F:93:6E:D4:17:77";
 static jboolean auth = JNI_FALSE;
+//import class
+jclass SignatureClass;
+jclass PackageInfoClass;
+static jclass ContextClass;
+jclass PackageManagerClass;
+jclass IPackageManagerClass;
+jclass ApplicationInfoClass;
+jclass ServiceManagerClass;
+jclass IPackageManager$StubClass;
+jclass UtilClass;
 
+void import_class(JNIEnv *env) {
+    SignatureClass = env->FindClass("android/content/pm/Signature");
+    PackageInfoClass = env->FindClass("android/content/pm/PackageInfo");
+    ContextClass = env->FindClass("android/content/Context");
+    PackageManagerClass = env->FindClass("android/content/pm/PackageManager");
+    IPackageManagerClass = env->FindClass("android/content/pm/IPackageManager");
+    IPackageManager$StubClass = env->FindClass("android/content/pm/IPackageManager$Stub");
+    ApplicationInfoClass = env->FindClass("android/content/pm/ApplicationInfo");
+    ServiceManagerClass = env->FindClass("android/os/ServiceManager");
+    UtilClass = env->FindClass("com/hawksjamesf/yposed/Util");
+}
+
+void clear_class(JNIEnv *env) {
+    env->DeleteLocalRef(ContextClass);
+    env->DeleteLocalRef(SignatureClass);
+    env->DeleteLocalRef(PackageManagerClass);
+    env->DeleteLocalRef(IPackageManagerClass);
+    env->DeleteLocalRef(IPackageManager$StubClass);
+    env->DeleteLocalRef(PackageInfoClass);
+    env->DeleteLocalRef(ApplicationInfoClass);
+    env->DeleteLocalRef(ServiceManagerClass);
+    env->DeleteLocalRef(UtilClass);
+}
 
 int i = 0;
 extern "C" JNIEXPORT  JNICALL
@@ -30,56 +63,108 @@ jstring Java_com_hawksjamesf_yposed_YPosedActivity_stringFromJNI(JNIEnv *env,
     return env->NewStringUTF(hello.c_str());
 }
 
+jbyteArray get_sign(JNIEnv *env, jobject packageInfoObject) {
+    if (packageInfoObject == nullptr) {
+        LOGE("packageinfo object is null");
+        return env->NewByteArray(0);
+    }
+    jfieldID signaturefieldID = env->GetFieldID(PackageInfoClass, "signatures",
+                                                "[Landroid/content/pm/Signature;");
+    jmethodID toByteArrayMethodid = env->GetMethodID(SignatureClass, "toByteArray", "()[B");
+    jobjectArray signatureArray = (jobjectArray) env->GetObjectField(packageInfoObject,
+                                                                     signaturefieldID);
+    jobject signatureObject = env->GetObjectArrayElement(signatureArray, 0);
+    return (jbyteArray) env->CallObjectMethod(signatureObject,
+                                              toByteArrayMethodid);
+}
+
+jstring bytes_to_hexstring(JNIEnv *env, jbyteArray datas) {
+    jmethodID methodID = env->GetStaticMethodID(UtilClass, "sha1ToHexString",
+                                                "([B)Ljava/lang/String;");
+    return (jstring) env->CallStaticObjectMethod(UtilClass, methodID, datas);
+}
+
+
+extern "C" JNIEXPORT JNICALL
+jboolean check_sign_v2(JNIEnv *env, jobject yposedActivity /* this */, jobject contextObject) {
+//    mPM.getPackageInfo(packageName, flags, userId);
+    import_class(env);
+
+    jmethodID getPackageNameId = env->GetMethodID(ContextClass, "getPackageName",
+                                                  "()Ljava/lang/String;");
+    jmethodID getPackageManagerId = env->GetMethodID(ContextClass, "getPackageManager",
+                                                     "()Landroid/content/pm/PackageManager;");
+    jmethodID getApplicationInfoId = env->GetMethodID(PackageManagerClass, "getApplicationInfo",
+                                                      "(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;");
+    jfieldID useridId = (jfieldID) env->GetFieldID(ApplicationInfoClass, "uid", "I");
+
+
+    jstring packNameString = (jstring) env->CallObjectMethod(contextObject, getPackageNameId);
+    jobject packageManagerObject = env->CallObjectMethod(contextObject, getPackageManagerId);
+    jobject applicationInfoObject = env->CallObjectMethod(packageManagerObject,
+                                                          getApplicationInfoId, packNameString,
+                                                          0x00000080);
+
+
+    jint userid = (jint) env->GetIntField(applicationInfoObject, useridId);
+    const char *pkgName = env->GetStringUTFChars(packNameString, 0);
+    LOGI("package name:%s uid:%d", pkgName, userid);
+
+
+    jmethodID getServiceId = env->GetStaticMethodID(ServiceManagerClass, "getService",
+                                                    "(Ljava/lang/String;)Landroid/os/IBinder;");
+    jmethodID asInterfaceId = env->GetStaticMethodID(IPackageManager$StubClass, "asInterface",
+                                                     "(Landroid/os/IBinder;)Landroid/content/pm/IPackageManager;");
+
+    jstring packageStr = env->NewStringUTF("package");
+
+    jobject iBinderObj = env->CallStaticObjectMethod(ServiceManagerClass, getServiceId, packageStr);
+    if (iBinderObj == nullptr) {
+        LOGE("iBinderObj  is null");
+    }
+    jobject iPackageManagerObj = env->CallStaticObjectMethod(IPackageManager$StubClass,
+                                                             asInterfaceId,
+                                                             iBinderObj);
+    if (iPackageManagerObj == nullptr) {
+        LOGE("iPackageManagerObj  is null");
+    }
+    jmethodID getPackageInfoId = env->GetMethodID(IPackageManagerClass, "getPackageInfo",
+                                                  "(Ljava/lang/String;II)Landroid/content/pm/PackageInfo;");
+
+    jobject packageInfoObject = env->CallObjectMethod(iPackageManagerObj, getPackageInfoId,
+                                                      packNameString, 64, 0);
+
+    jbyteArray signByte = get_sign(env, packageInfoObject);
+    jstring signStr = bytes_to_hexstring(env, signByte);
+    const char *signaturechar = env->GetStringUTFChars(signStr, 0);
+    LOGI("check_sign_v2 signhexStrng: sha1 %s", signaturechar);
+    clear_class(env);
+    return JNI_TRUE;
+
+}
+
 extern "C" JNIEXPORT JNICALL
 jboolean check_sign(JNIEnv *env, jobject yposedActivity /* this */, jobject contextObject) {
-    jclass contextClass = env->FindClass("android/content/Context");
-    jclass signatureClass = env->FindClass("android/content/pm/Signature");
-    jclass packageNameClass = env->FindClass("android/content/pm/PackageManager");
-    jclass packageInfoClass = env->FindClass("android/content/pm/PackageInfo");
-
-    jmethodID getPackageManagerId = env->GetMethodID(contextClass, "getPackageManager",
+    import_class(env);
+    jmethodID getPackageManagerId = env->GetMethodID(ContextClass, "getPackageManager",
                                                      "()Landroid/content/pm/PackageManager;");
-    jmethodID getPackageNameId = env->GetMethodID(contextClass, "getPackageName",
+    jmethodID getPackageNameId = env->GetMethodID(ContextClass, "getPackageName",
                                                   "()Ljava/lang/String;");
-    jmethodID signToStringId = env->GetMethodID(signatureClass, "toCharsString",
-                                                "()Ljava/lang/String;");
-    jmethodID toByteArrayMethodid = env->GetMethodID(signatureClass, "toByteArray", "()[B");
-    jmethodID getPackageInfoId = env->GetMethodID(packageNameClass, "getPackageInfo",
+    jmethodID getPackageInfoId = env->GetMethodID(PackageManagerClass, "getPackageInfo",
                                                   "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;");
 
     jobject packageManagerObject = env->CallObjectMethod(contextObject, getPackageManagerId);
     jstring packNameString = (jstring) env->CallObjectMethod(contextObject, getPackageNameId);
     jobject packageInfoObject = env->CallObjectMethod(packageManagerObject, getPackageInfoId,
                                                       packNameString, 64);
-    jfieldID signaturefieldID = env->GetFieldID(packageInfoClass, "signatures",
-                                                "[Landroid/content/pm/Signature;");
-    jobjectArray signatureArray = (jobjectArray) env->GetObjectField(packageInfoObject,
-                                                                     signaturefieldID);
-    jobject signatureObject = env->GetObjectArrayElement(signatureArray, 0);
+    jbyteArray signByte = get_sign(env, packageInfoObject);
+    jstring signStr = bytes_to_hexstring(env, signByte);
 
-//    jstring signatureStr = (jstring) env->CallObjectMethod(signatureObject, signToStringId);
-
-    jbyteArray signatureByte = (jbyteArray) env->CallObjectMethod(signatureObject,
-                                                                  toByteArrayMethodid);
-//    jclass YPosedActivityClass = env->FindClass("com/hawksjamesf/yposed/YPosedActivity");
-//    jmethodID methodID = env->GetMethodID(YPosedActivityClass, "sha1ToHexString","([B)Ljava/lang/String;");
-//    jstring signatureStr = (jstring) env->CallObjectMethod(yposedActivity, methodID, signatureByte);
-
-    jclass UtilClass = env->FindClass("com/hawksjamesf/yposed/Util");
-    jmethodID methodID = env->GetStaticMethodID(UtilClass, "sha1ToHexString",
-                                                "([B)Ljava/lang/String;");
-    jstring signatureStr = (jstring) env->CallStaticObjectMethod(UtilClass, methodID,
-                                                                 signatureByte);
-
-
-    const char *signaturechar = env->GetStringUTFChars(signatureStr, 0);
-    LOGI("get_signature signhexStrng: sha1 %s", signaturechar);
-    env->DeleteLocalRef(contextClass);
-    env->DeleteLocalRef(signatureClass);
-    env->DeleteLocalRef(packageNameClass);
-    env->DeleteLocalRef(packageInfoClass);
+    const char *signaturechar = env->GetStringUTFChars(signStr, 0);
+    LOGI("check_sign signhexStrng: sha1 %s", signaturechar);
+    clear_class(env);
     if (strcmp(signaturechar, RELEASE_SIGN) == 0) {
-        env->ReleaseStringUTFChars(signatureStr, signaturechar);
+//        env->ReleaseStringUTFChars(signStr, signaturechar);
         auth = JNI_TRUE;
         return JNI_TRUE;
     } else {
@@ -96,7 +181,8 @@ static JNINativeMethod gMethods[] = {
 //        {"setup",         "(ZI)Z",                                                   (void *) setup},
 //        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
 //        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
-        {"checkSign", "(Landroid/content/Context;)Z", (void *) check_sign}
+        {"checkSign",   "(Landroid/content/Context;)Z", (void *) check_sign},
+        {"checkSignv2", "(Landroid/content/Context;)Z", (void *) check_sign_v2}
 };
 
 static int registerNativeMethods(JNIEnv *env, const char *className, JNINativeMethod *gMethods,
@@ -119,6 +205,7 @@ static int registerNatives(JNIEnv *env) {
 }
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
+
     LOGI("JNI_ONLOAD");
 
     JNIEnv *env = NULL;
@@ -126,10 +213,9 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) {
         LOGE("JNI_ONLOAD:%s", "failed");
-        return -1;
+        return JNI_ERR;
     }
     assert(env != NULL);
-
     if (!registerNatives(env)) {//注册
         LOGI("registerNatives -1");
         return -1;
@@ -139,6 +225,12 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     return result;
 }
 
+
 JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
     __android_log_print(ANDROID_LOG_DEBUG, "cjf", "JNI_OnUnload");
+    JNIEnv *env = NULL;
+    if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) {
+        return;
+    }
+
 }

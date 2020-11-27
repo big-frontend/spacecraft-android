@@ -20,13 +20,14 @@ class YPosedActivity : AppCompatActivity() {
             bt_hook_frida.text = stringFromJNI()
         }
         val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        PackageManager.GET_META_DATA
         info.signatures[0].toByteArray()
         info.signatures[0].toCharsString()
         Log.d("cjf", "YPosedActivity firstInstallTime:${info.firstInstallTime} lastUpdateTime:${info.lastUpdateTime}")
         val cert = info.signatures[0].toByteArray()
         Log.d("cjf", "YPosedActivity sha1:" + sha1ToHexString(cert))
-        Log.d("cjf", "jni check sign:${checkSign(this)}")
-        Log.d("cjf", "apk location:${packageCodePath}")
+        Log.d("cjf", "jni check sign:v1:${checkSign(this)}")
+        Log.d("cjf", "jni check sign:v1:${checkSign(this)}  v2 ${checkSignv2(this)}")
 //        getAllCalssz(classLoader)
 
     }
@@ -54,6 +55,8 @@ class YPosedActivity : AppCompatActivity() {
 
     @Keep
     external fun checkSign(ctx: Context): Boolean
+    @Keep
+    external fun checkSignv2(ctx: Context): Boolean
 
     companion object {
 
