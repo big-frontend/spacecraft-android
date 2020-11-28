@@ -13,7 +13,8 @@
 
 #define CLASS_PATH "com/hawksjamesf/yposed/YPosedActivity"
 #define   NELEM(x) ((int) (sizeof(x) / sizeof((x)[0])))
-#define   LOG_TAG    "cjf"
+#define   LOG_TAG    "cjf_jni"
+#define   LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 #define   LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define   LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 const char *RELEASE_SIGN = "E5:1B:40:36:1E:5E:E0:FF:82:54:64:65:06:B2:0F:93:6E:D4:17:77";
@@ -63,7 +64,7 @@ jstring Java_com_hawksjamesf_yposed_YPosedActivity_stringFromJNI(JNIEnv *env,
     return env->NewStringUTF(hello.c_str());
 }
 
-jbyteArray get_sign(JNIEnv *env, jobject packageInfoObject) {
+jbyteArray get_sign_byteArray(JNIEnv *env, jobject packageInfoObject) {
     if (packageInfoObject == nullptr) {
         LOGE("packageinfo object is null");
         return env->NewByteArray(0);
@@ -86,7 +87,7 @@ jstring bytes_to_hexstring(JNIEnv *env, jbyteArray datas) {
 
 
 extern "C" JNIEXPORT JNICALL
-jboolean check_sign_v2(JNIEnv *env, jobject yposedActivity /* this */, jobject contextObject) {
+jstring get_sign_v2(JNIEnv *env, jobject yposedActivity /* this */, jobject contextObject) {
 //    mPM.getPackageInfo(packageName, flags, userId);
     import_class(env);
 
@@ -134,17 +135,13 @@ jboolean check_sign_v2(JNIEnv *env, jobject yposedActivity /* this */, jobject c
     jobject packageInfoObject = env->CallObjectMethod(iPackageManagerObj, getPackageInfoId,
                                                       packNameString, 64, 0);
 
-    jbyteArray signByte = get_sign(env, packageInfoObject);
-    jstring signStr = bytes_to_hexstring(env, signByte);
-    const char *signaturechar = env->GetStringUTFChars(signStr, 0);
-    LOGI("check_sign_v2 signhexStrng: sha1 %s", signaturechar);
-    clear_class(env);
-    return JNI_TRUE;
+    jbyteArray signByte = get_sign_byteArray(env, packageInfoObject);
+    return bytes_to_hexstring(env, signByte);
 
 }
 
 extern "C" JNIEXPORT JNICALL
-jboolean check_sign(JNIEnv *env, jobject yposedActivity /* this */, jobject contextObject) {
+jstring get_sign(JNIEnv *env, jobject yposedActivity /* this */, jobject contextObject) {
     import_class(env);
     jmethodID getPackageManagerId = env->GetMethodID(ContextClass, "getPackageManager",
                                                      "()Landroid/content/pm/PackageManager;");
@@ -157,20 +154,9 @@ jboolean check_sign(JNIEnv *env, jobject yposedActivity /* this */, jobject cont
     jstring packNameString = (jstring) env->CallObjectMethod(contextObject, getPackageNameId);
     jobject packageInfoObject = env->CallObjectMethod(packageManagerObject, getPackageInfoId,
                                                       packNameString, 64);
-    jbyteArray signByte = get_sign(env, packageInfoObject);
-    jstring signStr = bytes_to_hexstring(env, signByte);
-
-    const char *signaturechar = env->GetStringUTFChars(signStr, 0);
-    LOGI("check_sign signhexStrng: sha1 %s", signaturechar);
+    jbyteArray signByte = get_sign_byteArray(env, packageInfoObject);
+    return bytes_to_hexstring(env, signByte);
     clear_class(env);
-    if (strcmp(signaturechar, RELEASE_SIGN) == 0) {
-//        env->ReleaseStringUTFChars(signStr, signaturechar);
-        auth = JNI_TRUE;
-        return JNI_TRUE;
-    } else {
-        auth = JNI_FALSE;
-        return JNI_FALSE;
-    }
 }
 
 /*
@@ -181,8 +167,8 @@ static JNINativeMethod gMethods[] = {
 //        {"setup",         "(ZI)Z",                                                   (void *) setup},
 //        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
 //        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
-        {"checkSign",   "(Landroid/content/Context;)Z", (void *) check_sign},
-        {"checkSignv2", "(Landroid/content/Context;)Z", (void *) check_sign_v2}
+        {"getSign",   "(Landroid/content/Context;)Ljava/lang/String;", (void *) get_sign},
+        {"getSignv2", "(Landroid/content/Context;)Ljava/lang/String;", (void *) get_sign_v2}
 };
 
 static int registerNativeMethods(JNIEnv *env, const char *className, JNINativeMethod *gMethods,

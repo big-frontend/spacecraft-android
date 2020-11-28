@@ -1,15 +1,15 @@
 package com.hawksjamesf.yposed
 
 import android.content.Context
+import android.content.pm.IPackageManager
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.os.ServiceManager
 import android.util.Log
 import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_yposed.*
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-import java.util.*
 
 class YPosedActivity : AppCompatActivity() {
 
@@ -19,15 +19,19 @@ class YPosedActivity : AppCompatActivity() {
         bt_hook_frida.setOnClickListener {
             bt_hook_frida.text = stringFromJNI()
         }
-        val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
-        PackageManager.GET_META_DATA
-        info.signatures[0].toByteArray()
-        info.signatures[0].toCharsString()
+        var info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
         Log.d("cjf", "YPosedActivity firstInstallTime:${info.firstInstallTime} lastUpdateTime:${info.lastUpdateTime}")
         val cert = info.signatures[0].toByteArray()
-        Log.d("cjf", "YPosedActivity sha1:" + sha1ToHexString(cert))
-        Log.d("cjf", "jni check sign:v1:${checkSign(this)}")
-        Log.d("cjf", "jni check sign:v1:${checkSign(this)}  v2 ${checkSignv2(this)}")
+        Log.i("cjf", "java 第一种获取签名的方法：" + sha1ToHexString(cert))
+        var b = ServiceManager.getService("package")
+        info = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            IPackageManager.Stub.asInterface(b).getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES, 0)
+        } else {
+            IPackageManager.Stub.asInterface(b).getPackageInfo(packageName, PackageManager.GET_SIGNATURES, 0)
+        }
+        Log.i("cjf", "java 第二种获取签名的方法：" + sha1ToHexString(info.signatures[0].toByteArray()))
+        Log.i("cjf", "jni 第一种获取签名的方法:${getSign(this)}")
+        Log.i("cjf", "jni 第二种获取签名的方法:${getSignv2(this)}")
 //        getAllCalssz(classLoader)
 
     }
@@ -54,9 +58,10 @@ class YPosedActivity : AppCompatActivity() {
     external fun stringFromJNI(): String
 
     @Keep
-    external fun checkSign(ctx: Context): Boolean
+    external fun getSign(ctx: Context): String
+
     @Keep
-    external fun checkSignv2(ctx: Context): Boolean
+    external fun getSignv2(ctx: Context): String
 
     companion object {
 

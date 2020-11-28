@@ -655,12 +655,12 @@
     .end array-data
 .end method
 
-.method static sha1ToHexString([B)Ljava/lang/String;
+.method public static sha1ToHexString([B)Ljava/lang/String;
     .registers 10
     .param p0, "cert"    # [B
 
     .prologue
-    .line 54
+    .line 55
     :try_start_0
     const-string v7, "SHA1"
 
@@ -668,19 +668,19 @@
 
     move-result-object v4
 
-    .line 55
+    .line 56
     .local v4, "md":Ljava/security/MessageDigest;
     invoke-virtual {v4, p0}, Ljava/security/MessageDigest;->digest([B)[B
 
     move-result-object v5
 
-    .line 56
+    .line 57
     .local v5, "publicKey":[B
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 57
+    .line 58
     .local v2, "hexString":Ljava/lang/StringBuilder;
     const/4 v3, 0x0
 
@@ -690,7 +690,7 @@
 
     if-ge v3, v7, :cond_38
 
-    .line 58
+    .line 59
     aget-byte v7, v5, v3
 
     and-int/lit16 v7, v7, 0xff
@@ -705,7 +705,7 @@
 
     move-result-object v0
 
-    .line 59
+    .line 60
     .local v0, "appendString":Ljava/lang/String;
     invoke-virtual {v0}, Ljava/lang/String;->length()I
 
@@ -719,28 +719,28 @@
 
     invoke-virtual {v2, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 60
+    .line 61
     :cond_2d
     invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 61
+    .line 62
     const-string v7, ":"
 
     invoke-virtual {v2, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 57
+    .line 58
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_10
 
-    .line 63
+    .line 64
     .end local v0    # "appendString":Ljava/lang/String;
     :cond_38
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v6
 
-    .line 64
+    .line 65
     .local v6, "result":Ljava/lang/String;
     const/4 v7, 0x0
 
@@ -756,7 +756,7 @@
 
     move-result-object v7
 
-    .line 68
+    .line 69
     .end local v2    # "hexString":Ljava/lang/StringBuilder;
     .end local v3    # "i":I
     .end local v4    # "md":Ljava/security/MessageDigest;
@@ -765,15 +765,15 @@
     :goto_47
     return-object v7
 
-    .line 65
+    .line 66
     :catch_48
     move-exception v1
 
-    .line 66
+    .line 67
     .local v1, "e":Ljava/security/NoSuchAlgorithmException;
     invoke-virtual {v1}, Ljava/security/NoSuchAlgorithmException;->printStackTrace()V
 
-    .line 68
+    .line 69
     const/4 v7, 0x0
 
     goto :goto_47
@@ -835,9 +835,54 @@
 
     move-result v1
 
-    if-eqz v1, :cond_12e
+    if-eqz v1, :cond_147
 
     .line 34
+    array-length v1, p3
+
+    const/4 v2, 0x3
+
+    if-ne v1, v2, :cond_12e
+
+    aget-object v1, p3, v6
+
+    check-cast v1, Ljava/lang/String;
+
+    const-string v2, "dianping"
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_12e
+
+    aget-object v1, p3, v4
+
+    check-cast v1, Ljava/lang/Integer;
+
+    .line 36
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    const/16 v2, 0x40
+
+    if-eq v1, v2, :cond_52
+
+    aget-object v1, p3, v4
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    const/high16 v2, 0x8000000
+
+    if-ne v1, v2, :cond_12e
+
+    .line 37
+    :cond_52
     const-string v2, "cjf"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -864,44 +909,27 @@
 
     move-result-object v1
 
+    const-string v3, " "
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const/4 v3, 0x2
+
+    aget-object v3, p3, v3
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 35
-    array-length v1, p3
-
-    const/4 v2, 0x3
-
-    if-ne v1, v2, :cond_115
-
-    aget-object v1, p3, v6
-
-    check-cast v1, Ljava/lang/String;
-
-    const-string v2, "dianping"
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_115
-
-    aget-object v1, p3, v4
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    const/16 v2, 0x40
-
-    if-ne v1, v2, :cond_115
-
-    .line 37
+    .line 38
     iget-object v1, p0, Lcom/dianping/v1/PackageManagerProxy;->mPackageManager:Landroid/content/pm/IPackageManager;
 
     invoke-virtual {p2, v1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -910,21 +938,21 @@
 
     check-cast v0, Landroid/content/pm/PackageInfo;
 
-    .line 38
+    .line 39
     .local v0, "info":Landroid/content/pm/PackageInfo;
-    if-nez v0, :cond_74
+    if-nez v0, :cond_8d
 
     const/4 v0, 0x0
 
-    .line 49
+    .line 50
     .end local v0    # "info":Landroid/content/pm/PackageInfo;
-    :goto_73
+    :goto_8c
     return-object v0
 
-    .line 39
+    .line 40
     .restart local v0    # "info":Landroid/content/pm/PackageInfo;
-    :cond_74
-    const-string v1, "hook"
+    :cond_8d
+    const-string v1, "cjf"
 
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -996,7 +1024,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 42
+    .line 43
     iget-object v1, v0, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
     new-instance v2, Landroid/content/pm/Signature;
@@ -1007,8 +1035,8 @@
 
     aput-object v2, v1, v6
 
-    .line 43
-    const-string v1, "hook"
+    .line 44
+    const-string v1, "cjf"
 
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -1080,11 +1108,11 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto/16 :goto_73
+    goto/16 :goto_8c
 
-    .line 46
+    .line 47
     .end local v0    # "info":Landroid/content/pm/PackageInfo;
-    :cond_115
+    :cond_12e
     const-string v1, "hook"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1109,13 +1137,13 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 49
-    :cond_12e
+    .line 50
+    :cond_147
     iget-object v1, p0, Lcom/dianping/v1/PackageManagerProxy;->mPackageManager:Landroid/content/pm/IPackageManager;
 
     invoke-virtual {p2, v1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
-    goto/16 :goto_73
+    goto/16 :goto_8c
 .end method
