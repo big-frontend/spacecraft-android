@@ -58,5 +58,5 @@ SpacecraftAndroid
 - [x] CI / CD
 - [ ] hybrid
 - [ ] ReactNative/Flutter
-- [x] hook:jni hook
+- [x] hook:jni hook、java hook
 
