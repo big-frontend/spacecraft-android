@@ -57,3 +57,9 @@
 
 #You can specify any path and filename.
 -printconfiguration ./build/tmp/full-r8-config.txt
+
+-keep class com.hawksjamesf.template.IMyAidlInterface{*;}
+-keep class com.hawksjamesf.template.IMyAidlInterface$Default{*;}
+-keep class com.hawksjamesf.template.IMyAidlInterface$Stub{*;}
+-keep class com.hawksjamesf.template.IMyAidlInterface$Stub$Proxy{*;}
+-keep class com.hawksjamesf.template.binder.BinderEntry{*;}

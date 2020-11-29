@@ -2,15 +2,14 @@ package com.hawksjamesf.template;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.hawksjamesf.annotations.TraceTime;
-import com.hawksjamesf.yposed.YPosedActivity;
 
 import androidx.annotation.Nullable;
 
@@ -22,9 +21,20 @@ import androidx.annotation.Nullable;
  * @since: Oct/25/2020  Sun
  */
 public class StartActivity extends Activity {
-    ServiceConnection con = new ServiceConnection() {
+    final ServiceConnection con = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d("cjf", " " + name + " " + service);
+            //在跨进程，远程service将获得BinderProxy;在同一个进程，本地service将获得binder实体。
+            if (name.getClassName().equals(RemoteServices.class.getCanonicalName())) {
+                IMyAidlInterface iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
+                Log.d("cjf", "iMyAidlInterface:"+iMyAidlInterface);
+
+            } else if (name.getClassName().equals(LocalServices.class.getCanonicalName())) {
+//                BinderEntry.asInterface(service);
+                Log.d("cjf", "BinderEntry");
+
+            }
 
         }
 
@@ -49,6 +59,7 @@ public class StartActivity extends Activity {
             }
         });
         RemoteServices.startAndBindService(this, con);
+        LocalServices.startAndBindService(this, con);
 
 
     }
@@ -80,12 +91,13 @@ public class StartActivity extends Activity {
                 e.printStackTrace();
             }
         }
-        startActivity(new Intent(this, YPosedActivity.class));
+//        startActivity(new Intent(this, YPosedActivity.class));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         RemoteServices.stopAndUnbindService(this, con);
+        LocalServices.stopAndUnbindService(this, con);
     }
 }

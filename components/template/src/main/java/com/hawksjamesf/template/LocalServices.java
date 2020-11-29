@@ -12,17 +12,17 @@ import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.widget.Toast;
 
-import androidx.annotation.Keep;
+import com.hawksjamesf.template.binder.BinderEntry;
+
 import androidx.annotation.Nullable;
 
 
-public class RemoteServices extends Service {
+public class LocalServices extends Service {
 
     public static void startAndBindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, RemoteServices.class);
+        Intent intent = new Intent(activity, LocalServices.class);
         activity.bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
@@ -35,23 +35,17 @@ public class RemoteServices extends Service {
     }
 
     public static void stopAndUnbindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, RemoteServices.class);
+        Intent intent = new Intent(activity, LocalServices.class);
         activity.stopService(intent);
         activity.unbindService(connection);
     }
-    @Keep
-    private IMyAidlInterface mb = new IMyAidlInterface.Stub(){
 
-        @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
-        }
-    };
+    private BinderEntry mBinderEntry = new BinderEntry();
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return mb.asBinder();
+        return mBinderEntry;
     }
 
     @Override
@@ -64,16 +58,16 @@ public class RemoteServices extends Service {
         super.onRebind(intent);
     }
 
-    public static final int ONGOING_NOTIFICATION_ID = 101;
-    public static final String channelId = "channelId_01";
-    public static final String channelName = "channelName_01";
+    public static final int ONGOING_NOTIFICATION_ID = 100;
+    public static final String channelId = "channelId_00";
+    public static final String channelName = "channelName_00";
 
     @Override
     public void onCreate() {
         super.onCreate();
         Context applicationContext = getApplicationContext();
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             chan.setLightColor(Color.BLUE);
             chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);

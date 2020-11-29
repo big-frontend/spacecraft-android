@@ -11,7 +11,17 @@ import android.os.Binder;
  * <p>
  * Stub rule
  */
-public class BinderEntity extends Binder {
+
+public class BinderEntry extends Binder{
+
+
+    public static void asInterface(android.os.IBinder obj){
+
+    }
+
+    public android.os.IBinder asBinder() {
+        return this;
+    }
 
 
 }
