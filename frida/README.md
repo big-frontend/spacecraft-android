@@ -13,3 +13,4 @@ objection -d -g com.sankuai.meituan explore
   > memory list modules
   > memory list exports libsigchain.so
   > android heap search instances 类名
+  > android hooking list activities/services

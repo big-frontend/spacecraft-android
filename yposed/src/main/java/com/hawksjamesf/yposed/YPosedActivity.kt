@@ -1,15 +1,19 @@
 package com.hawksjamesf.yposed
 
+import android.app.IActivityManager
 import android.content.Context
 import android.content.pm.IPackageManager
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.os.ServiceManager
 import android.util.Log
 import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
+import dalvik.system.DexFile
 import kotlinx.android.synthetic.main.activity_yposed.*
+import java.lang.reflect.Proxy
 
 class YPosedActivity : AppCompatActivity() {
 
@@ -24,30 +28,28 @@ class YPosedActivity : AppCompatActivity() {
         val cert = info.signatures[0].toByteArray()
         Log.i("cjf", "java 第一种获取签名的方法：" + sha1ToHexString(cert))
         var b = ServiceManager.getService("package")
-        info = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            IPackageManager.Stub.asInterface(b).getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES, 0)
+        val bs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            info = IPackageManager.Stub.asInterface(b).getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES, 0)
+            info.signingInfo.apkContentsSigners[0].toByteArray()
         } else {
-            IPackageManager.Stub.asInterface(b).getPackageInfo(packageName, PackageManager.GET_SIGNATURES, 0)
+            info = IPackageManager.Stub.asInterface(b).getPackageInfo(packageName, PackageManager.GET_SIGNATURES, 0)
+            info.signatures[0].toByteArray()
         }
-        Log.i("cjf", "java 第二种获取签名的方法：" + sha1ToHexString(info.signatures[0].toByteArray()))
+        Log.i("cjf", "java 第二种获取签名的方法：" + sha1ToHexString(bs))
         Log.i("cjf", "jni 第一种获取签名的方法:${getSign(this)}")
         Log.i("cjf", "jni 第二种获取签名的方法:${getSignv2(this)}")
-//        getAllCalssz(classLoader)
-
+        printAllCalsses(packageName)
     }
 
-    fun getAllCalssz(cl: ClassLoader) {
-        try {
-            val f = cl::class.java.getDeclaredField("classes")
-            f.isAccessible = true
-//            val classLoader = Thread.currentThread().contextClassLoader
-//            val allCls: List<Class<*>>? = f.get(classLoader) as? List<Class<*>> ?: return
-//            for (cls in allCls!!) {
-//                val location = cls.getResource('/'.toString() + cls.name.replace('.', '/') + ".class")
-//                Log.d("cjf", "<p>$location<p/>")
-//            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+    fun printAllCalsses(pkgName: String) {
+        Log.d("cjf", "p:$packageCodePath  $pkgName")
+        val dexFile = DexFile(packageCodePath)
+        val entries = dexFile.entries()
+        while (entries.hasMoreElements()) {
+            val clzName = entries.nextElement()
+            if (clzName.contains("hawksjamesf")) {
+                Log.d("cjf", "class name:$clzName")
+            }
         }
     }
 
