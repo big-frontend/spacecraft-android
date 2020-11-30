@@ -12,10 +12,10 @@ import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.widget.Toast;
 
-import com.hawksjamesf.template.binder.BinderEntry;
-
+import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 
 
@@ -40,12 +40,19 @@ public class LocalServices extends Service {
         activity.unbindService(connection);
     }
 
-    private BinderEntry mBinderEntry = new BinderEntry();
+    @Keep
+    private IMyAidlInterface mb = new IMyAidlInterface.Stub(){
+
+        @Override
+        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+
+        }
+    };
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return mBinderEntry;
+        return mb.asBinder();
     }
 
     @Override

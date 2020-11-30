@@ -17,7 +17,9 @@
         <service
             android:name=".RemoteServices"
             android:process=".remote_service" />
-        <service android:name=".LocalServices" />
-        <!--            android:process=".local_service"-->
+        <service
+            android:name=".LocalServices"
+            />
+<!--            android:process=".local_service"-->
     </application>
 </manifest>

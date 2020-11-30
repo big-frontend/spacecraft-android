@@ -5,11 +5,14 @@ import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.hawksjamesf.annotations.TraceTime;
+import com.hawksjamesf.template.binder.BinderEntry;
+import com.hawksjamesf.template.binder.BinderShadow;
 
 import androidx.annotation.Nullable;
 
@@ -24,15 +27,25 @@ public class StartActivity extends Activity {
     final ServiceConnection con = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.d("cjf", " " + name + " " + service);
+//            Log.d("cjf", " " + name + " " + service);
             //在跨进程，远程service将获得BinderProxy;在同一个进程，本地service将获得binder实体。
-            if (name.getClassName().equals(RemoteServices.class.getCanonicalName())) {
+            if (name.getClassName().equals(LocalServices.class.getCanonicalName())) {
                 IMyAidlInterface iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
-                Log.d("cjf", "iMyAidlInterface:"+iMyAidlInterface);
-
-            } else if (name.getClassName().equals(LocalServices.class.getCanonicalName())) {
+                Log.d("cjf", "iMyAidlInterface:" + iMyAidlInterface);
+            } else if (name.getClassName().equals(RemoteServices.class.getCanonicalName())) {
 //                BinderEntry.asInterface(service);
                 Log.d("cjf", "BinderEntry");
+                if (service instanceof BinderEntry) {//local
+                    ((BinderEntry) service).basicTypes(1, 1, true, 1.0f, 1.0d, "1");
+                } else {//remote
+                    BinderShadow binderShadow = new BinderShadow(service);
+                    try {
+                        binderShadow.basicTypes(1, 1, true, 1.0f, 1.0d, "1");
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+
+                }
 
             }
 
