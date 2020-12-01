@@ -2,8 +2,12 @@
 
 package com.jamesfchen.guard
 
+import android.app.ActivityManager
+import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Process
+import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.Keep
 import java.security.MessageDigest
@@ -39,4 +43,5 @@ fun sha1ToHexString(cert: ByteArray): String? {
         e.printStackTrace()
     }
     return null
+
 }

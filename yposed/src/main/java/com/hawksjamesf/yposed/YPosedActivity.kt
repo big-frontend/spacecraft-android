@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dalvik.system.DexFile
 import kotlinx.android.synthetic.main.activity_yposed.*
 import java.lang.reflect.Proxy
+import java.util.*
 
 class YPosedActivity : AppCompatActivity() {
 
@@ -41,6 +42,14 @@ class YPosedActivity : AppCompatActivity() {
                 "IBinder isProxyClass:${Proxy.isProxyClass(package_b.javaClass)} " +
                 "IWindowManager isProxyClass：${Proxy.isProxyClass(IWindowManager.Stub.asInterface(window_b).javaClass)}")
 //        printAllCalsses(packageName)
+//        isMainProcess(this)
+        Log.d("cjf", " prop:${getSysProp("ro.product.cpu.abi")}")
+//        Timer("cjf").schedule(object : TimerTask() {
+//            override fun run() {
+//
+//            }
+//
+//        }, 20_000, 24*3600*1000)
     }
 
     fun printAllCalsses(pkgName: String) {
@@ -66,6 +75,7 @@ class YPosedActivity : AppCompatActivity() {
 
     @Keep
     external fun getSignv2(ctx: Context): String
+
     @Keep
     external fun checkSign(ctx: Context): Boolean
 

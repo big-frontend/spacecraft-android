@@ -2,9 +2,11 @@
 
 package com.hawksjamesf.yposed
 
+import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager
-import android.util.Log
+import android.os.Process
+import android.text.TextUtils
 import androidx.annotation.Keep
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -39,4 +41,37 @@ fun sha1ToHexString(cert: ByteArray): String? {
         e.printStackTrace()
     }
     return null
+}
+fun isMainProcess(context: Context): Boolean {
+    val processName = getProcessName(context, Process.myPid())
+    val packageName = context.applicationContext.packageName
+    if (TextUtils.isEmpty(processName) || TextUtils.isEmpty(packageName)) {
+        return false
+    }
+    return packageName == processName
+}
+
+private fun getProcessName(context: Context, i: Int): String? {
+    val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+    if (activityManager == null || activityManager.runningAppProcesses == null) {
+        return null
+    }
+    val runningAppProcesses: List<ActivityManager.RunningAppProcessInfo> = activityManager.runningAppProcesses
+    for (next in runningAppProcesses) {
+//        Log.d("cjf","process name:${next.processName}")
+        if (next.pid == i) {
+            return next.processName
+        }
+    }
+    return null
+}
+fun getSysProp(str: String): String {
+    return if (TextUtils.isEmpty(str)) {
+        ""
+    } else try {
+        val cls = Class.forName("android.os.SystemProperties")
+        cls.getDeclaredMethod("get", String::class.java).invoke(cls, str) as String
+    } catch (th: Throwable) {
+        ""
+    }
 }
