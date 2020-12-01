@@ -36,6 +36,7 @@ dependencies {
 //    implementation project(path: ':framework:storage')
 //    implementation project(path: ':framework:image')
     api project(path: ':yposed')
+    api project(path: ':guard')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
 

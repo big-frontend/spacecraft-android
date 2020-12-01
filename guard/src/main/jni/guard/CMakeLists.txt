@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.4.1)
 add_library(
-        hawks
+        guard
         SHARED
-        hawks.cpp)
+        guard.cpp)
 
 
 find_library(
@@ -10,5 +10,5 @@ find_library(
         log )
 
 target_link_libraries(
-        hawks
+        guard
         ${log-lib} )

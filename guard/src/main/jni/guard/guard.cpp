@@ -1,5 +1,5 @@
 //
-// Created by hawks.jamesf on 12/19/19.
+// Created by guard.jamesf on 12/19/19.
 //
 #include <string>
 #include <jni.h>
@@ -9,7 +9,7 @@
 #include <android/log.h>
 #include <assert.h>
 #include <time.h>
-#include "include/hawks.h"
+#include "include/guard.h"
 
 #define CLASS_PATH "com/hawksjamesf/yposed/YPosedActivity"
 #define   NELEM(x) ((int) (sizeof(x) / sizeof((x)[0])))
@@ -22,13 +22,14 @@ static jboolean auth = JNI_FALSE;
 //import class
 jclass SignatureClass;
 jclass PackageInfoClass;
-static jclass ContextClass;
+jclass ContextClass;
 jclass PackageManagerClass;
 jclass IPackageManagerClass;
 jclass ApplicationInfoClass;
 jclass ServiceManagerClass;
 jclass IPackageManager$StubClass;
 jclass UtilClass;
+jclass ProxyClass;
 
 void import_class(JNIEnv *env) {
     SignatureClass = env->FindClass("android/content/pm/Signature");
@@ -39,7 +40,8 @@ void import_class(JNIEnv *env) {
     IPackageManager$StubClass = env->FindClass("android/content/pm/IPackageManager$Stub");
     ApplicationInfoClass = env->FindClass("android/content/pm/ApplicationInfo");
     ServiceManagerClass = env->FindClass("android/os/ServiceManager");
-    UtilClass = env->FindClass("com/hawksjamesf/yposed/Util");
+    UtilClass = env->FindClass("com/jamesfchen/guard/Util");
+    ProxyClass = env->FindClass("java/lang/reflect/Proxy");
 }
 
 void clear_class(JNIEnv *env) {
@@ -52,6 +54,7 @@ void clear_class(JNIEnv *env) {
     env->DeleteLocalRef(ApplicationInfoClass);
     env->DeleteLocalRef(ServiceManagerClass);
     env->DeleteLocalRef(UtilClass);
+    env->DeleteLocalRef(ProxyClass);
 }
 
 int i = 0;
@@ -155,10 +158,19 @@ jstring get_sign(JNIEnv *env, jobject yposedActivity /* this */, jobject context
     jobject packageInfoObject = env->CallObjectMethod(packageManagerObject, getPackageInfoId,
                                                       packNameString, 64);
     jbyteArray signByte = get_sign_byteArray(env, packageInfoObject);
-    return bytes_to_hexstring(env, signByte);
+    jstring hexstirng = bytes_to_hexstring(env, signByte);
     clear_class(env);
+    return hexstirng;
 }
 
+extern "C" JNIEXPORT JNICALL
+jboolean check_sign(JNIEnv *env, jobject yposedActivity) {
+    import_class(env);
+    jmethodID isProxyClassMethodId = env->GetStaticMethodID(ProxyClass, "isProxyClass",
+                                                            "(Ljava/lang/Class;)Z");
+//    env->CallStaticBooleanMethod(ProxyClass,isProxyClassMethodId)
+    return JNI_TRUE;
+}
 /*
 * JNI registration.
 */
@@ -168,7 +180,8 @@ static JNINativeMethod gMethods[] = {
 //        {"replaceMethod", "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V", (void *) replaceMethod},
 //        {"setFieldFlag",  "(Ljava/lang/reflect/Field;)V",                            (void *) setFieldFlag},
         {"getSign",   "(Landroid/content/Context;)Ljava/lang/String;", (void *) get_sign},
-        {"getSignv2", "(Landroid/content/Context;)Ljava/lang/String;", (void *) get_sign_v2}
+        {"getSignv2", "(Landroid/content/Context;)Ljava/lang/String;", (void *) get_sign_v2},
+        {"checkSign", "(Landroid/content/Context;)Z",                  (void *) check_sign}
 };
 
 static int registerNativeMethods(JNIEnv *env, const char *className, JNINativeMethod *gMethods,

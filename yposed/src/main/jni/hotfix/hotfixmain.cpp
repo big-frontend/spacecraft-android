@@ -8,7 +8,6 @@
 #include <time.h>
 #include "include/art_8.0r1.h"
 //#include "include/art_10.h"
-#include "hawks.h"
 #include "include/HotFix.h"
 
 /**

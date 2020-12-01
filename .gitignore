@@ -69,3 +69,4 @@ framework/common/.cxx
 framework/common/.cxx
 framework/image/.cxx
 frida/node_modules
+guard/.cxx

@@ -31,8 +31,8 @@ public class PackageManagerProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Log.d("hook", "method name:" + method.getName());
         if ("getPackageInfo".equals(method.getName())) {
-            if (args.length == 3 && ((String)args[0]).contains("dianping")
-//            if (args.length == 3 && "com.hawksjamesf.spacecraft.debug".equals(args[0])
+//            if (args.length == 3 && ((String)args[0]).contains("dianping")
+            if (args.length == 3 && "com.hawksjamesf.spacecraft.debug".equals(args[0])
                     && ((Integer) args[1] == 64 || (Integer) args[1] == 0x08000000)) {
                 Log.d("cjf", args[0] + "  " + (Integer) args[1] + " " + args[2]);
                 PackageInfo info = (PackageInfo) method.invoke(mPackageManager, args);

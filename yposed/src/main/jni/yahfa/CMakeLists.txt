@@ -7,7 +7,7 @@ find_library(
         log-lib
         log )
 
-#target_include_directories(hotfix PUBLIC ../hawks/include HotFix.h)
+#target_include_directories(hotfix PUBLIC ../guard/include HotFix.h)
 target_link_libraries(
         yahfa
         ${log-lib} )
