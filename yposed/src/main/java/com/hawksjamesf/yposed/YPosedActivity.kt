@@ -71,6 +71,9 @@ class YPosedActivity : AppCompatActivity() {
     external fun stringFromJNI(): String
 
     @Keep
+    external fun main()
+
+    @Keep
     external fun getSign(ctx: Context): String
 
     @Keep
