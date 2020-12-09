@@ -1,15 +1,14 @@
-package com.hawksjamesf.myhome.ui.observable;
+package com.hawksjamesf.loader;
 
 import android.util.Log;
-
-import com.hawksjamesf.loader.App;
-import com.hawksjamesf.mockserver.BuildConfig;
-import com.hawksjamesf.mockserver.MockManager;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+
+import com.hawksjamesf.mockserver.BuildConfig;
+import com.hawksjamesf.mockserver.MockManager;
 
 /**
  * Copyright ® $ 2017

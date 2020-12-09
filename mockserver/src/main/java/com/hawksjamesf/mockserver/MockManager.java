@@ -13,6 +13,8 @@ import android.os.RemoteException;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.hawksjamesf.mockserver.service.MockIntentService;
+import com.hawksjamesf.mockserver.service.MockJobService;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
@@ -72,6 +74,9 @@ public class MockManager {
         } else {
             MockIntentService.bindAndStartService(context, connection);
         }
+//        MockJobService.startService(context);
+//        MockIntentService.bindAndStartService(context, connection);
+//        MockForegroundService.bindAndStartService(context, connection);
         Toast.makeText(context, "start &  bind  service", Toast.LENGTH_LONG).show();
     }
 
@@ -105,7 +110,7 @@ public class MockManager {
     }
 
 
-    private static String getProcessName(Context context) {
+    public static String getProcessName(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
         if (runningAppProcesses == null) {

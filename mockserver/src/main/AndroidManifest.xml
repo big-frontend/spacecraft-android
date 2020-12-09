@@ -1,18 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hawksjamesf.mockserver">
+
     <application>
         <service
-            android:name=".MockIntentService"
-            android:process=":mock_server"
-            />
+            android:name=".service.MockIntentService"
+            android:process=":mock_intentserver" />
         <service
-            android:name=".MockJobService"
+            android:name=".service.MockForegroundService"
+            android:process=":mock_foregroundserver" />
+        <service
+            android:name=".service.MockService"
+            android:process=":mock_server" />
+        <service
+            android:name=".service.MockJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":mock_jobserver"
-            />
-        <service android:name=".MockJobIntentService"
+            android:process=":mock_jobserver" />
+        <service
+            android:name=".service.MockJobIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":mock_jobintentserver"/>
+            android:process=":mock_jobintentserver" />
 
         <activity
             android:name="com.hawksjamesf.mockserver.LogDBActivity"
@@ -21,11 +27,23 @@
         <provider
             android:name="com.hawksjamesf.mockserver.LogContentProvider"
             android:authorities="${applicationId}.mockserver.log"
+            android:multiprocess="true"
             android:exported="false" />
         <provider
             android:name="com.hawksjamesf.mockserver.MockServerContentProvider"
             android:authorities="${applicationId}.mockserver.mocker"
-            android:exported="false" />
-        <!--            android:multiprocess="true"-->
+            android:exported="false"
+            />
+
+        <receiver
+            android:name=".CmdReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <!--            android:priority="1000"-->
+            <intent-filter>
+                <action android:name="com.hawksjamesf.spacecraft.cmd_list" />
+            </intent-filter>
+
+        </receiver>
     </application>
 </manifest>

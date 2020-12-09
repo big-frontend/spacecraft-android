@@ -5,6 +5,17 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.provider.FontRequest;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.text.FontRequestEmojiCompatConfig;
+import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+import androidx.work.Configuration;
+
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.common.DynamicConfigImplDemo;
 import com.hawksjamesf.common.TestPluginListener;
@@ -27,16 +38,6 @@ import com.tencent.sqlitelint.config.SQLiteLintConfig;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.provider.FontRequest;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.text.FontRequestEmojiCompatConfig;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
-import androidx.work.Configuration;
 
 
 /**
@@ -118,7 +119,7 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 //        FirebaseApp.initializeApp(this,firebaseOptions);
 //        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
 //        crashlytics.setCrashlyticsCollectionEnabled(true);
-//        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
 
 

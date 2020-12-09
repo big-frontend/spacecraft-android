@@ -7,6 +7,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
+import android.util.Log
 import com.hawksjamesf.mockserver.platform.LogDBContract
 import com.hawksjamesf.mockserver.platform.LogDBHelper
 import com.orhanobut.logger.Logger
@@ -30,17 +31,18 @@ class LogContentProvider : ContentProvider() {
     override fun onCreate(): Boolean {
         logHelper = LogDBHelper.getInstance(context)
         logDB = LogDBHelper.getDB(context)
-        Logger.t(TAG).d("onCreate--->databaseName:${logHelper?.databaseName}")
+        Log.d(TAG,"onCreate--->databaseName:${logHelper?.databaseName} process:${ MockManager.getProcessName(context)}")
+
         return true
     }
 
     override fun getType(uri: Uri): String? {
-        Logger.t(TAG).d("getType")
+        Log.d(TAG,"getType")
         return null
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        Logger.t(TAG).d("insert")
+        Log.d(TAG,"insert")
         if (logDB == null) return null
         val id: Long = logDB!!.insert(LogDBContract.TABLE_NAME, null /* nullColumnHack */, values)
         notifyChange()
@@ -48,7 +50,7 @@ class LogContentProvider : ContentProvider() {
     }
 
     override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor? {
-        Logger.t(TAG).d("query")
+        Log.d(TAG,"query")
         val cursor = logDB?.query(
                 LogDBContract.TABLE_NAME,
                 projection,
@@ -66,13 +68,13 @@ class LogContentProvider : ContentProvider() {
 
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-        Logger.t(TAG).d("update")
+        Log.d(TAG,"update")
         notifyChange()
         return -1
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        Logger.t(TAG).d("delete")
+        Log.d(TAG,"delete")
         notifyChange()
         return -1
     }
@@ -86,7 +88,7 @@ class LogContentProvider : ContentProvider() {
      * mContentResolver.applyBatch(AUTHORITY, operations);
      */
     override fun applyBatch(operations: ArrayList<ContentProviderOperation>): Array<ContentProviderResult> {
-        Logger.t(TAG).d("applyBatch:1 param")
+        Log.d(TAG,"applyBatch:1 param")
         logDB?.beginTransaction()
         val results = super.applyBatch(operations)
         logDB?.setTransactionSuccessful()
@@ -96,7 +98,7 @@ class LogContentProvider : ContentProvider() {
     }
 
     override fun applyBatch(authority: String, operations: ArrayList<ContentProviderOperation>): Array<ContentProviderResult> {
-        Logger.t(TAG).d("applyBatch:2 params")
+        Log.d(TAG,"applyBatch:2 params")
         logDB?.beginTransaction()
         val results = super.applyBatch(authority, operations)
         logDB?.setTransactionSuccessful()

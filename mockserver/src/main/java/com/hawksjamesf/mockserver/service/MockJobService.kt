@@ -1,4 +1,4 @@
-package com.hawksjamesf.mockserver
+package com.hawksjamesf.mockserver.service
 
 import android.app.AlarmManager
 import android.app.job.JobInfo
@@ -6,6 +6,9 @@ import android.app.job.JobParameters
 import android.app.job.JobService
 import android.content.ComponentName
 import android.content.Context
+import android.util.Log
+import com.hawksjamesf.mockserver.Constants
+import com.hawksjamesf.mockserver.MockManager
 import com.orhanobut.logger.Logger
 
 /**
@@ -35,12 +38,12 @@ class MockJobService : JobService() {
     }
 
     override fun onStartJob(params: JobParameters?): Boolean {
-        Logger.t(TAG).d("onStartJob")
+        Log.d(TAG,"onStartJob")
         return true
     }
 
     override fun onStopJob(params: JobParameters?): Boolean {
-        Logger.t(TAG).d("onStopJob")
+        Log.d(TAG,"onStopJob")
         return true
     }
 

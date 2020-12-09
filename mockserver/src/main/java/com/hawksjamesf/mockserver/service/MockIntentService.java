@@ -1,4 +1,4 @@
-package com.hawksjamesf.mockserver;
+package com.hawksjamesf.mockserver.service;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -7,7 +7,16 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
+import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.blankj.utilcode.util.SPUtils;
+import com.hawksjamesf.mockserver.BuildConfig;
+import com.hawksjamesf.mockserver.Constants;
+import com.hawksjamesf.mockserver.DispatcherImpl;
+import com.hawksjamesf.mockserver.IMockApi;
+import com.hawksjamesf.mockserver.IMockServerCallback;
 import com.orhanobut.logger.Logger;
 
 import java.io.FileInputStream;
@@ -26,8 +35,6 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import okhttp3.HttpUrl;
 import okhttp3.internal.Util;
 import okhttp3.mockwebserver.MockWebServer;
@@ -48,8 +55,9 @@ import retrofit2.mock.NetworkBehavior;
  * IntentService is subject to all the background execution limits imposed with Android 8.0 (API level 26).
  * In most cases, you are better off using JobIntentService,which uses jobs instead of services when running on Android 8.0 or higher.
  */
+@Keep
 public class MockIntentService extends IntentService {
-    private static final String TAG = Constants.TAG + "/MockService";
+    private static final String TAG = Constants.TAG + "/MockIntentService";
 
     private IMockApiImpl mBinder = new IMockApiImpl();
     IMockServerCallback callback;
@@ -114,7 +122,7 @@ public class MockIntentService extends IntentService {
      */
     public MockIntentService() {
         super("mock_service");
-
+        setIntentRedelivery(true);
         mockRetrofit = new MockRetrofit.Builder(
                 new Retrofit.Builder()
                         .baseUrl(BuildConfig.BASE_URL)
@@ -157,6 +165,7 @@ public class MockIntentService extends IntentService {
         super.onCreate();
         dispatcher = DispatcherImpl.getInstance(getApplicationContext());
         Logger.t(TAG).d("onCreate");
+
     }
 
     @Nullable
@@ -218,10 +227,13 @@ public class MockIntentService extends IntentService {
      * <p>
      * START_REDELIVER_INTENT- tells the system to restart the service after the crash and also redeliver the intents that were present at the time of crash.
      */
-//    @Override
-//    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
-//        return Service.START_STICKY;
-//    }
+    @Override
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        int r = super.onStartCommand(intent, flags, startId);
+        Logger.t(TAG).d("startId:"+startId);
+        return r;
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

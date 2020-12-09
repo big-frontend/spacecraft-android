@@ -1,4 +1,4 @@
-package com.hawksjamesf.mockserver;
+package com.hawksjamesf.mockserver.service;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
+
+import com.hawksjamesf.mockserver.Constants;
 
 /**
  * Copyright ® $ 2017
