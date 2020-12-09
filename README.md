@@ -12,7 +12,7 @@ SpacecraftAndroid
 |  language  |  files |lines|
 |---| --- |---|
 |  java|187 |22399|
-|  kotlin|188|9581|
+|  kotlin|190|9727|
 |  c or c++|14|1377|
 
 
