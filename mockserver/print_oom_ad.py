@@ -1,5 +1,5 @@
 import platform,os,signal
-from subprocess import  Popen,PIPE,CREATE_NEW_PROCESS_GROUP
+from subprocess import  Popen,PIPE
 def is_macos():
     return "Darwin" in platform.system()
 
@@ -11,7 +11,6 @@ def __process_list_interal(pipe, serial_no, app_uid):
 
         while True:
             line = pipe.stdout.readline()
-
             if line is None or len(line) == 0:
                 print('end'+"="*20)
                 break
@@ -64,19 +63,19 @@ def process_list(serial_no, pkg_name):
     if is_macos():
         uid =os.popen('adb  -s '+serial_no+' shell dumpsys package '+pkg_name+' | grep userId= ').read().strip()
         uid ='u0_a'+uid.split('=')[1][-3:]
-        with Popen("adb -s "+serial_no + " shell ps - ef", stdout=PIPE, stderr=PIPE, shell=True,
+        with Popen("adb -s "+serial_no + " shell ps -ef", stdout=PIPE, stderr=PIPE, shell=True,
                    preexec_fn=os.setsid, encoding='utf-8') as pipe:
             __process_list_interal(pipe, serial_no, uid)
     else:
         uid =os.popen('adb  -s '+serial_no+' shell dumpsys package '+pkg_name+'| findstr userId= ').read().strip()
         uid ='u0_a'+uid.split('=')[1][-3:]
         with Popen("adb -s "+serial_no + " shell ps -ef", stdout=PIPE, stderr=PIPE, shell=True,
-                   creationflags=CREATE_NEW_PROCESS_GROUP, encoding='utf-8') as pipe:
+                   creationflags=subprocess.CREATE_NEW_PROCESS_GROUP, encoding='utf-8') as pipe:
             __process_list_interal(pipe, serial_no, uid)
 
 
 if __name__ == "__main__":
     # while True:
     # process_list('c4c81150', 'com.sankuai.meituan')
-    process_list('c4c81150', 'com.hawksjamesf.spacecraft.debug')
+    process_list('HMQNW20521005648', 'com.hawksjamesf.spacecraft.debug')
     # time.sleep(1)

@@ -1,15 +1,12 @@
 package com.hawksjamesf.mockserver.service;
 
 import android.app.IntentService;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
-
-import androidx.annotation.Keep;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.hawksjamesf.mockserver.BuildConfig;
@@ -35,6 +32,10 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
+import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import okhttp3.HttpUrl;
 import okhttp3.internal.Util;
 import okhttp3.mockwebserver.MockWebServer;
@@ -165,6 +166,17 @@ public class MockIntentService extends IntentService {
         super.onCreate();
         dispatcher = DispatcherImpl.getInstance(getApplicationContext());
         Logger.t(TAG).d("onCreate");
+        MockService.bindAndStartService(this, new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        });
 
     }
 
@@ -175,7 +187,7 @@ public class MockIntentService extends IntentService {
         return mBinder;
     }
 
-    //work thread
+    @WorkerThread
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         mockWebServer = new MockWebServer();
