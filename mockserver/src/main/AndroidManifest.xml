@@ -2,6 +2,7 @@
     package="com.hawksjamesf.mockserver">
 
     <application>
+        <service android:name=".service.NonAffinityService" android:process=":non_affinity_service"/>
         <service
             android:name=".service.MockIntentService"
             android:process=":mock_intentserver" />
@@ -21,13 +22,21 @@
             android:process=":mock_jobintentserver" />
 
         <activity
+            android:process=":log_ui_server"
+            android:multiprocess="true"
             android:name="com.hawksjamesf.mockserver.LogDBActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
+        <activity
+            android:process=":mock_server"
+            android:name="com.hawksjamesf.mockserver.LogActivity"
+            android:theme="@style/Theme.AppCompat.DayNight" />
 
+<!--            android:process=":log_ui_server"-->
+<!--            android:multiprocess="true"-->
         <provider
+
             android:name="com.hawksjamesf.mockserver.LogContentProvider"
             android:authorities="${applicationId}.mockserver.log"
-            android:multiprocess="true"
             android:exported="false" />
         <provider
             android:name="com.hawksjamesf.mockserver.MockServerContentProvider"

@@ -1,5 +1,7 @@
 package com.hawksjamesf.mockserver
 
+import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 /**
@@ -11,4 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
  * @since: Nov/28/2019  Thu
  */
 class LogActivity: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(TextView(this))
+    }
 }

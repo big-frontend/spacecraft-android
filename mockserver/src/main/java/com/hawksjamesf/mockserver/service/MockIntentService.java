@@ -1,7 +1,6 @@
 package com.hawksjamesf.mockserver.service;
 
 import android.app.IntentService;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -166,18 +165,6 @@ public class MockIntentService extends IntentService {
         super.onCreate();
         dispatcher = DispatcherImpl.getInstance(getApplicationContext());
         Logger.t(TAG).d("onCreate");
-        MockService.bindAndStartService(this, new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-
-            }
-        });
-
     }
 
     @Nullable
