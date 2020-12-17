@@ -15,6 +15,7 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.loader.App;
 import com.hawksjamesf.myhome.R;
@@ -48,7 +49,7 @@ public class SplashActivity extends AbsPermissionsActivity {
         setContentView(R.layout.activity_splash);
 
     }
-//    @TraceTime
+    @TraceTime
     protected void onRequestPermissionsResult() {
         Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
