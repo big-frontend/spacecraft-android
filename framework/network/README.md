@@ -23,3 +23,20 @@ json: Gson
 # transport
 [科普：QUIC协议原理分析](https://zhuanlan.zhihu.com/p/32553477)
 [QUIC, a multiplexed stream transport over UDP](https://www.chromium.org/quic)
+
+
+Feature | HTTP/2|HTTP/3
+---|---| --- |
+Header compression algorithm|HPACK|QPACK
+Handshake protocol|TCP + TLS|iQUIC
+Handshake negotiation|At the certificate stage via ALPN=Application-Layer Protocol Negotiation (ALPN) protocol|After certificate negotiation via “Alt-Svc:” HTTP response header
+HTTP scheme|HTTP (not well adopted) / HTTPS|HTTPS
+Prioritization|Yes|No, although HTTP/3 streams can have a “PRIORITY” frame to implement it
+
+layer | devices|传输数据的基本单位
+---|---|---
+应用层|应用网关|
+传输层|传输网关|数据段、报文段
+网络层|路由器|数据分组
+数据链路层|网桥、交换机|数据帧
+物理层|中继器、集线器|比特流
