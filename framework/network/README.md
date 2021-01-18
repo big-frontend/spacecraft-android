@@ -18,3 +18,8 @@ rpc: grpc
 protobuf: wire
 
 json: Gson
+
+
+# transport
+[科普：QUIC协议原理分析](https://zhuanlan.zhihu.com/p/32553477)
+[QUIC, a multiplexed stream transport over UDP](https://www.chromium.org/quic)
