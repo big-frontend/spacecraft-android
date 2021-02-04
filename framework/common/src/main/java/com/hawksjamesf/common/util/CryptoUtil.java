@@ -286,7 +286,7 @@ public class CryptoUtil {
                 cipher.init(isEncrypt ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, secretKey, params);
             }
 
-            return cipher.doFinal();
+            return cipher.doFinal(data);
         } catch (InvalidKeySpecException | NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException e) {
             e.printStackTrace();
             return null;

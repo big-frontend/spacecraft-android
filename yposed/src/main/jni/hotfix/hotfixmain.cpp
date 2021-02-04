@@ -72,7 +72,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     art::ArtMethod *srcArtMethod = (art::ArtMethod *) env->GetMethodID(srcNetClientclazz,
                                                                        "sendRequest", "()V");
 
-    jclass destNetClientclazz = env->FindClass("com/hawksjamesf/yposed/NetClient_sendRequest");
+    jclass destNetClientclazz = env->FindClass("com/hawksjamesf/yposedplugin/NetClient_sendRequest");
     art::ArtMethod *destArtMethod = (art::ArtMethod *) env->GetMethodID(destNetClientclazz,
                                                                         "sendRequest", "()V");
 //    srcArtMethod->declaring_class_ = destArtMethod->declaring_class_;
