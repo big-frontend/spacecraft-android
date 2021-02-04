@@ -17,7 +17,6 @@ import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.template.binder.BinderEntry;
 import com.hawksjamesf.template.binder.BinderShadow;
 import com.hawksjamesf.yposed.YPosedActivity;
-import com.jamesfchen.guard.TestGuardActivity;
 
 /**
  * Copyright ® $ 2017
@@ -107,7 +106,7 @@ public class StartActivity extends Activity {
                 e.printStackTrace();
             }
         }
-        startActivity(new Intent(this, TestGuardActivity.class));
+//        startActivity(new Intent(this, TestGuardActivity.class));
     }
 
     @Override

@@ -1,7 +1,6 @@
 println("settings start")
 include ':app'
 include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
-include ':yposed', ':yposedplugin', ':yposedstub',':guard'
 if (isHaHa.toBoolean()) {
     include ':components:template'
     include ':components:module1'
@@ -15,5 +14,4 @@ if (isHaHa.toBoolean()) {
 }
 
 println("settings end")
-include ':dexshell'
 
