@@ -11,7 +11,7 @@
 #include <time.h>
 #include "include/guard.h"
 
-#define CLASS_PATH "com/hawksjamesf/yposed/YPosedActivity"
+#define CLASS_PATH "com/jamesfchen/guard/TestGuardActivity"
 #define   NELEM(x) ((int) (sizeof(x) / sizeof((x)[0])))
 #define   LOG_TAG    "cjf_jni"
 #define   LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)

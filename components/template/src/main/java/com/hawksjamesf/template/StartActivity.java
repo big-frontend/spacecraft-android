@@ -2,6 +2,7 @@ package com.hawksjamesf.template;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -10,11 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
+
 import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.template.binder.BinderEntry;
 import com.hawksjamesf.template.binder.BinderShadow;
-
-import androidx.annotation.Nullable;
+import com.hawksjamesf.yposed.YPosedActivity;
+import com.jamesfchen.guard.TestGuardActivity;
 
 /**
  * Copyright ® $ 2017
@@ -104,7 +107,7 @@ public class StartActivity extends Activity {
                 e.printStackTrace();
             }
         }
-//        startActivity(new Intent(this, YPosedActivity.class));
+        startActivity(new Intent(this, TestGuardActivity.class));
     }
 
     @Override
