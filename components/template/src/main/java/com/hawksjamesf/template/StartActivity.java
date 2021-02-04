@@ -2,7 +2,6 @@ package com.hawksjamesf.template;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -16,7 +15,6 @@ import androidx.annotation.Nullable;
 import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.template.binder.BinderEntry;
 import com.hawksjamesf.template.binder.BinderShadow;
-import com.hawksjamesf.yposed.YPosedActivity;
 
 /**
  * Copyright ® $ 2017
