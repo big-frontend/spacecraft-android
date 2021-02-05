@@ -1,5 +1,6 @@
 package com.hawksjamesf.myhome.ui;
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.annotations.TraceTime;
+import com.hawksjamesf.common.util.ActivityUtil;
+import com.hawksjamesf.image.GifActivity;
 import com.hawksjamesf.loader.App;
 import com.hawksjamesf.myhome.R;
 
@@ -52,7 +55,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-//                        ActivityUtil.startActivity(.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(GifActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
                         finish();
                     }
                 });

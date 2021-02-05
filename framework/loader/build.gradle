@@ -34,7 +34,7 @@ dependencies {
 //    implementation project(path: ':framework:chatroom')
     api project(path: ':framework:network')
 //    implementation project(path: ':framework:storage')
-//    implementation project(path: ':framework:image')
+    api project(path: ':framework:image')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
 

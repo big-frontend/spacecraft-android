@@ -1,12 +1,11 @@
 //
 // Created by hawks.jamesf on 1/11/20.
 //
-#include <LogUtil.h>
-#include <AssetUtil.h>
+#include "LogUtil.h"
+#include "AssetUtil.h"
 
 #include "GifPlayer.h"
 #include "Constants.h"
-#include "LogUtil.h"
 
 /**
  * static start

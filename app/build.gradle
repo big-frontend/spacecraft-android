@@ -241,6 +241,7 @@ android {
     packagingOptions {
         exclude 'META-INF/proguard/coroutines.pro'
     }
+    ndkVersion '22.0.7026061'
 
     applicationVariants.all { variant ->
         if (variant.name.equalsIgnoreCase("debug")) {
