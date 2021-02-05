@@ -1,12 +1,8 @@
 package com.hawksjamesf.myhome.ui;
 
-import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,13 +12,13 @@ import com.google.firebase.perf.metrics.HttpMetric;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.annotations.TraceTime;
-import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.loader.App;
 import com.hawksjamesf.myhome.R;
-import com.hawksjamesf.yposed.YPosedActivity;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -56,7 +52,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        ActivityUtil.startActivity(YPosedActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+//                        ActivityUtil.startActivity(.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
                         finish();
                     }
                 });

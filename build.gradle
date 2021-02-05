@@ -52,7 +52,7 @@ buildscript {
         //2.资源缩减：从封装应用中移除不使用的资源，包括应用库依赖项中的不使用的资源。此功能可与代码缩减功能结合使用，这样一来，移除不使用的代码后，也可以安全地移除不再引用的所有资源。如需了解详情，请转到介绍如何缩减资源的部分。
         //3.混淆处理：缩短类和成员的名称，从而减小 DEX 文件的大小。如需了解详情，请转到介绍如何对代码进行混淆处理的部分。
         //4.优化：检查并重写代码，以进一步减小应用的 DEX 文件的大小。例如，如果 R8 检测到从未采用过给定 if/else 语句的 else {} 分支，则会移除 else {} 分支的代码。如需了解详情，请转到介绍代码优化的部分。
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70"
 //        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.60-eap-25"
         classpath "org.jetbrains.kotlin:kotlin-serialization:1.3.70"

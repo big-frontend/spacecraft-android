@@ -7,21 +7,21 @@ apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.gms.google-services'
 
-apply plugin: 'findbugs'
-findbugs {
-    ignoreFailures = false
-    toolVersion = "3.0.1"
-//    sourceSets=[sourceSets.main]
-    excludeFilter = file("config/findbugs/excludeFilter.xml")
-    reportsDir = file("$project.buildDir/reports/findbugs")
-    effort = "max"
-}
-tasks.withType(FindBugs) {
-    reports {
-        xml.enabled false
-        html.enabled true
-    }
-}
+//apply plugin: 'findbugs'
+//findbugs {
+//    ignoreFailures = false
+//    toolVersion = "3.0.1"
+////    sourceSets=[sourceSets.main]
+//    excludeFilter = file("config/findbugs/excludeFilter.xml")
+//    reportsDir = file("$project.buildDir/reports/findbugs")
+//    effort = "max"
+//}
+//tasks.withType(FindBugs) {
+//    reports {
+//        xml.enabled false
+//        html.enabled true
+//    }
+//}
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
 
 
