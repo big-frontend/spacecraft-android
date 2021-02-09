@@ -5,7 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-
+apply plugin: 'com.tencent.buglyplugin'
+bugly {
+    appId = '3d62251014'
+    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+}
 def srcDirs = [
         "gif",
 //        "video",
