@@ -100,6 +100,7 @@ void GifPlayer::start() {
     AndroidBitmap_getInfo(jniEnv, jbitmap, &info);
     void *pixels;
     AndroidBitmap_lockPixels(jniEnv, jbitmap, &pixels);
+    //todo:something
     info.flags;
     info.format;
     info.stride;
