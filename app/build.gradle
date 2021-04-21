@@ -51,7 +51,7 @@ bugly {
     appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 }
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.hawksjamesf.perfplugin'
+apply plugin: 'com.jamesfchen.perfplugin'
 //apply plugin: 'com.hawksjamesf.versionplugin'
 //versionPlugin {
 //    buildTypeMatcher = 'debug'
@@ -78,8 +78,8 @@ android {
         multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeepFile.txt')
 //        multiDexKeepProguard file('multiDexKeep.pro')
-        applicationId "com.hawksjamesf.spacecraft"
-        testApplicationId "com.hawksjamesf.spacecraft.test"
+        applicationId "com.jamesfchen.spacecraft"
+        testApplicationId "com.jamesfchen.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')

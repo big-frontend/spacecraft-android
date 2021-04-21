@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
 }
-apply plugin: 'com.hawksjamesf.perfplugin'
+apply plugin: 'com.jamesfchen.perfplugin'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
