@@ -78,8 +78,8 @@ android {
         multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeepFile.txt')
 //        multiDexKeepProguard file('multiDexKeep.pro')
-        applicationId "com.jamesfchen.spacecraft"
-        testApplicationId "com.jamesfchen.spacecraft.test"
+        applicationId "com.hawksjamesf.spacecraft"
+        testApplicationId "com.hawksjamesf.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
@@ -156,6 +156,9 @@ android {
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
             }
+        }
+        profile {
+            initWith debug
         }
     }
     lintOptions {
@@ -301,6 +304,16 @@ configurations {
 ////    }
 ////}
 //}
+String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+repositories {
+    maven {
+        url "${rootProject.getRootDir().getAbsoluteFile()}${File.separator}..${File.separator}flutter_module${File.separator}build${File.separator}host${File.separator}outputs${File.separator}repo"
+    }
+    maven {
+        url "$storageUrl/download.flutter.io"
+    }
+
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -313,7 +326,11 @@ dependencies {
         implementation project(path: ':components:login')
     }
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
 //    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
+    debugImplementation 'com.jamesfchen.flutter_module:flutter_debug:1.0'
+    profileImplementation 'com.jamesfchen.flutter_module:flutter_profile:1.0'
+    releaseImplementation 'com.jamesfchen.flutter_module:flutter_release:1.0'
 
 
 }

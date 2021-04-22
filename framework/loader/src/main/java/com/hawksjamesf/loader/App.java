@@ -72,7 +72,6 @@ public class App extends MultiDexApplication implements Configuration.Provider {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
         MessageStatic.init(this);
     }
 
