@@ -2,6 +2,7 @@ package com.hawksjamesf.myhome.ui;
 
 import android.app.ActivityOptions;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,12 +19,12 @@ import com.hawksjamesf.image.GifActivity;
 import com.hawksjamesf.loader.App;
 import com.hawksjamesf.myhome.R;
 
+import org.mozilla.javascript.ast.Loop;
+
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import io.flutter.embedding.android.FlutterActivity;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -57,8 +58,8 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-//                        ActivityUtil.startActivity(GifActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
+                        ActivityUtil.startActivity(GifActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+//                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                         finish();
                     }
                 });

@@ -24,6 +24,7 @@ import com.tencent.matrix.trace.TracePlugin;
 import com.tencent.matrix.trace.config.TraceConfig;
 import com.tencent.matrix.util.MatrixLog;
 import com.tencent.sqlitelint.SQLiteLint;
+import com.tencent.sqlitelint.SQLiteLintPlugin;
 import com.tencent.sqlitelint.config.SQLiteLintConfig;
 
 import java.io.BufferedReader;
@@ -37,7 +38,6 @@ import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
 import androidx.emoji.text.FontRequestEmojiCompatConfig;
 import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
 
@@ -164,51 +164,7 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 //                    }
 //                });
 
-
-        MatrixLog.i(TAG, "MatrixApplication.onCreate");
-        DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo();
-        boolean matrixEnable = dynamicConfig.isMatrixEnable();
-        boolean fpsEnable = dynamicConfig.isFPSEnable();
-        boolean traceEnable = dynamicConfig.isTraceEnable();
-        //io
-        IOCanaryPlugin ioCanaryPlugin = new IOCanaryPlugin(new IOConfig.Builder()
-//                .dynamicConfig(dynamicConfig)
-                .build());
-        //trace
-        TracePlugin tracePlugin = (new TracePlugin(new TraceConfig.Builder()
-//                .dynamicConfig(dynamicConfig)
-                .enableFPS(fpsEnable)
-                .enableEvilMethodTrace(traceEnable)
-                .enableAnrTrace(traceEnable)
-                .enableStartup(traceEnable)
-                .splashActivities("sample.tencent.matrix.SplashActivity;")
-                .isDebug(true)
-                .isDevEnv(false)
-                .build()));
-        //resource
-        ResourcePlugin resourcePlugin = new ResourcePlugin(new ResourceConfig.Builder()
-                .dynamicConfig(dynamicConfig)
-                .setDumpHprof(false)
-                .setDetectDebuger(true)     //only set true when in sample, not in your app
-                .build());
-        ResourcePlugin.activityLeakFixer(this);
-        // prevent api 19 UnsatisfiedLinkError
-        //sqlite
-//        SQLiteLintConfig config = initSQLiteLintConfig();
-//        SQLiteLintPlugin sqLiteLintPlugin = new SQLiteLintPlugin(config);
-
-//        ThreadWatcher threadWatcher = new ThreadWatcher(new ThreadConfig.Builder().dynamicConfig(dynamicConfig).build());
-        Matrix matrix = new Matrix.Builder(this)
-                .patchListener(new TestPluginListener(this)) // add general pluginListener
-                .plugin(ioCanaryPlugin)
-                .plugin(tracePlugin)
-                .plugin(resourcePlugin)
-//                .plugin(threadWatcher)
-                .build();
-//        Matrix.init(matrix);
-//        ioCanaryPlugin.start();
-//        Matrix.with().getPluginByClass(ThreadWatcher.class).start();
-        MatrixLog.i("Matrix.HackCallback", "end:%s", System.currentTimeMillis());
+        startMatrix();
 
         FontRequest fontRequest = new FontRequest(
                 "com.google.android.gms.fonts",
@@ -236,6 +192,68 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 //        Fresco.initialize(this);
 
 
+    }
+    private void startMatrix(){
+        DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo();
+        boolean matrixEnable = dynamicConfig.isMatrixEnable();
+        boolean fpsEnable = dynamicConfig.isFPSEnable();
+        boolean traceEnable = dynamicConfig.isTraceEnable();
+
+        MatrixLog.i(TAG, "MatrixApplication.onCreate");
+
+        Matrix.Builder builder = new Matrix.Builder(this);
+        builder.patchListener(new TestPluginListener(this));
+
+        //trace
+        TraceConfig traceConfig = new TraceConfig.Builder()
+                .dynamicConfig(dynamicConfig)
+                .enableFPS(fpsEnable)
+                .enableEvilMethodTrace(traceEnable)
+                .enableAnrTrace(traceEnable)
+                .enableStartup(traceEnable)
+                .splashActivities("com.hawksjamesf.myhome.ui.SplashActivity;")
+                .isDebug(true)
+                .isDevEnv(false)
+                .build();
+
+        TracePlugin tracePlugin = (new TracePlugin(traceConfig));
+        builder.plugin(tracePlugin);
+
+        if (matrixEnable) {
+
+            //resource
+            builder.plugin(new ResourcePlugin(new ResourceConfig.Builder()
+                    .dynamicConfig(dynamicConfig)
+                    .setDumpHprof(false)
+                    .setDetectDebuger(true)     //only set true when in sample, not in your app
+                    .build()));
+            ResourcePlugin.activityLeakFixer(this);
+
+            //io
+            IOCanaryPlugin ioCanaryPlugin = new IOCanaryPlugin(new IOConfig.Builder()
+                    .dynamicConfig(dynamicConfig)
+                    .build());
+            builder.plugin(ioCanaryPlugin);
+
+
+            // prevent api 19 UnsatisfiedLinkError
+            //sqlite
+            SQLiteLintConfig config = initSQLiteLintConfig();
+            SQLiteLintPlugin sqLiteLintPlugin = new SQLiteLintPlugin(config);
+            builder.plugin(sqLiteLintPlugin);
+
+//            ThreadWatcher threadWatcher = new ThreadWatcher(new ThreadConfig.Builder().dynamicConfig(dynamicConfig).build());
+//            builder.plugin(threadWatcher);
+
+
+        }
+
+        Matrix.init(builder.build());
+
+        //start only startup tracer, close other tracer.
+        tracePlugin.start();
+//        Matrix.with().getPluginByClass(ThreadWatcher.class).start();
+        MatrixLog.i("Matrix.HackCallback", "end:%s", System.currentTimeMillis());
     }
 
     private static SQLiteLintConfig initSQLiteLintConfig() {
