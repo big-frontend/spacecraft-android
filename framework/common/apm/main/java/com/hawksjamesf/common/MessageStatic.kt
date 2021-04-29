@@ -25,7 +25,7 @@ class MessageStatic : Printer {
             override fun onLooperPrepared() {
                 super.onLooperPrepared()
                 Choreographer.getInstance().postFrameCallback {
-                    Log.d("cjf", "${Thread.currentThread().id} postFrameCallback 开始刷新的时间戳：${it} ms")
+                    Log.d("cjf", "${Thread.currentThread().id} postFrameCallback 开始刷新的时间戳：${it} ns")
 
                 }
             }
