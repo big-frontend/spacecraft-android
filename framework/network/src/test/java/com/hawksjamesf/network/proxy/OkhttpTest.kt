@@ -1,11 +1,10 @@
 package com.hawksjamesf.network.proxy
 
 import junit.framework.TestCase
-import okhttp3.OkHttpClient
+import okhttp3.*
 import org.junit.Test
 import java.security.KeyStore
 import java.util.*
-import javax.net.SocketFactory
 import javax.net.ssl.*
 
 /**
@@ -24,18 +23,36 @@ class OkhttpTest : TestCase() {
     override fun tearDown() {
         super.tearDown()
     }
-    @Test
-    fun  proxy(){
-        val serverName:String=""
-        val serverPort:Int=8080
-        val (sslSocketFactory, trustManager) = createMetadata()
-        val okHttpClient = OkHttpClient.Builder()
-                .proxy(SocksProxy.proxy(serverName,serverPort))//选择代理的方式http、socks 、 direct
-                .socketFactory(MySocketFactory())//具体的代理类
-//                .sslSocketFactory(sslSocketFactory,trustManager)
-                .build()
 
+    @Test
+    fun proxy() {
+        val serverName: String = ""
+        val serverPort: Int = 8080
+        val credential: String = Credentials.basic("jesse", "password1")
+        val challengeSchemes= mutableListOf<String>()
+        val (sslSocketFactory, trustManager) = createMetadata()
+        //开启了隧道代理 sslSocketFactory+http代理
+        val okHttpClient = OkHttpClient.Builder()
+                .proxy(ProxySelector.httpProxy(serverName, serverPort))//选择代理的方式http、socks 、 direct
+                .sslSocketFactory(sslSocketFactory, trustManager)
+                .hostnameVerifier(DefaultHostnameVerifier())
+                .proxyAuthenticator(object :Authenticator{
+                    override fun authenticate(route: Route?, response: Response): Request? {
+                        val challenges: List<Challenge> = response.challenges()
+                        challengeSchemes.add(challenges[0].scheme)
+                        return response.request.newBuilder()
+                                .header("Proxy-Authorization", credential)
+                                .build()
+                    }
+                })
+                .build()
+        //开启了非隧道代理，无需验证主机
+        val okHttpClient2 = OkHttpClient.Builder()
+                .proxy(ProxySelector.httpProxy(serverName, serverPort))//选择代理的方式http、socks 、 direct
+                .socketFactory(MySocketFactory())//具体的代理类
+                .build()
     }
+
     data class SocketMetadata(val sslSocketFactory: SSLSocketFactory, val trustManager: X509TrustManager)
 
     private fun createMetadata(): SocketMetadata {
