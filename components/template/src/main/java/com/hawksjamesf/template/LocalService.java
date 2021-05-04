@@ -19,10 +19,10 @@ import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 
 
-public class LocalServices extends Service {
+public class LocalService extends Service {
 
     public static void startAndBindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, LocalServices.class);
+        Intent intent = new Intent(activity, LocalService.class);
         activity.bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
@@ -35,18 +35,19 @@ public class LocalServices extends Service {
     }
 
     public static void stopAndUnbindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, LocalServices.class);
+        Intent intent = new Intent(activity, LocalService.class);
         activity.stopService(intent);
         activity.unbindService(connection);
     }
 
     @Keep
-    private IMyAidlInterface mb = new IMyAidlInterface.Stub(){
+    private IMyAidlInterface mb = new IMyAidlInterface.Stub() {
 
         @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
+        public int basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+            return 0;
         }
+
     };
 
     @Nullable

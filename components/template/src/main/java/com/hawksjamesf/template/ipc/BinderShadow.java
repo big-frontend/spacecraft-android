@@ -1,4 +1,4 @@
-package com.hawksjamesf.template.binder;
+package com.hawksjamesf.template.ipc;
 
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -6,7 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.Keep;
 
-import static com.hawksjamesf.template.binder.Constance.TRANSACTION_basicTypes;
+import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
 
 /**
  * Copyright ® $ 2017
@@ -25,10 +25,11 @@ public class BinderShadow {
         this.mRemote = mRemote;
     }
 
-    public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) throws RemoteException {
+    public int basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) throws RemoteException {
         Log.d("cjf", "shadow basicTypes:" + anInt + " " + aLong + " " + aBoolean + " " + aFloat + " " + aDouble + " " + aString);
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
+        int _result;
         try {
             _data.writeInterfaceToken(Constance.DESCRIPTOR);
             _data.writeInt(anInt);
@@ -39,9 +40,12 @@ public class BinderShadow {
             _data.writeString(aString);
             boolean status = mRemote.transact(TRANSACTION_basicTypes, _data, _reply, 0);
             Log.d("cjf","shadow status:"+status);
+            _reply.readException();
+            _result = _reply.readInt();
         } finally {
             _reply.recycle();
             _data.recycle();
         }
+        return _result;
     }
 }

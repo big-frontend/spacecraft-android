@@ -62,4 +62,4 @@
 -keep class com.hawksjamesf.template.IMyAidlInterface$Default{*;}
 -keep class com.hawksjamesf.template.IMyAidlInterface$Stub{*;}
 -keep class com.hawksjamesf.template.IMyAidlInterface$Stub$Proxy{*;}
--keep class com.hawksjamesf.template.binder.BinderEntry{*;}
+-keep class com.hawksjamesf.template.ipc.BinderEntry{*;}

@@ -15,11 +15,14 @@
         </activity>
 
         <service
-            android:name=".RemoteServices"
+            android:name=".RemoteService"
             android:process=".remote_service" />
+        <service android:name=".LocalService" />
+        <!--            android:process=".local_service"-->
         <service
-            android:name=".LocalServices"
-            />
-<!--            android:process=".local_service"-->
+            android:name=".MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
     </application>
 </manifest>

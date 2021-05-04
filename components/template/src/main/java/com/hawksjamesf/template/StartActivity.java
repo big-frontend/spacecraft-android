@@ -4,17 +4,21 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.Nullable;
-
 import com.hawksjamesf.annotations.TraceTime;
-import com.hawksjamesf.template.binder.BinderEntry;
-import com.hawksjamesf.template.binder.BinderShadow;
+import com.hawksjamesf.template.ipc.BinderEntry;
+import com.hawksjamesf.template.ipc.BinderShadow;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Copyright ® $ 2017
@@ -29,10 +33,10 @@ public class StartActivity extends Activity {
         public void onServiceConnected(ComponentName name, IBinder service) {
 //            Log.d("cjf", " " + name + " " + service);
             //在跨进程，远程service将获得BinderProxy;在同一个进程，本地service将获得binder实体。
-            if (name.getClassName().equals(LocalServices.class.getCanonicalName())) {
+            if (name.getClassName().equals(LocalService.class.getCanonicalName())) {
                 IMyAidlInterface iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
                 Log.d("cjf", "iMyAidlInterface:" + iMyAidlInterface);
-            } else if (name.getClassName().equals(RemoteServices.class.getCanonicalName())) {
+            } else if (name.getClassName().equals(RemoteService.class.getCanonicalName())) {
 //                BinderEntry.asInterface(service);
                 Log.d("cjf", "BinderEntry");
                 if (service instanceof BinderEntry) {//local
@@ -47,6 +51,18 @@ public class StartActivity extends Activity {
 
                 }
 
+            } else if (name.getClassName().equals(MessengerService.class.getCanonicalName())) {
+                try {
+                    Messenger messenger = new Messenger(service);
+                    Message msg = Message.obtain();
+                    Bundle b = new Bundle();
+                    b.putString("cjf", "client ");
+                    msg.setData(b);
+                    msg.replyTo = clientMessage;
+                    messenger.send(msg);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -56,6 +72,13 @@ public class StartActivity extends Activity {
 
         }
     };
+    private Messenger clientMessage = new Messenger(new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            Log.d("cjf","print "+msg.getData().getString("cjf"));
+        }
+    });
 
     @TraceTime
     @Override
@@ -71,8 +94,9 @@ public class StartActivity extends Activity {
 //                });
             }
         });
-        RemoteServices.startAndBindService(this, con);
-        LocalServices.startAndBindService(this, con);
+        RemoteService.startAndBindService(this, con);
+        LocalService.startAndBindService(this, con);
+        MessengerService.startAndBindService(this, con);
 
 
     }
@@ -110,7 +134,8 @@ public class StartActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RemoteServices.stopAndUnbindService(this, con);
-        LocalServices.stopAndUnbindService(this, con);
+        RemoteService.stopAndUnbindService(this, con);
+        LocalService.stopAndUnbindService(this, con);
+        MessengerService.stopAndUnbindService(this, con);
     }
 }

@@ -1,4 +1,4 @@
-package com.hawksjamesf.template.binder;
+package com.hawksjamesf.template.ipc;
 
 import android.os.Binder;
 import android.os.Parcel;
@@ -8,8 +8,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import static com.hawksjamesf.template.binder.Constance.DESCRIPTOR;
-import static com.hawksjamesf.template.binder.Constance.TRANSACTION_basicTypes;
+import static com.hawksjamesf.template.ipc.Constance.DESCRIPTOR;
+import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
 
 /**
  * Copyright ® $ 2017
@@ -70,8 +70,9 @@ public class BinderEntry extends Binder {
                 _arg4 = data.readDouble();
                 java.lang.String _arg5;
                 _arg5 = data.readString();
-                this.basicTypes(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
+                int _result = this.basicTypes(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
                 reply.writeNoException();
+                reply.writeInt(_result);
                 return true;
             }
             default:
@@ -83,7 +84,8 @@ public class BinderEntry extends Binder {
         return super.onTransact(code, data, reply, flags);
     }
 
-    public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) {
+    public int basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) {
         Log.d("cjf", "entry basicTypes:" + anInt + " " + aLong + " " + aBoolean + " " + aFloat + " " + aDouble + " " + aString);
+        return 0;
     }
 }

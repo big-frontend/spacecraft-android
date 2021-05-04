@@ -11,18 +11,28 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.util.Log;
 import android.widget.Toast;
 
-import com.hawksjamesf.template.binder.BinderEntry;
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
-public class RemoteServices extends Service {
-
+/**
+ * Copyright ® $ 2017
+ * All right reserved.
+ *
+ * @author: hawks.jamesf
+ * @since: May/04/2021  Tue
+ */
+public class MessengerService extends Service {
     public static void startAndBindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, RemoteServices.class);
+        Intent intent = new Intent(activity, MessengerService.class);
         activity.bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.startForegroundService(intent);
@@ -35,18 +45,33 @@ public class RemoteServices extends Service {
     }
 
     public static void stopAndUnbindService(Activity activity, ServiceConnection connection) {
-        Intent intent = new Intent(activity, RemoteServices.class);
+        Intent intent = new Intent(activity, MessengerService.class);
         activity.stopService(intent);
         activity.unbindService(connection);
     }
 
-    private BinderEntry mBinderEntry = new BinderEntry();
+    private Messenger serverMessenger = new Messenger(new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            try {
 
+                Log.d("cjf", "print " + msg.getData().getString("cjf"));
+                Message replyMsg = Message.obtain();
+                Bundle b = new Bundle();
+                b.putString("cjf", "server");
+                replyMsg.setData(b);
+                msg.replyTo.send(replyMsg);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    });
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return mBinderEntry;
+        return serverMessenger.getBinder();
     }
 
     @Override
@@ -59,9 +84,9 @@ public class RemoteServices extends Service {
         super.onRebind(intent);
     }
 
-    public static final int ONGOING_NOTIFICATION_ID = 101;
-    public static final String channelId = "channelId_01";
-    public static final String channelName = "channelName_01";
+    public static final int ONGOING_NOTIFICATION_ID = 102;
+    public static final String channelId = "channelId_02";
+    public static final String channelName = "channelName_02";
 
     @Override
     public void onCreate() {
