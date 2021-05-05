@@ -1,6 +1,7 @@
 package com.hawksjamesf.template.ipc;
 
 import android.os.Binder;
+import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
@@ -21,7 +22,7 @@ import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
  * Stub rule
  */
 
-public class BinderEntry extends Binder {
+public class BinderEntry extends Binder implements IMyAidlInterface {
 
     @Override
     protected boolean onTransact(int code, @NonNull Parcel data, @Nullable Parcel reply, int flags) throws RemoteException {
@@ -87,5 +88,10 @@ public class BinderEntry extends Binder {
     public int basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) {
         Log.d("cjf", "entry basicTypes:" + anInt + " " + aLong + " " + aBoolean + " " + aFloat + " " + aDouble + " " + aString);
         return 0;
+    }
+
+    @Override
+    public IBinder asBinder() {
+        return this;
     }
 }

@@ -18,7 +18,7 @@ import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
  * Proxy rule
  */
 @Keep
-public class BinderShadow {
+public class BinderShadow implements IMyAidlInterface {
     private IBinder mRemote;
 
     public BinderShadow(IBinder mRemote) {
@@ -34,12 +34,12 @@ public class BinderShadow {
             _data.writeInterfaceToken(Constance.DESCRIPTOR);
             _data.writeInt(anInt);
             _data.writeLong(aLong);
-            _data.writeInt(((aBoolean)?(1):(0)));
+            _data.writeInt(((aBoolean) ? (1) : (0)));
             _data.writeFloat(aFloat);
             _data.writeDouble(aDouble);
             _data.writeString(aString);
             boolean status = mRemote.transact(TRANSACTION_basicTypes, _data, _reply, 0);
-            Log.d("cjf","shadow status:"+status);
+            Log.d("cjf", "shadow status:" + status);
             _reply.readException();
             _result = _reply.readInt();
         } finally {
@@ -47,5 +47,10 @@ public class BinderShadow {
             _data.recycle();
         }
         return _result;
+    }
+
+    @Override
+    public IBinder asBinder() {
+        return mRemote;
     }
 }
