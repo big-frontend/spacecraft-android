@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.transition.ChangeBounds;
@@ -14,10 +16,20 @@ import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowInsets;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import com.hawksjamesf.uicomponent.transitions.ScaleUpTransition;
+import com.hawksjamesf.uicomponent.transitions.ScaleUpTransitionv2;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -28,13 +40,6 @@ import androidx.core.util.Pair;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.hawksjamesf.uicomponent.transitions.ScaleUpTransition;
-import com.hawksjamesf.uicomponent.transitions.ScaleUpTransitionv2;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Copyright ® $ 2019
@@ -134,6 +139,7 @@ public class DetailActivity extends Activity {
 //                    }
 //                }
 //        );
+
 //        getWindow().setTransitionBackgroundFadeDuration(2000);
         Transition sharedElementEnterTransition = getWindow().getSharedElementEnterTransition();
         Transition sharedElementExitTransition = getWindow().getSharedElementExitTransition();

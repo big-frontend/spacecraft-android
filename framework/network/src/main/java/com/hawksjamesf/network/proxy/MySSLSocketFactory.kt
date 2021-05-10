@@ -23,7 +23,8 @@ import javax.net.ssl.SSLSocketFactory
  */
 class MySSLSocketFactory : SSLSocketFactory() {
     private fun createConnectionSpecSelector(vararg connectionSpecs: ConnectionSpec): ConnectionSpecSelector {
-        return ConnectionSpecSelector(asList(connectionSpecs))
+//        return ConnectionSpecSelector(asList(connectionSpecs))
+        return  ConnectionSpecSelector(mutableListOf())
     }
 
     private var handshakeCertificates: HandshakeCertificates = localhost()
