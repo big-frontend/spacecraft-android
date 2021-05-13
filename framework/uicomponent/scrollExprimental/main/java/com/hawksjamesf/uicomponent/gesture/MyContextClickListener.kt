@@ -1,5 +1,6 @@
 package com.hawksjamesf.uicomponent.gesture
 
+import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 
@@ -13,6 +14,7 @@ import android.view.MotionEvent
 class MyContextClickListener: GestureDetector.OnContextClickListener  {
     //GestureDetector.OnContextClickListener start
     override fun onContextClick(e: MotionEvent?): Boolean {
+        Log.d("cjf","onContextClick action:${e?.action}")
         return false
     }
 

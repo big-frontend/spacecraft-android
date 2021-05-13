@@ -1,5 +1,6 @@
 package com.hawksjamesf.uicomponent.gesture
 
+import android.util.Log
 import android.view.ScaleGestureDetector
 
 /**
@@ -11,14 +12,17 @@ import android.view.ScaleGestureDetector
  */
 class MyScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
     override fun onScaleBegin(detector: ScaleGestureDetector?): Boolean {
+        Log.d("cjf",">>>onScaleBegin")
         return super.onScaleBegin(detector)
     }
 
     override fun onScaleEnd(detector: ScaleGestureDetector?) {
+        Log.d("cjf","<<<onScaleEnd")
         super.onScaleEnd(detector)
     }
 
     override fun onScale(detector: ScaleGestureDetector?): Boolean {
+        Log.d("cjf","onScale")
         return super.onScale(detector)
     }
 }

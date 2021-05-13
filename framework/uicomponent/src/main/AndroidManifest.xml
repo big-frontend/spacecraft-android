@@ -24,7 +24,7 @@
             android:theme="@style/BaseAppTheme.ListTheme" />
 
         <activity android:name=".ScrollableActivity" />
-
+        <activity android:name=".gesture.TouchActivity"/>
         <activity
             android:name=".ConstraintAndFlexBoxActivity"
             android:exported="true" />

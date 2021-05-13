@@ -1,5 +1,6 @@
 package com.hawksjamesf.uicomponent.gesture
 
+import android.util.Log
 import com.almeros.android.multitouch.RotateGestureDetector
 
 /**
@@ -10,15 +11,16 @@ import com.almeros.android.multitouch.RotateGestureDetector
  * @since: Dec/11/2019  Wed
  */
 class MyRotateListener: RotateGestureDetector.SimpleOnRotateGestureListener() {
-    override fun onRotate(detector: RotateGestureDetector?): Boolean {
-        return super.onRotate(detector)
+    override fun onRotateBegin(detector: RotateGestureDetector?): Boolean {
+        Log.d("cjf",">>>onRotateBegin")
+        return super.onRotateBegin(detector)
     }
-
     override fun onRotateEnd(detector: RotateGestureDetector?) {
+        Log.d("cjf","<<<onRotateEnd")
         super.onRotateEnd(detector)
     }
-
-    override fun onRotateBegin(detector: RotateGestureDetector?): Boolean {
-        return super.onRotateBegin(detector)
+    override fun onRotate(detector: RotateGestureDetector?): Boolean {
+        Log.d("cjf","onRotate")
+        return super.onRotate(detector)
     }
 }

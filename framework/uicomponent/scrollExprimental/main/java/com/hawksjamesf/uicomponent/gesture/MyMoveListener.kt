@@ -1,5 +1,6 @@
 package com.hawksjamesf.uicomponent.gesture
 
+import android.util.Log
 import com.almeros.android.multitouch.MoveGestureDetector
 
 /**
@@ -11,14 +12,17 @@ import com.almeros.android.multitouch.MoveGestureDetector
  */
 class MyMoveListener:MoveGestureDetector.SimpleOnMoveGestureListener() {
     override fun onMoveBegin(detector: MoveGestureDetector?): Boolean {
+        Log.d("cjf",">>>onMoveBegin")
         return super.onMoveBegin(detector)
     }
-
+    override fun onMoveEnd(detector: MoveGestureDetector?) {
+        Log.d("cjf","<<<onMoveEnd")
+        super.onMoveEnd(detector)
+    }
     override fun onMove(detector: MoveGestureDetector?): Boolean {
+        Log.d("cjf","onMove")
         return super.onMove(detector)
     }
 
-    override fun onMoveEnd(detector: MoveGestureDetector?) {
-        super.onMoveEnd(detector)
-    }
+
 }
