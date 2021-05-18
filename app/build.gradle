@@ -335,4 +335,8 @@ dependencies {
 
 }
 println("app end")
+//在这个阶段可以下载一些东西
+gradle.taskGraph.whenReady { taskGraph ->
+    println("gradle[任务图准备就绪] 配置阶段结束，开始执行阶段")
+}
 
