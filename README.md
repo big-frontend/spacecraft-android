@@ -18,6 +18,9 @@ SpacecraftAndroid
 
 # To be Architect
 > 驽马十驾功在不舍
+
+ps:下面会提到一些相关名词，这里先定义一下。bundle是依附于app framework的native bundle(静态组件，动态插件)、flutter、react native、hybrid，其能够被app framework动态加载；module指app framework的功能模块，赋予上层能力的module，更像是一些用来快速开发页面的toolkits。
+
 ## Foundation Module
 ### 1. Common Module
 - [x] utils
@@ -47,16 +50,20 @@ SpacecraftAndroid
 ### 3. IM Module
 - [ ] IM
 
-## Improve Development Efficiency  
-- [ ] decoupling：component
-各个业务组件化之后必然存在如何沟通比较高效的问题。有两种方案：url和rpc
+## Business Bundle
+通信方式url 路由和rpc调用
+
+- [ ] native bundle
+- [ ] hybrid
+- [ ] ReactNative/Flutter
+
+## Improve Development Efficiency
 - [x] gradle plugin：
 1. file lines counter plugin(./gradlew app:counter)
 2. rename apk plugin
 3. upload bugly mapping or so file plugin( ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug)
 4. performance plugin: trace method(instrumentation)
 - [x] CI / CD
-- [ ] hybrid
-- [ ] ReactNative/Flutter
 - [x] hook:jni hook、java hook
+
 
