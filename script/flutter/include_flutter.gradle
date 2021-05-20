@@ -3,7 +3,7 @@ import groovy.json.JsonSlurper
 //def projectDir = new File(scriptFile).parentFile.parentFile #settingsDir
 def module_name =':framework:flutter'
 def fwkProject = new File(gradle.settingsDir,'framework/flutter')
-def bunldeProject = new File(gradle.settingsDir,'../flutter_module')
+def bunldeProject = new File(gradle.settingsDir,'../flutter_bundle')
 gradle.include module_name
 gradle.project(module_name).projectDir = fwkProject
 
