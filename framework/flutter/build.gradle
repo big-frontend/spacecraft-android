@@ -23,7 +23,7 @@ def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
-apply from: "${flutterRoot}/packages/flutter_tools/gradle/flutter.gradle"
+apply from: "${flutterRoot}${File.separator}packages${File.separator}flutter_tools${File.separator}gradle${File.separator}flutter.gradle"
 flutter {
     source "${rootProject.projectDir}${File.separator}..${File.separator}flutter_bundle"
 }

@@ -86,10 +86,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-//task hello(){
-//    println("hello world")
-//
-//}
-
 println("root project end")

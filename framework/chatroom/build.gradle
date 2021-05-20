@@ -1,17 +1,4 @@
-if (isComponentMode.toBoolean()) {
-    apply plugin: 'com.android.application'
-    apply plugin: 'versionplugin'
-
-    versionPlugin {
-        buildTypeMatcher = 'debug'
-//        '$appName/project/buildType-v_$versionName-c_$versionCode'
-//        fileFormat = '$appName-v_$versionName-c_$versionCode'
-        fileFormat = '$project-$appName-$buildType-v_$versionName-c_$versionCode'
-
-    }
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 
 

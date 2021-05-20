@@ -104,19 +104,17 @@ android {
             }
         }
     }
-    def releaseKeySet = ['RELEASE_KEY_ALIAS', 'RELEASE_STORE_PASSWORD', 'RELEASE_KEY_PASSWORD']
-    def debugKeySet = ['DEBUG_KEY_ALIAS', 'DEBUG_STORE_PASSWORD', 'DEBUG_KEY_PASSWORD']
     signingConfigs {
         debugSigningConfig {
-            (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(debugKeySet)
-            storeFile file("${rootProject.getRootDir().getAbsolutePath()}/keystore/debug.jks")
+            (keyAlias, keyPassword, storePassword) = ['123456', '123456', '123456']
+            storeFile file("debug.jks")
             v1SigningEnabled true
             v2SigningEnabled = true
 
         }
         releaseSigningConfig {
-            (keyAlias, keyPassword, storePassword) = getKeyStoreProperties(releaseKeySet)
-            storeFile file("${rootProject.getRootDir().getAbsolutePath()}/keystore/release.jks")
+            (keyAlias, keyPassword, storePassword) = ['release', 'release', 'release']
+            storeFile file("release.jks")
             v1SigningEnabled true
             v2SigningEnabled = true
         }
@@ -176,7 +174,7 @@ android {
         abi {
             enable true
             reset()
-            include 'armeabi-v7a', "arm64-v8a",'armeabi'
+            include 'armeabi-v7a', "arm64-v8a", 'armeabi'
 //            exclude "x86","x86_64"
             universalApk false
         }
@@ -314,10 +312,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 //    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
 }
-buildDir = new File(rootProject.projectDir, "../build/host")
+//buildDir = new File(rootProject.projectDir, "../build/host")
 println("app end")
 //在这个阶段可以下载一些东西
 gradle.taskGraph.whenReady { taskGraph ->
-    println("gradle[任务图准备就绪] 配置阶段结束，开始执行阶段")
+    println("[ gradle configuration ] whenReady task关系图建立完毕 start")
+    println("[ gradle configuration ] whenReady task关系图建立完毕 end")
 }
 

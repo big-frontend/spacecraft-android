@@ -26,8 +26,10 @@ if (pluginsFile.exists()) {
 }
 //gradle 初始化完成的回调
 gradle.getGradle().projectsLoaded { g ->
+    println("[ gradle initialzation ] projectsLoaded] project初始化完成 start")
     g.rootProject.beforeEvaluate { p ->
         def _mainModuleName = binding.variables['mainModuleName']
+        println("_mainModuleName $_mainModuleName")
         if (_mainModuleName != null && !_mainModuleName.empty) {
             p.ext.mainModuleName = _mainModuleName
         }
@@ -39,4 +41,5 @@ gradle.getGradle().projectsLoaded { g ->
             }
         }
     }
+    println("[ gradle initialzation ] projectsLoaded] project初始化完成 end")
 }
