@@ -1,10 +1,8 @@
 println("settings start")
 include ':app'
 setBinding(new Binding([gradle: this]))
-evaluate(new File(
-  settingsDir,
-  '../flutter_module/.android/include_flutter.groovy'
-))
+evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
+//apply from: 'script/include_flutter.gradle'
 include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
 if (isHaHa.toBoolean()) {
     include ':components:template'

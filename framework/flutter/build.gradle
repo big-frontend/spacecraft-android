@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+def localProperties = new Properties()
+localProperties.load(project.file('gradle.properties').newDataInputStream())
+//if (localPropertiesFile.exists()) {
+//    localPropertiesFile.withReader('UTF-8') { reader ->
+//        localProperties.load(reader)
+//    }
+//}
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+apply from: "${flutterRoot}/packages/flutter_tools/gradle/flutter.gradle"
+flutter {
+    source "${rootProject.projectDir}${File.separator}..${File.separator}flutter_bundle"
+}
+group 'com.jamesfchen.flutter_module'
+version '1.0'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+    buildTypes {
+        //用于性能分析
+        profile {
+            initWith debug
+        }
+    }
+}

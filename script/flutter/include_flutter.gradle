@@ -1,0 +1,42 @@
+import groovy.json.JsonSlurper
+//def scriptFile = getClass().protectionDomain.codeSource.location.toURI()
+//def projectDir = new File(scriptFile).parentFile.parentFile #settingsDir
+def module_name =':framework:flutter'
+def fwkProject = new File(gradle.settingsDir,'framework/flutter')
+def bunldeProject = new File(gradle.settingsDir,'../flutter_bundle')
+gradle.include module_name
+gradle.project(module_name).projectDir = fwkProject
+
+// Note: if this logic is changed, also change the logic in app_plugin_loader.gradle.
+def pluginsFile = new File(bunldeProject, '.flutter-plugins-dependencies')
+if (pluginsFile.exists()) {
+    def object = new JsonSlurper().parseText(pluginsFile.text)
+    assert object instanceof Map
+    assert object.plugins instanceof Map
+    assert object.plugins.android instanceof List
+    // Includes the Flutter plugins that support the Android platform.
+    object.plugins.android.each { androidPlugin ->
+        assert androidPlugin.name instanceof String
+        assert androidPlugin.path instanceof String
+        def pluginDirectory = new File(androidPlugin.path, 'android')
+        assert pluginDirectory.exists()
+        include ":${androidPlugin.name}"
+        project(":${androidPlugin.name}").projectDir = pluginDirectory
+    }
+}
+//gradle 初始化完成的回调
+gradle.getGradle().projectsLoaded { g ->
+    g.rootProject.beforeEvaluate { p ->
+        def _mainModuleName = binding.variables['mainModuleName']
+        if (_mainModuleName != null && !_mainModuleName.empty) {
+            p.ext.mainModuleName = _mainModuleName
+        }
+    }
+    g.rootProject.afterEvaluate { p ->
+        p.subprojects { sp ->
+            if (sp.name != 'flutter') {
+                sp.evaluationDependsOn(module_name)
+            }
+        }
+    }
+}
