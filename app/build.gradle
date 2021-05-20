@@ -174,7 +174,7 @@ android {
         abi {
             enable true
             reset()
-            include 'armeabi-v7a', "arm64-v8a", 'armeabi'
+            include 'armeabi-v7a', "arm64-v8a", 'armeabi','x86'
 //            exclude "x86","x86_64"
             universalApk false
         }
