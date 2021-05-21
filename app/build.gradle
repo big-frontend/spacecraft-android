@@ -6,7 +6,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.gms.google-services'
-
 //apply plugin: 'findbugs'
 //findbugs {
 //    ignoreFailures = false
@@ -109,14 +108,14 @@ android {
             (keyAlias, keyPassword, storePassword) = ['123456', '123456', '123456']
             storeFile file("debug.jks")
             v1SigningEnabled true
-            v2SigningEnabled = true
+            v2SigningEnabled true
 
         }
         releaseSigningConfig {
             (keyAlias, keyPassword, storePassword) = ['release', 'release', 'release']
             storeFile file("release.jks")
             v1SigningEnabled true
-            v2SigningEnabled = true
+            v2SigningEnabled true
         }
 
     }

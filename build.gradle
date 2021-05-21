@@ -1,5 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+/**
+ * 控制所有的subproject编译方式或者计算模块大小
+ * - 对整个app进行打包，最后输出apk
+ * - 对某一个模块进行打包，最后输出aar
+ * - 打包某个模块的热修插件
+ */
 println("root project start")
 buildscript {
     repositories {

@@ -1,3 +1,6 @@
+/**
+ * 读取bundle_config.json信息include具体的模块
+ */
 println("settings start")
 include ':app'
 include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
