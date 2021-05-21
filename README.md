@@ -49,11 +49,10 @@ ps:下面会提到一些相关名词，这里先定义一下。bundle是依附�
 ### 1.UI Component
 - [x] provide ui component , es.video component
 
-
 ## Business Bundle
 通信方式url 路由和rpc调用
-- [x] login
 - [ ] native bundle
+    - [x] login
 - [ ] hybrid bundle
 - [ ] ReactNative/Flutter bundle
 
