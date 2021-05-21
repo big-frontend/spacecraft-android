@@ -15,44 +15,34 @@ import okio.Source
  * @author: hawks.jamesf
  * @since: Nov/09/2020  Mon
  */
-class MyExchangeCodec :ExchangeCodec {
-    override fun cancel() {
-        TODO("Not yet implemented")
-    }
-
-    override fun connection(): RealConnection? {
-        TODO("Not yet implemented")
-    }
-
-    override fun createRequestBody(request: Request, contentLength: Long): Sink {
-        TODO("Not yet implemented")
-    }
-
-    override fun finishRequest() {
-        TODO("Not yet implemented")
-    }
-
-    override fun flushRequest() {
-        TODO("Not yet implemented")
-    }
-
-    override fun openResponseBodySource(response: Response): Source {
-        TODO("Not yet implemented")
-    }
-
-    override fun readResponseHeaders(expectContinue: Boolean): Response.Builder? {
-        TODO("Not yet implemented")
-    }
-
-    override fun reportedContentLength(response: Response): Long {
-        TODO("Not yet implemented")
-    }
-
-    override fun trailers(): Headers {
-        TODO("Not yet implemented")
-    }
-
-    override fun writeRequestHeaders(request: Request) {
-        TODO("Not yet implemented")
-    }
-}
+//class MyExchangeCodec : ExchangeCodec {
+//    override val connection: RealConnection
+//        get() = RealConnection.newTestConnection()
+//
+//    override fun cancel() {
+//    }
+//
+//    override fun createRequestBody(request: Request, contentLength: Long): Sink {
+//    }
+//
+//    override fun finishRequest() {
+//    }
+//
+//    override fun flushRequest() {
+//    }
+//
+//    override fun openResponseBodySource(response: Response): Source {
+//    }
+//
+//    override fun readResponseHeaders(expectContinue: Boolean): Response.Builder? {
+//    }
+//
+//    override fun reportedContentLength(response: Response): Long {
+//    }
+//
+//    override fun trailers(): Headers {
+//    }
+//
+//    override fun writeRequestHeaders(request: Request) {
+//    }
+//}

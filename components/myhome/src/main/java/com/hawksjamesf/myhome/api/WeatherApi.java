@@ -1,7 +1,7 @@
 package com.hawksjamesf.myhome.api;
 
 
-import com.hawksjamesf.network.gson.ListRes;
+import com.hawksjamesf.myhome.modle.ListRes;
 import com.hawksjamesf.mockserver.model.WeatherData;
 
 import io.reactivex.Observable;

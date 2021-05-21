@@ -10,11 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
@@ -22,10 +17,15 @@ import com.hawksjamesf.common.mvp.RxActivity;
 import com.hawksjamesf.common.util.BarUtil;
 import com.hawksjamesf.mockserver.model.WeatherData;
 import com.hawksjamesf.myhome.R;
-import com.hawksjamesf.myhome.api.WeatherDataSource;
-import com.hawksjamesf.network.gson.ListRes;
+import com.hawksjamesf.myhome.api.RetrofitHelper;
+import com.hawksjamesf.myhome.api.WeatherApi;
+import com.hawksjamesf.myhome.modle.ListRes;
 import com.orhanobut.logger.Logger;
 
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -39,13 +39,10 @@ import io.reactivex.functions.Consumer;
 public class HomeActivity extends RxActivity<HomePresenter> implements HomeContract.View {
 
     private static final String TAG = "HomeActivity---";
-//    private RecyclerView mrvHome;
-
-    WeatherDataSource source;
+    //    private RecyclerView mrvHome;
     RecyclerView rv;
-
-
     ListView lv;
+
     @Override
     public HomePresenter createPresenter() {
         return new HomePresenter();
@@ -73,9 +70,8 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         presenter.load();
-
-//        source = App.getNetComponet().getWeatherDataSource();
-        source.getCurrentWeatherDate("London")
+        WeatherApi weatherApi = RetrofitHelper.createWeatherApi();
+        weatherApi.getCurrentWeatherDate("London")
                 .subscribe(new Consumer<WeatherData>() {
                     @Override
                     public void accept(WeatherData weatherData) throws Exception {
@@ -90,7 +86,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
                     }
                 });
 
-        source.getFiveData("London")
+        weatherApi.getFiveData("London")
                 .subscribe(new Consumer<ListRes<WeatherData>>() {
                     @Override
                     public void accept(ListRes<WeatherData> weatherDataListRes) throws Exception {
@@ -118,7 +114,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
             }
         });
-        CollapsingToolbarLayout ctbl=findViewById(R.id.ctbl);
+        CollapsingToolbarLayout ctbl = findViewById(R.id.ctbl);
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setAdapter(new MyAdapter());
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext(), RecyclerView.VERTICAL, false));

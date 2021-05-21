@@ -1,6 +1,6 @@
 package com.hawksjamesf.event
 
-import com.hawksjamesf.network.signin.ClientException
+import com.hawksjamesf.modle.ClientException
 
 /**
  * Copyright ® $ 2017

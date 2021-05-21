@@ -70,3 +70,5 @@ framework/common/.cxx
 framework/image/.cxx
 frida/node_modules
 guard/.cxx
+components/myhome/.cxx/cmake
+components/myhome/.cxx

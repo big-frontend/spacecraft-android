@@ -1,42 +1,38 @@
-package com.hawksjamesf.source.remote.rest
+@file:JvmName("RetrofitHelper")
+package com.hawksjamesf.myhome.api
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.hawksjamesf.login.BuildConfig
+import com.hawksjamesf.myhome.BuildConfig
 import com.hawksjamesf.network.DefaultAuthenticator
 import com.hawksjamesf.network.DefaultDns
 import com.hawksjamesf.network.adapter.ObservableOrMainCallAdapterFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.*
-import kotlin.reflect.KClass
 
 /**
- * Copyright ® $ 2017
+ * Copyright ® $ 2021
  * All right reserved.
  *
- * @author: hawks.jamesf
- * @since: Nov/10/2018  Sat
+ * @author: jamesfchen
+ * @email: hawksjamesf@gmail.com
+ * @since: 五月/21/2021  星期五
  */
-abstract class AbstractApi<T : Any> {
-    protected abstract var api: T
-
-    init {
-        val baseUrl = BuildConfig.BASE_URL
-
+object RetrofitHelper {
+    @JvmStatic
+    fun createWeatherApi(): WeatherApi {
         val (sslSocketFactory, trustManager) = createMetadata()
-
-        /***
-         * 非对称密匙：
-         * 对称密匙：
-         */
         val okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
@@ -44,7 +40,7 @@ abstract class AbstractApi<T : Any> {
                 .pingInterval(1, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
 //                .protocols(listOf(Protocol.HTTP_2))
-//                .addInterceptor(URLInterceptor())
+                .addInterceptor(URLInterceptor())
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addNetworkInterceptor(StethoInterceptor())
 //                .addNetworkInterceptor(MetricInterceptor())
@@ -60,11 +56,12 @@ abstract class AbstractApi<T : Any> {
 //                .proxyAuthenticator(DefaultProxyAuthenticator())
 //                .proxySelector(DefaultProxySelector())
                 .build()
-        api = Retrofit.Builder()
-                .baseUrl(baseUrl)
+//        val client = UrlConnectionCallFactory()
+        return Retrofit.Builder()
+                .baseUrl("/")
                 //                .baseUrl("http://localhost:50195")
-                .client(okHttpClient)
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+//                .callFactory(client)
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -73,10 +70,9 @@ abstract class AbstractApi<T : Any> {
 //                .addConverterFactory(ProtoConverterFactory.create())
                 .addConverterFactory(WireConverterFactory.create())
                 .build()
-                .create(getClass().java)
+                .create(WeatherApi::class.java)
     }
 
-    abstract fun getClass(): KClass<T>
 
     data class SocketMetadata(val sslSocketFactory: SSLSocketFactory, val trustManager: X509TrustManager)
 

@@ -1,6 +1,6 @@
 package com.hawksjamesf.source.mock;
 
-import com.hawksjamesf.network.signin.ClientException
+import com.hawksjamesf.modle.ClientException
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 

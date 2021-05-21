@@ -1,7 +1,7 @@
 package com.hawksjamesf.signin
 
-import com.hawksjamesf.network.signin.ClientState
-import com.hawksjamesf.network.signin.Profile
+import com.hawksjamesf.modle.ClientState
+import com.hawksjamesf.modle.Profile
 import io.reactivex.disposables.Disposable
 
 /**

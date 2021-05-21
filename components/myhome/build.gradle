@@ -1,5 +1,39 @@
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/component.gradle"
 printInfo("==>>>>>>>>>>>>>>>>myhome start")
+//apply plugin: 'com.google.protobuf'
+//protobuf {
+//    protoc {
+//        // You still need protoc like in the non-Android case
+//        artifact = 'com.google.protobuf:protoc:3.7.1'
+//    }
+//    plugins {
+//        javalite {
+//            // The codegen for lite comes as a separate artifact
+//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//        }
+//        grpc {
+////            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+//            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}"
+//        }
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                // In most cases you don't need the full Java output
+//                // if you use the lite output.
+//                remove java
+//            }
+//            task.plugins {
+//                javalite {}
+//                grpc {
+//                    // Options added to --grpc_out
+//                    option 'lite'
+//                }
+//            }
+//        }
+//    }
+//}
+
 def srcDirs = [
 //        "navigation",
 //        "workmanager",
@@ -8,6 +42,25 @@ def srcDirs = [
 
 ]
 android {
+    defaultConfig{
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+                cppFlags "-std=c++14","-fexceptions", "-frtti"
+                cFlags "-D__STDC_FORMAT_MACROS"
+//                cppFlags "-std=gnu++11"
+//                targets "hawks","hotfix"
+                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/   //输出制定三种abi体系结构下的so库
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            //path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
     sourceSets {
         main {
             java.excludes = [

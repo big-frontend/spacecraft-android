@@ -1,6 +1,7 @@
 package com.hawksjamesf.myhome.api;
 
-import com.hawksjamesf.network.BuildConfig;
+
+import com.hawksjamesf.myhome.BuildConfig;
 
 import java.io.IOException;
 

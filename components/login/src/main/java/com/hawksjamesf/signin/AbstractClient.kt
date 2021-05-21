@@ -2,7 +2,7 @@ package com.hawksjamesf.signin
 
 import com.hawksjamesf.event.SignInFailedEvent
 import com.hawksjamesf.event.SignUpFailedEvent
-import com.hawksjamesf.network.signin.*
+import com.hawksjamesf.modle.*
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject

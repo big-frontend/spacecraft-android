@@ -1,6 +1,6 @@
 package com.hawksjamesf.source.mock
 
-import com.hawksjamesf.network.signin.Profile
+import com.hawksjamesf.modle.Profile
 
 
 /**

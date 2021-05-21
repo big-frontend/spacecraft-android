@@ -2,7 +2,7 @@ package com.hawksjamesf.signin
 
 import androidx.annotation.MainThread
 import com.hawksjamesf.common.util.Util
-import com.hawksjamesf.network.signin.*
+import com.hawksjamesf.modle.*
 import com.hawksjamesf.source.SignInDataSource
 import com.hawksjamesf.source.mock.MockSignInDataSource
 import com.hawksjamesf.source.mock.UncertaintyConditions
