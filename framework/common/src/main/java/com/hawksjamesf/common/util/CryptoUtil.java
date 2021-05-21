@@ -10,11 +10,17 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -361,6 +367,25 @@ public class CryptoUtil {
             return null;
         }
 
+    }
+
+    public static Map<String, String> getRSAKeyPair(int keySize) throws NoSuchAlgorithmException {
+        SecureRandom secureRandom = new SecureRandom();
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(keySize, secureRandom);
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+        RSAPrivateKey publicKey = (RSAPrivateKey) keyPair.getPublic();
+        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+
+        byte[] publicKeyBytes = publicKey.getEncoded();
+        byte[] privateKeyBytes = privateKey.getEncoded();
+
+        String publicKeyBase64 = Base64.encodeToString(publicKeyBytes, Base64.NO_WRAP);
+        String privateKeyBase64 = Base64.encodeToString(privateKeyBytes, Base64.NO_WRAP);
+
+        Map<String, String> map = new HashMap<>();
+        map.put(publicKeyBase64, privateKeyBase64);
+        return  map;
     }
 
     private static byte[] joins(final byte[] prefix, final byte[] suffix) {
