@@ -1,5 +1,4 @@
 @file:JvmName("Crypto")
-
 package com.hawksjamesf.myhome.api
 
 import android.util.Base64
@@ -27,6 +26,12 @@ object Crypto {
      * 对称密钥： 客户端生成
      * 客户端生成cipherText 告诉服务端支持的加密套件，服务端生成非对称密钥并且下发公钥，
      * 客户端端生成对称密钥并且用公钥加密发给服务，服务用私钥解密然后通信
+     *
+     * 伪随机函数，为了最大可能输出随机数：
+     * - 可以将用户滑动鼠标的轨迹取样生成随机素材
+     * - 可以当前时间+随机数
+     * 然后运行hash函数
+     *
      */
     @JvmStatic
     external fun getClientKey(token: String, time: Long): String

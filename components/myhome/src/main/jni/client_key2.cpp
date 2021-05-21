@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include "data_struct_ext.h"
+
 void j_getKey(int *key, int col, char *result) {
     int v3; // [sp+Ch] [bp-1Ch]
     int i; // [sp+10h] [bp-18h]
@@ -14,6 +15,7 @@ void j_getKey(int *key, int col, char *result) {
         result[i] = seed[v3 - 1];
     }
 }
+
 int j_getRand() {
     unsigned int v0; // r0
     int v1; // ST24_4
@@ -119,16 +121,16 @@ char *j_getRand2(int i) {
             v2 = const_cast<char *>("__gnu_Unwind_Find_exidx" + 13);
             break;
         case 3:
-            v2 = (_BYTE * )(elf_hash_bucket + 55);
+            v2 = (_BYTE *) (elf_hash_bucket + 55);
             break;
         case 4:
-            v2 = (_BYTE * )(elf_gnu_hash_chain + 29);
+            v2 = (_BYTE *) (elf_gnu_hash_chain + 29);
             break;
         case 5:
             v2 = const_cast<char *>("getRandX" + 8);
             break;
         case 6:
-            v2 = (_BYTE * )(elf_gnu_hash_indexes + 23);
+            v2 = (_BYTE *) (elf_gnu_hash_indexes + 23);
             break;
         case 7:
             v2 = const_cast<char *>("fflush" + 4);
@@ -243,22 +245,22 @@ char *j_ss1(const char *str, int a2, jlong token_sizse2, int a, int b, char *src
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v45[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v45[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v45[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v45[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v45[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v45[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v45[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v45[4 * v9] = -899497514 - b;
     }
     v10 = v41 + ((unsigned int) (SHIDWORD(v41) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -277,12 +279,12 @@ char *j_ss1(const char *str, int a2, jlong token_sizse2, int a, int b, char *src
             v39[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v39[size - 4] = 8 * v41;
-        *(_DWORD * ) & v39[size - 8] = v41 >> 29;
-        v38 = (size_t) &v39[size];
+        *(_DWORD *) &v39[size - 4] = 8 * v41;
+        *(_DWORD *) &v39[size - 8] = v41 >> 29;
+        v38 = (size_t) & v39[size];
         while ((unsigned int) v39 < v38) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v44[4 * i] = *(_DWORD * ) & v39[4 * i];
+                *(_DWORD *) &v44[4 * i] = *(_DWORD *) &v39[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v44[4 * i];
                 v40 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -309,8 +311,8 @@ char *j_ss1(const char *str, int a2, jlong token_sizse2, int a, int b, char *src
                         v21 = v31 & ~v33 | v32 & v33;
                     v20 = v21;
                 }
-                v12 = v20 + __ROR4__(v34, 27) + v30 + *(_DWORD * ) & v44[4 * i];
-                v13 = *(_DWORD * ) & v45[4 * i];
+                v12 = v20 + __ROR4__(v34, 27) + v30 + *(_DWORD *) &v44[4 * i];
+                v13 = *(_DWORD *) &v45[4 * i];
                 v35 = v12 + v13;
                 v30 = v31;
                 v31 = v32;
@@ -400,22 +402,22 @@ char *j_ss2(const char *token, long long int token_sizse2, int a, int b, char *s
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v47[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v47[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v47[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v47[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v47[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v47[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v47[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v47[4 * v9] = -899497514 - b;
     }
     v10 = v43 + ((unsigned int) (SHIDWORD(v43) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -434,12 +436,12 @@ char *j_ss2(const char *token, long long int token_sizse2, int a, int b, char *s
             v41[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v41[size - 4] = 8 * v43;
-        *(_DWORD * ) & v41[size - 8] = v43 >> 29;
-        v40 = (size_t) &v41[size];
+        *(_DWORD *) &v41[size - 4] = 8 * v43;
+        *(_DWORD *) &v41[size - 8] = v43 >> 29;
+        v40 = (size_t) & v41[size];
         while ((unsigned int) v41 < v40) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v46[4 * i] = *(_DWORD * ) & v41[4 * i];
+                *(_DWORD *) &v46[4 * i] = *(_DWORD *) &v41[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v46[4 * i];
                 v42 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -466,8 +468,8 @@ char *j_ss2(const char *token, long long int token_sizse2, int a, int b, char *s
                         v23 = v33 & ~v35 | v34 & v35;
                     v22 = v23;
                 }
-                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD * ) & v46[4 * i];
-                v13 = *(_DWORD * ) & v47[4 * i];
+                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD *) &v46[4 * i];
+                v13 = *(_DWORD *) &v47[4 * i];
                 v37 = v12 + v13;
                 v32 = v33;
                 v33 = v34;
@@ -570,22 +572,22 @@ char *j_ss3(const char *token, long long int token_sizse2, int a, int b, char *s
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v47[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v47[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v47[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v47[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v47[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v47[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v47[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v47[4 * v9] = -899497514 - b;
     }
     v10 = v43 + ((unsigned int) (SHIDWORD(v43) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -604,12 +606,12 @@ char *j_ss3(const char *token, long long int token_sizse2, int a, int b, char *s
             v41[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v41[size - 4] = 8 * v43;
-        *(_DWORD * ) & v41[size - 8] = v43 >> 29;
-        v40 = (size_t) &v41[size];
+        *(_DWORD *) &v41[size - 4] = 8 * v43;
+        *(_DWORD *) &v41[size - 8] = v43 >> 29;
+        v40 = (size_t) & v41[size];
         while ((unsigned int) v41 < v40) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v46[4 * i] = *(_DWORD * ) & v41[4 * i];
+                *(_DWORD *) &v46[4 * i] = *(_DWORD *) &v41[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v46[4 * i];
                 v42 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -636,8 +638,8 @@ char *j_ss3(const char *token, long long int token_sizse2, int a, int b, char *s
                         v23 = v33 & ~v35 | v34 & v35;
                     v22 = v23;
                 }
-                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD * ) & v46[4 * i];
-                v13 = *(_DWORD * ) & v47[4 * i];
+                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD *) &v46[4 * i];
+                v13 = *(_DWORD *) &v47[4 * i];
                 v37 = v12 + v13;
                 v32 = v33;
                 v33 = v34;
@@ -740,22 +742,22 @@ char *j_ss4(const char *token, long long int token_sizse2, int a, int b, char *s
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v47[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v47[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v47[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v47[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v47[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v47[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v47[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v47[4 * v9] = -899497514 - b;
     }
     v10 = v43 + ((unsigned int) (SHIDWORD(v43) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -774,12 +776,12 @@ char *j_ss4(const char *token, long long int token_sizse2, int a, int b, char *s
             v41[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v41[size - 4] = 8 * v43;
-        *(_DWORD * ) & v41[size - 8] = v43 >> 29;
-        v40 = (size_t) &v41[size];
+        *(_DWORD *) &v41[size - 4] = 8 * v43;
+        *(_DWORD *) &v41[size - 8] = v43 >> 29;
+        v40 = (size_t) & v41[size];
         while ((unsigned int) v41 < v40) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v46[4 * i] = *(_DWORD * ) & v41[4 * i];
+                *(_DWORD *) &v46[4 * i] = *(_DWORD *) &v41[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v46[4 * i];
                 v42 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -806,8 +808,8 @@ char *j_ss4(const char *token, long long int token_sizse2, int a, int b, char *s
                         v23 = v33 & ~v35 | v34 & v35;
                     v22 = v23;
                 }
-                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD * ) & v46[4 * i];
-                v13 = *(_DWORD * ) & v47[4 * i];
+                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD *) &v46[4 * i];
+                v13 = *(_DWORD *) &v47[4 * i];
                 v37 = v12 + v13;
                 v32 = v33;
                 v33 = v34;
@@ -910,22 +912,22 @@ char *j_ss5(const char *token, long long int token_sizse2, int a, int b, char *s
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v47[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v47[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v47[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v47[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v47[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v47[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v47[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v47[4 * v9] = -899497514 - b;
     }
     v10 = v43 + ((unsigned int) (SHIDWORD(v43) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -944,12 +946,12 @@ char *j_ss5(const char *token, long long int token_sizse2, int a, int b, char *s
             v41[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v41[size - 4] = 8 * v43;
-        *(_DWORD * ) & v41[size - 8] = v43 >> 29;
-        v40 = (size_t) &v41[size];
+        *(_DWORD *) &v41[size - 4] = 8 * v43;
+        *(_DWORD *) &v41[size - 8] = v43 >> 29;
+        v40 = (size_t) & v41[size];
         while ((unsigned int) v41 < v40) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v46[4 * i] = *(_DWORD * ) & v41[4 * i];
+                *(_DWORD *) &v46[4 * i] = *(_DWORD *) &v41[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v46[4 * i];
                 v42 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -976,8 +978,8 @@ char *j_ss5(const char *token, long long int token_sizse2, int a, int b, char *s
                         v23 = v33 & ~v35 | v34 & v35;
                     v22 = v23;
                 }
-                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD * ) & v46[4 * i];
-                v13 = *(_DWORD * ) & v47[4 * i];
+                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD *) &v46[4 * i];
+                v13 = *(_DWORD *) &v47[4 * i];
                 v37 = v12 + v13;
                 v32 = v33;
                 v33 = v34;
@@ -1080,22 +1082,22 @@ char *j_ss6(const char *token, long long int token_sizse2, int a, int b, char *s
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v47[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v47[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v47[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v47[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v47[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v47[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v47[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v47[4 * v9] = -899497514 - b;
     }
     v10 = v43 + ((unsigned int) (SHIDWORD(v43) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -1114,12 +1116,12 @@ char *j_ss6(const char *token, long long int token_sizse2, int a, int b, char *s
             v41[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v41[size - 4] = 8 * v43;
-        *(_DWORD * ) & v41[size - 8] = v43 >> 29;
-        v40 = (size_t) &v41[size];
+        *(_DWORD *) &v41[size - 4] = 8 * v43;
+        *(_DWORD *) &v41[size - 8] = v43 >> 29;
+        v40 = (size_t) & v41[size];
         while ((unsigned int) v41 < v40) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v46[4 * i] = *(_DWORD * ) & v41[4 * i];
+                *(_DWORD *) &v46[4 * i] = *(_DWORD *) &v41[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v46[4 * i];
                 v42 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -1146,8 +1148,8 @@ char *j_ss6(const char *token, long long int token_sizse2, int a, int b, char *s
                         v23 = v33 & ~v35 | v34 & v35;
                     v22 = v23;
                 }
-                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD * ) & v46[4 * i];
-                v13 = *(_DWORD * ) & v47[4 * i];
+                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD *) &v46[4 * i];
+                v13 = *(_DWORD *) &v47[4 * i];
                 v37 = v12 + v13;
                 v32 = v33;
                 v33 = v34;
@@ -1250,22 +1252,22 @@ char *j_ss7(const char *token, long long int token_sizse2, int a, int b, char *s
     i = 0;
     while (i <= 19) {
         v6 = i++;
-        *(_DWORD * ) & v47[4 * v6] = b + 1518500249;
+        *(_DWORD *) &v47[4 * v6] = b + 1518500249;
     }
     i = 20;
     while (i <= 39) {
         v7 = i++;
-        *(_DWORD * ) & v47[4 * v7] = 1859775393 - b;
+        *(_DWORD *) &v47[4 * v7] = 1859775393 - b;
     }
     i = 40;
     while (i <= 59) {
         v8 = i++;
-        *(_DWORD * ) & v47[4 * v8] = b - 1894007588;
+        *(_DWORD *) &v47[4 * v8] = b - 1894007588;
     }
     i = 60;
     while (i <= 79) {
         v9 = i++;
-        *(_DWORD * ) & v47[4 * v9] = -899497514 - b;
+        *(_DWORD *) &v47[4 * v9] = -899497514 - b;
     }
     v10 = v43 + ((unsigned int) (SHIDWORD(v43) >> 31) >> 26);
     LODWORD(v10) = v10 & 0xFFFFFFC0;
@@ -1284,12 +1286,12 @@ char *j_ss7(const char *token, long long int token_sizse2, int a, int b, char *s
             v41[i + 3 - 2 * (i % 4)] = 0;
             ++i;
         }
-        *(_DWORD * ) & v41[size - 4] = 8 * v43;
-        *(_DWORD * ) & v41[size - 8] = v43 >> 29;
-        v40 = (size_t) &v41[size];
+        *(_DWORD *) &v41[size - 4] = 8 * v43;
+        *(_DWORD *) &v41[size - 8] = v43 >> 29;
+        v40 = (size_t) & v41[size];
         while ((unsigned int) v41 < v40) {
             for (i = 0; i <= 15; ++i)
-                *(_DWORD * ) & v46[4 * i] = *(_DWORD * ) & v41[4 * i];
+                *(_DWORD *) &v46[4 * i] = *(_DWORD *) &v41[4 * i];
             for (i = 16; i <= 79; ++i) {
                 v11 = &v46[4 * i];
                 v42 = *((_DWORD *) v11 - 3) ^ *((_DWORD *) v11 - 8) ^ *((_DWORD *) v11 - 14) ^
@@ -1316,8 +1318,8 @@ char *j_ss7(const char *token, long long int token_sizse2, int a, int b, char *s
                         v23 = v33 & ~v35 | v34 & v35;
                     v22 = v23;
                 }
-                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD * ) & v46[4 * i];
-                v13 = *(_DWORD * ) & v47[4 * i];
+                v12 = v22 + __ROR4__(v36, 27) + v32 + *(_DWORD *) &v46[4 * i];
+                v13 = *(_DWORD *) &v47[4 * i];
                 v37 = v12 + v13;
                 v32 = v33;
                 v33 = v34;
@@ -1407,7 +1409,9 @@ j_s1(const char *token, int token_size/*没有被使用*/, long long token_sizse
 
 
 extern "C"
-JNIEXPORT jstring JNICALL
+JNIEXPORT jstring
+
+JNICALL
 Java_com_hawksjamesf_myhome_api_Crypto_getClientKey(JNIEnv *env, jobject thiz, jstring jstr_token,
                                                     jlong time) {
     const char *token = env->GetStringUTFChars(jstr_token, 0);
@@ -1416,4 +1420,62 @@ Java_com_hawksjamesf_myhome_api_Crypto_getClientKey(JNIEnv *env, jobject thiz, j
     j_s1(token, token_size, token_size, time, &output);
     env->ReleaseStringUTFChars(jstr_token, token);
     return env->NewStringUTF(&output);
+}
+
+class aesRand {
+public:
+    using cipher_evp_t = EVP_CIPHER_CTX;
+
+    static aesRand &instance() {
+        static aesRand _instance;
+        return _instance;
+    }
+
+    aesRand() : enc(nullptr), index(0) {
+    }
+
+private:
+    cipher_evp_t *enc;
+    int index;
+    unsigned char buf[2][32];
+public:
+    void init(uint32_t seed) {
+        unsigned char ivec[16] = {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F
+        };
+        const unsigned char key[] = {"1234567812345678"};
+        memset(buf, 0, sizeof(char) * 2 * 32);
+        if (enc) {
+            EVP_CIPHER_CTX_free(enc);
+            enc = nullptr;
+        }
+        enc = EVP_CIPHER_CTX_new();
+        int32_t ret = EVP_EncryptInit_ex(enc, EVP_aes_128_cbc(), NULL, key, ivec);
+        if (ret == 0) {
+            return;
+        }
+        printf("seed: %d\n", seed);
+        *(int32_t *) buf[index] = seed;
+        return;
+    }
+
+    long random() {
+        encrypt(buf[index], buf[!index]);
+        index = !index;
+        return *(long *) buf[index];
+    }
+
+    void encrypt(const unsigned char *buf_in, unsigned char *buf_out) {
+        int out_len = 32;
+        EVP_EncryptUpdate(enc, buf_out, &out_len, buf_in, 32);
+    }
+};
+
+#define aes_srand(seed) aesRand::instance().init(seed)
+#define aes_random() aesRand::instance().random()
+
+void run() {
+    aes_srand(time(NULL));
+    long rand_value = aes_random();
 }
