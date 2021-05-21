@@ -2,7 +2,6 @@ println("app start")
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
-apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.gms.google-services'
@@ -21,9 +20,6 @@ apply plugin: 'com.google.gms.google-services'
 //        html.enabled true
 //    }
 //}
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/util.gradle"
-
-
 //apply plugin: 'com.tencent.matrix-plugin'
 ext.unusedResourcesSet = new HashSet<String>();
 //matrix {
@@ -63,16 +59,12 @@ counterConfig {
     seaSrcDirs = true
 }
 
-def getVersion() {
-    [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
-}
-
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        (minSdkVersion, targetSdkVersion, versionCode, versionName) = getVersion()
+        (minSdkVersion, targetSdkVersion, versionCode, versionName) = [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
 
         multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeepFile.txt')

@@ -1,4 +1,4 @@
-package com.hawksjamesf.source.remote.rest
+package com.hawksjamesf.api
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.hawksjamesf.login.BuildConfig
@@ -16,19 +16,16 @@ import java.security.KeyStore
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.*
-import kotlin.reflect.KClass
 
 /**
  * Copyright ® $ 2017
  * All right reserved.
  *
  * @author: hawks.jamesf
- * @since: Nov/10/2018  Sat
+ * @since: May/21/2021  Fri
  */
-abstract class AbstractApi<T : Any> {
-    protected abstract var api: T
-
-    init {
+object RetrofitHelper {
+    fun createSiginApi(): SignInApi {
         val baseUrl = BuildConfig.BASE_URL
 
         val (sslSocketFactory, trustManager) = createMetadata()
@@ -60,7 +57,7 @@ abstract class AbstractApi<T : Any> {
 //                .proxyAuthenticator(DefaultProxyAuthenticator())
 //                .proxySelector(DefaultProxySelector())
                 .build()
-        api = Retrofit.Builder()
+        return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 //                .baseUrl("http://localhost:50195")
 //                .client(okHttpClient)
@@ -73,10 +70,8 @@ abstract class AbstractApi<T : Any> {
 //                .addConverterFactory(ProtoConverterFactory.create())
                 .addConverterFactory(WireConverterFactory.create())
                 .build()
-                .create(getClass().java)
+                .create(SignInApi::class.java)
     }
-
-    abstract fun getClass(): KClass<T>
 
     data class SocketMetadata(val sslSocketFactory: SSLSocketFactory, val trustManager: X509TrustManager)
 

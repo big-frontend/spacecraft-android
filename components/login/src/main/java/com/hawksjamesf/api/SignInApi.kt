@@ -1,4 +1,4 @@
-package com.hawksjamesf.source.remote.rest.signin
+package com.hawksjamesf.api
 
 import com.hawksjamesf.modle.*
 import io.reactivex.Single

@@ -1,4 +1,4 @@
-package com.hawksjamesf.source.remote.rest.interceptor
+package com.hawksjamesf.api
 
 import com.google.firebase.perf.FirebasePerformance
 import com.google.firebase.perf.metrics.AddTrace
