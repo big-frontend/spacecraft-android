@@ -15,44 +15,44 @@ SpacecraftAndroid
 |  kotlin|190|9727|
 |  c or c++|14|1377|
 
-
 # To be Architect
 > 驽马十驾功在不舍
 
 ps:下面会提到一些相关名词，这里先定义一下。bundle是依附于app framework的native bundle(静态组件，动态插件)、flutter bundle、react native bundle、hybrid bundle，其能够被app framework动态加载；module指app framework的功能模块，赋予上层能力的module，更像是一些用来快速开发页面的toolkits。这里的module不同于gradle中的module。
 
 ## Foundation Module
-### 1. Common Module
+### Common
 - [x] utils
 - [ ] mvp、mvvm：20%
 - [x] asynchronize:kotlin corountine、RxJava、AsyncTask
-- [ ] serialization:persistence(json/protobuf)、memory(Parcelable/Serializable interface) 
-### 2. Network Module
+- [ ] serialization:persistence(json/protobuf)、memory(Parcelable/Serializable interface)
+
+### Network
 ~- [x] 提供mock环境、real环境、real local server环境~
 - [x] network service : Retrofit+RxJava2
 - [x] mock:stetho + mockserver
 
-### 3. Storage Module
+### Storage
 - [ ] Room/Realm,SharedPreference
 
-### 4. LBS(Location & Map) Module
-- [x] collection location 、 wifi 、 cell info
-### 5. Image & Graphic Module
+### Image & Graphic
 
-### 6. Audio & Video Module
+### Audio & Video
 - [x] screen recorder
 
-## Business Module
-### 1.UI Component Module
-- [x] provide ui component , es.video component
-### 2. Login/Logout Module
-- [x] login
-### 3. IM Module
+### LBS(Location & Map)
+- [x] collection location 、 wifi 、 cell info
+
+### IM Module
 - [ ] IM
+
+### 1.UI Component
+- [x] provide ui component , es.video component
+
 
 ## Business Bundle
 通信方式url 路由和rpc调用
-
+- [x] login
 - [ ] native bundle
 - [ ] hybrid bundle
 - [ ] ReactNative/Flutter bundle
