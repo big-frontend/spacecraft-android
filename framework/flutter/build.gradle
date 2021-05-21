@@ -27,8 +27,8 @@ apply from: "${flutterRoot}${File.separator}packages${File.separator}flutter_too
 flutter {
     source "${rootProject.projectDir}${File.separator}..${File.separator}flutter_bundle"
 }
-group 'com.jamesfchen.flutter_bundle'
-version '1.0'
+//group 'com.jamesfchen.flutter_bundle'
+//version '1.0'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion

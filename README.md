@@ -19,7 +19,7 @@ SpacecraftAndroid
 # To be Architect
 > 驽马十驾功在不舍
 
-ps:下面会提到一些相关名词，这里先定义一下。bundle是依附于app framework的native bundle(静态组件，动态插件)、flutter、react native、hybrid，其能够被app framework动态加载；module指app framework的功能模块，赋予上层能力的module，更像是一些用来快速开发页面的toolkits。
+ps:下面会提到一些相关名词，这里先定义一下。bundle是依附于app framework的native bundle(静态组件，动态插件)、flutter bundle、react native bundle、hybrid bundle，其能够被app framework动态加载；module指app framework的功能模块，赋予上层能力的module，更像是一些用来快速开发页面的toolkits。这里的module不同于gradle中的module。
 
 ## Foundation Module
 ### 1. Common Module
@@ -54,8 +54,8 @@ ps:下面会提到一些相关名词，这里先定义一下。bundle是依附�
 通信方式url 路由和rpc调用
 
 - [ ] native bundle
-- [ ] hybrid
-- [ ] ReactNative/Flutter
+- [ ] hybrid bundle
+- [ ] ReactNative/Flutter bundle
 
 ## Improve Development Efficiency
 - [x] gradle plugin：
