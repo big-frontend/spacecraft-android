@@ -2,13 +2,13 @@ package com.hawksjamesf.loader;
 
 import android.util.Log;
 
+import com.hawksjamesf.mockserver.BuildConfig;
+import com.hawksjamesf.mockserver.MockManager;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
-
-import com.hawksjamesf.mockserver.BuildConfig;
-import com.hawksjamesf.mockserver.MockManager;
 
 /**
  * Copyright ® $ 2017
@@ -25,6 +25,11 @@ public class AppLifecycleObserver implements LifecycleObserver {
         MockManager.init(App.getInstance(), BuildConfig.DEBUG);
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void onBackground(LifecycleOwner lifecycleOwner) {
+        Log.d("AppLifecycleObserver", "onBackground");
+
+    }
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void disconnectListener(LifecycleOwner lifecycleOwner) {
         Log.d("AppLifecycleObserver", "disconnectListener");

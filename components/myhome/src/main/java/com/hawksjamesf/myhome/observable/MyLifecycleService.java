@@ -1,4 +1,4 @@
-package com.hawksjamesf.myhome.ui.observable;
+package com.hawksjamesf.myhome.observable;
 
 import android.content.Intent;
 import android.os.IBinder;

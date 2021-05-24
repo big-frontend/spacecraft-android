@@ -1,4 +1,4 @@
-package com.hawksjamesf.myhome.ui.observable
+package com.hawksjamesf.myhome.observable
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
