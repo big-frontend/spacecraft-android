@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context="com.hawksjamesf.myhome.ui.MainActivity">
+        tools:context="com.hawksjamesf.myhome.MainActivity">
 
         <TextView
             android:id="@+id/message"

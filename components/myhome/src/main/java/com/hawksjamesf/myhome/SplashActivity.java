@@ -1,4 +1,4 @@
-package com.hawksjamesf.myhome.ui;
+package com.hawksjamesf.myhome;
 
 import android.app.ActivityOptions;
 import android.os.Bundle;
@@ -15,8 +15,6 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.loader.App;
-import com.hawksjamesf.myhome.R;
-import com.jamesfchen.flutter.host.HostActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,7 +53,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        ActivityUtil.startActivity(HostActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                         finish();
                     }

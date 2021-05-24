@@ -2,7 +2,7 @@
 //
 //import com.hawksjamesf.network.NetComponent;
 //import com.hawksjamesf.myhome.scopes.UserScope;
-//import com.hawksjamesf.myhome.ui.SplashActivity;
+//import com.hawksjamesf.myhome.SplashActivity;
 //import com.hawksjamesf.myhome.ui.home.HomeActivity;
 //import com.hawksjamesf.signin.Client;
 //import com.hawksjamesf.signin.SigInModule;

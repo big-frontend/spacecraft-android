@@ -1,4 +1,4 @@
-package com.hawksjamesf.myhome.ui;
+package com.hawksjamesf.myhome;
 
 import android.os.Bundle
 import androidx.annotation.Nullable

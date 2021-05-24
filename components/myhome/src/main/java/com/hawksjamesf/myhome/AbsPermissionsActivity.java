@@ -1,4 +1,4 @@
-package com.hawksjamesf.myhome.ui;
+package com.hawksjamesf.myhome;
 
 import android.Manifest;
 import android.content.pm.PackageManager;

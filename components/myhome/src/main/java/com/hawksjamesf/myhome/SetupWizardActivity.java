@@ -1,11 +1,10 @@
-package com.hawksjamesf.myhome.ui;
+package com.hawksjamesf.myhome;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.hawksjamesf.myhome.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

@@ -6,7 +6,18 @@
 
         <activity
             android:name="com.hawksjamesf.signin.SignInActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="www.spacecraft.com"
+                    android:path="/login"
+                    android:scheme="ilogin" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.hawksjamesf.signin.SignUpActivity"
             android:parentActivityName="com.hawksjamesf.signin.SignInActivity"

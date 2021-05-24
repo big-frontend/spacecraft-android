@@ -2,20 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hawksjamesf.myhome">
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
-    <application >
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <application>
         <activity android:name="com.hawksjamesf.myhome.ui.person.SettingsActivity" />
         <activity
-            android:name="com.hawksjamesf.myhome.ui.MainActivity"
+            android:name="com.hawksjamesf.myhome.MainActivity"
             android:label="@string/title_activity_main"
-            android:launchMode="singleTop" >
-            <!--            浏览器启动 start-->
+            android:launchMode="singleTop">
+<!--            通过url路由调用改页面-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
+<!--                自定义的协议如果内部不能处理就会crash报错，http/https如果内部不能处理就会交给外部-->
                 <data
                     android:host="i.spacecraft.com"
                     android:path="/home"
@@ -29,7 +29,6 @@
                     android:pathPrefix="/c/"
                     android:scheme="https" />
             </intent-filter>
-            <!--            浏览器启动 end-->
             <!--            firebase app indexing启动 start-->
             <!--            firebase app indexing启动 end-->
 
@@ -37,11 +36,10 @@
         <activity
             android:name="com.hawksjamesf.myhome.ui.home.HomeActivity"
             android:launchMode="singleTop"
-            android:theme="@style/HomeTheme"
-            />
+            android:theme="@style/HomeTheme" />
 
         <activity
-            android:name="com.hawksjamesf.myhome.ui.SplashActivity"
+            android:name="com.hawksjamesf.myhome.SplashActivity"
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="adjustPan">
@@ -55,10 +53,9 @@
 
         </activity>
         <activity
-            android:name="com.hawksjamesf.myhome.ui.SetupWizardActivity"
+            android:name="com.hawksjamesf.myhome.SetupWizardActivity"
             android:label="@string/title_activity_setup_wizard"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
 
         <activity android:name="com.hawksjamesf.spacecraft.NavigationActivity" />
         <activity android:name="com.hawksjamesf.spacecraft.vm.MVVMActivity" />
@@ -89,19 +86,18 @@
             tools:node="remove"
             tools:targetApi="n" />
         <activity android:name=".BlankActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
         <receiver
             android:name=".SetWallpaper"
             android:enabled="true"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.hawksjamesf.spacecraft.set_wallpaper"/>
+                <action android:name="com.hawksjamesf.spacecraft.set_wallpaper" />
             </intent-filter>
 
         </receiver>
