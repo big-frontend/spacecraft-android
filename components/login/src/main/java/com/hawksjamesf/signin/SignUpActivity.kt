@@ -3,6 +3,7 @@ package com.hawksjamesf.signin
 import android.app.Activity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.hawksjamesf.common.mvp.AutoDisposable
 import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_signup.*
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
+@Route(path = "/account/signup")
 class SignUpActivity : SignInContract.View() {
     private val TAG = "SignUpActivity"
     override fun initComponent(savedInstanceState: Bundle?) {

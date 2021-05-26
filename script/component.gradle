@@ -19,11 +19,11 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
-            }
-        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+//            }
+//        }
     }
 
     buildTypes {
@@ -39,6 +39,6 @@ dependencies {
     api project(path: ':framework:loader')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
-    kapt   'com.alibaba:arouter-compiler:1.2.1'
+    kapt 'com.alibaba:arouter-compiler:1.2.1'
 }
 

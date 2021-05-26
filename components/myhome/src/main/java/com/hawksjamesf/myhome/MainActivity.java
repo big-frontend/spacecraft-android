@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
                     mTextMessage.setText("home");
 //                    ActivityUtil.startActivity(MainActivity.this, ViewPagerActivity.class);
                     // 1. Simple jump within application (Jump via URL in 'Advanced usage')
-                    ARouter.getInstance().build("/account/login").navigation();
+                    ARouter.getInstance().build("/account/signup").navigation();
 
                     // 2. Jump with parameters
 //                    ARouter.getInstance().build("/login/1")
