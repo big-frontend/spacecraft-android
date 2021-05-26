@@ -5,6 +5,7 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.alibaba.arouter'
 //apply plugin: 'findbugs'
 //findbugs {
 //    ignoreFailures = false

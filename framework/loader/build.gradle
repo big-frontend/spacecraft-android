@@ -36,6 +36,7 @@ dependencies {
 //    implementation project(path: ':framework:storage')
     api project(path: ':framework:image')
     api project(path: ':framework:flutter')
+    api project(path: ':framework:router')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
 

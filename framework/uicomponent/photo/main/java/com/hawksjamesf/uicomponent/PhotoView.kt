@@ -30,9 +30,9 @@ import com.hawksjamesf.uicomponent.coordinator.getViewOffsetHelper
  * 对于长图应该做到，支持滚动
  */
 class PhotoView : AppCompatImageView {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
     lateinit var moveGestureDetector:MoveGestureDetector
     private var mFocusX = 0f
     private var mFocusY = 0f

@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hawksjamesf.av.VideoActivity;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.myhome.ui.person.SettingsActivity;
 import com.hawksjamesf.uicomponent.PhotoActivity;
-import com.hawksjamesf.uicomponent.ViewPagerActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -49,8 +49,12 @@ public class MainActivity extends BaseActivity {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //        }
-        Uri uri = Uri.parse("https://i.meituan.com/c/ZDg0Y2FhNjMt");
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        Uri uri = Uri.parse("https://i.spacecraft.com/c/ZDg0Y2FhNjMt");
+//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        Intent intent =  new Intent();
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(uri);
+//        Intent intent = new Intent(Intent.CATEGORY_APP_BROWSER,uri);
         startActivity(intent);
         setContentView(R.layout.activity_main);
         tb = findViewById(R.id.tb);
@@ -77,7 +81,15 @@ public class MainActivity extends BaseActivity {
                 int itemId = item.getItemId();
                 if (itemId == R.id.navigation_home) {
                     mTextMessage.setText("home");
-                    ActivityUtil.startActivity(MainActivity.this, ViewPagerActivity.class);
+//                    ActivityUtil.startActivity(MainActivity.this, ViewPagerActivity.class);
+                    // 1. Simple jump within application (Jump via URL in 'Advanced usage')
+                    ARouter.getInstance().build("/account/login").navigation();
+
+                    // 2. Jump with parameters
+//                    ARouter.getInstance().build("/login/1")
+//                            .withLong("key1", 666L)
+//                            .withString("key3", "888")
+//                            .navigation();
                     return true;
                 } else if (itemId == R.id.navigation_dashboard) {
                     mTextMessage.setText("photo");

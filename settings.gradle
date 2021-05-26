@@ -9,7 +9,7 @@ if (isHaHa.toBoolean()) {
     include ':components:module1'
 } else {
     include ':mockserver'
-    include ':framework:common', ':framework:loader',
+    include ':framework:common', ':framework:loader',':framework:router',
             ':framework:network', ':framework:storage', ':framework:image',
             ':framework:av', ':framework:map', ':framework:chatroom',
             ':framework:uicomponent'

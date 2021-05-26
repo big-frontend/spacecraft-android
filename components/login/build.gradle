@@ -1,14 +1,5 @@
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/component.gradle"
-
-
 def srcDirs = [
-//        "carousel",
-//        "video",
-//        "colorpicker",
-//        "drawable",
-//        "animationsExprimental",
-//        "newLayoutExprimental",
-//        "scrollExprimental",
 
 ]
 android {
