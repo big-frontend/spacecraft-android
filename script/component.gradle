@@ -6,7 +6,6 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/console.gradle
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 kapt {
     arguments {
-        printInfo("cjf annotationProcessorOptions ${project.getName()}")
         arg("AROUTER_MODULE_NAME", project.getName())
     }
 }
