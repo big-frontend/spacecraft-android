@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.hawksjamesf.myhome.R;
 
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 
 /**
  * Copyright ® $ 2021
@@ -26,6 +27,5 @@ public class DispatchEventActivity extends Activity {
         textView.setText("my activity 3");
         textView.setBackgroundColor(Color.BLUE);
         setContentView(R.layout.activity_dispatch_event);
-
     }
 }

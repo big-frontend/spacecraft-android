@@ -5,13 +5,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
 /**
- *    外部拦截法
+ *    外部拦截法：父view先拦截，如果不需要就不拦截
  */
 public class B extends LinearLayout {
     public B(Context context, AttributeSet attrs) {
@@ -74,10 +73,10 @@ public class B extends LinearLayout {
 //                if (mScrollStrictSpan == null) {
 //                    mScrollStrictSpan = StrictMode.enterCriticalSpan("ScrollView-scroll");
 //                }
-                final ViewParent parent = getParent();
-                if (parent != null) {
-                    parent.requestDisallowInterceptTouchEvent(true);
-                }
+//                final ViewParent parent = getParent();
+//                if (parent != null) {
+//                    parent.requestDisallowInterceptTouchEvent(true);
+//                }
             }
 
         }

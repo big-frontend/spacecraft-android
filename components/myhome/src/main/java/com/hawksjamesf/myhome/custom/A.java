@@ -8,7 +8,8 @@ import android.view.ViewParent;
 import android.widget.LinearLayout;
 
 /**
- * 内部拦截法
+ * https://www.midfang.com/android-motionevent-sliding-conflict/
+ * 内部拦截法：父view不拦截事件，子view决定消不消费，不消费就给父view
  */
 public class A extends LinearLayout {
     public A(Context context) {
@@ -56,7 +57,6 @@ class AA extends LinearLayout {
         super(context, attrs, defStyleAttr);
 
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
