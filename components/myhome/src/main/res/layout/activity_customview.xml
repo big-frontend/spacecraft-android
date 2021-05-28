@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hawksjamesf.myhome.custom.CustomViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/apricot">
+
+        <com.hawksjamesf.myhome.custom.CustomView
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="asdfasdfasf"
+            android:textColor="@color/apricot"
+            android:textSize="40sp" />
+
+    </com.hawksjamesf.myhome.custom.CustomViewGroup>
+</FrameLayout>
+

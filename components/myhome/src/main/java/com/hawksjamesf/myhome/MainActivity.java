@@ -2,7 +2,6 @@ package com.hawksjamesf.myhome;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -49,13 +48,13 @@ public class MainActivity extends BaseActivity {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //        }
-        Uri uri = Uri.parse("https://i.spacecraft.com/c/ZDg0Y2FhNjMt");
+//        Uri uri = Uri.parse("https://i.spacecraft.com/c/ZDg0Y2FhNjMt");
 //        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        Intent intent =  new Intent();
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(uri);
+//        Intent intent =  new Intent();
+//        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+//        intent.setData(uri);
 //        Intent intent = new Intent(Intent.CATEGORY_APP_BROWSER,uri);
-        startActivity(intent);
+//        startActivity(intent);
         setContentView(R.layout.activity_main);
         tb = findViewById(R.id.tb);
         setSupportActionBar(tb);
