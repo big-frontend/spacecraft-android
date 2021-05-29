@@ -1,40 +1,48 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hawksjamesf.uicomponent">
+
     <application>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+
+        <activity android:name=".animationsExprimental.AnimActivity" />
+        <activity
+            android:name=".animationsExprimental.DetailActivity"
+            android:theme="@style/BaseAppTheme.DetailTheme" />
+        <activity android:name=".animationsExprimental.LottieActivity" />
+        <activity android:name=".animationsExprimental.FrameAnimationActivity" />
+        <activity
+            android:name=".animationsExprimental.TransitionForViewActivity"
+            android:theme="@style/BaseAppTheme" />
+        <activity
+            android:name=".animationsExprimental.TransitionForActivityActivity"
+            android:theme="@style/BaseAppTheme.ListTheme" />
+
+        <activity android:name=".scrollExprimental.ScrollableActivity" />
+        <activity android:name=".gesture.TouchActivity" />
+        <activity
+            android:name=".newLayoutExprimental.ConstraintAndFlexBoxActivity"
+            android:exported="true" />
+        <activity
+            android:name=".newLayoutExprimental.ConstraintPerformanceActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".newLayoutExprimental.CoordinatorLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CustomViewActivity"
+            android:label="@string/title_activity_setup_wizard"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".DispatchEventActivity" />
+
+
         <activity
             android:name=".DrawableActivity"
             android:label="@string/title_activity_drawable"
             android:theme="@style/AppTheme"></activity>
-        <activity android:name=".AnimActivity" />
-        <activity
-            android:name=".DetailActivity"
-            android:theme="@style/BaseAppTheme.DetailTheme" />
-        <activity android:name=".LottieActivity" />
-        <activity android:name=".FrameAnimationActivity" />
-        <activity
-            android:name=".TransitionForViewActivity"
-            android:theme="@style/BaseAppTheme" />
-
-        <activity
-            android:name=".TransitionForActivityActivity"
-            android:theme="@style/BaseAppTheme.ListTheme" />
-
-        <activity android:name=".ScrollableActivity" />
-        <activity android:name=".gesture.TouchActivity"/>
-        <activity
-            android:name=".ConstraintAndFlexBoxActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ConstraintPerformanceActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme"></activity>
-        <activity
-            android:name=".CoordinatorLayoutActivity"
-            android:exported="true" />
         <activity
             android:name=".PagerViewActivity"
             android:exported="true" />

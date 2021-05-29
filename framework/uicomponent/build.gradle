@@ -7,10 +7,6 @@ def srcDirs = [
         "carousel",
         "colorpicker",
         "drawable",
-        "animationsExprimental",
-        "newLayoutExprimental",
-        "scrollExprimental",
-        "parallax",
         "navigation",
         "paging",
         "bottomupDialog",
@@ -19,6 +15,7 @@ def srcDirs = [
         "testStyle",
         "photo",
         "feedback",
+        "customview",
 
 ]
 android {

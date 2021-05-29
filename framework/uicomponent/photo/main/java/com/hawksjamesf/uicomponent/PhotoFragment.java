@@ -23,9 +23,9 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.hawksjamesf.common.constants.MemoryUnit;
-import com.hawksjamesf.uicomponent.coordinator.ViewExtensionKt;
 import com.hawksjamesf.uicomponent.coordinator.ViewOffsetHelper;
 import com.hawksjamesf.uicomponent.model.Page;
+import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.ViewExtensionKt;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

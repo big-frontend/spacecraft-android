@@ -1,9 +1,7 @@
 package com.hawksjamesf.uicomponent
 
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.HorizontalScrollView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,16 +9,10 @@ import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.paging.Config
-import androidx.paging.PagedList
-import androidx.paging.toLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader
 import com.hawksjamesf.uicomponent.model.PhotoListViewModel
 import com.hawksjamesf.uicomponent.repository.CacheRegion
-import com.hawksjamesf.uicomponent.repository.PhotoDataSourceFactory
-import com.hawksjamesf.uicomponent.repository.PhotoRepository
 import com.hawksjamesf.uicomponent.repository.ServiceLocator
 
 class PhotoListActivity : AppCompatActivity() {

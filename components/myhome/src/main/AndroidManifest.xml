@@ -52,12 +52,6 @@
             <!--            launcher启动 end -->
 
         </activity>
-        <activity
-            android:name="com.hawksjamesf.myhome.custom.CustomViewActivity"
-            android:label="@string/title_activity_setup_wizard"
-            android:theme="@style/AppTheme" />
-        <activity android:name="com.hawksjamesf.myhome.custom.DispatchEventActivity" />
-
         <activity android:name="com.hawksjamesf.spacecraft.NavigationActivity" />
         <activity android:name="com.hawksjamesf.spacecraft.vm.MVVMActivity" />
         <activity android:name="com.hawksjamesf.myhome.WebViewActivity">

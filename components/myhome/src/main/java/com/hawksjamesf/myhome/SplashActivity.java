@@ -15,7 +15,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.loader.App;
-import com.hawksjamesf.myhome.custom.CustomViewActivity;
+import com.hawksjamesf.uicomponent.CustomViewActivity;
 
 import java.util.concurrent.TimeUnit;
 

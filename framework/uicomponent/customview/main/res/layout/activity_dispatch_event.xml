@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hawksjamesf.uicomponent.B
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+        <com.hawksjamesf.myhome.custom.BB
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+
+            <!--            <com.hawksjamesf.myhome.custom.MyView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="400dp"-->
+            <!--                android:text="afdadsfasdfa" />-->
+
+
+        </com.hawksjamesf.myhome.custom.BB>
+    </com.hawksjamesf.uicomponent.B>
+
+    <com.hawksjamesf.uicomponent.A
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hawksjamesf.myhome.custom.AA
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></com.hawksjamesf.myhome.custom.AA>
+    </com.hawksjamesf.uicomponent.A>
+
+</LinearLayout>
