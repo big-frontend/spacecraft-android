@@ -10,9 +10,6 @@ import org.parceler.Parcel;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import androidx.databinding.ObservableField;
-
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -46,7 +43,6 @@ public class AndroidParcelable2 {
     public Bundle arg11;
     public SparseArray arg12;
     public SparseBooleanArray arg13;
-    public ObservableField arg14;
     //List, ArrayList and LinkedList
     public List arg15;
     //Map, HashMap, LinkedHashMap, SortedMap, and TreeMap

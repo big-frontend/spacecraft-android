@@ -1,11 +1,10 @@
-package com.hawksjamesf.common.mvvm
+package com.hawksjamesf.uicomponent.mvvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 
-class ViewModelFactory private constructor()
-    : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor() : ViewModelProvider.NewInstanceFactory() {
 
 
     companion object {

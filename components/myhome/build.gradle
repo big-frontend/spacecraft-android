@@ -55,6 +55,4 @@ android {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
-//    kapt "com.google.dagger:dagger-android-processor:2.16"
 }

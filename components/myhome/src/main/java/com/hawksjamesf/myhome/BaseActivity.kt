@@ -3,7 +3,7 @@ package com.hawksjamesf.myhome;
 import android.os.Bundle
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
-import com.hawksjamesf.common.mvp.AutoDisposable
+import com.hawksjamesf.uicomponent.mvp.AutoDisposable
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject

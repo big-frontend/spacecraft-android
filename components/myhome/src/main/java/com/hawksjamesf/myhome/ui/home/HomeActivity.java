@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
-import com.hawksjamesf.common.mvp.RxActivity;
+import com.hawksjamesf.uicomponent.mvp.RxActivity;
 import com.hawksjamesf.common.util.BarUtil;
 import com.hawksjamesf.mockserver.model.WeatherData;
 import com.hawksjamesf.myhome.R;
@@ -144,12 +144,12 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 Log.d("ParallaxActivity", "ListView:getView:position" + position);
-                MyViewHolder myViewHolder;
+                MyViewHolder myViewHolder = null;
                 if (convertView == null) {
-                    View itemView = LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_my, parent, false);
-                    myViewHolder = new MyViewHolder(itemView);
-                    itemView.setTag(myViewHolder);
-                    convertView = itemView;
+//                    View itemView = LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_my, parent, false);
+//                    myViewHolder = new MyViewHolder(itemView);
+//                    itemView.setTag(myViewHolder);
+//                    convertView = itemView;
 
                 } else {
                     myViewHolder = (MyViewHolder) convertView.getTag();
@@ -173,7 +173,8 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new MyViewHolder(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my, parent, false)
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_and_text, parent, false)
+
             );
         }
 

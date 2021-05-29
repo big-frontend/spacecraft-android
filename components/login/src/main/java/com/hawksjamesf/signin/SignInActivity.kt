@@ -5,7 +5,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.hawksjamesf.common.mvp.AutoDisposable
+import com.hawksjamesf.uicomponent.mvp.AutoDisposable
 import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
 import com.hawksjamesf.common.util.openActivity

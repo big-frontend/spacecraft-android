@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-
+import   com.hawksjamesf.uicomponent.scrollExprimental.ScrollableActivity;
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -54,7 +54,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        ActivityUtil.startActivity(CustomViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(ScrollableActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                         finish();
                     }

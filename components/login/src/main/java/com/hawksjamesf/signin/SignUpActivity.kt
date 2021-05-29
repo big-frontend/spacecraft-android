@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.hawksjamesf.common.mvp.AutoDisposable
+import com.hawksjamesf.uicomponent.mvp.AutoDisposable
 import com.hawksjamesf.common.util.TextUtil
 import com.hawksjamesf.common.util.hideSoftInput
 import com.hawksjamesf.common.util.subscribeBy

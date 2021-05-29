@@ -1,8 +1,9 @@
-package com.hawksjamesf.common.mvp;
+package com.hawksjamesf.uicomponent.mvp;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Copyright ® $ 2017
@@ -13,26 +14,21 @@ import androidx.appcompat.app.AppCompatActivity;
  * @since: 1/24/18
  */
 
-public abstract class RxActivity<P extends RxPresenter> extends AppCompatActivity {
+public abstract class RxFragment<P extends RxPresenter> extends Fragment {
+    P presenter;
 
-    protected P presenter;
-
-    public abstract P createPresenter();
+    abstract P createPresenter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
-        if (presenter != null) {
-            presenter.onAttach(this);
-        }
+        presenter.onAttach(this);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
-        if (presenter != null) {
-            presenter.onDetach();
-        }
+        presenter.onDetach();
     }
 }

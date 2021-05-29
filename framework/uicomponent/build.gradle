@@ -151,6 +151,8 @@ dependencies {
     api 'androidx.emoji:emoji-appcompat:1.1.0'
     api 'androidx.emoji:emoji-bundled:1.1.0'
 
+    api 'androidx.databinding:databinding-runtime:4.1.0-alpha01'
+    api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
     /**
      * ================================ui end=====================================
      */

@@ -1,4 +1,4 @@
-package com.hawksjamesf.common.mvp
+package com.hawksjamesf.uicomponent.mvp
 
 /**
  * Copyright ® $ 2017

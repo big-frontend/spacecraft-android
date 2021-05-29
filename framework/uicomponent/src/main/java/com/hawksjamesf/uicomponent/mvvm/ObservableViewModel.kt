@@ -1,6 +1,6 @@
 
 
-package com.hawksjamesf.common.mvvm
+package com.hawksjamesf.uicomponent.mvvm
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
