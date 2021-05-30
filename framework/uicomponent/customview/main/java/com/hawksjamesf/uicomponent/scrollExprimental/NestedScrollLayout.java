@@ -3,13 +3,13 @@ package com.hawksjamesf.uicomponent.scrollExprimental;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.NestedScrollingParentHelper;
 
-public class NestedScrollLayout extends ViewGroup implements NestedScrollingParent3 {
+public class NestedScrollLayout extends FrameLayout implements NestedScrollingParent3 {
     NestedScrollingParentHelper nestedScrollingParentHelper;
 
     public NestedScrollLayout(Context context) {
@@ -27,11 +27,6 @@ public class NestedScrollLayout extends ViewGroup implements NestedScrollingPare
     public NestedScrollLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
          nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
-
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
     }
 

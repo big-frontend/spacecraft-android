@@ -31,7 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Sep/28/2019  Sat
  */
 public class FirebaseDatabaseActivity extends AppCompatActivity {

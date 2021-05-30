@@ -19,7 +19,7 @@ import androidx.paging.PageKeyedDataSource;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/30/2019  Sat
  */
 public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> {

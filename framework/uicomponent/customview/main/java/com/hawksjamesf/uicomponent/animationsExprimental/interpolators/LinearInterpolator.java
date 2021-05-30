@@ -4,7 +4,7 @@ package com.hawksjamesf.uicomponent.animationsExprimental.interpolators;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/25/2018  Sun
  */
 

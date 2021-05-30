@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.coordinator
+package com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator
 
 import android.view.ViewGroup
 import android.widget.ImageView

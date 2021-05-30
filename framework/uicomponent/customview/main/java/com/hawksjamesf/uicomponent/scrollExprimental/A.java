@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent;
+package com.hawksjamesf.uicomponent.scrollExprimental;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,6 +8,8 @@ import android.view.ViewParent;
 import android.widget.LinearLayout;
 
 /**
+ * https://www.jianshu.com/p/982a83271327
+ *
  * https://www.midfang.com/android-motionevent-sliding-conflict/
  * 内部拦截法：父view不拦截事件，子view决定消不消费，不消费就给父view
  */

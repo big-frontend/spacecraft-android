@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/06/2018  Tue
  *
  */

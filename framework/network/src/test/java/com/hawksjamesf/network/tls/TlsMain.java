@@ -18,7 +18,7 @@ import okhttp3.tls.HeldCertificate;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Aug/10/2019  Sat
  */
 public class TlsMain {

@@ -18,7 +18,7 @@ import okio.ByteString;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Jun/29/2019  Sat
  */
 public class OAuthSessionFactory extends Dispatcher implements Closeable {

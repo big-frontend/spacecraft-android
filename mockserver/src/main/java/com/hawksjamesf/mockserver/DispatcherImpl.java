@@ -25,7 +25,7 @@ import retrofit2.http.POST;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Sep/28/2018  Fri
  * <p>
  * 当mock包中的Dispatcher服务和客户端在同一个进程A中，那么其他进程的Dispatcher就不能连接到A进程;

@@ -7,7 +7,7 @@ import android.content.Context;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/20/2020  Fri
  */
 public class App extends Application{

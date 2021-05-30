@@ -13,7 +13,7 @@ import com.hawksjamesf.mockserver.Constants;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Apr/25/2020  Sat
  */
 public class MockJobIntentService extends JobIntentService {

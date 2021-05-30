@@ -21,7 +21,8 @@
             android:theme="@style/BaseAppTheme.ListTheme" />
 
         <activity android:name=".scrollExprimental.ScrollableActivity" />
-        <activity android:name=".gesture.TouchActivity" />
+        <activity android:name=".scrollExprimental.NestedScrollActivity" />
+        <activity android:name=".gesture.GestureActivity" />
         <activity
             android:name=".newLayoutExprimental.ConstraintAndFlexBoxActivity"
             android:exported="true" />
@@ -49,7 +50,6 @@
         <activity
             android:name=".ViewPagerActivity"
             android:exported="true" />
-        <activity android:name=".ParallaxActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.BottomUpActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.FirstActivity" />

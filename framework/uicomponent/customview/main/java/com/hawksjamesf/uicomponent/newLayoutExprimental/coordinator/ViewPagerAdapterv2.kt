@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import com.hawksjamesf.uicomponent.Divider
+import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.RecyclerViewAdapter
 
 /**
  * Copyright ® $ 2017

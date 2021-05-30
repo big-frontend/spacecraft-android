@@ -37,7 +37,7 @@ import javax.crypto.spec.SecretKeySpec;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: May/23/2020  Sat
  */
 public class CryptoUtil {

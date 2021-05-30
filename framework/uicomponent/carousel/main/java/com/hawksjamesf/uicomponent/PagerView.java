@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.SnapHelper;
  * @author: hawksjamesf
  * @email: hawksjamesf@gmail.com
  * @since: Feb/16/2019  Sat
+ *
+ * 实现了嵌套RecyclerView+RecyclerView同方向的滑动冲突
  */
 public class PagerView extends LinearLayout {
     private RecyclerView mRvContent;

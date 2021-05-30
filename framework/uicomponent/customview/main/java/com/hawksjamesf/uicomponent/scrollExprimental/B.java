@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent;
+package com.hawksjamesf.uicomponent.scrollExprimental;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -47,7 +47,7 @@ public class B extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        int action = ev.getAction();
+        int action = ev.getActionMasked();
         Log.d("cjf", "B#onInterceptTouchEvent + " + action);
 //        return super.onInterceptTouchEvent(ev);
         //在捕获了滑动事件，通过onInterceptTouchEvent返回ture拦截不向下传递，通过requestDisallowInterceptTouchEvent不让父节点拦截，这样就能只能自己处理滑动事件，不受其他干扰

@@ -6,7 +6,7 @@ import okhttp3.HttpUrl;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Jun/29/2019  Sat
  * See https://api.slack.com/methods/rtm.start.
  * {

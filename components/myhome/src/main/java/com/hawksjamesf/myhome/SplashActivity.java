@@ -15,7 +15,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.hawksjamesf.annotations.TraceTime;
 import com.hawksjamesf.common.util.ActivityUtil;
 import com.hawksjamesf.loader.App;
-import com.hawksjamesf.uicomponent.CustomViewActivity;
+import com.hawksjamesf.uicomponent.PagerViewActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +24,6 @@ import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import   com.hawksjamesf.uicomponent.scrollExprimental.ScrollableActivity;
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -54,7 +53,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        ActivityUtil.startActivity(ScrollableActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(PagerViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                         finish();
                     }

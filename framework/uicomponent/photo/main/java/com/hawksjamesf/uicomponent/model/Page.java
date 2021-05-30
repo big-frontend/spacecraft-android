@@ -10,7 +10,7 @@ import android.os.Parcelable;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Dec/02/2019  Mon
  */
 public class Page implements Parcelable {

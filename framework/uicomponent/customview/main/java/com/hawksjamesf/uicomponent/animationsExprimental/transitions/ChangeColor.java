@@ -4,7 +4,7 @@ package com.hawksjamesf.uicomponent.animationsExprimental.transitions;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/20/2018  Tue
  */
 /*

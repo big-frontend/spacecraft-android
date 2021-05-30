@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/01/2018  Thu
  */
 public class FragmentUtil {

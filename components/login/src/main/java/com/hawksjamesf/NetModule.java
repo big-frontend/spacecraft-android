@@ -15,7 +15,7 @@ import dagger.Provides;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/10/2018  Sat
  */
 @Module

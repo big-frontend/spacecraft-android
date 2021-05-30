@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/25/2020  Sun
  */
 public class PageActivity extends Activity {

@@ -7,7 +7,7 @@ import com.hawksjamesf.source.DataSource;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/22/2018  Mon
  */
 public class LocalDataSource implements DataSource {

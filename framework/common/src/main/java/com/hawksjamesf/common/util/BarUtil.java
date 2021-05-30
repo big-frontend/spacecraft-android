@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/05/2018  Mon
  * @RequiresApi - Denotes that the annotated element should only be called on the given API level or higher.
  * @TargetApi - Indicates that Lint should treat this type as targeting a given API level, no matter what the project target is.

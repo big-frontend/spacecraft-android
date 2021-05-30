@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: May/04/2021  Tue
  */
 public class MessengerService extends Service {

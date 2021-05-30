@@ -6,7 +6,7 @@ import java.net.URL;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Aug/13/2019  Tue
  */
 public class GithubApiForGson {

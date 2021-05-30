@@ -7,7 +7,7 @@ import com.tencent.mrs.plugin.IDynamicConfig;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/17/2019  Thu
  */
 

@@ -1,5 +1,5 @@
 //
-// Created by hawks.jamesf on 1/4/20.
+// Created by jamesfchen on 1/4/20.
 //
 #include <android_native_app_glue.h>
 #include "LogUtil.h"

@@ -7,7 +7,7 @@ import android.os.RemoteException;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: May/05/2021  Wed
  *
  * 手写IMyAidlInterface接口类

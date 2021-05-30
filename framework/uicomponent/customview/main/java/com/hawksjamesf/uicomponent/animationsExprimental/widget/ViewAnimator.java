@@ -4,7 +4,7 @@ package com.hawksjamesf.uicomponent.widget;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Apr/06/2020  Mon
  */
 

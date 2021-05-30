@@ -16,7 +16,7 @@ import java.net.SocketTimeoutException;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/30/2020  Fri
  */
 public class Api {

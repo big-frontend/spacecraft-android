@@ -6,7 +6,7 @@ import static android.os.IBinder.FIRST_CALL_TRANSACTION;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/30/2020  Mon
  */
 public final class Constance {

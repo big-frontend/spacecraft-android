@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/19/2020  Thu
  */
 class Client {

@@ -8,7 +8,7 @@ import org.gradle.api.ProjectState;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/13/2018  Sat
  */
 public class ProjectEvaluationListenerForJava implements ProjectEvaluationListener {

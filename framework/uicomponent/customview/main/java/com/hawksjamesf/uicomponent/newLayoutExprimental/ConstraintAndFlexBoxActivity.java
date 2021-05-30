@@ -1,6 +1,8 @@
-package com.hawksjamesf.uicomponent;
+package com.hawksjamesf.uicomponent.newLayoutExprimental;
 
 import android.os.Bundle;
+
+import com.hawksjamesf.uicomponent.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

@@ -4,7 +4,7 @@ package com.hawksjamesf.network.json;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Aug/17/2019  Sat
  */
 public class GithubApiForMoShi {

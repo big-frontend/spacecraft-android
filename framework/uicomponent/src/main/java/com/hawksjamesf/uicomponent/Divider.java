@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: May/01/2019  Wed
  */
 public class Divider extends RecyclerView.ItemDecoration {

@@ -2,8 +2,7 @@ package com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator
 
 import android.view.View
 import com.google.android.material.R
-import com.hawksjamesf.uicomponent.coordinator.CollapsingBarsLayout
-import com.hawksjamesf.uicomponent.coordinator.ViewOffsetHelper
+import com.hawksjamesf.uicomponent.ViewOffsetHelper
 
 /**
  * Copyright ® $ 2017

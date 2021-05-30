@@ -4,7 +4,7 @@ package com.hawksjamesf.common.util;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/25/2018  Thu
  */
 public class TextUtil {

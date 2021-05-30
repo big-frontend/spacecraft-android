@@ -11,17 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/25/2018  Sun
  */
 public class ScrollableActivity extends AppCompatActivity {
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        RecyclerView.SmoothScroller
-//        LinearSmoothScroller
         setContentView(R.layout.activity_scrollable);
     }
-
-
 }

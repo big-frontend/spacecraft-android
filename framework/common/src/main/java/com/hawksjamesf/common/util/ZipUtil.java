@@ -20,7 +20,7 @@ import java.util.zip.ZipOutputStream;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/15/2018  Thu
  * <p>
  * ZipOutputStream/ZipInputStream  ZipFile ZipEntry

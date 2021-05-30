@@ -28,13 +28,13 @@ import androidx.appcompat.app.AppCompatActivity;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Sep/27/2019  Fri
  */
 @Route(path = "/account/login")
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private String mEmail = "hawks.jamesf@gmail.com";
+    private String mEmail = "jamesfchen@gmail.com";
     private String mPassword = "hawksjamesf123456A";
 
 

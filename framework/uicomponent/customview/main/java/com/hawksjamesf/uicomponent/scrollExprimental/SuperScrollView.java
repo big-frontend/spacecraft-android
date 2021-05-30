@@ -1,20 +1,20 @@
 package com.hawksjamesf.uicomponent.scrollExprimental;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Copyright ® $ 2017
@@ -22,8 +22,12 @@ import androidx.annotation.Nullable;
  *
  * @author: jamesfchen
  * @since: May/29/2021  Sat
+ * <p>
+ * NestedScrollView解决了两个同方向的滚动控件，外部先滚动，解决了ScrollView+RecyclerView滚动时，不能外部先处理滚动事件，因为RecyclerView会先处理滑动事件，内部先滚动
+ * <p>
+ * 外部拦截法的典型案例
  */
-public class HScrollView extends FrameLayout {
+public class SuperScrollView extends FrameLayout {
     private int mTouchSlop;
     private int mMinimumVelocity;
     private int mMaximumVelocity;
@@ -32,15 +36,15 @@ public class HScrollView extends FrameLayout {
     private Scroller mScroller;
     private OverScroller mOverScroller;
 
-    public HScrollView(@NonNull Context context) {
+    public SuperScrollView(Context context) {
         this(context, null);
     }
 
-    public HScrollView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public SuperScrollView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, -1);
     }
 
-    public HScrollView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SuperScrollView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setWillNotDraw(false);
         final ViewConfiguration configuration = ViewConfiguration.get(context);
@@ -73,37 +77,45 @@ public class HScrollView extends FrameLayout {
         }
     }
 
-//    @Override
-//    protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
-//        super.measureChild(child, parentWidthMeasureSpec, parentHeightMeasureSpec);
-//
-//    }
-
     @Override
     protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
 //        super.measureChildWithMargins(child, parentWidthMeasureSpec, widthUsed, parentHeightMeasureSpec, heightUsed);
-        //给子类的宽度不限制
         LayoutParams lp = (LayoutParams) child.getLayoutParams();
         int widthPadding = getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin;
-        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(Math.max(0, MeasureSpec.getSize(parentWidthMeasureSpec) - widthPadding - widthUsed), MeasureSpec.UNSPECIFIED);
+        int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, widthPadding + widthUsed, lp.width);
+
         int heightPadding = getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin;
-        int childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec, heightPadding + heightUsed, lp.height);
+        int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(Math.max(0, MeasureSpec.getSize(parentHeightMeasureSpec) - heightPadding - heightUsed), MeasureSpec.UNSPECIFIED);
         child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
 
-    //    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        View child = getChildAt(0);
-//        LayoutParams lp = (LayoutParams) child.getLayoutParams();
-//        int widthPadding = getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin;
-//        int heightPadding = getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin;
-//        int desireWidth = getMeasuredWidth() - widthPadding;//父容器能提供的预期宽度
-//        if (child.getMeasuredWidth() < desireWidth) {
-//            MeasureSpec.makeMeasureSpec(desireWidth,MeasureSpec.EXACTLY)
-//        }
-//    }
-    boolean mIsLayoutDirty = true;
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        if (heightMode == MeasureSpec.UNSPECIFIED) {
+            return;
+        }
+        Log.d("cjf","onMeasure:heightMode被限制了 "+(heightMode== MeasureSpec.AT_MOST? "at_most":"exactly"));
+        if (getChildCount() > 0) {
+            final View child = getChildAt(0);
+            final int widthPadding;
+            final int heightPadding;
+            final FrameLayout.LayoutParams lp = (LayoutParams) child.getLayoutParams();
+            widthPadding = getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin;
+            heightPadding = getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin;
+
+            final int desiredHeight = getMeasuredHeight() - heightPadding;
+            if (child.getMeasuredHeight() < desiredHeight) {
+                final int childWidthMeasureSpec = getChildMeasureSpec(
+                        widthMeasureSpec, widthPadding, lp.width);
+                final int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
+                        desiredHeight, MeasureSpec.EXACTLY);
+                child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+            }
+        }
+    }
+    private boolean mIsLayoutDirty = true;
 
     @Override
     public void requestLayout() {
@@ -112,32 +124,16 @@ public class HScrollView extends FrameLayout {
     }
 
     @Override
-    public void requestChildFocus(View child, View focused) {
-        super.requestChildFocus(child, focused);
-    }
-
-    //    @Override
-//    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-//        View child = getChildAt(0);
-//        LayoutParams lp = (LayoutParams) child.getLayoutParams();
-//        int available = right-left-getPaddingLeft()-getPaddingRight() -lp.leftMargin - lp.rightMargin;
-//        boolean forceLeftGravity = child.getMeasuredWidth() > available;
-//        super.onLayout(forceLeftGravity, left, top, right, bottom);
-//    }
-
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        Log.d("cjf","onDraw");
-        super.onDraw(canvas);
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        mIsLayoutDirty = false;
     }
 
     boolean mIsBeingDragged = false;
-    int mLastMotionX;
+    int mLastMotionY;
     int mActivePointerId = INVALID_POINTER;
     VelocityTracker mVelocityTracker;
     private static final int INVALID_POINTER = -1;
-
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -157,7 +153,7 @@ public class HScrollView extends FrameLayout {
                 return mIsBeingDragged;
             }
 
-            mLastMotionX = (int) ev.getY();
+            mLastMotionY = (int) ev.getY();
             mActivePointerId = ev.getPointerId(0);
             initOrResetVelocityTracker();
             mVelocityTracker.addMovement(ev);
@@ -170,12 +166,12 @@ public class HScrollView extends FrameLayout {
             if (activePointerId == INVALID_POINTER) return mIsBeingDragged;
             final int pointerIndex = ev.findPointerIndex(activePointerId);
             if (pointerIndex == -1) return mIsBeingDragged;
-
-            final int x = (int) ev.getX(pointerIndex);
-            final int xDiff = Math.abs(x - mLastMotionX);
-            if (xDiff > mTouchSlop) {
+            int x = (int) ev.getX(pointerIndex);
+            final int y = (int) ev.getY(pointerIndex);
+            final int yDiff = Math.abs(y - mLastMotionY);
+            if (yDiff > mTouchSlop) {
                 mIsBeingDragged = true;
-                mLastMotionX = x;
+                mLastMotionY = y;
                 initVelocityTrackerIfNotExists();
                 mVelocityTracker.addMovement(ev);
                 final ViewParent parent = getParent();
@@ -183,16 +179,41 @@ public class HScrollView extends FrameLayout {
                     //父容器不要拦截move事件
                     parent.requestDisallowInterceptTouchEvent(true);
                 }
+
+               if (canScroll(getChildAt(0), false, yDiff, x, y, RecyclerView.VERTICAL)) {
+                   mIsBeingDragged = false;
+                }else {
+                   mIsBeingDragged = true;
+               }
             }
 
         }
         return mIsBeingDragged;
     }
-
+    private boolean canScroll(final View v, final boolean checkV, final int delta, final int x, final int y, int orientation) {
+        if (v instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) v;
+            int scrollX = v.getScrollX();
+            int scrollY = v.getScrollY();
+            int count = group.getChildCount();
+            for (int i = count - 1; i >= 0; i--) {
+                final View child = group.getChildAt(i);
+                if (child.getLeft() <= x + scrollX && x + scrollX < child.getRight() && child.getTop() <= y + scrollY && y + scrollY < child.getBottom()//判断点击是否位于可滑动的区域
+                        && canScroll(child, true, delta, x + scrollX - child.getLeft(), y + scrollY - child.getTop(), orientation)) {
+                    return true;
+                }
+            }
+        }
+        if (orientation == RecyclerView.HORIZONTAL) {
+            return checkV && v.canScrollHorizontally(-delta);
+        } else {
+            return checkV && v.canScrollVertically(-delta);
+        }
+    }
     private boolean isChild(int x, int y) {
         View child = getChildAt(0);
-        return child.getTop() <= y && y < child.getBottom()
-                && child.getLeft() - getScrollX() <= x && x < child.getRight() - getScrollX();
+        return child.getTop() - getScrollY() <= y && y < child.getBottom() - getScrollY()
+                && child.getLeft() <= x && x < child.getRight();
     }
 
     @Override
@@ -202,7 +223,7 @@ public class HScrollView extends FrameLayout {
         int action = ev.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                mLastMotionX = (int) ev.getX();
+                mLastMotionY = (int) ev.getY();
                 mActivePointerId = ev.getPointerId(0);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -211,29 +232,29 @@ public class HScrollView extends FrameLayout {
                 final int pointerIndex = ev.findPointerIndex(activePointerId);
                 if (pointerIndex == -1) break;
 
-                final int x = (int) ev.getX(pointerIndex);
-                int xDiff = mLastMotionX - x;
-                if (!mIsBeingDragged && Math.abs(xDiff) > mTouchSlop) {
+                final int y = (int) ev.getY(pointerIndex);
+                int yDiff = mLastMotionY - y;
+                if (!mIsBeingDragged && Math.abs(yDiff) > mTouchSlop) {
                     final ViewParent parent = getParent();
                     if (parent != null) {
                         //父容器不要拦截move事件
                         parent.requestDisallowInterceptTouchEvent(true);
                     }
                     mIsBeingDragged = true;
-                    if (xDiff > 0) {
-                        Log.d("cjf", "向左边滑动👈,xDiff为正数");
-                        xDiff -= mTouchSlop;
+                    if (yDiff > 0) {
+                        Log.d("cjf", "向上边滑动👆,yDiff为正数");
+                        yDiff -= mTouchSlop;
                     } else {
-                        Log.d("cjf", "向右边滑动👉,xDiff为负数");
-                        xDiff += mTouchSlop;
+                        Log.d("cjf", "向下边滑动👇,yDiff为负数");
+                        yDiff += mTouchSlop;
                     }
                 }
                 //开始拖动
                 if (mIsBeingDragged) {
-                    Log.d("cjf", "开始拖动。。。。。。");
+//                    Log.d("cjf", "开始拖动。。。。。。");
                     int range = getScrollRange();
-                    mLastMotionX = x;
-                    if (overScrollBy(xDiff, 0, getScrollX(), 0, range, 0, mOverscrollDistance, 0, true)) {
+                    mLastMotionY = y;
+                    if (overScrollBy(0, yDiff, 0, getScrollY(), 0, range, mOverscrollDistance, 0, true)) {
                         mVelocityTracker.clear();
                     }
                     boolean canOverscroll = getOverScrollMode() == OVER_SCROLL_ALWAYS || getOverScrollMode() == OVER_SCROLL_IF_CONTENT_SCROLLS && range > 0;
@@ -246,10 +267,11 @@ public class HScrollView extends FrameLayout {
                 if (!mIsBeingDragged) break;
 
                 mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);//每秒1个像素
-                int xVelocity = (int) mVelocityTracker.getXVelocity(mActivePointerId);
-                if (Math.abs(xVelocity) > mMinimumVelocity) {
-                    fling(-xVelocity);
+                int yVelocity = (int) mVelocityTracker.getYVelocity(mActivePointerId);
+                if (Math.abs(yVelocity) > mMinimumVelocity) {
+                    fling(-yVelocity);
                 }
+
 //                else if (mOverScroller.springBack(getScrollX(),getScrollY(),0,getScrollRange(),0,0)){
 //                    postInvalidateOnAnimation();
 //                }
@@ -271,12 +293,7 @@ public class HScrollView extends FrameLayout {
 
     private int getScrollRange() {
         View child = getChildAt(0);
-        return Math.max(0, child.getWidth() - (getWidth() - getPaddingLeft() - getPaddingRight()));
-    }
-
-    @Override
-    protected int computeHorizontalScrollOffset() {
-        return super.computeHorizontalScrollOffset();
+        return Math.max(0, child.getHeight() - (getHeight() - getPaddingLeft() - getPaddingRight()));
     }
 
     /**
@@ -298,8 +315,8 @@ public class HScrollView extends FrameLayout {
 //                ((View) getParent()).invalidate();
 //            }
 //            onScrollChanged(getScrollX(),getScrollY(),oldx,oldy);
-            if (clampedX) {
-                mOverScroller.springBack(getScrollX(), getScrollY(), 0, getScrollRange(), 0, 0);
+            if (clampedY) {
+                mOverScroller.springBack(getScrollX(), getScrollY(), 0, 0, 0, getScrollRange());
             }
         }
     }
@@ -320,7 +337,7 @@ public class HScrollView extends FrameLayout {
         if (x != oldx || y != oldy) {
             int range = getScrollRange();
 //            Log.d("cjf", "overScrollBy");
-            overScrollBy(x - oldx, y - oldy, oldx, oldy, range, 0, mOverflingDistance, 0, false);
+            overScrollBy(x - oldx, y - oldy, oldx, oldy, 0, range, 0, mOverflingDistance, false);
             onScrollChanged(getScrollX(), getScrollY(), oldx, oldy);
             boolean canOverscroll = getOverScrollMode() == OVER_SCROLL_ALWAYS || getOverScrollMode() == OVER_SCROLL_IF_CONTENT_SCROLLS && range > 0;
             if (canOverscroll) {
@@ -330,14 +347,16 @@ public class HScrollView extends FrameLayout {
         if (!awakenScrollBars()) postInvalidateOnAnimation();
     }
 
-
-    private void fling(int velocityX) {
-        int width = getWidth() - getPaddingLeft() - getPaddingRight();
-        int right = getChildAt(0).getWidth();
-        mOverScroller.fling(getScrollX(), getScrollY(), velocityX, 0, 0, Math.max(0, right - width), 0, 0, width / 2, 0);
-        boolean movingRight = velocityX > 0;
+    private void fling(int velocityY) {
+        int height = getHeight() - getPaddingTop() - getPaddingBottom();
+        int bottom = getChildAt(0).getHeight();
+        mOverScroller.fling(getScrollX(), getScrollY(),
+                0, velocityY,//velocities
+                0, 0,//x
+                0, Math.max(0, bottom - height),//y
+                0, bottom / 2);//overscroll
+        boolean movingRight = velocityY > 0;
         View currentFocused = findFocus();
         postInvalidateOnAnimation();
-
     }
 }

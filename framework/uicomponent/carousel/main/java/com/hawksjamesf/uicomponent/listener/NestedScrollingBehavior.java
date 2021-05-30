@@ -61,26 +61,22 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 int pointerIndex = ev.findPointerIndex(activePointerId);
                 float x = ev.getX(pointerIndex);
                 float y = ev.getY(pointerIndex);
-                float dx = x - mLastMotionX;
-                float dy = y - mLastMotionY;
+                float dx = mLastMotionX-x ;
+                float dy = mLastMotionY-y;
                 Log.d("NestedScrollingBehavior", "dx/dy>>>>mTouchSlop：" + dx + "/" + dy + ">>>>" + mTouchSlop);
-                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
-                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
-                    if (canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
-                        mLastMotionX = x;
-                        child.requestDisallowInterceptTouchEvent(true);
-                    }
-                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop) {
+//                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
 //                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
-                        child.requestDisallowInterceptTouchEvent(true);
-                    if (canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
-//                    if (canScrollVertical(child)) {
-                        mLastMotionY = y;
-                    }
-//                        return false;
-
+//                } else {
+//                    parent.getParent().requestDisallowInterceptTouchEvent(false);
+//                }
+                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
+                    mLastMotionX = x;
+                    child.requestDisallowInterceptTouchEvent(true);
+                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) >mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
+                    mLastMotionY = y;
+                    child.requestDisallowInterceptTouchEvent(true);
                 } else {
-//                    child.requestDisallowInterceptTouchEvent(false);
+                    child.requestDisallowInterceptTouchEvent(false);
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -88,7 +84,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
 
                 break;
         }
-        return super.onInterceptTouchEvent(parent, child, ev);
+        return super.onInterceptTouchEvent(parent, child, ev);//CoordinatorLayout对于任何事件都不拦截
     }
 
     /*
@@ -109,9 +105,9 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
             }
         }
         if (orientation == RecyclerView.HORIZONTAL) {
-            return checkV && v.canScrollHorizontally(-delta);
+            return checkV && v.canScrollHorizontally(delta);
         } else {
-            return checkV && v.canScrollVertically(-delta);
+            return checkV && v.canScrollVertically(delta);
         }
     }
 
@@ -163,21 +159,11 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
             CoordinatorLayout.LayoutParams lp =
                     (CoordinatorLayout.LayoutParams) child.getLayoutParams();
             Rect available = new Rect();
-            LinearLayoutManager layoutManager = (LinearLayoutManager) child.getLayoutManager();
-            if (layoutManager == null) return false;
-            if ((layoutManager.getOrientation() == RecyclerView.HORIZONTAL)) {
-                available.set(
-                        parent.getPaddingLeft() + lp.leftMargin,
-                        header.getBottom() + lp.topMargin,
-                        parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
-                        parent.getHeight() + header.getBottom() - parent.getPaddingBottom() - lp.bottomMargin);
-            } else {
-                available.set(
-                        header.getRight() + lp.leftMargin,
-                        parent.getPaddingTop() + lp.topMargin,
-                        parent.getWidth() + header.getRight() - parent.getPaddingRight() - lp.rightMargin,
-                        parent.getHeight() - parent.getPaddingBottom() - lp.bottomMargin);
-            }
+            available.set(
+                    parent.getPaddingLeft() + lp.leftMargin,
+                    header.getBottom() + lp.topMargin,
+                    parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
+                    parent.getHeight() + header.getBottom() - parent.getPaddingBottom() - lp.bottomMargin);
             Rect out = new Rect();
             GravityCompat.apply(
                     resolveGravity(lp.gravity),
@@ -186,6 +172,12 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                     available,
                     out,
                     layoutDirection);
+            boolean clipToPadding = child.getClipToPadding();
+            if (clipToPadding){
+
+            }else {
+
+            }
             child.layout(out.left, out.top, out.right, out.bottom);
         } else {
             // If we don't have a dependency, let super handle it

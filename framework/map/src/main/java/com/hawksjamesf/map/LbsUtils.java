@@ -6,7 +6,7 @@ import android.location.Location;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Apr/25/2020  Sat
  */
 public class LbsUtils {

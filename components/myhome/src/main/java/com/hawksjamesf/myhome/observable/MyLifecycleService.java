@@ -11,7 +11,7 @@ import androidx.lifecycle.LifecycleService;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Mar/16/2019  Sat
  */
 public class MyLifecycleService extends LifecycleService {

@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.coordinator
+package com.hawksjamesf.uicomponent
 
 import android.view.View
 import androidx.core.view.ViewCompat

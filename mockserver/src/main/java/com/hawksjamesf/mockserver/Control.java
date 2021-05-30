@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Dec/28/2019  Sat
  */
 @Retention(RetentionPolicy.RUNTIME)

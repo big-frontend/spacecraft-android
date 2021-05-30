@@ -7,7 +7,7 @@ import com.bumptech.glide.request.BaseRequestOptions;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Mar/28/2020  Sat
  */
 class GlideExtension {

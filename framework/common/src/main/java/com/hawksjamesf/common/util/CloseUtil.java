@@ -7,7 +7,7 @@ import java.io.IOException;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/07/2018  Wed
  */
 public class CloseUtil {

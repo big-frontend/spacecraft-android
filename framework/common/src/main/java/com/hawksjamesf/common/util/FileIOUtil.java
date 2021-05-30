@@ -27,7 +27,7 @@ import java.util.List;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/12/2018  Mon
  * <p>
  * JDK has two sets of I/O packages:

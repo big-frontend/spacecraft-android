@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.coordinator
+package com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -14,9 +14,8 @@ import androidx.core.math.MathUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.hawksjamesf.uicomponent.R
-import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.getMaxOffsetForPinChild
-import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.getViewOffsetHelper
 import kotlin.math.roundToInt
 
 /**

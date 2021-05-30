@@ -4,7 +4,7 @@ package com.hawksjamesf.network.json;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Aug/15/2019  Thu
  */
 public class TitleBar {

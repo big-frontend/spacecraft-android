@@ -23,7 +23,6 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.hawksjamesf.common.constants.MemoryUnit;
-import com.hawksjamesf.uicomponent.coordinator.ViewOffsetHelper;
 import com.hawksjamesf.uicomponent.model.Page;
 import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.ViewExtensionKt;
 
@@ -36,7 +35,7 @@ import androidx.fragment.app.Fragment;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/06/2018  Tue
  * <p>
  * bitmap，drawable、uri、resource id

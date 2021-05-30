@@ -14,7 +14,7 @@ import androidx.core.app.ActivityCompat;
  * All right reserved.
  * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: 1/26/18
  */
 

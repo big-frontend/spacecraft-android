@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
  * All right reserved.
  * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: 1/24/18
  */
 

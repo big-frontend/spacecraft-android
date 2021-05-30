@@ -62,7 +62,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/10/2019  Thu
  */
 public class MapActivity extends LBSActivity {

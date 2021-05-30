@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Mar/28/2020  Sat
  */
 @com.bumptech.glide.annotation.GlideModule(glideName="HawksGlide")

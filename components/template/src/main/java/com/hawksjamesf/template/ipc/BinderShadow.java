@@ -12,7 +12,7 @@ import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Nov/25/2020  Wed
  * <p>
  * Proxy rule
