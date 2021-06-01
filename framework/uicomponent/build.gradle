@@ -35,7 +35,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        component {
+        inhouse {
             initWith debug
             debuggable true
         }
@@ -51,6 +51,11 @@ android {
                 res.srcDirs += "$projectDir/$it/main/res-frame-animation"
                 res.srcDirs += "$projectDir/$it/main/res"
                 java.srcDirs += "$projectDir/$it/main/java"
+
+                assets.srcDirs += "$projectDir/src/inhouse/assets"
+                aidl.srcDirs += "$projectDir/src/inhouse/aidl"
+                res.srcDirs += "$projectDir/src/inhouse/res"
+                java.srcDirs += "$projectDir/src/inhouse/java"
             }
         }
         androidTest {

@@ -70,8 +70,8 @@ android {
         multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeepFile.txt')
 //        multiDexKeepProguard file('multiDexKeep.pro')
-        applicationId "com.jamesfchen.spacecraft"
-        testApplicationId "com.jamesfchen.spacecraft.test"
+        applicationId "com.hawksjamesf.spacecraft"
+        testApplicationId "com.hawksjamesf.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')

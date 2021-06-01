@@ -27,14 +27,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-//        component {
+//        inhouse {
 //            initWith debug
 //            debuggable true
 //        }
     }
 //    sourceSets {
 //        main {
-//            java.srcDirs += ['src/component/java']
+//            java.srcDirs += ['src/inhouse/java']
 //        }
 //    }
     compileOptions {

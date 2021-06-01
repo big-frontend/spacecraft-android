@@ -44,12 +44,6 @@
             android:name="com.jamesfchen.uicomponent.DrawableActivity"
             android:label="@string/title_activity_drawable"
             android:theme="@style/AppTheme"></activity>
-        <activity
-            android:name="jamesfchen.widget.carousel.PagerViewActivity"
-            android:exported="true" />
-        <activity
-            android:name="jamesfchen.widget.carousel.ViewPagerActivity"
-            android:exported="true" />
         <activity android:name="com.jamesfchen.uicomponent.FeedbackUtilActivity" />
         <activity android:name="com.jamesfchen.uicomponent.BottomUpActivity" />
         <activity android:name="com.jamesfchen.uicomponent.FirstActivity" />
