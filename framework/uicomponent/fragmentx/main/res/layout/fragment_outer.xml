@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_container"
-        android:name="com.hawksjamesf.uicomponent.Inner0Fragment"
+        android:name="com.jamesfchen.uicomponent.Inner0Fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

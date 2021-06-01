@@ -1,4 +1,4 @@
-package com.hawksjamesf.template.ipc;
+package com.jamesfchen.template.ipc;
 
 import android.os.Binder;
 import android.os.IBinder;
@@ -9,8 +9,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import static com.hawksjamesf.template.ipc.Constance.DESCRIPTOR;
-import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
+import static com.jamesfchen.template.ipc.Constance.DESCRIPTOR;
+import static com.jamesfchen.template.ipc.Constance.TRANSACTION_basicTypes;
 
 /**
  * Copyright ® $ 2017

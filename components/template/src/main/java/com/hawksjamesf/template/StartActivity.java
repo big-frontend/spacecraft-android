@@ -1,4 +1,4 @@
-package com.hawksjamesf.template;
+package com.jamesfchen.template;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -13,9 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.hawksjamesf.annotations.TraceTime;
-import com.hawksjamesf.template.ipc.BinderEntry;
-import com.hawksjamesf.template.ipc.BinderShadow;
+import com.jamesfchen.annotations.TraceTime;
+import com.jamesfchen.template.ipc.BinderEntry;
+import com.jamesfchen.template.ipc.BinderShadow;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.hawksjamesf.uicomponent.R;
+import com.jamesfchen.uicomponent.R;
 
 /**
  * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.

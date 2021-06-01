@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.fragment;
+package com.jamesfchen.spacecraft.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hawksjamesf.myhome.R;
+import com.jamesfchen.myhome.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

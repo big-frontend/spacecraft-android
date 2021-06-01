@@ -1,4 +1,4 @@
-package com.hawksjamesf.template;
+package com.jamesfchen.template;
 
 import android.app.Application;
 import android.content.Context;

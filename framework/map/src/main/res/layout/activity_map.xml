@@ -96,7 +96,7 @@
                 android:background="@drawable/ic_favorite_border_black_24dp"
                 />
 
-           <com.hawksjamesf.uicomponent.widget.HeartLayout
+           <com.jamesfchen.uicomponent.widget.HeartLayout
             android:id="@+id/heart_layout"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
             android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/ic_favorite_border_black_24dp"
             />
-        <com.hawksjamesf.uicomponent.widget.HeadBubbleView
+        <com.jamesfchen.uicomponent.widget.HeadBubbleView
             android:layout_marginBottom="10dp"
             android:id="@+id/hbv_heartbeat"
             android:layout_width="100dp"

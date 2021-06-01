@@ -1,4 +1,4 @@
-package com.hawksjamesf.template.ipc;
+package com.jamesfchen.template.ipc;
 
 import android.os.IInterface;
 import android.os.RemoteException;

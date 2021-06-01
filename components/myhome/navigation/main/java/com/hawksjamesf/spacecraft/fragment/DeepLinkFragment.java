@@ -1,4 +1,4 @@
-package com.hawksjamesf.spacecraft.fragment;
+package com.jamesfchen.spacecraft.fragment;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.hawksjamesf.myhome.R;
+import com.jamesfchen.myhome.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.hawksjamesf.template.ipc;
+package com.jamesfchen.template.ipc;
 
 import static android.os.IBinder.FIRST_CALL_TRANSACTION;
 

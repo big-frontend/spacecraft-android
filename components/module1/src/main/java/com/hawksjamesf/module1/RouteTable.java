@@ -1,4 +1,4 @@
-package com.hawksjamesf.module1;
+package com.jamesfchen.module1;
 
 import java.util.HashMap;
 import java.util.Map;

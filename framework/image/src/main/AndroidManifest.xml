@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.image">
+    package="com.jamesfchen.image">
 
     <application>
-        <activity android:name=".GifActivity" />
-        <activity android:name=".FrescoActivity" />
+        <activity android:name="com.jamesfchen.image.GifActivity" />
+        <activity android:name="com.jamesfchen.image.FrescoActivity" />
     </application>
 </manifest>

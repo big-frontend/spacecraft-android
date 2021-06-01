@@ -20,7 +20,7 @@ static const RegJNIRec gRegJNI[] = {
 };
 
 jint unRegisterNativeMethod(JNIEnv *env) {
-    jclass cl = env->FindClass("com/hawksjamesf/image/GifPlayer");
+    jclass cl = env->FindClass("com/jamesfchen/image/GifPlayer");
     env->UnregisterNatives(cl);
     return 0;
 }

@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.login">
+    package="com.jamesfchen.login">
 
     <application>
-        <activity android:name=".LoginActivity" />
+        <activity android:name="com.jamesfchen.login.LoginActivity" />
 
         <activity
-            android:name="com.hawksjamesf.signin.SignInActivity"
+            android:name="com.jamesfchen.signin.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hawksjamesf.signin.SignUpActivity"
-            android:parentActivityName="com.hawksjamesf.signin.SignInActivity"
+            android:name="com.jamesfchen.signin.SignUpActivity"
+            android:parentActivityName="com.jamesfchen.signin.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
     </application>
 </manifest>

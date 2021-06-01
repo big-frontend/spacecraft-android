@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.uicomponent">
+    package="com.jamesfchen.uicomponent">
 
     <application>
         <meta-data
@@ -7,68 +7,68 @@
             android:resource="@array/preloaded_fonts" />
 
 
-        <activity android:name=".animationsExprimental.AnimActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.animationsExprimental.AnimActivity" />
         <activity
-            android:name=".animationsExprimental.DetailActivity"
+            android:name="com.jamesfchen.uicomponent.animationsExprimental.DetailActivity"
             android:theme="@style/BaseAppTheme.DetailTheme" />
-        <activity android:name=".animationsExprimental.LottieActivity" />
-        <activity android:name=".animationsExprimental.FrameAnimationActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.animationsExprimental.LottieActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.animationsExprimental.FrameAnimationActivity" />
         <activity
-            android:name=".animationsExprimental.TransitionForViewActivity"
+            android:name="com.jamesfchen.uicomponent.animationsExprimental.TransitionForViewActivity"
             android:theme="@style/BaseAppTheme" />
         <activity
-            android:name=".animationsExprimental.TransitionForActivityActivity"
+            android:name="com.jamesfchen.uicomponent.animationsExprimental.TransitionForActivityActivity"
             android:theme="@style/BaseAppTheme.ListTheme" />
 
-        <activity android:name=".scrollExprimental.ScrollableActivity" />
-        <activity android:name=".scrollExprimental.NestedScrollActivity" />
-        <activity android:name=".gesture.GestureActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.scrollExprimental.ScrollableActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.scrollExprimental.NestedScrollActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.gesture.GestureActivity" />
         <activity
-            android:name=".newLayoutExprimental.ConstraintAndFlexBoxActivity"
+            android:name="com.jamesfchen.uicomponent.newLayoutExprimental.ConstraintAndFlexBoxActivity"
             android:exported="true" />
         <activity
-            android:name=".newLayoutExprimental.ConstraintPerformanceActivity"
+            android:name="com.jamesfchen.uicomponent.newLayoutExprimental.ConstraintPerformanceActivity"
             android:exported="true"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".newLayoutExprimental.CoordinatorLayoutActivity"
+            android:name="com.jamesfchen.uicomponent.newLayoutExprimental.CoordinatorLayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".CustomViewActivity"
+            android:name="com.jamesfchen.uicomponent.CustomViewActivity"
             android:label="@string/title_activity_setup_wizard"
             android:theme="@style/AppTheme" />
-        <activity android:name=".DispatchEventActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.DispatchEventActivity" />
 
 
         <activity
-            android:name=".DrawableActivity"
+            android:name="com.jamesfchen.uicomponent.DrawableActivity"
             android:label="@string/title_activity_drawable"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".widget.carousel.PagerViewActivity"
+            android:name="jamesfchen.widget.carousel.PagerViewActivity"
             android:exported="true" />
         <activity
-            android:name=".widget.carousel.ViewPagerActivity"
+            android:name="jamesfchen.widget.carousel.ViewPagerActivity"
             android:exported="true" />
-        <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity" />
-        <activity android:name="com.hawksjamesf.uicomponent.BottomUpActivity" />
-        <activity android:name="com.hawksjamesf.uicomponent.FirstActivity" />
-        <activity android:name="com.hawksjamesf.uicomponent.SecondaryActivity" />
-        <activity android:name="com.hawksjamesf.uicomponent.ThirdActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.FeedbackUtilActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.BottomUpActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.FirstActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.SecondaryActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.ThirdActivity" />
         <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)：如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
         <!--            android:launchMode="singleTask" -->
-        <activity android:name="com.hawksjamesf.uicomponent.FourthActivity" />
-        <activity android:name="com.hawksjamesf.uicomponent.FragmentNotAttachActivity" />
-        <activity android:name="com.hawksjamesf.uicomponent.TextStyleActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.FourthActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.FragmentNotAttachActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.TextStyleActivity" />
 
         <activity
-            android:name=".PhotoActivity"
+            android:name="com.jamesfchen.uicomponent.PhotoActivity"
             android:label="PhoteoActivity"
             android:theme="@style/PhotoTheme" />
-        <activity android:name=".PhotoListActivity" />
-        <activity android:name=".LargePhotoActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.PhotoListActivity" />
+        <activity android:name="com.jamesfchen.uicomponent.LargePhotoActivity" />
         <activity
-            android:name=".SearchActivity"
+            android:name="com.jamesfchen.uicomponent.SearchActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>

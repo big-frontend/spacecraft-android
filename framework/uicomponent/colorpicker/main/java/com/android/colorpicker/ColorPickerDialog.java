@@ -25,7 +25,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
-import com.hawksjamesf.uicomponent.R;
+import com.jamesfchen.uicomponent.R;
 
 import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;

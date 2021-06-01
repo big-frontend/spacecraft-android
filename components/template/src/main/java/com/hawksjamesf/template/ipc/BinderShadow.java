@@ -1,4 +1,4 @@
-package com.hawksjamesf.template.ipc;
+package com.jamesfchen.template.ipc;
 
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -6,7 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.Keep;
 
-import static com.hawksjamesf.template.ipc.Constance.TRANSACTION_basicTypes;
+import static com.jamesfchen.template.ipc.Constance.TRANSACTION_basicTypes;
 
 /**
  * Copyright ® $ 2017

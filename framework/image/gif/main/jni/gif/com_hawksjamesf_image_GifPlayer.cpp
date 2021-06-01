@@ -107,7 +107,7 @@ JNINativeMethod gifplayer_method_map[] = {
 };
 
 int register_com_hawksjamesf_image_DisplayEventReceiver(JNIEnv *env) {
-    jclass cl = env->FindClass("com/hawksjamesf/image/GifPlayer");
+    jclass cl = env->FindClass("com/jamesfchen/image/GifPlayer");
     if ((env->RegisterNatives(cl, gifplayer_method_map,
                               sizeof(gifplayer_method_map) / sizeof(gifplayer_method_map[0]))) < 0) {
         return -1;

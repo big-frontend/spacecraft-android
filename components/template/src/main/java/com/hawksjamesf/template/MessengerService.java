@@ -1,4 +1,4 @@
-package com.hawksjamesf.template;
+package com.jamesfchen.template;
 
 import android.app.Activity;
 import android.app.Notification;

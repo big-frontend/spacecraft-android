@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="com.hawksjamesf.spacecraft.fragment.HomeFragment"
+        android:name="com.jamesfchen.spacecraft.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <!--app:destination="@id/flow_step_two_dest"/>-->
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/fragment_flow_step_one_dest"
-        android:name="com.hawksjamesf.spacecraft.fragment.FlowStepFragment"
+        android:name="com.jamesfchen.spacecraft.fragment.FlowStepFragment"
         android:label="fragment_flow_step_one"
         tools:layout="@layout/fragment_flow_step_one">
         <argument
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/fragment_flow_step_two_dest"
-        android:name="com.hawksjamesf.spacecraft.fragment.FlowStepFragment"
+        android:name="com.jamesfchen.spacecraft.fragment.FlowStepFragment"
         android:label="fragment_flow_step_two"
         tools:layout="@layout/fragment_flow_step_two">
         <argument
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_deep_link"
-        android:name="com.hawksjamesf.spacecraft.fragment.DeepLinkFragment"
+        android:name="com.jamesfchen.spacecraft.fragment.DeepLinkFragment"
         android:label="fragment_deep_link"
         tools:layout="@layout/fragment_deep_link">
 

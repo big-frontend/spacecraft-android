@@ -4,7 +4,7 @@
 
     <application android:name=".App">
         <activity
-            android:name="com.hawksjamesf.template.StartActivity"
+            android:name="com.jamesfchen.template.StartActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

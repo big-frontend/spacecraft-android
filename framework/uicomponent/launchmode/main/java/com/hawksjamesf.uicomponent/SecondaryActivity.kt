@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent
+package com.jamesfchen.uicomponent
 
 import android.content.Context
 import android.content.Intent

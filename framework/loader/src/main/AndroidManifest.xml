@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.loader">
+    package="com.jamesfchen.loader">
 
     <application
-        android:name="com.hawksjamesf.loader.App"
+        android:name="com.jamesfchen.loader.App"
         android:theme="@style/AppTheme"></application>
 </manifest>

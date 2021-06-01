@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hawksjamesf.myhome.widget.scrollExprimental.B
+    <com.jamesfchen.myhome.widget.scrollExprimental.B
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         >
 
-        <com.hawksjamesf.myhome.custom.BB
+        <com.jamesfchen.myhome.custom.BB
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -54,17 +54,17 @@
             <!--                android:text="afdadsfasdfa" />-->
 
 
-        </com.hawksjamesf.myhome.custom.BB>
-    </com.hawksjamesf.myhome.widget.scrollExprimental.B>
+        </com.jamesfchen.myhome.custom.BB>
+    </com.jamesfchen.myhome.widget.scrollExprimental.B>
 
-    <com.hawksjamesf.myhome.widget.scrollExprimental.A
+    <com.jamesfchen.myhome.widget.scrollExprimental.A
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.hawksjamesf.myhome.custom.AA
+        <com.jamesfchen.myhome.custom.AA
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></com.hawksjamesf.myhome.custom.AA>
-    </com.hawksjamesf.myhome.widget.scrollExprimental.A>
+            android:orientation="vertical"></com.jamesfchen.myhome.custom.AA>
+    </com.jamesfchen.myhome.widget.scrollExprimental.A>
 
 </LinearLayout>

@@ -1,51 +1,51 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.mockserver">
+    package="com.jamesfchen.mockserver">
 
     <application>
-        <service android:name=".service.NonAffinityService" android:process=":non_affinity_service"/>
+        <service android:name="com.jamesfchen.mockserver.service.NonAffinityService" android:process=":non_affinity_service"/>
         <service
-            android:name=".service.MockIntentService"
+            android:name="com.jamesfchen.mockserver.service.MockIntentService"
             android:process=":mock_intentserver" />
         <service
-            android:name=".service.MockForegroundService"
+            android:name="com.jamesfchen.mockserver.service.MockForegroundService"
             android:process=":mock_foregroundserver" />
         <service
-            android:name=".service.MockService"
+            android:name="com.jamesfchen.mockserver.service.MockService"
             android:process=":mock_server" />
         <service
-            android:name=".service.MockJobService"
+            android:name="com.jamesfchen.mockserver.service.MockJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":mock_jobserver" />
         <service
-            android:name=".service.MockJobIntentService"
+            android:name="com.jamesfchen.mockserver.service.MockJobIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":mock_jobintentserver" />
 
         <activity
             android:process=":log_ui_server"
             android:multiprocess="true"
-            android:name="com.hawksjamesf.mockserver.LogDBActivity"
+            android:name="com.jamesfchen.mockserver.LogDBActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
         <activity
             android:process=":mock_server"
-            android:name="com.hawksjamesf.mockserver.LogActivity"
+            android:name="com.jamesfchen.mockserver.LogActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
 
 <!--            android:process=":log_ui_server"-->
 <!--            android:multiprocess="true"-->
         <provider
 
-            android:name="com.hawksjamesf.mockserver.LogContentProvider"
+            android:name="com.jamesfchen.mockserver.LogContentProvider"
             android:authorities="${applicationId}.mockserver.log"
             android:exported="false" />
         <provider
-            android:name="com.hawksjamesf.mockserver.MockServerContentProvider"
+            android:name="com.jamesfchen.mockserver.MockServerContentProvider"
             android:authorities="${applicationId}.mockserver.mocker"
             android:exported="false"
             />
 
         <receiver
-            android:name=".CmdReceiver"
+            android:name="com.jamesfchen.mockserver.CmdReceiver"
             android:enabled="true"
             android:exported="true">
             <!--            android:priority="1000"-->

@@ -69,7 +69,7 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <com.hawksjamesf.myhome.widget.scrollExprimental.HScrollView
+    <com.jamesfchen.myhome.widget.scrollExprimental.HScrollView
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
@@ -131,7 +131,7 @@
                 app:iconTint="@color/apricot"
                 app:rippleColor="@color/apricot" />
         </LinearLayout>
-    </com.hawksjamesf.myhome.widget.scrollExprimental.HScrollView>
+    </com.jamesfchen.myhome.widget.scrollExprimental.HScrollView>
 
 
 </LinearLayout>

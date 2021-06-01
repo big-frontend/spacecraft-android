@@ -1,11 +1,11 @@
-package com.hawksjamesf.module1;
+package com.jamesfchen.module1;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.Button;
 
-import com.hawksjamesf.annotations.TraceTime;
+import com.jamesfchen.annotations.TraceTime;
 
 import androidx.annotation.Nullable;
 

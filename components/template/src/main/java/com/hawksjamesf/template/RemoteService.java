@@ -1,4 +1,4 @@
-package com.hawksjamesf.template;
+package com.jamesfchen.template;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -14,7 +14,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import com.hawksjamesf.template.ipc.BinderEntry;
+import com.jamesfchen.template.ipc.BinderEntry;
 
 import androidx.annotation.Nullable;
 

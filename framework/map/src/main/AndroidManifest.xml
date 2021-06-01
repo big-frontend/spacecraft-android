@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hawksjamesf.map">
+    package="com.jamesfchen.map">
 
     <application android:hardwareAccelerated="true">
 
         <activity
-            android:name=".MapActivity"
+            android:name="com.jamesfchen.map.MapActivity"
             android:label="map page"
             android:hardwareAccelerated="true">
 <!--            <intent-filter>-->
@@ -25,7 +25,7 @@
 
         <activity
             android:label="location page"
-            android:name=".LocationActivity"
+            android:name="com.jamesfchen.map.LocationActivity"
             android:hardwareAccelerated="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -35,15 +35,15 @@
         </activity>
         <service
             android:foregroundServiceType="location"
-            android:name=".service.LbsServices"
+            android:name="com.jamesfchen.map.service.LbsServices"
             />
         <service
             android:foregroundServiceType="location"
-            android:name=".service.LbsJobService"
+            android:name="com.jamesfchen.map.service.LbsJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:foregroundServiceType="location"
-            android:name=".service.LbsJobIntentService"
+            android:name="com.jamesfchen.map.service.LbsJobIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:foregroundServiceType="location"

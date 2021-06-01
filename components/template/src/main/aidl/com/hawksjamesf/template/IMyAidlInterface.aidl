@@ -1,5 +1,5 @@
 // IMyAidlInterface.aidl
-package com.hawksjamesf.template;
+package com.jamesfchen.template;
 
 // Declare any non-default types here with import statements
 interface IMyAidlInterface {

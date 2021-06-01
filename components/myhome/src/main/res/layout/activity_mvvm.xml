@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.hawksjamesf.myhome.ProfileViewModel" />
+            type="com.jamesfchen.myhome.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

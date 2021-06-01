@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.hawksjamesf.myhome">
+    package="com.jamesfchen.myhome">
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <application>
-        <activity android:name="com.hawksjamesf.myhome.ui.person.SettingsActivity" />
+        <activity android:name="com.jamesfchen.myhome.ui.person.SettingsActivity" />
         <activity
-            android:name="com.hawksjamesf.myhome.MainActivity"
+            android:name="com.jamesfchen.myhome.MainActivity"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop">
 <!--            通过url路由调用改页面-->
@@ -34,12 +34,12 @@
 
         </activity>
         <activity
-            android:name="com.hawksjamesf.myhome.ui.home.HomeActivity"
+            android:name="com.jamesfchen.myhome.ui.home.HomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/HomeTheme" />
 
         <activity
-            android:name="com.hawksjamesf.myhome.SplashActivity"
+            android:name="com.jamesfchen.myhome.SplashActivity"
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="adjustPan">
@@ -52,9 +52,9 @@
             <!--            launcher启动 end -->
 
         </activity>
-        <activity android:name="com.hawksjamesf.spacecraft.NavigationActivity" />
-        <activity android:name="com.hawksjamesf.spacecraft.vm.MVVMActivity" />
-        <activity android:name="com.hawksjamesf.myhome.WebViewActivity">
+        <activity android:name="com.jamesfchen.spacecraft.NavigationActivity" />
+        <activity android:name="com.jamesfchen.spacecraft.vm.MVVMActivity" />
+        <activity android:name="com.jamesfchen.myhome.WebViewActivity">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -80,7 +80,7 @@
             android:multiprocess="true"
             tools:node="remove"
             tools:targetApi="n" />
-        <activity android:name=".BlankActivity">
+        <activity android:name="com.jamesfchen.myhome.BlankActivity">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -88,7 +88,7 @@
             <!--            </intent-filter>-->
         </activity>
         <receiver
-            android:name=".SetWallpaper"
+            android:name="com.jamesfchen.myhome.SetWallpaper"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
