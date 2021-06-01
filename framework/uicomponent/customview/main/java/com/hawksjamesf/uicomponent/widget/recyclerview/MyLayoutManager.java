@@ -1,4 +1,4 @@
-package com.hawksjamesf.uicomponent.widget.reccyclerview;
+package com.hawksjamesf.uicomponent.widget.recyclerview;
 
 import androidx.recyclerview.widget.RecyclerView;
 

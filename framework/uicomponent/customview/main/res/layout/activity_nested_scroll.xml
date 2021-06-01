@@ -8,7 +8,7 @@
     <!--    <ScrollView-->
     <!--    <androidx.core.widget.NestedScrollView-->
 
-    <com.hawksjamesf.myhome.widget.scrollExprimental.SuperScrollView
+    <com.hawksjamesf.uicomponent.scrollExprimental.SuperScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -143,7 +143,7 @@
 
 
         </LinearLayout>
-    </com.hawksjamesf.myhome.widget.scrollExprimental.SuperScrollView>
+    </com.hawksjamesf.uicomponent.scrollExprimental.SuperScrollView>
     <!--    </ScrollView>-->
     <!--    </androidx.core.widget.NestedScrollView>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
