@@ -24,7 +24,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.hawksjamesf.common.constants.MemoryUnit;
 import com.hawksjamesf.uicomponent.model.Page;
-import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.ViewExtensionKt;
+import com.tencent.matrix.trace.util.ViewUtil;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -106,7 +106,7 @@ public class PhotoFragment extends Fragment {
                     .into(ivPhoto);
 
         }
-        final ViewOffsetHelper viewOffsetHelper = ViewExtensionKt.getViewOffsetHelper(ivPhoto);
+//        final ViewOffsetHelper viewOffsetHelper = ViewUtil.getViewOffsetHelper(ivPhoto);
         final int touchSlop = ViewConfiguration.get(getActivity()).getScaledTouchSlop();
 //        ivPhoto.setOnDragListener(new View.OnDragListener() {
 //

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hawksjamesf.uicomponent.scrollExprimental.B
+    <com.hawksjamesf.myhome.widget.scrollExprimental.B
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -55,9 +55,9 @@
 
 
         </com.hawksjamesf.myhome.custom.BB>
-    </com.hawksjamesf.uicomponent.scrollExprimental.B>
+    </com.hawksjamesf.myhome.widget.scrollExprimental.B>
 
-    <com.hawksjamesf.uicomponent.scrollExprimental.A
+    <com.hawksjamesf.myhome.widget.scrollExprimental.A
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -65,6 +65,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"></com.hawksjamesf.myhome.custom.AA>
-    </com.hawksjamesf.uicomponent.scrollExprimental.A>
+    </com.hawksjamesf.myhome.widget.scrollExprimental.A>
 
 </LinearLayout>

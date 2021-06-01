@@ -23,7 +23,7 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
-import com.hawksjamesf.uicomponent.ConstraintPerformanceActivity
+import com.hawksjamesf.uicomponent.newLayoutExprimental.ConstraintPerformanceActivity
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

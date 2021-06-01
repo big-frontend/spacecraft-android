@@ -45,10 +45,10 @@
             android:label="@string/title_activity_drawable"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".PagerViewActivity"
+            android:name=".widget.carousel.PagerViewActivity"
             android:exported="true" />
         <activity
-            android:name=".ViewPagerActivity"
+            android:name=".widget.carousel.ViewPagerActivity"
             android:exported="true" />
         <activity android:name="com.hawksjamesf.uicomponent.FeedbackUtilActivity" />
         <activity android:name="com.hawksjamesf.uicomponent.BottomUpActivity" />

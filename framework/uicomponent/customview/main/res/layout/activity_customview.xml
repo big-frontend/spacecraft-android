@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hawksjamesf.uicomponent.CustomViewGroup
+    <com.hawksjamesf.myhome.widget.CustomViewGroup
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/apricot">
 
-        <com.hawksjamesf.uicomponent.CustomView
+        <com.hawksjamesf.myhome.widget.CustomView
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@android:color/white"
@@ -18,6 +18,6 @@
             android:textColor="@color/apricot"
             android:textSize="40sp" />
 
-    </com.hawksjamesf.uicomponent.CustomViewGroup>
+    </com.hawksjamesf.myhome.widget.CustomViewGroup>
 </FrameLayout>
 

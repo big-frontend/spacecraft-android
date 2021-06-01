@@ -14,7 +14,7 @@
         app:lottie_fileName="17902-covid19.json"
         app:lottie_loop="true" />
 
-    <com.hawksjamesf.uicomponent.animationsExprimental.widget.ViewFlipper2
+    <com.hawksjamesf.myhome.widget.animationsExprimental.widget.ViewFlipper2
         android:id="@+id/vf_vf2"
         android:layout_width="244dp"
         android:layout_height="200dp"

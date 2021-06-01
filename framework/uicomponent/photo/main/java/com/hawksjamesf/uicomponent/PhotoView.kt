@@ -11,7 +11,6 @@ import androidx.annotation.RawRes
 import androidx.appcompat.widget.AppCompatImageView
 import com.almeros.android.multitouch.MoveGestureDetector
 import com.blankj.utilcode.util.ImageUtils
-import com.hawksjamesf.uicomponent.newLayoutExprimental.coordinator.getViewOffsetHelper
 
 
 /**
@@ -39,7 +38,7 @@ class PhotoView : AppCompatImageView {
     init {
         val maxMemory = Runtime.getRuntime().maxMemory()
         val freeMemory = Runtime.getRuntime().freeMemory()
-        val viewOffsetHelper: ViewOffsetHelper = this.getViewOffsetHelper()
+//        val viewOffsetHelper: ViewOffsetHelper = this.getViewOffsetHelper()
         moveGestureDetector= MoveGestureDetector(context,object: MoveGestureDetector.SimpleOnMoveGestureListener(){
             override fun onMove(detector: MoveGestureDetector): Boolean {
                 val d = detector.focusDelta
