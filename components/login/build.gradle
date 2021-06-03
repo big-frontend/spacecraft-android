@@ -1,4 +1,4 @@
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/component.gradle"
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle.gradle"
 def srcDirs = [
 
 ]
