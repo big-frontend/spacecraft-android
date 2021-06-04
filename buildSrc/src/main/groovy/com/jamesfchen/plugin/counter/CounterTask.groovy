@@ -3,26 +3,38 @@ package com.jamesfchen.plugin.counter
 
 import com.jamesfchen.plugin.util.P
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
 class CounterTask extends DefaultTask {
     public List<File> srcDirs
+    @Input
     int l_totals = 0
+    @Input
     int lines = 0
-
+    @Input
     int j_l_totals = 0
+    @Input
     int j_lines = 0
+    @Input
     int j_f_totals = 0
+    @Input
     int j_files = 0
-
+    @Input
     int k_l_totals = 0
+    @Input
     int k_lines = 0
+    @Input
     int k_f_totals = 0
+    @Input
     int k_files = 0
-
+    @Input
     int c_l_totals = 0
+    @Input
     int c_lines = 0
+    @Input
     int c_f_totals = 0
+    @Input
     int c_files = 0
 
     @TaskAction

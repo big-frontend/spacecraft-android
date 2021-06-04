@@ -1,7 +1,4 @@
 package com.jamesfchen.uicomponent.widget.recyclerview;
-
-import android.util.Log;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 /**

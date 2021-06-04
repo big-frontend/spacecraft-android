@@ -5,9 +5,11 @@ import com.jamesfchen.plugin.util.P
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ProjectDependency
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
 class ReportMappingTask extends DefaultTask {
+    @Input
     Object variant
 
     @TaskAction

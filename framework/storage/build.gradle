@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-
+apply plugin: 'foundation-module'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion

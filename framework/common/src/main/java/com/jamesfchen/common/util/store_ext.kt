@@ -1,4 +1,4 @@
-@file:JvmName("StorageUtil")
+@file:JvmName("StoreUtil")
 package com.jamesfchen.common.util
 
 import android.content.Context

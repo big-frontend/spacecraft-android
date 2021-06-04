@@ -7,11 +7,18 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
         google()
     }
 }
-
+apply plugin: "java-gradle-plugin"
+gradlePlugin {
+    plugins {
+        foundationModule {
+            id = 'foundation-module'
+            implementationClass = 'com.jamesfchen.plugin.FoundationModulePlugin'
+        }
+    }
+}
 sourceSets {
     main {
         ["src/main/kotlin","src/main/java"].forEach {
