@@ -6,7 +6,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
+        <activity android:name=".widget.recyclerview.RecyclerViewActivity"/>
         <activity android:name="com.jamesfchen.uicomponent.animationsExprimental.AnimActivity" />
         <activity
             android:name="com.jamesfchen.uicomponent.animationsExprimental.DetailActivity"

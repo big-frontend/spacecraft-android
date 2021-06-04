@@ -15,7 +15,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.jamesfchen.annotations.TraceTime;
 import com.jamesfchen.common.util.ActivityUtil;
 import com.jamesfchen.loader.App;
-import com.jamesfchen.uicomponent.CustomViewActivity;
+import com.jamesfchen.uicomponent.widget.recyclerview.RecyclerViewActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +53,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        ActivityUtil.startActivity(CustomViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                        ActivityUtil.startActivity(RecyclerViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                         finish();
                     }

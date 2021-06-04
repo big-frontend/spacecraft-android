@@ -13,14 +13,5 @@
         <attr name="bezierFactor" format="integer"/>
         <attr name="anim_duration" format="integer"/>
     </declare-styleable>
-    <declare-styleable name="CarouselView">
-        <attr name="cv_autoStart" format="boolean"/>
-        <attr name="cv_interval" format="integer"/>
-    </declare-styleable>
-    <declare-styleable name="PagerView">
-        <attr name="pv_orientation" format="enum">
-            <enum name="horizontal" value="0"/>
-            <enum name="vertical" value="1"/>
-        </attr>
-    </declare-styleable>
+
 </resources>
