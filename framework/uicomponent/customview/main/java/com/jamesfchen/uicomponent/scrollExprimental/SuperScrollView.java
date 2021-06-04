@@ -106,6 +106,7 @@ public class SuperScrollView extends FrameLayout {
             heightPadding = getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin;
 
             final int desiredHeight = getMeasuredHeight() - heightPadding;
+            //给子view高度为scroolview的高度
             if (child.getMeasuredHeight() < desiredHeight) {
                 final int childWidthMeasureSpec = getChildMeasureSpec(
                         widthMeasureSpec, widthPadding, lp.width);

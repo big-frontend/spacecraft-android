@@ -4,5 +4,6 @@
 
     <application
         android:name="com.jamesfchen.loader.App"
-        android:theme="@style/AppTheme"></application>
+        android:theme="@style/AppTheme">
+    </application>
 </manifest>

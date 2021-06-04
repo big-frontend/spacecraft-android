@@ -1,11 +1,15 @@
 package com.jamesfchen.map;
 
 import android.location.Location;
+import android.os.Build;
 import android.os.Environment;
 import android.telephony.CellInfo;
 import android.util.JsonWriter;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
+import com.blankj.utilcode.util.ConvertUtils;
 import com.jamesfchen.map.model.AppCellInfo;
 import com.jamesfchen.map.model.AppLocation;
 
@@ -21,10 +25,8 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 
 
+
 class FileIOUtils {
-    File moviesFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
-    File downloadsFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    File picturesFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
     byte[] quarter_k_butter=new byte[256];//256个字节,0.25k
     byte[] one_k_butter =new byte[1024];//1k
     byte[] four_k_butter = new byte[4096];//4096个字节,4k

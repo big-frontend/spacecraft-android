@@ -37,3 +37,7 @@ layer | devices|传输数据的基本单位
 网络层|路由器|数据分组
 数据链路层|网桥、交换机|数据帧
 物理层|中继器、集线器|比特流
+
+
+# ssl/tls
+[Java使用SSLSocket通信](https://my.oschina.net/itblog/blog/651608)
