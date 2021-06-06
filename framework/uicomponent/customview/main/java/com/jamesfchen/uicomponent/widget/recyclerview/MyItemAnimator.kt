@@ -3,7 +3,7 @@ package com.jamesfchen.uicomponent.widget.recyclerview
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 
-class MyItemAnimator : SimpleItemAnimator() {
+class  MyItemAnimator : SimpleItemAnimator() {
     override fun animateChange(
         oldHolder: RecyclerView.ViewHolder?,
         newHolder: RecyclerView.ViewHolder?,

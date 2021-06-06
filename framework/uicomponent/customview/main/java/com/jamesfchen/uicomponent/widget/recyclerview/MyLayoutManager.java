@@ -24,6 +24,11 @@ public class MyLayoutManager extends RecyclerView.LayoutManager{
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        super.onLayoutChildren(recycler, state);
+//        recycler.getViewForPosition()
+    }
+
+    @Override
+    public void onLayoutCompleted(RecyclerView.State state) {
+        super.onLayoutCompleted(state);
     }
 }

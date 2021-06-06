@@ -9,11 +9,11 @@ import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearSmoothScroller;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.HashSet;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A {@link android.support.v7.widget.RecyclerView.LayoutManager} implementation
@@ -134,7 +134,6 @@ public class FixedGridLayoutManager extends RecyclerView.LayoutManager {
             View scrap = recycler.getViewForPosition(0);
             addView(scrap);
             measureChildWithMargins(scrap, 0, 0);
-
             /*
              * We make some assumptions in this code based on every child
              * view being the same size (i.e. a uniform grid). This allows

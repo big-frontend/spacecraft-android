@@ -3,9 +3,9 @@ package com.jamesfchen.uicomponent.widget.recyclerview
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.PagerSnapHelper
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jamesfchen.uicomponent.Adapter
 import com.jamesfchen.uicomponent.InsetDecoration
@@ -46,7 +46,11 @@ class RecyclerViewActivity : Activity() {
 //        val myLayoutManager = MyLayoutManager()
 //        myLayoutManager.startSmoothScroll(MySmoothScroller())
 //        rv_image_text.layoutManager =myLayoutManager
+        val fglm = FixedGridLayoutManager()
+        fglm.setTotalColumnCount(3)
+        rv_image_text.layoutManager = fglm
         rv_image_text.itemAnimator = MyItemAnimator()
+        val llm = LinearLayoutManager(this)
         rv_image_text.addItemDecoration(InsetDecoration(this))
         rv_image_text.addOnScrollListener(object :RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -68,5 +72,31 @@ class RecyclerViewActivity : Activity() {
 //        PagerSnapHelper().attachToRecyclerView(rv_image_text)
 //        LinearSnapHelper().attachToRecyclerView(rv_image_text)
         adapter.addDatas(dataList)
+        bt_add_view.setOnClickListener {
+            val b = object:Button(this){
+                override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+                    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+                    Log.d("cjf","onMeasure")
+                }
+                override fun onAttachedToWindow() {
+                    super.onAttachedToWindow()
+                    Log.d("cjf","onAttachedToWindow")
+                }
+            }
+            b.text= "btn 3=4"
+            ll_container.addView(b, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+        val b = object:Button(this){
+            override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+                super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+                Log.d("cjf","onMeasure")
+            }
+            override fun onAttachedToWindow() {
+                super.onAttachedToWindow()
+                Log.d("cjf","onAttachedToWindow")
+            }
+        }
+        b.text= "btn 3"
+        ll_container.addView(b, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 }

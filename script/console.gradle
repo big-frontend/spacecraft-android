@@ -38,12 +38,27 @@ def printVerbose(Object message) {
     println(message)
 }
 
-
+def child(Object msg){
+    println("👶[ gradle 开始 ] ${msg}")
+}
+def teenager(Object msg){
+    println("👩‍🎓👨‍🎓[ initialzation ] ${msg}")
+}
+def middleAge(Object msg){
+    println("👰🤵[ configuration ] ${msg}")
+}
+def theElderly(Object msg){
+    println("👵👴[ gradle 结束 ] ${msg}")
+}
 ext {
     printVerbose = this.&printVerbose
     printDebug = this.&printDebug
     printInfo = this.&printInfo
     printWarn = this.&printWarn
     printError = this.&printError
+    child = this.&child
+    teenager = this.&teenager
+    middleAge = this.&middleAge
+    theElderly = this.&theElderly
 }
 

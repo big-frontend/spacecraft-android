@@ -20,4 +20,85 @@ if (isHaHa.toBoolean()) {
     //apply from: 'script/include_flutter.gradle'
 }
 println("settings end")
+def printlnBorn(){
 
+}
+
+gradle.buildStarted {
+    println("👶[ gradle 开始 ] buildStarted 开始之前 start")
+    println("👶[ gradle 开始 ] buildStarted 开始之前 end")
+}
+//
+gradle.settingsEvaluated { g ->
+    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded setting.gradle脚本初始化完成 start")
+    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded setting.gradle脚本初始化完成 end")
+}
+//project初始化完成的回调
+gradle.projectsLoaded {
+    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 start")
+    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 end")
+}
+
+//project.afterEvaluate {}
+//gradle.beforeProject {
+//    println("👰🤵[ configuration ] beforeProject 某个build.gradle执行之前 start")
+//    println("👰🤵[ configuration ] beforeProject 某个build.gradle执行之前 end")
+//}
+//project.afterEvaluate {}
+//gradle.afterProject {
+//    println("👰🤵[ configuration ] afterProject 某个build.gradle执行之后 start")
+//    println("👰🤵[ configuration ] afterProject 某个build.gradle执行之后 end")
+//}
+gradle.projectsEvaluated {
+    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 start")
+    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 end")
+}
+gradle.taskGraph.whenReady { taskGraph ->
+    println("👰🤵[ configuration ] whenReady task关系图建立完毕 start")
+    println("👰🤵[ configuration ] whenReady task关系图建立完毕 end")
+}
+
+gradle.taskGraph.beforeTask {
+    println("🏃👩‍💼👨‍💻[ run ] beforeTask task关系图执行之前 start")
+    println("🏃👩‍💼👨‍💻[ run ] beforeTask task关系图执行之前 end")
+}
+gradle.taskGraph.afterTask {
+    println("🏃👩‍💼👨‍💻[ run ] afterTask task关系图执行之后 start")
+    println("🏃👩‍💼👨‍💻[ run ] afterTask task关系图执行之后 end")
+}
+gradle.buildFinished {
+    println("👵👴[ gradle 结束 ] buildFinished  start")
+    println("👵👴[ gradle 结束 ] buildFinished  end")
+}
+//gradle.addBuildListener(new BuildListener() {
+//
+//    @Override
+//    void buildStarted(Gradle gradle) {
+//
+//    }
+//
+//    @Override
+//    void settingsEvaluated(Settings settings) {
+//
+//    }
+//
+//    @Override
+//    void projectsLoaded(Gradle gradle) {
+//
+//    }
+//
+//    @Override
+//    void projectsEvaluated(Gradle gradle) {
+//
+//    }
+//
+//    @Override
+//    void buildFinished(BuildResult buildResult) {
+//
+//    }
+//
+//    @Override
+//    void beforeSettings(Settings settings) {
+//        super.beforeSettings(settings)
+//    }
+//})
