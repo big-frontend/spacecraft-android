@@ -1,5 +1,3 @@
-package com.jamesfchen.plugin.util;
-
 public final class P {
 
     public static final String ANSI_RESET = "\u001B[0m";

@@ -1,9 +1,9 @@
 /**
- * 读取bundle_config.json信息include具体的模块
+ * 读取module_config.json信息include具体的模块
  */
-println("settings start")
 include ':app'
-include ':gradle_plugin', ':instrumentation:annotations', ':instrumentation:processor'
+//include ':gradle_plugin'
+include ':instrumentation:annotations', ':instrumentation:processor'
 if (isHaHa.toBoolean()) {
     include ':components:template'
     include ':components:module1'
@@ -19,19 +19,14 @@ if (isHaHa.toBoolean()) {
     evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
     //apply from: 'script/include_flutter.gradle'
 }
-println("settings end")
-def printlnBorn(){
 
-}
-
-gradle.buildStarted {
-    println("👶[ gradle 开始 ] buildStarted 开始之前 start")
-    println("👶[ gradle 开始 ] buildStarted 开始之前 end")
-}
-//
+//gradle.buildStarted {
+//    println("👶[ gradle 开始 ] buildStarted 开始之前 start")
+//    println("👶[ gradle 开始 ] buildStarted 开始之前 end")
+//}
 gradle.settingsEvaluated { g ->
-    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded setting.gradle脚本初始化完成 start")
-    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded setting.gradle脚本初始化完成 end")
+    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 start")
+    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 end")
 }
 //project初始化完成的回调
 gradle.projectsLoaded {
@@ -58,13 +53,13 @@ gradle.taskGraph.whenReady { taskGraph ->
     println("👰🤵[ configuration ] whenReady task关系图建立完毕 end")
 }
 
-gradle.taskGraph.beforeTask {
-    println("🏃👩‍💼👨‍💻[ run ] beforeTask task关系图执行之前 start")
-    println("🏃👩‍💼👨‍💻[ run ] beforeTask task关系图执行之前 end")
+gradle.taskGraph.beforeTask {theTask->
+    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 start")
+    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 end")
 }
-gradle.taskGraph.afterTask {
-    println("🏃👩‍💼👨‍💻[ run ] afterTask task关系图执行之后 start")
-    println("🏃👩‍💼👨‍💻[ run ] afterTask task关系图执行之后 end")
+gradle.taskGraph.afterTask { theTask->
+    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 start")
+    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 end")
 }
 gradle.buildFinished {
     println("👵👴[ gradle 结束 ] buildFinished  start")

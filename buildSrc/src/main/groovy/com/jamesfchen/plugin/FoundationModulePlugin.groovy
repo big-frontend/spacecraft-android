@@ -1,11 +1,12 @@
 package com.jamesfchen.plugin
+
 import org.gradle.api.Project
 
 class FoundationModulePlugin extends BaseModulePlugin {
 
     @Override
     void onApply(Project project) {
-        def moduleConfig = project.extensions.create("moduleConfig", ModuleExtension)
+//        def moduleConfig = project.extensions.create("moduleConfig", ModuleExtension)
         project.android.sourceSets {
             if (project.hasProperty("srcDirs")) {
                 main {
@@ -37,9 +38,6 @@ class FoundationModulePlugin extends BaseModulePlugin {
 
                 }
             }
-        }
-        project.dependencies {
-            implementation project.dependencies.project(path: ':framework:common')
         }
     }
 }

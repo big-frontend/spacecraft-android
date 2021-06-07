@@ -4,7 +4,11 @@ android {
         buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
     }
 }
-
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
 }

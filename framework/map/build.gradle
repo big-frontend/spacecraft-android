@@ -1,54 +1,15 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: "kotlin-android-extensions"
-apply plugin: 'kotlin-kapt'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-
+apply plugin: 'foundation-module'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"/*, "x86", "x86_64"*/
         }
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-//        inhouse {
-//            initWith debug
-//            debuggable true
-//        }
-    }
-//    sourceSets {
-//        main {
-//            java.srcDirs += ['src/inhouse/java']
-//        }
-//    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    api project(path: ':framework:common')
+    implementation project(path: ':framework::common')
     api project(path: ':framework:uicomponent')
     api 'com.amap.api:location:4.7.2'
     api 'com.amap.api:search:6.9.2'

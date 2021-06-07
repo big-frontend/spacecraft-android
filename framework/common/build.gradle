@@ -1,26 +1,13 @@
 //noinspection GradleDynamicVersion
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: "kotlin-android-extensions"
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlinx-serialization'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-def srcDirs = [
+ext.srcDirs = [
         "async",
         "serialization",
         "apm",
 ]
+apply plugin: 'foundation-module'
+
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
@@ -41,71 +28,6 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
-        component {
-            initWith debug
-            debuggable true
-        }
-    }
-    sourceSets {
-        main {
-//            java.includes = srcDirs.collect { 'src/' + it + '/**/*.java' }
-            java.excludes = [
-                    '**/build/**',
-            ]
-//            srcDirs.forEach {
-//                res.srcDirs += 'src/' + it + '/res'
-//                res.srcDirs += 'src/' + it + '/res-frame-animation'
-//                assets.srcDirs += 'src/' + it + '/assets'
-//                java.srcDirs += 'src/' + it + '/java'
-//                aidl.srcDirs += 'src/' + it + '/aidl'
-//            }
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/main/assets"
-                aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res"
-                java.srcDirs += "$projectDir/$it/main/java"
-                jni.srcDirs +=  "$projectDir/$it/main/jni"
-                jniLibs.srcDirs +=  "$projectDir/$it/main/jniLibs"
-
-            }
-        }
-//        main.java.srcDirs += ["src/main/kotlin"]
-//
-//        //carousel component
-//        main.java.srcDirs += ["src/carousel/java"]
-//        main.res.srcDirs += ["src/carousel/res"]
-//        main.assets.srcDirs += ["src/carousel/assets"]
-//
-//        //video component
-//        main.aidl.srcDirs += ["src/video/aidl"]
-//        main.java.srcDirs += ["src/video/java"]
-//        main.res.srcDirs += ["src/video/res"]
-//        main.assets.srcDirs += ["src/video/assets"]
-        androidTest {
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                res.srcDirs += "$projectDir/$it/androidTest/res"
-                java.srcDirs += "$projectDir/$it/androidTest/java"
-            }
-        }
-        test {
-            srcDirs.forEach {
-//                res.srcDirs += "$projectDir/$it/test/resources"
-                java.srcDirs += "$projectDir/$it/test/java"
-            }
-
-        }
-    }
-    lintOptions {
-        abortOnError false
-    }
 //    packagingOptions {
 //        pickFirst 'lib/armeabi-v7a/libhotfix.so'
 //        pickFirst 'lib/armeabi-v7a/libhawks.so'
@@ -118,8 +40,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     api "androidx.activity:activity-ktx:1.1.0"
     api 'androidx.fragment:fragment-ktx:1.2.3'
     api "androidx.activity:activity:1.1.0"
@@ -220,8 +140,8 @@ dependencies {
     api 'org.greenrobot:eventbus:3.1.1'
     // Dagger dependencies
 //    kapt "com.google.dagger:dagger-compiler:2.16"
-    api "com.google.dagger:dagger:2.16"
-    api "com.google.dagger:dagger-android:2.16"
+    api "com.google.dagger:dagger:2.28.3"
+    api "com.google.dagger:dagger-android:2.35.1"
     api "com.google.dagger:dagger-android-support:2.16"
 //    kapt "com.google.dagger:dagger-android-processor:2.16"
     /**
@@ -261,17 +181,6 @@ dependencies {
 
     /**
      * ===============================monitor end=============================
-     */
-
-    /**
-     * ===============================image start=============================
-     */
-    api "com.github.bumptech.glide:glide:4.10.0"
-    kapt "com.github.bumptech.glide:compiler:4.10.0"
-    api 'androidx.exifinterface:exifinterface:1.1.0'
-    api "com.github.bumptech.glide:recyclerview-integration:4.9.0"
-    /**
-     * ===============================image end=============================
      */
 
 }

@@ -1,5 +1,7 @@
 package com.jamesfchen.plugin
 
+import com.jamesfchen.plugin.util.P
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -7,10 +9,21 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
+        def snmae=this.class.getSimpleName()
+        def lastindex= snmae.indexOf('ModulePlugin')
+        def type= snmae.substring(0,lastindex).toLowerCase()
+        project.beforeEvaluate {
+            P.info("==>>>>>>>>>>>>>>>>$type[${project.name}] start")
+        }
+        project.afterEvaluate {
+            P.info("<<<<<<<<<<<<<<<==$type[${project.name}] end")
+        }
         project.plugins.apply("com.android.library")
         project.plugins.apply("kotlin-android")
         project.plugins.apply("kotlin-android-extensions")
+//        project.plugins.apply("kotlin-parcelize")
         project.plugins.apply("kotlin-kapt")
+
         project.android.compileSdkVersion = Config.COMPILE_SDK_VERSION
         project.android.buildToolsVersion = Config.BUILD_TOOLS_VERSION
         project.android{
@@ -30,6 +43,17 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
 //            }
             kotlinOptions {
                 jvmTarget = "1.8"
+            }
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+//            buildFeatures {
+//                viewBinding true
+//            }
+
+            lintOptions {
+                abortOnError false
             }
         }
         project.dependencies {

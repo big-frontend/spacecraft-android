@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/console.gradle"
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion

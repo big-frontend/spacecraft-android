@@ -1,9 +1,4 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: "kotlin-android-extensions"
-apply plugin: 'kotlin-kapt'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
-def srcDirs = [
+project.ext.srcDirs =[
 //        "super-retrofit/retrofit/src",
 //        "super-retrofit/retrofit-adapters/rxjava3/src",
 //        "super-retrofit/retrofit-converters/gson/src",
@@ -11,70 +6,7 @@ def srcDirs = [
 //        "super-retrofit/retrofit-converters/wire/src"
 //
 ]
-android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets {
-        main {
-            java.excludes = [
-                    '**/build/**',
-            ]
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/main/assets"
-                aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
-                res.srcDirs += "$projectDir/$it/main/res"
-                java.srcDirs += "$projectDir/$it/main/java"
-            }
-            java {
-                //${protobuf.generatedFilesBaseDir}：
-                // /Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/network/build/generated/source/proto
-                //protobuf
-//                srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
-                //wire
-//                srcDirs += "src/main/wire"
-                //gson
-//                srcDirs += "src/main/gson"
-            }
-        }
-        androidTest {
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                res.srcDirs += "$projectDir/$it/androidTest/res"
-                java.srcDirs += "$projectDir/$it/androidTest/java"
-            }
-        }
-        test {
-            srcDirs.forEach {
-                java.srcDirs += "$projectDir/$it/test/java"
-            }
-
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-//    println("getLocalIP--->${getLocalIP()}")
-}
+apply plugin: 'foundation-module'
 
 static String getLocalIP() {
     InetAddress result = null
@@ -96,7 +28,6 @@ static String getLocalIP() {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation files('libs/jsoup-1.12.1.jar')
     api project(path: ':framework:common')
     api project(path: ':mockserver')

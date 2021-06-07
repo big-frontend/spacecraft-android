@@ -14,6 +14,7 @@ project.ext.srcDirs =[
 apply plugin: 'foundation-module'
 
 dependencies {
+    implementation project(path: ':framework:common')
 //    implementation project(path: ':framework:av')
 //    implementation project(path: ':image')
     /**
