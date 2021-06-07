@@ -1,43 +1,10 @@
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle.gradle"
-def srcDirs = [
-
-]
+apply plugin: 'bundle-module'
 android {
     defaultConfig{
         buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
     }
-    sourceSets {
-        main {
-            java.excludes = [
-                    '**/build/**',
-            ]
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/main/assets"
-                aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res"
-                java.srcDirs += "$projectDir/$it/main/java"
-            }
-        }
-        androidTest {
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                res.srcDirs += "$projectDir/$it/androidTest/res"
-                java.srcDirs += "$projectDir/$it/androidTest/java"
-            }
-        }
-        test {
-            srcDirs.forEach {
-                java.srcDirs += "$projectDir/$it/test/java"
-            }
-
-        }
-    }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.firebase:firebase-auth:17.0.0'
-
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
 }

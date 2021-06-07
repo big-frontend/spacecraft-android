@@ -11,7 +11,7 @@ project.ext.srcDirs =[
         "customview",
 
 ]
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation.gradle"
+apply plugin: 'foundation-module'
 
 dependencies {
 //    implementation project(path: ':framework:av')

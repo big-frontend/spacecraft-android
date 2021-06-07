@@ -1,10 +1,4 @@
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle.gradle"
-printInfo("==>>>>>>>>>>>>>>>>myhome start")
-def srcDirs = [
-//        "navigation",
-//        "workmanager",
-//        "workmanager-lib",
-]
+apply plugin: 'bundle-module'
 android {
     defaultConfig{
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
@@ -25,34 +19,4 @@ android {
             //path 'src/main/cpp/CMakeLists.txt'
         }
     }
-    sourceSets {
-        main {
-            java.excludes = [
-                    '**/build/**',
-            ]
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/main/assets"
-                aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res"
-                java.srcDirs += "$projectDir/$it/main/java"
-            }
-        }
-        androidTest {
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                res.srcDirs += "$projectDir/$it/androidTest/res"
-                java.srcDirs += "$projectDir/$it/androidTest/java"
-            }
-        }
-        test {
-            srcDirs.forEach {
-                java.srcDirs += "$projectDir/$it/test/java"
-            }
-
-        }
-    }
-}
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

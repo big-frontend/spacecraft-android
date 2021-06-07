@@ -1,37 +1,45 @@
 package com.jamesfchen.plugin
-
-
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class FoundationModulePlugin implements Plugin<Project> {
+class FoundationModulePlugin extends BaseModulePlugin {
 
     @Override
-    void apply(Project project) {
-        project.plugins.apply("com.android.library")
-        project.plugins.apply("kotlin-android")
-        project.plugins.apply("kotlin-android-extensions")
-        project.plugins.apply("kotlin-kapt")
-        project.plugins.apply("realm-android")
-        project.android.compileSdkVersion = Config.COMPILE_SDK_VERSION
-        project.android.buildToolsVersion = Config.BUILD_TOOLS_VERSION
-        project.android.defaultConfig {
-            minSdkVersion Config.MIN_SDK_VERSION
-            targetSdkVersion Config.TARGET_SDK_VERSION
-            versionCode Config.VERSION_CODE
-            versionName Config.VERSION_NAME
+    void onApply(Project project) {
+        def moduleConfig = project.extensions.create("moduleConfig", ModuleExtension)
+        project.android.sourceSets {
+            if (project.hasProperty("srcDirs")) {
+                main {
+                    java.excludes = [
+                            '**/build/**',
+                    ]
+                    project.ext.srcDirs.forEach {
+                        assets.srcDirs += "$project.projectDir/$it/main/assets"
+                        aidl.srcDirs += "$project.projectDir/$it/main/aidl"
+                        res.srcDirs += "$project.projectDir/$it/main/res-frame-animation"
+                        res.srcDirs += "$project.projectDir/$it/main/res"
+                        java.srcDirs += "$project.projectDir/$it/main/java"
 
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                    }
+                }
+                androidTest {
+                    project.ext.srcDirs.forEach {
+                        assets.srcDirs += "$project.projectDir/$it/androidTest/assets"
+                        aidl.srcDirs += "$project.projectDir/$it/androidTest/aidl"
+                        res.srcDirs += "$project.projectDir/$it/androidTest/res"
+                        java.srcDirs += "$project.projectDir/$it/androidTest/java"
+
+                    }
+                }
+                test {
+                    project.ext.srcDirs.forEach {
+                        java.srcDirs += "$project.projectDir/$it/test/java"
+                    }
+
+                }
+            }
         }
-        project.afterEvaluate {
-
-            project.android.defaultConfig.javaCompileOptions.annotationProcessorOptions.arguments = [
-                    "room.schemaLocation"  : "$projectDir/schemas".toString(),
-                    "room.incremental"     : "true",
-                    "room.expandProjection": "true"
-            ]
+        project.dependencies {
+            implementation project.dependencies.project(path: ':framework:common')
         }
-
-
     }
 }

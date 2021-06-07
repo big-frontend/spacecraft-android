@@ -1,12 +1,23 @@
 package com.jamesfchen.plugin
 
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class  BundleModulePlugin implements Plugin<Project> {
+class BundleModulePlugin extends BaseModulePlugin {
 
     @Override
-    void apply(Project project) {
+    void onApply(Project project) {
+        project.kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        project.dependencies {
+            api project.dependencies.project(path: ':framework:loader')
+            kapt "com.google.dagger:dagger-compiler:2.16"
+            kapt "com.google.dagger:dagger-android-processor:2.16"
+            annotationProcessor 'androidx.databinding:databinding-compiler:4.1.0-alpha01'
+            kapt 'com.alibaba:arouter-compiler:1.2.1'
+        }
 
     }
 }
