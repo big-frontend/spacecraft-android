@@ -24,15 +24,15 @@ if (isHaHa.toBoolean()) {
 //    println("👶[ gradle 开始 ] buildStarted 开始之前 start")
 //    println("👶[ gradle 开始 ] buildStarted 开始之前 end")
 //}
-gradle.settingsEvaluated { g ->
-    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 start")
-    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 end")
-}
-//project初始化完成的回调
-gradle.projectsLoaded {
-    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 start")
-    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 end")
-}
+//gradle.settingsEvaluated { g ->
+//    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 start")
+//    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 end")
+//}
+////project初始化完成的回调
+//gradle.projectsLoaded {
+//    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 start")
+//    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 end")
+//}
 
 //project.afterEvaluate {}
 //gradle.beforeProject {
@@ -44,27 +44,27 @@ gradle.projectsLoaded {
 //    println("👰🤵[ configuration ] afterProject 某个build.gradle执行之后 start")
 //    println("👰🤵[ configuration ] afterProject 某个build.gradle执行之后 end")
 //}
-gradle.projectsEvaluated {
-    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 start")
-    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 end")
-}
-gradle.taskGraph.whenReady { taskGraph ->
-    println("👰🤵[ configuration ] whenReady task关系图建立完毕 start")
-    println("👰🤵[ configuration ] whenReady task关系图建立完毕 end")
-}
-
-gradle.taskGraph.beforeTask {theTask->
-    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 start")
-    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 end")
-}
-gradle.taskGraph.afterTask { theTask->
-    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 start")
-    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 end")
-}
-gradle.buildFinished {
-    println("👵👴[ gradle 结束 ] buildFinished  start")
-    println("👵👴[ gradle 结束 ] buildFinished  end")
-}
+//gradle.projectsEvaluated {
+//    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 start")
+//    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 end")
+//}
+//gradle.taskGraph.whenReady { taskGraph ->
+//    println("👰🤵[ configuration ] whenReady task关系图建立完毕 start")
+//    println("👰🤵[ configuration ] whenReady task关系图建立完毕 end")
+//}
+//
+//gradle.taskGraph.beforeTask {theTask->
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 start")
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 end")
+//}
+//gradle.taskGraph.afterTask { theTask->
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 start")
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 end")
+//}
+//gradle.buildFinished {
+//    println("👵👴[ gradle 结束 ] buildFinished  start")
+//    println("👵👴[ gradle 结束 ] buildFinished  end")
+//}
 //gradle.addBuildListener(new BuildListener() {
 //
 //    @Override

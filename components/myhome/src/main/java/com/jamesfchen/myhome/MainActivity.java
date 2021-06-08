@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity {
 //        navController.navigate(R.id.action_step_two, null, options);
 //        navController.setGraph();
 //        NavigationUI.setupWithNavController(bnv,navController);
+        Integer.valueOf(1000);
 
     }
 

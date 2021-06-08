@@ -1,11 +1,21 @@
 apply plugin: 'bundle-module'
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 android {
-    defaultConfig{
+    defaultConfig {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
-                cppFlags "-std=c++14","-fexceptions", "-frtti"
+                cppFlags "-std=c++14", "-fexceptions", "-frtti"
                 cFlags "-D__STDC_FORMAT_MACROS"
 //                cppFlags "-std=gnu++11"
 //                targets "hawks","hotfix"
@@ -20,8 +30,18 @@ android {
         }
     }
 }
-//kapt {
-//    arguments {
-//        arg("AROUTER_MODULE_NAME", project.getName())
-//    }
-//}
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/check_dangerous_api.gradle"
+checker {
+    filters = ['SafeConvert']
+    dangerousApis = [
+            "Color.parseColor",
+            "Integer.valueOf",
+            "Integer.parseInt",
+            "Long.parseLong",
+            "Long.valueOf",
+            "Float.valueOf",
+            "Float.parseFloat",
+            "Double.valueOf",
+            "Double.parseDouble"
+    ]
+}

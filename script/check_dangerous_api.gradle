@@ -1,0 +1,58 @@
+apply plugin: CheckerPlugin
+
+class CheckerPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+        def checker = project.extensions.create("checker", CheckerExtension)
+        project.afterEvaluate {
+
+            if (checker.dangerousApis != null && checker.dangerousApis.size() != 0) {
+                def dangerousApiTask = project.tasks.create("dangerousApiTask", DangerousApiTask)
+                dangerousApiTask.doFirst {
+                    dangerousApiTask.checker = checker
+                }
+                dangerousApiTask.doLast {
+                }
+            }
+        }
+    }
+
+}
+
+class CheckerExtension {
+    List<String> filters
+    List<String> dangerousApis
+
+}
+// ./gradlew component:myhome:dangerousApiTask
+class DangerousApiTask extends DefaultTask {
+    CheckerExtension checker
+
+    @TaskAction
+    def check() {
+        P.debug("[check dangerous api] args:${checker.filters} ${checker.dangerousApis}")
+        def srcDirs = project.android.sourceSets.main.java.srcDirs
+        srcDirs.each { srcDir ->
+            recurDir(srcDir)
+        }
+    }
+
+    def recurDir(File dir) {
+        if (dir == null || !dir.isDirectory() || !dir.exists()) return
+        dir.eachFile { theFile ->
+            if (!theFile.name.contains('.DS_Store')) {
+                if (theFile.isFile()) {
+                    //check dangrous api
+                    P.debug("[check dangerous api] file:$theFile.name")
+                    checkJavaApi(file)
+                } else if (theFile.isDirectory()) {
+                    recurDir(theFile)
+                }
+            }
+        }
+    }
+    def checkJavaApi(File file){
+        
+    }
+}

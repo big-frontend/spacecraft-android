@@ -13,6 +13,7 @@ buildscript {
         maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url 'https://plugins.gradle.org/m2/' }
         mavenLocal()
+        jcenter()
         maven { url uri("$rootDir/repo")}
     }
     ext {
@@ -82,6 +83,7 @@ allprojects {
         maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url 'https://plugins.gradle.org/m2/' }
         mavenLocal()
+        jcenter()
         maven { url uri("$rootDir/repo")}
     }
 
