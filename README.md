@@ -50,7 +50,7 @@ ps:下面会提到一些相关名词，这里先定义一下。bundle是依附�
 - [x] provide ui component , es.video component
 
 ## Business Bundle
-通信方式url 路由和rpc调用
+跨bundle页面启动方式url路由 或者 rpc调用，bundle数据通信可用bus 或者 广播
 - [ ] native bundle
     - [x] login
 - [ ] hybrid bundle
@@ -62,6 +62,7 @@ ps:下面会提到一些相关名词，这里先定义一下。bundle是依附�
 2. rename apk plugin
 3. upload bugly mapping or so file plugin( ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug)
 4. performance plugin: trace method(instrumentation)
+5. check dangerous api plugin(./gradlew component:myhome:dangerousApiTask)
 - [x] CI / CD
 - [x] hook:jni hook、java hook
 

@@ -72,3 +72,4 @@ frida/node_modules
 guard/.cxx
 components/myhome/.cxx/cmake
 components/myhome/.cxx
+dangerous_api_result.txt

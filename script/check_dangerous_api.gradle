@@ -1,37 +1,42 @@
 apply plugin: CheckerPlugin
 
 class CheckerPlugin implements Plugin<Project> {
-
     @Override
     void apply(Project project) {
         def checker = project.extensions.create("checker", CheckerExtension)
         project.afterEvaluate {
 
-            if (checker.dangerousApis != null && checker.dangerousApis.size() != 0) {
-                def dangerousApiTask = project.tasks.create("dangerousApiTask", DangerousApiTask)
-                dangerousApiTask.doFirst {
-                    dangerousApiTask.checker = checker
-                }
-                dangerousApiTask.doLast {
-                }
+            if (checker.dangerousApis == null || checker.dangerousApis.size() == 0) {
+                throw new IllegalArgumentException("请配置dangerousapi")
             }
+            def dangerousApiTask = project.tasks.create("dangerousApiTask", DangerousApiTask)
+            dangerousApiTask.doFirst {
+                dangerousApiTask.checker = checker
+            }
+            dangerousApiTask.doLast {
+            }
+
         }
     }
-
 }
 
 class CheckerExtension {
-    List<String> filters
+    Set<String> filters
     List<String> dangerousApis
 
 }
 // ./gradlew component:myhome:dangerousApiTask
 class DangerousApiTask extends DefaultTask {
     CheckerExtension checker
+    def r = new File(project.rootProject.projectDir, "dangerous_api_result.txt")
 
     @TaskAction
     def check() {
-        P.debug("[check dangerous api] args:${checker.filters} ${checker.dangerousApis}")
+        if (r.exists()) {
+            r.delete()
+        }
+        r.createNewFile()
+//        P.debug("[check dangerous api] args:${checker.filters} ${checker.dangerousApis}")
         def srcDirs = project.android.sourceSets.main.java.srcDirs
         srcDirs.each { srcDir ->
             recurDir(srcDir)
@@ -40,19 +45,58 @@ class DangerousApiTask extends DefaultTask {
 
     def recurDir(File dir) {
         if (dir == null || !dir.isDirectory() || !dir.exists()) return
-        dir.eachFile { theFile ->
-            if (!theFile.name.contains('.DS_Store')) {
-                if (theFile.isFile()) {
-                    //check dangrous api
-                    P.debug("[check dangerous api] file:$theFile.name")
-                    checkJavaApi(file)
-                } else if (theFile.isDirectory()) {
-                    recurDir(theFile)
-                }
+        def listFiles = dir.listFiles()
+        for (i in 0..<listFiles.length) {
+            def theFile = listFiles[i]
+            if (theFile.isDirectory()) {
+                recurDir(theFile)
+            }
+            //跳过filter文件
+            if ((checker.filters != null && checker.filters.contains(theFile.name))) continue
+
+            if (theFile.name.endsWith('.java')) {
+                checkJavaApi(theFile)
             }
         }
     }
-    def checkJavaApi(File file){
-        
+
+    def checkJavaApi(File file) {
+        r.withWriterAppend('utf-8') { writer ->
+            file.withReader { reader ->
+                def line = 0
+                String content
+                def shouldMarkHeader = true
+                def shouldMarkFooter = false
+                def shouldMarkPackage = true
+                def packagename = ''
+                while ((content = reader.readLine()) != null) {
+                    ++line
+                    if (shouldMarkPackage && content.contains("package")) {//第一行有包名
+                        println content
+                        packagename = content.split("\\s+|;")[1]
+                        shouldMarkPackage = false
+                    }
+                    for (i in 0..<checker.dangerousApis.size()) {
+                        def e = checker.dangerousApis.get(i)
+                        if (!content.startsWith("//")
+                                && !content.startsWith("*")
+                                && content.contains(e)) {
+                            if (shouldMarkHeader) {
+                                writer.writeLine "${packagename}.${file.name} start"
+                                shouldMarkHeader = false
+                            }
+//                            println "找到了dangerous api在文件:${file.name}的第${line}行\n代码块为 ${content}"
+                            writer.writeLine "${line}:\t${content.trim()}"
+                            shouldMarkFooter = true
+                        }
+                    }
+                }
+                if (shouldMarkFooter) {
+                    writer.writeLine "${packagename}.${file.name} end\n"
+                }
+            }
+
+        }
+
     }
 }
