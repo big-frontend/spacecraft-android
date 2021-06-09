@@ -1,4 +1,4 @@
-﻿package com.jamesfchen.lint_rules
+package com.jamesfchen.lint_rules
 
 class MyClass {
 }
