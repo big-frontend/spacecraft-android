@@ -3,6 +3,7 @@ package com.jamesfchen.common;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
@@ -144,7 +145,7 @@ public class ConcurrenceTest {
     }
 
 
-//    @Test
+    @Test
     @MainThread
     public void testTask() {
         for (int i = 0; i < 10; i++) {
@@ -191,7 +192,7 @@ public class ConcurrenceTest {
     //可中断 sleep、join 、 Lock.lockInterruptibly(Lock.tryLock(long time, TimeUnit unit))
     //不可中断 synchronized 、 Lock.lock 、 InputStream.read
     private AtomicInteger gorun = new AtomicInteger(0);
-//    @Test
+    @Test
     public void testSync() {
         final CyclicBarrier cyclicBarrier = new CyclicBarrier(3, new Runnable() {
             @Override
