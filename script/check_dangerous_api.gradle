@@ -28,7 +28,7 @@ class CheckerExtension {
 // ./gradlew component:myhome:dangerousApiTask
 class DangerousApiTask extends DefaultTask {
     CheckerExtension checker
-    def r = new File(project.rootProject.projectDir, "dangerous_api_result.txt")
+    def r = new File(project.rootDir, "dangerous_api_result.txt")
 
     @TaskAction
     def check() {

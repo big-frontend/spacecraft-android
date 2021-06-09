@@ -2,7 +2,8 @@
  * 读取module_config.json信息include具体的模块
  */
 include ':app'
-//include ':gradle_plugin'
+//include ':gradle-plugin'
+include ':lint-rules'
 include ':instrumentation:annotations', ':instrumentation:processor'
 if (isHaHa.toBoolean()) {
     include ':components:template'

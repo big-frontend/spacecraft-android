@@ -30,6 +30,9 @@ android {
         }
     }
 }
+dependencies {
+//    lintChecks project(path: ':lintrules')
+}
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/check_dangerous_api.gradle"
 checker {
 //    filters = ['SafeConvert.java']
