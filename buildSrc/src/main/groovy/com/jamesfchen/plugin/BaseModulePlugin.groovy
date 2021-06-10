@@ -53,11 +53,12 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
 //            }
             ndkVersion '22.0.7026061'
             lintOptions {
+                quiet true
                 lintConfig project.file("$project.rootDir/lint.xml")
                 htmlReport true
-                htmlOutput project.file("$project.rootDir/lint-report.html")
+                htmlOutput project.file("$project.rootDir/lint-report-${project.name}.html")
                 xmlReport true
-                xmlOutput project.file("$project.rootDir/lint-report.xml")
+                xmlOutput project.file("$project.rootDir/lint-report-${project.name}.xml")
                 warningsAsErrors true
                 abortOnError false
 //                // Turns off checks for the issue IDs you specify.

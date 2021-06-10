@@ -4,7 +4,7 @@
 include ':app'
 //include ':gradle-plugin'
 include ':lint-rules'
-//include ':lint-checker'
+include ':lint-checker'
 include ':instrumentation:annotations', ':instrumentation:processor'
 if (isHaHa.toBoolean()) {
     include ':components:template'
@@ -17,11 +17,13 @@ if (isHaHa.toBoolean()) {
             ':framework:uicomponent'
     include ':components:myhome',
             ':components:login'
-//    setBinding(new Binding([gradle: this]))
-//    evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
+    setBinding(new Binding([gradle: this]))
+    evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
     //apply from: 'script/include_flutter.gradle'
 }
-
+include ':components:hotel-module:foundation'
+include ':components:hotel-module:bundle1'
+include ':components:hotel-module:bundle2'
 //gradle.buildStarted {
 //    println("👶[ gradle 开始 ] buildStarted 开始之前 start")
 //    println("👶[ gradle 开始 ] buildStarted 开始之前 end")
@@ -99,3 +101,4 @@ if (isHaHa.toBoolean()) {
 //        super.beforeSettings(settings)
 //    }
 //})
+

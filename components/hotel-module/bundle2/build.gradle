@@ -1,0 +1,20 @@
+apply plugin: 'bundle-module'
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+    }
+
+}
+dependencies {
+    lintChecks project(path: ':lint-rules')
+    implementation project(path: ':components:hotel-module:foundation')
+}

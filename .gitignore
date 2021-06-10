@@ -65,14 +65,10 @@ map/src/main/assets/l7_list_trip.json
 map/src/main/java/com/hawksjamesf/map/model/L7_trip.java
 framework/common/.cxx
 framework/image/.cxx
-framework/common/.cxx
-framework/common/.cxx
-framework/image/.cxx
 frida/node_modules
 guard/.cxx
 components/myhome/.cxx/cmake
 components/myhome/.cxx
 dangerous_api_result.txt
-lint.html
-lint-report.html
-lint-report.xml
+lint-report*.html
+lint-report*.xml

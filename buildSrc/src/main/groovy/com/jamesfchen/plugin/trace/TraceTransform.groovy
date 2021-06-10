@@ -2,9 +2,7 @@ package com.jamesfchen.plugin.trace
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.utils.FileUtils
 import com.jamesfchen.plugin.util.P
-import org.apache.commons.codec.digest.DigestUtils
 import org.gradle.api.Project
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
@@ -73,14 +71,15 @@ class TraceTransform extends Transform {
                         Format.DIRECTORY)
 
 
-                FileUtils.copyDirectory(directoryInput.file, dest)
+//                FileUtils.copyDirectory(directoryInput.file, dest)
                 j++
             }
             def k=0
             input.jarInputs.each { JarInput jarInput ->
                 P.info(i+"\t"+k+" jarInput:"+jarInput.name)
                 def jarName = jarInput.name
-                def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
+//                def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
+                def md5Name = ''
                 if (jarName.endsWith(".jar")) {
                     jarName = jarName.substring(0, jarName.length() - 4)
                 }
@@ -88,7 +87,7 @@ class TraceTransform extends Transform {
                 def dest = transformInvocation.outputProvider.getContentLocation(jarName + md5Name,
                         jarInput.contentTypes, jarInput.scopes, Format.JAR)
 
-                FileUtils.copyFile(jarInput.file, dest)
+//                FileUtils.copyFile(jarInput.file, dest)
                 k++
             }
             ++i

@@ -1,0 +1,23 @@
+apply plugin: 'bundle-module'
+
+android {
+    defaultConfig {
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+//        externalNativeBuild {
+//            cmake {
+//                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+//                cppFlags "-std=c++14", "-fexceptions", "-frtti"
+//                cFlags "-D__STDC_FORMAT_MACROS"
+////                cppFlags "-std=gnu++11"
+////                targets "hawks","hotfix"
+//                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/   //输出制定三种abi体系结构下的so库
+//            }
+//        }
+    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//            //path 'src/main/cpp/CMakeLists.txt'
+//        }
+//    }
+}

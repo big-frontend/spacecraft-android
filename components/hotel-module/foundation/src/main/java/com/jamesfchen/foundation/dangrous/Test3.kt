@@ -1,4 +1,4 @@
-﻿package com.jamesfchen.myhome.dangrous
+﻿package com.jamesfchen.foundation.dangrous
 
 import android.annotation.SuppressLint
 import android.util.Log
