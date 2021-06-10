@@ -35,8 +35,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation gradleApi()
     implementation localGroovy()
-    //implementation "com.android.tools.build:gradle:7.1.0-alpha01" //升级会有很多问题
-    implementation "com.android.tools.build:gradle:3.5.4"
+    implementation "com.android.tools.build:gradle:7.1.0-alpha01" //升级会有很多问题
+//    implementation "com.android.tools.build:gradle:3.5.4"
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
     implementation files('libs/buglySymbolAndroid.jar')
 //    implementation "org.javassist:javassist:3.20.0-GA"
@@ -52,11 +52,11 @@ configurations {
     provided
 }
 
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-}
+//sourceSets {
+//    main {
+//        compileClasspath += configurations.provided
+//    }
+//}
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8

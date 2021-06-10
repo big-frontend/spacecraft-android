@@ -107,7 +107,7 @@ public class App extends MultiDexApplication implements Configuration.Provider {
         Util.init(this);
 
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
-        strategy.setAppVersion(BuildConfig.VERSION_NAME);
+//        strategy.setAppVersion(BuildConfig.VERSION_NAME);
         strategy.setBuglyLogUpload(true);
         String packageName = getApplicationContext().getPackageName();
         strategy.setAppPackageName(packageName);

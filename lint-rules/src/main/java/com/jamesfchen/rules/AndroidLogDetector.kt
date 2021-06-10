@@ -1,9 +1,7 @@
 package com.jamesfchen.rules
 
 import com.android.tools.lint.detector.api.*
-import com.intellij.psi.JavaElementVisitor
 import com.intellij.psi.PsiMethod
-import com.intellij.psi.PsiMethodCallExpression
 import org.jetbrains.uast.UCallExpression
 
 /**
@@ -47,7 +45,7 @@ class AndroidLogDetector : Detector(), SourceCodeScanner {
 
         val ISSUE: Issue = Issue
                 .create(
-                        id = "DangerousApiDetector",
+                        id = "AndroidLogDetector",
                         briefDescription = "The android Log should not be used",
                         explanation = """
                 For amazing showcasing purposes we should not use the Android Log. We should the

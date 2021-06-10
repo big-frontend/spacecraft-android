@@ -51,7 +51,7 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
 //            buildFeatures {
 //                viewBinding true
 //            }
-
+            ndkVersion '22.0.7026061'
             lintOptions {
                 lintConfig project.file("$project.rootDir/lint.xml")
                 htmlReport true

@@ -2,7 +2,7 @@ println("app start")
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
-apply plugin: 'androidx.navigation.safeargs'
+//apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.alibaba.arouter'
@@ -148,14 +148,14 @@ android {
             }
         }
     }
-//    lintOptions {
-//        checkReleaseBuilds false
-//        abortOnError false
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
 ////        textReport true
 ////        // Produce report for CI:
 ////        // https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/sarif-support-for-code-scanning
 ////        sarifOutput project.file("$project.rootDir/lint-results.sarif")
-//    }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -163,10 +163,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    dataBinding {
-        enabled = true
-    }
-//    buildFeatures {
+    //    buildFeatures {
 //        viewBinding true
 //    }
     splits {
@@ -238,7 +235,9 @@ android {
     packagingOptions {
         exclude 'META-INF/proguard/coroutines.pro'
     }
-    ndkVersion '22.0.7026061'
+//    buildFeatures {
+//        dataBinding true
+//    }
 
     applicationVariants.all { variant ->
         if (variant.name.equalsIgnoreCase("debug")) {

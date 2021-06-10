@@ -32,7 +32,6 @@ android {
 }
 dependencies {
     lintChecks project(path: ':lint-rules')
-//    lintPublish  project(path: ':lint-rules')
 }
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/check_dangerous_api.gradle"
 checker {

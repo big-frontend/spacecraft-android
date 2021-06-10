@@ -27,7 +27,9 @@ class CheckerExtension {
 }
 // ./gradlew component:myhome:dangerousApiTask
 class DangerousApiTask extends DefaultTask {
+    @Internal
     CheckerExtension checker
+    @Input @Option
     def r = new File(project.rootDir, "dangerous_api_result.txt")
 
     @TaskAction

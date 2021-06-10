@@ -4,6 +4,7 @@
 include ':app'
 //include ':gradle-plugin'
 include ':lint-rules'
+//include ':lint-checker'
 include ':instrumentation:annotations', ':instrumentation:processor'
 if (isHaHa.toBoolean()) {
     include ':components:template'
@@ -16,8 +17,8 @@ if (isHaHa.toBoolean()) {
             ':framework:uicomponent'
     include ':components:myhome',
             ':components:login'
-    setBinding(new Binding([gradle: this]))
-    evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
+//    setBinding(new Binding([gradle: this]))
+//    evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
     //apply from: 'script/include_flutter.gradle'
 }
 
