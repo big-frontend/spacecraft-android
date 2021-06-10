@@ -54,9 +54,11 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
 
             lintOptions {
                 lintConfig project.file("$project.rootDir/lint.xml")
-                htmlOutput project.file("$project.rootDir/lint.html")
+                htmlReport true
+                htmlOutput project.file("$project.rootDir/lint-report.html")
+                xmlReport true
+                xmlOutput project.file("$project.rootDir/lint-report.xml")
                 warningsAsErrors true
-                xmlReport false
                 abortOnError false
 //                // Turns off checks for the issue IDs you specify.
 //                disable 'TypographyFractions','TypographyQuotes'

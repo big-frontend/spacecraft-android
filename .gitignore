@@ -74,3 +74,5 @@ components/myhome/.cxx/cmake
 components/myhome/.cxx
 dangerous_api_result.txt
 lint.html
+lint-report.html
+lint-report.xml

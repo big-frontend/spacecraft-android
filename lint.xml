@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <lint>
-    <!-- Disable the given check in this project -->
-    <issue id="IconMissingDensityFolder" severity="ignore" />
+<!--    &lt;!&ndash; Disable the given check in this project &ndash;&gt;-->
+<!--    <issue id="IconMissingDensityFolder" severity="ignore" />-->
 
-    <!-- Ignore the ObsoleteLayoutParam issue in the specified files -->
-    <issue id="ObsoleteLayoutParam">
-        <ignore path="res/layout/activation.xml" />
-        <ignore path="res/layout-xlarge/activation.xml" />
-    </issue>
+<!--    &lt;!&ndash; Ignore the ObsoleteLayoutParam issue in the specified files &ndash;&gt;-->
+<!--    <issue id="ObsoleteLayoutParam">-->
+<!--        <ignore path="res/layout/activation.xml" />-->
+<!--        <ignore path="res/layout-xlarge/activation.xml" />-->
+<!--    </issue>-->
 
-    <!-- Ignore the UselessLeaf issue in the specified file -->
-    <issue id="UselessLeaf">
-        <ignore path="res/layout/main.xml" />
-    </issue>
+<!--    &lt;!&ndash; Ignore the UselessLeaf issue in the specified file &ndash;&gt;-->
+<!--    <issue id="UselessLeaf">-->
+<!--        <ignore path="res/layout/main.xml" />-->
+<!--    </issue>-->
 
-    <!-- Change the severity of hardcoded strings to "error" -->
-    <issue id="HardcodedText" severity="error" />
+<!--    &lt;!&ndash; Change the severity of hardcoded strings to "error" &ndash;&gt;-->
+<!--&lt;!&ndash;    <issue id="HardcodedText" severity="error" />&ndash;&gt;-->
+<!--    <issue id="HardcodedText" severity="ignore" />-->
 </lint>

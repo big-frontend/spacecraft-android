@@ -31,11 +31,12 @@ android {
     }
 }
 dependencies {
-//    lintChecks project(path: ':lintrules')
+    lintChecks project(path: ':lint-rules')
+//    lintPublish  project(path: ':lint-rules')
 }
 apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/check_dangerous_api.gradle"
 checker {
-//    filters = ['SafeConvert.java']
+//    filters = ['SafeConverts.java']
     dangerousApis = [
             "Color.parseColor",
             "Integer.valueOf",

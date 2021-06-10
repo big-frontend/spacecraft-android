@@ -2,12 +2,37 @@ plugins {
     id 'java-library'
     id 'kotlin'
 }
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
-}
+//apply plugin: 'com.android.lint'
+//lintOptions {
+//    htmlReport true
+//    htmlOutput file("lint-report.html")
+//    textReport true
+//    absolutePaths false
+//    ignoreTestSources true
+//}
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // so many stdlib to choose from!
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.10"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0"
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib-jre8")
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib-jre7")
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
+//    compileOnly "com.android.tools.lint:lint::27.2.1"
+    compileOnly "com.android.tools.lint:lint-api:27.2.1"
+    compileOnly "com.android.tools.lint:lint-checks:27.2.1"
+    testImplementation "com.android.tools.lint:lint-tests:27.2.1"
 }
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+//jar {
+//    manifest {
+//        attributes("Lint-Registry": "com.jamesfchen.rules.MyIssueRegistry")
+//    }
+//}
+//实时更新
+//project.configurations.all {
+//    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+//}

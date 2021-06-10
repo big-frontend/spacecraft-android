@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.dangrous;
+package com.jamesfchen.dangrous;
 
 import android.graphics.Color;
 import android.os.Build;

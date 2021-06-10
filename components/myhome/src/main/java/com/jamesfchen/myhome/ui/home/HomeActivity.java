@@ -1,6 +1,7 @@
 package com.jamesfchen.myhome.ui.home;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -65,6 +67,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
     }
 
 
+    @SuppressLint("CheckResult")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,31 +75,24 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         presenter.load();
         WeatherApi weatherApi = RetrofitHelper.createWeatherApi();
         weatherApi.getCurrentWeatherDate("London")
-                .subscribe(new Consumer<WeatherData>() {
-                    @Override
-                    public void accept(WeatherData weatherData) throws Exception {
-                        //onSuccess
-                        Logger.t(TAG).json(new Gson().toJson(weatherData));
+                .subscribe(weatherData -> {
+                    //onSuccess
+                    Logger.t(TAG).json(new Gson().toJson(weatherData));
+                    int a= 1;
 
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-
-                    }
+                }, throwable -> {
+                    int a= 1;
+                    Logger.t(TAG).json(new Gson().toJson(throwable.getStackTrace()));
                 });
 
         weatherApi.getFiveData("London")
-                .subscribe(new Consumer<ListRes<WeatherData>>() {
-                    @Override
-                    public void accept(ListRes<WeatherData> weatherDataListRes) throws Exception {
-                        Logger.t(TAG).json(new Gson().toJson(weatherDataListRes));
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
+                .subscribe(weatherDataListRes -> {
+                    int a= 1;
+                    Logger.t(TAG).json(new Gson().toJson(weatherDataListRes));
+                }, throwable -> {
+                    int a= 1;
+                    Logger.t(TAG).json(new Gson().toJson(throwable.getStackTrace()));
 
-                    }
                 });
 
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentByTag("tag_navigation_host");

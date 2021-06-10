@@ -2,7 +2,7 @@
  *
  * asfdasfasdfasdf
  */
-package com.jamesfchen.myhome.dangrous;
+package com.jamesfchen.dangrous;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

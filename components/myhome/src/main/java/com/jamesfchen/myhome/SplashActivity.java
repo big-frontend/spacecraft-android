@@ -1,5 +1,6 @@
 package com.jamesfchen.myhome;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,17 +47,15 @@ public class SplashActivity extends AbsPermissionsActivity {
         setContentView(R.layout.activity_splash);
 
     }
+    @SuppressLint("CheckResult")
     @TraceTime
     protected void onRequestPermissionsResult() {
         Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        ActivityUtil.startActivity(RecyclerViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                .subscribe(aLong -> {
+                    ActivityUtil.startActivity(RecyclerViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
-                        finish();
-                    }
+                    finish();
                 });
 
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r

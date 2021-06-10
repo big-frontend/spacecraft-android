@@ -21,7 +21,7 @@ import androidx.annotation.Size;
  * - Double.valueOf
  * - Double.parseDouble
  */
-public class SafeConvert {
+public class SafeConverts {
     /**
      * Integer对象之间不能用==，不然会出现不相等情况。因为IntegerCached对象只存储-128到127的值，
      * 超出范围的时候回重新new Integer，那么指向的对象就不同了。
