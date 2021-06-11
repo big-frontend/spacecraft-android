@@ -5,7 +5,6 @@
  * - 对某一个模块进行打包，最后输出aar
  * - 打包某个模块的热修插件
  */
-println("root project start")
 buildscript {
     repositories {
         google()
@@ -93,4 +92,6 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-println("root project end")
+ext {
+    modules = []
+}

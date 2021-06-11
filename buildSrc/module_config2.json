@@ -1,0 +1,37 @@
+{
+  "biz": {
+    "hotel": {
+      "require": true,
+      "allModules": [
+        {
+          "name": "hotel-bundle1",
+          "module": ":components:hotel-module:bundle1",
+          "type": "bundle"
+        },
+        {
+          "name": "hotel-bundle2",
+          "module": ":components:hotel-module:bundle2",
+          "type": "bundle"
+        },
+        {
+          "name": "hotel-lint",
+          "module": ":components:hotel-module:hotel-lint",
+          "type": "foundation"
+        },
+        {
+          "name": "hotel-foundation",
+          "module": ":components:hotel-module:foundation",
+          "type": "foundation"
+        }
+      ]
+    }
+  },
+  "framework": [
+    {
+      "name": "loader",
+      "module": ":framework:loader",
+      "require": true,
+      "type": "foundation"
+    }
+  ]
+}
