@@ -22,6 +22,7 @@ if (isHaHa.toBoolean()) {
     //apply from: 'script/include_flutter.gradle'
 }
 include ':components:hotel-module:foundation'
+include ':components:hotel-module:hotel-lint'
 include ':components:hotel-module:bundle1'
 include ':components:hotel-module:bundle2'
 //gradle.buildStarted {
@@ -101,4 +102,3 @@ include ':components:hotel-module:bundle2'
 //        super.beforeSettings(settings)
 //    }
 //})
-

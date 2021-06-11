@@ -15,7 +15,5 @@ android {
 
 }
 dependencies {
-//    lintChecks project(path: ':lint-rules')
-    implementation project(':lint-checker')
     implementation project(path: ':components:hotel-module:foundation')
 }

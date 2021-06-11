@@ -46,7 +46,6 @@ dependencies {
     api 'androidx.core:core-ktx:1.2.0'
     api 'androidx.multidex:multidex:2.0.1'
     api "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
-    //    api 'com.jakewharton.timber:timber:4.5.1'
     api "com.blankj:utilcode:1.24.2"
     api 'joda-time:joda-time:2.10.2'
     api 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
@@ -178,7 +177,8 @@ dependencies {
     api group: "com.tencent.matrix", name: "matrix-io-canary", version: "0.6.0", changing: true
     api group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk", version: "0.6.0", changing: true
 //    releaseApi group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: "0.6.0", changing: true
-
+    implementation project(path: ':lint-checker')
+//    lintPublish project(path: ':lint-rules')
     /**
      * ===============================monitor end=============================
      */
