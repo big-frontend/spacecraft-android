@@ -4,12 +4,6 @@ package com.jamesfchen.plugin
 import org.gradle.api.Project
 
 class BundleModulePlugin extends BaseModulePlugin {
-    def  versionPlugin(Closure<VersionPluginExtension> closure/*从build.gradle获取*/){
-        def c = new VersionPluginExtension()//从project.extensions.create获取
-        closure.setDelegate(c)//委托代理优先
-        closure.setResolveStrategy(Closure.DELEGATE_FIRST)//Groovy的闭包有this、owner、delegate三个属性
-        return closure
-    }
     @Override
     void onApply(Project project) {
 
