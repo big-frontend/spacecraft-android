@@ -1,0 +1,10 @@
+apply plugin: 'com.android.application'
+dependencies {
+    P.teenager("implementation bundles begin ========================================================================================")
+    def deps = rootProject.ext.findDepProjects(project.path)
+    for(def d :deps){
+        P.teenager("bundle  ${d.path}")
+        api d
+    }
+    P.teenager("implementation bundles end ========================================================================================")
+}

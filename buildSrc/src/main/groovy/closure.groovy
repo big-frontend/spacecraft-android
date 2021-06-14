@@ -1,4 +1,6 @@
-package com.jamesfchen.plugin
+class ModuleExtension {
+    List<String> srcDirs
+}
 //gradle framework
 def moduleConfig(Closure<ModuleExtension> closure/*从build.gradle获取*/){
         def c = new ModuleExtension()//从project.extensions.create获取

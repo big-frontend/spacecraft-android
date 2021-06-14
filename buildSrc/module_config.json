@@ -1,34 +1,138 @@
 {
+  "author": "jamesfchen",
+  "description": "该配置文件给idea plugin插件和gradle plugin读取,idea plugin通过该文件可以实现管理想要编译的模块，gradle plugin则可以根据这些模块信息生成快速模块",
   "allModules": [
     {
-      "name": "hotel-bundle1",
-      "module": ":components:hotel-module:bundle1",
-      "require": false,
-      "type": "bundle"
+      "simpleName": "app",
+      "canonicalName": ":app",
+      "format": "app",
+      "binary_artifact": "com.jamesfchen:myhome:1.0",
+      "deps": [
+        ":components:hotel-module:bundle1",":components:hotel-module:bundle2",":components:myhome"
+      ]
     },
     {
-      "name": "hotel-bundle2",
-      "module": ":components:hotel-module:bundle2",
-      "require": false,
-      "type": "bundle"
+      "simpleName": "myhome",
+      "canonicalName": ":components:myhome",
+      "format": "bundle",
+      "binary_artifact": "com.jamesfchen:myhome:1.0",
+      "deps": [
+        ":framework:loader"
+      ]
     },
     {
-      "name": "hotel-lint",
-      "module": ":components:hotel-module:hotel-lint",
-      "require": true,
-      "type": "foundation"
+      "simpleName": "hotel-bundle1",
+      "canonicalName": ":components:hotel-module:bundle1",
+      "format": "bundle",
+      "binary_artifact": "com.jamesfchen:hotel-bundle1:1.0",
+      "deps": [
+        ":components:hotel-module:foundation"
+      ]
     },
     {
-      "name": "hotel-foundation",
-      "module": ":components:hotel-module:foundation",
-      "require": true,
-      "type": "foundation"
+      "simpleName": "hotel-bundle2",
+      "canonicalName": ":components:hotel-module:bundle2",
+      "format": "bundle",
+      "binary_artifact": "com.jamesfchen:hotel-bundle2:1.0",
+      "deps": [
+        ":components:hotel-module:foundation"
+      ]
     },
     {
-      "name": "loader",
-      "module": ":framework:loader",
-      "require": true,
-      "type": "foundation"
+      "simpleName": "hotel-lint",
+      "canonicalName": ":components:hotel-module:hotel-lint",
+      "format": "jar",
+      "binary_artifact": "com.jamesfchen:hotel-lint:1.0"
+    },
+    {
+      "simpleName": "hotel-foundation",
+      "canonicalName": ":components:hotel-module:foundation",
+      "format": "bundle_foundation",
+      "binary_artifact": "com.jamesfchen:hotel-foundation:1.0",
+      "deps": [
+        ":components:hotel-module:lint",
+        ":framework:loader"
+      ]
+    },
+    {
+      "simpleName": "loader",
+      "canonicalName": ":framework:loader",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-loader:1.0",
+      "deps": [
+        ":framework:network",
+        ":framework:router",
+        ":framework:uicomponent"
+      ]
+    },
+    {
+      "simpleName": "router",
+      "canonicalName": ":framework:router",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-router:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "network",
+      "canonicalName": ":framework:network",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-network:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "av",
+      "canonicalName": ":framework:av",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-av:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "image",
+      "canonicalName": ":framework:image",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-image:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "uicomponent",
+      "canonicalName": ":framework:uicomponent",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-uicomponent:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "mockserver",
+      "canonicalName": ":mockserver",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-mockserver:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "storage",
+      "canonicalName": ":framework:storage",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-storage:1.0",
+      "deps": [
+        ":framework:common"
+      ]
+    },
+    {
+      "simpleName": "common",
+      "canonicalName": ":framework:common",
+      "format": "framework_foundation",
+      "binary_artifact": "com.jamesfchen:framework-common:1.0"
     }
   ]
 }

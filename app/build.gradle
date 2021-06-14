@@ -1,5 +1,5 @@
 println("app start")
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 //apply plugin: 'androidx.navigation.safeargs'
@@ -130,6 +130,14 @@ android {
                 mappingFileUploadEnabled false
             }
         }
+        component{
+            initWith debug
+            debuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     lintOptions {
         lintConfig project.file("$project.rootDir/lint.xml")
@@ -297,23 +305,15 @@ configurations {
 //}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    println "[implementation bundles] begin ========================================================================================"
-    gradle.ext.allModules.each { module ->
-        if (module.type == 'bundle') {
-            println("[implementation bundles] ${module.module}")
-            //implementation 源码 or aar文件
-            implementation project(path: module.module)
-        }
-    }
-    println "[implementation bundles] end ========================================================================================"
+
 
 //    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
 }
 //buildDir = new File(rootProject.projectDir, "../build/host")
 println("app end")
 //在这个阶段可以下载一些东西
-gradle.taskGraph.whenReady { taskGraph ->
-    println("[ gradle configuration ] whenReady task关系图建立完毕 start")
-    println("[ gradle configuration ] whenReady task关系图建立完毕 end")
-}
+//gradle.taskGraph.whenReady { taskGraph ->
+//    println("[ gradle configuration ] whenReady task关系图建立完毕 start")
+//    println("[ gradle configuration ] whenReady task关系图建立完毕 end")
+//}
 

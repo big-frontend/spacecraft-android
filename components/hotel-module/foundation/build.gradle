@@ -1,5 +1,6 @@
-apply plugin: 'bundle-module'
-
+//apply plugin: 'bundle-module'
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
@@ -22,6 +23,7 @@ android {
 //    }
 }
 dependencies {
+//    api project(path: ':framework:loader')
     lintChecks project(path: ':components:hotel-module:hotel-lint')
     lintPublish project(path: ':components:hotel-module:hotel-lint')
 }

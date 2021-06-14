@@ -6,8 +6,8 @@ project.ext.srcDirs =[
 //        "super-retrofit/retrofit-converters/wire/src"
 //
 ]
-apply plugin: 'foundation-module'
-
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 static String getLocalIP() {
     InetAddress result = null
     Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces()
@@ -29,8 +29,8 @@ static String getLocalIP() {
 
 dependencies {
     testImplementation files('libs/jsoup-1.12.1.jar')
-    api project(path: ':framework:common')
-    api project(path: ':mockserver')
+//    api project(path: ':framework:common')
+//    api project(path: ':mockserver')
     //    api 'com.squareup.okhttp3:okhttp:3.8.1'
     //    api 'com.android.volley:volley:1.1.1'
     api 'com.squareup.okhttp3:okhttp-tls:4.0.1'

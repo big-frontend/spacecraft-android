@@ -8,11 +8,11 @@ ext.srcDirs = [
 //        "scrollExprimental",
 
 ]
-apply plugin: 'foundation-module'
-
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 
 dependencies {
-    implementation project(path: ':framework::common')
+//    implementation project(path: ':framework::common')
     /**
      * ===============================av start=============================
      */

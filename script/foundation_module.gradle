@@ -1,0 +1,26 @@
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/base_module.gradle"
+//class ExtSourceSetsPlugin implements Plugin<Project> {
+//
+//    @Override
+//    void apply(Project project) {
+//        def srcDirs = project.extensions.create("SourcesExtension", SourcesExtension)
+//        project.beforeEvaluate {
+//
+//
+//        }
+//    }
+//}
+//
+//class SourcesExtension {
+//    List<String> srcDirs
+//}
+//apply plugin: ExtSourceSetsPlugin
+dependencies {
+    P.teenager("implementation foundation begin ========================================================================================")
+    def deps = rootProject.ext.findDepProjects(project.path)
+    for(def d :deps){
+        P.teenager("foundation  ${d}")
+        api d
+    }
+    P.teenager("implementation foundation end ========================================================================================")
+}

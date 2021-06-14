@@ -1,4 +1,5 @@
-apply plugin: 'bundle-module'
+//apply plugin: 'bundle-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle_module.gradle"
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -15,5 +16,5 @@ android {
 
 }
 dependencies {
-    implementation project(path: ':components:hotel-module:foundation')
+//    implementation project(path: ':components:hotel-module:foundation')
 }

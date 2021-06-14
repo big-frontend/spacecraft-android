@@ -23,7 +23,6 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
         project.plugins.apply("kotlin-android-extensions")
 //        project.plugins.apply("kotlin-parcelize")
         project.plugins.apply("kotlin-kapt")
-
         project.android.compileSdkVersion = Config.COMPILE_SDK_VERSION
         project.android.buildToolsVersion = Config.BUILD_TOOLS_VERSION
         project.android{
@@ -125,6 +124,36 @@ abstract class  BaseModulePlugin implements Plugin<Project> {
              */
         }
         onApply(project)
+//        project.project.plugins.apply('maven-publish')
+//        project.afterEvaluate {
+//            def moduleSimpleName=''
+////            for(def module:project.gradle.ext.allModules){
+////                module.
+////            }
+//            publishing {
+//                publications {
+//                    // Creates a Maven publication called "release".
+//                    project.release(MavenPublication) {
+//                        // Applies the component for the release build variant.
+//                        from components.release
+//
+//                        // You can then customize attributes of the publication as shown below.
+//                        groupId = 'com.jamesfchen'
+//                        artifactId = moduleSimpleName
+//                        version = '1.0'
+//                    }
+//                    // Creates a Maven publication called “debug”.
+//                    debug(MavenPublication) {
+//                        // Applies the component for the debug build variant.
+//                        from components.debug
+//
+//                        groupId = 'com.jamesfchen'
+//                        artifactId = moduleSimpleName
+//                        version = '1.0'
+//                    }
+//                }
+//            }
+//        }
     }
     abstract void onApply(Project project)
 }

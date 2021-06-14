@@ -1,15 +1,59 @@
 import groovy.json.JsonSlurper
 
+def child(Object msg) {
+    println("👶[ gradle initialzation ] " + msg);
+}
+
 include ':app'
 //apply from: "./buildSrc/src/main/groovy/module-config.groovy"
 //apply from: "./buildSrc/src/main/groovy/module-config.gradle"
 
 /**
- * 读取module_config.json信息include具体的模块
- * 依赖包的来源有模块的源码编译、模块的aar文件，bundle依赖的framework包必须参与编译，某个业务的bundle可以选择不参与编译。
+ * 读取module_config.json信息以此来include具体的模块，对于模块的描述应该有这些信息
+ * class Module{
+ *    require  def simpleName 模块名的简写,给idea plugin读取
+ *    require def canonicalName :components:hotel-module:foundation
+ *    require def format 模块格式(bundle/bundle foundation/framework foundation/jar ,bundle可以不参加编译，即exclude，但是framwork foundation必须被include)
+ *    option def deps
+ *    不应有这个属性，要编译成什么应该通过excludeModule和sourceModule,默认都是aar编译//option def build_source(source or binary),binary(aar jar)编译更快
+ *    require def binary_artifact default: {package}:simpleName:1.0.0 ,默认的binary_artifact需要保证simpelName唯一性,先暂时用1.0.0站位，后面应该通过获取远程版本和本地版本进行自动升级
+ *}*
  */
 def config = new JsonSlurper().parse(file("./buildSrc/module_config.json"))
 gradle.ext.allModules = config.allModules
+def localProperties = new Properties()
+def localPropertiesFile = new File(rootDir, 'local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+def excludeModulesStr = localProperties.getProperty('excludeModules', '')
+def sourceModulesStr = localProperties.getProperty('sourceModules', '')
+gradle.ext.excludeModuleMap = [:]
+gradle.ext.sourceModuleMap = [:]
+gradle.ext.binaryModuleMap = [:]
+
+excludeModulesStr.split(',').each { src ->
+    gradle.ext.allModules.each { m ->
+        if (m.simpleName == src) {
+            gradle.ext.excludeModuleMap[m.canonicalName] = m
+        }
+    }
+}
+sourceModulesStr.split(',').each { src ->
+    gradle.ext.allModules.each { m ->
+        if (m.simpleName == src) {
+            gradle.ext.sourceModuleMap[m.canonicalName] = m
+        }
+    }
+}
+
+gradle.ext.allModules.each { m ->
+    if (!gradle.ext.sourceModuleMap.containsKey(m.canonicalName) && !gradle.ext.excludeModuleMap.containsKey(m.canonicalName)) {
+        gradle.ext.binaryModuleMap[m.canonicalName] = m
+    }
+}
 
 //include ':components:hotel-module:foundation'
 //include ':components:hotel-module:hotel-lint'
@@ -19,26 +63,33 @@ gradle.ext.allModules = config.allModules
 //        ':components:login'
 //include ':components:template'
 //include ':components:module1'
-println "[gradle settings] begin ========================================================================================"
-gradle.ext.allModules.each{ module->
-    println "[gradle settings] include:${module.module}"
-    include module.module
-    if(module.path){
-        project(module.module).projectDir = new File(rootProject.projectDir,module.path)
+//include ':mockserver'
+//include ':framework:common', ':framework:loader',':framework:router',
+//        ':framework:network', ':framework:storage', ':framework:image',
+//        ':framework:av', ':framework:map', ':framework:chatroom',
+//        ':framework:uicomponent'
+child("include module begin ========================================================================================")
+gradle.ext.sourceModuleMap.each { _,module ->
+    child("source module  ${module.canonicalName}")
+    include module.canonicalName
+    if (module.path) {
+        project(module.canonicalName).projectDir = new File(rootProject.projectDir, module.path)
     }
 
 }
-println "[gradle settings] end ========================================================================================"
-include ':mockserver'
-include ':framework:common', ':framework:loader',':framework:router',
-        ':framework:network', ':framework:storage', ':framework:image',
-        ':framework:av', ':framework:map', ':framework:chatroom',
-        ':framework:uicomponent'
+gradle.ext.binaryModuleMap.each { _,module ->
+    child("binary module  ${module.canonicalName}")
+    include module.canonicalName
+    if (module.path) {
+        project(module.canonicalName).projectDir = new File(rootProject.projectDir, module.path)
+    }
 
-setBinding(new Binding([gradle: this]))
-evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
+}
+child("include module end ========================================================================================")
+//setBinding(new Binding([gradle: this]))
+//evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
 //include ':gradle-plugin'
-include ':lint-rules'
-include ':lint-checker'
-include ':instrumentation:annotations', ':instrumentation:processor'
+//include ':lint-rules'
+//include ':lint-checker'
+//include ':instrumentation:annotations', ':instrumentation:processor'
 

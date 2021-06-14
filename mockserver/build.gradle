@@ -1,8 +1,8 @@
 ext.srcDirs=[
         "printlogs",
 ]
-apply plugin: 'foundation-module'
-
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 
 android {
     defaultConfig {
@@ -14,7 +14,7 @@ android {
 }
 
 dependencies {
-    api project(path: ':framework:common')
+//    api project(path: ':framework:common')
     api "com.squareup.okhttp3:mockwebserver:4.0.1"
     api "com.squareup.retrofit2:retrofit-mock:${rootProject.ext.retrofitVersion}"
 }

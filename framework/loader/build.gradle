@@ -1,15 +1,15 @@
-apply plugin: 'foundation-module'
-
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 dependencies {
-    api project(path: ':framework:uicomponent')
+//    api project(path: ':framework:uicomponent')
 //    api project(path: ':framework:map')
-    api project(path: ':framework:av')
+//    api project(path: ':framework:av')
 //    implementation project(path: ':framework:chatroom')
-    api project(path: ':framework:network')
+//    api project(path: ':framework:network')
 //    implementation project(path: ':framework:storage')
-    api project(path: ':framework:image')
-    api project(path: ':framework:flutter')
-    api project(path: ':framework:router')
+//    api project(path: ':framework:image')
+//    api project(path: ':framework:flutter')
+//    api project(path: ':framework:router')
 
     api 'com.google.firebase:firebase-analytics:17.4.0'
     api 'com.google.firebase:firebase-crashlytics:17.0.0'
@@ -20,8 +20,7 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
 
-    kapt project(path: ':instrumentation:processor')
-    api project(path: ':instrumentation:annotations')
-
+//    kapt project(path: ':instrumentation:processor')
+//    api project(path: ':instrumentation:annotations')
 }
 

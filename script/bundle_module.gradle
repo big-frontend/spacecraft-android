@@ -1,9 +1,5 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/console.gradle"
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/testlib.gradle"
+
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/base_module.gradle"
 //apply plugin: 'com.google.protobuf'
 //protobuf {
 //    protoc {
@@ -43,36 +39,37 @@ kapt {
     }
 }
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
-//            }
-//        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
     }
+//            buildFeatures {
+//                viewBinding true
+//            }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        component{
+            initWith debug
+            debuggable true
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':framework:loader')
+    P.teenager("implementation bundles begin ========================================================================================")
+    def deps = rootProject.ext.findDepProjects(project.path)
+    for(def d :deps){
+        P.teenager("bundle  ${d}")
+        api d
+    }
+    P.teenager("implementation bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
     annotationProcessor 'androidx.databinding:databinding-compiler:4.1.0-alpha01'
-    kapt 'com.alibaba:arouter-compiler:1.2.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
 }
 

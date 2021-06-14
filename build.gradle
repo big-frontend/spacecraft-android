@@ -13,7 +13,7 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
         mavenLocal()
         mavenCentral()
-        maven { url uri("$rootDir/repo")}
+        maven { url uri("$rootDir/repo") }
     }
     ext {
         compileSdkVersion = 29
@@ -84,7 +84,7 @@ allprojects {
         maven { url 'https://plugins.gradle.org/m2/' }
         mavenLocal()
         mavenCentral()
-        maven { url uri("$rootDir/repo")}
+        maven { url uri("$rootDir/repo") }
     }
 
 }
@@ -93,5 +93,74 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ext {
-    modules = []
+    findProject = { moduleName ->
+        if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
+            def module = gradle.ext.binaryModuleMap[moduleName]
+//            P.teenager("binary bundle  ${module.binary_artifact}")
+            if (module.binary_artifact.isEmpty()) {
+                throw new IllegalArgumentException("binary module 的binary_artifact不能为空")
+            }
+            return module.binary_artifact
+        } else if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
+//            P.teenager("source bundle  ${moduleName}")
+            return gradle.rootProject.findProject(moduleName)
+        }
+        //该模块为exclude，不会进行编译不需要依赖
+        return null
+    }
+    findDepProjects = { moduleName ->
+        def module = null
+        if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
+            module = gradle.ext.sourceModuleMap[moduleName]
+            if (module.deps == null) return []
+        } else if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
+            module = gradle.ext.binaryModuleMap[moduleName]
+            if (module.deps == null) return []
+        }
+        d = []
+        if (module != null) {
+            module.deps.each { dep ->
+                def m =findProject(dep)
+                if (m !=null){
+                    d.add(m)
+                }
+            }
+        }
+        return d
+
+    }
+    findModule = { moduleName ->
+        if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
+            return gradle.ext.binaryModuleMap[moduleName]
+        } else if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
+            return gradle.ext.sourceModuleMap[moduleName]
+        }
+        return null
+    }
+    modules = gradle.ext.sourceModuleMap.values() + gradle.ext.binaryModuleMap.values()
 }
+//对所有sub project进行依赖绑定
+gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+    @Override
+    void beforeEvaluate(Project p) {
+        //通过这种方式过滤:components 和  :framework，他们的子subproject多不为空
+        if (!p.subprojects.isEmpty()) return
+//        println "project beforeEvaluate ${p.path} ${rootProject.ext.findDepProjects(p.path)}"
+        if (p.path == ':app') {
+            p.apply {from "$rootDir.path/script/app-deps.gradle"}
+            return
+        }
+        def m = rootProject.ext.findModule(p.path)
+        if (m.format == 'bundle'){
+            p.apply {from "$rootDir.path/script/bundle_module.gradle"}
+
+        }else   if (m.format.contains('foundation')){
+            p.apply {from "$rootDir.path/script/foundation_module.gradle"}
+        }
+
+    }
+
+    @Override
+    void afterEvaluate(Project p, ProjectState projectState) {
+    }
+})

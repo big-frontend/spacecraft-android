@@ -12,6 +12,7 @@ import android.util.Log;
 public class Test1 {
     @SuppressLint("LogNotTimber")
     void test(){
+//        new Test3()
         Integer.parseInt("1000");
         Integer.valueOf("1000");
 //        Long.valueOf("111");

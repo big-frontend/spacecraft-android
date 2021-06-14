@@ -1,3 +1,5 @@
+
+
 public final class P {
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -34,7 +36,6 @@ public final class P {
     public static void info(Object message) {
         println(ANSI_GREEN + "" + message + "" + ANSI_RESET);
     }
-
     public static void debug(Object message) {
         println(ANSI_BLUE + "" + message + "" + ANSI_RESET);
     }
@@ -43,13 +44,13 @@ public final class P {
         println(message);
     }
     public static void child(Object msg){
-        println("👶[ gradle 开始 ] "+msg);
+        println("👶[ gradle initialzation ] "+msg);
     }
     public static void teenager(Object msg){
-        println("👩‍🎓👨‍🎓[ initialzation ] "+msg);
+        println("👩‍🎓👨‍🎓[ gradle  configuration] "+msg);
     }
     public static void middleAge(Object msg){
-        println("👰🤵[ configuration ] "+msg);
+        println("🏃👰🤵[ gradle  run] "+msg);
     }
     public static void theElderly(Object msg){
         println("👵👴[ gradle 结束 ] "+msg);

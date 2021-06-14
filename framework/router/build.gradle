@@ -1,8 +1,8 @@
-apply plugin: 'foundation-module'
-
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 
 dependencies {
-    implementation project(path: ':framework:common')
+//    implementation project(path: ':framework:common')
     api 'com.alibaba:arouter-api:1.3.2'
 
 }

@@ -8,7 +8,7 @@ import android.os.Build;
  * All right reserved.
  *
  */
-class Test2 {
+public class Test2 {
     void test(){
         Integer.valueOf(1000);
 

@@ -11,12 +11,51 @@ project.ext.srcDirs =[
         "customview",
 
 ]
-apply plugin: 'foundation-module'
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
+android {
+    sourceSets {
+        if (project.hasProperty("srcDirs")) {
+            main {
+                java.excludes = [
+                        '**/build/**',
+                ]
+                project.ext.srcDirs.forEach {
+                    assets.srcDirs += "$projectDir/$it/main/assets"
+                    aidl.srcDirs += "$projectDir/$it/main/aidl"
+                    res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                    res.srcDirs += "$projectDir/$it/main/res"
+                    java.srcDirs += "$projectDir/$it/main/java"
 
+//                    assets.srcDirs += "$projectDir/src/inhouse/assets"
+//                    aidl.srcDirs += "$projectDir/src/inhouse/aidl"
+//                    res.srcDirs += "$projectDir/src/inhouse/res"
+//                    java.srcDirs += "$projectDir/src/inhouse/java"
+                }
+            }
+            androidTest {
+                project.ext.srcDirs.forEach {
+                    assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                    aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                    res.srcDirs += "$projectDir/$it/androidTest/res"
+                    java.srcDirs += "$projectDir/$it/androidTest/java"
+
+                }
+            }
+            test {
+                project.ext.srcDirs.forEach {
+                    java.srcDirs += "$projectDir/$it/test/java"
+                }
+
+            }
+        }
+    }
+
+}
 dependencies {
-    implementation project(path: ':framework:common')
+//    implementation project(path: ':framework:common')
 //    implementation project(path: ':framework:av')
-//    implementation project(path: ':image')
+//    implementation project(path: ':framework:image')
     /**
      * ================================ui start=====================================
      */
@@ -94,6 +133,4 @@ dependencies {
     /**
      * ================================ui end=====================================
      */
-
-
 }

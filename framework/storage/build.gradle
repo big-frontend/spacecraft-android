@@ -1,4 +1,5 @@
-apply plugin: 'foundation-module'
+//apply plugin: 'foundation-module'
+//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
 apply plugin: 'realm-android'
 android{
     defaultConfig {
@@ -11,7 +12,7 @@ android{
 
 }
 dependencies {
-    implementation project(path: ':framework:common')
+//    implementation project(path: ':framework:common')
     /**
      * ================================database start==============================
      */

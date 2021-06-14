@@ -1,5 +1,5 @@
-apply plugin: 'bundle-module'
-
+//apply plugin: 'bundle-module'
+apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle_module.gradle"
 
 dependencies {
     api project(path: ':instrumentation:annotations')
