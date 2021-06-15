@@ -94,7 +94,7 @@ class RecorderService : Service() {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         val resultCode = intent.getIntExtra("code", -1)
         val data = intent.getParcelableExtra<Intent>("data")
-        mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)?.apply {
+        mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data!!)?.apply {
             registerCallback(mProjectionCallback, Handler())
 
 //            val outputFile = File(getExternalFilesDir(null), "video.mp4")

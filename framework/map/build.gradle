@@ -1,5 +1,5 @@
 //apply plugin: 'foundation-module'
-//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
+apply from: "${rootDir.path}/script/foundation_module.gradle"
 android {
     defaultConfig {
         ndk {

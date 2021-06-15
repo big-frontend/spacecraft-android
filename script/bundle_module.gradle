@@ -1,5 +1,6 @@
-
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/base_module.gradle"
+apply plugin: 'com.android.library'
+apply from: "${rootDir.path}/script/base_module.gradle"
+apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.google.protobuf'
 //protobuf {
 //    protoc {
@@ -33,11 +34,11 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/base_module.gr
 //        }
 //    }
 //}
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
+//kapt {
+//    arguments {
+//        arg("AROUTER_MODULE_NAME", project.getName())
+//    }
+//}
 android {
     defaultConfig {
         javaCompileOptions {
@@ -59,16 +60,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    P.teenager("implementation bundles begin ========================================================================================")
+    P.teenager("bundles begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
     for(def d :deps){
-        P.teenager("bundle  ${d}")
+        P.teenager("implementation ${d}")
         api d
     }
-    P.teenager("implementation bundles end ========================================================================================")
+    P.teenager("bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"
-    kapt "com.google.dagger:dagger-android-processor:2.16"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
     annotationProcessor 'androidx.databinding:databinding-compiler:4.1.0-alpha01'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
 }

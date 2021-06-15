@@ -209,20 +209,20 @@ class VideoRecorder constructor(val context: Context)
         mMediaRecorder.initial2prepare(profile, mOutputFile, mOutputfd)
     }
 
-    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture?, width: Int, height: Int) {
+    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) {
         Log.d(TAG, "onSurfaceTextureSizeChanged");
     }
 
-    override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) {
+    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {
         Log.d(TAG, "onSurfaceTextureUpdated");
     }
 
-    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean {
+    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean {
         Log.d(TAG, "onSurfaceTextureDestroyed");
         return false
     }
 
-    override fun onSurfaceTextureAvailable(surface: SurfaceTexture?, width: Int, height: Int) {
+    override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
         Log.d(TAG, "onSurfaceTextureAvailable");
         mSurfaceTexture = surface
             surface?.let { mCamera?.restartPreview(it) }

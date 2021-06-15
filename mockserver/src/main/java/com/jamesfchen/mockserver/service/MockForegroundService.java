@@ -20,8 +20,6 @@ import androidx.annotation.Nullable;
 import com.jamesfchen.mockserver.Constants;
 import com.jamesfchen.mockserver.IMockApi;
 import com.jamesfchen.mockserver.IMockServerCallback;
-import com.jamesfchen.mockserver.LogActivity;
-import com.jamesfchen.mockserver.R;
 
 /**
  * Copyright ® $ 2017
@@ -75,19 +73,19 @@ public class MockForegroundService extends Service {
             NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             chan.setLightColor(Color.BLUE);
             chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-            Intent notificationIntent = new Intent(this, LogActivity.class);
-            PendingIntent pendingIntent =
-                    PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-            notificationManager.createNotificationChannel(chan);
-            Notification notification = new Notification.Builder(this, channelId)
-                    .setContentTitle("this is title")
-                    .setContentText("this is text")
-                    .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.ic_launcher)
-                    .setTicker("this is ticker")
-                    .build();
-            startForeground(ONGOING_NOTIFICATION_ID, notification);
+//            Intent notificationIntent = new Intent(this, LogActivity.class);
+//            PendingIntent pendingIntent =
+//                    PendingIntent.getActivity(this, 0, notificationIntent, 0);
+//
+//            notificationManager.createNotificationChannel(chan);
+//            Notification notification = new Notification.Builder(this, channelId)
+//                    .setContentTitle("this is title")
+//                    .setContentText("this is text")
+//                    .setContentIntent(pendingIntent)
+//                    .setSmallIcon(R.drawable.ic_launcher)
+//                    .setTicker("this is ticker")
+//                    .build();
+//            startForeground(ONGOING_NOTIFICATION_ID, notification);
         }
     }
 

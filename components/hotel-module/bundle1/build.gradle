@@ -1,5 +1,5 @@
 //apply plugin: 'bundle-module'
-//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle_module.gradle"
+apply from: "$rootDir.path/script/bundle_module.gradle"
 //kapt {
 //    arguments {
 //        arg("AROUTER_MODULE_NAME", project.getName())
@@ -15,7 +15,7 @@
 //    }
 //
 //}
-dependencies {
+//dependencies {
 //    implementation project(path: ':components:hotel-module:foundation')
-    api "com.jamesfchen:hotel-foundation:1.0"
-}
+//    api "com.jamesfchen:hotel-foundation:1.0"
+//}

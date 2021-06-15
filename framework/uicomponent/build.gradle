@@ -12,7 +12,7 @@ project.ext.srcDirs =[
 
 ]
 //apply plugin: 'foundation-module'
-//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
+apply from: "${rootDir.path}/script/foundation_module.gradle"
 android {
     sourceSets {
         if (project.hasProperty("srcDirs")) {
@@ -61,13 +61,13 @@ dependencies {
      */
     api 'jp.wasabeef:recyclerview-animators:4.0.2'
     api 'com.github.DingMouRen:LayoutManagerGroup:1e6f4f96eb'
-    api "androidx.recyclerview:recyclerview:1.1.0"
-    api 'androidx.navigation:navigation-fragment:2.3.0-alpha02'
-    api 'androidx.navigation:navigation-ui:2.3.0-alpha02'
-    api 'androidx.navigation:navigation-common-ktx:2.3.0-alpha02'
-    api 'androidx.navigation:navigation-runtime-ktx:2.3.0-alpha02'
-    api 'androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02'
-    api 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha02'
+    api "androidx.recyclerview:recyclerview:1.2.1"
+    api 'androidx.navigation:navigation-fragment:2.4.0-alpha02'
+    api 'androidx.navigation:navigation-ui:2.4.0-alpha02'
+    api 'androidx.navigation:navigation-common-ktx:2.4.0-alpha02'
+    api 'androidx.navigation:navigation-runtime-ktx:2.4.0-alpha02'
+    api 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha02'
+    api 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha02'
 
     api 'com.scwang.smart:refresh-layout-kernel:2.0.3'      //核心必须依赖
     api 'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
@@ -90,7 +90,7 @@ dependencies {
    *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
    *解决方法：需要exclude掉v4包
     */
-    api "com.google.android.material:material:1.4.0-beta01"
+    api "com.google.android.material:material:1.4.0-rc01"
     api 'androidx.vectordrawable:vectordrawable:1.1.0'
 
     //animotor
@@ -110,13 +110,13 @@ dependencies {
     api "androidx.paging:paging-runtime-ktx:3.0.0"
     testImplementation "androidx.paging:paging-common-ktx:3.0.0"
 //    api "androidx.paging:paging-rxjava3-ktx:3.0.0"
-    api "androidx.paging:paging-compose:1.0.0-alpha09"
+    api "androidx.paging:paging-compose:1.0.0-alpha10"
 
-    api "androidx.work:work-runtime:2.5.0"
-    api "androidx.work:work-runtime-ktx:2.5.0"
-    api "androidx.work:work-rxjava2:2.5.0"
-    api "androidx.work:work-gcm:2.5.0"
-    androidTestImplementation "androidx.work:work-testing:2.5.0"
+    api "androidx.work:work-runtime:2.6.0-beta01"
+    api "androidx.work:work-runtime-ktx:2.6.0-beta01"
+    api "androidx.work:work-rxjava2:2.6.0-beta01"
+    api "androidx.work:work-gcm:2.6.0-beta01"
+    androidTestImplementation "androidx.work:work-testing:2.6.0-beta01"
 //    api "androidx.work:work-firebase:2.2.0"
 
     api 'com.firebaseui:firebase-ui-database:6.0.2'
@@ -128,7 +128,7 @@ dependencies {
     api 'androidx.emoji:emoji-appcompat:1.1.0'
     api 'androidx.emoji:emoji-bundled:1.1.0'
 
-    api 'androidx.databinding:databinding-runtime:4.1.0-alpha01'
+    api 'androidx.databinding:databinding-runtime:7.1.0-alpha02'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
     /**
      * ================================ui end=====================================

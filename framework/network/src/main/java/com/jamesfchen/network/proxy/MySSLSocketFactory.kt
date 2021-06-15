@@ -1,6 +1,5 @@
 package com.jamesfchen.network.proxy
 
-import com.squareup.okhttp.internal.ConnectionSpecSelector
 import okhttp3.ConnectionSpec
 import okhttp3.TlsVersion
 import okhttp3.tls.HandshakeCertificates
@@ -22,10 +21,10 @@ import javax.net.ssl.SSLSocketFactory
  * 如果要使用http的隧道，就需要重写SSLSocketFactory + Proxy为Http，因为http的隧道都是加密
  */
 class MySSLSocketFactory : SSLSocketFactory() {
-    private fun createConnectionSpecSelector(vararg connectionSpecs: ConnectionSpec): ConnectionSpecSelector {
-//        return ConnectionSpecSelector(asList(connectionSpecs))
-        return  ConnectionSpecSelector(mutableListOf())
-    }
+//    private fun createConnectionSpecSelector(vararg connectionSpecs: ConnectionSpec): ConnectionSpecSelector {
+////        return ConnectionSpecSelector(asList(connectionSpecs))
+//        return  ConnectionSpecSelector(mutableListOf())
+//    }
 
     private var handshakeCertificates: HandshakeCertificates = localhost()
     private fun createSocketWithEnabledProtocols(vararg tlsVersions: TlsVersion): SSLSocket {
@@ -43,7 +42,7 @@ class MySSLSocketFactory : SSLSocketFactory() {
     }
 
     override fun createSocket(s: Socket?, host: String?, port: Int, autoClose: Boolean): Socket {
-        val connectionSpecSelector: ConnectionSpecSelector = createConnectionSpecSelector(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS)
+//        val connectionSpecSelector: ConnectionSpecSelector = createConnectionSpecSelector(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS)
         val socket: SSLSocket = createSocketWithEnabledProtocols(TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
         return socket
     }

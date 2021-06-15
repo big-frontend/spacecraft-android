@@ -1,5 +1,5 @@
 //apply plugin: 'bundle-module'
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/bundle_module.gradle"
+apply from: "$rootDir.path/script/bundle_module.gradle"
 apply plugin: 'com.jamesfchen.perfplugin'
 
 dependencies {

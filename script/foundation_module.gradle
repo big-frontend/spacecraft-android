@@ -1,4 +1,6 @@
-apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/base_module.gradle"
+apply plugin: 'com.android.library'
+apply from: "${rootDir.path}/script/base_module.gradle"
+apply plugin: 'kotlin-kapt'
 //class ExtSourceSetsPlugin implements Plugin<Project> {
 //
 //    @Override
@@ -16,11 +18,11 @@ apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/base_module.gr
 //}
 //apply plugin: ExtSourceSetsPlugin
 dependencies {
-    P.teenager("implementation foundation begin ========================================================================================")
+    P.teenager("foundation begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
     for(def d :deps){
-        P.teenager("foundation  ${d}")
+        P.teenager("implementation  ${d}")
         api d
     }
-    P.teenager("implementation foundation end ========================================================================================")
+    P.teenager("foundation end ========================================================================================")
 }

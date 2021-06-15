@@ -1,0 +1,6 @@
+apply from: "$rootDir.path/script/app_module.gradle"
+android {
+    defaultConfig {
+        resValue "string", "app_name","hotel-module"
+    }
+}

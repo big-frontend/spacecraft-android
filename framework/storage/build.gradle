@@ -1,5 +1,5 @@
 //apply plugin: 'foundation-module'
-//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
+apply from: "${rootDir.path}/script/foundation_module.gradle"
 apply plugin: 'realm-android'
 android{
     defaultConfig {
@@ -17,11 +17,11 @@ dependencies {
      * ================================database start==============================
      */
     //room database
-    testImplementation 'androidx.room:room-testing:2.2.5'
-    api 'androidx.room:room-runtime:2.2.5'
-    api 'androidx.room:room-rxjava2:2.2.5'
-    api "androidx.room:room-ktx:2.2.5"
-    kapt 'androidx.room:room-compiler:2.2.5'
+    testImplementation 'androidx.room:room-testing:2.3.0'
+    api 'androidx.room:room-runtime:2.3.0'
+    api 'androidx.room:room-rxjava2:2.3.0'
+    api "androidx.room:room-ktx:2.3.0"
+    kapt 'androidx.room:room-compiler:2.3.0'
 
     //realm database
     api "io.realm:realm-annotations:5.7.0"
@@ -29,8 +29,8 @@ dependencies {
     api "io.realm:realm-android-kotlin-extensions:5.7.0"
     kapt "io.realm:realm-annotations-processor:5.7.0"
 
-    api 'com.google.firebase:firebase-database:19.1.0'
-    api 'com.google.firebase:firebase-firestore:21.1.1'
+    api 'com.google.firebase:firebase-database:20.0.0'
+    api 'com.google.firebase:firebase-firestore:23.0.1'
     /**
      * ================================database end==============================
      */

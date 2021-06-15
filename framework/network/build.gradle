@@ -7,7 +7,7 @@ project.ext.srcDirs =[
 //
 ]
 //apply plugin: 'foundation-module'
-//apply from: "${rootProject.getRootDir().getAbsolutePath()}/script/foundation_module.gradle"
+apply from: "${rootDir.path}/script/foundation_module.gradle"
 static String getLocalIP() {
     InetAddress result = null
     Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces()
@@ -31,7 +31,7 @@ dependencies {
     testImplementation files('libs/jsoup-1.12.1.jar')
 //    api project(path: ':framework:common')
 //    api project(path: ':mockserver')
-    //    api 'com.squareup.okhttp3:okhttp:3.8.1'
+//    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     //    api 'com.android.volley:volley:1.1.1'
     api 'com.squareup.okhttp3:okhttp-tls:4.0.1'
     api 'com.facebook.stetho:stetho-okhttp3:1.5.1'
@@ -50,12 +50,12 @@ dependencies {
 //    api "com.squareup.retrofit2:converter-moshi:2.9.0"
 //    api "com.squareup.retrofit2:converter-protobuf:2.9.0"
     //rpc
-    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
+//    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
 //        exclude group:  'com.google.guava'
 //        exclude group: 'com.google.protobuf', module: 'protobuf-java'
-    }
-    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
-    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
+//    }
+//    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
+//    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
 
     /*
       http style  end

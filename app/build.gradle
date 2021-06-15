@@ -1,5 +1,5 @@
 println("app start")
-//apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 //apply plugin: 'androidx.navigation.safeargs'
@@ -69,27 +69,19 @@ android {
 //        buildConfigField("String", "WEATHER_URL_XIAO_MI", '"https://weatherapi.market.xiaomi.com"')
 //        buildConfigField("String", "WEATHER_URL_CAI_YUN_APP", '"https://api.caiyunapp.com"')
 //        buildConfigField('String', 'WEATHER_URL_OPEN_WEATHER_MAP', '"https://api.openweathermap.org"')
-        buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
-        buildConfigField('String', 'BUGLY_APP_KEY', '"a15ecf84-1786-40c6-abf5-fe975fce22e6"')
-        buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517994447"')
-        buildConfigField('String', 'XIAOMI_APP_KEY', '"5921799441447"')
-        buildConfigField('String', 'AMAP_KEY', '"84198333a8ab4404cd35829dbb4ec435"')
-        manifestPlaceholders = [
-                'BUGLY_APP_ID': '3d62251014', 'BUGLY_APP_KEY': 'a15ecf84-1786-40c6-abf5-fe975fce22e6', "BUGLY_APP_VERSION": "${rootProject.ext.versionName}",
-                'AMAP_KEY'    : '84198333a8ab4404cd35829dbb4ec435',
-        ]
+        resValue "string", "app_name", "Spacecraft"
     }
     signingConfigs {
         debugSigningConfig {
             (keyAlias, keyPassword, storePassword) = ['123456', '123456', '123456']
-            storeFile file("debug.jks")
+            storeFile file("${rootDir}/keystore/debug.jks")
             v1SigningEnabled true
             v2SigningEnabled true
 
         }
         releaseSigningConfig {
             (keyAlias, keyPassword, storePassword) = ['123456', '123456', '123456']
-            storeFile file("debug.jks")
+            storeFile file("${rootDir}/keystore/debug.jks")
             v1SigningEnabled true
             v2SigningEnabled true
         }
@@ -100,7 +92,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf', 'BUGLY_ENABLE_DEBUG': 'false']
             signingConfig signingConfigs.releaseSigningConfig
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled false
@@ -119,10 +110,6 @@ android {
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix = '.debug'
-            manifestPlaceholders = [
-                    'QQ_KEY'            : 'adf', 'WEXIN_KEY': 'adfaf',
-                    'BUGLY_ENABLE_DEBUG': 'true'
-            ]
             signingConfig signingConfigs.debugSigningConfig
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
@@ -130,7 +117,7 @@ android {
                 mappingFileUploadEnabled false
             }
         }
-        component{
+        component {
             initWith debug
             debuggable true
         }
@@ -294,6 +281,7 @@ android {
 configurations {
     apkCheckerDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
 }
 
 //task exportVarToShell(type: Exec) {
@@ -305,7 +293,13 @@ configurations {
 //}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
+    P.teenager("app begin ========================================================================================")
+    def deps = rootProject.ext.findDepProjects(project.path)
+    for (def d : deps) {
+        P.teenager("implementation ${d}")
+        api d
+    }
+    P.teenager("app end ========================================================================================")
 
 //    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: "0.6.0", changing: true
 }
