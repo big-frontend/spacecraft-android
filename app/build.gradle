@@ -117,10 +117,6 @@ android {
                 mappingFileUploadEnabled false
             }
         }
-        component {
-            initWith debug
-            debuggable true
-        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

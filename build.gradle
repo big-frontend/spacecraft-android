@@ -7,13 +7,14 @@
  */
 buildscript {
     repositories {
-        google()
         maven { url "https://jitpack.io" }
-        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.oschina.net/content/groups/public/" }
         maven { url 'https://plugins.gradle.org/m2/' }
-        mavenLocal()
-        mavenCentral()
+//        google()
+        maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url uri("$rootDir/repo") }
+        mavenCentral()
+        mavenLocal()
     }
     ext {
         compileSdkVersion = 30
@@ -78,13 +79,14 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         maven { url "https://jitpack.io" }
-        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.oschina.net/content/groups/public/" }
         maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url uri("$rootDir/repo") }
+//        google()
         mavenLocal()
         mavenCentral()
-        maven { url uri("$rootDir/repo") }
     }
     configurations.all {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
