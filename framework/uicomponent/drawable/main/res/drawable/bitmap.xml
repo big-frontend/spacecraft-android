@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
         android:alpha="0.8"
-        android:src="@drawable/w14"
+        android:src="@drawable/tmp"
         android:tint="@color/apricot"
         android:tintMode="multiply"
         android:antialias="true"

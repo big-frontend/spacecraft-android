@@ -2,5 +2,5 @@
 <transition xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <item android:drawable="@drawable/bitmap"/>
-    <item android:drawable="@drawable/w0"/>
+    <item android:drawable="@drawable/tmp"/>
 </transition>

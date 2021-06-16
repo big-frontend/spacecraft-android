@@ -74,7 +74,10 @@
       "canonicalName": ":components:hotel-module:foundation",
       "format": "bundle_foundation",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen:hotel-foundation:1.0"
+      "binary_artifact": "com.jamesfchen:hotel-foundation:1.0",
+      "deps": [
+        ":framework:loader"
+      ]
 
     },
     {
