@@ -3,8 +3,6 @@ import groovy.json.JsonSlurper
 def child(Object msg) {
     println("👶[ gradle initialzation ] " + msg);
 }
-//apply from: "./buildSrc/src/main/groovy/module-config.groovy"
-//apply from: "./buildSrc/src/main/groovy/module-config.gradle"
 /**
  * 读取module_config.json信息以此来include具体的模块，对于模块的描述应该有这些信息
  * class Module{*    require  def simpleName 模块名的简写,给idea plugin读取
@@ -16,7 +14,7 @@ def child(Object msg) {
  *    require def binary_artifact default: {package}:simpleName:1.0.0 ,默认的binary_artifact需要保证simpelName唯一性,先暂时用1.0.0站位，后面应该通过获取远程版本和本地版本进行自动升级
  *}*
  */
-def config = new JsonSlurper().parse(file("./buildSrc/module_config.json"))
+def config = new JsonSlurper().parse(file("./module_config.json"))
 gradle.ext.allModules = config.allModules
 def localProperties = new Properties()
 def localPropertiesFile = new File(rootDir, 'local.properties')
@@ -82,12 +80,12 @@ include ':app'
 //include ':lint-rules'
 //include ':lint-checker'
 //include ':instrumentation:annotations', ':instrumentation:processor'
-child("include module begin ========================================================================================")
+child("module begin ========================================================================================")
 //gradle.ext.appMap.each { _, module ->
 //    child("app ${module.canonicalName}")
 //}
 gradle.ext.sourceModuleMap.each { _, module ->
-    child("source module   ${module.canonicalName}")
+    child("include module   ${module.canonicalName}")
     if (module.simpleName == 'flutter') {
         setBinding(new Binding([gradle: this]))
         evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
@@ -97,24 +95,15 @@ gradle.ext.sourceModuleMap.each { _, module ->
             project(module.canonicalName).projectDir = new File(rootProject.projectDir, module.path)
         }
     }
-}
-gradle.ext.binaryModuleMap.each { _, module ->
-    child("binary module  ${module.canonicalName}")
-    if (module.simpleName == 'flutter') {
-        setBinding(new Binding([gradle: this]))
-        evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
-    } else {
-        include module.canonicalName
-        if (module.path) {
-            project(module.canonicalName).projectDir = new File(rootProject.projectDir, module.path)
-        }
-    }
-
 }
 gradle.ext.excludeModuleMap.each { _, module ->
-    child("exclude module  ${module.canonicalName}")
+    child("\u001B[31mexclude module\u001B[0m  ${module.canonicalName}")
 }
-child("include module end ========================================================================================")
+gradle.ext.binaryModuleMap.each { _, module ->
+    child("binary module  ${module.binary_artifact}")
+}
+
+child("module end ========================================================================================")
 //这些只能在settings.gradle使用,是属于初始化阶段的钩子
 //gradle.settingsEvaluated {
 //    println("settingsEvaluated")

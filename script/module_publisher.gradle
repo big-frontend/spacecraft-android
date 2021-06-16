@@ -7,7 +7,6 @@ def findArtifact(){
     def moduleSimpleName = ''
     def moduleCanonicalNmae = ''
     for (def module : rootProject.ext.modules) {
-//        println "${project.path} ${module}"
         if (project.path == module.canonicalName) {
             moduleSimpleName = module.simpleName
             moduleCanonicalNmae = module.canonicalName
@@ -19,7 +18,6 @@ def findArtifact(){
     ) {
         throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :moduleCanonicalNmae${moduleCanonicalNmae} 这两个参数都要配置")
     }
-//    println "cjf ${applicationId}:${moduleSimpleName}  $moduleCanonicalNmae"
     return  [applicationId,moduleSimpleName]
 }
 //  ./gradlew publishToMavenLocal
@@ -103,18 +101,21 @@ afterEvaluate {
     assembleDebug.dependsOn "$project.path:publishToMavenLocal"
     assembleRelease.dependsOn "$project.path:publishToMavenLocal"
 }
-//task publishAll {
-//    doLast {
-//        project.rootProject.subprojects.each { subP ->
-//            if (subP.isEmpty()) {
-//                exec {
-//                    executable rootDir.path + '/gradlew'
-//                    workingDir rootDir
-//                    def argv = []
-//                    argv << "${subP.path}:publishToMavenLocal"
-//                    args = argv
-//                }
-//            }
-//        }
-//    }
-//}
+static def isWindows() {
+    return System.properties['os.name'].contains('Windows');
+}
+task publishAll {
+    doLast {
+        project.rootProject.subprojects.each { p ->
+            if (p.path !=':app' && p.path !=':hotel-module:hotel-lint' && p.subprojects.isEmpty()) {
+                exec {
+                    executable rootDir.path+File.separator + isWindows() ? 'gradlew.bat' :'gradlew'
+                    workingDir rootDir
+                    def argv = []
+                    argv << "${p.path}:publishToMavenLocal"
+                    args = argv
+                }
+            }
+        }
+    }
+}

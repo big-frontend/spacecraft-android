@@ -6,8 +6,8 @@ apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.alibaba.arouter'
 apply plugin: 'com.tencent.buglyplugin'
+apply from: "${rootDir.path}/script/console.gradle"
 bugly {
     appId = '3d62251014'
     appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
@@ -129,6 +129,12 @@ android {
     packagingOptions {
         exclude 'META-INF/proguard/coroutines.pro'
     }
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize "8g"
+        maxProcessCount 8
+        dexInProcess = true
+    }
 }
 configurations {
     apkCheckerDependency
@@ -137,11 +143,11 @@ configurations {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    P.teenager("${project.path} app begin ========================================================================================")
+    teenager("${project.path} app begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
     for(def d :deps){
-        P.teenager("implementation  ${d}")
+        teenager("api  ${d}")
         api d
     }
-    P.teenager("${project.path} app end ========================================================================================")
+    teenager("${project.path} app end ========================================================================================")
 }

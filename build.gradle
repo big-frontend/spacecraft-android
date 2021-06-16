@@ -108,13 +108,11 @@ ext {
     findProject = { moduleName ->
         if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
             def module = gradle.ext.binaryModuleMap[moduleName]
-//            P.teenager("binary bundle  ${module.binary_artifact}")
             if (module.binary_artifact.isEmpty()) {
                 throw new IllegalArgumentException("binary module 的binary_artifact不能为空")
             }
             return module.binary_artifact
         } else if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
-//            P.teenager("source bundle  ${moduleName}")
             return gradle.rootProject.findProject(moduleName)
         }
         //该模块为exclude，不会进行编译不需要依赖

@@ -41,6 +41,7 @@ dependencies {
     //crash and anr
     api 'com.tencent.bugly:nativecrashreport:3.7.1'
     api 'com.tencent.bugly:crashreport:3.0.0'
+    api 'androidx.multidex:multidex:2.0.1'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
 

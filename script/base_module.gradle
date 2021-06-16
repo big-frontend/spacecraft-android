@@ -1,6 +1,6 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply from: "${rootDir.path}/script/console.gradle"
 //def snmae=
 //def lastindex= snmae.indexOf('ModulePlugin')
 //def type= snmae.substring(0,lastindex).toLowerCase()

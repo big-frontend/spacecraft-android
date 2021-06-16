@@ -18,11 +18,14 @@ apply plugin: 'kotlin-kapt'
 //}
 //apply plugin: ExtSourceSetsPlugin
 dependencies {
-    P.teenager("foundation begin ========================================================================================")
+    teenager("foundation begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
     for(def d :deps){
-        P.teenager("implementation  ${d}")
+        teenager("api  ${d}")
         api d
     }
-    P.teenager("foundation end ========================================================================================")
+    teenager("foundation end ========================================================================================")
 }
+//afterEvaluate {
+//    verifyReleaseResources.enabled(false)
+//}

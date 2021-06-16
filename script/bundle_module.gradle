@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply from: "${rootDir.path}/script/base_module.gradle"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.alibaba.arouter'
 //apply plugin: 'com.google.protobuf'
 //protobuf {
 //    protoc {
@@ -54,13 +55,13 @@ android {
 }
 
 dependencies {
-    P.teenager("bundles begin ========================================================================================")
+    teenager("bundles begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
     for(def d :deps){
-        P.teenager("implementation ${d}")
+        teenager("api ${d}")
         api d
     }
-    P.teenager("bundles end ========================================================================================")
+    teenager("bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
     annotationProcessor 'androidx.databinding:databinding-compiler:7.0.0-beta03'

@@ -1,7 +1,7 @@
-package com.jamesfchen.common.util;
+package com.jamesfchen.bundle1;
 
 
-import com.jamesfchen.common.R;
+import com.jamesfchen.bundle1.R;
 
 /**
  * Copyright ® $ 2017
