@@ -8,7 +8,6 @@
 buildscript {
     repositories {
         maven { url "https://jitpack.io" }
-        maven { url "https://maven.oschina.net/content/groups/public/" }
         maven { url 'https://plugins.gradle.org/m2/' }
 //        google()
         maven { url 'https://maven.aliyun.com/repository/google/' }
@@ -80,7 +79,6 @@ buildscript {
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
-        maven { url "https://maven.oschina.net/content/groups/public/" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url uri("$rootDir/repo") }
@@ -175,3 +173,25 @@ ext {
 //    void afterEvaluate(Project p, ProjectState projectState) {
 //    }
 //})
+static def isWindows() {
+    return System.properties['os.name'].contains('Windows');
+}
+
+task publishAll {
+    doLast {
+        gradle.ext.sourceModuleMap.each {canonicalName,module->
+            if (canonicalName !=':app'
+                    && canonicalName !=':components:hotel-module:hotel-lint'
+                    && canonicalName !=':framework:flutter'
+                    && module.format !='app') {
+                exec {
+                    executable rootDir.path+File.separator + (isWindows() ? 'gradlew.bat' :'gradlew')
+                    workingDir rootDir
+                    def argv = []
+                    argv << "${canonicalName}:publishToMavenLocal"
+                    args = argv
+                }
+            }
+        }
+    }
+}

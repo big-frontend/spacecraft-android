@@ -86,7 +86,7 @@ child("module begin ============================================================
 //}
 gradle.ext.sourceModuleMap.each { _, module ->
     child("include module   ${module.canonicalName}")
-    if (module.simpleName == 'flutter') {
+    if (module.simpleName == 'framework-flutter') {
         setBinding(new Binding([gradle: this]))
         evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
     } else {

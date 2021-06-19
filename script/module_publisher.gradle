@@ -3,7 +3,7 @@ def isAndroid() {
             project.getPlugins().hasPlugin('com.android.library')
 }
 def findArtifact(){
-    def applicationId = 'com.jamesfchen'
+    def applicationId = rootProject.applicationId
     def moduleSimpleName = ''
     def moduleCanonicalNmae = ''
     for (def module : rootProject.ext.modules) {
@@ -97,31 +97,7 @@ afterEvaluate {
             }
         }
     }
-//    assemble.dependsOn "$project.path:publishToMavenLocal"
-//    assembleDebug.dependsOn "$project.path:publishToMavenLocal"
-//    assembleRelease.dependsOn "$project.path:publishToMavenLocal"
-}
-tasks.whenTaskAdded {
-    task ->
-        if ("assembleRelease" == task.name || 'assembleDebug' == task.name || 'assemble' == task.name) {
-            publishToMavenLocal.dependsOn assemble
-        }
-}
-static def isWindows() {
-    return System.properties['os.name'].contains('Windows');
-}
-task publishAll {
-    doLast {
-        project.rootProject.subprojects.each { p ->
-            if (p.path !=':app' && p.path !=':hotel-module:hotel-lint' && p.subprojects.isEmpty()) {
-                exec {
-                    executable rootDir.path+File.separator + isWindows() ? 'gradlew.bat' :'gradlew'
-                    workingDir rootDir
-                    def argv = []
-                    argv << "${p.path}:publishToMavenLocal"
-                    args = argv
-                }
-            }
-        }
-    }
+    publishToMavenLocal.dependsOn assemble
+    publishDebugPublicationToMavenLocal.dependsOn assembleDebug
+    publishReleasePublicationToMavenLocal.dependsOn assembleRelease
 }

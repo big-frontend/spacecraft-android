@@ -7,7 +7,7 @@
       "canonicalName": ":app",
       "format": "app",
       "group": "father",
-      "binary_artifact": "com.jamesfchen:app:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:app:1.0",
       "deps": [
         ":components:hotel-module:bundle1",":components:hotel-module:bundle2",":components:myhome"
       ]
@@ -17,7 +17,7 @@
       "canonicalName": ":components:home-module:main",
       "format": "app",
       "group": "home",
-      "binary_artifact": "com.jamesfchen:home-main:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:home-main:1.0",
       "deps": [
         ":components:home-module:myhome"
       ]
@@ -27,7 +27,7 @@
       "canonicalName": ":components:home-module:myhome",
       "format": "bundle",
       "group": "home",
-      "binary_artifact": "com.jamesfchen:home-myhome:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:home-myhome:1.0",
       "deps": [
         ":framework:loader"
       ]
@@ -37,7 +37,7 @@
       "canonicalName": ":components:hotel-module:main",
       "format": "app",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen:hotel-main:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:hotel-main:1.0",
       "deps": [
         ":components:hotel-module:bundle1"
       ]
@@ -47,7 +47,7 @@
       "canonicalName": ":components:hotel-module:bundle1",
       "format": "bundle",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen:hotel-bundle1:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:hotel-bundle1:1.0",
       "deps": [
         ":components:hotel-module:foundation"
       ]
@@ -57,7 +57,7 @@
       "canonicalName": ":components:hotel-module:bundle2",
       "format": "bundle",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen:hotel-bundle2:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:hotel-bundle2:1.0",
       "deps": [
         ":components:hotel-module:foundation"
       ]
@@ -67,14 +67,14 @@
       "canonicalName": ":components:hotel-module:hotel-lint",
       "format": "jar",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen:hotel-lint:1.0"
+      "binary_artifact": "com.jamesfchen.spacecraft:hotel-lint:1.0"
     },
     {
       "simpleName": "hotel-foundation",
       "canonicalName": ":components:hotel-module:foundation",
       "format": "bundle_foundation",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen:hotel-foundation:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:hotel-foundation:1.0",
       "deps": [
         ":framework:loader"
       ]
@@ -85,13 +85,12 @@
       "canonicalName": ":framework:loader",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-loader:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-loader:1.0",
       "deps": [
         ":framework:network",
         ":framework:router",
         ":framework:uicomponent",
-        ":framework:av",
-        ":framework:flutter"
+        ":framework:av"
       ]
     },
     {
@@ -99,14 +98,14 @@
       "canonicalName": ":framework:flutter",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-flutter:1.0"
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-flutter:1.0"
     },
     {
       "simpleName": "framework-router",
       "canonicalName": ":framework:router",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-router:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-router:1.0",
       "deps": [
         ":framework:common"
       ]
@@ -116,7 +115,7 @@
       "canonicalName": ":framework:network",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-network:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-network:1.0",
       "deps": [
         ":framework:common",":mockserver"
       ]
@@ -126,7 +125,7 @@
       "canonicalName": ":framework:av",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-av:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-av:1.0",
       "deps": [
         ":framework:common"
       ]
@@ -136,7 +135,7 @@
       "canonicalName": ":framework:image",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-image:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-image:1.0",
       "deps": [
         ":framework:common"
       ]
@@ -146,7 +145,7 @@
       "canonicalName": ":framework:uicomponent",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-uicomponent:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-uicomponent:1.0",
       "deps": [
         ":framework:common"
       ]
@@ -156,7 +155,7 @@
       "canonicalName": ":mockserver",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-mockserver:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-mockserver:1.0",
       "deps": [
         ":framework:common"
       ]
@@ -166,7 +165,7 @@
       "canonicalName": ":framework:storage",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-storage:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-storage:1.0",
       "deps": [
         ":framework:common"
       ]
@@ -176,7 +175,7 @@
       "canonicalName": ":framework:common",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen:framework-common:1.0"
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-common:1.0"
     }
   ]
 }

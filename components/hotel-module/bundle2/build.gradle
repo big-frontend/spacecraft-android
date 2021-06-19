@@ -1,5 +1,5 @@
 //apply plugin: 'bundle-module'
-//apply from: "$rootDir.path/script/bundle_module.gradle"
+apply from: "$rootDir.path/script/bundle_module.gradle"
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
