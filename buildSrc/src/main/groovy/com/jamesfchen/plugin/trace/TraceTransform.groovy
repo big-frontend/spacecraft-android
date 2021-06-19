@@ -1,7 +1,6 @@
 package com.jamesfchen.plugin.trace
 
 import com.android.build.api.transform.*
-import com.android.build.gradle.internal.pipeline.TransformManager
 import com.jamesfchen.plugin.util.P
 import org.gradle.api.Project
 import org.objectweb.asm.ClassReader

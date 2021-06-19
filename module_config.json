@@ -90,7 +90,8 @@
         ":framework:network",
         ":framework:router",
         ":framework:uicomponent",
-        ":framework:av"
+        ":framework:av",
+        ":framework:flutter"
       ]
     },
     {

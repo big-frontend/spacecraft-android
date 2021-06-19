@@ -1,6 +1,6 @@
 //apply plugin: 'bundle-module'
 apply from: "$rootDir.path/script/bundle_module.gradle"
-apply plugin: 'com.jamesfchen.perfplugin'
+//apply plugin: 'com.jamesfchen.perfplugin'
 
 dependencies {
     api project(path: ':instrumentation:annotations')

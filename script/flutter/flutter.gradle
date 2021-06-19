@@ -460,7 +460,7 @@ class FlutterPlugin implements Plugin<Project> {
 
     private String resolveProperty(String name, String defaultValue) {
         if (localProperties == null) {
-            localProperties = readPropertiesIfExist(new File(project.projectDir.parentFile, "local.properties"))
+            localProperties = readPropertiesIfExist(project.rootProject.file("local.properties"))
         }
         String result
         if (project.hasProperty(name)) {

@@ -3,12 +3,13 @@ plugins {
     id 'kotlin-android'
 }
 def localProperties = new Properties()
-localProperties.load(project.file('gradle.properties').newDataInputStream())
-//if (localPropertiesFile.exists()) {
-//    localPropertiesFile.withReader('UTF-8') { reader ->
-//        localProperties.load(reader)
-//    }
-//}
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
@@ -23,7 +24,9 @@ def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
-apply from: "${flutterRoot}${File.separator}packages${File.separator}flutter_tools${File.separator}gradle${File.separator}flutter.gradle"
+
+//apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply from: "$rootDir/script/flutter/flutter.gradle"
 flutter {
     source "${rootProject.projectDir}${File.separator}..${File.separator}flutter_bundle"
 }

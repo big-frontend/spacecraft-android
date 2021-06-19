@@ -5,14 +5,14 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.tencent.buglyplugin'
 apply from: "${rootDir.path}/script/console.gradle"
+apply plugin: 'com.google.gms.google-services'
 bugly {
     appId = '3d62251014'
     appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 }
-apply plugin: 'com.jamesfchen.perfplugin'
+//apply plugin: 'com.jamesfchen.perfplugin'
 apply plugin: 'com.jamesfchen.counterplugin'
 counterConfig {
     seaSrcDirs = true
@@ -58,19 +58,19 @@ android {
                 mappingFileUploadEnabled false
             }
             firebaseAppDistribution {
-//                releaseNotesFile="/path/to/releasenotes.txt"
+                releaseNotesFile = "/path/to/releasenotes.txt"
                 testers = "hawksjamesf@gmail.com"
                 serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
             }
         }
         debug {
             minifyEnabled false
-//            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix = '.debug'
             signingConfig signingConfigs.debugSigningConfig
             ext.alwaysUpdateBuildId = false
-            ext.enableCrashlytics = false
+//            ext.enableCrashlytics = false
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
             }
@@ -129,23 +129,23 @@ android {
     packagingOptions {
         exclude 'META-INF/proguard/coroutines.pro'
     }
-    dexOptions {
-        preDexLibraries true
-        javaMaxHeapSize "8g"
-        maxProcessCount 8
-        dexInProcess = true
-    }
+//    dexOptions {
+//        preDexLibraries true
+//        javaMaxHeapSize "8g"
+//        maxProcessCount 8
+//        dexInProcess = true
+//    }
 }
 configurations {
     apkCheckerDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
-    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
+//    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     teenager("${project.path} app begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
-    for(def d :deps){
+    for (def d : deps) {
         teenager("api  ${d}")
         api d
     }

@@ -29,8 +29,8 @@ dependencies {
     api "io.realm:realm-android-kotlin-extensions:5.7.0"
     kapt "io.realm:realm-annotations-processor:5.7.0"
 
-    api 'com.google.firebase:firebase-database:20.0.0'
-    api 'com.google.firebase:firebase-firestore:23.0.1'
+    api 'com.google.firebase:firebase-database'
+    api 'com.google.firebase:firebase-firestore'
     /**
      * ================================database end==============================
      */
