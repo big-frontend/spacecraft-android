@@ -1,21 +1,10 @@
 //apply plugin: 'bundle-module'
 apply from: "$rootDir.path/script/bundle_module.gradle"
-//kapt {
-//    arguments {
-//        arg("AROUTER_MODULE_NAME", project.getName())
-//    }
-//}
 //android {
 //    defaultConfig {
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
-//            }
-//        }
+
 //    }
 //
 //}
 //dependencies {
-//    implementation project(path: ':components:hotel-module:foundation')
-//    api "com.jamesfchen:hotel-foundation:1.0"
 //}

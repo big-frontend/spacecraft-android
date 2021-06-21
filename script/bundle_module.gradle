@@ -35,11 +35,11 @@ apply plugin: 'com.alibaba.arouter'
 //        }
 //    }
 //}
-//kapt {
-//    arguments {
-//        arg("AROUTER_MODULE_NAME", project.getName())
-//    }
-//}
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 android {
     defaultConfig {
         javaCompileOptions {
@@ -63,8 +63,8 @@ dependencies {
     }
     teenager("bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"
-    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
-    annotationProcessor 'androidx.databinding:databinding-compiler:7.0.0-beta03'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    kapt "com.google.dagger:dagger-android-processor:2.16"
+    kapt 'androidx.databinding:databinding-compiler:7.0.0-beta03'
+    kapt 'com.alibaba:arouter-compiler:1.2.1'
 }
 
