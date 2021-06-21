@@ -32,7 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author: jamesfchen
  * @since: Sep/27/2019  Fri
  */
-@Route(path = "/account-module/login")
+@Route(path = "/account/login")
 public class LoginActivity extends Activity {
     private FirebaseAuth mAuth;
     private String mEmail = "jamesfchen@gmail.com";

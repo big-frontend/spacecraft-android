@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.activity_signin.*
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-@Route(path = "/account-module/signin")
+@Route(path = "/account/signin")
 class SignInActivity : SignInContract.View() {
 //    @Inject override lateinit  var presenter:SignInContract.Presenter
 

@@ -42,29 +42,33 @@ kapt {
 }
 android {
     defaultConfig {
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
-            }
-        }
-    }
-//            buildFeatures {
-//                viewBinding true
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
 //            }
-
+//        }
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
 }
 
 dependencies {
     teenager("bundles begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
-    for(def d :deps){
+    for (def d : deps) {
         teenager("api ${d}")
         api d
     }
     teenager("bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"
-    kapt "com.google.dagger:dagger-android-processor:2.16"
-    kapt 'androidx.databinding:databinding-compiler:7.0.0-beta03'
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
+    //Data Binding annotation processor version needs to match the Android Gradle Plugin version.
+    // You can remove the kapt dependency androidx.databinding:databinding-compiler:7.0.0-beta03
+    // and Android Gradle Plugin will inject the right version.
+    //当开启buildFeatures时AGP 会自动注入databinding compiler
+//    kapt 'androidx.databinding:databinding-compiler:7.0.0-beta03'
     kapt 'com.alibaba:arouter-compiler:1.2.1'
 }
 

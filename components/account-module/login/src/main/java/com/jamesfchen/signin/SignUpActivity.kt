@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_signup.*
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-@Route(path = "/account-module/signup")
+@Route(path = "/account/signup")
 class SignUpActivity : SignInContract.View() {
     private val TAG = "SignUpActivity"
     override fun initComponent(savedInstanceState: Bundle?) {
