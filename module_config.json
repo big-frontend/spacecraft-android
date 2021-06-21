@@ -9,7 +9,27 @@
       "group": "father",
       "binary_artifact": "com.jamesfchen.spacecraft:app:1.0",
       "deps": [
-        ":components:hotel-module:bundle1",":components:hotel-module:bundle2",":components:home-module:myhome",":components:account-module:login"
+        ":components:hotel-module:bundle1",":components:hotel-module:bundle2",":components:home-module:myhome",":components:account-module:login",":components:account-module:login"
+      ]
+    },
+    {
+          "simpleName": "account-main",
+          "canonicalName": ":components:account-module:main",
+          "format": "app",
+          "group": "account",
+          "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-main:1.0",
+          "deps": [
+            ":components:account-module:login"
+          ]
+    },
+    {
+      "simpleName": "account-login",
+      "canonicalName": ":components:account-module:login",
+      "format": "bundle",
+      "group": "account",
+      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-login:1.0",
+      "deps": [
+        ":framework:loader"
       ]
     },
     {
@@ -90,8 +110,7 @@
         ":framework:network",
         ":framework:router",
         ":framework:uicomponent",
-        ":framework:av",
-        ":framework:flutter"
+        ":framework:av"
       ]
     },
     {

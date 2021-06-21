@@ -27,9 +27,9 @@ import io.reactivex.functions.Consumer;
 /**
  * Copyright ® $ 2017
  * All right reserved.
- * Code Link : https://github.com/HawksJamesf/Spacecraft
+ * Code Link : https://github.com/jamesfchen/Spacecraft
  *
- * @author: hawks jamesf
+ * @author: jamesfchen
  * @since: 2017/7/4
  */
 public class SplashActivity extends AbsPermissionsActivity {
@@ -39,7 +39,7 @@ public class SplashActivity extends AbsPermissionsActivity {
     private HttpMetric mHttpMetric;
     private FirebaseRemoteConfig mFirebaseRemoteConfig = App.getFirebaseRemoteConfig();
 
-    @AddTrace(name = "_splashActivity_onCreate", enabled = true /* optional */)
+    @AddTrace(name = "SplashActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

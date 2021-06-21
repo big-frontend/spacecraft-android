@@ -9,7 +9,8 @@
         <activity
             android:name="com.jamesfchen.myhome.MainActivity"
             android:label="@string/title_activity_main"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:exported="true">
 <!--            通过url路由调用改页面-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -43,14 +44,6 @@
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="adjustPan">
-            <!--            launcher启动 start-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <!--            launcher启动 end -->
-
         </activity>
         <activity android:name="com.jamesfchen.spacecraft.NavigationActivity" />
         <activity android:name="com.jamesfchen.spacecraft.vm.MVVMActivity" />

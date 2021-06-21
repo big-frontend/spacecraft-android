@@ -3,6 +3,7 @@ package com.jamesfchen.bundle1;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.TextView;
 
 /**
@@ -17,8 +18,9 @@ public class HotelMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView tv = new TextView(this);
-        tv.setText("hahahhaha hotel main");
+        tv.setText("spacecraft hotel main");
         tv.setTextColor(Color.BLACK);
+        tv.setGravity(Gravity.CENTER);
         setContentView(tv);
     }
 
