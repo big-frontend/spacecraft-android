@@ -9,7 +9,7 @@
       "group": "father",
       "binary_artifact": "com.jamesfchen.spacecraft:app:1.0",
       "deps": [
-        ":components:hotel-module:bundle1",":components:hotel-module:bundle2",":components:myhome"
+        ":components:hotel-module:bundle1",":components:hotel-module:bundle2",":components:home-module:myhome",":components:account-module:login"
       ]
     },
     {

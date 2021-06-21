@@ -73,7 +73,7 @@ public class TransitionForActivityActivity extends Activity {
                 ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle());
     }
 
-    @AddTrace(name = "_transitionForActivityActivity_onCreate", enabled = true /* optional */)
+    @AddTrace(name = "TransitionForActivityActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

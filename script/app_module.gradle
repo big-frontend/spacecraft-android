@@ -70,7 +70,7 @@ android {
             applicationIdSuffix = '.debug'
             signingConfig signingConfigs.debugSigningConfig
             ext.alwaysUpdateBuildId = false
-//            ext.enableCrashlytics = false
+            ext.enableCrashlytics = false
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
             }

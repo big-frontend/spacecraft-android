@@ -15,7 +15,7 @@ import com.jamesfchen.uicomponent.R;
  * @since: Nov/25/2018  Sun
  */
 public class TransitionForViewActivity extends Activity {
-    @AddTrace(name = "_transitionForViewActivity_onCreate", enabled = true /* optional */)
+    @AddTrace(name = "TransitionForViewActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

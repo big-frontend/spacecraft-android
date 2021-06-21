@@ -37,7 +37,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class FirebaseDatabaseActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseFirestore databasev2 = FirebaseFirestore.getInstance();
-    @AddTrace(name = "_firebaseDatabaseActivity_onCreateTrace", enabled = true /* optional */)
+    @AddTrace(name = "FirebaseDatabaseActivity_onCreateTrace", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
