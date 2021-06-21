@@ -1,5 +1,6 @@
 package com.jamesfchen.login;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @since: Sep/27/2019  Fri
  */
 @Route(path = "/account-module/login")
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
     private FirebaseAuth mAuth;
     private String mEmail = "jamesfchen@gmail.com";
     private String mPassword = "hawksjamesf123456A";
