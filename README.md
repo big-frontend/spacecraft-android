@@ -18,8 +18,6 @@ SpacecraftAndroid
 # To be Architect
 > 驽马十驾功在不舍
 
-ps:下面会提到一些相关名词，这里先定义一下。bundle是依附于app framework的native bundle(静态组件，动态插件)、flutter bundle、react native bundle、hybrid bundle，其能够被app framework动态加载；foundation是赋予上层能力的基础服务，更像是一些用来快速开发页面的toolkits。bundle、foundation在构建系统gradle眼里都是module。
-
 ## Foundation
 ### Common
 - [x] utils
@@ -50,13 +48,17 @@ ps:下面会提到一些相关名词，这里先定义一下。bundle是依附�
 - [x] provide ui component , es.video component
 
 ## Business Bundle
-跨bundle页面启动方式url路由 或者 rpc调用，bundle数据通信可用bus 或者 广播
 - [ ] native bundle
-    - [x] login
+    - [x] account-module
+    - [ ] im-module
 - [ ] hybrid bundle
 - [ ] ReactNative/Flutter bundle
 
 ## Improve Development Efficiency
+
+为了提高项目的编译速度，我将该项目组件化，组件化的模板代码可以看[bundles-assembler](https://github.com/JamesfChen/bundles-assembler)这个项目，
+编译时期(gradle plugin or kapt/annotationProcessor)的效率工具的源码都在[spacecraft-android-gradle-plugin](https://github.com/JamesfChen/spacecraft-android-gradle-plugin)项目中
+
 - [x] gradle plugin：
 1. file lines counter plugin(./gradlew app:counter)
 2. rename apk plugin
