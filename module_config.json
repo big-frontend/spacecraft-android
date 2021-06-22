@@ -121,6 +121,13 @@
       "binary_artifact": "com.jamesfchen.spacecraft:framework-flutter:1.0"
     },
     {
+      "simpleName": "framework-hybrid",
+      "canonicalName": ":framework:hybrid",
+      "format": "framework_foundation",
+      "group": "fwk",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-hybrid:1.0"
+    },
+    {
       "simpleName": "framework-router",
       "canonicalName": ":framework:router",
       "format": "framework_foundation",

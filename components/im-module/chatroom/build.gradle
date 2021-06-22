@@ -1,0 +1,4 @@
+//apply plugin: 'foundation-module'
+apply from: "${rootDir.path}/script/bundle_module.gradle"
+dependencies {
+}

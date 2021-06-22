@@ -41,9 +41,6 @@ SpacecraftAndroid
 ### LBS(Location & Map)
 - [x] collection location 、 wifi 、 cell info
 
-### IM
-- [ ] IM
-
 ### 1.UI Component
 - [x] provide ui component , es.video component
 
