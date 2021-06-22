@@ -28,15 +28,6 @@ gradlePlugin {
         }
     }
 }
-sourceSets {
-    main {
-        ["src/main/kotlin","src/main/java"].forEach {
-            java.srcDirs += it
-        }
-    }
-}
-
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation gradleApi()

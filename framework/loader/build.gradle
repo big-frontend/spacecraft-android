@@ -44,8 +44,5 @@ dependencies {
     api 'androidx.multidex:multidex:2.0.1'
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
-
-//    kapt project(path: ':instrumentation:processor')
-//    api project(path: ':instrumentation:annotations')
 }
 

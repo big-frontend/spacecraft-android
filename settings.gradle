@@ -76,10 +76,8 @@ include ':app'
 //        ':framework:uicomponent'
 //setBinding(new Binding([gradle: this]))
 //evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
-//include ':gradle-plugin'
 //include ':lint-rules'
 //include ':lint-checker'
-//include ':instrumentation:annotations', ':instrumentation:processor'
 child("module begin ========================================================================================")
 //gradle.ext.appMap.each { _, module ->
 //    child("app ${module.canonicalName}")
