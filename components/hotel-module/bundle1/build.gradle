@@ -7,5 +7,3 @@ apply from: "$rootDir.path/script/bundle_module.gradle"
 //    }
 //
 //}
-dependencies {
-}

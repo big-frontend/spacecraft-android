@@ -9,7 +9,8 @@
             android:name=".TestComposeActivity"
             android:exported="true"
             android:label="@string/title_activity_test_compose"
-            android:theme="@style/Theme.SpacecraftAndroid.NoActionBar" />
+            />
+<!--            android:theme="@style/Theme.SpacecraftAndroid.NoActionBar"-->
     </application>
 
 </manifest>

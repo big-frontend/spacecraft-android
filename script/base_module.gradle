@@ -29,10 +29,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
     }
-    composeOptions {
-        kotlinCompilerVersion '1.4.32'
-    }
+//    composeOptions {
+//        kotlinCompilerVersion '1.4.32'
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
