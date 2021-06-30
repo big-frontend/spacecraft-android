@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bundle1</string>
+    <string name="title_activity_test_compose">TestComposeActivity</string>
 </resources>
