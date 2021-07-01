@@ -10,10 +10,20 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         tools:replace="android:name,android:allowBackup"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        >
+<!--        <activity-->
+<!--            android:name="com.jamesfchen.bundle1.HomeActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity
-            android:name="com.jamesfchen.bundle1.HotelMainActivity"
-            android:exported="true">
+            android:name="com.jamesfchen.bundle2.Bundle2Activity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

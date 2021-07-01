@@ -8,7 +8,7 @@ package com.jamesfchen.myhome.route
  * @email: hawksjamesf@gmail.com
  * @since: 五月/24/2021  星期一
  */
-class RouteUrl {
+class HomeRouter {
 
 
 }

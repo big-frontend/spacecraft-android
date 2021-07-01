@@ -59,7 +59,7 @@
       "group": "hotel",
       "binary_artifact": "com.jamesfchen.spacecraft:hotel-main:1.0",
       "deps": [
-        ":components:hotel-module:bundle1"
+        ":components:hotel-module:bundle1", ":components:hotel-module:bundle2"
       ]
     },
     {

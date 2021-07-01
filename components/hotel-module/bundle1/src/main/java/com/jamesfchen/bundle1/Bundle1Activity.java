@@ -13,12 +13,12 @@ import android.widget.TextView;
  * @author: jamesfchen
  * @since: Jun/13/2021  Sun
  */
-public class HotelMainActivity extends Activity {
+public class Bundle1Activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView tv = new TextView(this);
-        tv.setText("spacecraft hotel main");
+        tv.setText("hotel bundle1");
         tv.setTextColor(Color.BLACK);
         tv.setGravity(Gravity.CENTER);
         setContentView(tv);
