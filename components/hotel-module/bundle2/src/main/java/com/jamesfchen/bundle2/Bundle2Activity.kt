@@ -1,8 +1,10 @@
 package com.jamesfchen.bundle2
 
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -16,9 +18,10 @@ class Bundle2Activity : ComponentActivity() {
         setContent {
             SpacecraftAndroidTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("hotel bundle2")
-                }
+//                Surface(color = MaterialTheme.colors.background) {
+//                    Greeting("hotel bundle2")
+//                }
+                ArtistCard()
             }
         }
     }
@@ -34,5 +37,13 @@ fun Greeting(name: String) {
 fun DefaultPreview() {
     SpacecraftAndroidTheme {
         Greeting("hotel bundle2")
+    }
+}
+
+@Composable
+fun ArtistCard() {
+    Column {
+        Text("Alfred Sisley")
+        Text("3 minutes ago")
     }
 }
