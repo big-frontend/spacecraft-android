@@ -5,6 +5,7 @@ import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -21,7 +22,9 @@ class Bundle2Activity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colors.background) {
 //                    Greeting("hotel bundle2")
 //                }
-                ArtistCard()
+                ArtistCard{
+//                    startActivity(FlutterActivity.createDefaultIntent(Bundle2Activity.this))
+                }
             }
         }
     }
@@ -41,9 +44,12 @@ fun DefaultPreview() {
 }
 
 @Composable
-fun ArtistCard() {
+fun ArtistCard(onClick: () -> Unit) {
     Column {
         Text("Alfred Sisley")
         Text("3 minutes ago")
+        Button(onClick =onClick) {
+
+        }
     }
 }
