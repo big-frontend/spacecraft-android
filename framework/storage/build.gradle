@@ -31,6 +31,12 @@ dependencies {
 
     api 'com.google.firebase:firebase-database'
     api 'com.google.firebase:firebase-firestore'
+    api 'com.tencent:mmkv-static:1.2.10'
+
+    implementation "androidx.datastore:datastore:1.0.0-rc01"
+    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
+    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
+    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
     /**
      * ================================database end==============================
      */
