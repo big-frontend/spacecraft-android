@@ -1,19 +1,19 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: "kotlin-android-extensions"
+//apply plugin: "kotlin-android-extensions"
 apply plugin: 'kotlin-kapt'
 //apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.tencent.buglyplugin'
 apply from: "${rootDir.path}/script/console.gradle"
 apply plugin: 'com.google.gms.google-services'
-bugly {
-    appId = '3d62251014'
-    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
-}
-apply plugin: 'com.jamesfchen.counterplugin'
+//apply plugin: 'com.tencent.buglyplugin'
+//bugly {
+//    appId = '3d62251014'
+//    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
+//}
+apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
     seaSrcDirs = true
 }
@@ -25,11 +25,25 @@ android {
         (minSdkVersion, targetSdkVersion, versionCode, versionName) = [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
 
         multiDexEnabled = true//support android 20 or lower
-//        multiDexKeepFile file('multiDexKeepFile.txt')
+//        multiDexKeepFile file('multiDexKeep.txt')
 //        multiDexKeepProguard file('multiDexKeep.pro')
         applicationId "com.hawksjamesf.spacecraft"
         testApplicationId "com.hawksjamesf.spacecraft.test"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    composeOptions {
+        kotlinCompilerVersion "1.5.10"
+        kotlinCompilerExtensionVersion "1.0.0-beta08"
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+//        useIR = true
+//        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        compose true
     }
     signingConfigs {
         debugSigningConfig {
@@ -109,13 +123,6 @@ android {
 //                // if true, only report errors.
 //                ignoreWarnings true
     }
-
-    //    buildFeatures {
-//        viewBinding true
-//    }
-    //    buildFeatures {
-//        dataBinding true
-//    }
 
     splits {
         abi {

@@ -1,5 +1,5 @@
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply from: "${rootDir.path}/script/console.gradle"
 //def snmae=
 //def lastindex= snmae.indexOf('ModulePlugin')
@@ -26,14 +26,15 @@ android {
         }
 
     }
+    composeOptions {
+        kotlinCompilerVersion "1.5.10"
+        kotlinCompilerExtensionVersion "1.0.0-beta08"
+    }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
-        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
+//        useIR = true
+//        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
     }
-//    composeOptions {
-//        kotlinCompilerVersion '1.4.32'
-//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

@@ -97,6 +97,7 @@ dependencies {
     api "androidx.compose.material:material:$compose_version"
     api "androidx.compose.ui:ui-tooling:$compose_version"
     api 'androidx.activity:activity-compose:1.3.0-beta02'
+    api "androidx.compose.compiler:compiler:1.0.0-beta08"
     androidTestApi "androidx.compose.ui:ui-test-junit4:$compose_version"
 
     //animotor

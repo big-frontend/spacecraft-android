@@ -56,9 +56,9 @@
         <!--<meta-data-->
         <!--android:name="BUGLY_APP_CHANNEL"-->
         <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
-        <meta-data
-            android:name="BUGLY_ENABLE_DEBUG"
-            android:value="${BUGLY_ENABLE_DEBUG}" />
+<!--        <meta-data-->
+<!--            android:name="BUGLY_ENABLE_DEBUG"-->
+<!--            android:value="${BUGLY_ENABLE_DEBUG}" />-->
 
         <uses-library
             android:name="android.test.runner"

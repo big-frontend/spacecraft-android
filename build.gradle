@@ -73,6 +73,7 @@ buildscript {
         classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
         classpath "com.alibaba:arouter-register:1.0.2"
 //        classpath "com.uber:infer-plugin:0.7.4"
+        classpath 'com.github.jamesfchen:lifecycle-plugin:1.0.0'
     }
 }
 
