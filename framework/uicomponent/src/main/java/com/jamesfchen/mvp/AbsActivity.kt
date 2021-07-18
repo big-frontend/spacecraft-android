@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.mvp
+package com.jamesfchen.mvp
 
 import android.app.Activity
 import android.os.Bundle
@@ -15,7 +15,7 @@ import io.reactivex.subjects.PublishSubject
  * @author: hawks.jamesf
  * @since: Nov/11/2018  Sun
  */
-abstract class AbstractSpacecraftActivity<P : AbstractSpacecraftPresenter<SpacecraftView>> : AppCompatActivity(), SpacecraftView {
+abstract class AbsActivity<P : AbsPresenter<IView>> : AppCompatActivity(), IView {
     protected abstract var presenter: P
     protected lateinit var baseActivity: Activity
     //自动关闭发送的rxjava数据，防止内存泄漏

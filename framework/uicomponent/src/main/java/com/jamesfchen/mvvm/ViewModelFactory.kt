@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.mvvm
+package com.jamesfchen.mvvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

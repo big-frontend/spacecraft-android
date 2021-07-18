@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.mvp;
+package com.jamesfchen.mvp;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

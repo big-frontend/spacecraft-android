@@ -1,6 +1,4 @@
-
-
-package com.jamesfchen.uicomponent.mvvm
+package com.jamesfchen.mvvm
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry

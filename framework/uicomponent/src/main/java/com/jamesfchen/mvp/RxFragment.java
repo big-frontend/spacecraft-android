@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.mvp;
+package com.jamesfchen.mvp;
 
 import android.os.Bundle;
 

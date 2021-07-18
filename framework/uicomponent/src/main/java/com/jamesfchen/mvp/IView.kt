@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.mvp
+package com.jamesfchen.mvp
 
 /**
  * Copyright ® $ 2017
@@ -7,5 +7,5 @@ package com.jamesfchen.uicomponent.mvp
  * @author: hawks.jamesf
  * @since: Nov/11/2018  Sun
  */
-interface SpacecraftView {
+interface IView {
 }
