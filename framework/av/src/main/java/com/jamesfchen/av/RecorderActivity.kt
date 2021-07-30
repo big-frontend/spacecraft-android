@@ -9,7 +9,7 @@ import android.os.Environment
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_recoder.*
+import com.jamesfchen.av.databinding.ActivityRecoderBinding
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
@@ -31,12 +31,13 @@ class RecorderActivity : Activity() {
 
     var type: Int = 1
     lateinit var mMediaProjectionManager: MediaProjectionManager
-
+    private lateinit var binding: ActivityRecoderBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recoder)
+        binding = ActivityRecoderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         mMediaProjectionManager = applicationContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        rg_type.setOnCheckedChangeListener { group, checkedId ->
+        binding.rgType.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.rb_audio -> {
                     type = 0
@@ -50,23 +51,23 @@ class RecorderActivity : Activity() {
         if (!outputFile.exists()) {
             outputFile.createNewFile()
         }
-        val videoRecoder = VideoRecorder.createAndBindCameraFacingBack(this,outputFile,  sv_preview)
-        bt_start_recoding_camera.setOnClickListener { theView ->
+        val videoRecoder = VideoRecorder.createAndBindCameraFacingBack(this,outputFile,  binding.svPreview)
+        binding.btStartRecodingCamera.setOnClickListener { theView ->
             videoRecoder.start()
         }
-        bt_stop_recoding_camera.setOnClickListener { theView ->
+        binding.btStopRecodingCamera.setOnClickListener { theView ->
             Toast.makeText(this@RecorderActivity, "file size: ${outputFile.length()}", Toast.LENGTH_LONG).show()
             videoRecoder.stop()
         }
-        bt_start_recoding_sceen.setOnClickListener { theView ->
+        binding.btStartRecodingSceen.setOnClickListener { theView ->
             requestMediaProjection()
         }
-        bt_stop_recoding_sceen.setOnClickListener { theView ->
+        binding.btStopRecodingSceen.setOnClickListener { theView ->
             RecorderService.stopService(this)
 
         }
-        bt_play.setOnClickListener { theView ->
-            clv_video.setDataSourceAndPlay(outputFile)
+        binding.btPlay.setOnClickListener { theView ->
+//            binding.clvVideo.setDataSourceAndPlay(outputFile)
 //        vv_video.setVideoPath(outputFile.absolutePath)
 //            vv_video.start()
         }

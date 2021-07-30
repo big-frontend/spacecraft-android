@@ -11,7 +11,7 @@ import com.jamesfchen.uicomponent.Adapter
 import com.jamesfchen.uicomponent.InsetDecoration
 import com.jamesfchen.uicomponent.R
 import com.jamesfchen.uicomponent.ViewModel
-import kotlinx.android.synthetic.main.activity_recyclerview.*
+import com.jamesfchen.uicomponent.databinding.ActivityRecyclerviewBinding
 import java.util.ArrayList
 
 class RecyclerViewActivity : Activity() {
@@ -40,19 +40,20 @@ class RecyclerViewActivity : Activity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recyclerview)
+        val binding = ActivityRecyclerviewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val adapter = Adapter()
-        rv_image_text.adapter = adapter
+        binding.rvImageText.adapter = adapter
 //        val myLayoutManager = MyLayoutManager()
 //        myLayoutManager.startSmoothScroll(MySmoothScroller())
 //        rv_image_text.layoutManager =myLayoutManager
         val fglm = FixedGridLayoutManager()
         fglm.setTotalColumnCount(3)
-        rv_image_text.layoutManager = fglm
-        rv_image_text.itemAnimator = MyItemAnimator()
+        binding.rvImageText.layoutManager = fglm
+        binding.rvImageText.itemAnimator = MyItemAnimator()
         val llm = LinearLayoutManager(this)
-        rv_image_text.addItemDecoration(InsetDecoration(this))
-        rv_image_text.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+        binding.rvImageText.addItemDecoration(InsetDecoration(this))
+        binding.rvImageText.addOnScrollListener(object :RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
@@ -61,7 +62,7 @@ class RecyclerViewActivity : Activity() {
             }
 
         })
-        rv_image_text.setOnFlingListener(object :RecyclerView.OnFlingListener(){
+        binding.rvImageText.setOnFlingListener(object :RecyclerView.OnFlingListener(){
             override fun onFling(velocityX: Int, velocityY: Int): Boolean {
                 Log.d("cjf","onFling")
                 return true
@@ -72,7 +73,7 @@ class RecyclerViewActivity : Activity() {
 //        PagerSnapHelper().attachToRecyclerView(rv_image_text)
 //        LinearSnapHelper().attachToRecyclerView(rv_image_text)
         adapter.addDatas(dataList)
-        bt_add_view.setOnClickListener {
+        binding.btAddView.setOnClickListener {
             val b = object:Button(this){
                 override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
                     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -84,7 +85,7 @@ class RecyclerViewActivity : Activity() {
                 }
             }
             b.text= "btn 3=4"
-            ll_container.addView(b, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+            binding.llContainer.addView(b, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
         }
         val b = object:Button(this){
             override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -97,6 +98,6 @@ class RecyclerViewActivity : Activity() {
             }
         }
         b.text= "btn 3"
-        ll_container.addView(b, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        binding.llContainer.addView(b, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 }

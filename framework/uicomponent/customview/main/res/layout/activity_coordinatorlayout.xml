@@ -18,7 +18,7 @@
         app:liftOnScroll="true"
         tools:expanded="false">
 
-        <com.jamesfchen.myhome.widget.newLayoutExprimental.coordinator.CollapsingBarsLayout
+        <com.jamesfchen.uicomponent.newLayoutExprimental.coordinator.CollapsingBarsLayout
             android:id="@+id/ctbl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,7 +57,7 @@
                 app:title="title" />
 
 
-        </com.jamesfchen.myhome.widget.newLayoutExprimental.coordinator.CollapsingBarsLayout>
+        </com.jamesfchen.uicomponent.newLayoutExprimental.coordinator.CollapsingBarsLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -3,7 +3,7 @@ package com.jamesfchen.image
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_gif.*
+import com.jamesfchen.image.databinding.ActivityGifBinding
 
 class GifActivity : AppCompatActivity() {
 
@@ -11,15 +11,16 @@ class GifActivity : AppCompatActivity() {
     lateinit var player: GifPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gif)
+        val binding = ActivityGifBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 //        iv_gif.setSource("tenor.gif")
 //        iv_gif.setSource("tenor.gif",assets)
 //
-        player= GifPlayer.createAndBind(this,iv_gif,"tenor.gif", assets)
+        player= GifPlayer.createAndBind(this,binding.ivGif,"tenor.gif", assets)
         var i = 0
-        bt_start.setOnClickListener {
+        binding.btStart.setOnClickListener {
 //            player.start()
-            (bt_start as Button).text = "start ${++i}"
+            (binding.btStart as Button).text = "start ${++i}"
         }
 
 

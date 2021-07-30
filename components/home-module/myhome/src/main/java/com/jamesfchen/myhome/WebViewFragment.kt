@@ -9,7 +9,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_webview.*
+import com.jamesfchen.myhome.databinding.FragmentWebviewBinding
 
 /**
  * Copyright ® $ 2020
@@ -30,16 +30,17 @@ class WebViewFragment : Fragment() {
             return fragment
         }
     }
-
+lateinit var binding:FragmentWebviewBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_webview, container, false)
+        binding = FragmentWebviewBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val url = arguments?.getString("url")
-        wv.loadUrl(url!!)
-        wv.webViewClient = object : WebViewClient() {
+        binding.wv.loadUrl(url!!)
+        binding.wv.webViewClient = object : WebViewClient() {
 
             override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
 
@@ -50,7 +51,7 @@ class WebViewFragment : Fragment() {
 
 // 这行代码一定加上否则效果不会出现
         }
-        wv.settings.javaScriptEnabled = true
+        binding.wv.settings.javaScriptEnabled = true
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.jamesfchen.av.R;
 import com.jamesfchen.av.ScaleType;
 import com.jamesfchen.av.State;
 import com.jamesfchen.av.VideoPlayer;
+import com.jamesfchen.av.databinding.ViewChaplinBinding;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -85,13 +87,13 @@ import androidx.lifecycle.Lifecycle;
 public class ChaplinVideoView extends FrameLayout {
     private static final String TAG = ChaplinVideoView.class.getSimpleName();
 
-    private SurfaceView mSvSurface;
+//    private SurfaceView mSvSurface;
     //    private VideoPlayer mMPForSurface;
     private ImageView mIvVideoState;
 
-    private TextureView mTvTexture;
+//    private TextureView mTvTexture;
     private VideoPlayer mMPForTexture;
-
+    ViewChaplinBinding binding;
 
     public ChaplinVideoView(Context context) {
         super(context);
@@ -110,12 +112,11 @@ public class ChaplinVideoView extends FrameLayout {
     }
 
     private void initView(AttributeSet attributeSet, int defStyleAttr) {
-        View rootView = inflate(getContext(), R.layout.view_chaplin, this);
-        mSvSurface = rootView.findViewById(R.id.sv_surface);
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        binding = ViewChaplinBinding.inflate(factory, this, true);
 //        mMPForSurface = VideoPlayer.createAndBind(getContext(), mSvSurface);
-        mSvSurface.setVisibility(View.GONE);
-        mTvTexture = rootView.findViewById(R.id.tv_texture);
-        mMPForTexture = VideoPlayer.createAndBind(getContext(), mTvTexture);
+        binding.svSurface.setVisibility(View.GONE);
+        mMPForTexture = VideoPlayer.createAndBind(getContext(), binding.tvTexture);
         mMPForTexture.setOnMediaPlayerListener(new OnMediaPlayerListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -135,7 +136,7 @@ public class ChaplinVideoView extends FrameLayout {
 
         });
 
-        mIvVideoState = rootView.findViewById(R.id.iv_video_state);
+        mIvVideoState = binding.getRoot().findViewById(R.id.iv_video_state);
     }
 
     public void animatePlay() {
