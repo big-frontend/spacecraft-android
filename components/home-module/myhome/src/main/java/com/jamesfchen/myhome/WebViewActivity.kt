@@ -9,7 +9,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_webview.*
+import com.jamesfchen.myhome.databinding.ActivityWebviewBinding
 
 /**
  * Copyright ® $ 2020
@@ -35,10 +35,11 @@ class WebViewActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_webview)
+        val binding =ActivityWebviewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val url = intent.getStringExtra("url")!!
-        wv.loadUrl(url)
-        wv.webViewClient = object : WebViewClient() {
+        binding.wv.loadUrl(url)
+        binding.wv.webViewClient = object : WebViewClient() {
 
             override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
                 //handler.cancel(); 默认的处理方式，WebView变成空白页
@@ -47,6 +48,6 @@ class WebViewActivity : AppCompatActivity() {
             }
                 // 这行代码一定加上否则效果不会出现
         }
-        wv.settings.javaScriptEnabled = true
+        binding.wv.settings.javaScriptEnabled = true
     }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.jamesfchen.uicomponent.databinding.DialogBottomUpBinding
 
 /**
  *DialogFragment的设计是为了将业务代码放到fragment，通过fragment的生命周期管理。让dialog更纯粹。
@@ -36,10 +37,11 @@ class BottomUpDialogFragment : DialogFragment() {
         return context?.let { BottomUpDialog(it, theme) }
                 ?: super.onCreateDialog(savedInstanceState)
     }
-
+    lateinit var binding: DialogBottomUpBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView")
-        return inflater.inflate(R.layout.dialog_bottom_up, container, false)
+        binding = DialogBottomUpBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

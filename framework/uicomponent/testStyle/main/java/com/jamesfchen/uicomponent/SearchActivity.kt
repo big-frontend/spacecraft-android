@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.forEach
 import androidx.core.util.isNotEmpty
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_search.*
+import com.jamesfchen.uicomponent.databinding.ActivitySearchBinding
 import kotlinx.serialization.toUtf8Bytes
 import org.json.JSONObject
 import java.util.regex.Pattern
@@ -122,20 +122,23 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener {
 
     //    var lines: Int? = -1
     var map = SparseIntArray()
+
     @Volatile
     var curindex = 0
     val PAGE_LIMIT_LINE = 20
     var lineHeight: Int = -1
+    lateinit var binding: ActivitySearchBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         json_string = resources.openRawResource(R.raw.data).reader().buffered().readText()
 
         Log.d("hawks", "file length: ${json_string.toUtf8Bytes().size / 1024f} kb")
-        tv_content.text = JSONObject(json_string).toString(4)
-        lineHeight = tv_content.lineHeight
-        et_search.setOnEditorActionListener(this)
-        til_search_container.addOnEndIconChangedListener { textInputLayout, previousIcon ->
+        binding.tvContent.text = JSONObject(json_string).toString(4)
+        lineHeight = binding.tvContent.lineHeight
+        binding.etSearch.setOnEditorActionListener(this)
+        binding.tilSearchContainer.addOnEndIconChangedListener { textInputLayout, previousIcon ->
 
         }
 
@@ -143,22 +146,25 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener {
     }
 
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        Log.d(TAG, "keyword:${v?.text?.toString()} / actionId $actionId / event action ${event?.action}")
+        Log.d(
+            TAG,
+            "keyword:${v?.text?.toString()} / actionId $actionId / event action ${event?.action}"
+        )
         if (v != null && actionId == EditorInfo.IME_ACTION_SEARCH) {
             reset()
-            search(v!!.text.toString(), tv_content.text.toString())
+            search(v!!.text.toString(), binding.tvContent.text.toString())
         }
         return false
     }
 
     fun onNext(v: View?) {
         if (map.isNotEmpty()) {
-            next(map, tv_content.text.toString())
+            next(map, binding.tvContent.text.toString())
         } else {
 //            Snackbar.make(et_search, "心里能不能有点。。。没搜索哪来结果", Snackbar.LENGTH_SHORT).show()
-            Snackbar.make(fab_next, "没搜索结果", Snackbar.LENGTH_SHORT)
-                    .setAnchorView(fab_next)
-                    .show()
+            Snackbar.make(binding.fabNext, "没搜索结果", Snackbar.LENGTH_SHORT)
+                .setAnchorView(binding.fabNext)
+                .show()
         }
     }
 
@@ -190,35 +196,59 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener {
             return
         }
         map.forEach { key, value ->
-            contentSpan.setSpan(ForegroundColorSpan(Color.CYAN), key, value, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            contentSpan.setSpan(
+                ForegroundColorSpan(Color.CYAN),
+                key,
+                value,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
         }
         val start = map.keyAt(curindex)
         val end = map.valueAt(curindex)
-        tv_content_shadow.text = content.substring(0, start)
-        tv_content_shadow.post {
+        binding.tvContentShadow.text = content.substring(0, start)
+        binding.tvContentShadow.post {
             //由于setText的数据为 content.substring(0, start)之后在post调用smoothScrollTo会scroll不准确，故lineCount的计算放在另外一个TextView中做
-            var curLine = tv_content_shadow.lineCount //51
+            var curLine = binding.tvContentShadow.lineCount //51
             runOnUiThread {
                 val pagePosition = curLine / PAGE_LIMIT_LINE //1
                 val pageLineIndex = curLine % PAGE_LIMIT_LINE //11
                 val pageHeight = lineHeight * PAGE_LIMIT_LINE
                 contentSpan.setSpan(UnderlineSpan(), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                contentSpan.setSpan(StyleSpan(Typeface.BOLD_ITALIC), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                contentSpan.setSpan(
+                    StyleSpan(Typeface.BOLD_ITALIC),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
 //        contentSpan.setSpan(AbsoluteSizeSpan(15,true),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                contentSpan.setSpan(RelativeSizeSpan(1.5f), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                contentSpan.setSpan(DrawableBackgroundSpan(strokeColor = getColor(R.color.apricot), strokeWith = 2, dashWidth = 2, dashGap = 1, textColor = Color.RED), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                tv_content.text = contentSpan
-                sv_content_container.smoothScrollTo(0, pageHeight * pagePosition)
-                val msg = "curindex:$curindex / curLine:$curLine  / preScrollY:${sv_content_container.scrollY} / curScrollY:${pageHeight * pagePosition}\n" +
-                        "pagePosition:$pagePosition / pageLineIndex:$pageLineIndex / pageHeight:${pageHeight}\n" +
-                        "start:$start / end:$end / map size:${map.size()}"
+                contentSpan.setSpan(
+                    RelativeSizeSpan(1.5f),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                contentSpan.setSpan(
+                    DrawableBackgroundSpan(
+                        strokeColor = getColor(R.color.apricot),
+                        strokeWith = 2,
+                        dashWidth = 2,
+                        dashGap = 1,
+                        textColor = Color.RED
+                    ), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                binding.tvContent.text = contentSpan
+                binding.svContentContainer.smoothScrollTo(0, pageHeight * pagePosition)
+                val msg =
+                    "curindex:$curindex / curLine:$curLine  / preScrollY:${binding.svContentContainer.scrollY} / curScrollY:${pageHeight * pagePosition}\n" +
+                            "pagePosition:$pagePosition / pageLineIndex:$pageLineIndex / pageHeight:${pageHeight}\n" +
+                            "start:$start / end:$end / map size:${map.size()}"
                 Log.d("hawks", msg)
                 if (map.size() - 1 == map.indexOfKey(start)) {
                     Toast.makeText(this, "这是最后一个啦", Toast.LENGTH_SHORT)
-                            .show()
-                    Snackbar.make(fab_next, "last word", Snackbar.LENGTH_SHORT)
-                            .setAnchorView(fab_next)
-                            .show()
+                        .show()
+                    Snackbar.make(binding.fabNext, "last word", Snackbar.LENGTH_SHORT)
+                        .setAnchorView(binding.fabNext)
+                        .show()
                 }
                 curindex++
             }

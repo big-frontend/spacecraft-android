@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.dialog_bottom_up.*
+import com.jamesfchen.uicomponent.databinding.DialogBottomUpBinding
 
 class BottomUpDialogFragmentv2 : Fragment() ,DialogInterface.OnCancelListener,DialogInterface.OnDismissListener,DialogInterface.OnShowListener{
     companion object {
@@ -31,16 +31,17 @@ class BottomUpDialogFragmentv2 : Fragment() ,DialogInterface.OnCancelListener,Di
         Log.d(TAG, "onAttach"+context)
 
     }
-
+    lateinit var binding: DialogBottomUpBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_bottom_up, container, false)
+        binding = DialogBottomUpBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
-        fl_container.setBackgroundColor(Color.CYAN)
-        fl_container.layoutParams.height = 400
+        binding.flContainer.setBackgroundColor(Color.CYAN)
+        binding.flContainer.layoutParams.height = 400
         val dialog = AlertDialog.Builder(context)
                 .setTitle("asdfsaf")
                 .setIcon(R.drawable.tmp)

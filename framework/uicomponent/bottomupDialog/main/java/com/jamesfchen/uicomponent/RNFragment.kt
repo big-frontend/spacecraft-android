@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.fragment_rn.*
+import com.jamesfchen.uicomponent.databinding.FragmentRnBinding
 
 class RNFragment : Fragment() {
     companion object {
@@ -28,9 +28,11 @@ class RNFragment : Fragment() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
     }
+    lateinit var binding: FragmentRnBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView")
-        return inflater.inflate(R.layout.fragment_rn, container, false)
+        binding = FragmentRnBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,8 +49,8 @@ class RNFragment : Fragment() {
             textView.text = "asdfasfsafaf"
             val divider=View(view.context)
             divider.setBackgroundColor(Color.RED)
-            ll_container.addView(divider,ViewGroup.LayoutParams.MATCH_PARENT,2)
-            ll_container.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT, 400)
+            binding.llContainer.addView(divider,ViewGroup.LayoutParams.MATCH_PARENT,2)
+            binding.llContainer.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT, 400)
         }
     }
     fun show(fragmentManager: FragmentManager, tag: String) {

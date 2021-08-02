@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_rn.*
+import com.jamesfchen.uicomponent.databinding.FragmentRnBinding
 
 class BottomUpDialogFragmentForSheet : BottomSheetDialogFragment() {
     companion object {
@@ -27,9 +27,11 @@ class BottomUpDialogFragmentForSheet : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    lateinit var  binding: FragmentRnBinding
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreateView")
-        return inflater.inflate(R.layout.fragment_rn, container, false)
+        binding = FragmentRnBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +48,8 @@ class BottomUpDialogFragmentForSheet : BottomSheetDialogFragment() {
             textView.text = "asdfasfsafaf"
             val divider=View(view.context)
             divider.setBackgroundColor(Color.RED)
-            ll_container.addView(divider,ViewGroup.LayoutParams.MATCH_PARENT,2)
-            ll_container.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT, 400)
+            binding.llContainer.addView(divider,ViewGroup.LayoutParams.MATCH_PARENT,2)
+            binding.llContainer.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT, 400)
         }
     }
 //    fun show(fragmentManager: FragmentManager, tag: String) {

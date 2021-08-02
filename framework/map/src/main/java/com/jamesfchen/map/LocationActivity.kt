@@ -12,7 +12,6 @@ import com.jamesfchen.map.model.AppCellInfo
 import com.jamesfchen.map.model.AppLocation
 import com.jamesfchen.map.model.LBS
 import com.jamesfchen.map.model.LBSViewModel
-import kotlinx.android.synthetic.main.activity_location.*
 
 /**
  * Copyright ® $ 2017
@@ -66,7 +65,8 @@ class LocationActivity : LBSActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_location)
+        val binding = ActivityLocatioinBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val ipAddressByWifi = NetworkUtils.getIpAddressByWifi()
         val ipAddressipv4 = NetworkUtils.getIPAddress(true)
         val ipAddressipv6 = NetworkUtils.getIPAddress(false)
@@ -78,17 +78,17 @@ class LocationActivity : LBSActivity() {
         Log.d(TAG, "onCreate: 网卡：" + macAddressByNetworkInterface + "\n网络地址:" + macAddressByInetAddress + "\nwifi:" + macAddressByWifiInfo + "\nfile:" + getMacAddressByFile)
 
         val adapter = LbsAdapter()
-        rv_cellinfos.adapter = adapter
+        binding.rvCellinfos.adapter = adapter
         val observer = Observer(adapter::submitList)
         viewModel.allLbsDatas.observe(this, Observer<PagedList<LBS>> { p ->
             adapter.submitList(p)
             if (p.size > 2) {
-                rv_cellinfos.smoothScrollToPosition(p.size - 1)
+                binding.rvCellinfos.smoothScrollToPosition(p.size - 1)
             }
         })
         viewModel.clearAll()
-        srf_cellinfos.setOnRefreshListener {
-            srf_cellinfos.isRefreshing = false
+        binding.rvCellinfos.setOnRefreshListener {
+            binding.rvCellinfos.isRefreshing = false
         }
 //        val lbsDir = File(Environment.getExternalStorageDirectory().absoluteFile, "lbsPath")
 //        if (!lbsDir.exists()) {

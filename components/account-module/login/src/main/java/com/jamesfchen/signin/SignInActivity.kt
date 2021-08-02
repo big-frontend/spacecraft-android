@@ -17,10 +17,10 @@ import com.jamesfchen.modle.SignInReqBody
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.editorActions
 import com.jakewharton.rxbinding2.widget.textChanges
+import com.jamesfchen.login.databinding.ActivitySigninBinding
 import com.orhanobut.logger.Logger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.Observables
-import kotlinx.android.synthetic.main.activity_signin.*
 
 /**
  * Copyright ® $ 2017
@@ -45,32 +45,33 @@ class SignInActivity : SignInContract.View() {
 //    }
 
     private val TAG = "SignInActivity"
-
+    lateinit var binding:ActivitySigninBinding
     override fun initComponent(savedInstanceState: Bundle?) {
-        setContentView(R.layout.activity_signin)
+        binding = ActivitySigninBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 //        App.getAppComponent().inject(this)
     }
 
     override fun handleCallback(autoDisposable: AutoDisposable) {
-        tv_signup.clicks()
-                .doOnNext { tv_signup.isPressed = true }
+        binding.tvSignup.clicks()
+                .doOnNext { binding.tvSignup.isPressed = true }
                 .subscribe({
                     openActivity<SignUpActivity>(false)
                 }, { }, {}).autoDisposable()
 
-        Observables.combineLatest(atv_mobile.textChanges(), et_password.textChanges())
+        Observables.combineLatest(binding.atvMobile.textChanges(), binding.etPassword.textChanges())
                 .map { !TextUtil.isEmpty(it.first, it.second) }
-                .subscribe { bt_sign_in.isEnabled = it }
+                .subscribe { binding.btSignIn.isEnabled = it }
                 .autoDisposable()
 
-        et_password.editorActions()
+        binding.etPassword.editorActions()
                 .filter { it == EditorInfo.IME_ACTION_DONE }
                 .map { Unit }
-                .mergeWith(bt_sign_in.clicks())
+                .mergeWith(binding.btSignIn.clicks())
                 .publish().apply {
                     subscribe { hideSoftInput() }
-                    filter { !TextUtil.isEmpty(atv_mobile.text.toString(), et_password.text.toString()) }
-                            .subscribe { signin(SignInReqBody(atv_mobile.text.toString(), et_password.text.toString())) }
+                    filter { !TextUtil.isEmpty(binding.atvMobile.text.toString(), binding.etPassword.text.toString()) }
+                            .subscribe { signin(SignInReqBody(binding.atvMobile.text.toString(), binding.etPassword.text.toString())) }
 
                 }.connect(autoDisposable)
 
@@ -109,17 +110,17 @@ class SignInActivity : SignInContract.View() {
         presenter.stateObservable.publish().apply {
             Logger.t(TAG).d("onResume")
             map { it == ClientState.SIGNING_IN }.observeOn(AndroidSchedulers.mainThread()).subscribe {
-                pb_signin_progress.visibility = if (it) View.VISIBLE else View.GONE
+                binding.pbSigninProgress.visibility = if (it) View.VISIBLE else View.GONE
             }.autoDisposable()
-            map { it == ClientState.SIGNED_OUT }.subscribe { ll_signin.visibility }.autoDisposable()
+            map { it == ClientState.SIGNED_OUT }.subscribe { binding.llSignin.visibility }.autoDisposable()
 //            filter { it == ClientState.SIGNED_IN }.subscribe { openActivity<HomeActivity>() }.autoDisposable()
             filter { it == ClientState.SIGNING_UP }.subscribe { openActivity<SignUpActivity>(false) }.autoDisposable()
 
         }.connect(autoDisposable)
 
         presenter.signInFailedEventObservable.publish().apply {
-            map { it.mobile }.subscribe { atv_mobile.text }.autoDisposable()
-            map { it.password }.subscribe { et_password.text }.autoDisposable()
+            map { it.mobile }.subscribe { binding.atvMobile.text }.autoDisposable()
+            map { it.password }.subscribe { binding.etPassword.text }.autoDisposable()
             map { it.excep }.observeOn(AndroidSchedulers.mainThread()).subscribe { Toast.makeText(this@SignInActivity, "$it", Toast.LENGTH_SHORT).show() }
         }.connect(autoDisposable)
     }

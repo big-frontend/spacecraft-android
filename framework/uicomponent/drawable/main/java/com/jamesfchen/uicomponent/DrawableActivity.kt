@@ -13,22 +13,21 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_drawable.*
-import kotlinx.android.synthetic.main.content_drawable.*
+import com.jamesfchen.uicomponent.databinding.ActivityDrawableBinding
 
 class DrawableActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_drawable)
-        setSupportActionBar(toolbar)
+        val binding = ActivityDrawableBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        fab.setOnClickListener { view ->
+        binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-
-        vp.adapter = Adapter()
-        vp.currentItem = 5
+//        binding.vp.adapter = Adapter()
+//        binding.vp.currentItem = 5
     }
 
     inner class Adapter : PagerAdapter() {

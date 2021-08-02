@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.jamesfchen.uicomponent.databinding.ActivityBottomUpDialogBinding
 
 /**
  * bottom up的控件实现由如下几种：
@@ -21,9 +22,11 @@ class BottomUpActivity : AppCompatActivity() {
     val dialogFragment2 = BottomUpDialogFragmentv2.newInstance()
     val rnFragment = RNFragment.newInstance()
     val bottomUpDialogFragmentForSheet = BottomUpDialogFragmentForSheet.newInstance()
+    lateinit var binding : ActivityBottomUpDialogBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_up_dialog)
+        binding = ActivityBottomUpDialogBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     fun onClick(view: View) {

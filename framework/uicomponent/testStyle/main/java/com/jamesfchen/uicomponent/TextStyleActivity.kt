@@ -4,7 +4,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import kotlinx.android.synthetic.main.activity_text_style.*
+import com.jamesfchen.uicomponent.databinding.ActivityTextStyleBinding
 
 /**
  * Copyright ® $ 2017
@@ -21,8 +21,9 @@ class TextStyleActivity : AppCompatActivity() {
 //        val field = LayoutInflater::class.java.getDeclaredField("mFactorySet")
 //        field.isAccessible = true
 //        field.setBoolean(layoutInflater, false)
-        setContentView(R.layout.activity_text_style)
-        tv_font.setOnClickListener{
+        val binding=ActivityTextStyleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.tvFont.setOnClickListener{
 //            val request = FontRequest(
 //                    "com.google.android.gms.fonts",
 //                    "com.google.android.gms",
@@ -41,7 +42,7 @@ class TextStyleActivity : AppCompatActivity() {
 //            }
 //            FontsContractCompat.requestFonts(this@TextStyleActivity, request, callback,handler)
             val font = ResourcesCompat.getFont(this@TextStyleActivity,R.font.alfa_slab_one)
-            tv_font.typeface =font
+            binding.tvFont.typeface =font
         }
 
     }
