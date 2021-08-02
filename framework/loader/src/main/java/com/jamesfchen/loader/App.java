@@ -7,25 +7,8 @@ import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.jamesfchen.common.DynamicConfigImplDemo;
 import com.jamesfchen.common.MessageStatic;
-import com.jamesfchen.common.TestPluginListener;
-import com.jamesfchen.common.util.Util;
-import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-import com.orhanobut.logger.PrettyFormatStrategy;
-import com.tencent.bugly.crashreport.CrashReport;
-import com.tencent.matrix.Matrix;
-import com.tencent.matrix.iocanary.IOCanaryPlugin;
-import com.tencent.matrix.iocanary.config.IOConfig;
-import com.tencent.matrix.resource.ResourcePlugin;
-import com.tencent.matrix.resource.config.ResourceConfig;
-import com.tencent.matrix.trace.TracePlugin;
-import com.tencent.matrix.trace.config.TraceConfig;
-import com.tencent.matrix.util.MatrixLog;
-import com.tencent.sqlitelint.SQLiteLint;
-import com.tencent.sqlitelint.SQLiteLintPlugin;
-import com.tencent.sqlitelint.config.SQLiteLintConfig;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -40,7 +23,7 @@ import androidx.emoji.text.FontRequestEmojiCompatConfig;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
-
+import com.jamesfchen.common.util.Util;
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -77,15 +60,10 @@ public class App extends MultiDexApplication implements Configuration.Provider {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().tag(TAG).build()) {
-            @Override
-            public boolean isLoggable(int priority, String tag) {
-                return BuildConfig.DEBUG;
-            }
-        });
+
         String processName = getProcessName(android.os.Process.myPid());
         Logger.t(TAG).d("processName：" + processName);
-        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
+//        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
         app = this;
 //        sNetComponent = DaggerNetComponent.builder()
 //                .netModule(new NetModule())
@@ -99,30 +77,7 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 
 //        Utils.init(this);
         Util.init(this);
-
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
-//        strategy.setAppVersion(BuildConfig.VERSION_NAME);
-        strategy.setBuglyLogUpload(true);
-        String packageName = getApplicationContext().getPackageName();
-        strategy.setAppPackageName(packageName);
-        strategy.setUploadProcess(processName == null || processName.equals(packageName));
-//        strategy.setAppReportDelay(20000);   //改为20s
-        strategy.setAppChannel("huawei");
-//        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
-        CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
-        CrashReport.initCrashReport(getApplicationContext(), strategy);
-//        FirebaseOptions firebaseOptions = new FirebaseOptions.Builder()
-//                .setApplicationId(BuildConfig.APPLICATION_ID)
-//                .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
-//                .setProjectId("spacecraft-22dc1")
-//                .setStorageBucket("spacecraft-22dc1.appspot.com")
-//                .build();
-//        FirebaseApp.initializeApp(this,firebaseOptions);
-//        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
-//        crashlytics.setCrashlyticsCollectionEnabled(true);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
-
-
 
 //        sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 //        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -159,8 +114,6 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 //                    }
 //                });
 
-        startMatrix();
-
         FontRequest fontRequest = new FontRequest(
                 "com.google.android.gms.fonts",
                 "com.google.android.gms",
@@ -191,83 +144,6 @@ public class App extends MultiDexApplication implements Configuration.Provider {
         }
         ARouter.init(this);
 
-
-    }
-    private void startMatrix(){
-        DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo();
-        boolean matrixEnable = dynamicConfig.isMatrixEnable();
-        boolean fpsEnable = dynamicConfig.isFPSEnable();
-        boolean traceEnable = dynamicConfig.isTraceEnable();
-
-        MatrixLog.i(TAG, "MatrixApplication.onCreate");
-
-        Matrix.Builder builder = new Matrix.Builder(this);
-        builder.patchListener(new TestPluginListener(this));
-
-        //trace
-        TraceConfig traceConfig = new TraceConfig.Builder()
-                .dynamicConfig(dynamicConfig)
-                .enableFPS(fpsEnable)
-                .enableEvilMethodTrace(traceEnable)
-                .enableAnrTrace(traceEnable)
-                .enableStartup(traceEnable)
-                .splashActivities("com.hawksjamesf.myhome.ui.SplashActivity;")
-                .isDebug(true)
-                .isDevEnv(false)
-                .build();
-
-        TracePlugin tracePlugin = (new TracePlugin(traceConfig));
-        builder.plugin(tracePlugin);
-
-        if (matrixEnable) {
-
-            //resource
-            builder.plugin(new ResourcePlugin(new ResourceConfig.Builder()
-                    .dynamicConfig(dynamicConfig)
-                    .setDumpHprof(false)
-                    .setDetectDebuger(true)     //only set true when in sample, not in your app
-                    .build()));
-            ResourcePlugin.activityLeakFixer(this);
-
-            //io
-            IOCanaryPlugin ioCanaryPlugin = new IOCanaryPlugin(new IOConfig.Builder()
-                    .dynamicConfig(dynamicConfig)
-                    .build());
-            builder.plugin(ioCanaryPlugin);
-
-
-            // prevent api 19 UnsatisfiedLinkError
-            //sqlite
-            SQLiteLintConfig config = initSQLiteLintConfig();
-            SQLiteLintPlugin sqLiteLintPlugin = new SQLiteLintPlugin(config);
-            builder.plugin(sqLiteLintPlugin);
-
-//            ThreadWatcher threadWatcher = new ThreadWatcher(new ThreadConfig.Builder().dynamicConfig(dynamicConfig).build());
-//            builder.plugin(threadWatcher);
-
-
-        }
-
-        Matrix.init(builder.build());
-
-        //start only startup tracer, close other tracer.
-        tracePlugin.start();
-//        Matrix.with().getPluginByClass(ThreadWatcher.class).start();
-        MatrixLog.i("Matrix.HackCallback", "end:%s", System.currentTimeMillis());
-    }
-
-    private static SQLiteLintConfig initSQLiteLintConfig() {
-        try {
-            /**
-             * HOOK模式下，SQLiteLint会自己去获取所有已执行的sql语句及其耗时(by hooking sqlite3_profile)
-             * @see 而另一个模式：SQLiteLint.SqlExecutionCallbackMode.CUSTOM_NOTIFY , 则需要调用 {@link SQLiteLint#notifySqlExecution(String, String, int)}来通知
-             * SQLiteLint 需要分析的、已执行的sql语句及其耗时
-             * @see TestSQLiteLintActivity#doTest()
-             */
-            return new SQLiteLintConfig(SQLiteLint.SqlExecutionCallbackMode.HOOK);
-        } catch (Throwable t) {
-            return new SQLiteLintConfig(SQLiteLint.SqlExecutionCallbackMode.HOOK);
-        }
     }
 
     /**

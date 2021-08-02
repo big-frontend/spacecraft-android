@@ -3,10 +3,11 @@ package com.jamesfchen.loader
 import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
+import com.alibaba.android.arouter.launcher.ARouter
 
-class AppInitializer : Initializer<Unit> {
+class RouterInitializer : Initializer<Unit> {
     override fun create(context: Context) {
-        Log.d("cjf","AppInitializer#create")
+        Log.d("cjf","RouterInitializer#create")
         //        Fresco.initialize(this);
     }
 
