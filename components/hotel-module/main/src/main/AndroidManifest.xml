@@ -22,7 +22,7 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
         <activity
-            android:name="com.jamesfchen.bundle2.Bundle2Activity"
+            android:name="com.jamesfchen.bundle1.Bundle1Activity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

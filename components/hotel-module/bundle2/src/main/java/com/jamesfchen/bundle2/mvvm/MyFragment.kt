@@ -1,4 +1,4 @@
-package com.jamesfchen.common.mvvm
+package com.jamesfchen.bundle2.mvvm
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,7 @@ import android.widget.TextView
 import androidx.core.text.PrecomputedTextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenStarted
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -47,6 +45,9 @@ class MyFragment: Fragment() {
             }
 
             // This line runs only after the whenStarted block above has completed.
+            whenCreated {  }
+            whenStarted {  }
+            whenResumed {  }
 
         }
 

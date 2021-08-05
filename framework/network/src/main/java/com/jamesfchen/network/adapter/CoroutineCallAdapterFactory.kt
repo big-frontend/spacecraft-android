@@ -1,4 +1,4 @@
-package com.jamesfchen.network.source.remote.rest
+package com.jamesfchen.network.adapter
 
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred

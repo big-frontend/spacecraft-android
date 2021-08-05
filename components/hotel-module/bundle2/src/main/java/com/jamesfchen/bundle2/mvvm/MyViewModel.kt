@@ -1,4 +1,4 @@
-package com.jamesfchen.common.mvvm
+package com.jamesfchen.bundle2.mvvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,5 +17,9 @@ class MyViewModel: ViewModel() {
         viewModelScope.launch {
             // Coroutine that will be canceled when the ViewModel is cleared.
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }
