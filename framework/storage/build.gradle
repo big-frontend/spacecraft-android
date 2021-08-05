@@ -37,10 +37,11 @@ dependencies {
     api 'com.google.firebase:firebase-config'
     api 'com.tencent:mmkv-static:1.2.10'
 
-    implementation "androidx.datastore:datastore:1.0.0-rc01"
-    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
-    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
-    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
+//    implementation "com.dropbox.mobile.store:store4:4.0.1"
     /**
      * ================================database end==============================
      */
