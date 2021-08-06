@@ -33,13 +33,13 @@ flutter {
 //group 'com.jamesfchen.flutter_bundle'
 //version '1.0'
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion Integer.parseInt(rootProject.compileSdkVersion)
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        (minSdkVersion, targetSdkVersion, versionCode, versionName) = [Integer.parseInt(rootProject.minSdkVersion),
+                                                                       Integer.parseInt(rootProject.targetSdkVersion),
+                                                                       rootProject.versionCode, rootProject.versionName]
+
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

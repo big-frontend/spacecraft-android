@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-//apply plugin: "kotlin-android-extensions"
-apply plugin: 'kotlin-kapt'
+apply from: "${rootDir.path}/script/base_module.gradle"
 //apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.firebase.firebase-perf'
@@ -19,32 +17,14 @@ counterConfig {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        (minSdkVersion, targetSdkVersion, versionCode, versionName) = [rootProject.ext.minSdkVersion, rootProject.ext.targetSdkVersion, rootProject.ext.versionCode, rootProject.ext.versionName]
-
         multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeep.txt')
 //        multiDexKeepProguard file('multiDexKeep.pro')
-        applicationId "com.hawksjamesf.spacecraft"
-        testApplicationId "com.hawksjamesf.spacecraft.test"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId rootProject.applicationId
+        testApplicationId "${rootProject.applicationId}.test"
     }
-    composeOptions {
-        kotlinCompilerVersion "1.5.10"
-        kotlinCompilerExtensionVersion "1.0.0-beta08"
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-//        useIR = true
-//        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
-    }
-    buildFeatures {
-        viewBinding true
-        dataBinding true
-        compose true
-    }
+
     signingConfigs {
         debugSigningConfig {
             (keyAlias, keyPassword, storePassword) = ['123456', '123456', '123456']
@@ -90,39 +70,7 @@ android {
             }
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    lintOptions {
-        lintConfig project.file("$project.rootDir/lint.xml")
-        htmlReport true
-        htmlOutput project.file("$project.rootDir/lint-report-app.html")
-        xmlReport true
-        xmlOutput project.file("$project.rootDir/lint-report-app.xml")
-        warningsAsErrors true
-        abortOnError false
-        checkReleaseBuilds false
-        //        textReport true
-//        // Produce report for CI:
-//        // https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/sarif-support-for-code-scanning
-//        sarifOutput project.file("$project.rootDir/lint-results.sarif")
-//                // Turns off checks for the issue IDs you specify.
-//                disable 'TypographyFractions','TypographyQuotes'
-//                // Turns on checks for the issue IDs you specify. These checks are in
-//                // addition to the default lint checks.
-//                enable 'RtlHardcoded','RtlCompat', 'RtlEnabled'
-//                // To enable checks for only a subset of issue IDs and ignore all others,
-//                // list the issue IDs with the 'check' property instead. This property overrides
-//                // any issue IDs you enable or disable using the properties above.
-//                checkOnly 'NewApi', 'InlinedApi'
-//                // If set to true, turns off analysis progress reporting by lint.
-//                quiet true
-//                // if set to true (default), stops the build if errors are found.
-//                abortOnError false
-//                // if true, only report errors.
-//                ignoreWarnings true
-    }
+
 
     splits {
         abi {
@@ -149,7 +97,6 @@ configurations {
 //    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
 }
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     teenager("${project.path} app begin ========================================================================================")
     def deps = rootProject.ext.findDepProjects(project.path)
     for (def d : deps) {

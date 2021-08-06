@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply from: "${rootDir.path}/script/base_module.gradle"
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.alibaba.arouter'
+apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.google.protobuf'
 //protobuf {
 //    protoc {
@@ -41,14 +41,13 @@ kapt {
     }
 }
 android {
-    defaultConfig {
+//    defaultConfig {
 //        javaCompileOptions {
 //            annotationProcessorOptions {
 //                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
 //            }
 //        }
-    }
-
+//    }
 }
 
 dependencies {
@@ -66,6 +65,6 @@ dependencies {
     // and Android Gradle Plugin will inject the right version.
     //当开启buildFeatures时AGP 会自动注入databinding compiler
 //    kapt 'androidx.databinding:databinding-compiler:7.0.0-beta03'
-    kapt 'com.alibaba:arouter-compiler:1.2.1'
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
 }
 

@@ -6,7 +6,7 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.jamesfchen.uicomponent.mvvm.ObservableViewModel
+import com.jamesfchen.mvvm.ObservableViewModel
 
 /**
  * Copyright ® $ 2017
@@ -72,5 +72,10 @@ class ProfileViewModel : ObservableViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        try {
+
+        }finally {
+
+        }
     }
 }

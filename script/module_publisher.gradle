@@ -1,8 +1,16 @@
-def isAndroid() {
-    return project.getPlugins().hasPlugin('com.android.application') ||
-            project.getPlugins().hasPlugin('com.android.library')
+def isLib() {
+    return project.getPlugins().hasPlugin('com.android.library')
 }
-def findArtifact(){
+
+def isApp() {
+    return project.getPlugins().hasPlugin('com.android.application')
+}
+
+def isAndroid() {
+    return isApp() || isLib()
+}
+
+def findArtifact() {
     def applicationId = rootProject.applicationId
     def moduleSimpleName = ''
     def moduleCanonicalNmae = ''
@@ -18,12 +26,13 @@ def findArtifact(){
     ) {
         throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :moduleCanonicalNmae${moduleCanonicalNmae} 这两个参数都要配置")
     }
-    return  [applicationId,moduleSimpleName]
+    return [applicationId, moduleSimpleName]
 }
 //  ./gradlew publishToMavenLocal
 apply plugin: 'maven-publish'
 afterEvaluate {
-    if (isAndroid()) {
+    if (isApp()) return
+    if (isLib()) {
         task androidSourcesJar(type: Jar) {
             classifier = 'sources'
             from android.sourceSets.main.java.source
@@ -74,7 +83,7 @@ afterEvaluate {
             archives sourcesJar
         }
     }
-    def (applicationId,moduleSimpleName) = findArtifact()
+    def (applicationId, moduleSimpleName) = findArtifact()
     publishing {
         publications {
             // Creates a Maven publication called "release".

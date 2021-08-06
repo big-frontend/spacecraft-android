@@ -1,7 +1,6 @@
 apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
-apply from: "${rootDir.path}/script/console.gradle"
 apply plugin: 'kotlin-kapt'
+apply from: "${rootDir.path}/script/console.gradle"
 //def snmae=
 //def lastindex= snmae.indexOf('ModulePlugin')
 //def type= snmae.substring(0,lastindex).toLowerCase()
@@ -12,13 +11,12 @@ apply plugin: 'kotlin-kapt'
 //    com.jamesfchen.plugin.util.P.info("<<<<<<<<<<<<<<<==$type[${project.name}] end")
 //}
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion Integer.parseInt(rootProject.compileSdkVersion)
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        (minSdkVersion, targetSdkVersion, versionCode, versionName) = [Integer.parseInt(rootProject.minSdkVersion),
+                                                                       Integer.parseInt(rootProject.targetSdkVersion),
+                                                                       rootProject.versionCode, rootProject.versionName]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -33,8 +31,9 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerVersion "1.5.10"
-        kotlinCompilerExtensionVersion "1.0.0-beta08"
+        kotlinCompilerExtensionVersion '1.0.0-rc02'
+//        kotlinCompilerVersion "1.5.10"
+//        kotlinCompilerExtensionVersion "1.0.0-beta08"
     }
     kotlinOptions {
         jvmTarget = "1.8"

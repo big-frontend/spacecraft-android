@@ -13,6 +13,7 @@ project.ext.srcDirs =[
 ]
 //apply plugin: 'foundation-module'
 apply from: "${rootDir.path}/script/foundation_module.gradle"
+apply plugin: 'kotlin-kapt'
 android {
     sourceSets {
         if (project.hasProperty("srcDirs")) {
@@ -49,6 +50,20 @@ android {
 
             }
         }
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerVersion "1.5.10"
+        kotlinCompilerExtensionVersion "1.0.0-beta08"
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+//        useIR = true
+//        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
     }
 
 }

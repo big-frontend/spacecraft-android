@@ -1,6 +1,6 @@
 package com.jamesfchen.myhome.ui.home;
 
-import com.jamesfchen.uicomponent.mvp.RxPresenter;
+import com.jamesfchen.mvp.RxPresenter;
 
 import java.util.HashMap;
 

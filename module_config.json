@@ -125,7 +125,10 @@
       "canonicalName": ":framework:hybrid",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-hybrid:1.0"
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-hybrid:1.0",
+      "deps": [
+        ":framework:common"
+      ]
     },
     {
       "simpleName": "framework-router",

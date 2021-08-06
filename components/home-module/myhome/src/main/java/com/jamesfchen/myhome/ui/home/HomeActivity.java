@@ -14,21 +14,17 @@ import android.widget.TextView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
-import com.jamesfchen.uicomponent.mvp.RxActivity;
 import com.jamesfchen.common.util.BarUtil;
-import com.jamesfchen.mockserver.model.WeatherData;
+import com.jamesfchen.mvp.RxActivity;
 import com.jamesfchen.myhome.R;
 import com.jamesfchen.myhome.api.RetrofitHelper;
 import com.jamesfchen.myhome.api.WeatherApi;
-import com.jamesfchen.myhome.modle.ListRes;
 import com.orhanobut.logger.Logger;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 /**
  * Copyright ® $ 2017

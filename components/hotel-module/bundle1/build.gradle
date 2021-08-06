@@ -1,9 +1,9 @@
 //apply plugin: 'bundle-module'
 apply from: "$rootDir.path/script/bundle_module.gradle"
 
-//android {
-//    defaultConfig {
+android {
+    defaultConfig {
 
-//    }
-//
-//}
+    }
+
+}

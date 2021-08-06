@@ -16,14 +16,6 @@ buildscript {
         google()
     }
     ext {
-        compileSdkVersion = 30
-        buildToolsVersion = '30.0.2'
-        minSdkVersion = 23//19:kk,21:L,23:M,24:N,26:O,28:P
-        targetSdkVersion = 30
-        versionCode = 2
-        versionName = "2.0.0"
-        androidPluginVersion = '3.2.0'
-
         //test
         junitVersion = '4.12'
         runnerVersion = '1.0.2'
@@ -49,7 +41,6 @@ buildscript {
         leakcanaryVersion = '1.6.2'
         grpcVersion = '1.20.0'
         kotlin_version = '1.3.72'
-        compose_version = '1.0.0-beta09'
     }
     dependencies {
         //该插件不再使用 ProGuard 来执行编译时代码优化，而是与 R8 编译器协同工作来处理以下编译时任务:
@@ -129,8 +120,8 @@ ext {
         d = []
         if (module != null) {
             module.deps.each { dep ->
-                def m =findProject(dep)
-                if (m !=null){
+                def m = findProject(dep)
+                if (m != null) {
                     d.add(m)
                 }
             }
@@ -180,19 +171,29 @@ static def isWindows() {
 
 task publishAll {
     doLast {
-        gradle.ext.sourceModuleMap.each {canonicalName,module->
-            if (canonicalName !=':app'
-                    && canonicalName !=':components:hotel-module:hotel-lint'
-                    && canonicalName !=':framework:flutter'
-                    && module.format !='app') {
-                exec {
-                    executable rootDir.path+File.separator + (isWindows() ? 'gradlew.bat' :'gradlew')
-                    workingDir rootDir
-                    def argv = []
-                    argv << "${canonicalName}:publishToMavenLocal"
-                    args = argv
+        def ret=[]
+        try {
+            gradle.ext.sourceModuleMap.each { canonicalName, module ->
+                if (canonicalName != ':app'
+                        && canonicalName != ':components:hotel-module:hotel-lint'
+                        && canonicalName != ':framework:flutter'
+                        && module.format != 'app') {
+                    ret += canonicalName
+                    exec {
+                        executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                        workingDir rootDir
+                        def argv = []
+                        argv << "${canonicalName}:publishToMavenLocal"
+                        args = argv
+                    }
                 }
             }
+        } catch (Exception ignored) {
+
+        } finally {
+            Collections.sort(ret)
+            println(">>>> publish modules !!!!!! !!!!!!")
+            println(">>>> ${ret}")
         }
     }
 }
