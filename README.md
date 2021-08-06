@@ -11,9 +11,9 @@ SpacecraftAndroid
 
 |  language  |  files |lines|
 |---| --- |---|
-|  java|187 |22399|
-|  kotlin|190|9727|
-|  c or c++|14|1377|
+|  java|156 |19352|
+|  kotlin|168|8367|
+|  c or c++|3|1792|
 
 # To be Architect
 > 驽马十驾功在不舍

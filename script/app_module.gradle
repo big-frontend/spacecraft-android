@@ -13,7 +13,7 @@ apply plugin: 'com.google.gms.google-services'
 //}
 apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
-    seaSrcDirs = true
+    sea = 'all'
 }
 
 android {
