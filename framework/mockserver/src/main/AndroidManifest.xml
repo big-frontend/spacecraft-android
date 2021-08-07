@@ -31,18 +31,12 @@
             android:name="com.jamesfchen.mockserver.LogActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
 
-<!--            android:process=":log_ui_server"-->
-<!--            android:multiprocess="true"-->
         <provider
-
             android:name="com.jamesfchen.mockserver.LogContentProvider"
             android:authorities="${applicationId}.mockserver.log"
+            android:multiprocess="true"
+            android:process=":log_ui_server"
             android:exported="false" />
-        <provider
-            android:name="com.jamesfchen.mockserver.MockServerContentProvider"
-            android:authorities="${applicationId}.mockserver.mocker"
-            android:exported="false"
-            />
 
         <receiver
             android:name="com.jamesfchen.mockserver.CmdReceiver"

@@ -119,7 +119,6 @@ dependencies {
 
     api 'com.firebaseui:firebase-ui-database:6.0.2'
     api 'com.firebaseui:firebase-ui-firestore:6.0.2'
-    api 'com.firebaseui:firebase-ui-auth:6.0.2'
     api 'com.firebaseui:firebase-ui-storage:6.0.2'
 
     api 'androidx.emoji:emoji:1.1.0'

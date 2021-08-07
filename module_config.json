@@ -108,7 +108,6 @@
       "binary_artifact": "com.jamesfchen.spacecraft:framework-loader:1.0",
       "deps": [
         ":framework:network",
-        ":framework:router",
         ":framework:uicomponent",
         ":framework:av"
       ]
@@ -131,23 +130,13 @@
       ]
     },
     {
-      "simpleName": "framework-router",
-      "canonicalName": ":framework:router",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-router:1.0",
-      "deps": [
-        ":framework:common"
-      ]
-    },
-    {
       "simpleName": "framework-network",
       "canonicalName": ":framework:network",
       "format": "framework_foundation",
       "group": "fwk",
       "binary_artifact": "com.jamesfchen.spacecraft:framework-network:1.0",
       "deps": [
-        ":framework:common",":mockserver"
+        ":framework:common",":framework:mockserver"
       ]
     },
     {
@@ -182,7 +171,7 @@
     },
     {
       "simpleName": "framework-mockserver",
-      "canonicalName": ":mockserver",
+      "canonicalName": ":framework:mockserver",
       "format": "framework_foundation",
       "group": "fwk",
       "binary_artifact": "com.jamesfchen.spacecraft:framework-mockserver:1.0",
