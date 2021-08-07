@@ -1,61 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_graph"
-            app:startDestination="@id/fragment_home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dest_home">
 
     <fragment
-        android:id="@+id/fragment_home"
-        android:name="com.jamesfchen.spacecraft.fragment.HomeFragment"
+        android:id="@+id/dest_home"
+        android:name="com.jamesfchen.myhome.screen.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <!--app:destination="@id/flow_step_two_dest"/>-->
         <!--NavController-->
+<!--        <action-->
+<!--            android:id="@+id/action_step_two"-->
+<!--            app:destination="@+id/fragment_flow_step_two_dest" />-->
         <action
-            android:id="@+id/action_step_two"
-            app:destination="@+id/fragment_flow_step_two_dest"/>
+            android:id="@+id/action_profile"
+            app:destination="@+id/dest_profile" />
     </fragment>
+    <fragment
+        android:id="@+id/dest_infos"
+        android:name="com.jamesfchen.myhome.screen.InfosFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_infos">
+        <!--app:destination="@id/flow_step_two_dest"/>-->
+        <!--NavController-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_step_two"-->
+        <!--            app:destination="@+id/fragment_flow_step_two_dest" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/dest_profile"
+        android:name="com.jamesfchen.myhome.screen.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <!--app:destination="@id/flow_step_two_dest"/>-->
+        <!--NavController-->
+        <action
+            android:id="@+id/action_settings"
+            app:destination="@+id/dest_settings" />
+    </fragment>
+
+    <activity
+        android:id="@+id/dest_settings"
+        android:name="com.jamesfchen.myhome.screen.WebViewActivity"
+        android:label="settings "
+        tools:layout="@layout/activity_webview">
+        <argument
+            android:name="url"
+            android:defaultValue="https://i.spacecraft.com/c/ZDg0Y2FhNjMt" />
+    </activity>
 
 
     <fragment
         android:id="@+id/fragment_flow_step_one_dest"
-        android:name="com.jamesfchen.spacecraft.fragment.FlowStepFragment"
+        android:name="com.jamesfchen.myhome.screen.FlowStepFragment"
         android:label="fragment_flow_step_one"
         tools:layout="@layout/fragment_flow_step_one">
         <argument
             android:name="flowStepNumber"
             android:defaultValue="1"
-            app:argType="integer"/>
+            app:argType="integer" />
         <!--NavController-->
         <action
             android:id="@+id/action_next"
-            app:destination="@+id/fragment_flow_step_two_dest"/>
+            app:destination="@+id/fragment_flow_step_two_dest" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_flow_step_two_dest"
-        android:name="com.jamesfchen.spacecraft.fragment.FlowStepFragment"
+        android:name="com.jamesfchen.myhome.screen.FlowStepFragment"
         android:label="fragment_flow_step_two"
         tools:layout="@layout/fragment_flow_step_two">
         <argument
             android:name="flowStepNumber"
             android:defaultValue="2"
-            app:argType="integer"/>
+            app:argType="integer" />
 
         <action
             android:id="@+id/action_next"
-            app:popUpTo="@id/fragment_home"/>
+            app:popUpTo="@id/dest_home" />
     </fragment>
     <fragment
         android:id="@+id/fragment_deep_link"
-        android:name="com.jamesfchen.spacecraft.fragment.DeepLinkFragment"
+        android:name="com.jamesfchen.myhome.screen.DeepLinkFragment"
         android:label="fragment_deep_link"
         tools:layout="@layout/fragment_deep_link">
 
         <argument
             android:name="args_deep_link"
-            android:defaultValue="Android!"/>
+            android:defaultValue="Android!" />
 
         <!--<deepLink app:uri="www.example.com/{args_deep_link}"/>-->
     </fragment>

@@ -1,4 +1,6 @@
-project.ext.srcDirs =[
+//apply plugin: 'foundation-module'
+apply from: "${rootDir.path}/script/foundation_module.gradle"
+def srcDirs = [
         "colorpicker",
         "drawable",
         "navigation",
@@ -11,61 +13,41 @@ project.ext.srcDirs =[
         "customview",
 
 ]
-//apply plugin: 'foundation-module'
-apply from: "${rootDir.path}/script/foundation_module.gradle"
-apply plugin: 'kotlin-kapt'
 android {
     sourceSets {
-        if (project.hasProperty("srcDirs")) {
-            main {
-                java.excludes = [
-                        '**/build/**',
-                ]
-                project.ext.srcDirs.forEach {
-                    assets.srcDirs += "$projectDir/$it/main/assets"
-                    aidl.srcDirs += "$projectDir/$it/main/aidl"
-                    res.srcDirs += "$projectDir/$it/main/res-frame-animation"
-                    res.srcDirs += "$projectDir/$it/main/res"
-                    java.srcDirs += "$projectDir/$it/main/java"
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
 
 //                    assets.srcDirs += "$projectDir/src/inhouse/assets"
 //                    aidl.srcDirs += "$projectDir/src/inhouse/aidl"
 //                    res.srcDirs += "$projectDir/src/inhouse/res"
 //                    java.srcDirs += "$projectDir/src/inhouse/java"
-                }
             }
-            androidTest {
-                project.ext.srcDirs.forEach {
-                    assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                    aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                    res.srcDirs += "$projectDir/$it/androidTest/res"
-                    java.srcDirs += "$projectDir/$it/androidTest/java"
-
-                }
-            }
-            test {
-                project.ext.srcDirs.forEach {
-                    java.srcDirs += "$projectDir/$it/test/java"
-                }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
 
             }
         }
-    }
-    buildFeatures {
-        viewBinding true
-        dataBinding true
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerVersion "1.5.10"
-        kotlinCompilerExtensionVersion "1.0.0-beta08"
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-//        useIR = true
-//        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
-    }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
 
+        }
+    }
 }
 dependencies {
 //    implementation project(path: ':framework:common')

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <item
+        android:id="@+id/dest_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="首页"/>
+
+    <item
+        android:id="@+id/dest_friend"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="朋友"/>
+    <item
+        android:id="@+id/dest_editor"
+        android:icon="@drawable/ic_baseline_add_24" />
+    <item
+        android:id="@+id/dest_infos"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="消息"/>
+
+    <item
+        android:id="@+id/dest_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="我"/>
+
+</menu>

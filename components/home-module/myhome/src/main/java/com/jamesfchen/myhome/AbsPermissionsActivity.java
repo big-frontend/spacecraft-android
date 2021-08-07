@@ -57,6 +57,11 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             mPermissionRequestCount = savedInstanceState.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         requestPermissionsIfNecessary();
     }
 

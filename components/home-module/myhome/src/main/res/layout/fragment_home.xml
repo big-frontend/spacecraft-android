@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--    <androidx.appcompat.widget.Toolbar-->
+    <!--        android:id="@+id/tb"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="?attr/actionBarSize"-->
+    <!--        android:background="?attr/colorPrimary"-->
+    <!--        app:logo="@mipmap/ic_launcher"-->
+    <!--        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"-->
+    <!--        app:popupTheme="@style/AppTheme.PopupOverlay"-->
+    <!--        app:subtitle="subtitle"-->
+    <!--        app:title="title" />-->
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="home fragment"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25"/>
+
+    <Button
+        android:id="@+id/bt_navigate_destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="navigate_destination_button"
+        app:layout_constraintBottom_toTopOf="@+id/bt_navigate_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:layout_constraintVertical_bias="0.594"/>
+
+    <Button
+        android:id="@+id/bt_navigate_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="navigate_action_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_navigate_destination"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

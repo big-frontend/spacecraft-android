@@ -2,6 +2,7 @@ package com.jamesfchen.myhome;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,7 +16,6 @@ import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.jamesfchen.common.util.ActivityUtil;
 import com.jamesfchen.loader.App;
-import com.jamesfchen.uicomponent.widget.recyclerview.RecyclerViewActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -39,20 +38,27 @@ public class SplashActivity extends AbsPermissionsActivity {
     private HttpMetric mHttpMetric;
     private FirebaseRemoteConfig mFirebaseRemoteConfig = App.getFirebaseRemoteConfig();
 
-    @AddTrace(name = "SplashActivity_onCreate", enabled = true /* optional */)
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
+    @AddTrace(name = "SplashActivity#onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
     }
+
     @SuppressLint("CheckResult")
 //    @TraceTime
     protected void onRequestPermissionsResult() {
         Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    ActivityUtil.startActivity(RecyclerViewActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+
+                    ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                     finish();
                 });
@@ -89,6 +95,7 @@ public class SplashActivity extends AbsPermissionsActivity {
 //        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event);
 
     }
+
 
     // Remote Config keys
     private static final String LOADING_PHRASE_CONFIG_KEY = "loading_phrase";

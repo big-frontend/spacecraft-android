@@ -1,13 +1,16 @@
 package com.jamesfchen.loader;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.jamesfchen.common.MessageStatic;
+import com.jamesfchen.common.util.Util;
 import com.orhanobut.logger.Logger;
 
 import java.io.BufferedReader;
@@ -23,7 +26,7 @@ import androidx.emoji.text.FontRequestEmojiCompatConfig;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
-import com.jamesfchen.common.util.Util;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -50,17 +53,27 @@ public class App extends MultiDexApplication implements Configuration.Provider {
     private static final String PROCESS_1 = "com.hawksjamesf.spacecraft.debug";
     private static final String PROCESS_2 = ":mock_server";
     private static final String PROCESS_3 = ":mock_jobserver";
-
+    long start = 0;
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MessageStatic.init(this);
+//        MessageStatic.init(this);
+        start = SystemClock.elapsedRealtime();
+        Log.d("cjf","App#attachBaseContext");
+        for (PackageInfo pack : getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS)) {
+            ProviderInfo[] providers = pack.providers;
+            if (providers != null) {
+                for (ProviderInfo provider : providers) {
+                    Log.d("cjf", "provider authority: " + provider.authority+" name:"+provider.name);
+                }
+            }
+        }
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Log.d("cjf","App#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
         String processName = getProcessName(android.os.Process.myPid());
         Logger.t(TAG).d("processName：" + processName);
 //        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
@@ -137,12 +150,8 @@ public class App extends MultiDexApplication implements Configuration.Provider {
         EmojiCompat.Config bundledEmojiCompatConfig = new BundledEmojiCompatConfig(this);
         EmojiCompat.init(emojiCompatConfig);
 
-//        Fresco.initialize(this);
-        if (BuildConfig.DEBUG) {           // These two lines must be written before init, otherwise these configurations will be invalid in the init process
-            ARouter.openLog();     // Print log
-            ARouter.openDebug();   // Turn on debugging mode (If you are running in InstantRun mode, you must turn on debug mode! Online version needs to be closed, otherwise there is a security risk)
-        }
-        ARouter.init(this);
+
+
 
     }
 

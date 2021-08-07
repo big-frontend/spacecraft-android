@@ -5,9 +5,15 @@
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <application>
-        <activity android:name="com.jamesfchen.myhome.ui.person.SettingsActivity" />
+        <activity android:name=".screen.profile.SettingsActivity" />
+        <activity
+            android:name="com.jamesfchen.myhome.SplashActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name="com.jamesfchen.myhome.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop"
             android:exported="true">
@@ -35,19 +41,15 @@
 
         </activity>
         <activity
-            android:name="com.jamesfchen.myhome.ui.home.HomeActivity"
+            android:name="com.jamesfchen.myhome.screen.home.HomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/HomeTheme" />
 
-        <activity
-            android:name="com.jamesfchen.myhome.SplashActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
-        <activity android:name="com.jamesfchen.spacecraft.NavigationActivity" />
-        <activity android:name="com.jamesfchen.spacecraft.vm.MVVMActivity" />
-        <activity android:name="com.jamesfchen.myhome.WebViewActivity">
+
+        <activity android:name=".MVVMActivity" />
+        <activity android:name="com.jamesfchen.myhome.screen.WebViewActivity"
+            android:theme="@style/Theme.AppCompat"
+            >
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
