@@ -4,22 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.perf.metrics.AddTrace;
-import com.google.firebase.perf.metrics.HttpMetric;
-import com.google.firebase.perf.metrics.Trace;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.jamesfchen.common.util.ActivityUtil;
-import com.jamesfchen.loader.App;
 
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,17 +22,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  */
 public class SplashActivity extends AbsPermissionsActivity {
     public static final String TAG = "SplashActivity";
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private Trace myTrace;
-    private HttpMetric mHttpMetric;
-    private FirebaseRemoteConfig mFirebaseRemoteConfig = App.getFirebaseRemoteConfig();
+//    private FirebaseAnalytics mFirebaseAnalytics;
+//    private Trace myTrace;
+//    private HttpMetric mHttpMetric;
+//    private FirebaseRemoteConfig mFirebaseRemoteConfig = App.getFirebaseRemoteConfig();
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
     }
 
-    @AddTrace(name = "SplashActivity#onCreate", enabled = true /* optional */)
+//    @AddTrace(name = "SplashActivity#onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,28 +90,28 @@ public class SplashActivity extends AbsPermissionsActivity {
     private static final String LOADING_PHRASE_CONFIG_KEY = "loading_phrase";
     private static final String WELCOME_MESSAGE_KEY = "welcome_message";
 
-    private void fetchWelcome() {
-        Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
-        mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            Log.i(TAG, "Config params updated: " + updated);
-                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
-                                    Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(SplashActivity.this, "Fetch failed",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        String welcomeMessage = mFirebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY);
-                        Log.i(TAG, "WELCOME_MESSAGE_KEY: " + welcomeMessage);
-
-                    }
-                });
-    }
+//    private void fetchWelcome() {
+//        Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
+//        mFirebaseRemoteConfig.fetchAndActivate()
+//                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Boolean> task) {
+//                        if (task.isSuccessful()) {
+//                            boolean updated = task.getResult();
+//                            Log.i(TAG, "Config params updated: " + updated);
+//                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
+//                                    Toast.LENGTH_SHORT).show();
+//
+//                        } else {
+//                            Toast.makeText(SplashActivity.this, "Fetch failed",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        String welcomeMessage = mFirebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY);
+//                        Log.i(TAG, "WELCOME_MESSAGE_KEY: " + welcomeMessage);
+//
+//                    }
+//                });
+//    }
 
 }

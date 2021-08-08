@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 
-import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.uicomponent.Adapter;
 import com.jamesfchen.uicomponent.R;
 import com.jamesfchen.uicomponent.ViewModel;
@@ -73,7 +72,7 @@ public class TransitionForActivityActivity extends Activity {
                 ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle());
     }
 
-    @AddTrace(name = "TransitionForActivityActivity_onCreate", enabled = true /* optional */)
+//    @AddTrace(name = "TransitionForActivityActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

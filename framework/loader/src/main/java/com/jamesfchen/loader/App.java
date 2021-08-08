@@ -1,6 +1,8 @@
 package com.jamesfchen.loader;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
@@ -9,7 +11,6 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.jamesfchen.common.util.Util;
 import com.orhanobut.logger.Logger;
 
@@ -23,8 +24,7 @@ import androidx.core.provider.FontRequest;
 import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
 import androidx.emoji.text.FontRequestEmojiCompatConfig;
-import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
 import androidx.work.Configuration;
 
 /**
@@ -36,12 +36,12 @@ import androidx.work.Configuration;
  * @since: 2017/7/4
  */
 
-public class App extends MultiDexApplication implements Configuration.Provider {
+public class App extends Application implements Configuration.Provider {
     protected static final String TAG = "SpacecraftApp---";
 //    private static AppComponent sAppComponent;
 //    private static NetComponent sNetComponent;
     private static App app;
-    private static FirebaseRemoteConfig sFirebaseRemoteConfig;
+//    private static FirebaseRemoteConfig sFirebaseRemoteConfig;
 
     public static App getInstance() {
         if (app == null) {
@@ -57,23 +57,39 @@ public class App extends MultiDexApplication implements Configuration.Provider {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-//        MessageStatic.init(this);
         start = SystemClock.elapsedRealtime();
+        MultiDex.install(this);
+        Log.d("cjf","MultiDex#install消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
+//        MessageStatic.init(this);
         Log.d("cjf","App#attachBaseContext");
         for (PackageInfo pack : getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS)) {
             ProviderInfo[] providers = pack.providers;
-            if (providers != null) {
-                for (ProviderInfo provider : providers) {
-                    Log.d("cjf", "provider authority: " + provider.authority+" name:"+provider.name);
+            if (providers == null) continue;
+            for (ProviderInfo provider : providers) {
+                if ((provider.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                    if (provider.packageName.equals(getPackageName())){
+                        Log.d("cjf", "当前provider package: "+provider.packageName+" authority: " + provider.authority+" name: "+provider.name);
+                    }else{
+//                        Log.d("cjf", "第三方provider package: "+provider.packageName+" authority: " + provider.authority+" name: "+provider.name);
+                    }
+                }else {
+//                    Log.d("cjf", "系统provider package: "+provider.packageName+" authority: " + provider.authority+" name: "+provider.name);
+
                 }
             }
         }
+        start = SystemClock.elapsedRealtime();
     }
 
+    /**
+     * 性能优化App#attachBaseContext --> ContentProvider#onCreate--->App#onCreate
+     * 一个空的ContentProvider耗时2ms
+     * 2830ms优化到两位位数
+     */
     @Override
     public void onCreate() {
-        super.onCreate();
         Log.d("cjf","App#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
+        super.onCreate();
         String processName = getProcessName(android.os.Process.myPid());
         Logger.t(TAG).d("processName：" + processName);
 //        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
@@ -90,7 +106,7 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 
 //        Utils.init(this);
         Util.init(this);
-        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+//        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
 //        sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 //        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -98,7 +114,6 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 //                .setFetchTimeoutInSeconds(60 * 60)
 //                .build();
 //        sFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
-//        sFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
 //        sFirebaseRemoteConfig.ensureInitialized();
 //        sFirebaseRemoteConfig.fetchAndActivate()
 //                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
@@ -193,9 +208,9 @@ public class App extends MultiDexApplication implements Configuration.Provider {
 //        return sNetComponent;
 //    }
 
-    public static FirebaseRemoteConfig getFirebaseRemoteConfig() {
-        return sFirebaseRemoteConfig;
-    }
+//    public static FirebaseRemoteConfig getFirebaseRemoteConfig() {
+//        return sFirebaseRemoteConfig;
+//    }
 
     @NonNull
     @Override

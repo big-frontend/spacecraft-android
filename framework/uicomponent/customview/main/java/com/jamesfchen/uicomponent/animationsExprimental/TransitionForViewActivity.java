@@ -3,10 +3,9 @@ package com.jamesfchen.uicomponent.animationsExprimental;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.google.firebase.perf.metrics.AddTrace;
+import com.jamesfchen.uicomponent.R;
 
 import androidx.annotation.Nullable;
-import com.jamesfchen.uicomponent.R;
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -15,7 +14,7 @@ import com.jamesfchen.uicomponent.R;
  * @since: Nov/25/2018  Sun
  */
 public class TransitionForViewActivity extends Activity {
-    @AddTrace(name = "TransitionForViewActivity_onCreate", enabled = true /* optional */)
+//    @AddTrace(name = "TransitionForViewActivity_onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

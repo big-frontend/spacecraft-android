@@ -30,7 +30,7 @@ class LogContentProvider : ContentProvider() {
     override fun onCreate(): Boolean {
         logHelper = LogDBHelper.getInstance(context)
         logDB = LogDBHelper.getDB(context)
-        Log.d(TAG,"onCreate--->databaseName:${logHelper?.databaseName} process:${ MockManager.getProcessName(context)}")
+        Log.d("cjf","onCreate--->databaseName:${logHelper?.databaseName} process:${ MockManager.getProcessName(context)}")
 
         return true
     }

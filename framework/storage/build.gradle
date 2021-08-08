@@ -1,7 +1,7 @@
 //apply plugin: 'foundation-module'
 apply from: "${rootDir.path}/script/foundation_module.gradle"
 apply plugin: 'realm-android'
-android{
+android {
     defaultConfig {
         javaCompileOptions.annotationProcessorOptions.arguments = [
                 "room.schemaLocation"  : "$projectDir/schemas".toString(),
@@ -29,8 +29,12 @@ dependencies {
     api "io.realm:realm-android-kotlin-extensions:5.7.0"
     kapt "io.realm:realm-annotations-processor:5.7.0"
 
+    //firebase database
     api 'com.google.firebase:firebase-database'
     api 'com.google.firebase:firebase-firestore'
+    api 'com.google.firebase:firebase-storage'
+    api 'com.google.firebase:firebase-storage-ktx'
+    api 'com.google.firebase:firebase-config'
     api 'com.tencent:mmkv-static:1.2.10'
 
     implementation "androidx.datastore:datastore:1.0.0-rc01"

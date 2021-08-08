@@ -115,9 +115,7 @@ dependencies {
     androidTestImplementation "androidx.work:work-testing:2.5.0"
 //    api "androidx.work:work-firebase:2.2.0"
 
-    api 'com.firebaseui:firebase-ui-database:6.0.2'
-    api 'com.firebaseui:firebase-ui-firestore:6.0.2'
-    api 'com.firebaseui:firebase-ui-storage:6.0.2'
+
 
     api 'androidx.emoji:emoji:1.1.0'
     api 'androidx.emoji:emoji-appcompat:1.1.0'

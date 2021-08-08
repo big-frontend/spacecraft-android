@@ -23,15 +23,16 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--用于访问GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
-    <uses-permission android:name="android.permission.Device"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.Device" />
     <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -56,9 +57,9 @@
         <!--<meta-data-->
         <!--android:name="BUGLY_APP_CHANNEL"-->
         <!--android:value="${BUGLY_APP_CHANNEL}"/>-->
-<!--        <meta-data-->
-<!--            android:name="BUGLY_ENABLE_DEBUG"-->
-<!--            android:value="${BUGLY_ENABLE_DEBUG}" />-->
+        <!--        <meta-data-->
+        <!--            android:name="BUGLY_ENABLE_DEBUG"-->
+        <!--            android:value="${BUGLY_ENABLE_DEBUG}" />-->
 
         <uses-library
             android:name="android.test.runner"
@@ -85,11 +86,15 @@
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            tools:node="merge">
+            tools:node="merge"
+            >
+<!--            android:multiprocess="true"-->
+<!--            android:process=".androidx.startup"-->
+<!--            tools:node="remove"-->
             <meta-data
                 android:name="com.jamesfchen.loader.RouterInitializer"
                 android:value="androidx.startup" />
-<!--                tools:node="remove"-->
+            <!--                tools:node="remove"-->
             <meta-data
                 android:name="com.jamesfchen.loader.ApmInitializer"
                 android:value="androidx.startup" />

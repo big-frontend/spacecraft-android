@@ -18,7 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.perf.metrics.AddTrace;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class FirebaseDatabaseActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseFirestore databasev2 = FirebaseFirestore.getInstance();
-    @AddTrace(name = "FirebaseDatabaseActivity_onCreateTrace", enabled = true /* optional */)
+//    @AddTrace(name = "FirebaseDatabaseActivity_onCreateTrace", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,7 +18,7 @@ class MetricInterceptor : Interceptor {
     val httpmetricGet = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET)
     val httpmetricPost = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.POST)
 
-    @AddTrace(name = "MetricInterceptor_interceptTrace", enabled = true)
+//    @AddTrace(name = "MetricInterceptor_interceptTrace", enabled = true)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
 

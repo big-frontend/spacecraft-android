@@ -8,5 +8,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth:21.0.1'
+//    implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.firebaseui:firebase-ui-auth:6.0.2'
+    api 'com.google.firebase:firebase-auth'
 }
