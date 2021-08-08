@@ -6,8 +6,6 @@
 
     <application
         android:label="@string/app_name"
-        android:theme="@style/HomeAppTheme"
-        tools:replace="android:theme"
         >
         <activity
             android:name="com.jamesfchen.myhome.SplashActivity"

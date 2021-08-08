@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply from: "${rootDir.path}/script/base_module.gradle"
 apply plugin: 'com.alibaba.arouter'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.google.protobuf'
 //protobuf {
 //    protoc {

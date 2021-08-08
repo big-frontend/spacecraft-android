@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.provider.FontRequest;
 import androidx.emoji.bundled.BundledEmojiCompatConfig;
 import androidx.emoji.text.EmojiCompat;
@@ -103,7 +104,7 @@ public class App extends Application implements Configuration.Provider {
 //                .appModule(new AppModule(this))
 //                .sigInModule(new SigInModule())
 //                .build();
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 //        Utils.init(this);
         Util.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());

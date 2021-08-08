@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="HomeTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
-    <style name="HomeAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:forceDarkAllowed">true</item>
     </style>
     <!--4.4-5.0的状态栏和导航栏为半透明；5.0+的状态栏和导航栏都为透明-->
     <style name="PhotoTheme" parent="AppTheme.BarsTransparent">

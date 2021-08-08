@@ -8,7 +8,7 @@
 
     </style>
 
-    <style name="HomeTheme" parent="AppTheme.BarsTransparent">
-        <item name="android:windowTranslucentNavigation">false</item>
-    </style>
+<!--    <style name="HomeTheme" parent="AppTheme.BarsTransparent">-->
+<!--        <item name="android:windowTranslucentNavigation">false</item>-->
+<!--    </style>-->
 </resources>

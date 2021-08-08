@@ -1,0 +1,129 @@
+//gradle.beforeSettings {
+//    println("👶[ gradle 开始 ] buildStarted 开始之前 start")
+//    println("👶[ gradle 开始 ] buildStarted 开始之前 end")
+//}
+//gradle.settingsEvaluated { g ->
+//    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 start")
+//    println("👩‍🎓👨‍🎓[ initialzation ] settingsEvaluated setting.gradle脚本初始化完成 end")
+//}
+////project初始化完成的回调
+//gradle.projectsLoaded {
+//    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 start")
+//    println("👩‍🎓👨‍🎓[ initialzation ] projectsLoaded project初始化完成 end")
+//}
+//
+//project.afterEvaluate {}
+//gradle.beforeProject {
+//    println("👰🤵[ configuration ] beforeProject 某个build.gradle执行之前 start")
+//    println("👰🤵[ configuration ] beforeProject 某个build.gradle执行之前 end")
+//}
+//project.afterEvaluate {}
+//gradle.afterProject {
+//    println("👰🤵[ configuration ] afterProject 某个build.gradle执行之后 start")
+//    println("👰🤵[ configuration ] afterProject 某个build.gradle执行之后 end")
+//}
+//gradle.projectsEvaluated {
+//    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 start")
+//    println("👰🤵[ configuration ] projectsEvaluated 所有build.gradle执行完毕 end")
+//}
+//gradle.taskGraph.whenReady { taskGraph ->
+//    println("👰🤵[ configuration ] whenReady task关系图建立完毕 start")
+//    println("👰🤵[ configuration ] whenReady task关系图建立完毕 end")
+//}
+//
+//gradle.taskGraph.beforeTask {theTask->
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 start")
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] beforeTask task关系图执行之前 end")
+//}
+//gradle.taskGraph.afterTask { theTask->
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 start")
+//    println("🏃👩‍💼👨‍💻[ run ${theTask.name}] afterTask task关系图执行之后 end")
+//}
+//gradle.buildFinished {
+//    println("👵👴[ gradle 结束 ] buildFinished  start")
+//    println("👵👴[ gradle 结束 ] buildFinished  end")
+//}
+def start = System.currentTimeMillis()
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void beforeSettings(Settings settings) {
+
+    }
+    @Override
+    void settingsEvaluated(Settings settings) {
+        printError(">>>> evaluate setting脚本耗时:" + (System.currentTimeMillis() - start)+"ms")
+        start = System.currentTimeMillis()
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        printError(">>>> include完所有project 耗时:" + (System.currentTimeMillis() - start)+"ms")
+        start = System.currentTimeMillis()
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        printError(">>>> evaluate所有project脚本 耗时:" + (System.currentTimeMillis() - start)+"ms")
+        start = System.currentTimeMillis()
+    }
+
+    @Override
+    void buildFinished(BuildResult buildResult) {
+        printError(">>>> gradle 结束 buildFinished")
+    }
+
+
+})
+gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+    def projStart = 0
+    @Override
+    void beforeEvaluate(Project project) {
+//        if (!project.subprojects.isEmpty()) return
+        projStart = System.currentTimeMillis()
+    }
+
+    @Override
+    void afterEvaluate(Project project, ProjectState state) {
+//        if (!project.subprojects.isEmpty()) return
+        printError(">>>>evaluate ${project.getDisplayName()}项目 耗时:" + (System.currentTimeMillis() - projStart)+"ms")
+    }
+})
+interface Color {
+    public static final String ANSI_RESET = "\u001B[0m"
+    public static final String  ANSI_BLACK = "\u001B[30m"
+    public static final String  ANSI_RED = "\u001B[31m"
+    public static final String  ANSI_GREEN = "\u001B[32m"
+    public static final String  ANSI_YELLOW = "\u001B[33m"
+    public static final String  ANSI_BLUE = "\u001B[34m"
+    public static final String  ANSI_PURPLE = "\u001B[35m"
+    public static final String  ANSI_CYAN = "\u001B[36m"
+    public static final String  ANSI_WHITE = "\u001B[37m"
+
+    public static final String  ANSI_BLACK_BACKGROUND = "\u001B[40m"
+    public static final String  ANSI_RED_BACKGROUND = "\u001B[41m"
+    public static final String  ANSI_GREEN_BACKGROUND = "\u001B[42m"
+    public static final String  ANSI_YELLOW_BACKGROUND = "\u001B[43m"
+    public static final String  ANSI_BLUE_BACKGROUND = "\u001B[44m"
+    public static final String  ANSI_PURPLE_BACKGROUND = "\u001B[45m"
+    public static final String  ANSI_CYAN_BACKGROUND = "\u001B[46m"
+    public static final String  ANSI_WHITE_BACKGROUND = "\u001B[47m"
+}
+def printError(Object message) {
+    println("${Color.ANSI_RED}${message}${Color.ANSI_RESET}")
+}
+
+def printWarn(Object message) {
+    println("${Color.ANSI_YELLOW}$message${Color.ANSI_RESET}")
+}
+
+def printInfo(Object message) {
+    println("${Color.ANSI_GREEN}$message${Color.ANSI_RESET}")
+}
+
+def printDebug(Object message) {
+    println("${Color.ANSI_BLUE}$message${Color.ANSI_RESET}")
+}
+
+def printVerbose(Object message) {
+    println(message)
+}

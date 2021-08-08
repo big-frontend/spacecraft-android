@@ -3,6 +3,7 @@ import groovy.json.JsonSlurper
 def child(Object msg) {
     println("👶[ gradle initialzation ] " + msg);
 }
+apply from:'./script/trace-gradle.gradle'
 /**
  * 读取module_config.json信息以此来include具体的模块，对于模块的描述应该有这些信息
  * class Module{*    require  def simpleName 模块名的简写,给idea plugin读取
@@ -60,7 +61,6 @@ gradle.ext.allModules.each { m ->
         gradle.ext.binaryModuleMap[m.canonicalName] = m
     }
 }
-include ':app'
 //include ':components:hotel-module:foundation'
 //include ':components:hotel-module:hotel-lint'
 //include ':components:hotel-module:bundle1'

@@ -13,7 +13,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name="com.jamesfchen.myhome.MainActivity"
-            android:theme="@style/HomeAppTheme"
+            android:theme="@style/HomeTheme"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop"
             android:exported="true">
