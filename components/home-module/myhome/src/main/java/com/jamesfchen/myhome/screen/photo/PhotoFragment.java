@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent;
+package com.jamesfchen.myhome.screen.photo;
 
 import android.app.ActivityManager;
 import android.graphics.Bitmap;
@@ -23,7 +23,8 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.jamesfchen.common.constants.MemoryUnit;
-import com.jamesfchen.uicomponent.model.Page;
+import com.jamesfchen.myhome.R;
+import com.jamesfchen.myhome.screen.photo.model.Page;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,7 +75,7 @@ public class PhotoFragment extends Fragment {
         page = arguments.getParcelable(ARG_PAGE);
         sectionNumber = arguments.getInt(ARG_SECTION_NUMBER);
         ivPhoto = view.findViewById(R.id.iv_photo);
-        tvText = view.findViewById(R.id.tv_text);
+        tvText = view.findViewById(com.jamesfchen.uicomponent.R.id.tv_text);
 
         if (page.uri == null) {
             tvText.setText(String.valueOf(sectionNumber));

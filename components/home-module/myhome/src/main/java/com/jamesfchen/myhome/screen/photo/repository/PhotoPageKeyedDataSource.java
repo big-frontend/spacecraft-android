@@ -1,13 +1,9 @@
-package com.jamesfchen.uicomponent.repository;
+package com.jamesfchen.myhome.screen.photo.repository;
 
 import android.net.Uri;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.jamesfchen.uicomponent.model.Item;
+import com.jamesfchen.myhome.screen.photo.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,24 +45,24 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> 
             items.add(new Item(uriList.subList(uriList.size()-2,uriList.size())));
             callback.onResult(items, "23", "asdfsdf");
         } else {
-            FirebaseStorage storage = FirebaseStorage.getInstance(BASE_URL);
-            StorageReference storageRef = storage.getReference();
+//            FirebaseStorage storage = FirebaseStorage.getInstance(BASE_URL);
+//            StorageReference storageRef = storage.getReference();
 //        storageRef.getPath()
 //        Uri result = storageRef.getDownloadUrl().getResult();
             //        storageRef.getPath()
 //        Uri result = storageRef.getDownloadUrl().getResult();
-            for (int i = 168; i <= 176; ++i) {
-                storageRef.child("WechatIMG$i.jpeg").getDownloadUrl()
-                        .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                Log.d("hawks", "url:" + task.getResult().toString());
+//            for (int i = 168; i <= 176; ++i) {
+//                storageRef.child("WechatIMG$i.jpeg").getDownloadUrl()
+//                        .addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Uri> task) {
+//                                Log.d("hawks", "url:" + task.getResult().toString());
 //                        itemList.add(task.result.toString())
 //                        adapter.notifyDataSetChanged()
 
-                            }
-                        });
-            }
+//                            }
+//                        });
+//            }
         }
     }
 

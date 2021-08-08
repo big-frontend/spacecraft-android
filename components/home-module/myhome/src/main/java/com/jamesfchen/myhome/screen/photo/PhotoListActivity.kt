@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent
+package com.jamesfchen.myhome.screen.photo
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,9 +11,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.jamesfchen.uicomponent.model.PhotoListViewModel
-import com.jamesfchen.uicomponent.repository.CacheRegion
-import com.jamesfchen.uicomponent.repository.ServiceLocator
+import com.jamesfchen.myhome.screen.photo.model.PhotoListViewModel
+import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
+import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
+import com.jamesfchen.uicomponent.Divider
 
 class PhotoListActivity : AppCompatActivity() {
     lateinit var rvPhotoList: RecyclerView

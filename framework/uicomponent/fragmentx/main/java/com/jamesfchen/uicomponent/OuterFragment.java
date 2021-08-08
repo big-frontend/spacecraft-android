@@ -33,7 +33,7 @@ public class OuterFragment extends Fragment {
         mViewPager = view.findViewById(R.id.vp_container);
 //        mSectionsPagerAdapter = new SectionsPagerAdapterv2(getActivity().getSupportFragmentManager());
 //        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setAdapter(new SectionsPagerAdapter(getParentFragmentManager()));
+//        mViewPager.setAdapter(new SectionsPagerAdapter(getParentFragmentManager()));
         rv = view.findViewById(R.id.rv);
         rv.setAdapter(new RecyclerViewAdapter(getParentFragmentManager()));
     }

@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent;
+package com.jamesfchen.myhome.screen.photo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jamesfchen.uicomponent.model.Page;
+import com.jamesfchen.myhome.R;
+import com.jamesfchen.myhome.screen.photo.model.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +142,7 @@ public class PhotoActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = findViewById(R.id.container);
+        mViewPager = findViewById(com.jamesfchen.uicomponent.R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mSectionsPagerAdapter.setDataList(pages);
         mViewPager.setCurrentItem(curPosition, true);

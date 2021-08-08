@@ -55,12 +55,7 @@
         <activity android:name="com.jamesfchen.uicomponent.FragmentNotAttachActivity" />
         <activity android:name="com.jamesfchen.uicomponent.TextStyleActivity" />
 
-        <activity
-            android:name="com.jamesfchen.uicomponent.PhotoActivity"
-            android:label="PhoteoActivity"
-            android:theme="@style/PhotoTheme" />
-        <activity android:name="com.jamesfchen.uicomponent.PhotoListActivity" />
-        <activity android:name="com.jamesfchen.uicomponent.LargePhotoActivity" />
+
         <activity
             android:name="com.jamesfchen.uicomponent.SearchActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"

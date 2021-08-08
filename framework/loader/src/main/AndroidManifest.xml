@@ -100,5 +100,6 @@
                 android:name="com.jamesfchen.loader.ImageInitializer"
                 android:value="androidx.startup" />
         </provider>
+
     </application>
 </manifest>

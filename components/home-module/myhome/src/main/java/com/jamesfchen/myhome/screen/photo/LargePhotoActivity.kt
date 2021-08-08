@@ -1,8 +1,9 @@
-package com.jamesfchen.uicomponent
+package com.jamesfchen.myhome.screen.photo
 
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.jamesfchen.myhome.R
 
 /**
  * Copyright ® $ 2017

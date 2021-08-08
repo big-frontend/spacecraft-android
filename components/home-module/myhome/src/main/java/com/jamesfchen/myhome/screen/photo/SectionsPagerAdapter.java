@@ -1,8 +1,8 @@
-package com.jamesfchen.uicomponent;
+package com.jamesfchen.myhome.screen.photo;
 
 import android.util.Log;
 
-import com.jamesfchen.uicomponent.model.Page;
+import com.jamesfchen.myhome.screen.photo.model.Page;
 
 import java.util.ArrayList;
 import java.util.List;

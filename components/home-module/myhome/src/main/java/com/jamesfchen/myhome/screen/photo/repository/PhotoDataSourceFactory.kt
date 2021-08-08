@@ -1,8 +1,8 @@
-package com.jamesfchen.uicomponent.repository
+package com.jamesfchen.myhome.screen.photo.repository
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.jamesfchen.uicomponent.model.Item
+import com.jamesfchen.myhome.screen.photo.model.Item
 
 /**
  * Copyright ® $ 2017
@@ -12,8 +12,8 @@ import com.jamesfchen.uicomponent.model.Item
  * @since: Nov/24/2019  Sun
  */
 class PhotoDataSourceFactory(
-        private val region: CacheRegion,
-        private val api: NetworkApi
+    private val region: CacheRegion,
+    private val api: NetworkApi
 ) : DataSource.Factory<String, Item>() {
 
     val sourceLiveData = MutableLiveData<DataSource<String, Item>>()

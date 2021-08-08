@@ -6,7 +6,7 @@ android {
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
-                cppFlags "-std=c++14","-fexceptions", "-frtti"
+                cppFlags "-std=c++14", "-fexceptions", "-frtti"
                 cFlags "-D__STDC_FORMAT_MACROS"
 //                cppFlags "-std=gnu++11"
 //                targets "hawks","hotfix"
@@ -38,36 +38,36 @@ android {
             "apm",
     ]
     sourceSets {
-            main {
-                java.excludes = [
-                        '**/build/**',
-                ]
-                srcDirs.forEach {
-                    assets.srcDirs += "$projectDir/$it/main/assets"
-                    aidl.srcDirs += "$projectDir/$it/main/aidl"
-                    res.srcDirs += "$projectDir/$it/main/res-frame-animation"
-                    res.srcDirs += "$projectDir/$it/main/res"
-                    java.srcDirs += "$projectDir/$it/main/java"
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
 
 //                    assets.srcDirs += "$projectDir/src/inhouse/assets"
 //                    aidl.srcDirs += "$projectDir/src/inhouse/aidl"
 //                    res.srcDirs += "$projectDir/src/inhouse/res"
 //                    java.srcDirs += "$projectDir/src/inhouse/java"
-                }
             }
-            androidTest {
-                srcDirs.forEach {
-                    assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                    aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                    res.srcDirs += "$projectDir/$it/androidTest/res"
-                    java.srcDirs += "$projectDir/$it/androidTest/java"
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
 
-                }
             }
-            test {
-                srcDirs.forEach {
-                    java.srcDirs += "$projectDir/$it/test/java"
-                }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
 
         }
     }
@@ -215,7 +215,7 @@ dependencies {
      */
 
     /**
-     *===============================ui start=============================
+     * ===============================ui start=============================
      */
 //    api "androidx.compose.ui:ui:1.0.1"
 //    api "androidx.compose.material:material:1.0.1"
@@ -244,7 +244,7 @@ dependencies {
     // UI Tests
     androidTestApi 'androidx.compose.ui:ui-test-junit4:1.0.0-rc02'
     /**
-     *===============================ui end=============================
+     * ===============================ui end=============================
      */
 
 

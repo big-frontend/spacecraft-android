@@ -16,7 +16,7 @@
  *
  */
 
-package com.jamesfchen.uicomponent.repository
+package com.jamesfchen.myhome.screen.photo.repository
 
 import android.net.Uri
 import java.util.*

@@ -109,7 +109,8 @@
       "deps": [
         ":framework:network",
         ":framework:uicomponent",
-        ":framework:av"
+        ":framework:av",
+        ":framework:image"
       ]
     },
     {

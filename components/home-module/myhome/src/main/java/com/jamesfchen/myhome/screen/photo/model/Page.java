@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.model;
+package com.jamesfchen.myhome.screen.photo.model;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.repository
+package com.jamesfchen.myhome.screen.photo.repository
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting

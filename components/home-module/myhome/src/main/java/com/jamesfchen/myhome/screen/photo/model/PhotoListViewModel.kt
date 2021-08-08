@@ -1,11 +1,11 @@
-package com.jamesfchen.uicomponent.model
+package com.jamesfchen.myhome.screen.photo.model
 
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.jamesfchen.uicomponent.repository.PhotoRepository
+import com.jamesfchen.myhome.screen.photo.repository.PhotoRepository
 
 class PhotoListViewModel(
         val app: Application,

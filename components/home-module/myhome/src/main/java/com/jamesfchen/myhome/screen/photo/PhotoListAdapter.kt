@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent
+package com.jamesfchen.myhome.screen.photo
 
 import android.app.Activity
 import android.content.Context
@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.util.ViewPreloadSizeProvider
 import com.jamesfchen.common.constants.MemoryUnit
-import com.jamesfchen.uicomponent.model.Item
+import com.jamesfchen.myhome.screen.photo.model.Item
 
 /**
  * Copyright ® $ 2017
@@ -86,9 +86,9 @@ class PhotoListAdapter(
                 bitmapsize /= MemoryUnit.KB
 //                Log.d(Constants.TAG_PHOTO_ACTIVITY, "size:${thumbnailBitmapList.size} curPosition:$i bitmap size:${bitmapsize}k")
                 PhotoActivity.startActivityWithThumbnailScaleUp(
-                        context as Activity, it,
-                        (it as ImageView).drawToBitmap(), it.width / 2, it.height / 2,
-                        item.uriList, i
+                    context as Activity, it,
+                    (it as ImageView).drawToBitmap(), it.width / 2, it.height / 2,
+                    item.uriList, i
                 )
 //                PhotoActivity.startActivityWithScaleUp(
 //                        context as Activity, it,

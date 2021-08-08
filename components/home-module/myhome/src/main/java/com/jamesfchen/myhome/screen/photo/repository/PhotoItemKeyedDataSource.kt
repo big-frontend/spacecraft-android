@@ -1,8 +1,8 @@
-package com.jamesfchen.uicomponent.repository
+package com.jamesfchen.myhome.screen.photo.repository
 
 import android.util.Log
 import androidx.paging.ItemKeyedDataSource
-import com.jamesfchen.uicomponent.model.Item
+import com.jamesfchen.myhome.screen.photo.model.Item
 
 /**
  * Copyright ® $ 2017

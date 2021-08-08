@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent;
+package com.jamesfchen.myhome.screen.photo;
 
 /**
  * Copyright ® $ 2017

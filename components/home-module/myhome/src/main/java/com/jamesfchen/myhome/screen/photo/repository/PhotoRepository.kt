@@ -1,11 +1,11 @@
-package com.jamesfchen.uicomponent.repository
+package com.jamesfchen.myhome.screen.photo.repository
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.paging.Config
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
-import com.jamesfchen.uicomponent.model.Item
+import com.jamesfchen.myhome.screen.photo.model.Item
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
