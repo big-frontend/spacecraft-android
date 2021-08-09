@@ -39,11 +39,11 @@ class Bundle2Activity : ComponentActivity() {
                 }
                 ArtistCard {
 //                    startActivity(FlutterActivity.createDefaultIntent(Bundle2Activity.this))
-                    startActivity(Intent(Bundle2Activity@this,PagerViewActivity::class.java))
 //                    startActivity(Intent(Bundle2Activity@ this, DispatchEventActivity::class.java))
                 }
             }
         }
+        startActivity(Intent(Bundle2Activity@this,PagerViewActivity::class.java))
     }
 }
 

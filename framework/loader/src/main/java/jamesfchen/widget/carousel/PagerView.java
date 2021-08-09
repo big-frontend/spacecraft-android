@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.jamesfchen.loader.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
-
-import com.jamesfchen.loader.R;
 
 
 /**
@@ -68,14 +67,11 @@ public class PagerView extends LinearLayout {
             mSnapHelper.attachToRecyclerView(mRvContent);
         }
         mRvContent.setLayoutManager(mLinearLayoutManager);
-        mTabsLayout.addOnTabSelectedListener(new TabsLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(View view, int position) {
-                if (mOnTabSelectedListenerList == null) return;
-                for (TabsLayout.OnTabSelectedListener l : mOnTabSelectedListenerList) {
-                    if (l != null) {
-                        l.onTabSelected(view, position);
-                    }
+        mTabsLayout.addOnTabSelectedListener((view, position) -> {
+            if (mOnTabSelectedListenerList == null) return;
+            for (TabsLayout.OnTabSelectedListener l : mOnTabSelectedListenerList) {
+                if (l != null) {
+                    l.onTabSelected(view, position);
                 }
             }
         });

@@ -10,11 +10,15 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.jamesfchen.loader.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +27,6 @@ import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-
-import com.bumptech.glide.Glide;
-import com.jamesfchen.loader.R;
-
 import jamesfchen.widget.DimenUtil;
 
 
@@ -130,21 +130,36 @@ public class TabsLayout extends FrameLayout {
     public void setDataList(List<TabItem> tabList) {
         if (tabList == null || tabList.isEmpty()) return;
         mLlContainer.removeAllViews();
+
+
+        mRootView.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                v.removeOnLayoutChangeListener(this);
+                 ViewGroup.LayoutParams indicatorLp = mIndicator.getLayoutParams();
+                if (mOrientation == HORIZONTAL) {
+                    indicatorLp.width = mLlContainer.getChildAt(0).getWidth();
+                    indicatorLp.height = DimenUtil.dp2px(5, getContext());
+                } else {
+                    indicatorLp.width = DimenUtil.dp2px(5, getContext());
+                    indicatorLp.height = mLlContainer.getChildAt(0).getHeight();
+                }
+                mIndicator.setLayoutParams(indicatorLp);
+            }
+        });
+
         for (int i = 0; i < tabList.size(); ++i) {
             final View itemView = View.inflate(getContext(), R.layout.item_icon_and_text, null);
 
             final int finalI = i;
-            itemView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for (OnTabSelectedListener l : mOnTabSelectedListenerList) {
-                        if (l != null) {
-                            l.onTabSelected(itemView, finalI);
-                        }
+            itemView.setOnClickListener(v -> {
+                for (OnTabSelectedListener l : mOnTabSelectedListenerList) {
+                    if (l != null) {
+                        l.onTabSelected(itemView, finalI);
                     }
-                    animateIndicatorToPosition(
-                            finalI, mTabIndicatorAnimationDuration);
                 }
+                animateIndicatorToPosition(
+                        finalI, mTabIndicatorAnimationDuration);
             });
             TabItem tabItem = tabList.get(i);
             TextView tvName = itemView.findViewById(R.id.tv_name);
@@ -167,24 +182,8 @@ public class TabsLayout extends FrameLayout {
                 layoutParams.bottomMargin = GAP;
             }
             mLlContainer.addView(itemView, layoutParams);
-            if (mLlContainer.getChildCount() > 0) {
-                final ViewGroup.LayoutParams indicatorLp = mIndicator.getLayoutParams();
-                mLlContainer.addOnLayoutChangeListener(new OnLayoutChangeListener() {
-                    @Override
-                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                        v.removeOnLayoutChangeListener(this);
-                        if (mOrientation == HORIZONTAL) {
-                            indicatorLp.width = mLlContainer.getChildAt(0).getWidth();
-                            indicatorLp.height = DimenUtil.dp2px(5, getContext());
-                        } else {
-                            indicatorLp.width = DimenUtil.dp2px(5, getContext());
-                            indicatorLp.height = mLlContainer.getChildAt(0).getHeight();
-                        }
-                        mIndicator.setLayoutParams(indicatorLp);
-                    }
-                });
-            }
         }
+
     }
 
     public interface OnTabSelectedListener {
