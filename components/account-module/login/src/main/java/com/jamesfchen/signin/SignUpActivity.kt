@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
 import com.jakewharton.rxbinding3.widget.textChanges
-import com.jamesfchen.uicomponent.mvp.AutoDisposable
+import com.jamesfchen.mvp.AutoDisposable
 import com.jamesfchen.common.util.TextUtil
 import com.jamesfchen.common.util.hideSoftInput
 import com.jamesfchen.common.util.subscribeBy

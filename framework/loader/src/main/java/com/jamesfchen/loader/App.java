@@ -36,7 +36,6 @@ import androidx.work.Configuration;
  * @author: hawks jamesf
  * @since: 2017/7/4
  */
-
 public class App extends Application implements Configuration.Provider {
     protected static final String TAG = "SpacecraftApp---";
 //    private static AppComponent sAppComponent;
@@ -142,33 +141,6 @@ public class App extends Application implements Configuration.Provider {
 //                        Log.i(TAG, "onCanceled");
 //                    }
 //                });
-
-        FontRequest fontRequest = new FontRequest(
-                "com.google.android.gms.fonts",
-                "com.google.android.gms",
-                "emoji compat Font Query",
-                R.array.com_google_android_gms_fonts_certs);
-        EmojiCompat.Config emojiCompatConfig = new FontRequestEmojiCompatConfig(this, fontRequest)
-                .setReplaceAll(true)
-                .setEmojiSpanIndicatorColor(Color.GREEN)
-                .registerInitCallback(new EmojiCompat.InitCallback() {
-                    @Override
-                    public void onInitialized() {
-                        super.onInitialized();
-                    }
-
-                    @Override
-                    public void onFailed(@Nullable Throwable throwable) {
-                        super.onFailed(throwable);
-                    }
-                })
-                .setEmojiSpanIndicatorEnabled(true);
-        EmojiCompat.Config bundledEmojiCompatConfig = new BundledEmojiCompatConfig(this);
-        EmojiCompat.init(emojiCompatConfig);
-
-
-
-
     }
 
     /**

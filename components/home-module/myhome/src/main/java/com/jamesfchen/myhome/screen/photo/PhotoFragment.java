@@ -75,7 +75,7 @@ public class PhotoFragment extends Fragment {
         page = arguments.getParcelable(ARG_PAGE);
         sectionNumber = arguments.getInt(ARG_SECTION_NUMBER);
         ivPhoto = view.findViewById(R.id.iv_photo);
-        tvText = view.findViewById(com.jamesfchen.uicomponent.R.id.tv_text);
+        tvText = view.findViewById(R.id.tv_text);
 
         if (page.uri == null) {
             tvText.setText(String.valueOf(sectionNumber));

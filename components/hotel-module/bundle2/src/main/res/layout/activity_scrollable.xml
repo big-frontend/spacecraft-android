@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <com.jamesfchen.bundle2.customview.scrollExprimental.HScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="scrollable button"
+                app:cornerRadius="10dp"
+                app:icon="@mipmap/ic_launcher"
+                app:iconTint="@color/apricot"
+                app:rippleColor="@color/apricot" />
+        </LinearLayout>
+    </com.jamesfchen.bundle2.customview.scrollExprimental.HScrollView>
+
+
+</LinearLayout>

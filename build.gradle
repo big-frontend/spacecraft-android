@@ -190,10 +190,10 @@ task publishAll {
                 }
             }
         } catch (Exception ignored) {
-
+            println(">>>> 出现异常没有全部发布，需要动手处理一下")
         } finally {
             Collections.sort(ret)
-            println(">>>> publish modules !!!!!! !!!!!!")
+            println(">>>> publish ${ret.size()} modules !!!!!! !!!!!!")
             println(">>>> ${ret}")
         }
     }

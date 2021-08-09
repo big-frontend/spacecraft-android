@@ -1,11 +1,11 @@
 package com.jamesfchen.signin;
 
-import com.jamesfchen.uicomponent.mvp.AbstractSpacecraftActivity
-import com.jamesfchen.uicomponent.mvp.AbstractSpacecraftPresenter
-import com.jamesfchen.uicomponent.mvp.SpacecraftView
 import com.jamesfchen.event.SignInFailedEvent
 import com.jamesfchen.event.SignUpFailedEvent
 import com.jamesfchen.modle.*
+import com.jamesfchen.mvp.AbsActivity
+import com.jamesfchen.mvp.AbsPresenter
+import com.jamesfchen.mvp.IView
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
@@ -19,12 +19,12 @@ import io.reactivex.subjects.PublishSubject
  * @since: Nov/11/2018  Sun
  */
 interface SignInContract {
-    abstract class View : AbstractSpacecraftActivity<Presenter>() {
+    abstract class View : AbsActivity<Presenter>() {
         override var presenter: SignInContract.Presenter = SignInPresenter.INSTANCE
 
     }
 
-    abstract class Presenter : AbstractSpacecraftPresenter<SpacecraftView>() {
+    abstract class Presenter : AbsPresenter<IView>() {
         //public API
         val stateObservable: Observable<ClientState>
             get() = stateDataSubject.map { it.state }

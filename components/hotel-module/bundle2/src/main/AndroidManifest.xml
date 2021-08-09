@@ -3,12 +3,73 @@
     package="com.jamesfchen.bundle2">
 
     <application>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".Bundle2Activity"
             android:exported="true"
-            android:theme="@style/Theme.SpacecraftAndroid.NoActionBar"
-            />
+            android:theme="@style/Theme.SpacecraftAndroid.NoActionBar" />
+
+        <activity android:name="com.jamesfchen.bundle2.customview.recyclerview.RecyclerViewActivity" />
+        <activity android:name="com.jamesfchen.bundle2.customview.animationsExprimental.AnimActivity" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.animationsExprimental.DetailActivity"
+            android:theme="@style/BaseAppTheme.DetailTheme" />
+        <activity android:name="com.jamesfchen.bundle2.customview.animationsExprimental.LottieActivity" />
+        <activity android:name="com.jamesfchen.bundle2.customview.animationsExprimental.FrameAnimationActivity" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.animationsExprimental.TransitionForViewActivity"
+            android:theme="@style/BaseAppTheme" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.animationsExprimental.TransitionForActivityActivity"
+            android:theme="@style/BaseAppTheme.ListTheme" />
+
+        <activity android:name="com.jamesfchen.bundle2.customview.scrollExprimental.ScrollableActivity" />
+        <activity android:name="com.jamesfchen.bundle2.customview.scrollExprimental.NestedScrollActivity" />
+        <activity android:name="com.jamesfchen.bundle2.customview.gesture.GestureActivity" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.ConstraintAndFlexBoxActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.ConstraintPerformanceActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.CoordinatorLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.CustomViewActivity"
+            android:label="@string/title_activity_setup_wizard"
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.jamesfchen.bundle2.customview.DispatchEventActivity" />
+        <activity android:name="com.jamesfchen.bundle2.customview.testStyle.TextStyleActivity" />
+        <activity
+            android:name="com.jamesfchen.bundle2.customview.testStyle.SearchActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+        <activity
+            android:name="com.jamesfchen.bundle2.drawable.DrawableActivity"
+            android:label="@string/title_activity_drawable"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name="com.jamesfchen.bundle2.feedback.FeedbackUtilActivity" />
+        <activity android:name="com.jamesfchen.bundle2.bottomupDialog.BottomUpActivity" />
+        <activity android:name="com.jamesfchen.bundle2.launchmode.FirstActivity" />
+        <activity android:name="com.jamesfchen.bundle2.launchmode.SecondaryActivity" />
+        <activity android:name="com.jamesfchen.bundle2.launchmode.ThirdActivity" />
+        <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)：如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
+        <!--            android:launchMode="singleTask" -->
+        <activity android:name="com.jamesfchen.bundle2.launchmode.FourthActivity" />
+        <activity android:name="com.jamesfchen.bundle2.fragmentx.FragmentNotAttachActivity" />
+        <activity
+            android:name=".carousel.PagerViewActivity"
+            android:exported="true" />
+        <activity
+            android:name="jamesfchen.widget.ViewPagerActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

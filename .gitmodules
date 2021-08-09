@@ -50,6 +50,6 @@
 [submodule "framework/network/super-retrofit"]
 	path = framework/network/super-retrofit
 	url = https://github.com/JamesfChen/super-retrofit.git
-[submodule "framework/uicomponent/uix"]
-	path = framework/uicomponent/uix
+[submodule "framework/loader/uix"]
+	path = framework/loader/uix
 	url = https://github.com/JamesfChen/uix.git

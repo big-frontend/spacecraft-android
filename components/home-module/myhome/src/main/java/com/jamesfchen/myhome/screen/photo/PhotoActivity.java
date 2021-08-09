@@ -142,7 +142,7 @@ public class PhotoActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = findViewById(com.jamesfchen.uicomponent.R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mSectionsPagerAdapter.setDataList(pages);
         mViewPager.setCurrentItem(curPosition, true);

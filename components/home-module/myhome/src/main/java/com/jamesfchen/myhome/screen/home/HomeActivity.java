@@ -164,10 +164,10 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new MyViewHolder(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_and_text, parent, false)
-
-            );
+//            return new MyViewHolder(
+//                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_and_text, parent, false)
+//            );
+            return null;
         }
 
         @Override

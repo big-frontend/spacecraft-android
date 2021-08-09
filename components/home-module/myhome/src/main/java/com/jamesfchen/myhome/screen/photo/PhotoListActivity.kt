@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jamesfchen.myhome.screen.photo.model.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
-import com.jamesfchen.uicomponent.Divider
+import jamesfchen.widget.Divider
 
 class PhotoListActivity : AppCompatActivity() {
     lateinit var rvPhotoList: RecyclerView

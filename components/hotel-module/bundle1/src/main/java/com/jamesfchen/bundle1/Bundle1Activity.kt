@@ -128,7 +128,5 @@ class Bundle1Activity : ComponentActivity() {
             inst.sendKeySync(keyEvent)
         }
         tv.onEditorAction(EditorInfo.IME_ACTION_SEARCH)
-        val threadPoolExecutor = AsyncTask.THREAD_POOL_EXECUTOR as ThreadPoolExecutor
-        threadPoolExecutor.newTaskFor()
     }
 }
