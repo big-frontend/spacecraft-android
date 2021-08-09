@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.jamesfchen.myhome.widget.scrollExprimental.B
+    <com.jamesfchen.bundle2.customview.scrollExprimental.B
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
+        android:layout_height="350dp"
+        android:background="@color/afasf"
         >
-
-        <com.jamesfchen.myhome.custom.BB
+        <com.jamesfchen.bundle2.customview.scrollExprimental.BB
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -54,17 +53,18 @@
             <!--                android:text="afdadsfasdfa" />-->
 
 
-        </com.jamesfchen.myhome.custom.BB>
-    </com.jamesfchen.myhome.widget.scrollExprimental.B>
+        </com.jamesfchen.bundle2.customview.scrollExprimental.BB>
+    </com.jamesfchen.bundle2.customview.scrollExprimental.B>
 
-    <com.jamesfchen.myhome.widget.scrollExprimental.A
+    <com.jamesfchen.bundle2.customview.scrollExprimental.A
         android:layout_width="match_parent"
+        android:background="@color/apricot"
         android:layout_height="match_parent">
 
-        <com.jamesfchen.myhome.custom.AA
+        <com.jamesfchen.bundle2.customview.scrollExprimental.AA
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></com.jamesfchen.myhome.custom.AA>
-    </com.jamesfchen.myhome.widget.scrollExprimental.A>
+            android:orientation="vertical" />
+    </com.jamesfchen.bundle2.customview.scrollExprimental.A>
 
 </LinearLayout>

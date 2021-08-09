@@ -1,6 +1,7 @@
 package jamesfchen.widget.carousel.listener;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -114,6 +115,16 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
     RecyclerView.OnScrollListener listener;
 
     @Override
+    public boolean onDependentViewChanged(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull View dependency) {
+        return super.onDependentViewChanged(parent, child, dependency);
+    }
+
+    @Override
+    public void onDependentViewRemoved(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull View dependency) {
+        super.onDependentViewRemoved(parent, child, dependency);
+    }
+
+    @Override
     public boolean layoutDependsOn(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull final View dependency) {
         // We depend on any AppBarLayouts
         if (dependency instanceof TabsLayout) {
@@ -149,6 +160,16 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
         }
         return false;
     }
+
+//    @Override
+//    public float getScrimOpacity(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child) {
+//        return 1f;
+//    }
+//
+//    @Override
+//    public int getScrimColor(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child) {
+//        return Color.WHITE;
+//    }
 
     @Override
     public boolean onLayoutChild(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, int layoutDirection) {

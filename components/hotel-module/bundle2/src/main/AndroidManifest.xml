@@ -63,12 +63,12 @@
         <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)：如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
         <!--            android:launchMode="singleTask" -->
         <activity android:name="com.jamesfchen.bundle2.launchmode.FourthActivity" />
-        <activity android:name="com.jamesfchen.bundle2.fragmentx.FragmentNotAttachActivity" />
         <activity
             android:name=".carousel.PagerViewActivity"
+            android:theme="@style/Theme.AppCompat"
             android:exported="true" />
         <activity
-            android:name="jamesfchen.widget.ViewPagerActivity"
+            android:name=".carousel.ViewPagerActivity"
             android:exported="true" />
     </application>
 

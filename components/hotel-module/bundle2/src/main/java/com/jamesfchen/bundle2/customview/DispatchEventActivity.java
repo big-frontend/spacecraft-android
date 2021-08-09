@@ -21,10 +21,6 @@ public class DispatchEventActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Button textView = new Button(this);
-//        textView.setTextColor(Color.WHITE);
-        textView.setText("my activity 3");
-        textView.setBackgroundColor(Color.BLUE);
         setContentView(R.layout.activity_dispatch_event);
     }
 }

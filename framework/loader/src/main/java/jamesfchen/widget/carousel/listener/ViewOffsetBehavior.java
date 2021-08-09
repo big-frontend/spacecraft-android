@@ -36,7 +36,7 @@ public class ViewOffsetBehavior<V extends View> extends CoordinatorLayout.Behavi
      */
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
-//        Log.d("ViewOffsetBehavior", "onStartNestedScroll\nchild--->" + child + "\ndirectTargetChild--->" + directTargetChild + "\ntarget--->" + target + "\naxes--->" + axes + "\ntype--->" + type);
+        Log.d("ViewOffsetBehavior", "onStartNestedScroll\nchild--->" + child + "\ndirectTargetChild--->" + directTargetChild + "\ntarget--->" + target + "\naxes--->" + axes + "\ntype--->" + type);
         return super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, axes, type);
     }
 
@@ -48,19 +48,19 @@ public class ViewOffsetBehavior<V extends View> extends CoordinatorLayout.Behavi
 
     @Override
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
-//        Log.d("ViewOffsetBehavior", "onNestedScroll");
+        Log.d("ViewOffsetBehavior", "onNestedScroll");
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
     }
 
     @Override
     public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View target, int type) {
-//        Log.d("ViewOffsetBehavior", "onStopNestedScroll");
+        Log.d("ViewOffsetBehavior", "onStopNestedScroll");
         super.onStopNestedScroll(coordinatorLayout, child, target, type);
     }
 
     @Override
     public void onNestedScrollAccepted(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
-//        Log.d("ViewOffsetBehavior", "onNestedScrollAccepted");
+        Log.d("ViewOffsetBehavior", "onNestedScrollAccepted");
         super.onNestedScrollAccepted(coordinatorLayout, child, directTargetChild, target, axes, type);
     }
 

@@ -1,8 +1,10 @@
 package com.jamesfchen.bundle2.carousel
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.bundle2.R
+import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
 import jamesfchen.widget.carousel.TabsLayout
 import jamesfchen.widget.PagerViewModel
 
@@ -53,13 +55,14 @@ class PagerViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pager_view)
-//
-//        val adapter1 = Adapter1()
-//        pv_horizontal.setAdapter(adapter1)
-//        adapter1.setDataList(pagerviewList)
-//        val adapter11 = Adapter11()
-//        pv_vertical.setAdapter(adapter11)
-//        adapter11.setDataList(pagerviewList)
+        val binding = ActivityPagerViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val adapter1 = Adapter1()
+        binding.pvHorizontal.setAdapter(adapter1)
+        adapter1.setDataList(pagerviewList)
+        val adapter11 = Adapter11()
+        binding.pvVertical.setAdapter(adapter11)
+        adapter11.setDataList(pagerviewList)
     }
 }
