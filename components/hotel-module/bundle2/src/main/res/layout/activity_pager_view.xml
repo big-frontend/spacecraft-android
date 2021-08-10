@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <jamesfchen.widget.kk.PagerView
             android:id="@+id/pv_horizontal1"
@@ -20,6 +19,17 @@
             android:background="@color/colorAccent"
             app:pv_orientation="horizontal" />
 
+        <jamesfchen.widget.kk.PagerView
+            android:id="@+id/pv_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:background="@color/colorAccent"
+            app:pv_orientation="vertical" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_aa"
+            android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="300dp"/>
         <Button
             android:id="@+id/bt_remove_all"
             android:layout_width="wrap_content"
@@ -34,13 +44,5 @@
             android:layout_marginBottom="20dp"
             android:background="@color/colorAccent"
             app:pv_orientation="horizontal" />
-
-        <jamesfchen.widget.kk.PagerView
-            android:id="@+id/pv_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/apricot"
-            app:pv_orientation="vertical" />
-
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

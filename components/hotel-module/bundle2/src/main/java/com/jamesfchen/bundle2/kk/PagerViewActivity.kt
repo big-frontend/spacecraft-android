@@ -56,9 +56,7 @@ class PagerViewActivity : AppCompatActivity() {
         val binding = ActivityPagerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var adapter1 = Adapter1()
-        adapter1.setDataList(pagerviewList)
-        adapter1 = Adapter1()
+        val adapter1 = Adapter1()
         binding.pvHorizontal1.setAdapter(adapter1)
         adapter1.setDataList(pagerviewList)
 
@@ -73,8 +71,11 @@ class PagerViewActivity : AppCompatActivity() {
             }
         }
 
-        val adapter11 = Adapter2()
-        binding.pvVertical.setAdapter(adapter11)
-        adapter11.setDataList(pagerviewList)
+        val adapter2 = Adapter2()
+        binding.pvVertical.setAdapter(adapter2)
+        adapter2.setDataList(pagerviewList)
+        val adapter22 = Adapter22()
+        binding.rvAa.adapter = adapter22
+        adapter22.setDataList(pagerviewList.get(0).contents)
     }
 }

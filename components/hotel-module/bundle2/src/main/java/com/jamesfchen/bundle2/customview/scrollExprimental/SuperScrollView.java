@@ -13,7 +13,11 @@ import android.widget.FrameLayout;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.NestedScrollingParent3;
+import androidx.core.view.NestedScrollingParentHelper;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -23,14 +27,11 @@ import androidx.recyclerview.widget.RecyclerView;
  * @author: jamesfchen
  * @since: May/29/2021  Sat
  * <p>
- * 同方向，需要外部优先滚动，然后在内部滚动
+ *  NestedScrollView解决了ScrollView+Recyclerview在滚动时，内部Recyclerview不能滚动的问题，预期内部Recyclerview先滚动，然后在外部ScrollView滚动
  *
- * NestedScrollView解决了两个同方向的滚动控件，外部先滚动。
- * 解决了ScrollView+RecyclerView滚动时，RecyclerView会优先处理滑动事件，内部先滚动,外部不能处理滚动事件
  * <p>
- * 外部拦截法的典型案例
  */
-public class SuperScrollView extends FrameLayout {
+public class SuperScrollView extends FrameLayout implements NestedScrollingParent3{
     private int mTouchSlop;
     private int mMinimumVelocity;
     private int mMaximumVelocity;
@@ -38,6 +39,7 @@ public class SuperScrollView extends FrameLayout {
     private int mOverflingDistance;
     private Scroller mScroller;
     private OverScroller mOverScroller;
+    private NestedScrollingParentHelper mParentHelper;
 
     public SuperScrollView(Context context) {
         this(context, null);
@@ -58,6 +60,7 @@ public class SuperScrollView extends FrameLayout {
         mOverflingDistance = configuration.getScaledOverflingDistance();
         mScroller = new Scroller(context);
         mOverScroller = new OverScroller(context);
+        mParentHelper = new NestedScrollingParentHelper(this);
     }
 
     private void recycleVelocityTracker() {
@@ -146,12 +149,12 @@ public class SuperScrollView extends FrameLayout {
         if (action == MotionEvent.ACTION_MOVE && mIsBeingDragged) {
             return true;
         }
-        if (super.onInterceptTouchEvent(ev)) {
-            return true;
-        }
+//        if (super.onInterceptTouchEvent(ev)) {
+//            return true;
+//        }
         action = action & MotionEvent.ACTION_MASK;
         if (action == MotionEvent.ACTION_DOWN) {
-            if (!isChild((int) ev.getX(), (int) ev.getY())) {
+            if (!inChild((int) ev.getX(), (int) ev.getY())) {
                 mIsBeingDragged = false;
                 recycleVelocityTracker();
                 return mIsBeingDragged;
@@ -161,7 +164,7 @@ public class SuperScrollView extends FrameLayout {
             mActivePointerId = ev.getPointerId(0);
             initOrResetVelocityTracker();
             mVelocityTracker.addMovement(ev);
-            mIsBeingDragged = false;
+            mIsBeingDragged = !mScroller.isFinished();
         } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
             mIsBeingDragged = false;
             mActivePointerId = INVALID_POINTER;
@@ -173,7 +176,7 @@ public class SuperScrollView extends FrameLayout {
             int x = (int) ev.getX(pointerIndex);
             final int y = (int) ev.getY(pointerIndex);
             final int yDiff = Math.abs(y - mLastMotionY);
-            if (yDiff > mTouchSlop) {
+            if (yDiff > mTouchSlop && (getNestedScrollAxes() & ViewCompat.SCROLL_AXIS_VERTICAL) == 0) {
                 mIsBeingDragged = true;
                 mLastMotionY = y;
                 initVelocityTrackerIfNotExists();
@@ -184,11 +187,11 @@ public class SuperScrollView extends FrameLayout {
                     parent.requestDisallowInterceptTouchEvent(true);
                 }
 
-               if (canScroll(getChildAt(0), false, yDiff, x, y, RecyclerView.VERTICAL)) {
-                   mIsBeingDragged = false;
-                }else {
-                   mIsBeingDragged = true;
-               }
+//               if (canScroll(getChildAt(0), false, yDiff, x, y, RecyclerView.VERTICAL)) {
+//                   mIsBeingDragged = false;
+//                }else {
+//                   mIsBeingDragged = true;
+//               }
             }
 
         }
@@ -214,10 +217,16 @@ public class SuperScrollView extends FrameLayout {
             return checkV && v.canScrollVertically(-delta);
         }
     }
-    private boolean isChild(int x, int y) {
-        View child = getChildAt(0);
-        return child.getTop() - getScrollY() <= y && y < child.getBottom() - getScrollY()
-                && child.getLeft() <= x && x < child.getRight();
+    private boolean inChild(int x, int y) {
+        if (getChildCount() > 0) {
+            final int scrollY = getScrollY();
+            final View child = getChildAt(0);
+            return !(y < child.getTop() - scrollY
+                    || y >= child.getBottom() - scrollY
+                    || x < child.getLeft()
+                    || x >= child.getRight());
+        }
+        return false;
     }
 
     @Override
@@ -363,4 +372,54 @@ public class SuperScrollView extends FrameLayout {
         View currentFocused = findFocus();
         postInvalidateOnAnimation();
     }
+
+
+    @Override
+    public boolean onStartNestedScroll(@NonNull View child, @NonNull View target, int axes, int type) {
+        Log.d("SuperScrollView","SuperScrollView#onStartNestedScroll");
+        //存在垂直坐标系
+        return (axes & ViewCompat.SCROLL_AXIS_VERTICAL) !=0;
+    }
+
+    @Override
+    public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes, int type) {
+        Log.d("SuperScrollView","SuperScrollView#onNestedScrollAccepted");
+//        mParentHelper.onNestedScrollAccepted(child,target,axes,type);
+    }
+    @Override
+    public void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
+        Log.d("SuperScrollView","SuperScrollView#onNestedPreScroll");
+
+    }
+    @Override
+    public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
+        Log.d("SuperScrollView","SuperScrollView#onNestedScroll1:"+dyUnconsumed);
+        onNestedScrollInternal(dyUnconsumed,type,consumed);
+    }
+
+    @Override
+    public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
+        Log.d("SuperScrollView","SuperScrollView#onNestedScroll2:"+dyUnconsumed);
+        onNestedScrollInternal(dyUnconsumed,type,null);
+
+    }
+    @Override
+    public void onStopNestedScroll(@NonNull View target, int type) {
+        Log.d("SuperScrollView","SuperScrollView#onStopNestedScroll");
+        mParentHelper.onStopNestedScroll(target, type);
+
+    }
+    private void onNestedScrollInternal(int dyUnconsumed, int type, int[] consumed) {
+        final int oldScrollY = getScrollY();
+        scrollBy(0,dyUnconsumed);
+        final int myConsumed = getScrollY() - oldScrollY;
+        if (consumed !=null){
+            consumed[1] +=myConsumed;
+        }
+        final  int myUnconsumed = dyUnconsumed -myConsumed;
+    }
+
+
+
+
 }
