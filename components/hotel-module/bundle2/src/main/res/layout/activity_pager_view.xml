@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
 
-    <jamesfchen.widget.carousel.PagerView
+    <jamesfchen.widget.kk.PagerView
         android:id="@+id/pv_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         tools:background="@color/colorAccent"
         tools:layout_height="200dp"/>
 
-    <jamesfchen.widget.carousel.PagerView
+    <jamesfchen.widget.kk.PagerView
         android:id="@+id/pv_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

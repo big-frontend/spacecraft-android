@@ -1,11 +1,10 @@
 package com.jamesfchen.bundle2.carousel
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.bundle2.R
 import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
-import jamesfchen.widget.carousel.TabsLayout
+import jamesfchen.widget.kk.TabsLayout
 import jamesfchen.widget.PagerViewModel
 
 /**
@@ -32,7 +31,7 @@ class PagerViewActivity : AppCompatActivity() {
     }
     var pagerviewList: List<PagerViewModel> = object : ArrayList<PagerViewModel>() {
         init {
-            val tabItem0 = TabsLayout.TabItem("美食", R.drawable.ic_arrow_back_black_24dp)
+            val tabItem0 = TabsLayout.TabItem("美食", R.mipmap.ic_launcher)
             val tabItem1 = TabsLayout.TabItem("景点", R.drawable.ic_arrow_back_black_24dp)
             val tabItem2 = TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp)
             val tabItem3 = TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp)

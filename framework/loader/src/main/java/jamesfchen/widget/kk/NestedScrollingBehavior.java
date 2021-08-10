@@ -1,7 +1,6 @@
-package jamesfchen.widget.carousel.listener;
+package jamesfchen.widget.kk;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,8 +17,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import jamesfchen.widget.carousel.TabsLayout;
 
 /**
  * Copyright ® $ 2019

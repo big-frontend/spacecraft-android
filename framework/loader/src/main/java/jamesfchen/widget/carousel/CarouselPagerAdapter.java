@@ -1,4 +1,4 @@
-package jamesfchen.widget.carousel.adapter;
+package jamesfchen.widget.carousel;
 
 import android.view.View;
 import android.view.ViewGroup;

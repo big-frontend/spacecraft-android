@@ -1,4 +1,4 @@
-package jamesfchen.widget.carousel;
+package jamesfchen.widget.kk;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

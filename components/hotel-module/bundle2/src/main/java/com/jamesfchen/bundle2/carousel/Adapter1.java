@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamesfchen.bundle2.R;
-import jamesfchen.widget.carousel.PagerView;
-import jamesfchen.widget.carousel.TabsLayout;
+import jamesfchen.widget.kk.PagerView;
+import jamesfchen.widget.kk.TabsLayout;
 
 import jamesfchen.widget.PagerViewModel;
 

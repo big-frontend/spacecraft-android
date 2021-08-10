@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jamesfchen.bundle2.R;
 import jamesfchen.widget.carousel.CarouselView;
-import jamesfchen.widget.carousel.PagerView;
-import jamesfchen.widget.carousel.adapter.CarouselPagerAdapter;
+import jamesfchen.widget.kk.PagerView;
+import jamesfchen.widget.carousel.CarouselPagerAdapter;
 import jamesfchen.widget.carousel.transformer.ZoomOutPageTransformer;
 
 /**

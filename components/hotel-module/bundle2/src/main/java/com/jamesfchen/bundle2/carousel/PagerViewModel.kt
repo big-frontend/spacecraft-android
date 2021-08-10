@@ -1,6 +1,6 @@
 package jamesfchen.widget
 
-import jamesfchen.widget.carousel.TabsLayout
+import jamesfchen.widget.kk.TabsLayout
 
 /**
  * Copyright ® $ 2019
@@ -11,6 +11,6 @@ import jamesfchen.widget.carousel.TabsLayout
  * @since: Jun/16/2019  Sun
  */
 data class PagerViewModel(
-        val tab: TabsLayout.TabItem,
-        val contents: List<Any>
+    val tab: TabsLayout.TabItem,
+    val contents: List<Any>
 )

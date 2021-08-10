@@ -1,9 +1,7 @@
-package jamesfchen.widget.carousel.listener;
+package jamesfchen.widget.kk;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
-import jamesfchen.widget.carousel.TabsLayout;
 
 
 /**

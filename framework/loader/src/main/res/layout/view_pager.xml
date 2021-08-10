@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <jamesfchen.widget.carousel.TabsLayout
+        <jamesfchen.widget.kk.TabsLayout
             android:id="@+id/tl_tabs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:background="@color/lightGreyBlue"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="jamesfchen.widget.carousel.listener.NestedScrollingBehavior"
+            app:layout_behavior="jamesfchen.widget.kk.NestedScrollingBehavior"
             tools:listitem="@layout/item_nest"
             />
 

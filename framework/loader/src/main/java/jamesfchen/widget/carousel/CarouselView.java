@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.jamesfchen.loader.R;
-import jamesfchen.widget.carousel.adapter.CarouselPagerAdapter;
 
 
 /**

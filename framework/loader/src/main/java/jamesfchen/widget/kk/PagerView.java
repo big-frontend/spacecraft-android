@@ -1,4 +1,4 @@
-package jamesfchen.widget.carousel;
+package jamesfchen.widget.kk;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+
+import jamesfchen.widget.kk.TabsLayout;
 
 
 /**
