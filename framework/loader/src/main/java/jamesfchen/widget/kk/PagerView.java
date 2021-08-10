@@ -3,10 +3,8 @@ package jamesfchen.widget.kk;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.jamesfchen.loader.R;
 
@@ -20,8 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
-
-import jamesfchen.widget.kk.TabsLayout;
 
 
 /**
@@ -70,7 +66,7 @@ public class PagerView extends CoordinatorLayout {
         });
         addView(mTabsLayout, -1, tablp);
 
-        mRvContent = new RecyclerView(context);
+        mRvContent = new NestedRecyclerView(context);
         mLinearLayoutManager = new LinearLayoutManager(context, mOrientation, false);
         if (mOrientation == HORIZONTAL) {
             mSnapHelper = new PagerSnapHelper();

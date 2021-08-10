@@ -57,7 +57,6 @@ class PagerViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var adapter1 = Adapter1()
-        binding.pvHorizontala1.setAdapter(adapter1)
         adapter1.setDataList(pagerviewList)
         adapter1 = Adapter1()
         binding.pvHorizontal1.setAdapter(adapter1)

@@ -48,42 +48,43 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
         if (linearLayoutManager != null) {
             orientation = linearLayoutManager.getOrientation();
         }
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                mLastMotionX = mInitialMotionX = ev.getX();
-                mLastMotionY = mInitialMotionY = ev.getY();
-                mActivePointerId = ev.getPointerId(0);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                int activePointerId = mActivePointerId;
-                int pointerIndex = ev.findPointerIndex(activePointerId);
-                float x = ev.getX(pointerIndex);
-                float y = ev.getY(pointerIndex);
-                float dx = mLastMotionX - x;
-                float dy = mLastMotionY - y;
-                boolean b = canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL);
-                Log.d("NestedScrollingBehavior", "mTouchSlop：" + mTouchSlop + " dx/dy:" + dx + "/" + dy + " " + b);
-//                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
-//                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
+//        switch (ev.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//                mLastMotionX = mInitialMotionX = ev.getX();
+//                mLastMotionY = mInitialMotionY = ev.getY();
+//                mActivePointerId = ev.getPointerId(0);
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                int activePointerId = mActivePointerId;
+//                int pointerIndex = ev.findPointerIndex(activePointerId);
+//                float x = ev.getX(pointerIndex);
+//                float y = ev.getY(pointerIndex);
+//                float dx = mLastMotionX - x;
+//                float dy = mLastMotionY - y;
+//                boolean b = canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL);
+//                Log.d("NestedScrollingBehavior", "mTouchSlop：" + mTouchSlop + " dx/dy:" + dx + "/" + dy + " " + b);
+////                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
+////                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
+////                } else {
+////                    parent.getParent().requestDisallowInterceptTouchEvent(false);
+////                }
+//                 if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
+//                    mLastMotionX = x;
+//                    child.requestDisallowInterceptTouchEvent(true);
+//                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
+//                    mLastMotionY = y;
+//                    child.requestDisallowInterceptTouchEvent(true);
 //                } else {
-//                    parent.getParent().requestDisallowInterceptTouchEvent(false);
+//                    child.requestDisallowInterceptTouchEvent(false);
 //                }
-                 if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
-                    mLastMotionX = x;
+//
+//                break;
+//            case MotionEvent.ACTION_UP:
+//            case MotionEvent.ACTION_CANCEL:
+//
+//                break;
+//        }
                     child.requestDisallowInterceptTouchEvent(true);
-                } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
-                    mLastMotionY = y;
-                    child.requestDisallowInterceptTouchEvent(true);
-                } else {
-                    child.requestDisallowInterceptTouchEvent(false);
-                }
-
-                break;
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
-
-                break;
-        }
         return super.onInterceptTouchEvent(parent, child, ev);//CoordinatorLayout对于任何事件都不拦截
     }
 
