@@ -1,4 +1,4 @@
-package jamesfchen.widget
+package com.jamesfchen.bundle2.carousel
 
 import android.R
 import android.content.Context

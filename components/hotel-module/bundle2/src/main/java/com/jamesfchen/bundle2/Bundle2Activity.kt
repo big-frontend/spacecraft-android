@@ -2,8 +2,6 @@ package com.jamesfchen.bundle2
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -13,13 +11,10 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.blankj.utilcode.util.SDCardUtils
-import com.jamesfchen.bundle2.carousel.PagerViewActivity
-import com.jamesfchen.bundle2.customview.CustomViewActivity
-import com.jamesfchen.bundle2.customview.DispatchEventActivity
+import com.jamesfchen.bundle2.customview.scrollExprimental.NestedScrollActivity
+import com.jamesfchen.bundle2.kk.PagerViewActivity
 import com.jamesfchen.bundle2.ui.theme.SpacecraftAndroidTheme
 import java.io.File
-import java.nio.charset.Charset
 
 class Bundle2Activity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +35,11 @@ class Bundle2Activity : ComponentActivity() {
                 ArtistCard {
 //                    startActivity(FlutterActivity.createDefaultIntent(Bundle2Activity.this))
 //                    startActivity(Intent(Bundle2Activity@ this, DispatchEventActivity::class.java))
+                    startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
                 }
             }
         }
-        startActivity(Intent(Bundle2Activity@this,PagerViewActivity::class.java))
+        startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
     }
 }
 

@@ -36,110 +36,66 @@
                 tools:itemCount="9"
                 tools:listitem="@layout/item_image_and_text" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scrollable button"
-                app:cornerRadius="10dp"
-                app:icon="@mipmap/ic_launcher"
-                app:iconTint="@color/apricot"
-                app:rippleColor="@color/apricot" />
+                android:text="scrollable button" />
 
 
         </LinearLayout>

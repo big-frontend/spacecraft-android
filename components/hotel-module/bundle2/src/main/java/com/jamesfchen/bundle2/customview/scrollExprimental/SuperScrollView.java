@@ -23,7 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
  * @author: jamesfchen
  * @since: May/29/2021  Sat
  * <p>
- * NestedScrollView解决了两个同方向的滚动控件，外部先滚动，解决了ScrollView+RecyclerView滚动时，不能外部先处理滚动事件，因为RecyclerView会先处理滑动事件，内部先滚动
+ * 同方向，需要外部优先滚动，然后在内部滚动
+ *
+ * NestedScrollView解决了两个同方向的滚动控件，外部先滚动。
+ * 解决了ScrollView+RecyclerView滚动时，RecyclerView会优先处理滑动事件，内部先滚动,外部不能处理滚动事件
  * <p>
  * 外部拦截法的典型案例
  */

@@ -65,7 +65,7 @@
         <!--            android:launchMode="singleTask" -->
         <activity android:name="com.jamesfchen.bundle2.launchmode.FourthActivity" />
         <activity
-            android:name=".carousel.PagerViewActivity"
+            android:name=".kk.PagerViewActivity"
             android:theme="@style/Theme.AppCompat.Light"
             android:exported="true" />
         <activity

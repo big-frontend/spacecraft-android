@@ -1,4 +1,4 @@
-package jamesfchen.widget
+package com.jamesfchen.bundle2.kk
 
 import jamesfchen.widget.kk.TabsLayout
 

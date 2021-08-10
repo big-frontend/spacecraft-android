@@ -1,11 +1,10 @@
-package com.jamesfchen.bundle2.carousel
+package com.jamesfchen.bundle2.kk
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.bundle2.R
 import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
 import jamesfchen.widget.kk.TabsLayout
-import jamesfchen.widget.PagerViewModel
 
 /**
  * Copyright ® $ 2019
@@ -57,10 +56,25 @@ class PagerViewActivity : AppCompatActivity() {
         val binding = ActivityPagerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter1 = Adapter1()
-        binding.pvHorizontal.setAdapter(adapter1)
+        var adapter1 = Adapter1()
+        binding.pvHorizontala1.setAdapter(adapter1)
         adapter1.setDataList(pagerviewList)
-        val adapter11 = Adapter11()
+        adapter1 = Adapter1()
+        binding.pvHorizontal1.setAdapter(adapter1)
+        adapter1.setDataList(pagerviewList)
+
+        val pa = PageAdapter()
+        binding.pvHorizontal2.setAdapter(pa)
+        pa.setDataList(pagerviewList)
+        binding.btRemoveAll.setOnClickListener {
+            if (pa.isEmpty) {
+                pa.setDataList(pagerviewList)
+            } else {
+                pa.removeAll()
+            }
+        }
+
+        val adapter11 = Adapter2()
         binding.pvVertical.setAdapter(adapter11)
         adapter11.setDataList(pagerviewList)
     }

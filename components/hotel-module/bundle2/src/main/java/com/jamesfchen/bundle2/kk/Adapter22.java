@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.carousel;
+package com.jamesfchen.bundle2.kk;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;

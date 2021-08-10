@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.carousel;
+package com.jamesfchen.bundle2.kk;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -23,7 +23,7 @@ import com.jamesfchen.bundle2.R;
  * @email: jamesfchen@gmail.com
  * @since: Feb/16/2019  Sat
  */
-public class Adapter2 extends RecyclerView.Adapter<Adapter2.ViewHolder2> {
+public class Adapter11 extends RecyclerView.Adapter<Adapter11.ViewHolder2> {
     private List<Object> mDataList = new ArrayList<Object>();
 
     public void setDataList(List<?> dataList) {

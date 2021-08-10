@@ -61,13 +61,14 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 float y = ev.getY(pointerIndex);
                 float dx = mLastMotionX - x;
                 float dy = mLastMotionY - y;
-                Log.d("NestedScrollingBehavior", "dx/dy>>>>mTouchSlop：" + dx + "/" + dy + ">>>>" + mTouchSlop);
+                boolean b = canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL);
+                Log.d("NestedScrollingBehavior", "mTouchSlop：" + mTouchSlop + " dx/dy:" + dx + "/" + dy + " " + b);
 //                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop) {
 //                    parent.getParent().requestDisallowInterceptTouchEvent(true);//容器类不拦截事件
 //                } else {
 //                    parent.getParent().requestDisallowInterceptTouchEvent(false);
 //                }
-                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
+                 if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(child, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
                     mLastMotionX = x;
                     child.requestDisallowInterceptTouchEvent(true);
                 } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop && canScroll(child, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
@@ -76,6 +77,7 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 } else {
                     child.requestDisallowInterceptTouchEvent(false);
                 }
+
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
@@ -109,17 +111,23 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
         }
     }
 
+    private boolean hasScrollableView(final View v, boolean ignoreNow) {
+        if (ignoreNow && v instanceof RecyclerView) return true;
+        if (v instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) v;
+            int count = group.getChildCount();
+            for (int i = count - 1; i >= 0; i--) {
+                final View child = group.getChildAt(i);
+                if (hasScrollableView(child, false)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     RecyclerView.OnScrollListener listener;
-
-    @Override
-    public boolean onDependentViewChanged(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull View dependency) {
-        return super.onDependentViewChanged(parent, child, dependency);
-    }
-
-    @Override
-    public void onDependentViewRemoved(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull View dependency) {
-        super.onDependentViewRemoved(parent, child, dependency);
-    }
 
     @Override
     public boolean layoutDependsOn(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, @NonNull final View dependency) {
@@ -146,27 +154,14 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
             }
             child.removeOnScrollListener(listener);
             child.addOnScrollListener(listener);
-            tabsLayout.addOnTabSelectedListener(new TabsLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(View view, int position) {
-                    Log.d("NestedScrollingBehavior", "ponTabSelected>position:" + position);
-                    layoutManager.scrollToPosition(position);
-                }
+            tabsLayout.addOnTabSelectedListener((view, position) -> {
+                Log.d("NestedScrollingBehavior", "ponTabSelected>position:" + position);
+                layoutManager.scrollToPosition(position);
             });
             return true;
         }
         return false;
     }
-
-//    @Override
-//    public float getScrimOpacity(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child) {
-//        return 1f;
-//    }
-//
-//    @Override
-//    public int getScrimColor(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child) {
-//        return Color.WHITE;
-//    }
 
     @Override
     public boolean onLayoutChild(@NonNull CoordinatorLayout parent, @NonNull RecyclerView child, int layoutDirection) {
@@ -174,14 +169,23 @@ public class NestedScrollingBehavior extends ViewOffsetBehavior<RecyclerView> {
                 "\nlayoutDirection--->" + layoutDirection);
         final View header = findFirstDependency(parent.getDependencies(child));
         if (header != null) {
-            CoordinatorLayout.LayoutParams lp =
-                    (CoordinatorLayout.LayoutParams) child.getLayoutParams();
+            CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
             Rect available = new Rect();
-            available.set(
-                    parent.getPaddingLeft() + lp.leftMargin,
-                    header.getBottom() + lp.topMargin,
-                    parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
-                    parent.getHeight() + header.getBottom() - parent.getPaddingBottom() - lp.bottomMargin);
+            LinearLayoutManager llm = (LinearLayoutManager) child.getLayoutManager();
+            if (llm == null) return false;
+            int left, right, top, bottom = 0;
+            if (llm.getOrientation() == LinearLayoutManager.HORIZONTAL) {
+                left = parent.getPaddingLeft() + lp.leftMargin;
+                top = parent.getPaddingTop() + header.getHeight() + lp.topMargin;
+                right = parent.getWidth() - parent.getPaddingRight() - lp.rightMargin;
+                bottom = parent.getHeight() - parent.getPaddingBottom() - lp.bottomMargin;
+            } else {
+                left = parent.getPaddingLeft() + header.getMeasuredWidth() + lp.leftMargin;
+                top = parent.getPaddingTop() + lp.topMargin;
+                right = parent.getWidth() - parent.getPaddingRight() - lp.rightMargin;
+                bottom = parent.getHeight() - parent.getPaddingBottom() - lp.bottomMargin;
+            }
+            available.set(left, top, right, bottom);
             Rect out = new Rect();
             GravityCompat.apply(
                     resolveGravity(lp.gravity),

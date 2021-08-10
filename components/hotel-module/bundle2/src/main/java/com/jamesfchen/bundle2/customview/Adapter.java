@@ -59,7 +59,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
                 }
             }
         });
-        holder.iv.setImageResource(viewModel.drawableRes);
+        if (viewModel.drawableRes !=-1) holder.iv.setImageResource(viewModel.drawableRes);
         holder.tv.setText(viewModel.text+"=======>"+position);
 
     }

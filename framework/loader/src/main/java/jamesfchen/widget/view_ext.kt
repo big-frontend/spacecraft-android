@@ -3,6 +3,7 @@ package jamesfchen.widget
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.R
 
 /**
@@ -61,4 +62,55 @@ class ViewOffsetHelper(private val view: View) {
         return false
     }
 
+}
+
+private fun isVScrollable(viewgroup: ViewGroup, view: View?): Boolean {
+    return if (view != null) {
+        viewgroup.height < view.height + viewgroup.paddingTop + viewgroup.paddingBottom
+    } else false
+}
+
+private fun isHScrollable(viewgroup: ViewGroup, view: View?): Boolean {
+    return if (view != null) {
+        viewgroup.width < view.width + viewgroup.paddingLeft + viewgroup.paddingRight
+    } else false
+}
+
+/*
+     * Negative to check scrolling up, positive to check scrolling down.
+     */
+private fun canScroll(
+    v: View,
+    checkV: Boolean,
+    delta: Int,
+    x: Int,
+    y: Int,
+    orientation: Int
+): Boolean {
+    if (v is ViewGroup) {
+        val group = v
+        val scrollX = v.getScrollX()
+        val scrollY = v.getScrollY()
+        val count = group.childCount
+        for (i in count - 1 downTo 0) {
+            val child = group.getChildAt(i)
+            if (child.left <= x + scrollX && x + scrollX < child.right && child.top <= y + scrollY && y + scrollY < child.bottom //判断点击是否位于可滑动的区域
+                && canScroll(
+                    child,
+                    true,
+                    delta,
+                    x + scrollX - child.left,
+                    y + scrollY - child.top,
+                    orientation
+                )
+            ) {
+                return true
+            }
+        }
+    }
+    return if (orientation == RecyclerView.HORIZONTAL) {
+        checkV && v.canScrollHorizontally(delta)
+    } else {
+        checkV && v.canScrollVertically(delta)
+    }
 }
