@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.widget;
+package com.jamesfchen.bundle2.carousel;
 
 /**
  * Copyright ® $ 2017

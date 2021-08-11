@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.customview.animationsExprimental.widget
+package com.jamesfchen.bundle2.carousel
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

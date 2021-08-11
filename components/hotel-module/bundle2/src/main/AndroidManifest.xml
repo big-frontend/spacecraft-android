@@ -71,6 +71,7 @@
         <activity
             android:name=".carousel.ViewPagerActivity"
             android:exported="true" />
+        <activity android:name=".pulse.PulseActivity"/>
     </application>
 
 </manifest>

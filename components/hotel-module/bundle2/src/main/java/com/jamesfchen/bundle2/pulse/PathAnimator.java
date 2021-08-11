@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.customview.animationsExprimental.widget;
+package com.jamesfchen.bundle2.pulse;
 
 import android.graphics.Matrix;
 import android.graphics.Path;
@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
-
-import com.jamesfchen.bundle2.customview.animationsExprimental.widget.AbstractPathAnimator;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

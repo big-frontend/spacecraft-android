@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.widget;
+package com.jamesfchen.bundle2.carousel;
 
 /**
  * Copyright ® $ 2017
@@ -28,7 +28,7 @@ import androidx.annotation.IntRange;
  * @attr ref android.R.styleable#ViewFlipper_flipInterval
  * @attr ref android.R.styleable#ViewFlipper_autoStart
  */
-public class ViewFlipper extends com.jamesfchen.uicomponent.widget.ViewAnimator {
+public class ViewFlipper extends ViewAnimator {
     private static final String TAG = "ViewFlipper";
     private static final boolean LOGD = false;
 

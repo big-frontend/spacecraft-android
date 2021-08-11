@@ -14,10 +14,4 @@
         app:lottie_fileName="17902-covid19.json"
         app:lottie_loop="true" />
 
-    <com.jamesfchen.bundle2.customview.animationsExprimental.widget.ViewFlipper2
-        android:id="@+id/vf_vf2"
-        android:layout_width="244dp"
-        android:layout_height="200dp"
-        android:animateFirstView="true"
-        />
 </LinearLayout>

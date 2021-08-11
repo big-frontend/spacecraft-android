@@ -11,7 +11,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.jamesfchen.bundle2.customview.scrollExprimental.NestedScrollActivity
+import com.jamesfchen.bundle2.pulse.PulseActivity
 import com.jamesfchen.bundle2.kk.PagerViewActivity
 import com.jamesfchen.bundle2.ui.theme.SpacecraftAndroidTheme
 import java.io.File

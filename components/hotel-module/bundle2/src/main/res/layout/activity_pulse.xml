@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/member_send_good"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_favorite_border_read_24dp" />
+
+        <com.jamesfchen.bundle2.pulse.HeartLayout
+            android:id="@+id/heart_layout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/bt_heartbeat"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/ic_favorite_border_read_24dp" />
+
+    <com.jamesfchen.bundle2.pulse.HeadBubbleView
+        android:id="@+id/hbv_heartbeat"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone" />
+    <!--            android:background="@drawable/ic_favorite_border_black_24dp" -->
+</LinearLayout>

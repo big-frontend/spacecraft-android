@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.widget;
+package com.jamesfchen.bundle2.pulse;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -77,13 +77,10 @@ public class HeadBubbleView extends FrameLayout {
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         valueAnimator.setDuration(800);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                imageView.setScaleX(0.1f + animatedValue);
-                imageView.setScaleY(0.1f + animatedValue);
-            }
+        valueAnimator.addUpdateListener(animation -> {
+            float animatedValue = (float) animation.getAnimatedValue();
+            imageView.setScaleX(0.1f + animatedValue);
+            imageView.setScaleY(0.1f + animatedValue);
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override

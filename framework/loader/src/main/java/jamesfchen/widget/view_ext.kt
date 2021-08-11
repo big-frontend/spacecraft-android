@@ -1,3 +1,5 @@
+@file:JvmName("ViewUtil")
+
 package jamesfchen.widget
 
 import android.view.View
@@ -22,10 +24,11 @@ fun View.getViewOffsetHelper(): ViewOffsetHelper {
     return offsetHelper
 }
 
-fun View.getMaxOffsetForPinChild(containerHeight:Int): Int {
+fun View.getMaxOffsetForPinChild(containerHeight: Int): Int {
     val lp = layoutParams as ViewGroup.MarginLayoutParams
     return containerHeight - getViewOffsetHelper().layoutTop - height - lp.bottomMargin
 }
+
 class ViewOffsetHelper(private val view: View) {
     var layoutTop = 0
     var layoutLeft = 0

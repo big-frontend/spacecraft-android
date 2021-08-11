@@ -220,35 +220,6 @@ public class MapActivity extends LBSActivity {
         myLocationStyle.showMyLocation(false);
 
 
-        HeadBubbleView hbv_heartbeat = findViewById(R.id.hbv_heartbeat);
-        List<HeadBubbleView.BrowseEntity> be = new ArrayList<HeadBubbleView.BrowseEntity>() {
-            {
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_border_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_border_black_24dp, "启动1"));
-                add(new HeadBubbleView.BrowseEntity(R.drawable.ic_favorite_border_black_24dp, "启动1"));
-            }
-        };
-        hbv_heartbeat.setDatas(be);
-        hbv_heartbeat.startAnimation(4000);
-        hbv_heartbeat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hbv_heartbeat.startAnimation(2000);
-
-            }
-        });
-        HeartLayout heartLayout = (HeartLayout) findViewById(R.id.heart_layout);
-        findViewById(R.id.member_send_good).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                heartLayout.addFavor();
-            }
-        });
         RecyclerView rv_cellinfos = findViewById(R.id.rv_cellinfos);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override

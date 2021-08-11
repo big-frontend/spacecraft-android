@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.customview.animationsExprimental.widget;
+package com.jamesfchen.bundle2.pulse;
 
 import android.content.Context;
 import android.content.res.TypedArray;
