@@ -48,6 +48,7 @@ public class PageAdapter extends PagerView.Adapter<PageAdapter.ViewHolder> {
         );
         ViewGroup.LayoutParams layoutParams = viewHolder.itemView.getLayoutParams();
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
         viewHolder.itemView.setLayoutParams(layoutParams);
         return viewHolder;
     }

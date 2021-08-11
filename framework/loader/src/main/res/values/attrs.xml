@@ -13,12 +13,12 @@
         <attr name="cv_autoStart" format="boolean"/>
         <attr name="cv_interval" format="integer"/>
     </declare-styleable>
-    <declare-styleable name="PagerView">
-        <attr name="pv_orientation" format="enum">
-            <enum name="horizontal" value="0"/>
-            <enum name="vertical" value="1"/>
-        </attr>
-    </declare-styleable>
+<!--    <declare-styleable name="PagerView">-->
+<!--        <attr name="pv_orientation" format="enum">-->
+<!--            <enum name="horizontal" value="0"/>-->
+<!--            <enum name="vertical" value="1"/>-->
+<!--        </attr>-->
+<!--    </declare-styleable>-->
     <declare-styleable name="CollapseTextView">
         <attr name="collapseText" format="string"/>
         <attr name="collapseTextSize" format="integer"/>

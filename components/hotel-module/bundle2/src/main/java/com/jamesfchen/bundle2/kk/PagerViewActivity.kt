@@ -2,6 +2,7 @@ package com.jamesfchen.bundle2.kk
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.jamesfchen.bundle2.R
 import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
 import jamesfchen.widget.kk.TabsLayout
@@ -56,9 +57,14 @@ class PagerViewActivity : AppCompatActivity() {
         val binding = ActivityPagerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter1 = Adapter1()
-        binding.pvHorizontal1.setAdapter(adapter1)
-        adapter1.setDataList(pagerviewList)
+        var adapter1h = Adapter1H()
+        binding.pvHorizontal1.setAdapter(adapter1h)
+        adapter1h.setDataList(pagerviewList)
+
+
+        var adapter1v = Adapter1V()
+        binding.pvVertical.setAdapter(adapter1v)
+        adapter1v.setDataList(pagerviewList)
 
         val pa = PageAdapter()
         binding.pvHorizontal2.setAdapter(pa)
@@ -70,12 +76,5 @@ class PagerViewActivity : AppCompatActivity() {
                 pa.removeAll()
             }
         }
-
-        val adapter2 = Adapter2()
-        binding.pvVertical.setAdapter(adapter2)
-        adapter2.setDataList(pagerviewList)
-        val adapter22 = Adapter22()
-        binding.rvAa.adapter = adapter22
-        adapter22.setDataList(pagerviewList.get(0).contents)
     }
 }

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.DrawableRes;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -253,10 +254,7 @@ public class TabsLayout extends FrameLayout {
         mIndicatorAnimator = ObjectAnimator.ofFloat(mIndicator, property, startValue, endValue);
         mIndicatorAnimator.setInterpolator(new FastOutSlowInInterpolator());
         mIndicatorAnimator.setDuration(duration);
-        mIndicatorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-            }
+        mIndicatorAnimator.addUpdateListener(animation -> {
         });
         mIndicatorAnimator.addListener(
                 new AnimatorListenerAdapter() {
@@ -266,5 +264,12 @@ public class TabsLayout extends FrameLayout {
                     }
                 });
         mIndicatorAnimator.start();
+    }
+
+    static class MyBehavior extends CoordinatorLayout.Behavior<TabsLayout>{
+
+        public MyBehavior(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
     }
 }

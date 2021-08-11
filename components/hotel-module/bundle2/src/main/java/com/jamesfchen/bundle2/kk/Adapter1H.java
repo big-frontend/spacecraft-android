@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jamesfchen.bundle2.R;
-
 import jamesfchen.widget.kk.PagerView;
 import jamesfchen.widget.kk.TabsLayout;
 
@@ -27,7 +26,7 @@ import jamesfchen.widget.kk.TabsLayout;
  * @email: jamesfchen@gmail.com
  * @since: May/27/2019  Mon
  */
-public class Adapter2 extends PagerView.Adapter<Adapter2.ViewHolder1> {
+public class Adapter1H extends PagerView.Adapter<Adapter1H.ViewHolder> {
     private List<PagerViewModel> mDataList = new ArrayList<PagerViewModel>();
 
     public void setDataList(List<PagerViewModel> dataList) {
@@ -38,22 +37,22 @@ public class Adapter2 extends PagerView.Adapter<Adapter2.ViewHolder1> {
 
     @NonNull
     @Override
-    public ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ViewHolder1 viewHolder1 = new ViewHolder1(
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ViewHolder ViewHolder = new ViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_nest, parent, false)
         );
-        viewHolder1.rvNest.setAdapter(new Adapter22());
+        ViewHolder.rvNest.setAdapter(new Adapter11());
 //        pv?.addOnTabSelectedListener(new  TabsLayout.OnTabSelectedListener() {
 //            override fun onTabSelected(view: View?, position: Int) {
-//                viewHolder1.rvNest.scrollToPosition(0)
+//                ViewHolder.rvNest.scrollToPosition(0)
 //            }
 //        })
-        return viewHolder1;
+        return ViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder1 holder, int position) {
-        Adapter22 adapter = (Adapter22) holder.rvNest.getAdapter();
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Adapter11 adapter = (Adapter11) holder.rvNest.getAdapter();
         if (adapter != null) {
             adapter.setDataList(mDataList.get(position).getContents());
         }
@@ -74,14 +73,14 @@ public class Adapter2 extends PagerView.Adapter<Adapter2.ViewHolder1> {
     }
 
 
-    public static class ViewHolder1 extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         RecyclerView rvNest;
 
-        ViewHolder1(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             rvNest = itemView.findViewById(R.id.rv_nest);
-            rvNest.setLayoutManager(new LinearLayoutManager(rvNest.getContext(), RecyclerView.VERTICAL, false));
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvNest.getContext(), RecyclerView.VERTICAL);
+            rvNest.setLayoutManager(new LinearLayoutManager(rvNest.getContext(), RecyclerView.HORIZONTAL, false));
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvNest.getContext(), RecyclerView.HORIZONTAL);
             Drawable drawable = itemView.getContext().getDrawable(R.drawable.divider);
             if (drawable != null) {
                 dividerItemDecoration.setDrawable(drawable);

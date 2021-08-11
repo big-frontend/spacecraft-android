@@ -17,15 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
  *
  * @author: jamesfchen
  * @since: Aug/10/2021  Tue
+ * 解决了嵌套RecyclerView+RecyclerView同方向的滑动冲突
  */
 public class NestedRecyclerView extends RecyclerView {
     private int mTouchSlop;
     private float mInitialMotionX;
     private float mInitialMotionY;
-    private boolean mIsUnableToDrag=false;
+    private boolean mIsUnableToDrag = false;
     private float mLastMotionX;
     private float mLastMotionY;
     private int mActivePointerId;
+
     public NestedRecyclerView(@NonNull Context context) {
         super(context);
     }
@@ -64,14 +66,14 @@ public class NestedRecyclerView extends RecyclerView {
                 float dx = mLastMotionX - x;
                 float dy = mLastMotionY - y;
                 boolean b = canScroll(this, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL);
-                 if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(this, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
+                if (orientation == RecyclerView.HORIZONTAL && Math.abs(dx) > mTouchSlop && canScroll(this, false, (int) dx, (int) x, (int) y, RecyclerView.HORIZONTAL)) {
                     mLastMotionX = x;
-                     mIsUnableToDrag = true;
+                    mIsUnableToDrag = true;
                 } else if (orientation == RecyclerView.VERTICAL && Math.abs(dy) > mTouchSlop && canScroll(this, false, (int) dy, (int) x, (int) y, RecyclerView.VERTICAL)) {
                     mLastMotionY = y;
-                     mIsUnableToDrag = true;
+                    mIsUnableToDrag = true;
                 } else {
-                     mIsUnableToDrag = false;
+                    mIsUnableToDrag = false;
                 }
 
                 break;

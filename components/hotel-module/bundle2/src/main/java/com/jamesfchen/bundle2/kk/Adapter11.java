@@ -23,12 +23,18 @@ import com.jamesfchen.bundle2.R;
  * @email: jamesfchen@gmail.com
  * @since: Feb/16/2019  Sat
  */
-public class Adapter11 extends RecyclerView.Adapter<Adapter11.ViewHolder2> {
+public class Adapter11 extends RecyclerView.Adapter<Adapter11.ViewHolder> {
     private List<Object> mDataList = new ArrayList<Object>();
-
+    public boolean isEmpty(){
+        return mDataList.isEmpty();
+    }
     public void setDataList(List<?> dataList) {
         this.mDataList.clear();
         this.mDataList.addAll(dataList);
+        notifyDataSetChanged();
+    }
+    public void removeAll(){
+        this.mDataList.clear();
         notifyDataSetChanged();
     }
 
@@ -39,14 +45,14 @@ public class Adapter11 extends RecyclerView.Adapter<Adapter11.ViewHolder2> {
 
     @NonNull
     @Override
-    public ViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder2(
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dump, parent, false)
         );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder2 holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvPosition.setText("position:" + position);
         position %= 5;
         if (position == 0) {
@@ -64,10 +70,10 @@ public class Adapter11 extends RecyclerView.Adapter<Adapter11.ViewHolder2> {
     }
 
 
-    public static class ViewHolder2 extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvPosition;
 
-        ViewHolder2(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPosition = itemView.findViewById(R.id.tv_name);
 

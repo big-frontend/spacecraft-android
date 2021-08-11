@@ -3,8 +3,10 @@ package jamesfchen.widget.kk;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.jamesfchen.loader.R;
 
@@ -28,17 +30,12 @@ import androidx.recyclerview.widget.SnapHelper;
  * @email: jamesfchen@gmail.com
  * @since: Feb/16/2019  Sat
  * <p>
- * 实现了嵌套RecyclerView+RecyclerView同方向的滑动冲突
  */
-public class PagerView extends CoordinatorLayout {
+public class PagerView extends LinearLayout {
     private RecyclerView mRvContent;
     private TabsLayout mTabsLayout;
     private LinearLayoutManager mLinearLayoutManager;
     private SnapHelper mSnapHelper;
-    public static final int HORIZONTAL = RecyclerView.HORIZONTAL;
-    public static final int VERTICAL = RecyclerView.VERTICAL;
-    private int mOrientation = HORIZONTAL;
-
     public PagerView(@NonNull Context context) {
         this(context, null);
     }
@@ -49,13 +46,11 @@ public class PagerView extends CoordinatorLayout {
 
     public PagerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PagerView, defStyleAttr, 0);
-        mOrientation = typedArray.getInteger(R.styleable.PagerView_pv_orientation, HORIZONTAL);
-        typedArray.recycle();
-
+        int layoutOrientation = getOrientation();
+        int scrollOrientation = layoutOrientation == LinearLayout.VERTICAL ? RecyclerView.HORIZONTAL : RecyclerView.VERTICAL;
         mTabsLayout = new TabsLayout(context);
-        mTabsLayout.setOrientation(mOrientation);
-        CoordinatorLayout.LayoutParams tablp = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mTabsLayout.setOrientation(scrollOrientation);
+        LinearLayout.LayoutParams tablp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mTabsLayout.addOnTabSelectedListener((view, position) -> {
             if (mOnTabSelectedListenerList == null) return;
             for (TabsLayout.OnTabSelectedListener l : mOnTabSelectedListenerList) {
@@ -64,38 +59,38 @@ public class PagerView extends CoordinatorLayout {
                 }
             }
         });
-        addView(mTabsLayout, -1, tablp);
+        addView(mTabsLayout, tablp);
 
         mRvContent = new NestedRecyclerView(context);
-        mLinearLayoutManager = new LinearLayoutManager(context, mOrientation, false);
-        if (mOrientation == HORIZONTAL) {
-            mSnapHelper = new PagerSnapHelper();
-            mSnapHelper.attachToRecyclerView(mRvContent);
-        }
+        mLinearLayoutManager = new LinearLayoutManager(context, scrollOrientation, false);
+        mSnapHelper = new PagerSnapHelper();
+        mSnapHelper.attachToRecyclerView(mRvContent);
         mRvContent.setLayoutManager(mLinearLayoutManager);
 
-        CoordinatorLayout.LayoutParams rvlp = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        rvlp.setBehavior(new NestedScrollingBehavior(context, attrs));
-        addView(mRvContent, -1, rvlp);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int parentMeasuredHeight = getMeasuredHeight();
-        int parentMeasuredWidth = getMeasuredWidth();
-        if (mOrientation == HORIZONTAL) {
-            parentMeasuredHeight = mTabsLayout.getMeasuredHeight() + mRvContent.getMeasuredHeight() + getPaddingTop() + getPaddingBottom();
-        } else {
-            parentMeasuredWidth = mTabsLayout.getMeasuredWidth() + mRvContent.getMeasuredWidth() + getPaddingLeft() + getPaddingRight();
+        LinearLayout.LayoutParams rvlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        if (layoutOrientation == HORIZONTAL){
+            rvlp.width =0;
+            rvlp.weight =1;
         }
-        final int width = View.resolveSizeAndState(parentMeasuredWidth, widthMeasureSpec,
-                getMeasuredState());
-        final int height = View.resolveSizeAndState(parentMeasuredHeight, heightMeasureSpec,
-                getMeasuredState());
-        setMeasuredDimension(width, height);
-    }
+        addView(mRvContent, rvlp);
+        RecyclerView.OnScrollListener listener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    mTabsLayout.animateIndicatorToPosition(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition(), 200);
+                }
+            }
 
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        };
+        mRvContent.addOnScrollListener(listener);
+        mTabsLayout.addOnTabSelectedListener((view, position) -> {
+            mLinearLayoutManager.scrollToPosition(position);
+        });
+    }
     private List<TabsLayout.OnTabSelectedListener> mOnTabSelectedListenerList;
 
     public void addOnTabSelectedListener(TabsLayout.OnTabSelectedListener onTabSelectedListener) {
