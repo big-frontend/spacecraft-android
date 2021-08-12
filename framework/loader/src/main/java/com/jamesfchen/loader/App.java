@@ -36,6 +36,7 @@ import androidx.work.Configuration;
  * @author: hawks jamesf
  * @since: 2017/7/4
  */
+@com.jamesfchen.lifecycle.App
 public class App extends Application implements Configuration.Provider {
     protected static final String TAG = "SpacecraftApp---";
 //    private static AppComponent sAppComponent;

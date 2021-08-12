@@ -14,6 +14,7 @@ apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
     sea = 'all'
 }
+apply plugin: "com.github.jamesfchen.lifecycle-plugin"
 
 android {
     defaultConfig {

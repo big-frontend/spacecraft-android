@@ -54,16 +54,42 @@
         <activity
             android:name="com.jamesfchen.bundle2.drawable.DrawableActivity"
             android:label="@string/title_activity_drawable"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name="com.jamesfchen.bundle2.feedback.FeedbackUtilActivity" />
-        <activity android:name="com.jamesfchen.bundle2.bottomupDialog.BottomUpActivity" />
-        <activity android:name="com.jamesfchen.bundle2.launchmode.FirstActivity" />
-        <activity android:name="com.jamesfchen.bundle2.launchmode.SecondaryActivity" />
-        <activity android:name="com.jamesfchen.bundle2.launchmode.ThirdActivity" />
-        <!--        singleTask(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)：
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".launchmode.SpringBoardActivity"/>
+        <activity android:name="com.jamesfchen.bundle2.feedback.FeedbackUtilActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name="com.jamesfchen.bundle2.bottomupDialog.BottomUpActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleInstanceActivity" android:theme="@style/Theme.AppCompat.Light"
+            android:taskAffinity="com.jamesfchen4"
+            android:launchMode="singleInstance"/>
+        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2NewTaskActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <!--        singleTask(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)：
                     如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
-        <!--            android:launchMode="singleTask" -->
-        <activity android:name="com.jamesfchen.bundle2.launchmode.FourthActivity" />
+        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleTaskInIntentActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleTaskInIntentActivity" android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleTaskManifestActivity" android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleTaskInManifestActivity" android:theme="@style/Theme.AppCompat.Light"
+            android:taskAffinity="com.jamesfchen3"
+            android:launchMode="singleTask"/>
+        <activity android:name=".launchmode.NewTaskActivity"
+            android:taskAffinity="com.jamesfchen2"
+            android:theme="@style/Theme.AppCompat"
+            >
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.spacecraft.com"
+                    android:path="/web"
+                    android:scheme="ispacecraft" />
+                <data
+                    android:host="www.spacecraft.com"
+                    android:path="/web/"
+                    android:scheme="ispacecraft" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".kk.PagerViewActivity"
             android:theme="@style/Theme.AppCompat.Light"
@@ -72,6 +98,8 @@
             android:name=".carousel.ViewPagerActivity"
             android:exported="true" />
         <activity android:name=".pulse.PulseActivity"/>
+
+
     </application>
 
 </manifest>
