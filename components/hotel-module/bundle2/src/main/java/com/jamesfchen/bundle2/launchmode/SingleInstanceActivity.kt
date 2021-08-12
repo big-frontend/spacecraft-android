@@ -26,6 +26,7 @@ import android.widget.FrameLayout
  * @author: hawksjamesf
  * @email: hawksjamesf@gmail.com
  * @since: Aug/24/2020  Mon
+ *
  */
 class SingleInstanceActivity : AppCompatActivity() {
     companion object {
@@ -45,10 +46,10 @@ class SingleInstanceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(Constants.TAG,"onCreate:${intent?.toString()}")
         val bt = Button(this)
-        bt.text = "single instance in intent"
+        bt.text = "single instance in manifest"
         bt.isAllCaps = false
         bt.setOnClickListener {
-            Jump2SingleTaskInIntentActivity.startActivity(this@SingleInstanceActivity)
+            Jump2SingleInstanceManifestActivity.startActivity(this@SingleInstanceActivity)
         }
         val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         lp.gravity = Gravity.CENTER

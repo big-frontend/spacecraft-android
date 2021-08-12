@@ -58,9 +58,7 @@
         <activity android:name=".launchmode.SpringBoardActivity"/>
         <activity android:name="com.jamesfchen.bundle2.feedback.FeedbackUtilActivity" android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name="com.jamesfchen.bundle2.bottomupDialog.BottomUpActivity" android:theme="@style/Theme.AppCompat.Light"/>
-        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleInstanceActivity" android:theme="@style/Theme.AppCompat.Light"
-            android:taskAffinity="com.jamesfchen4"
-            android:launchMode="singleInstance"/>
+
         <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2NewTaskActivity" android:theme="@style/Theme.AppCompat.Light"/>
         <!--        singleTask(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)：
                     如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
@@ -68,12 +66,17 @@
         <activity android:name="com.jamesfchen.bundle2.launchmode.SingleTaskInIntentActivity" android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleTaskManifestActivity" android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name="com.jamesfchen.bundle2.launchmode.SingleTaskInManifestActivity" android:theme="@style/Theme.AppCompat.Light"
-            android:taskAffinity="com.jamesfchen3"
+            android:taskAffinity="com.jamesfchen.taskAffinity1"
             android:launchMode="singleTask"/>
+        <!--        独立占用一个task stack-->
+        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleInstanceManifestActivity" android:theme="@style/Theme.AppCompat.Light"/>
+<!--            android:taskAffinity="com.jamesfchen.taskAffinity2"-->
+        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleInstanceActivity" android:theme="@style/Theme.AppCompat.Light"
+            android:launchMode="singleInstance"/>
         <activity android:name=".launchmode.NewTaskActivity"
-            android:taskAffinity="com.jamesfchen2"
+            android:taskAffinity="com.jamesfchen.taskAffinity3"
             android:theme="@style/Theme.AppCompat"
-            >
+            android:exported="true">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -98,6 +101,9 @@
             android:name=".carousel.ViewPagerActivity"
             android:exported="true" />
         <activity android:name=".pulse.PulseActivity"/>
+        <activity android:name=".optimization.OptimizationActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
 
 
     </application>

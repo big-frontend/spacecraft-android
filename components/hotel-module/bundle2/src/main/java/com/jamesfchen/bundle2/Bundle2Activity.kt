@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.jamesfchen.bundle2.launchmode.Jump2NewTaskActivity
 import com.jamesfchen.bundle2.launchmode.SpringBoardActivity
+import com.jamesfchen.bundle2.optimization.OptimizationActivity
 import com.jamesfchen.bundle2.ui.theme.SpacecraftAndroidTheme
 import java.io.File
 
@@ -40,7 +41,8 @@ class Bundle2Activity : ComponentActivity() {
                 }
             }
         }
-        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
+//        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
+        startActivity(Intent(Bundle2Activity@this, OptimizationActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, NestedScrollActivity::class.java))
     }
