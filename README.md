@@ -18,6 +18,8 @@ SpacecraftAndroid
 # To be Architect
 > 驽马十驾功在不舍
 
+![architecture](./art/architecture.png)
+
 ## Foundation
 ### Common
 - [x] utils
