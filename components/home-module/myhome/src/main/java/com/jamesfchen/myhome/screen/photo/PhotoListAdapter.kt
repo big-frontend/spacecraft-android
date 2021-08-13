@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.drawToBitmap
 import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,7 +29,7 @@ import com.jamesfchen.myhome.screen.photo.model.Item
  */
 class PhotoListAdapter(
         val context: Context
-) : PagedListAdapter<Item, RecyclerView.ViewHolder>(diffCallback)/* ,ListPreloader.PreloadModelProvider<Uri> */ {
+) : PagingDataAdapter<Item, RecyclerView.ViewHolder>(diffCallback)/* ,ListPreloader.PreloadModelProvider<Uri> */ {
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
             override fun areItemsTheSame(oldItem: Item, newItem: Item) = oldItem == newItem
@@ -101,9 +101,7 @@ class PhotoListAdapter(
 
     }
 
-    override fun onCurrentListChanged(previousList: PagedList<Item>?, currentList: PagedList<Item>?) {
-        super.onCurrentListChanged(previousList, currentList)
-    }
+
 //
 //    override fun getPreloadItems(position: Int): MutableList<Uri> = Collections.singletonList(getItem(position))
 //    override fun getPreloadRequestBuilder(item: Uri): RequestBuilder<Drawable>? = requestBuilder.load(item)

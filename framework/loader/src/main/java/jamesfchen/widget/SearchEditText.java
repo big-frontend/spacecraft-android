@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.optimization;
+package jamesfchen.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-class SearchEditText extends EditText {
+public class SearchEditText extends EditText {
     public SearchEditText(@NonNull Context context) {
         super(context);
     }
@@ -23,8 +23,8 @@ class SearchEditText extends EditText {
 
     public static final int CHECK_LIMIT = 1000;
 
-    interface OnTextChangedListener {
-        void onTextChanged(String text);
+    public interface OnTextChangedListener {
+        void onTextChanged(CharSequence text);
     }
 
     OnTextChangedListener l;
@@ -32,12 +32,12 @@ class SearchEditText extends EditText {
     public void setOnTextChangedListener(OnTextChangedListener l) {
         this.l = l;
     }
-    String startText;
+    CharSequence startText;
     Runnable check=new Runnable() {
         @Override
         public void run() {
-            if (!equals(startText,getText().toString())){
-                startText = getText().toString();
+            if (!equals(startText,getText())){
+                startText = getText();
                 l.onTextChanged(startText);
             }
         }

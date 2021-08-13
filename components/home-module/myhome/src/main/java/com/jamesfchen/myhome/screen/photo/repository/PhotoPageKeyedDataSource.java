@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.paging.DataSource;
 import androidx.paging.PageKeyedDataSource;
+import androidx.paging.PagingSource;
+import androidx.paging.PagingState;
+
+import kotlin.coroutines.Continuation;
 
 /**
  * Copyright ® $ 2017
@@ -18,7 +24,8 @@ import androidx.paging.PageKeyedDataSource;
  * @author: jamesfchen
  * @since: Nov/30/2019  Sat
  */
-public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> {
+
+public class PhotoPageKeyedDataSource extends PagingSource<String, Item> {
     NetworkApi api;
     private static final String BASE_URL = "gs://spacecraft-22dc1.appspot.com";
 
@@ -26,24 +33,28 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> 
         this.api = api;
     }
 
+    @Nullable
     @Override
-    public void loadInitial(@NonNull LoadInitialParams<String> params, @NonNull LoadInitialCallback<String, Item> callback) {
-        Log.d("hawks", "PhotoPageKeyedDataSource:loadInitial:");
+    public Object load(@NonNull LoadParams<String> params, @NonNull Continuation<? super LoadResult<String, Item>> continuation) {
+        Log.d("cjf", "PhotoPageKeyedDataSource:load:");
 
         List<Uri> uriList = StockImages.uriList;
         if (!uriList.isEmpty()) {
             ArrayList<Item> items = new ArrayList<>();
-            items.add(new Item(uriList.subList(uriList.size()-2,uriList.size())));
+            items.add(new Item(uriList.subList(uriList.size() - 2, uriList.size())));
             items.add(new Item(uriList.subList(0, 3)));
-            items.add(new Item(uriList.subList(3,4)));
+            items.add(new Item(uriList.subList(3, 4)));
             for (int i = 0; i < 20; i++) {
-                items.add(new Item(uriList.subList(3,4)));
-                items.add(new Item(uriList.subList(4,7)));
+                items.add(new Item(uriList.subList(3, 4)));
+                items.add(new Item(uriList.subList(4, 7)));
             }
-            items.add(new Item(uriList.subList(0,uriList.size())));
-            items.add(new Item(uriList.subList(uriList.size()-8,uriList.size()-2)));
-            items.add(new Item(uriList.subList(uriList.size()-2,uriList.size())));
-            callback.onResult(items, "23", "asdfsdf");
+            items.add(new Item(uriList.subList(0, uriList.size())));
+            items.add(new Item(uriList.subList(uriList.size() - 8, uriList.size() - 2)));
+            items.add(new Item(uriList.subList(uriList.size() - 2, uriList.size())));
+            LoadResult.Page<String, Item> stringItemPage = new LoadResult.Page<>(items, "prevKey", "nextKey");
+            continuation.resumeWith(stringItemPage);
+            return stringItemPage;
+
         } else {
 //            FirebaseStorage storage = FirebaseStorage.getInstance(BASE_URL);
 //            StorageReference storageRef = storage.getReference();
@@ -64,16 +75,13 @@ public class PhotoPageKeyedDataSource extends PageKeyedDataSource<String, Item> 
 //                        });
 //            }
         }
+
+        return new Object();
     }
 
+    @Nullable
     @Override
-    public void loadBefore(@NonNull LoadParams<String> params, @NonNull LoadCallback<String, Item> callback) {
-        Log.d("hawks", "PhotoPageKeyedDataSource:loadBefore:");
-    }
-
-    @Override
-    public void loadAfter(@NonNull LoadParams<String> params, @NonNull LoadCallback<String, Item> callback) {
-        Log.d("hawks", "PhotoPageKeyedDataSource:loadAfter:");
-//        callback.onResult(urlList,null)
+    public String getRefreshKey(@NonNull PagingState<String, Item> pagingState) {
+        return pagingState.getAnchorPosition() != null ? pagingState.closestPageToPosition(pagingState.getAnchorPosition()).getNextKey() : null;
     }
 }

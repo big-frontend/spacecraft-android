@@ -1,11 +1,9 @@
 package com.jamesfchen.myhome.screen.photo.repository
 
 import androidx.annotation.MainThread
-import androidx.lifecycle.LiveData
-import androidx.paging.Config
-import androidx.paging.PagedList
-import androidx.paging.toLiveData
+import androidx.paging.*
 import com.jamesfchen.myhome.screen.photo.model.Item
+import kotlinx.coroutines.flow.Flow
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
@@ -20,7 +18,7 @@ interface PhotoRepository {
 
     fun getNetworkApi(): NetworkApi
 
-    fun getAny(): LiveData<PagedList<Item>>
+    fun getAny(): Flow<PagingData<Item>>
 }
 
 class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
@@ -29,7 +27,6 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
         private val NETWORK_IO = Executors.newFixedThreadPool(3)
     }
 
-    lateinit var dataSourceFactory: PhotoDataSourceFactory
     var executor: Executor
     private val api by lazy {
         NetworkApi.create()
@@ -50,15 +47,55 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
     }
 
     override fun getNetworkApi() = api
+
+    @OptIn(ExperimentalPagingApi::class)
     @MainThread
-    override fun getAny(): LiveData<PagedList<Item>> {
-        dataSourceFactory = PhotoDataSourceFactory(region, api)
-        return dataSourceFactory.toLiveData(
-                config = Config(
+    override fun getAny(): Flow<PagingData<Item>> {
+
+        return when (region) {
+            CacheRegion.IN_MEMORY_BY_ITEM -> {
+                Pager(
+                    config = PagingConfig(
                         pageSize = 30,
                         enablePlaceholders = false,
-                        initialLoadSizeHint = 30 * 2),
-                fetchExecutor = executor)
+                        initialLoadSize = 30 * 2
+                    ),
+                    pagingSourceFactory = {
+                        PhotoPageKeyedDataSource(api)
+                    }
+                ).flow
+            }
+            CacheRegion.IN_MEMORY_BY_PAGE -> {
+                Pager(
+                    config = PagingConfig(
+                        pageSize = 30,
+                        enablePlaceholders = false,
+                        initialLoadSize = 30 * 2
+                    ),
+                    pagingSourceFactory = {
+                        PhotoItemKeyedDataSource(
+                            api
+                        )
+                    }
+                ).flow
+            }
+            else -> {
+                Pager(
+                    config = PagingConfig(
+                        pageSize = 30,
+                        enablePlaceholders = false,
+                        initialLoadSize = 30 * 2
+                    ), remoteMediator = PageKeyedRemoteMediator(api),
+                    pagingSourceFactory = {
+//                        db.posts().postsBySubreddit(subReddit)
+                        PhotoPageKeyedDataSource(
+                            api
+                        )
+                    }
+                ).flow
+            }
+        }
+
     }
 
 }

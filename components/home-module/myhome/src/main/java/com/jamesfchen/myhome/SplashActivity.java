@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.jamesfchen.common.util.ActivityUtil;
+import com.jamesfchen.myhome.screen.photo.PhotoListActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -47,7 +48,7 @@ public class SplashActivity extends AbsPermissionsActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
 
-                    ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                    ActivityUtil.startActivity(PhotoListActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                     finish();
                 });

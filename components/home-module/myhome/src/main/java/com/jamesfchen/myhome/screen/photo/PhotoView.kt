@@ -78,7 +78,6 @@ class PhotoView : AppCompatImageView {
                 loadFull(rawResId)
             }
             PART_LOADER -> {
-                loadFull(rawResId)
                 loadPart(rawResId)
             }
         }

@@ -105,10 +105,10 @@ dependencies {
     api 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.0.0'
     api 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.0.0'
 
-    api "androidx.paging:paging-runtime-ktx:3.0.0"
-    testImplementation "androidx.paging:paging-common-ktx:3.0.0"
-//    api "androidx.paging:paging-rxjava3-ktx:3.0.0"
-    api "androidx.paging:paging-compose:1.0.0-alpha10"
+    api "androidx.paging:paging-runtime-ktx:3.0.1"
+    testImplementation "androidx.paging:paging-common-ktx:3.0.1"
+//    api "androidx.paging:paging-rxjava3-ktx:3.0.1"
+    api "androidx.paging:paging-compose:1.0.0-alpha12"
 
     api "androidx.work:work-runtime:2.5.0"
     api "androidx.work:work-runtime-ktx:2.5.0"

@@ -102,9 +102,7 @@
             android:exported="true" />
         <activity android:name=".pulse.PulseActivity"/>
         <activity android:name=".optimization.OptimizationActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"
             />
-
 
     </application>
 

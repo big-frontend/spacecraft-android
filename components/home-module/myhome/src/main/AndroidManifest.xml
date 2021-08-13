@@ -95,8 +95,8 @@
             android:name="com.jamesfchen.myhome.screen.photo.PhotoActivity"
             android:label="PhoteoActivity"
             android:theme="@style/PhotoTheme" />
-        <activity android:name="com.jamesfchen.myhome.screen.photo.PhotoListActivity" />
-        <activity android:name="com.jamesfchen.myhome.screen.photo.LargePhotoActivity" />
+        <activity android:name="com.jamesfchen.myhome.screen.photo.PhotoListActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name="com.jamesfchen.myhome.screen.photo.LargePhotoActivity" android:theme="@style/Theme.AppCompat.Light"/>
     </application>
 
 </manifest>
