@@ -15,10 +15,7 @@ import java.util.concurrent.Executors
  * @since: Nov/24/2019  Sun
  */
 interface PhotoRepository {
-
-    fun getNetworkApi(): NetworkApi
-
-    fun getAny(): Flow<PagingData<Item>>
+    val flow: Flow<PagingData<Item>>
 }
 
 class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
@@ -26,12 +23,56 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
         private val DISK_IO = Executors.newSingleThreadExecutor()
         private val NETWORK_IO = Executors.newFixedThreadPool(3)
     }
-
     var executor: Executor
     private val api by lazy {
         NetworkApi.create()
     }
+    @ExperimentalPagingApi
+    override val flow: Flow<PagingData<Item>>
+        get(){
+            return when (region) {
+                CacheRegion.IN_MEMORY_BY_ITEM -> {
+                    Pager(
+                        config = PagingConfig(
+                            pageSize = 30,
+                            enablePlaceholders = false,
+                            initialLoadSize = 30 * 2
+                        ),
+                        pagingSourceFactory = {
+                            PhotoItemKeyedDataSource(api)
+                        }
+                    ).flow
+                }
+                CacheRegion.IN_MEMORY_BY_PAGE -> {
+                    Pager(
+                        config = PagingConfig(
+                            pageSize = 30,
+                            enablePlaceholders = false,
+                            initialLoadSize = 30 * 2
+                        ),
+                        pagingSourceFactory = {
+                            PhotoPageKeyedDataSource(api)
 
+                        }
+                    ).flow
+                }
+                else -> {
+                    Pager(
+                        config = PagingConfig(
+                            pageSize = 30,
+                            enablePlaceholders = false,
+                            initialLoadSize = 30 * 2
+                        ), remoteMediator = PageKeyedRemoteMediator(api),
+                        pagingSourceFactory = {
+//                        db.posts().postsBySubreddit(subReddit)
+                            PhotoPageKeyedDataSource(
+                                api
+                            )
+                        }
+                    ).flow
+                }
+            }
+        }
     init {
         executor = when (region) {
             CacheRegion.IN_MEMORY_BY_PAGE -> {
@@ -44,58 +85,6 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
                 DISK_IO
             }
         }
-    }
-
-    override fun getNetworkApi() = api
-
-    @OptIn(ExperimentalPagingApi::class)
-    @MainThread
-    override fun getAny(): Flow<PagingData<Item>> {
-
-        return when (region) {
-            CacheRegion.IN_MEMORY_BY_ITEM -> {
-                Pager(
-                    config = PagingConfig(
-                        pageSize = 30,
-                        enablePlaceholders = false,
-                        initialLoadSize = 30 * 2
-                    ),
-                    pagingSourceFactory = {
-                        PhotoPageKeyedDataSource(api)
-                    }
-                ).flow
-            }
-            CacheRegion.IN_MEMORY_BY_PAGE -> {
-                Pager(
-                    config = PagingConfig(
-                        pageSize = 30,
-                        enablePlaceholders = false,
-                        initialLoadSize = 30 * 2
-                    ),
-                    pagingSourceFactory = {
-                        PhotoItemKeyedDataSource(
-                            api
-                        )
-                    }
-                ).flow
-            }
-            else -> {
-                Pager(
-                    config = PagingConfig(
-                        pageSize = 30,
-                        enablePlaceholders = false,
-                        initialLoadSize = 30 * 2
-                    ), remoteMediator = PageKeyedRemoteMediator(api),
-                    pagingSourceFactory = {
-//                        db.posts().postsBySubreddit(subReddit)
-                        PhotoPageKeyedDataSource(
-                            api
-                        )
-                    }
-                ).flow
-            }
-        }
-
     }
 
 }

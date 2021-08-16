@@ -11,6 +11,9 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.perf.metrics.Trace;
 import com.jamesfchen.common.util.Util;
 import com.orhanobut.logger.Logger;
 
@@ -87,9 +90,10 @@ public class App extends Application implements Configuration.Provider {
      * 一个空的ContentProvider耗时2ms
      * 2830ms优化到两位位数
      */
+    @AddTrace(name = "App#onCreate",enabled = true)
     @Override
     public void onCreate() {
-        Log.d("cjf","App#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
+        Log.d("cjf","ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
         super.onCreate();
         String processName = getProcessName(android.os.Process.myPid());
         Logger.t(TAG).d("processName：" + processName);

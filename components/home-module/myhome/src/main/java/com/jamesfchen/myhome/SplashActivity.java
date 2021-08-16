@@ -53,8 +53,8 @@ public class SplashActivity extends AbsPermissionsActivity {
                     finish();
                 });
 
-//        myTrace = FirebasePerformance.getInstance().newTrace("loadData");r
-//        myTrace.start();r
+//        myTrace = FirebasePerformance.getInstance().newTrace("loadData");
+//        myTrace.start();
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 //        mHttpMetric = FirebasePerformance.getInstance().newHttpMetric("https://www.google.com", FirebasePerformance.HttpMethod.GET);
 //        mHttpMetric.start();

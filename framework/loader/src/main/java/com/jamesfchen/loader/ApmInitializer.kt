@@ -5,6 +5,9 @@ import android.util.Log
 import androidx.startup.Initializer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ProcessUtils
+import com.google.firebase.FirebaseApp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.perf.metrics.AddTrace
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.bugly.crashreport.CrashReport.UserStrategy
 import com.tencent.matrix.Matrix
@@ -21,8 +24,9 @@ import com.tencent.sqlitelint.config.SQLiteLintConfig
 import com.jamesfchen.common.DynamicConfigImplDemo
 
 class ApmInitializer : Initializer<Unit> {
+    @AddTrace(name = "Apminitializer#create",enabled = true)
     override fun create(context: Context) {
-        Log.d("cjf","ApmInitializer#create")
+        Log.d("cjf", "ApmInitializer#create")
 
         val strategy = UserStrategy(context)
 //        strategy.setAppVersion(BuildConfig.VERSION_NAME);
@@ -39,15 +43,15 @@ class ApmInitializer : Initializer<Unit> {
         //        CrashReport.setUserSceneTag(context, 9527); // 上报后的Crash会显示该标签
         CrashReport.setIsDevelopmentDevice(context, BuildConfig.DEBUG)
         CrashReport.initCrashReport(context, strategy)
-//        FirebaseOptions firebaseOptions = new FirebaseOptions.Builder()
+//        val firebaseOptions =  FirebaseOptions.Builder()
+//                .setProjectId("spacecraft-22dc1")
 //                .setApplicationId(BuildConfig.APPLICATION_ID)
 //                .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
-//                .setProjectId("spacecraft-22dc1")
 //                .setStorageBucket("spacecraft-22dc1.appspot.com")
-//                .build();
-//        FirebaseApp.initializeApp(this,firebaseOptions);
-//        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
-//        crashlytics.setCrashlyticsCollectionEnabled(true);
+//                .build()
+//        FirebaseApp.initializeApp(context,firebaseOptions);
+        val crashlytics = FirebaseCrashlytics.getInstance()
+        crashlytics.setCrashlyticsCollectionEnabled(true)
 
         startMatrix()
     }

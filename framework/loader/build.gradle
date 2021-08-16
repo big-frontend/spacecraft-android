@@ -35,9 +35,9 @@ dependencies {
 //    api project(path: ':framework:flutter')
 //    api project(path: ':framework:router')
 
-    api 'com.google.firebase:firebase-analytics'
-    api 'com.google.firebase:firebase-crashlytics'
-    api 'com.google.firebase:firebase-crashlytics-ndk'
+//    api 'com.google.firebase:firebase-analytics'
+//    api 'com.google.firebase:firebase-crashlytics'
+//    api 'com.google.firebase:firebase-crashlytics-ndk'
     //crash and anr
     api 'com.tencent.bugly:nativecrashreport:3.7.1'
     api 'com.tencent.bugly:crashreport:3.0.0'

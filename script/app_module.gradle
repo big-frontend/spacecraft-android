@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir.path}/script/base_module.gradle"
 
+//apply plugin: "com.github.jamesfchen.lifecycle-plugin"
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
@@ -14,7 +15,6 @@ apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
     sea = 'all'
 }
-apply plugin: "com.github.jamesfchen.lifecycle-plugin"
 
 android {
     defaultConfig {

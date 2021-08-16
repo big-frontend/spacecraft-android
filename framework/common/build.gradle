@@ -192,6 +192,9 @@ dependencies {
     api platform('com.google.firebase:firebase-bom:28.0.1')
     api 'com.google.firebase:firebase-perf'
     api 'com.google.firebase:firebase-perf-ktx'
+    api 'com.google.firebase:firebase-crashlytics'
+    api 'com.google.firebase:firebase-crashlytics-ndk'
+    api 'com.google.firebase:firebase-analytics'
 
     api 'com.facebook.stetho:stetho:1.5.1'
     api 'com.facebook.stetho:stetho-js-rhino:1.5.1'

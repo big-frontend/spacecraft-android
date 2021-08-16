@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
@@ -30,7 +31,7 @@ class PhotoListActivity : AppCompatActivity() {
             }
         }
     }
-
+    @AddTrace(name = "PhotoListActivity#onCreate",enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //init view
@@ -68,5 +69,13 @@ class PhotoListActivity : AppCompatActivity() {
                adapter.submitData(pagingData)
            }
        }
+    }
+    @AddTrace(name = "PhotoListActivity#onStart",enabled = true)
+    override fun onStart() {
+        super.onStart()
+    }
+    @AddTrace(name = "PhotoListActivity#onResume",enabled = true)
+    override fun onResume() {
+        super.onResume()
     }
 }

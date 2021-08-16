@@ -92,12 +92,12 @@
 <!--            android:process=".androidx.startup"-->
 <!--            tools:node="remove"-->
             <meta-data
+                android:name="com.jamesfchen.loader.ApmInitializer"
+                android:value="androidx.startup" />
+            <meta-data
                 android:name="com.jamesfchen.loader.RouterInitializer"
                 android:value="androidx.startup" />
             <!--                tools:node="remove"-->
-            <meta-data
-                android:name="com.jamesfchen.loader.ApmInitializer"
-                android:value="androidx.startup" />
             <meta-data
                 android:name="com.jamesfchen.loader.LoggerInitializer"
                 android:value="androidx.startup" />
