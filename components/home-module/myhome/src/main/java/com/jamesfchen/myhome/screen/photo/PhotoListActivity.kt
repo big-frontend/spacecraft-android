@@ -2,7 +2,10 @@ package com.jamesfchen.myhome.screen.photo
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
 import android.widget.HorizontalScrollView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,9 +19,10 @@ import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
+import com.tencent.matrix.util.MatrixLog
 import jamesfchen.widget.Divider
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
-import org.jetbrains.anko.coroutines.experimental.asReference
 
 class PhotoListActivity : AppCompatActivity() {
     lateinit var rvPhotoList: RecyclerView
@@ -26,7 +30,7 @@ class PhotoListActivity : AppCompatActivity() {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val repo = ServiceLocator.instance(this@PhotoListActivity)
-                        .getPhotoRepository(CacheRegion.IN_MEMORY_BY_PAGE)
+                    .getPhotoRepository(CacheRegion.IN_MEMORY_BY_PAGE)
                 return PhotoListViewModel(application, repo) as T
             }
         }
@@ -49,7 +53,13 @@ class PhotoListActivity : AppCompatActivity() {
                 adapter.glideRequest.clear(it)
             }
         }
+        rvPhotoList.setOnTouchListener { view, motionEvent ->
+//            MatrixLog.i("TestPluginListener", "onTouch=$motionEvent")
+            SystemClock.sleep(80)
+            return@setOnTouchListener false
+        }
         setContentView(rvPhotoList)
+        lifecycleScope.launchWhenCreated { }
 
         //init data
 
@@ -64,11 +74,15 @@ class PhotoListActivity : AppCompatActivity() {
 //            }
 //        }).attachToRecyclerView(rvPhotoList)
 //        val observer = Observer(adapter::submitList)
-       lifecycleScope.launchWhenResumed {
-           viewModel.allImages.collectLatest { pagingData ->
-               adapter.submitData(pagingData)
-           }
-       }
+        lifecycleScope.launchWhenResumed {
+            delay(20_0000)
+            Log.d("cjf", "launchWhenResumed")
+        }
+        lifecycleScope.launchWhenResumed {
+            viewModel.allImages.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
+            }
+        }
     }
     @AddTrace(name = "PhotoListActivity#onStart",enabled = true)
     override fun onStart() {

@@ -61,6 +61,7 @@ public class App extends Application implements Configuration.Provider {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        app = this;
         start = SystemClock.elapsedRealtime();
         MultiDex.install(this);
         Log.d("cjf","MultiDex#install消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
@@ -98,7 +99,7 @@ public class App extends Application implements Configuration.Provider {
         String processName = getProcessName(android.os.Process.myPid());
         Logger.t(TAG).d("processName：" + processName);
 //        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
-        app = this;
+
 //        sNetComponent = DaggerNetComponent.builder()
 //                .netModule(new NetModule())
 //                .build();

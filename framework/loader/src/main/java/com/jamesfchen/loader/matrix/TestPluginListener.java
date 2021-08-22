@@ -1,4 +1,4 @@
-package com.jamesfchen.common;
+package com.jamesfchen.loader.matrix;
 
 import android.content.Context;
 
@@ -16,7 +16,7 @@ public class TestPluginListener extends DefaultPluginListener {
 
     @Override
     public void onReportIssue(Issue issue) {
-        super.onReportIssue(issue);
+//        super.onReportIssue(issue);
         MatrixLog.e(TAG, issue.toString());
 
         //add your code to process data

@@ -52,6 +52,13 @@ class PhotoListAdapter(
         return object : RecyclerView.ViewHolder(scrollView) {}
     }
 
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        super.onBindViewHolder(holder, position, payloads)
+    }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position) ?: return
         val linearLayout = (holder.itemView as HorizontalScrollView).getChildAt(0) as LinearLayout

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jamesfchen.common;
+package com.jamesfchen.loader.matrix;
 
 /** @author zhoushaotao
 *   Created by zhoushaotao on 2018/10/9.

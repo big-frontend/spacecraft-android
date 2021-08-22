@@ -128,5 +128,33 @@ dependencies {
     /**
      * ================================ui end=====================================
      */
+
+    /**
+     * ================================apm start=====================================
+     */
+    def matrixModules = [
+            "matrix-commons",
+            "matrix-battery-canary",
+            "matrix-android-lib",
+            "matrix-android-commons",
+            "matrix-trace-canary",
+            "matrix-resource-canary-android",
+            "matrix-resource-canary-common",
+            "matrix-io-canary",
+            "matrix-sqlite-lint-android-sdk",
+            "matrix-hooks",
+            "matrix-fd",
+            "matrix-jectl",
+            "matrix-backtrace",
+    ]
+
+    matrixModules.each { moduleName ->
+        api group: "com.tencent.matrix", name: moduleName, version: MATRIX_VERSION, changing: true
+    }
+
+    // releaseImplementation group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: MATRIX_VERSION, changing: true
+    /**
+     * ================================apm end=====================================
+     */
 }
 

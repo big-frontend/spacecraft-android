@@ -83,7 +83,7 @@ class RecorderService : Service() {
             val notification = Notification.Builder(this, channelId)
                     .setContentTitle("this is title")
                     .setContentText("this is text")
-                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setSmallIcon(R.drawable.ic_battery_20_apricot_24dp)
                     .setContentIntent(pendingIntent)
                     .setTicker("this is ticker")
                     .build()

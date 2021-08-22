@@ -1,5 +1,6 @@
 package com.jamesfchen.bundle2
 
+import kotlinx.coroutines.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,27 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
+        GlobalScope.launch {
+            delay(10_000)
+            withContext(Dispatchers.Default){
+                println("main before")
+                withContext<Unit>(Dispatchers.IO){
+
+                    println("io")
+
+                }
+                println("main after")
+
+            }
+
+        }
+        GlobalScope.launch {
+            withContext(Dispatchers.Default){
+                println("main2")
+            }
+
+        }
+        Thread.sleep(20_000)
         assertEquals(4, 2 + 2)
     }
 }

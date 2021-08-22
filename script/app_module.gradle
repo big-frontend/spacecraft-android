@@ -11,10 +11,13 @@ apply plugin: 'com.google.gms.google-services'
 //    appId = '3d62251014'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
+//apply plugin: 'com.google.osdetector'
 apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
     sea = 'all'
 }
+
+ext.removeUnusedResourcesV2Enable = true
 
 android {
     defaultConfig {
@@ -81,18 +84,62 @@ android {
             universalApk false
         }
     }
-    packagingOptions {
-        exclude 'META-INF/proguard/coroutines.pro'
-    }
+
 //    dexOptions {
 //        preDexLibraries true
 //        javaMaxHeapSize "8g"
 //        maxProcessCount 8
 //        dexInProcess = true
 //    }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/coroutines.pro'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libwechatbacktrace.so'
+        pickFirst 'lib/arm64-v8a/libwechatbacktrace.so'
+    }
+
+    if (!removeUnusedResourcesV2Enable) {
+        applicationVariants.all { variant ->
+            if (variant.name.equalsIgnoreCase("debug")) {
+                packageDebug.doLast {
+                    ProcessBuilder processBuilder = new ProcessBuilder();
+                    println configurations.apkCheckerDependency.getAt(0).getAbsolutePath()
+                    processBuilder.command("java",
+                            "-jar", configurations.apkCheckerDependency.getAt(0).getAbsolutePath(),
+                            "--apk", variant.outputs.first().outputFile.getAbsolutePath(),
+                            "--output", project.getProjectDir().getAbsolutePath() + "/unused_resources",
+                            "--format", "json",
+                            "-unusedResources", "--rTxt", project.getBuildDir().getAbsolutePath() + "/intermediates/${AgpCompat.getIntermediatesSymbolDirName.invoke()}/${variant.name}/R.txt");
+                    Process process = processBuilder.start();
+                    process.waitFor()
+                    println process.inputStream.text
+                    println process.errorStream.text
+                    File outputFile = new File(project.getProjectDir().getAbsolutePath() + "/unused_resources.json");
+//                    if (outputFile.exists()) {
+//                        Gson gson = new Gson();
+//                        JsonArray jsonArray = gson.fromJson(outputFile.text, JsonArray.class);
+//                        for (int i = 0; i < jsonArray.size(); i++) {
+//                            if (jsonArray.get(i).asJsonObject.get("taskType").asInt == 12) {
+//                                JsonArray resList = jsonArray.get(i).asJsonObject.get("unused-resources").asJsonArray;
+//                                for (int j = 0; j < resList.size(); j++) {
+//                                    project.ext.unusedResourcesSet.add(resList.get(j).asString);
+//                                }
+//                                println "find unused resources:\n" + unusedResourcesSet
+//                                break;
+//                            }
+//                        }
+//                        outputFile.delete();
+//                    }
+                }
+            }
+        }
+    }
 }
 configurations {
     apkCheckerDependency
+    sevenZipDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
 //    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
 }
@@ -104,4 +151,66 @@ dependencies {
         api d
     }
     teenager("${project.path} app end ========================================================================================")
+    apkCheckerDependency("com.tencent.matrix:matrix-apk-canary:${MATRIX_VERSION}")
+    apkCheckerDependency group: "com.tencent.matrix", name: "matrix-apk-canary", version: MATRIX_VERSION, changing: true
+    sevenZipDependency('com.tencent.mm:SevenZip:1.2.17') {
+        artifact {
+            name = "SevenZip"
+            type = 'exe'
+        }
+    }
+}
+if (!removeUnusedResourcesV2Enable) {
+    project.ext.unusedResourcesSet = new HashSet<String>()
+}
+apply plugin: 'com.tencent.matrix-plugin'
+matrix {
+
+    logLevel "D"
+
+    trace {
+        enable = true
+        baseMethodMapFile = "${project.projectDir}/matrixTrace/methodMapping.txt"
+        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+    }
+//    removeUnusedResources {
+//        variant = "debug"
+//
+//        v2 = removeUnusedResourcesV2Enable
+//
+//        if (!v2) {
+//            unusedResources = project.ext.unusedResourcesSet
+//        }
+//
+//        enable true
+//        needSign true
+//        shrinkArsc true
+//        shrinkDuplicates true
+//        use7zip = true
+//        zipAlign = true
+//        embedResGuard true
+//        apkCheckerPath = "${project.configurations.apkCheckerDependency.resolve().find { it.name.startsWith("matrix-apk-canary") }.getAbsolutePath()}"
+//        sevenZipPath = "${project.configurations.sevenZipDependency.resolve().getAt(0).getAbsolutePath()}"
+//        //Notice: You need to modify the  value of $apksignerPath on different platform. the value below only suitable for Mac Platform,
+//        //if on Windows, you may have to  replace apksigner with apksigner.bat.
+//        apksignerPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${android.getBuildToolsVersion()}/apksigner"
+//        zipAlignPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${android.getBuildToolsVersion()}/zipalign"
+//        ignoreResources = ["R.id.*", "R.bool.*", "R.layout.unused_layout"]
+//    }
+}
+
+project.tasks.whenTaskAdded {
+    if (it.name?.equals("assembleDebug") || it.name?.equals("assembleRelease")) {
+        it.dependsOn "cleanBuildDirTask".with { taskName ->
+            if (tasks.findByName(taskName)) {
+                return tasks.findByName(taskName)
+            }
+            return task(taskName) {
+                doFirst {
+                    logger.lifecycle "Clean app bulid dir before assemble"
+                    project.file(project.buildDir).deleteDir()
+                }
+            }
+        }
+    }
 }
