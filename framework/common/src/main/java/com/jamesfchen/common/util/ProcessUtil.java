@@ -17,8 +17,8 @@ import java.util.List;
 import androidx.annotation.Nullable;
 
 public final class ProcessUtil {
-    public static String isMainProcess(){
-        Utils.getApp().getPackageName().equals(getMyProcessName());
+    public static boolean isMainProcess(){
+        return Utils.getApp().getPackageName().equals(getMyProcessName());
     }
     @Nullable
     public static String getMyProcessName(){
