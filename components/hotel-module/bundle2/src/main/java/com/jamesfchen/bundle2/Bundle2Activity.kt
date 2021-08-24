@@ -41,8 +41,8 @@ class Bundle2Activity : ComponentActivity() {
                 }
             }
         }
-//        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
-        startActivity(Intent(Bundle2Activity@this, OptimizationActivity::class.java))
+        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
+//        startActivity(Intent(Bundle2Activity@this, OptimizationActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, NestedScrollActivity::class.java))
     }

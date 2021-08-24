@@ -8,4 +8,5 @@ android {
 }
 dependencies {
 //    implementation project(path: ':components:hotel-module:foundation')
+    implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
 }

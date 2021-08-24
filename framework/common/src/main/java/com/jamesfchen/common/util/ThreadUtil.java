@@ -1,9 +1,5 @@
 package com.jamesfchen.common.util;
 
-import androidx.annotation.GuardedBy;
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
@@ -13,6 +9,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import androidx.annotation.GuardedBy;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author: jamesfchen
  * @since: Aug/08/2021  Sun
  */
-public class ThreadPoolUtil {
+public class ThreadUtil {
     public static final int TYPE_IO = 0;
     public static final int TYPE_CPU = 1;
     public static final int TYPE_SINGLE = 2;

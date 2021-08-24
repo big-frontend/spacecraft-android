@@ -7,13 +7,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.graphics.Color;
+import android.os.Debug;
 import android.os.SystemClock;
+import android.os.Trace;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.AddTrace;
-import com.google.firebase.perf.metrics.Trace;
 import com.jamesfchen.common.util.Util;
 import com.orhanobut.logger.Logger;
 
@@ -84,6 +85,8 @@ public class App extends Application implements Configuration.Provider {
             }
         }
         start = SystemClock.elapsedRealtime();
+//        Debug.startMethodTracing(getExternalCacheDir().getParent()+"/contentprovidertrace");
+        Trace.beginSection("contentprovidertrace");
     }
 
     /**
@@ -95,6 +98,8 @@ public class App extends Application implements Configuration.Provider {
     @Override
     public void onCreate() {
         Log.d("cjf","ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
+//        Debug.stopMethodTracing();
+        Trace.endSection();
         super.onCreate();
         String processName = getProcessName(android.os.Process.myPid());
         Logger.t(TAG).d("processName：" + processName);
@@ -148,36 +153,6 @@ public class App extends Application implements Configuration.Provider {
 //                    }
 //                });
     }
-
-    /**
-     * 获取进程号对应的进程名
-     *
-     * @param pid 进程号
-     * @return 进程名
-     */
-    private static String getProcessName(int pid) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
-            String processName = reader.readLine();
-            if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim();
-            }
-            return processName;
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-        return null;
-    }
-
 
 //    public static AppComponent getAppComponent() {
 //        return sAppComponent;
