@@ -1,6 +1,4 @@
-package com.jamesfchen.myhome;
-
-import com.jamesfchen.loader.App;
+package com.jamesfchen;
 
 import dagger.Module;
 
@@ -14,11 +12,7 @@ import dagger.Module;
  */
 @Module
 public class AppModule {
-
-    private App app;
-
-    AppModule(App app) {
-        this.app = app;
+    public AppModule() {
     }
 
 //    @Provides

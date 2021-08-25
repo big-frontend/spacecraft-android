@@ -1,5 +1,6 @@
-package com.jamesfchen.myhome.scopes;
+package com.jamesfchen.scopes;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -12,7 +13,8 @@ import javax.inject.Scope;
  * @author: jamesfchen
  * @since: Nov/10/2018  Sat
  */
+@Documented
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UserScope {
+public @interface ActivityScope {
 }

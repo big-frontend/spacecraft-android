@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: hawks.jamesf
+ * @author: jamesfchen
  * @since: Oct/24/2018  Wed
  */
 @Deprecated("")

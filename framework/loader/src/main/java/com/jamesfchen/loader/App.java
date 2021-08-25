@@ -87,8 +87,6 @@ import androidx.work.Configuration;
  */
 @com.jamesfchen.lifecycle.App
 public class App extends Application implements Configuration.Provider {
-//    private static AppComponent sAppComponent;
-//    private static NetComponent sNetComponent;
     private static App app;
     public static App getInstance() {
         if (app == null) {
@@ -140,29 +138,11 @@ public class App extends Application implements Configuration.Provider {
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();
-
-//        sNetComponent = DaggerNetComponent.builder()
-//                .netModule(new NetModule())
-//                .build();
-
-//        sAppComponent = DaggerAppComponent.builder()
-////                .netComponent(sNetComponent)
-//                .appModule(new AppModule(this))
-//                .sigInModule(new SigInModule())
-//                .build();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 //        Utils.init(this);
         Util.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
     }
-
-//    public static AppComponent getAppComponent() {
-//        return sAppComponent;
-//    }
-
-//    public static NetComponent getNetComponet() {
-//        return sNetComponent;
-//    }
 
     @NonNull
     @Override

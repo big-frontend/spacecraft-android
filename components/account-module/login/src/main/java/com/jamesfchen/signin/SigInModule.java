@@ -12,11 +12,8 @@ import dagger.Module;
 @Module
 public class SigInModule {
 
-//    private App app;
-//
-//    SigInModule(App app) {
-//        this.app = app;
-//    }
+    public SigInModule() {
+    }
 
 //    @Provides
 //    @ActivityScope
