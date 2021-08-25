@@ -120,20 +120,6 @@ class ApmInitializer : Initializer<Unit> {
             )
             appInfoLabels.add(
                 AppInfoLabel(
-                    "VersionName",
-                    pInfo.versionName,
-                    "https://github.com/Kyson/AndroidGodEye"
-                )
-            )
-            appInfoLabels.add(
-                AppInfoLabel(
-                    "VersionCode",
-                    pInfo.versionCode.toString(),
-                    "https://github.com/Kyson/AndroidGodEye"
-                )
-            )
-            appInfoLabels.add(
-                AppInfoLabel(
                     "BuildType",
                     BuildConfig.BUILD_TYPE,
                     "https://github.com/Kyson/AndroidGodEye"

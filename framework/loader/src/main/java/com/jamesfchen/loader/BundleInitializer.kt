@@ -7,7 +7,7 @@ import androidx.startup.Initializer
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.firebase.perf.metrics.AddTrace
 
-class RouterInitializer : Initializer<Unit> {
+class BundleInitializer : Initializer<Unit> {
     @AddTrace(name = "RouterInitializer#create",enabled = true)
     override fun create(context: Context) {
         Log.d("cjf","RouterInitializer#create")

@@ -1,12 +1,5 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir.path}/script/base_module.gradle"
-apply plugin: 'cn.hikyson.methodcanary.plugin'
-AndroidGodEye {
-    enableLifecycleTracer true
-    enableMethodTracer true
-//    instrumentationRuleFilePath "AndroidGodEye-MethodCanary.js"
-//    instrumentationRuleIncludeClassNamePrefix(["com/jamesfchen/loader"])
-}
 //apply plugin: "com.github.jamesfchen.lifecycle-plugin"
 apply plugin: 'com.google.firebase.appdistribution'
 //apply plugin: 'com.google.firebase.firebase-perf'
@@ -22,7 +15,13 @@ apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
     sea = 'all'
 }
-
+apply plugin: 'cn.hikyson.methodcanary.plugin'
+AndroidGodEye {
+    enableLifecycleTracer true
+    enableMethodTracer true
+//    instrumentationRuleFilePath "AndroidGodEye-MethodCanary.js"
+//    instrumentationRuleIncludeClassNamePrefix(["com/jamesfchen/loader"])
+}
 ext.removeUnusedResourcesV2Enable = true
 
 android {

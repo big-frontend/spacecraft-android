@@ -15,5 +15,5 @@ function isExclude(classInfo,methodInfo){
 }
 
 function isInclude(classInfo,methodInfo){
-    return classInfo.name.startsWith('com/jamsefchen/loader')
+    return classInfo.name.startsWith('com/jamsefchen')
 }

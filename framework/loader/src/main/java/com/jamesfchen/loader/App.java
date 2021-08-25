@@ -12,7 +12,6 @@ import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
-import com.orhanobut.logger.Logger;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -22,19 +21,42 @@ import androidx.work.Configuration;
 /**
  * Copyright ® $ 2017
  * All right reserved.
- * Code Link : https://github.com/HawksJamesf/Spacecraft
  *
- * @author: hawks jamesf
+ * @author:  jamesfchen
  * @since: 2017/7/4
+ *
+ * App启动分为冷启动、热启动
+ * 冷启动：
+ *  - 基础组件 amp bundle av image storage network 必须放在主线程初始
+ *  - 其他组件 map 可以异步初始化
+ * 热启动：
+ *
+ * App#attachBaseContext --> ContentProvider#attachInfo --> ContentProvider#onCreate--->App#onCreate
+ *
+ * Android团队提供的startup库，主要是在ContentProvider#onContext初始化各个Initializer
+ * ps: 关于startup库实现的吐槽点，用ContentProvider去做初始化，感觉没啥意义，多了一次跨进程创建ContentProvider(空ContentProvider耗时2ms)，
+ * 对于追求极致的启动速度，不应该减少这个操作嘛。为什么就不放在Application这个类中做，我觉得可以把InitializationProvider的代码整合到Application中。
+ *
+ * 总之一句话startup库就是垃圾，应该解决的是各个启动项谁可以同步初始化，谁可以异步初始化。fast start up.
+ *
+ *
+ * matrix：
+ *  * firstMethod.i       LAUNCH_ACTIVITY   onWindowFocusChange   LAUNCH_ACTIVITY    onWindowFocusChange
+ *  * ^                         ^                   ^                     ^                  ^
+ *  * |                         |                   |                     |                  |
+ *  * |---------app---------|---|---firstActivity---|---------...---------|---careActivity---|
+ *  * |<--applicationCost-->|
+ *  * |<----firstScreenCost---->|
+ *  * |<---------------------------allCost(cold)------------------------->|
+ *  * .                         |<--allCost(warm)-->|
+ *
+ *  优化点：异步任务可以在splash页面onWindowFocusChange也就是出现窗口时候await，等任务都执行完成，才让其进入正在的main页面
  */
 @com.jamesfchen.lifecycle.App
 public class App extends Application implements Configuration.Provider {
-    protected static final String TAG = "SpacecraftApp---";
 //    private static AppComponent sAppComponent;
 //    private static NetComponent sNetComponent;
     private static App app;
-//    private static FirebaseRemoteConfig sFirebaseRemoteConfig;
-
     public static App getInstance() {
         if (app == null) {
             throw new IllegalStateException("app is null");
@@ -45,15 +67,12 @@ public class App extends Application implements Configuration.Provider {
     private static final String PROCESS_1 = "com.hawksjamesf.spacecraft.debug";
     private static final String PROCESS_2 = ":mock_server";
     private static final String PROCESS_3 = ":mock_jobserver";
-    long start = 0;
+    private long start = 0;
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        app = this;
-        start = SystemClock.elapsedRealtime();
         MultiDex.install(this);
-        Log.d("cjf","MultiDex#install消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
-//        MessageStatic.init(this);
+        app = this;
         Log.d("cjf","App#attachBaseContext");
         for (PackageInfo pack : getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS)) {
             ProviderInfo[] providers = pack.providers;
@@ -88,9 +107,6 @@ public class App extends Application implements Configuration.Provider {
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();
-        String processName = getProcessName();
-        Logger.t(TAG).d("processName：" + processName);
-//        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
 
 //        sNetComponent = DaggerNetComponent.builder()
 //                .netModule(new NetModule())
@@ -105,40 +121,6 @@ public class App extends Application implements Configuration.Provider {
 //        Utils.init(this);
         Util.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
-
-//        sFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-//        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-//                .setMinimumFetchIntervalInSeconds(3600)
-//                .setFetchTimeoutInSeconds(60 * 60)
-//                .build();
-//        sFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
-//        sFirebaseRemoteConfig.ensureInitialized();
-//        sFirebaseRemoteConfig.fetchAndActivate()
-//                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Boolean> task) {
-//                        Log.i(TAG, "onComplete-perf_enable:" + sFirebaseRemoteConfig.getBoolean("perf_enable"));
-//                        FirebasePerformance.getInstance().setPerformanceCollectionEnabled(sFirebaseRemoteConfig.getBoolean("perf_enable"));
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.i(TAG, "onFailure");
-//                    }
-//                })
-//                .addOnSuccessListener(new OnSuccessListener<Boolean>() {
-//                    @Override
-//                    public void onSuccess(Boolean aBoolean) {
-//                        Log.i(TAG, "onSuccess:" + aBoolean);
-//                    }
-//                })
-//                .addOnCanceledListener(new OnCanceledListener() {
-//                    @Override
-//                    public void onCanceled() {
-//                        Log.i(TAG, "onCanceled");
-//                    }
-//                });
     }
 
 //    public static AppComponent getAppComponent() {
@@ -147,10 +129,6 @@ public class App extends Application implements Configuration.Provider {
 
 //    public static NetComponent getNetComponet() {
 //        return sNetComponent;
-//    }
-
-//    public static FirebaseRemoteConfig getFirebaseRemoteConfig() {
-//        return sFirebaseRemoteConfig;
 //    }
 
     @NonNull

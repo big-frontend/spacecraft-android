@@ -88,14 +88,12 @@
             android:exported="false"
             tools:node="merge"
             >
-<!--            android:multiprocess="true"-->
-<!--            android:process=".androidx.startup"-->
 <!--            tools:node="remove"-->
             <meta-data
                 android:name="com.jamesfchen.loader.ApmInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.RouterInitializer"
+                android:name="com.jamesfchen.loader.BundleInitializer"
                 android:value="androidx.startup" />
             <!--                tools:node="remove"-->
             <meta-data
@@ -103,6 +101,12 @@
                 android:value="androidx.startup" />
             <meta-data
                 android:name="com.jamesfchen.loader.ImageInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.StorageInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.CrossPlatformInitializer"
                 android:value="androidx.startup" />
         </provider>
 
