@@ -23,6 +23,7 @@
         <!--<item name="android:windowBackground">?android:attr/colorBackground</item>-->
 
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">true</item>
 
         <!--支持3.0以上-->
         <!--<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>-->

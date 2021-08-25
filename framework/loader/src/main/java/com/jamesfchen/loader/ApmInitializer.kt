@@ -7,7 +7,6 @@ import androidx.startup.Initializer
 import cn.hikyson.godeye.core.GodEye
 import cn.hikyson.godeye.core.GodEyeConfig
 import cn.hikyson.godeye.monitor.GodEyeMonitor
-import cn.hikyson.godeye.monitor.modules.appinfo.AppInfoLabel
 import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
@@ -108,25 +107,6 @@ class ApmInitializer : Initializer<Unit> {
     private suspend fun startAndroidGodEye(cxt: Context) = withContext(Dispatchers.Default) {
         GodEye.instance().init(cxt as Application)
         GodEyeMonitor.work(cxt, 5391)
-        GodEyeMonitor.injectAppInfoConext {
-            val appInfoLabels: MutableList<AppInfoLabel> = ArrayList<AppInfoLabel>()
-            val pInfo = cxt.packageManager.getPackageInfo(cxt.packageName, 0)
-            appInfoLabels.add(
-                AppInfoLabel(
-                    "ApplicationID",
-                    cxt.packageName,
-                    "https://github.com/Kyson/AndroidGodEye"
-                )
-            )
-            appInfoLabels.add(
-                AppInfoLabel(
-                    "BuildType",
-                    BuildConfig.BUILD_TYPE,
-                    "https://github.com/Kyson/AndroidGodEye"
-                )
-            )
-            appInfoLabels
-        }
         GodEyeMonitor.setClassPrefixOfAppProcess(listOf("com.jamesfchen"))
         GodEye.instance()
             .install(GodEyeConfig.fromAssets("android-godeye-config/install.config"))
