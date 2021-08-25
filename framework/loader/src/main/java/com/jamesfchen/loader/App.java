@@ -6,29 +6,16 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
-import android.graphics.Color;
-import android.os.Debug;
 import android.os.SystemClock;
 import android.os.Trace;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
 import com.orhanobut.logger.Logger;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.provider.FontRequest;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.text.FontRequestEmojiCompatConfig;
 import androidx.multidex.MultiDex;
 import androidx.work.Configuration;
 
@@ -101,7 +88,7 @@ public class App extends Application implements Configuration.Provider {
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();
-        String processName = getProcessName(android.os.Process.myPid());
+        String processName = getProcessName();
         Logger.t(TAG).d("processName：" + processName);
 //        if (TextUtils.isEmpty(processName)|| processName.contains(PROCESS_2)||processName.contains(PROCESS_3)) return;
 

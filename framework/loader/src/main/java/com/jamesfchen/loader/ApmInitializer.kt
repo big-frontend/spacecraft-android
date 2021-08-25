@@ -1,8 +1,13 @@
 package com.jamesfchen.loader
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
+import cn.hikyson.godeye.core.GodEye
+import cn.hikyson.godeye.core.GodEyeConfig
+import cn.hikyson.godeye.monitor.GodEyeMonitor
+import cn.hikyson.godeye.monitor.modules.appinfo.AppInfoLabel
 import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
@@ -12,6 +17,11 @@ import com.tencent.bugly.crashreport.CrashReport.UserStrategy
 import com.tencent.matrix.Matrix
 import com.tencent.matrix.trace.TracePlugin
 import com.tencent.matrix.util.MatrixLog
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 class ApmInitializer : Initializer<Unit> {
 
@@ -36,6 +46,9 @@ class ApmInitializer : Initializer<Unit> {
         CrashReport.initCrashReport(context, strategy)
         startFirebase(context)
         startMatrix(context)
+        GlobalScope.launch {
+            startAndroidGodEye(context)
+        }
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {
@@ -69,8 +82,8 @@ class ApmInitializer : Initializer<Unit> {
         builder.plugin(tracePlugin)
 
         // Configure resource canary.
-        val resourcePlugin = configureResourcePlugin(context, dynamicConfig)
-        builder.plugin(resourcePlugin)
+//        val resourcePlugin = configureResourcePlugin(context, dynamicConfig)
+//        builder.plugin(resourcePlugin)
 
         // Configure io canary.
         val ioCanaryPlugin = configureIOCanaryPlugin(context, dynamicConfig)
@@ -90,5 +103,46 @@ class ApmInitializer : Initializer<Unit> {
 //        tracePlugin.start()
 
         MatrixLog.i(APM_TAG, "Matrix configurations done.");
+    }
+
+    private suspend fun startAndroidGodEye(cxt: Context) = withContext(Dispatchers.Default) {
+        GodEye.instance().init(cxt as Application)
+        GodEyeMonitor.work(cxt, 5391)
+        GodEyeMonitor.injectAppInfoConext {
+            val appInfoLabels: MutableList<AppInfoLabel> = ArrayList<AppInfoLabel>()
+            val pInfo = cxt.packageManager.getPackageInfo(cxt.packageName, 0)
+            appInfoLabels.add(
+                AppInfoLabel(
+                    "ApplicationID",
+                    cxt.packageName,
+                    "https://github.com/Kyson/AndroidGodEye"
+                )
+            )
+            appInfoLabels.add(
+                AppInfoLabel(
+                    "VersionName",
+                    pInfo.versionName,
+                    "https://github.com/Kyson/AndroidGodEye"
+                )
+            )
+            appInfoLabels.add(
+                AppInfoLabel(
+                    "VersionCode",
+                    pInfo.versionCode.toString(),
+                    "https://github.com/Kyson/AndroidGodEye"
+                )
+            )
+            appInfoLabels.add(
+                AppInfoLabel(
+                    "BuildType",
+                    BuildConfig.BUILD_TYPE,
+                    "https://github.com/Kyson/AndroidGodEye"
+                )
+            )
+            appInfoLabels
+        }
+        GodEyeMonitor.setClassPrefixOfAppProcess(listOf("com.jamesfchen"))
+        GodEye.instance()
+            .install(GodEyeConfig.fromAssets("android-godeye-config/install.config"))
     }
 }

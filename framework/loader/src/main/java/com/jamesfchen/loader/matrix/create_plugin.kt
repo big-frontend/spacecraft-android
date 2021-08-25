@@ -6,9 +6,6 @@ import android.util.Log
 import com.jamesfchen.loader.App
 import com.tencent.matrix.iocanary.IOCanaryPlugin
 import com.tencent.matrix.iocanary.config.IOConfig
-import com.tencent.matrix.resource.ResourcePlugin
-import com.tencent.matrix.resource.config.ResourceConfig
-import com.tencent.matrix.resource.config.ResourceConfig.DumpMode
 import com.tencent.matrix.trace.TracePlugin
 import com.tencent.matrix.trace.config.TraceConfig
 import com.tencent.matrix.trace.tracer.SignalAnrTracer
@@ -65,22 +62,22 @@ fun useSignalAnrTraceAlone(anrFilePath: String, printTraceFile: String) {
     signalAnrTracer.onStartTrace()
 }
 
-fun configureResourcePlugin(
-    context: Context,
-    dynamicConfig: DynamicConfigImplDemo
-): ResourcePlugin {
-    val intent = Intent()
-    val mode = DumpMode.MANUAL_DUMP
-    MatrixLog.i(APM_TAG, "Dump Activity Leak Mode=%s", mode)
-    intent.setClassName(context.packageName, "com.tencent.mm.ui.matrix.ManualDumpActivity")
-    val resourceConfig = ResourceConfig.Builder()
-        .dynamicConfig(dynamicConfig)
-        .setAutoDumpHprofMode(mode)
-        .setManualDumpTargetActivity(ManualDumpActivity::class.java.name)
-        .build()
-    ResourcePlugin.activityLeakFixer(App.getInstance())
-    return ResourcePlugin(resourceConfig)
-}
+//fun configureResourcePlugin(
+//    context: Context,
+//    dynamicConfig: DynamicConfigImplDemo
+//): ResourcePlugin {
+//    val intent = Intent()
+//    val mode = DumpMode.MANUAL_DUMP
+//    MatrixLog.i(APM_TAG, "Dump Activity Leak Mode=%s", mode)
+//    intent.setClassName(context.packageName, "com.tencent.mm.ui.matrix.ManualDumpActivity")
+//    val resourceConfig = ResourceConfig.Builder()
+//        .dynamicConfig(dynamicConfig)
+//        .setAutoDumpHprofMode(mode)
+//        .setManualDumpTargetActivity(ManualDumpActivity::class.java.name)
+//        .build()
+//    ResourcePlugin.activityLeakFixer(App.getInstance())
+//    return ResourcePlugin(resourceConfig)
+//}
 
 fun configureIOCanaryPlugin(
     context: Context,

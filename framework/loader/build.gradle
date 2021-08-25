@@ -1,6 +1,6 @@
 //apply plugin: 'foundation-module'
 apply from: "${rootDir.path}/script/foundation_module.gradle"
-android{
+android {
     defaultConfig {
         buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
         buildConfigField('String', 'BUGLY_APP_KEY', '"a15ecf84-1786-40c6-abf5-fe975fce22e6"')
@@ -15,7 +15,7 @@ android{
             release {
                 manifestPlaceholders = ['QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf', 'BUGLY_ENABLE_DEBUG': 'false']
             }
-            debug{
+            debug {
                 manifestPlaceholders = [
                         'QQ_KEY'            : 'adf', 'WEXIN_KEY': 'adfaf',
                         'BUGLY_ENABLE_DEBUG': 'true'
@@ -118,7 +118,6 @@ dependencies {
 //    api "androidx.work:work-firebase:2.2.0"
 
 
-
     api 'androidx.emoji:emoji:1.1.0'
     api 'androidx.emoji:emoji-appcompat:1.1.0'
     api 'androidx.emoji:emoji-bundled:1.1.0'
@@ -138,8 +137,8 @@ dependencies {
             "matrix-android-lib",
             "matrix-android-commons",
             "matrix-trace-canary",
-            "matrix-resource-canary-android",
-            "matrix-resource-canary-common",
+//            "matrix-resource-canary-android",
+//            "matrix-resource-canary-common",
             "matrix-io-canary",
             "matrix-sqlite-lint-android-sdk",
             "matrix-hooks",
@@ -153,8 +152,18 @@ dependencies {
     }
 
     // releaseImplementation group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: MATRIX_VERSION, changing: true
+
+    api("cn.hikyson.godeye:godeye-core:3.0.0")
+    api "cn.hikyson.godeye:godeye-toolbox:3.0.0"
+    releaseApi("cn.hikyson.godeye:godeye-monitor-no-op:2.7.4")
+    debugApi("cn.hikyson.godeye:godeye-monitor:3.0.0")
+
+    //memory leak
+//    debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
+//    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+//    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
+    api 'com.github.markzhai:blockcanary-android:1.5.0'
     /**
      * ================================apm end=====================================
      */
 }
-
