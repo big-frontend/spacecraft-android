@@ -5,7 +5,7 @@
 
     <application android:label="@string/app_name">
         <activity
-            android:name="com.jamesfchen.myhome.SplashActivity"
+            android:name="com.jamesfchen.myhome.splash.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme"

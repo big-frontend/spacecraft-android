@@ -10,6 +10,7 @@ class CheckerPlugin implements Plugin<Project> {
                 throw new IllegalArgumentException("请配置dangerousapi")
             }
             def dangerousApiTask = project.tasks.create("dangerousApiTask", DangerousApiTask)
+            dangerousApiTask.group("verification")
             dangerousApiTask.doFirst {
                 dangerousApiTask.checker = checker
             }
@@ -43,6 +44,7 @@ class DangerousApiTask extends DefaultTask {
         srcDirs.each { srcDir ->
             recurDir(srcDir)
         }
+        println("\u001B[32m恭喜代码质量很高，没有存在高危的api\u001B[0m")
     }
 
     def recurDir(File dir) {
@@ -95,7 +97,9 @@ class DangerousApiTask extends DefaultTask {
                 }
                 if (shouldMarkFooter) {
                     writer.writeLine "${packagename}.${file.name} end\n"
+                    throw  new IllegalArgumentException("代码中存在高危的api 查看 ${r} 文件解决一下这个吧!!!")
                 }
+
             }
 
         }

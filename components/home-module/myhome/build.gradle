@@ -26,7 +26,7 @@ dependencies {
 }
 apply from: "${rootDir.path}/script/check_dangerous_api.gradle"
 checker {
-//    filters = ['SafeConverts.java']
+    filters = ['SafeConverts.java']
     dangerousApis = [
             "Color.parseColor",
             "Integer.valueOf",

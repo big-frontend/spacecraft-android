@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
+import android.os.Debug;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.util.Log;
@@ -142,6 +143,24 @@ public class App extends Application implements Configuration.Provider {
 //        Utils.init(this);
         Util.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+    }
+
+    /**
+     * 内存告急，释放缓存
+     * @param level
+     */
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
+        Debug.getMemoryInfo(memoryInfo);
+        memoryInfo.getTotalPss();
+        memoryInfo.getTotalSwappablePss();
+        int dalvikPss = memoryInfo.dalvikPss;
+        int nativePss = memoryInfo.nativePss;
+        int otherPss = memoryInfo.otherPss;
+
+
     }
 
     @NonNull

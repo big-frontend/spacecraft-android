@@ -62,7 +62,7 @@ buildscript {
         classpath ("com.tencent.matrix:matrix-gradle-plugin:${MATRIX_VERSION}") { changing = true }
         classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
 //        classpath "com.uber:infer-plugin:0.7.4"
-        classpath 'com.github.jamesfchen:lifecycle-plugin:1.0.0'
+//        classpath 'com.github.jamesfchen:lifecycle-plugin:1.0.0'
 
         classpath "com.alibaba:arouter-register:1.0.2"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"

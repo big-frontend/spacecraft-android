@@ -12,7 +12,7 @@ class ImageInitializer : Initializer<Unit> {
     @AddTrace(name = "ImageInitializer#create",enabled = true)
     override fun create(context: Context) {
         Log.d("cjf","ImageInitializer#create")
-        //        Fresco.initialize(this);
+        ImageLoader.init()
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {

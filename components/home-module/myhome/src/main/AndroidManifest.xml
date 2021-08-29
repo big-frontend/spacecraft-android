@@ -7,12 +7,12 @@
     <application>
         <activity android:name=".screen.profile.SettingsActivity" />
         <activity
-            android:name="com.jamesfchen.myhome.SplashActivity"
+            android:name="com.jamesfchen.myhome.splash.SplashActivity"
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="com.jamesfchen.myhome.MainActivity"
+            android:name="com.jamesfchen.myhome.screen.MainActivity"
             android:theme="@style/HomeTheme"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop"
@@ -93,7 +93,7 @@
         </receiver>
         <activity
             android:name="com.jamesfchen.myhome.screen.photo.PhotoActivity"
-            android:label="PhoteoActivity"
+            android:label="PhotoActivity"
             android:theme="@style/PhotoTheme" />
         <activity android:name="com.jamesfchen.myhome.screen.photo.PhotoListActivity" android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name="com.jamesfchen.myhome.screen.photo.LargePhotoActivity" android:theme="@style/Theme.AppCompat.Light"/>

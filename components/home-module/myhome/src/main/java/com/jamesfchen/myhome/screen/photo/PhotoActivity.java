@@ -1,6 +1,7 @@
 package com.jamesfchen.myhome.screen.photo;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -9,18 +10,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.photo.model.Page;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.viewpager.widget.ViewPager;
+
+import com.jamesfchen.myhome.R;
+import com.jamesfchen.myhome.screen.photo.model.Page;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhotoActivity extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class PhotoActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
+
     //android binder 大小限制：525k是最为安全的，512k-1M 可能出错或者闪退，大于1m throw exception。
     public static Intent newIntent(@NonNull Activity activity, final List<Uri> urlList, final int curPosition) {
         Intent intent = new Intent(activity, PhotoActivity.class);
@@ -74,9 +76,7 @@ public class PhotoActivity extends AppCompatActivity {
                 ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair0).toBundle());
     }
 
-    public static void startActivityWithCustom(
-            Activity activity, int enterResId, int exitResId,
-            final List<Uri> urlList, final int curPosition) {
+    public static void startActivityWithCustom(Activity activity, int enterResId, int exitResId, final List<Uri> urlList, final int curPosition) {
         ActivityCompat.startActivity(
                 activity,
                 newIntent(activity, urlList, curPosition),
@@ -133,7 +133,7 @@ public class PhotoActivity extends AppCompatActivity {
         mUrlList = getIntent().getStringArrayListExtra(EXTRA_URLLIST);
         curPosition = getIntent().getIntExtra(EXTRA_CURPOSITION, 0);
         int urlSize = mUrlList.size();
-        ArrayList<Page> pages = new ArrayList<>(urlSize);
+        ArrayList<Page> pages = new ArrayList<Page>(urlSize);
         for (int i = 0; i < urlSize; ++i) {
             pages.add(new Page(null, Uri.parse(mUrlList.get(i))));
         }

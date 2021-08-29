@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome
+package com.jamesfchen.myhome.screen.profile.vm
 
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField

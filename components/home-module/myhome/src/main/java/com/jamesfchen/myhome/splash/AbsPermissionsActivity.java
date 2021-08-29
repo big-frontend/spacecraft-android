@@ -1,6 +1,7 @@
-package com.jamesfchen.myhome;
+package com.jamesfchen.myhome.splash;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;

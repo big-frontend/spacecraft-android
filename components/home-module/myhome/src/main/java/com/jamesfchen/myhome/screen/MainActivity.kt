@@ -1,14 +1,12 @@
-package com.jamesfchen.myhome
+package com.jamesfchen.myhome.screen
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.ActivityMainBinding
-import com.jamesfchen.myhome.screen.WebViewActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

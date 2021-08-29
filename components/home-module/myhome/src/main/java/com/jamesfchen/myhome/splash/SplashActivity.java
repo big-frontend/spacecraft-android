@@ -1,16 +1,18 @@
-package com.jamesfchen.myhome;
+package com.jamesfchen.myhome.splash;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+
 import com.jamesfchen.common.util.ActivityUtil;
+import com.jamesfchen.myhome.R;
 import com.jamesfchen.myhome.screen.photo.PhotoListActivity;
 
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 /**

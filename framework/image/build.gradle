@@ -1,13 +1,3 @@
-ext.srcDirs = [
-        "gif",
-//        "video",
-//        "colorpicker",
-//        "drawable",
-//        "animationsExprimental",
-//        "newLayoutExprimental",
-//        "scrollExprimental",
-
-]
 //apply plugin: 'foundation-module'
 apply from: "${rootDir.path}/script/foundation_module.gradle"
 android {
@@ -15,7 +5,7 @@ android {
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
-                cppFlags "-std=c++14","-fexceptions", "-frtti"
+                cppFlags "-std=c++14", "-fexceptions", "-frtti"
                 cFlags "-D__STDC_FORMAT_MACROS"
 //                cppFlags "-std=gnu++11"
 //                targets "hawks","hotfix"
@@ -31,39 +21,40 @@ android {
         }
     }
     sourceSets {
-        if (project.hasProperty("srcDirs")) {
-            main {
-                java.excludes = [
-                        '**/build/**',
-                ]
-                project.ext.srcDirs.forEach {
-                    assets.srcDirs += "$projectDir/$it/main/assets"
-                    aidl.srcDirs += "$projectDir/$it/main/aidl"
-                    res.srcDirs += "$projectDir/$it/main/res-frame-animation"
-                    res.srcDirs += "$projectDir/$it/main/res"
-                    java.srcDirs += "$projectDir/$it/main/java"
+        def srcDirs = [
+                "gif",
+        ]
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
 
 //                    assets.srcDirs += "$projectDir/src/inhouse/assets"
 //                    aidl.srcDirs += "$projectDir/src/inhouse/aidl"
 //                    res.srcDirs += "$projectDir/src/inhouse/res"
 //                    java.srcDirs += "$projectDir/src/inhouse/java"
-                }
             }
-            androidTest {
-                project.ext.srcDirs.forEach {
-                    assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                    aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                    res.srcDirs += "$projectDir/$it/androidTest/res"
-                    java.srcDirs += "$projectDir/$it/androidTest/java"
-
-                }
-            }
-            test {
-                project.ext.srcDirs.forEach {
-                    java.srcDirs += "$projectDir/$it/test/java"
-                }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
 
             }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
         }
     }
 }
@@ -75,7 +66,7 @@ dependencies {
      */
     api 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'androidx.exifinterface:exifinterface:1.3.2'
     api 'com.github.bumptech.glide:recyclerview-integration:4.11.0'
 
@@ -84,8 +75,9 @@ dependencies {
     // 支持 WebP （静态图+动图），需要添加
     api 'com.facebook.fresco:animated-webp:2.1.0'
     api 'com.facebook.fresco:webpsupport:2.2.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.squareup.picasso:picasso-pollexor:2.71828'
+    api 'com.facebook.fresco:imagepipeline-okhttp3:2.5.0'
+    api 'com.squareup.picasso:picasso:2.71828'
+    api 'com.squareup.picasso:picasso-pollexor:2.71828'
     /**
      * ===============================image end=============================
      */

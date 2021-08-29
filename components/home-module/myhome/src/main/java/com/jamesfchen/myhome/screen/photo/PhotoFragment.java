@@ -1,6 +1,7 @@
 package com.jamesfchen.myhome.screen.photo;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -55,6 +56,16 @@ public class PhotoFragment extends Fragment {
         args.putParcelable(ARG_PAGE, page);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
