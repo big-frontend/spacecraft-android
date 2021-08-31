@@ -11,6 +11,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.jamesfchen.bundle2.customview.newLayoutExprimental.ConstraintPerformanceActivity
 import com.jamesfchen.bundle2.launchmode.Jump2NewTaskActivity
 import com.jamesfchen.bundle2.launchmode.SpringBoardActivity
 import com.jamesfchen.bundle2.optimization.OptimizationActivity
@@ -41,7 +42,8 @@ class Bundle2Activity : ComponentActivity() {
                 }
             }
         }
-        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
+        startActivity(Intent(Bundle2Activity@this, ConstraintPerformanceActivity::class.java))
+//        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, OptimizationActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, NestedScrollActivity::class.java))

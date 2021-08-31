@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.startup.Initializer
 import cn.hikyson.godeye.core.GodEye
 import cn.hikyson.godeye.core.GodEyeConfig
+import cn.hikyson.godeye.core.internal.modules.leakdetector.GodEyeCanaryLog
+import cn.hikyson.godeye.core.utils.L
 import cn.hikyson.godeye.monitor.GodEyeMonitor
 import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -26,7 +28,7 @@ class ApmInitializer : Initializer<Unit> {
 
     @AddTrace(name = "Apminitializer#create", enabled = true)
     override fun create(context: Context) {
-        Log.d(APM_TAG, "ApmInitializer#create")
+        Log.d(APM_TAG, "ApmInitializer#start")
 
         val strategy = UserStrategy(context)
 //        strategy.setAppVersion(BuildConfig.VERSION_NAME);
@@ -48,6 +50,8 @@ class ApmInitializer : Initializer<Unit> {
         GlobalScope.launch {
             startAndroidGodEye(context)
         }
+        Monitor.init(context as Application)
+        Log.d(APM_TAG,"ApmInitializer#end")
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {
@@ -105,10 +109,12 @@ class ApmInitializer : Initializer<Unit> {
     }
 
     private suspend fun startAndroidGodEye(cxt: Context) = withContext(Dispatchers.Default) {
+        Log.d(APM_TAG, "godeye configurations start.");
         GodEye.instance().init(cxt as Application)
         GodEyeMonitor.work(cxt, 5391)
         GodEyeMonitor.setClassPrefixOfAppProcess(listOf("com.jamesfchen"))
         GodEye.instance()
             .install(GodEyeConfig.fromAssets("android-godeye-config/install.config"))
+        Log.d(APM_TAG, "godeye configurations end.");
     }
 }

@@ -22,6 +22,6 @@ android {
 //    }
 }
 dependencies {
-    lintChecks project(path: ':components:hotel-module:hotel-lint')
-    lintPublish project(path: ':components:hotel-module:hotel-lint')
+//    lintChecks project(path: ':components:hotel-module:hotel-lint')
+//    lintPublish project(path: ':components:hotel-module:hotel-lint')
 }

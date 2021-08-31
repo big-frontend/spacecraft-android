@@ -90,6 +90,6 @@ class ImageLoader {
             .setMainDiskCacheConfig(diskCacheConfig)
             .setMemoryTrimmableRegistry(memTrimRegistry)
             .build()
-        Fresco.initialize(App.getInstance(),config)
+//        Fresco.initialize(App.getInstance(),config)
     }
 }

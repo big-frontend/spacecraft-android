@@ -16,48 +16,27 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.bundle2.R
 import java.lang.ref.WeakReference
+import java.util.concurrent.TimeUnit
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
+import kotlin.time.milliseconds
 
 class ConstraintPerformanceActivity : AppCompatActivity() {
-
-    private val frameMetricsHandler = Handler()
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    @SuppressLint("LongLogTag")
-    private val frameMetricsAvailableListener =
-        OnFrameMetricsAvailableListener { _, frameMetrics, _ ->
-            val frameMetricsCopy = FrameMetrics(frameMetrics)
-            // Layout measure duration in Nano seconds
-            val layoutMeasureDurationNs =
-                frameMetricsCopy.getMetric(FrameMetrics.LAYOUT_MEASURE_DURATION)
-
-            Log.d(TAG, "layoutMeasureDurationMs: ${layoutMeasureDurationNs / Math.pow(10.0, 6.0)}")
-//        val layoutMeasureDurationMs = TimeUnit.MILLISECONDS.convert(layoutMeasureDurationNs, TimeUnit.NANOSECONDS)
-//        Log.d(TAG, "layoutMeasureDurationMs: $layoutMeasureDurationMs")
-        }
-
     companion object {
-
-        private val TAG = "ConstraintPerformanceActivity"
-
-        private val TOTAL = 100
-
-        private val WIDTH = 1920
-
-        private val HEIGHT = 1080
+        private const val TOTAL = 100
+        private const val WIDTH = 1920
+        private const val HEIGHT = 1080
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_for_test)
-
         val traditionalCalcButton = findViewById<Button>(R.id.button_start_calc_traditional)
         val constraintCalcButton = findViewById<Button>(R.id.button_start_calc_constraint)
         val textViewFinish = findViewById<TextView>(R.id.textview_finish)
         traditionalCalcButton.setOnClickListener {
             @SuppressLint("InflateParams")
             constraintCalcButton.visibility = View.INVISIBLE
-            val container = layoutInflater
-                .inflate(R.layout.activity_traditional, null) as ViewGroup
+            val container = layoutInflater.inflate(R.layout.activity_traditional, null,false) as ViewGroup
             val asyncTask = MeasureLayoutAsyncTask(
                 getString(R.string.executing_nth_iteration),
                 WeakReference(traditionalCalcButton),
@@ -70,8 +49,8 @@ class ConstraintPerformanceActivity : AppCompatActivity() {
         constraintCalcButton.setOnClickListener {
             @SuppressLint("InflateParams")
             traditionalCalcButton.visibility = View.INVISIBLE
-            val container = layoutInflater
-                .inflate(R.layout.activity_constraintlayout, null) as ViewGroup
+            val container =
+                layoutInflater.inflate(R.layout.activity_constraintlayout, null) as ViewGroup
             val asyncTask = MeasureLayoutAsyncTask(
                 getString(R.string.executing_nth_iteration),
                 WeakReference(constraintCalcButton),
@@ -80,21 +59,11 @@ class ConstraintPerformanceActivity : AppCompatActivity() {
             )
             asyncTask.execute()
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onResume() {
-        super.onResume()
-        window.addOnFrameMetricsAvailableListener(
-            frameMetricsAvailableListener,
-            frameMetricsHandler
-        )
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onPause() {
-        super.onPause()
-        window.removeOnFrameMetricsAvailableListener(frameMetricsAvailableListener)
+        textViewFinish.setOnClickListener {
+            textViewFinish.visibility  = View.INVISIBLE
+            constraintCalcButton.visibility = View.VISIBLE
+            traditionalCalcButton.visibility = View.VISIBLE
+        }
     }
 
     /**
