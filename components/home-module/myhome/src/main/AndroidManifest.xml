@@ -4,25 +4,31 @@
     package="com.jamesfchen.myhome">
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
     <application>
+        <activity
+            android:name=".splash.ad.AdActivity"
+            android:exported="true" />
         <activity android:name=".screen.profile.SettingsActivity" />
         <activity
-            android:name="com.jamesfchen.myhome.splash.SplashActivity"
+            android:name=".splash.SplashActivity"
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.jamesfchen.myhome.screen.MainActivity"
-            android:theme="@style/HomeTheme"
+            android:name=".screen.MainActivity"
+            android:exported="true"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop"
-            android:exported="true">
-<!--            通过url路由调用改页面-->
+            android:theme="@style/HomeTheme">
+
+            <!-- 通过url路由调用改页面 -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-<!--                自定义的协议如果内部不能处理就会crash报错，http/https如果内部不能处理就会交给外部-->
+                <!-- 自定义的协议如果内部不能处理就会crash报错，http/https如果内部不能处理就会交给外部 -->
                 <data
                     android:host="i.spacecraft.com"
                     android:path="/home"
@@ -36,20 +42,17 @@
                     android:pathPrefix="/c/"
                     android:scheme="https" />
             </intent-filter>
-            <!--            firebase app indexing启动 start-->
-            <!--            firebase app indexing启动 end-->
+            <!-- firebase app indexing启动 start -->
+            <!-- firebase app indexing启动 end -->
 
         </activity>
         <activity
-            android:name="com.jamesfchen.myhome.screen.home.HomeActivity"
+            android:name=".screen.home.HomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/HomeTheme" />
-
-
-        <activity android:name=".MVVMActivity" />
-        <activity android:name="com.jamesfchen.myhome.screen.WebViewActivity"
-            android:theme="@style/Theme.AppCompat"
-            >
+        <activity
+            android:name=".screen.WebViewActivity"
+            android:theme="@style/Theme.AppCompat">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -75,28 +78,36 @@
             android:multiprocess="true"
             tools:node="remove"
             tools:targetApi="n" />
-        <activity android:name="com.jamesfchen.myhome.BlankActivity">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+        <activity android:name=".BlankActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+
         <receiver
-            android:name="com.jamesfchen.myhome.SetWallpaper"
+            android:name=".SetWallpaper"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.hawksjamesf.spacecraft.set_wallpaper" />
             </intent-filter>
-
         </receiver>
+
         <activity
-            android:name="com.jamesfchen.myhome.screen.photo.PhotoActivity"
+            android:name=".screen.photo.PhotoActivity"
             android:label="PhotoActivity"
             android:theme="@style/PhotoTheme" />
-        <activity android:name="com.jamesfchen.myhome.screen.photo.PhotoListActivity" android:theme="@style/Theme.AppCompat.Light"/>
-        <activity android:name="com.jamesfchen.myhome.screen.photo.LargePhotoActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity
+            android:name=".screen.photo.PhotoListActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".screen.photo.LargePhotoActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
     </application>
 
 </manifest>

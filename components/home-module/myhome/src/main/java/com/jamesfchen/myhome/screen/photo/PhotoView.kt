@@ -26,6 +26,12 @@ import com.blankj.utilcode.util.ImageUtils
  *
  * 对于高清以上的图片处理就是根据进程的freeMemory来尽力压缩
  * 对于长图应该做到，支持滚动
+ *
+    功能点：
+    - 手势操作：拖动/拉伸
+    - 互动操作：保存/分享
+    - 优化：先加载模糊图，在加载大图
+    - 转场动画
  */
 class PhotoView : AppCompatImageView {
     constructor(context: Context) : super(context)
