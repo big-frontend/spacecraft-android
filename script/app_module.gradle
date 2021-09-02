@@ -60,7 +60,7 @@ android {
                 mappingFileUploadEnabled false
             }
             firebaseAppDistribution {
-                releaseNotesFile = "/path/to/releasenotes.txt"
+                releaseNotesFile = "${rootDir}/releasenotes.txt"
                 testers = "hawksjamesf@gmail.com"
                 serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
             }
@@ -79,16 +79,16 @@ android {
         }
     }
 
-
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'armeabi-v7a', "arm64-v8a", 'armeabi', 'x86'
+//国内的应用市场没有区分abi
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'armeabi-v7a', "arm64-v8a", 'armeabi'
 //            exclude "x86","x86_64"
-            universalApk false
-        }
-    }
+//            universalApk false
+//        }
+//    }
 
 //    dexOptions {
 //        preDexLibraries true
