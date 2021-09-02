@@ -203,7 +203,7 @@ task publishAll {
     }
 }
 task buildBigApp {
-    doFirst{
+    doFirst {
         def localProperties = new Properties()
         def localPropertiesFile = new File(rootDir, 'local.properties')
         if (localPropertiesFile.exists()) {
@@ -213,11 +213,10 @@ task buildBigApp {
         }
         StringBuffer sourcesb = new StringBuffer();
         gradle.ext.allModules.each { m ->
-            if (m.canonicalName != ':components:hotel-module:hotel-lint'
-                    && m.canonicalName != ':framework:flutter') {
-                sourcesb.append(m.simpleName);
-                sourcesb.append(",");
-            }
+            if (m.canonicalName == ':components:hotel-module:hotel-lint'
+                    || m.canonicalName == ':framework:flutter') return
+            sourcesb.append(m.simpleName);
+            sourcesb.append(",");
         }
         localProperties.setProperty("sourceModules", sourcesb.toString());
         OutputStream outputstream = new FileOutputStream(localPropertiesFile);
