@@ -60,7 +60,7 @@ android {
                 mappingFileUploadEnabled false
             }
             firebaseAppDistribution {
-                releaseNotesFile = "${rootDir}/releasenotes.txt"
+//                releaseNotesFile = "${rootDir}/releasenotes.txt"
                 testers = "hawksjamesf@gmail.com"
                 serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
             }

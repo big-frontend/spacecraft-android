@@ -34,8 +34,8 @@ stages:
 assembleDebug:
   stage: build
   script:
-    - ./gradlew buildBigApp appDistributionUploadRelease
-    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
+    - ./gradlew buildBigApp :app:appDistributionUploadRelease
+#    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
     - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
     - ./gradlew counter
   artifacts:
