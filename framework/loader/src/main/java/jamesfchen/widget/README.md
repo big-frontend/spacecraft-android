@@ -3,32 +3,6 @@ ui 的基本元素
 - 交互(手势)
 - 测绘(自定义View)
 
-
-
-
-
-## Photo
-
-外部可以传入bitmap，drawable、uri、resource id，最后都要有glide处理， 不过图片的尺寸有长图，普通图之分
-
-功能点：
-- 手势操作：拖动/拉伸
-- 互动操作：保存/分享
-- 优化：先加载模糊图，在加载大图
-- 转场动画
-
-
-- app/src/androidTest : for android UI test. It needs virtual or real device. (Espresso, UI automator)
-- app/src/test : for android independent test.
-```
-testImplementation : adds dependency for test source set
-androidTestImplementation : adds dependency for androidTest source set
-```
-
-res/drawable-xxx
-
-px = dp * (dpi / 160)
-
 ## 手机屏幕
 下面这张表格解释了什么是dpi？
 
@@ -45,8 +19,6 @@ xxxhdpi	| 480dpi~640dpi |  1dip=4px(4x)   |1440p(2560 x 1440,16:9)
 全面屏手机：
 - MIX 3:2340x1080,19.5:9
 - MIX 2s:1080p(2160x1080,18:9),FullHD+
-
-## icon
 
 ## Menu Icons/ Action Bar Icons/ Status Bar Icons/ Tab Icons
 
@@ -69,3 +41,15 @@ hdpi |	48 x 48 px
 xhdpi(2x) |	64 x 64 px
 xxhdpi(3x) |xxx
 xxxhdpi	|xxx
+
+性能优化
+1. 尽量使用硬件加速
+2. create view的优化(xml 随机读写io时间、解析xml时间、生成对象时间)
+    - 使用代码创建：注重性能，修改不频繁的场景
+    - 异步创建
+    - activity/fragment 之间的view复用：需要清除view的状态
+3.measure/layout ：减少ui布局层次，使用ViewStub、Merage 标签；优化layout开销，使用ConstraintLayout；不要重复设置主题背景；
+4. ui进阶
+- Litho：异步布局、界面扁平化、优化Recyclerview(按照text、image、audio类型缓存)
+- flutter：自己的布局+渲染引擎
+- RenderThread实现异步动画、RenderScript

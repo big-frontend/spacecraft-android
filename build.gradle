@@ -59,7 +59,7 @@ buildscript {
         classpath 'com.google.firebase:perf-plugin:1.4.0'
 //        classpath 'com.hawksjamesf.plugin:perf:1.0.0'
 //        classpath 'com.google.firebase:firebase-plugins:2.0.0'
-        classpath ("com.tencent.matrix:matrix-gradle-plugin:${MATRIX_VERSION}") { changing = true }
+        classpath("com.tencent.matrix:matrix-gradle-plugin:${MATRIX_VERSION}") { changing = true }
         classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
 //        classpath "com.uber:infer-plugin:0.7.4"
 //        classpath 'com.github.jamesfchen:lifecycle-plugin:1.0.0'
@@ -176,7 +176,7 @@ static def isWindows() {
 
 task publishAll {
     doLast {
-        def ret=[]
+        def ret = []
         try {
             gradle.ext.sourceModuleMap.each { canonicalName, module ->
                 if (canonicalName != ':app'
@@ -199,6 +199,37 @@ task publishAll {
             Collections.sort(ret)
             println(">>>> publish ${ret.size()} modules !!!!!! !!!!!!")
             println(">>>> ${ret}")
+        }
+    }
+}
+task buildBigApp {
+    doFirst{
+        def localProperties = new Properties()
+        def localPropertiesFile = new File(rootDir, 'local.properties')
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withReader('UTF-8') { reader ->
+                localProperties.load(reader)
+            }
+        }
+        StringBuffer sourcesb = new StringBuffer();
+        gradle.ext.allModules.each { m ->
+            if (m.canonicalName != ':components:hotel-module:hotel-lint'
+                    && m.canonicalName != ':framework:flutter') {
+                sourcesb.append(m.simpleName);
+                sourcesb.append(",");
+            }
+        }
+        localProperties.setProperty("sourceModules", sourcesb.toString());
+        OutputStream outputstream = new FileOutputStream(localPropertiesFile);
+        localProperties.store(outputstream, "update modules");
+    }
+    doLast {
+        exec {
+            executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+            workingDir rootDir
+            def argv = []
+            argv << "app:assembleRelease"
+            args = argv
         }
     }
 }
