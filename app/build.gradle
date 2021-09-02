@@ -1,6 +1,42 @@
 apply from: "$rootDir.path/script/app_module.gradle"
+apply plugin: 'com.google.firebase.appdistribution'
 android {
     defaultConfig {
-        resValue "string", "app_name","spacecraft.app"
+        resValue "string", "app_name", "spacecraft.app"
     }
+    buildTypes {
+        release {
+            firebaseAppDistribution {
+//                releaseNotesFile = "${rootDir}/releasenotes.txt"
+                testers = "hawksjamesf@gmail.com"
+                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+            }
+        }
+        debug {
+            firebaseAppDistribution {
+//                releaseNotesFile = "${rootDir}/releasenotes.txt"
+                testers = "hawksjamesf@gmail.com"
+                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+            }
+        }
+    }
+    /**
+     * 渠道包 start
+     */
+//    flavorDimensions 'default'
+//    productFlavors {
+//        xiaomi {
+//            manifestPlaceholders = [
+//                    'APP_CHANNEL': 'asdfasdfsdaf',
+//            ]
+//        }
+//        huawei {
+//            manifestPlaceholders = [
+//                    'APP_CHANNEL': '1232',
+//            ]
+//        }
+//    }
+    /**
+     * 渠道包 end
+     */
 }

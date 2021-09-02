@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir.path}/script/base_module.gradle"
 //apply plugin: "com.github.jamesfchen.lifecycle-plugin"
-apply plugin: 'com.google.firebase.appdistribution'
 //apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
@@ -58,11 +57,6 @@ android {
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled false
                 mappingFileUploadEnabled false
-            }
-            firebaseAppDistribution {
-//                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                testers = "hawksjamesf@gmail.com"
-                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
             }
         }
         debug {
