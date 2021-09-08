@@ -130,6 +130,11 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mUrlList = getIntent().getStringArrayListExtra(EXTRA_URLLIST);
         curPosition = getIntent().getIntExtra(EXTRA_CURPOSITION, 0);
         int urlSize = mUrlList.size();

@@ -35,7 +35,6 @@ android {
     def srcDirs = [
             "async",
             "serialization",
-            "apm",
     ]
     sourceSets {
         main {

@@ -14,13 +14,13 @@ apply from: "${rootDir.path}/script/file_counter.gradle"
 counterConfig {
     sea = 'all'
 }
-apply plugin: 'cn.hikyson.methodcanary.plugin'
-AndroidGodEye {
-    enableLifecycleTracer true
-    enableMethodTracer true
-//    instrumentationRuleFilePath "AndroidGodEye-MethodCanary.js"
-//    instrumentationRuleIncludeClassNamePrefix(["com/jamesfchen/loader"])
-}
+//apply plugin: 'cn.hikyson.methodcanary.plugin'
+//AndroidGodEye {
+//    enableLifecycleTracer true
+//    enableMethodTracer true
+////    instrumentationRuleFilePath "AndroidGodEye-MethodCanary.js"
+////    instrumentationRuleIncludeClassNamePrefix(["com/jamesfchen/loader"])
+//}
 ext.removeUnusedResourcesV2Enable = true
 
 android {
@@ -163,16 +163,16 @@ dependencies {
 if (!removeUnusedResourcesV2Enable) {
     project.ext.unusedResourcesSet = new HashSet<String>()
 }
-//apply plugin: 'com.tencent.matrix-plugin'
-//matrix {
-//
-//    logLevel "D"
-//
-//    trace {
-//        enable = true
-//        baseMethodMapFile = "${project.projectDir}/matrixTrace/methodMapping.txt"
-//        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
-//    }
+apply plugin: 'com.tencent.matrix-plugin'
+matrix {
+
+    logLevel "D"
+
+    trace {
+        enable = true
+        baseMethodMapFile = "${project.projectDir}/matrixTrace/methodMapping.txt"
+        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+    }
 //    removeUnusedResources {
 //        variant = "debug"
 //
@@ -197,7 +197,7 @@ if (!removeUnusedResourcesV2Enable) {
 //        zipAlignPath = "${android.getSdkDirectory().getAbsolutePath()}/build-tools/${android.getBuildToolsVersion()}/zipalign"
 //        ignoreResources = ["R.id.*", "R.bool.*", "R.layout.unused_layout"]
 //    }
-//}
+}
 
 project.tasks.whenTaskAdded {
     if (it.name?.equals("assembleDebug") || it.name?.equals("assembleRelease")) {
