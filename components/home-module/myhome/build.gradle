@@ -24,18 +24,3 @@ android {
 dependencies {
 //    lintChecks project(path: ':lint-rules')
 }
-apply from: "${rootDir.path}/script/check_dangerous_api.gradle"
-checker {
-    filters = ['SafeConverts.java']
-    dangerousApis = [
-            "Color.parseColor",
-            "Integer.valueOf",
-            "Integer.parseInt",
-            "Long.parseLong",
-            "Long.valueOf",
-            "Float.valueOf",
-            "Float.parseFloat",
-            "Double.valueOf",
-            "Double.parseDouble"
-    ]
-}

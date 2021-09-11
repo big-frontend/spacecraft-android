@@ -10,10 +10,6 @@ apply plugin: 'com.google.gms.google-services'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
 //apply plugin: 'com.google.osdetector'
-apply from: "${rootDir.path}/script/file_counter.gradle"
-counterConfig {
-    sea = 'all'
-}
 apply plugin: 'cn.hikyson.methodcanary.plugin'
 AndroidGodEye {
     enableLifecycleTracer true

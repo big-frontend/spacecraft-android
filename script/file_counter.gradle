@@ -1,6 +1,15 @@
 import javax.inject.Inject
 
+//import javax.mail.Session
+//import javax.mail.Transport
+//import javax.mail.internet.MimeMessage
+//import javax.mail.internet.InternetAddress
 apply plugin: CounterPlugin
+
+class CounterExtension {
+    String sea = 'all'
+    Set<String> pickupModules
+}
 
 class CounterPlugin implements Plugin<Project> {
     CounterExtension counterExtension
@@ -8,23 +17,21 @@ class CounterPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         counterExtension = project.extensions.create("counterConfig", CounterExtension)
-        def total_srcDir = new ArrayList<File>()
+        def total_srcDir = new ArrayList<File>();
         //所有项目evaluate完成之后的回调
         project.gradle.projectsEvaluated {
             project.rootProject.allprojects.each { proj ->
-                if (counterExtension.sea == 'all') {
+                if (counterExtension.pickupModules != null && counterExtension.pickupModules.contains(proj.name)) {
+                    total_srcDir.addAll(proj.android.sourceSets.main.java.srcDirs)
+                    total_srcDir.addAll(proj.android.sourceSets.main.jni.srcDirs)
+                } else if (counterExtension.sea == 'all') {
                     if (proj.getSubprojects().size() == 0 && proj.hasProperty("android")) {
-//                            println("CounterPlugin subproject java:${proj.android.sourceSets.main.java.srcDirs} jni:${proj.android.sourceSets.main.jni.srcDirs}")
-
                         total_srcDir.addAll(proj.android.sourceSets.main.java.srcDirs)
                         total_srcDir.addAll(proj.android.sourceSets.main.jni.srcDirs)
                     }
-                } else if (counterExtension.sea == 'here' && proj.name == project.name) {
-//                            println("CounterPlugin subproject java:${proj.android.sourceSets.main.java.srcDirs} jni:${proj.android.sourceSets.main.jni.srcDirs}")
-                    total_srcDir.addAll(proj.android.sourceSets.main.java.srcDirs)
-                    total_srcDir.addAll(proj.android.sourceSets.main.jni.srcDirs)
                 }
             }
+            println(total_srcDir)
             CounterTask counterTask = project.tasks.create(name: "fileCounter", group: 'tools', type: CounterTask, constructorArgs: [total_srcDir])
             counterTask.doFirst {
                 if (total_srcDir.isEmpty()) throw new IllegalArgumentException("total_srcDir空空如也")
@@ -69,6 +76,10 @@ class CounterTask extends DefaultTask {
         this.srcDirs = srcDirs
     }
 
+    static def isWindows() {
+        return System.properties['os.name'].contains('Windows');
+    }
+
     @TaskAction
     def startCounting() {
         if (srcDirs == null || srcDirs.size() == 0) return
@@ -86,7 +97,7 @@ class CounterTask extends DefaultTask {
         srcDirs.each { srcDir ->
             printDirectoryTree(srcDir)
         }
-        println("CounterPlugin task action end>>> totals : ${j_f_totals} java/${j_l_totals} lines, " +
+        println("CounterPlugin task>>> totals : ${j_f_totals} java/${j_l_totals} lines, " +
                 "${k_f_totals} kotlin/${k_l_totals} lines," +
                 " ${c_f_totals} c or c++/${c_l_totals} lines  \n\r")
         def map = new HashMap<String, String>()
@@ -95,7 +106,101 @@ class CounterTask extends DefaultTask {
         map.put("|  c or c++|", "|  c or c++|${c_f_totals}|${c_l_totals}|")
         File file = new File(project.rootDir.path, "README.md")
         replace(file, map)
+        def ext = project.extensions['counterConfig'] as CounterExtension
+        StringBuilder content = new StringBuilder()
+                .append("""
+                         <html>
+                           <head></head>
+                           <body>
+                            <p>size:${ext.pickupModules.size()} modules${ext.pickupModules} </p>
+                              <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+                            　<tr>
+                            　　<td> language </td>
+                                <td> files </td>
+                                <td> lines </td>
+                            　</tr>
+                            　<tr>
+                            　　<td> java </td>
+                            　　<td> ${j_f_totals} </td>
+                            　　<td> ${j_l_totals} </td>
+                            　</tr>
+                            
+                            　<tr>
+                            　　<td> kotlin </td>
+                            　　<td> ${k_f_totals} </td>
+                            　　<td> ${k_l_totals} </td>
+                            　</tr>
+                            <tr>
+                            　　<td> c or c++ </td>
+                               <td>${c_f_totals}</td>
+                               <td>${c_l_totals}</td>
+                            　</tr>
+                            </table>
+                         <p> 新增文件</p>
+                              <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+                                　<tr>
+                                　　<td> language </td>
+                                    <td> files </td>
+                                    <td> lines </td>
+                                　</tr>
+                                　<tr>
+                                　　<td> java </td>
+                                　　<td> ${j_f_totals} </td>
+                                　　<td> ${j_l_totals} </td>
+                                　</tr>
+                                
+                                　<tr>
+                                　　<td> kotlin </td>
+                                　　<td> ${k_f_totals} </td>
+                                　　<td> ${k_l_totals} </td>
+                                　</tr>
+                                <tr>
+                                　　<td> c or c++ </td>
+                                   <td>${c_f_totals}</td>
+                                   <td>${c_l_totals}</td>
+                                　</tr>
+                            </table>
+                           </body>
+                         </html>
+                """)
+//        sendEmail(content)
+        project.exec {
+            println "[post email] post  start"
+            executable isWindows() ? "python" : "python3"
+            workingDir project.rootDir
+            def argv = []
+            argv << "${project.rootDir.path}${File.separator}script${File.separator}post_email.py"
+            argv << content.toString()
+            args = argv
+            println "[post email] post  end"
+        }
     }
+//      需要导入classpath 'javax.mail:javax.mail-api:1.5.1'
+//    void sendEmail(String content) {
+//        def smtpserver = 'smtp.163.com'
+//        def username = 'hawks93jf@163.com'
+//        def password = 'YUAGSGWLPUZFHAEC'
+//        def sender = 'hawks93jf@163.com'
+//        def receiver = ['hawksjamesf@gmail.com']
+//        Properties p = new Properties()
+//        p.setProperty("mail.transport.protocol", 'smtp')
+//        p.setProperty("mail.smtp.host", smtpserver)
+//        p.setProperty("mail.smtp.auh", true)
+//
+//        Session session = Session.getInstance(p)
+//        session.setDebug(true)
+//        MimeMessage message = new MimeMessage(session)
+//        message.setFrom("hawks93jf <hawks93jf@163.com>")
+//        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiver, "jamesfchen", "UTF-8"))
+//        message.setSubject("文件统计监控", "UTF-8")
+//        message.setContent(content, "text/html;charset=UTF-8")
+//        message.setSentDate(new Date())
+//        message.saveChanges()
+//        Transport t = session.getTransport()
+//        t.connect(username, password)
+//        t.sendMessage(message, message.getAllRecipients())
+//        t.close()
+//    }
 
     def replace(File file, HashMap<String, String> map) {
         def keys = map.keySet()
@@ -194,9 +299,4 @@ class CounterTask extends DefaultTask {
         }
         return sb.toString();
     }
-}
-
-class CounterExtension {
-    String sea = 'all'
-
 }

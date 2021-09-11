@@ -6,7 +6,6 @@ variables:
   ANDROID_SDK_TOOLS: "6514223_latest"
 
 before_script:
-  - echo "before script"
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
   - wget --quiet --output-document=commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}.zip
@@ -33,19 +32,21 @@ assembleDebug:
   stage: build
   script:
     - ./gradlew buildBigApp
-    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
+#    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
   artifacts:
     paths:
       - app/build/outputs/app-release.apk
+
 dailyCheck:
   stage: build
   script:
-    - ./gradlew fileCounter
+    - ./gradlew :app:fileCounter
+    - ./gradlew :app:checker
 #lint job
 lintDebug:
   stage: build
-  before_script:
-    - echo "lint before script"
+#  before_script:#会覆盖最外层的before_script流程
+#    - echo "lint before script"
   script:
     - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
 
@@ -64,3 +65,4 @@ deploy2Pgyer:
     #    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
     - echo "deploy to pgyer"
     - python --version
+include: '/components/hotel-module/main/.gitlab-ci.yml'

@@ -1,3 +1,5 @@
+import javax.inject.Inject
+
 apply plugin: CheckerPlugin
 
 class CheckerPlugin implements Plugin<Project> {
@@ -5,18 +7,10 @@ class CheckerPlugin implements Plugin<Project> {
     void apply(Project project) {
         def checker = project.extensions.create("checker", CheckerExtension)
         project.afterEvaluate {
-
             if (checker.dangerousApis == null || checker.dangerousApis.size() == 0) {
                 throw new IllegalArgumentException("请配置dangerousapi")
             }
-            def dangerousApiTask = project.tasks.create("dangerousApiTask", DangerousApiTask)
-            dangerousApiTask.group("verification")
-            dangerousApiTask.doFirst {
-                dangerousApiTask.checker = checker
-            }
-            dangerousApiTask.doLast {
-            }
-
+            project.tasks.create(name: "dangerousApiTask", group: 'tools', type: DangerousApiTask, constructorArgs: [checker])
         }
     }
 }
@@ -30,8 +24,14 @@ class CheckerExtension {
 class DangerousApiTask extends DefaultTask {
     @Internal
     CheckerExtension checker
-    @Input @Option
+    @Input
+    @Option
     def r = new File(project.rootDir, "dangerous_api_result.txt")
+
+    @Inject
+    DangerousApiTask(CheckerExtension checker) {
+        this.checker = checker
+    }
 
     @TaskAction
     def check() {
@@ -97,7 +97,7 @@ class DangerousApiTask extends DefaultTask {
                 }
                 if (shouldMarkFooter) {
                     writer.writeLine "${packagename}.${file.name} end\n"
-                    throw  new IllegalArgumentException("代码中存在高危的api 查看 ${r} 文件解决一下这个吧!!!")
+                    throw new IllegalArgumentException("代码中存在高危的api 查看 ${r} 文件解决一下这个吧!!!")
                 }
 
             }
