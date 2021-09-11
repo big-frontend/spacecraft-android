@@ -112,7 +112,7 @@ class CounterTask extends DefaultTask {
                          <html>
                            <head></head>
                            <body>
-                            <p>size:${ext.pickupModules.size()} modules${ext.pickupModules} </p>
+                            <p>size:${ ext.pickupModules ==null ?'all':ext.pickupModules.size() } modules${ext.pickupModules} </p>
                               <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
                             　<tr>
                             　　<td> language </td>

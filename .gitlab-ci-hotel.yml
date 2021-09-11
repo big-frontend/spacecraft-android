@@ -1,21 +1,22 @@
-stages:
-  - build
-  - test
-  - deploy
-#assembleDebug job
 hotelBuild:
+  only:
+    - hotel
   stage: build
   script:
     - ./gradlew :components:hotel-module:main:build
 #    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
 
 hotelDailyCheck:
+  only:
+    - hotel
   stage: build
   script:
     - ./gradlew :components:hotel-module:main:fileCounter
     - ./gradlew :components:hotel-module:main:checker
 #lint job
 hotelLint:
+  only:
+    - hotel
   stage: build
   script:
     - ./gradlew -Pci --console=plain -PbuildDir=lint :components:hotel-module:main:lintDebug

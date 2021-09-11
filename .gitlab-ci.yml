@@ -29,6 +29,8 @@ stages:
   - deploy
 #assembleDebug job
 assembleDebug:
+  only:
+    - master
   stage: build
   script:
     - ./gradlew buildBigApp
@@ -38,12 +40,16 @@ assembleDebug:
       - app/build/outputs/app-release.apk
 
 dailyCheck:
+  only:
+    - master
   stage: build
   script:
     - ./gradlew :app:fileCounter
     - ./gradlew :app:checker
 #lint job
 lintDebug:
+  only:
+    - master
   stage: build
 #  before_script:#会覆盖最外层的before_script流程
 #    - echo "lint before script"
@@ -56,13 +62,17 @@ lintDebug:
 #    - ./gradlew -Pci --console=plain :app:testDebug
 
 deploy2Firebase:
+  only:
+    - master
   stage: deploy
   script:
     - ./gradlew :app:appDistributionUploadRelease
 deploy2Pgyer:
+  only:
+    - master
   stage: deploy
   script:
     #    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
     - echo "deploy to pgyer"
     - python --version
-include: '/components/hotel-module/main/.gitlab-ci.yml'
+include: '/.gitlab-ci-hotel.yml'
