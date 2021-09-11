@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/dest_infos"
-        android:name="com.jamesfchen.myhome.screen.InfosFragment"
+        android:name="com.jamesfchen.myhome.screen.notification.InfosFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_infos">
         <!--app:destination="@id/flow_step_two_dest"/>-->

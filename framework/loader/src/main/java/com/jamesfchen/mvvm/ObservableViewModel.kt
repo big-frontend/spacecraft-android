@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.github.markzhai.recyclerview.BaseViewAdapter
 
 
-
-open class ObservableViewModel : ViewModel(), Observable, BaseViewAdapter.Presenter {
+open class ObservableViewModel : ViewModel(), Observable {
 
     private val callbacks: PropertyChangeRegistry = PropertyChangeRegistry()
 

@@ -34,8 +34,6 @@ import androidx.recyclerview.widget.RecyclerView;
  * @since: 2017/7/4
  */
 public class HomeActivity extends RxActivity<HomePresenter> implements HomeContract.View {
-
-    private static final String TAG = "HomeActivity---";
     //    private RecyclerView mrvHome;
     RecyclerView rv;
     ListView lv;
@@ -56,7 +54,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             BarUtil.setStatusBarTransparent(this);
-            BarUtil.setNavBarImmersive(this);
+//            BarUtil.setNavBarImmersive(this);
 //            BarUtil.setBarsTransparent(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         }
     }
@@ -68,27 +66,7 @@ public class HomeActivity extends RxActivity<HomePresenter> implements HomeContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         presenter.load();
-        WeatherApi weatherApi = RetrofitHelper.createWeatherApi();
-        weatherApi.getCurrentWeatherDate("London")
-                .subscribe(weatherData -> {
-                    //onSuccess
-                    Logger.t(TAG).json(new Gson().toJson(weatherData));
-                    int a= 1;
 
-                }, throwable -> {
-                    int a= 1;
-                    Logger.t(TAG).json(new Gson().toJson(throwable.getStackTrace()));
-                });
-
-        weatherApi.getFiveData("London")
-                .subscribe(weatherDataListRes -> {
-                    int a= 1;
-                    Logger.t(TAG).json(new Gson().toJson(weatherDataListRes));
-                }, throwable -> {
-                    int a= 1;
-                    Logger.t(TAG).json(new Gson().toJson(throwable.getStackTrace()));
-
-                });
 
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentByTag("tag_navigation_host");
 //        if (navHostFragment == null) {

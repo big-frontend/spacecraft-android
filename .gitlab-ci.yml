@@ -44,7 +44,7 @@ dailyCheck:
     - master
   stage: build
   script:
-    - ./gradlew :app:fileCounter
+#    - ./gradlew :app:fileCounter
     - ./gradlew :app:checker
 #lint job
 lintDebug:
