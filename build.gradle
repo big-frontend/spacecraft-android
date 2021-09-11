@@ -202,8 +202,8 @@ task publishAll {
         }
     }
 }
-task buildBigApp {
-    doFirst {
+task includeAll {
+    doLast {
         def localProperties = new Properties()
         def localPropertiesFile = new File(rootDir, 'local.properties')
         if (localPropertiesFile.exists()) {
@@ -213,8 +213,9 @@ task buildBigApp {
         }
         StringBuffer sourcesb = new StringBuffer();
         gradle.ext.allModules.each { m ->
-            if (m.canonicalName == ':components:hotel-module:hotel-lint'
-                    || m.canonicalName == ':framework:flutter') return
+            if (
+//            m.canonicalName == ':components:hotel-module:hotel-lint' ||
+            m.canonicalName == ':framework:flutter') return
             sourcesb.append(m.simpleName);
             sourcesb.append(",");
         }
@@ -222,13 +223,16 @@ task buildBigApp {
         OutputStream outputstream = new FileOutputStream(localPropertiesFile);
         localProperties.store(outputstream, "update modules");
     }
+}
+task buildBigApp {
     doLast {
         exec {
             executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
             workingDir rootDir
             def argv = []
-            argv << "app:assembleRelease"
+            argv << "app:assembleDebug"
             args = argv
         }
     }
 }
+buildBigApp.dependsOn("includeAll")

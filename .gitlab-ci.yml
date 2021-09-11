@@ -3,7 +3,7 @@ image: openjdk:11-jdk
 variables:
   ANDROID_COMPILE_SDK: "29"
   ANDROID_BUILD_TOOLS: "29.0.3"
-  ANDROID_SDK_TOOLS:   "6514223_latest"
+  ANDROID_SDK_TOOLS: "6514223_latest"
 
 before_script:
   - apt-get --quiet update --yes
@@ -25,25 +25,42 @@ before_script:
 stages:
   - build
   - test
+  - deploy
 #assembleDebug job
 assembleDebug:
   stage: build
   script:
     - ./gradlew buildBigApp
-    - ./gradlew :app:appDistributionUploadRelease
-#    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
     - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
-    - ./gradlew fileCounter
   artifacts:
     paths:
-      - app/build/outputs/
+      - app/build/outputs/app-release.apk
+dailyCheck:
+  stage: build
+  before_script:
+    - ./gradlew includeAll
+  script:
+    - ./gradlew fileCounter
 #lint job
 lintDebug:
-   stage: build
-   script:
-     - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
+  stage: build
+  before_script:
+    - ./gradlew includeAll
+  script:
+    - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
 
 #debugTests:
 #  stage: test
 #  script:
 #    - ./gradlew -Pci --console=plain :app:testDebug
+
+deploy2Firebase:
+  stage: deploy
+  script:
+    - ./gradlew :app:appDistributionUploadRelease
+deploy2Pgyer:
+  stage: deploy
+  script:
+    #    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
+    - echo "deploy to pgyer"
+    - python --version
