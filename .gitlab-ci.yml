@@ -6,6 +6,7 @@ variables:
   ANDROID_SDK_TOOLS: "6514223_latest"
 
 before_script:
+  - echo "before script"
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
   - wget --quiet --output-document=commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}.zip
@@ -22,6 +23,7 @@ before_script:
   - set -o pipefail
 #  - apt-get install lib32ncurses5
 #  - apt install zlib1g-dev libncurses5-dev lib32z1 lib32ncurses6 -y
+  - ./gradlew includeAll
 stages:
   - build
   - test
@@ -37,15 +39,13 @@ assembleDebug:
       - app/build/outputs/app-release.apk
 dailyCheck:
   stage: build
-  before_script:
-    - ./gradlew includeAll
   script:
     - ./gradlew fileCounter
 #lint job
 lintDebug:
   stage: build
   before_script:
-    - ./gradlew includeAll
+    - echo "lint before script"
   script:
     - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
 
