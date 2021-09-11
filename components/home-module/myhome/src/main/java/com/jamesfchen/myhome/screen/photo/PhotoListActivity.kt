@@ -13,6 +13,7 @@ import androidx.core.view.children
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.perf.metrics.AddTrace
@@ -45,7 +46,10 @@ class PhotoListActivity : AppCompatActivity() {
         rvPhotoList.addItemDecoration(Divider(this))
 
         val adapter = PhotoListAdapter(this)
-        rvPhotoList.adapter = adapter
+        val headerAdapter = HeaderAdapter()
+        val footerAdapter = FooterAdapter()
+        val concatAdapter = adapter.withLoadStateHeaderAndFooter(headerAdapter, footerAdapter)
+        rvPhotoList.adapter = concatAdapter
 //        val preloader = RecyclerViewPreloader(adapter.glideRequest, adapter, adapter.preloadSizeProvider, 4)
 //        rvPhotoList.addOnScrollListener(preloader)
         rvPhotoList.addRecyclerListener { holder ->
@@ -74,15 +78,12 @@ class PhotoListActivity : AppCompatActivity() {
 //            }
 //        }).attachToRecyclerView(rvPhotoList)
 //        val observer = Observer(adapter::submitList)
-        lifecycleScope.launchWhenResumed {
-            delay(20_0000)
-            Log.d("cjf", "launchWhenResumed")
-        }
-        lifecycleScope.launchWhenResumed {
-            viewModel.allImages.collectLatest { pagingData ->
-                adapter.submitData(pagingData)
-            }
-        }
+       lifecycleScope.launchWhenResumed {
+           viewModel.allImages.collectLatest { pagingData ->
+               adapter.submitData(pagingData)
+
+           }
+       }
     }
     @AddTrace(name = "PhotoListActivity#onStart",enabled = true)
     override fun onStart() {

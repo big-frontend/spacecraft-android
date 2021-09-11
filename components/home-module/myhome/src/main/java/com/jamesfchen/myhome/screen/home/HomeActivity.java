@@ -4,7 +4,6 @@ package com.jamesfchen.myhome.screen.home;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,8 +16,8 @@ import com.google.gson.Gson;
 import com.jamesfchen.common.util.BarUtil;
 import com.jamesfchen.mvp.RxActivity;
 import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.api.RetrofitHelper;
-import com.jamesfchen.myhome.api.WeatherApi;
+import com.jamesfchen.myhome.network.RetrofitHelper;
+import com.jamesfchen.myhome.network.api.WeatherApi;
 import com.orhanobut.logger.Logger;
 
 import androidx.annotation.NonNull;

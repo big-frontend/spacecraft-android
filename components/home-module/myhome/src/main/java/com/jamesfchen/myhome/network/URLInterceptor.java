@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.api;
+package com.jamesfchen.myhome.network;
 
 
 import com.jamesfchen.myhome.BuildConfig;

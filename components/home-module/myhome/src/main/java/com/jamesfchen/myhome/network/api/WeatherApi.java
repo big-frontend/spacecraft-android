@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.api;
+package com.jamesfchen.myhome.network.api;
 
 
 import com.jamesfchen.myhome.modle.ListRes;

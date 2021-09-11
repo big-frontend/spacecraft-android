@@ -1,7 +1,8 @@
 @file:JvmName("RetrofitHelper")
-package com.jamesfchen.myhome.api
+package com.jamesfchen.myhome.network
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.jamesfchen.myhome.network.api.WeatherApi
 import com.jamesfchen.network.DefaultAuthenticator
 import com.jamesfchen.network.DefaultDns
 import com.jamesfchen.network.adapter.ObservableOrMainCallAdapterFactory

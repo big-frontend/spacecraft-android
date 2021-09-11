@@ -1,5 +1,5 @@
 @file:JvmName("Crypto")
-package com.jamesfchen.myhome.api
+package com.jamesfchen.myhome.network
 
 import android.util.Base64
 import java.security.*

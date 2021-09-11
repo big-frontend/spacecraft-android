@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.api
+package com.jamesfchen.myhome.network
 
 import okhttp3.Interceptor
 import okhttp3.Response
