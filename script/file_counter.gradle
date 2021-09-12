@@ -31,7 +31,7 @@ class CounterPlugin implements Plugin<Project> {
                     }
                 }
             }
-            println(total_srcDir)
+//            println(total_srcDir)
             CounterTask counterTask = project.tasks.create(name: "fileCounter", group: 'tools', type: CounterTask, constructorArgs: [total_srcDir])
             counterTask.doFirst {
                 if (total_srcDir.isEmpty()) throw new IllegalArgumentException("total_srcDir空空如也")
