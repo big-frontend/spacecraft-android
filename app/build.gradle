@@ -29,6 +29,7 @@ android {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
                 testers = "hawksjamesf@gmail.com"
                 serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+                artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
             }
         }
         debug {
@@ -36,6 +37,7 @@ android {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
                 testers = "hawksjamesf@gmail.com"
                 serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+                artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
             }
         }
     }

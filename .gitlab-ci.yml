@@ -20,8 +20,8 @@ before_script:
   - set +o pipefail
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses --sdk_root=${ANDROID_HOME} >/dev/null
   - set -o pipefail
-#  - apt-get install lib32ncurses5
-#  - apt install zlib1g-dev libncurses5-dev lib32z1 lib32ncurses6 -y
+  #  - apt-get install lib32ncurses5
+  #  - apt install zlib1g-dev libncurses5-dev lib32z1 lib32ncurses6 -y
   - ./gradlew includeAll
 stages:
   - build
@@ -34,7 +34,7 @@ assembleDebug:
   stage: build
   script:
     - ./gradlew buildBigApp
-#    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
+  #    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
   artifacts:
     paths:
       - app/build/outputs/app-release.apk
@@ -44,15 +44,15 @@ dailyCheck:
     - master
   stage: build
   script:
-#    - ./gradlew :app:fileCounter
+    #    - ./gradlew :app:fileCounter
     - ./gradlew :app:dangerousApiTask
 #lint job
 lintDebug:
   only:
     - master
   stage: build
-#  before_script:#会覆盖最外层的before_script流程
-#    - echo "lint before script"
+  #  before_script:#会覆盖最外层的before_script流程
+  #    - echo "lint before script"
   script:
     - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
 
@@ -72,7 +72,6 @@ deploy2Pgyer:
     - master
   stage: deploy
   script:
-    #    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
+    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
     - echo "deploy to pgyer"
-    - python --version
 include: '/.gitlab-ci-hotel.yml'
