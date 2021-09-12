@@ -45,7 +45,7 @@ dailyCheck:
   stage: build
   script:
 #    - ./gradlew :app:fileCounter
-    - ./gradlew :app:checker
+    - ./gradlew :app:dangerousApiTask
 #lint job
 lintDebug:
   only:
