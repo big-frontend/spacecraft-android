@@ -65,17 +65,17 @@ lintDebug:
 #  script:
 #    - ./gradlew -Pci --console=plain :app:testDebug
 
-deploy2Firebase:
-  only:
-    - master
-  stage: deploy
-  script:
-    - ./gradlew :app:appDistributionUploadRelease
-deploy2Pgyer:
-  only:
-    - master
-  stage: deploy
-  script:
-    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
-    - echo "deploy to pgyer"
+#deploy2Firebase:
+#  only:
+#    - master
+#  stage: deploy
+#  script:
+#    - ./gradlew :app:appDistributionUploadRelease
+#deploy2Pgyer:
+#  only:
+#    - master
+#  stage: deploy
+#  script:
+#    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
+#    - echo "deploy to pgyer"
 include: '/.gitlab-ci-hotel.yml'
