@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.modle
+package com.jamesfchen.myhome.model
 
 import com.jamesfchen.mockserver.model.weather.City
 

@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.modle.factor
+package com.jamesfchen.myhome.model.factor
 
 /**
  * Copyright ® $ 2017

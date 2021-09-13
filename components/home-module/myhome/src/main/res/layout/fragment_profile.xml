@@ -3,33 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".screen.profile.ProfileFragment">
 
     <TextView
-        android:background="@color/apricot"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:background="@color/apricot"
         android:gravity="center"
         android:text="profile " />
+
     <Button
         android:id="@+id/bt_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="settings"/>
+        android:text="settings" />
+
     <Button
-        android:textAllCaps="false"
         android:id="@+id/bt_inflate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="inflate viewstub"/>
+        android:text="inflate viewstub"
+        android:textAllCaps="false" />
+
     <ViewStub
         android:id="@+id/something_viewstub"
         android:layout_width="wrap_content"
-        android:layout="@layout/viewstub_tag_sample"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout="@layout/viewstub_tag_sample" />
 
-    <include android:id="@+id/something_include"
-        layout="@layout/include_tag_sample"/>
+    <include
+        android:id="@+id/something_include"
+        layout="@layout/include_tag_sample" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@color/apricot"
+        tools:text="asdfdasf" />
 </LinearLayout>

@@ -3,6 +3,7 @@ apply from: "$rootDir.path/script/bundle_module.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        buildConfigField('String', 'CONFIG_SERVER_HOST', '"10.32.151.130:9000"')
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"

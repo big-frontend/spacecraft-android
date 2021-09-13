@@ -7,14 +7,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentProfileBinding
 import com.jamesfchen.myhome.databinding.ViewstubTagSampleBinding
+import com.jamesfchen.myhome.model.L7
+import com.jamesfchen.myhome.screen.profile.vm.ProfileViewModel
 
 class ProfileFragment : Fragment() {
     lateinit var binding:FragmentProfileBinding
+    val profileViewModel by viewModels<ProfileViewModel>()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         lifecycleScope.launchWhenCreated {
@@ -35,6 +40,12 @@ class ProfileFragment : Fragment() {
                 val viewStubBinding = ViewstubTagSampleBinding.bind(binding.somethingViewstub.inflate())
 //                viewStubBinding.btViewstub.text
             }
+        }
+        lifecycleScope.launchWhenResumed {
+            val  d= profileViewModel.locationDatas
+//            binding.tvLocation.setText((d as L7).myId)
+
+
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
