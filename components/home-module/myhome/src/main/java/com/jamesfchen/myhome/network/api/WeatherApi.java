@@ -1,7 +1,7 @@
 package com.jamesfchen.myhome.network.api;
 
 
-import com.jamesfchen.myhome.modle.ListRes;
+import com.jamesfchen.myhome.model.ListRes;
 import com.jamesfchen.mockserver.model.WeatherData;
 
 import io.reactivex.Observable;

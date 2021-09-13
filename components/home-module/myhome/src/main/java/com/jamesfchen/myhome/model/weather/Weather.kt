@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.modle.weather
+package com.jamesfchen.myhome.model.weather
 
 /**
  * Copyright ® $ 2017

@@ -8,6 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.jamesfchen.mvvm.ObservableViewModel
+import com.jamesfchen.myhome.model.L7
+import com.jamesfchen.myhome.network.api.LocationApi
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 
 /**
  * Copyright ® $ 2017
@@ -29,6 +33,13 @@ class ProfileViewModel : ViewModel() {
         _likes.value = (_likes.value ?: 0) + 1
     }
 
+    val locationDatas = flow<L7> {
+        val datas = LocationApi.getDatas()
+        for (i in 0..2){
+            emit(datas[i])
+        }
+    }
+    val ll= flowOf(1,2,3,4,5,6)
     override fun onCleared() {
         super.onCleared()
         try {

@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.modle;
+package com.jamesfchen.myhome.model;
 
 import com.squareup.wire.FieldEncoding;
 import com.squareup.wire.Message;

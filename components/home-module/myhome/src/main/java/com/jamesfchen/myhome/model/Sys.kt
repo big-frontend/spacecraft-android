@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.modle
+package com.jamesfchen.myhome.model
 
 /**
  * Copyright ® $ 2017
