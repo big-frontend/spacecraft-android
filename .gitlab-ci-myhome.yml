@@ -1,14 +1,16 @@
 home-myhome:
   only:
     changes:
-      - components/home-module/myhome/**/*
+      - components/home-module/myhome/*.{java,kt,xml,gradle}
+      - /components/home-module/myhome/**/*
   stage: build
   script:
     - ./gradlew :components:home-module:myhome:build
 
 home-daily-check:
   only:
-    - hotel
+    changes:
+      - /components/home-module/myhome/**/*
   stage: build
   script:
     - ./gradlew :components:hotel-module:main:fileCounter
