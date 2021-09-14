@@ -6,6 +6,15 @@ home-myhome-build:
   stage: build
   script:
     - ./gradlew :components:home-module:myhome:build
+home-myhome-deploy:
+  only:
+    changes:
+      - components/home-module/myhome/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:home-module:myhome:publishToMavenLocal
+
+# ========================
 
 home-daily-check:
   only:
@@ -16,15 +25,9 @@ home-daily-check:
     - ./gradlew :components:hotel-module:main:fileCounter
     - ./gradlew :components:hotel-module:main:checker
 
+
 #debugTests:
 #  stage: test
 #  script:
 #    - ./gradlew -Pci --console=plain :app:testDebug
 
-home-myhome-deploy:
-  only:
-    changes:
-      - components/home-module/myhome/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:home-module:myhome:publishToMavenLocal

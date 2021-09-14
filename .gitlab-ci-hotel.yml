@@ -6,6 +6,15 @@ hotel-foundation-build:
   script:
     - ./gradlew :components:hotel-module:foundation:build
 
+hotel-foundation-deploy:
+  only:
+    changes:
+      - components/hotel-module/foundation/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:hotel-module:foundation:publishToMavenLocal
+
+# ========================
 hotel-bundle1-build:
   only:
     changes:
@@ -13,6 +22,15 @@ hotel-bundle1-build:
   stage: build
   script:
     - ./gradlew :components:hotel-module:bundle1:build
+
+hotel-bundle1-deploy:
+  only:
+    changes:
+      - components/hotel-module/bundle1/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:hotel-module:bundle1:publishToMavenLocal
+# ========================
 hotel-bundle2-build:
   only:
     changes:
@@ -20,6 +38,15 @@ hotel-bundle2-build:
   stage: build
   script:
     - ./gradlew :components:hotel-module:bundle2:build
+
+hotel-bundle2-deploy:
+  only:
+    changes:
+      - components/hotel-module/bundle2/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:hotel-module:bundle2:publishToMavenLocal
+# ========================
 
 hotel-daily-check:
   only:
@@ -42,24 +69,5 @@ hotel-daily-check:
 #  script:
 #    - ./gradlew -Pci --console=plain :app:testDebug
 
-hotel-bundle1-deploy:
-  only:
-    changes:
-      - components/hotel-module/bundle1/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:bundle1:publishToMavenLocal
-hotel-bundle2-deploy:
-  only:
-    changes:
-      - components/hotel-module/bundle2/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:bundle2:publishToMavenLocal
-hotel-foundation-deploy:
-  only:
-    changes:
-      - components/hotel-module/foundation/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:foundation:publishToMavenLocal
+
+
