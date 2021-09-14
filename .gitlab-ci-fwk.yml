@@ -87,13 +87,13 @@ fwk-loader:
 #  artifacts:
 #    paths:
 #      - app/build/outputs/app-release.apk
-dailyCheck:
-  only:
-    - master
-  stage: build
-  script:
-    #    - ./gradlew :app:fileCounter
-    - ./gradlew :app:dangerousApiTask
+#dailyCheck:
+#  only:
+#    - master
+#  stage: build
+#  script:
+#    #    - ./gradlew :app:fileCounter
+#    - ./gradlew :app:dangerousApiTask
 #deploy2Firebase:
 #  only:
 #    - master
@@ -125,3 +125,11 @@ dailyCheck:
 #  script:
 #    - ./gradlew -Pci --console=plain :app:testDebug
 
+#docker build:
+#  script: docker build -t my-image:$CI_COMMIT_REF_SLUG .
+#  only:
+#    changes:
+#      - Dockerfile #The Dockerfile file
+#      - docker/scripts/* #Any of the files inside docker/scripts/ directory.
+#      - dockerfiles/**/*  #Any of the files and subdirectories inside the dockerfiles directory.
+#      - more_scripts/*.{rb,py,sh} #Any of the files with rb, py, sh extensions inside the more_scripts directory.

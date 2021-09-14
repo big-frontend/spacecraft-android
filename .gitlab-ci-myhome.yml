@@ -23,7 +23,7 @@ home-daily-check:
   stage: build
   script:
     - ./gradlew :components:hotel-module:main:fileCounter
-    - ./gradlew :components:hotel-module:main:checker
+    - ./gradlew :components:hotel-module:main:dangerousApiTask
 
 
 #debugTests:
