@@ -1,7 +1,7 @@
 home-myhome:
   only:
     changes:
-      - home-module/myhome/**/*
+      - components/home-module/myhome/**/*
   stage: build
   script:
     - ./gradlew :components:home-module:myhome:build
@@ -14,13 +14,6 @@ home-daily-check:
     - ./gradlew :components:hotel-module:main:fileCounter
     - ./gradlew :components:hotel-module:main:checker
 
-hotel-lint:
-  only:
-    - hotel
-  stage: build
-  script:
-    - ./gradlew -Pci --console=plain -PbuildDir=lint :components:hotel-module:main:lintDebug
-
 #debugTests:
 #  stage: test
 #  script:
@@ -29,7 +22,7 @@ hotel-lint:
 home-deploy:
   only:
     changes:
-      - home-module/myhome/**/*
+      - components/home-module/myhome/**/*
   stage: deploy
   script:
     - ./gradlew :components:home-module:myhome:publishToMavenLocal

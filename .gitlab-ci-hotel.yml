@@ -14,12 +14,12 @@ hotelDailyCheck:
     - ./gradlew :components:hotel-module:main:fileCounter
     - ./gradlew :components:hotel-module:main:checker
 #lint job
-hotelLint:
-  only:
-    - hotel
-  stage: build
-  script:
-    - ./gradlew -Pci --console=plain -PbuildDir=lint :components:hotel-module:main:lintDebug
+#hotelLint:
+#  only:
+#    - hotel
+#  stage: build
+#  script:
+#    - ./gradlew -Pci --console=plain -PbuildDir=lint :components:hotel-module:main:lintDebug
 
 #debugTests:
 #  stage: test

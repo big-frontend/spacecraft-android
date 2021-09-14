@@ -1,12 +1,12 @@
 #buildBigApp job
-build-big-app:
-  stage: build
-  script:
-    - ./gradlew buildBigApp
-  #    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
-  artifacts:
-    paths:
-      - app/build/outputs/app-release.apk
+#build-big-app:
+#  stage: build
+#  script:
+#    - ./gradlew buildBigApp
+#  #    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
+#  artifacts:
+#    paths:
+#      - app/build/outputs/app-release.apk
 fwk-common:
   only:
     changes:
