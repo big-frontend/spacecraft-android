@@ -31,4 +31,7 @@ stages:
   - build
   - test
   - deploy
-include: '/.gitlab-ci-hotel.yml'
+include:
+  - '/.gitlab-ci-fwk.yml'
+  - '/.gitlab-ci-myhome.yml'
+  - '/.gitlab-ci-hotel.yml'
