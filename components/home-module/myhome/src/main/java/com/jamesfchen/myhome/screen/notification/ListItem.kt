@@ -2,7 +2,7 @@ package com.jamesfchen.myhome.screen.notification
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.jamesfchen.loader.BR
+import com.jamesfchen.myhome.BR
 
 class ListItem : BaseObservable() {
     @get:Bindable

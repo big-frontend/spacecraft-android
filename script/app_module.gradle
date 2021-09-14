@@ -10,13 +10,13 @@ apply plugin: 'com.google.gms.google-services'
 //    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 //}
 //apply plugin: 'com.google.osdetector'
-apply plugin: 'cn.hikyson.methodcanary.plugin'
-AndroidGodEye {
-    enableLifecycleTracer true
-    enableMethodTracer true
+//apply plugin: 'cn.hikyson.methodcanary.plugin'
+//AndroidGodEye {
+//    enableLifecycleTracer true
+//    enableMethodTracer true
 //    instrumentationRuleFilePath "AndroidGodEye-MethodCanary.js"
 //    instrumentationRuleIncludeClassNamePrefix(["com/jamesfchen/loader"])
-}
+//}
 ext.removeUnusedResourcesV2Enable = true
 
 android {

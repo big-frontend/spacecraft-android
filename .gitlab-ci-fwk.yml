@@ -1,3 +1,83 @@
+fwk-common:
+  only:
+    changes:
+      - framework/common/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:common:build
+# ========================
+fwk-av:
+  only:
+    changes:
+      - framework/av/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:av:build
+# ========================
+#fwk-flutter:
+#  only:
+#    changes:
+#      - framework/flutter/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:flutter:build
+# ========================
+fwk-hybrid:
+  only:
+    changes:
+      - framework/hybrid/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:hybrid:build
+# ========================
+fwk-image:
+  only:
+    changes:
+      - framework/image/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:image:build
+# ========================
+fwk-map:
+  only:
+    changes:
+      - framework/map/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:map:build
+# ========================
+#fwk-mockserver:
+#  only:
+#    changes:
+#      - framework/mockserver
+#  stage: build
+#  script:
+#    - ./gradlew :framework:mockserver:build
+# ========================
+fwk-network:
+  only:
+    changes:
+      - framework/network/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:network:build
+# ========================
+fwk-storage:
+  only:
+    changes:
+      - framework/storage/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:storage:build
+# ========================
+fwk-loader:
+  only:
+    changes:
+      - framework/loader/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:loader:build
+# ========================
 #buildBigApp job
 #build-big-app:
 #  stage: build
@@ -7,81 +87,6 @@
 #  artifacts:
 #    paths:
 #      - app/build/outputs/app-release.apk
-fwk-common:
-  only:
-    changes:
-      - framework/common/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:common:build
-fwk-av:
-  only:
-    changes:
-      - framework/av/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:av:build
-
-#fwk-flutter:
-#  only:
-#    changes:
-#      - framework/flutter/**/*
-#  stage: build
-#  script:
-#    - ./gradlew :framework:flutter:build
-
-fwk-hybrid:
-  only:
-    changes:
-      - framework/hybrid/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:hybrid:build
-
-fwk-image:
-  only:
-    changes:
-      - framework/image/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:image:build
-fwk-map:
-  only:
-    changes:
-      - framework/map/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:map:build
-#fwk-mockserver:
-#  only:
-#    changes:
-#      - framework/mockserver
-#  stage: build
-#  script:
-#    - ./gradlew :framework:mockserver:build
-fwk-network:
-  only:
-    changes:
-      - framework/network/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:network:build
-fwk-storage:
-  only:
-    changes:
-      - framework/storage/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:storage:build
-fwk-loader:
-  only:
-    changes:
-      - framework/loader/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:loader:build
-
-
 dailyCheck:
   only:
     - master
@@ -89,6 +94,22 @@ dailyCheck:
   script:
     #    - ./gradlew :app:fileCounter
     - ./gradlew :app:dangerousApiTask
+#deploy2Firebase:
+#  only:
+#    - master
+#  stage: deploy
+#  script:
+#    - ./gradlew :app:appDistributionUploadRelease
+#deploy2Pgyer:
+#  only:
+#    - master
+#  stage: deploy
+#  script:
+#    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
+#    - echo "deploy to pgyer"
+# ========================
+
+
 #lint job
 #lintDebug:
 #  only:
@@ -104,16 +125,3 @@ dailyCheck:
 #  script:
 #    - ./gradlew -Pci --console=plain :app:testDebug
 
-#deploy2Firebase:
-#  only:
-#    - master
-#  stage: deploy
-#  script:
-#    - ./gradlew :app:appDistributionUploadRelease
-#deploy2Pgyer:
-#  only:
-#    - master
-#  stage: deploy
-#  script:
-#    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
-#    - echo "deploy to pgyer"

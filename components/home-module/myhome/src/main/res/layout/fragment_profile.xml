@@ -43,5 +43,5 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:background="@color/apricot"
-        tools:text="asdfdasf" />
+        tools:text="asdfdasfasdfdasf" />
 </LinearLayout>

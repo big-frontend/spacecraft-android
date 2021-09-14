@@ -1,5 +1,6 @@
 package com.jamesfchen.myhome.screen.profile.vm
 
+import android.util.Log
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
@@ -10,8 +11,8 @@ import androidx.lifecycle.ViewModel
 import com.jamesfchen.mvvm.ObservableViewModel
 import com.jamesfchen.myhome.model.L7
 import com.jamesfchen.myhome.network.api.LocationApi
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 
 /**
  * Copyright ® $ 2017
@@ -23,7 +24,7 @@ import kotlinx.coroutines.flow.flowOf
 class ProfileViewModel : ViewModel() {
     private val _name = MutableLiveData("Ada")
     private val _lastName = MutableLiveData("Lovelace")
-    private val _likes =  MutableLiveData(0)
+    private val _likes = MutableLiveData(0)
 
     val name2: LiveData<String> = _name
     val lastName2: LiveData<String> = _lastName
@@ -33,18 +34,19 @@ class ProfileViewModel : ViewModel() {
         _likes.value = (_likes.value ?: 0) + 1
     }
 
-    val locationDatas = flow<L7> {
-        val datas = LocationApi.getDatas()
-        for (i in 0..2){
-            emit(datas[i])
+    val locationDatas = flow {
+        LocationApi.getDatas().forEach { l7 ->
+            emit(l7)
+            delay(1_00)
         }
+    }.catch {
     }
-    val ll= flowOf(1,2,3,4,5,6)
+
     override fun onCleared() {
         super.onCleared()
         try {
 
-        }finally {
+        } finally {
 
         }
     }

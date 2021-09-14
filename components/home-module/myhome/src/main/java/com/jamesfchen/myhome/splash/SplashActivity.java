@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -36,7 +38,7 @@ public class SplashActivity extends AbsPermissionsActivity {
         super.onNewIntent(intent);
     }
 
-//    @AddTrace(name = "SplashActivity#onCreate", enabled = true /* optional */)
+    //    @AddTrace(name = "SplashActivity#onCreate", enabled = true /* optional */)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +97,7 @@ public class SplashActivity extends AbsPermissionsActivity {
     private static final String LOADING_PHRASE_CONFIG_KEY = "loading_phrase";
     private static final String WELCOME_MESSAGE_KEY = "welcome_message";
 
-//    private void fetchWelcome() {
+    //    private void fetchWelcome() {
 //        Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
 //        mFirebaseRemoteConfig.fetchAndActivate()
 //                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
@@ -118,5 +120,4 @@ public class SplashActivity extends AbsPermissionsActivity {
 //                    }
 //                });
 //    }
-
 }

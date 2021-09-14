@@ -2,7 +2,7 @@ package com.jamesfchen.myhome.screen.notification
 
 import androidx.databinding.*
 import com.jamesfchen.mvvm.ObservableViewModel
-import com.jamesfchen.loader.BR
+import com.jamesfchen.myhome.BR
 
 class InfosViewModel : ObservableViewModel() {
     val notification = ObservableField<String>()
