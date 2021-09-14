@@ -52,6 +52,7 @@ class Httper {
     }
 
     suspend fun sendRequest(r: Request): Response =
+        //创建一个在IO线程池中运行的block
         withContext(Dispatchers.IO) {
             val response = okHttpClient.newCall(r).execute()
             if (response.isSuccessful) {

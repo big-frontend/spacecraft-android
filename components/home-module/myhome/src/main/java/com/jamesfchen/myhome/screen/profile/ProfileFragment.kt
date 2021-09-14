@@ -120,6 +120,15 @@ class ProfileFragment : Fragment() {
 
                     binding.tvLocation.text = "myid:${l7.myId}"
                 }
+            //一个请求失败了其他的请求也要继续
+            supervisorScope{
+
+            }
+            //一个网络请求失败了，所有其他的请求都将被立即取消
+            coroutineScope{
+            //相比较launch 、 async 启动的协程会造成内存泄露，coroutineScope执行完block就会自动关闭协程，这是期优点
+
+            }
             Log.d("cjf", "step 3")
             flow {
                 repeat(100) {

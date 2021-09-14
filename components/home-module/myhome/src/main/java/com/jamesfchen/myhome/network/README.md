@@ -1,8 +1,21 @@
+## 为什么选择kotlin
+- 提高生产力，代码的简洁性
+- 空安全
+- 高阶函数编程
+
 ## 协程
 - 基于线程池api
 - 使用阻塞的方法写出非阻塞式的代码，解决并发中的地狱回调，关键字suspend
 
-CoroutineScope(管理协程，持有协程CoroutineContext)
+在Android中协程主要解决两个问题，处理耗时任务和保证主线程安全(suspend函数只能在协程中调用，所以不会阻塞主线程)
+协程有suspend与resume，当发送网络请求，suspend函数被挂起不阻塞主线程(函数堆栈帧被保存起来)，当网络请求结束，通过resume重新切换到主线程(函数堆栈帧被重新复制回来使用)
+
+使用结构化并发带来的好处
+- 作用域取消时，它内部所有的协程也会被取消
+- suspend 函数返回时，意味着它的所有任务都已完成
+- 协程报错时，它所在的作用域或调用方会收到报错通知
+
+CoroutineScope(管理协程，持有协程CoroutineContext，可被看作是一个具有超能力的 ExecutorService 的轻量级版本)
     - MainScope
     - GlobalScope
 CoroutineContext(Element)
@@ -45,3 +58,5 @@ Channel是一个面向协程之间数据传输的BlockQueue
 
 ## 多协程并发
 为了解决原子性问题，提供了Mutex，锁可以挂起非阻塞
+
+[揭秘协程中的 suspend 修饰符](https://mp.weixin.qq.com/s?__biz=MzAwODY4OTk2Mg==&mid=2652055127&idx=2&sn=283de8250bfc8a7bd8287a7aadad1339&chksm=808c8612b7fb0f047702c2101d27f4de42363ae5dd462be977ec897c7ae6a36e57b94675750a&cur_album_id=1385760483604758529&scene=189#rd)
