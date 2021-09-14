@@ -5,6 +5,21 @@ fwk-common:
   stage: build
   script:
     - ./gradlew :framework:common:build
+    #upload mave
+    - ./gradlew :framework:av:build
+    #upload mave
+    - ./gradlew :framework:hybrid:build
+    #upload mave
+    - ./gradlew :framework:image:build
+    #upload mave
+    - ./gradlew :framework:map:build
+    #upload mave
+    - ./gradlew :framework:network:build
+    #upload mave
+    - ./gradlew :framework:storage:build
+    #upload mave
+    - ./gradlew :framework:loader:build
+    #upload mave
 # ========================
 fwk-av:
   only:
