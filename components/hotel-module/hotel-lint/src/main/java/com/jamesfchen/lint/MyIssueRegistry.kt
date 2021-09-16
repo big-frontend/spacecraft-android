@@ -17,5 +17,7 @@ class MyIssueRegistry : IssueRegistry() {
     override val api: Int = CURRENT_API
 
     override val issues: List<Issue>
-        get() = listOf(DangerousApiDetector.ISSUE,AndroidLogDetector.ISSUE)
+        get() = listOf(DangerousApiDetector.ISSUE,
+//            AndroidLogDetector.ISSUE
+        )
 }

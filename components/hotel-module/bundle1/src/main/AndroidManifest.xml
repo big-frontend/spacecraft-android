@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jamesfchen.bundle1">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.jamesfchen.bundle1"
+    tools:ignore="ImpliedTouchscreenHardware,MissingLeanbackLauncher,MissingLeanbackSupport">
+
     <application>
         <activity
             android:name=".Bundle1Activity"

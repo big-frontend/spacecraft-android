@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.widget.EditText
 
-class CustomEditText constructor( cxt:Context):EditText(cxt) {
+class CustomEditText constructor( cxt:Context):androidx.appcompat.widget.AppCompatEditText(cxt) {
     override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
 //        Log.d("cjf","dispatchKeyEvent:${event}")
         return super.dispatchKeyEvent(event)

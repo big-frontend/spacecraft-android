@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<lint>
+﻿<!--<lint>-->
 <!--    &lt;!&ndash; Disable the given check in this project &ndash;&gt;-->
 <!--    <issue id="IconMissingDensityFolder" severity="ignore" />-->
 
@@ -15,6 +14,7 @@
 <!--    </issue>-->
 
 <!--    &lt;!&ndash; Change the severity of hardcoded strings to "error" &ndash;&gt;-->
-<!--&lt;!&ndash;    <issue id="HardcodedText" severity="error" />&ndash;&gt;-->
+<!--    &lt;!&ndash;    <issue id="HardcodedText" severity="error" />&ndash;&gt;-->
 <!--    <issue id="HardcodedText" severity="ignore" />-->
-</lint>
+<!--</lint>-->
+

@@ -6,4 +6,15 @@ android {
 
     }
 
+    buildTypes {
+        inhouse {
+            initWith debug
+            lintOptions {
+                warningsAsErrors false
+                abortOnError true
+            }
+        }
+
+    }
+
 }
