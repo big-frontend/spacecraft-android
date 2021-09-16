@@ -54,7 +54,6 @@ class DangerousApiDetector : Detector(), SourceCodeScanner {
                 ||evaluator.isMemberInClass(method, "androidx.core.graphics.ColorKt")
         ) {
             reportUsage(context, node)
-            throw  Exception("找到不合规的方法调用")
         }
     }
 
