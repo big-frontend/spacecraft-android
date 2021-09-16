@@ -26,7 +26,7 @@ class Monitor(val app: Application) {
             //前台
             override fun onActivityStarted(activity: Activity) {
                 FrameTrace0.start(activity)
-                FrameTrace1.start()
+                FrameTrace1.start(activity)
                 FrameTrace2.start()
 
             }
@@ -40,7 +40,7 @@ class Monitor(val app: Application) {
             //后台
             override fun onActivityStopped(activity: Activity) {
                 FrameTrace0.stop(activity)
-                FrameTrace1.stop()
+                FrameTrace1.stop(activity)
                 FrameTrace2.stop()
             }
 

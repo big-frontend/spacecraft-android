@@ -16,3 +16,17 @@
 - 避免方法数暴增，给每个函数分配一个id
 - 每个方法都调用System.nanoTime对性能有损耗，5ms的函数可以忽略，通过定时5ms刷新一个时间变量，然后每个方法直接读取更新过的时间变量
 - 由于数据庞大，需要对数据进行整合与裁剪(过滤掉耗时5ms的函数，将容量控制在30)，并分析出一个能代表卡顿堆栈的key（遍历buffer，计算出一个调用树及每个函数的执行耗时，并对每一级中的一些相同执行函数做聚合，分析出主要耗时(耗时大于30%的函数用id组成key)的那一级，作为代表卡顿堆栈的key）
+
+## 内存分析(mat 、 )
+mat 的坑
+- android hprof 转为mat hprof：hprof-conv android.hprof mat.hprof
+- 新版mat必须支持jdk11 ，在ini文件首行配置：
+```
+-vm
+D:/android-studio/jre/bin/javaw.exe
+```
+
+Shallow Size：对象自身占用的内存大小，不包括它引用的对象
+Retained Size：被GC后Heap上释放的内存大小，即当前对象大小+当前对象可直接或间接引用到的对象的大小总和
+out going：查看对象为什么耗内存，我们看到一个线程池占用了>25mb的内存
+in going：查看对象被谁引用

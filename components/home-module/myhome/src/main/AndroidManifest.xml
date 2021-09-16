@@ -108,6 +108,9 @@
         <activity
             android:name=".screen.photo.LargePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".screen.profile.ProfileDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
     </application>
 
 </manifest>
