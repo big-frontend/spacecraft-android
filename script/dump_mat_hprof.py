@@ -1,6 +1,7 @@
 import subprocess, os
 
-PACKAGE_NAME = 'ctrip.android.view.debug'
+# PACKAGE_NAME = 'ctrip.android.view.debug'
+PACKAGE_NAME = 'com.jamesfchen.spacecraft.debug'
 FILE_NAME = PACKAGE_NAME+".hprof"
 FILE_PATH = "/data/local/tmp/" + FILE_NAME
 
