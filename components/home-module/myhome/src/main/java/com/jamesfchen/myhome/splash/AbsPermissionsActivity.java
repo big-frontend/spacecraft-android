@@ -85,6 +85,7 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
                 }
                 Toast.makeText(this, "need permission:" + sb, Toast.LENGTH_LONG).show();
             }
+            onRequestPermissionsResult();
         } else {
             onRequestPermissionsResult();
         }

@@ -33,7 +33,6 @@ rpc(grpc)     |protobuf(wire,protobuf)
 
 style描述了网络请求的调用方式，serializable描述了端与端之间数据的格式。
 
-
 Feature | HTTP2|HTTP3
 ---|---| --- |
 Header compression algorithm|HPACK|QPACK
@@ -41,6 +40,13 @@ Handshake protocol|TCP + TLS|QUIC
 Handshake negotiation|At the certificate stage via ALPN=Application-Layer Protocol Negotiation (ALPN) protocol|After certificate negotiation via “Alt-Svc:” HTTP response header
 HTTP scheme|HTTP (not well adopted) / HTTPS|HTTPS
 Prioritization|Yes|No, although HTTP/3 streams can have a “PRIORITY” frame to implement it
+
+
+###  为什么要用retrofit？
+- 功能强大：支持各种数据序列化库，支持各种Call转换的库
+- 简洁易用：通过简单的注解完成一个rest接口的声明
+- 扩展行强：功能模块高度封装，解耦彻底
+- 弊端：只支持Okhttp网络请求库，且只支持HTTP协议
 
 
 # ssl/tls

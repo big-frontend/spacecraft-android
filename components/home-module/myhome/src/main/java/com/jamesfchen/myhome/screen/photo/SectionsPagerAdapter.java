@@ -2,7 +2,7 @@ package com.jamesfchen.myhome.screen.photo;
 
 import android.util.Log;
 
-import com.jamesfchen.myhome.screen.photo.model.Page;
+import com.jamesfchen.myhome.screen.photo.model.Photo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
  */
 
 public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-    List<Page> dataList = new ArrayList<>();
+    List<Photo> dataList = new ArrayList<>();
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -36,7 +36,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
         return dataList.size();
     }
 
-    public void setDataList(List<Page> dataList) {
+    public void setDataList(List<Photo> dataList) {
         if (dataList == null || dataList.isEmpty()) {
             this.dataList.clear();
             return;

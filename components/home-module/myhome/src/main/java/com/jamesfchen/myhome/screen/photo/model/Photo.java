@@ -1,6 +1,5 @@
 package com.jamesfchen.myhome.screen.photo.model;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,15 +12,14 @@ import android.os.Parcelable;
  * @author: jamesfchen
  * @since: Dec/02/2019  Mon
  */
-public class Page implements Parcelable {
-    public Bitmap thumbnailBitmap;
+public class Photo implements Parcelable {
     public Uri uri;
+    public Uri thumbnailUri;
 
-    public Page(Bitmap thumbnailBitmap, Uri uri) {
-        this.thumbnailBitmap = thumbnailBitmap;
+    public Photo(Uri thumbnailUri, Uri uri) {
+        this.thumbnailUri = thumbnailUri;
         this.uri = uri;
     }
-
 
     @Override
     public int describeContents() {
@@ -30,24 +28,24 @@ public class Page implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.thumbnailBitmap, flags);
         dest.writeParcelable(this.uri,flags);
+        dest.writeParcelable(this.thumbnailUri,flags);
     }
 
-    protected Page(Parcel in) {
-        this.thumbnailBitmap = in.readParcelable(Bitmap.class.getClassLoader());
+    protected Photo(Parcel in) {
         this.uri = (Uri) in.readParcelable(Uri.class.getClassLoader());
+        this.thumbnailUri = (Uri) in.readParcelable(Uri.class.getClassLoader());
     }
 
-    public static final Creator<Page> CREATOR = new Creator<Page>() {
+    public static final Creator<Photo> CREATOR = new Creator<Photo>() {
         @Override
-        public Page createFromParcel(Parcel source) {
-            return new Page(source);
+        public Photo createFromParcel(Parcel source) {
+            return new Photo(source);
         }
 
         @Override
-        public Page[] newArray(int size) {
-            return new Page[size];
+        public Photo[] newArray(int size) {
+            return new Photo[size];
         }
     };
 }

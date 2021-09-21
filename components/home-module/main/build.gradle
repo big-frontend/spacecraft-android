@@ -23,3 +23,7 @@ android {
         resValue "string", "app_name","home.app"
     }
 }
+
+dependencies{
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+}

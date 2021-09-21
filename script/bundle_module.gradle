@@ -67,5 +67,7 @@ dependencies {
 //    kapt 'androidx.databinding:databinding-compiler:7.0.0-beta03'
 
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
 

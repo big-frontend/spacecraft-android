@@ -18,8 +18,8 @@
 CoroutineScope(管理协程，持有协程CoroutineContext，可被看作是一个具有超能力的 ExecutorService 的轻量级版本)
     - MainScope
     - GlobalScope
-CoroutineContext(Element)
-    - Job
+CoroutineContext(Element,组成元素 Job ， CoroutineDispatcher , CoroutineName , CoroutineExceptionHandler)
+    - Job(协程的唯一标识，负责管理协程的生命周期)
         - JobSupport
     - ContinuationInterceptor(可以拦截Continuation，比如线程切换)
         - CoroutineDispatcher
@@ -58,5 +58,6 @@ Channel是一个面向协程之间数据传输的BlockQueue
 
 ## 多协程并发
 为了解决原子性问题，提供了Mutex，锁可以挂起非阻塞
+
 
 [揭秘协程中的 suspend 修饰符](https://mp.weixin.qq.com/s?__biz=MzAwODY4OTk2Mg==&mid=2652055127&idx=2&sn=283de8250bfc8a7bd8287a7aadad1339&chksm=808c8612b7fb0f047702c2101d27f4de42363ae5dd462be977ec897c7ae6a36e57b94675750a&cur_album_id=1385760483604758529&scene=189#rd)

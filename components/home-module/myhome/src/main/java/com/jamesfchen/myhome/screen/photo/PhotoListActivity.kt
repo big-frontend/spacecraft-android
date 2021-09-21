@@ -3,9 +3,6 @@ package com.jamesfchen.myhome.screen.photo
 import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
-import android.view.MotionEvent
-import android.view.View.OnTouchListener
 import android.widget.HorizontalScrollView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,16 +10,14 @@ import androidx.core.view.children
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
-import com.tencent.matrix.util.MatrixLog
 import jamesfchen.widget.Divider
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
 class PhotoListActivity : AppCompatActivity() {
@@ -36,7 +31,8 @@ class PhotoListActivity : AppCompatActivity() {
             }
         }
     }
-    @AddTrace(name = "PhotoListActivity#onCreate",enabled = true)
+
+    @AddTrace(name = "PhotoListActivity#onCreate", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //init view
@@ -46,22 +42,25 @@ class PhotoListActivity : AppCompatActivity() {
         rvPhotoList.addItemDecoration(Divider(this))
 
         val adapter = PhotoListAdapter(this)
-        val headerAdapter = HeaderAdapter()
-        val footerAdapter = FooterAdapter()
-        val concatAdapter = adapter.withLoadStateHeaderAndFooter(headerAdapter, footerAdapter)
+//        val headerAdapter = HeaderAdapter()
+//        val footerAdapter = FooterAdapter()
+//        val concatAdapter = adapter.withLoadStateHeaderAndFooter(headerAdapter, footerAdapter)
+        val concatAdapter = adapter
         rvPhotoList.adapter = concatAdapter
-//        val preloader = RecyclerViewPreloader(adapter.glideRequest, adapter, adapter.preloadSizeProvider, 4)
+//        val preloader = RecyclerViewPreloader(adapter.glideRequestBuilder, adapter, adapter, 4)
 //        rvPhotoList.addOnScrollListener(preloader)
         rvPhotoList.addRecyclerListener { holder ->
             (holder.itemView as HorizontalScrollView).children.forEach {
-                adapter.glideRequest.clear(it)
+                adapter.glideRequestBuilder.clear(it)
             }
         }
-        rvPhotoList.setOnTouchListener { view, motionEvent ->
-//            MatrixLog.i("TestPluginListener", "onTouch=$motionEvent")
-            SystemClock.sleep(80)
-            return@setOnTouchListener false
-        }
+        //有固定的size
+        rvPhotoList.setHasFixedSize(true)
+//        rvPhotoList.setOnTouchListener { view, motionEvent ->
+////            MatrixLog.i("TestPluginListener", "onTouch=$motionEvent")
+//            SystemClock.sleep(80)
+//            return@setOnTouchListener false
+//        }
         setContentView(rvPhotoList)
         lifecycleScope.launchWhenCreated { }
 
@@ -78,18 +77,19 @@ class PhotoListActivity : AppCompatActivity() {
 //            }
 //        }).attachToRecyclerView(rvPhotoList)
 //        val observer = Observer(adapter::submitList)
-       lifecycleScope.launchWhenResumed {
-           viewModel.allImages.collectLatest { pagingData ->
-               adapter.submitData(pagingData)
-
-           }
-       }
+        lifecycleScope.launchWhenResumed {
+            viewModel.allImages.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
+            }
+        }
     }
-    @AddTrace(name = "PhotoListActivity#onStart",enabled = true)
+
+    @AddTrace(name = "PhotoListActivity#onStart", enabled = true)
     override fun onStart() {
         super.onStart()
     }
-    @AddTrace(name = "PhotoListActivity#onResume",enabled = true)
+
+    @AddTrace(name = "PhotoListActivity#onResume", enabled = true)
     override fun onResume() {
         super.onResume()
     }

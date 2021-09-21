@@ -10,5 +10,6 @@ import android.net.Uri
  * @since: Jun/07/2020  Sun
  */
 data class Item(
-        val uriList: List<Uri>
+        val uriList: List<Uri>,
+//        val thumbnailUriList: List<Uri>
 )

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.jamesfchen.myhome.MemMonitor
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentProfileBinding
 import com.jamesfchen.myhome.databinding.ViewstubTagSampleBinding
@@ -18,6 +19,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.flow.*
+import okhttp3.Response
 
 class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
@@ -45,6 +47,7 @@ class ProfileFragment : Fragment() {
 //                viewStubBinding =
 //                    ViewstubTagSampleBinding.bind(binding.somethingViewstub.inflate())
 //                viewStubBinding.btViewstub.textr
+                Log.d("cjf","topactivity:${MemMonitor.refActivity?.get()}")
             }
 
         }
@@ -79,7 +82,8 @@ class ProfileFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         //启动一个协程，该协程内部的挂起函数不会阻塞主线程
-        lifecycleScope.launch {
+        val job = lifecycleScope.launch {
+            CoroutineScope(Dispatchers.Main.immediate)
             Log.d("cjf", "step 1")
             //async挂起函数不会阻塞协程，不同于其他挂起函数。因为async会在内部启动另外一个协程
             //这样就可以实现懒加载，async在开始就启动，等到流程后面再调用awiat获取数据刷新ui
@@ -101,7 +105,9 @@ class ProfileFragment : Fragment() {
                     }
                 }
             }
+            val a = suspendCancellableCoroutine<Response>{
 
+            }
             withContext(Dispatchers.Main) {
                 Log.d("cjf", "with context flow before")
                 delay(3000)
@@ -150,6 +156,9 @@ class ProfileFragment : Fragment() {
             }.collect { num ->
                 viewStubBinding.btViewstub.text = " view stub ${num}"
             }
+        }
+        job.invokeOnCompletion {
+
         }
         updateSettingWidget()
         lifecycleScope.launch {

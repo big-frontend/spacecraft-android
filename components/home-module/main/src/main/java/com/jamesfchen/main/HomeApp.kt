@@ -9,10 +9,12 @@ import android.os.Environment
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.jamesfchen.loader.App
+import com.jamesfchen.myhome.MemMonitor
 
 class HomeApp : App() {
     override fun onCreate() {
         super.onCreate()
+        MemMonitor.init(this)
         val activityManager: ActivityManager = getSystemService(ActivityManager::class.java)
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

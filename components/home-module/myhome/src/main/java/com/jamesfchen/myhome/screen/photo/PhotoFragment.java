@@ -21,16 +21,22 @@ import com.blankj.utilcode.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.jamesfchen.common.constants.MemoryUnit;
+import com.jamesfchen.common.util.ImageUtil;
 import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.photo.model.Page;
+import com.jamesfchen.myhome.screen.photo.model.Photo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import java.security.MessageDigest;
 
 /**
  * Copyright ® $ 2017
@@ -44,12 +50,12 @@ import androidx.fragment.app.Fragment;
 public class PhotoFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_PAGE = "page";
-    Page page;
+    Photo page;
     int sectionNumber = -1;
     ImageView ivPhoto;
     TextView tvText;
 
-    public static PhotoFragment newInstance(int sectionNumber, Page page) {
+    public static PhotoFragment newInstance(int sectionNumber, Photo page) {
         PhotoFragment fragment = new PhotoFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -74,13 +80,10 @@ public class PhotoFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_photo, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ActivityManager am = ContextCompat.getSystemService(getActivity(), ActivityManager.class);
-        final ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        am.getMemoryInfo(mi);
+
         Bundle arguments = getArguments();
         if (arguments == null) return;
         page = arguments.getParcelable(ARG_PAGE);
@@ -97,6 +100,7 @@ public class PhotoFragment extends Fragment {
             ivPhoto.setVisibility(View.VISIBLE);
             Glide.with(ivPhoto.getContext())
                     .load(page.uri)
+                    .transform(new FitCenter(),new ReflectionTransform())
                     .addListener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -105,6 +109,9 @@ public class PhotoFragment extends Fragment {
 
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            ActivityManager am = ContextCompat.getSystemService(getActivity(), ActivityManager.class);
+                            final ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+                            am.getMemoryInfo(mi);
                             Bitmap bitmap = ImageUtils.drawable2Bitmap(resource);
                             long availableMegs = mi.availMem / MemoryUnit.MB;
                             long totalMegs = mi.totalMem / MemoryUnit.MB;
@@ -228,6 +235,7 @@ public class PhotoFragment extends Fragment {
 //            }
 //        });
     }
+
     private static class MyDragShadowBuilder extends View.DragShadowBuilder {
 
         private static Drawable shadow;
@@ -236,8 +244,9 @@ public class PhotoFragment extends Fragment {
             super(v);
             shadow = new ColorDrawable(Color.LTGRAY);
         }
+
         @Override
-        public void onProvideShadowMetrics (Point size, Point touch) {
+        public void onProvideShadowMetrics(Point size, Point touch) {
             int width = getView().getWidth() / 2;
             int height = getView().getHeight() / 2;
             shadow.setBounds(0, 0, width, height);
@@ -257,4 +266,30 @@ public class PhotoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    static class ReflectionTransform extends BitmapTransformation {
+        private final String ID = "com.jamesfchen.myhome.screen.photo.PhotoFragment$ReflectionTransform";
+        private final byte[] ID_BYTES = ID.getBytes(CHARSET);
+
+        @Override
+        protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
+            Log.d(Constants.TAG_PHOTO_ACTIVITY, "ReflectionTransform:transform:"+outWidth+"/"+outHeight);
+            return ImageUtil.addReflection(toTransform, 360,true);
+        }
+
+        @Override
+        public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+            messageDigest.update(ID_BYTES);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            return o instanceof ReflectionTransform;
+        }
+
+        @Override
+        public int hashCode() {
+            return ID.hashCode();
+        }
+
+    }
 }

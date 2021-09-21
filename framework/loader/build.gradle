@@ -166,4 +166,6 @@ dependencies {
     /**
      * ================================apm end=====================================
      */
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

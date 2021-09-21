@@ -2,6 +2,7 @@ package com.jamesfchen.myhome.screen
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.net.http.SslError
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import com.jamesfchen.common.util.ImageUtil
 import com.jamesfchen.myhome.databinding.ActivityWebviewBinding
 
 /**
@@ -54,5 +56,6 @@ class WebViewActivity : AppCompatActivity() {
             }
             binding.wv.settings.javaScriptEnabled = true
         }
+//        binding.title.setImageBitmap()
     }
 }
