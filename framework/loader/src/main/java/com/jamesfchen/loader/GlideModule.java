@@ -7,17 +7,14 @@ import android.util.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
-import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.module.AppGlideModule;
-import com.bumptech.glide.request.RequestOptions;
 
 import androidx.annotation.NonNull;
-
-import java.io.InputStream;
 
 /**
  * Copyright ® $ 2017
@@ -52,10 +49,13 @@ public class GlideModule extends AppGlideModule {
         builder.setMemoryCache(new LruResourceCache(calculator.getMemoryCacheSize()))
 //                .setMemoryCache(new YourAppMemoryCacheImpl());
                 .setBitmapPool(new LruBitmapPool(calculator.getBitmapPoolSize()))
+                //disk cache默认250m缓存
+//                .setDiskCache(new ExternalPreferredCacheDiskCacheFactory(context))
+                .setDiskCache(new InternalCacheDiskCacheFactory(context))
                 .setDiskCacheExecutor(GlideExecutor.newDiskCacheBuilder().setUncaughtThrowableStrategy(myUncaughtThrowableStrategy).build())
                 .setSourceExecutor(GlideExecutor.newSourceBuilder().setUncaughtThrowableStrategy(myUncaughtThrowableStrategy).build())
-                .setLogLevel(BuildConfig.DEBUG ? Log.DEBUG : Log.ERROR)
-                .setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_ARGB_8888));
+//                .setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_ARGB_8888))
+                .setLogLevel(BuildConfig.DEBUG ? Log.DEBUG : Log.ERROR);
     }
 
     @Override

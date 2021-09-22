@@ -78,6 +78,8 @@ dependencies {
     api 'com.facebook.fresco:imagepipeline-okhttp3:2.5.0'
     api 'com.squareup.picasso:picasso:2.71828'
     api 'com.squareup.picasso:picasso-pollexor:2.71828'
+
+    api 'com.caverock:androidsvg:1.2.1'
     /**
      * ===============================image end=============================
      */
