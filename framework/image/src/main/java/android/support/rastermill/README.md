@@ -6,6 +6,8 @@
 gif动图 |支持|支持
 webp动图|不支持|支持
 集成包大小| 仅有15个文件| 260kb起步
+解码位置| java堆| native堆
+缓存| BitmapPool| 两个Bitmap
 
 
 GifDrawable的卡顿：

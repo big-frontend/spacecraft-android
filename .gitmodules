@@ -53,3 +53,6 @@
 [submodule "framework/loader/uix"]
 	path = framework/loader/uix
 	url = https://github.com/JamesfChen/uix.git
+[submodule "framework/image/coil"]
+	path = framework/image/coil
+	url = https://github.com/coil-kt/coil.git
