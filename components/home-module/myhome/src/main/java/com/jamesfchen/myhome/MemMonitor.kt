@@ -3,6 +3,7 @@ package com.jamesfchen.myhome
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.jamesfchen.common.util.MemoryUtil
 import java.lang.ref.WeakReference
 
 class MemMonitor {
@@ -12,6 +13,7 @@ class MemMonitor {
             app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
                 override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                     refActivity = WeakReference(activity)
+                    MemoryUtil.printAppMemory(activity)
                 }
 
                 override fun onActivityStarted(activity: Activity) {

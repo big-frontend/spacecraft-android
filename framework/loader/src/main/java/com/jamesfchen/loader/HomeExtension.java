@@ -1,20 +1,12 @@
 package com.jamesfchen.loader;
 
-import static com.jamesfchen.loader.GlideOptions.decodeTypeOf;
-
-import androidx.annotation.NonNull;
-
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.TransitionOptions;
 import com.bumptech.glide.annotation.GlideExtension;
 import com.bumptech.glide.annotation.GlideOption;
-import com.bumptech.glide.annotation.GlideType;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.jamesfchen.loader.GlideRequest;
+
+import androidx.annotation.NonNull;
 
 /**
  * Copyright ® $ 2017
