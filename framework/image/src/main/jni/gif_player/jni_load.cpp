@@ -15,6 +15,7 @@ struct RegJNIRec {
 extern int register_com_hawksjamesf_image_DisplayEventReceiver(JNIEnv *env);
 
 
+
 static const RegJNIRec gRegJNI[] = {
         REG_JNI(register_com_hawksjamesf_image_DisplayEventReceiver)
 };

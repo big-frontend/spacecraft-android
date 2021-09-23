@@ -103,4 +103,3 @@ int register_com_hawksjamesf_image_DisplayEventReceiver(JNIEnv *env) {
     }
     return 0;
 }
-
