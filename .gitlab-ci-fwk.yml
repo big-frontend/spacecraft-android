@@ -1,10 +1,12 @@
+# 确保fwk每个修改点都输出最新的fwk包给上层
 fwk-common:
   only:
     changes:
       - framework/common/**/*
   stage: build
   script:
-    - ./gradlew :framework:common:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-common
+    - ./gradlew :framework:common:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-common
+    # todo:并发执行 av hybrid image map storage network
 #    #upload mave
     - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
 #    #upload mave
@@ -26,7 +28,7 @@ fwk-av:
       - framework/av/**/*
   stage: build
   script:
-    - ./gradlew :framework:av:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
+    - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-flutter:
@@ -43,7 +45,7 @@ fwk-hybrid:
       - framework/hybrid/**/*
   stage: build
   script:
-    - ./gradlew :framework:hybrid:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
+    - ./gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-image:
@@ -52,7 +54,7 @@ fwk-image:
       - framework/image/**/*
   stage: build
   script:
-    - ./gradlew :framework:image:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
+    - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-map:
@@ -61,7 +63,7 @@ fwk-map:
       - framework/map/**/*
   stage: build
   script:
-    - ./gradlew :framework:map:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
+    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-mockserver:
@@ -79,7 +81,7 @@ fwk-network:
       - framework/network/**/*
   stage: build
   script:
-    - ./gradlew :framework:network:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
+    - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-storage:
@@ -88,7 +90,7 @@ fwk-storage:
       - framework/storage/**/*
   stage: build
   script:
-    - ./gradlew :framework:storage:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
+    - ./gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-loader:
@@ -97,7 +99,7 @@ fwk-loader:
       - framework/loader/**/*
   stage: build
   script:
-    - ./gradlew :framework:loader:build publishToMavenLocal
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #buildBigApp job
 #build-big-app:
