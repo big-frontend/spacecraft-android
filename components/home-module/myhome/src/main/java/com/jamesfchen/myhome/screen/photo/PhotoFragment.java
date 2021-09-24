@@ -1,6 +1,5 @@
 package com.jamesfchen.myhome.screen.photo;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,26 +16,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.jamesfchen.common.constants.MemoryUnit;
 import com.jamesfchen.common.util.ImageUtil;
 import com.jamesfchen.myhome.R;
 import com.jamesfchen.myhome.screen.photo.model.Photo;
 
+import java.security.MessageDigest;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import java.security.MessageDigest;
 
 /**
  * Copyright ® $ 2017
@@ -99,25 +96,20 @@ public class PhotoFragment extends Fragment {
             tvText.setVisibility(View.GONE);
             ivPhoto.setVisibility(View.VISIBLE);
             Glide.with(ivPhoto.getContext())
+                    .asBitmap()
                     .load(page.uri)
-                    .transform(new FitCenter(),new ReflectionTransform())
-                    .addListener(new RequestListener<Drawable>() {
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .transform(new FitCenter(), new ReflectionTransform())
+                    .addListener(new RequestListener<Bitmap>() {
                         @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                            Log.d(Constants.TAG_PHOTO_ACTIVITY, Log.getStackTraceString(e));
                             return false;
                         }
 
                         @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            ActivityManager am = ContextCompat.getSystemService(getActivity(), ActivityManager.class);
-                            final ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-                            am.getMemoryInfo(mi);
-                            Bitmap bitmap = ImageUtils.drawable2Bitmap(resource);
-                            long availableMegs = mi.availMem / MemoryUnit.MB;
-                            long totalMegs = mi.totalMem / MemoryUnit.MB;
-                            double percentAvail = mi.availMem * 100.0 / mi.totalMem;
-                            Log.d(Constants.TAG_PHOTO_ACTIVITY, "index:" + sectionNumber + " bitmap size:" + (bitmap.getByteCount() / 1024f) + "k" + "\n" +
-                                    "avaliable memory:" + availableMegs + "m total memory:" + totalMegs + "m percent:" + percentAvail + "%");
+                        public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                            Log.d(Constants.TAG_PHOTO_ACTIVITY, "index:" + sectionNumber + " bitmap size:" + (resource.getByteCount() / 1024f) + "k");
                             return false;
                         }
                     })
@@ -271,9 +263,16 @@ public class PhotoFragment extends Fragment {
         private final byte[] ID_BYTES = ID.getBytes(CHARSET);
 
         @Override
-        protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
-            Log.d(Constants.TAG_PHOTO_ACTIVITY, "ReflectionTransform:transform:"+outWidth+"/"+outHeight);
-            return ImageUtil.addReflection(toTransform, 360,true);
+        protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap decoded, int outWidth, int outHeight) {
+            Log.d(Constants.TAG_PHOTO_ACTIVITY, "ReflectionTransform:transform:" + outWidth + "/" + outHeight);
+            try {
+                //"内存溢出"
+//                throw  new OutOfMemoryError("溢出");
+                return ImageUtil.addReflection(decoded, 360);
+            } catch (OutOfMemoryError e) {
+                pool.clearMemory();
+                return decoded;
+            }
         }
 
         @Override

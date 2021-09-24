@@ -3,9 +3,11 @@ package com.jamesfchen.mvvm
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.ViewModel
-import com.github.markzhai.recyclerview.BaseViewAdapter
 
-
+/**
+ * databinding 的 viewmodel
+ * - 可以通过notify 属性fieldId 进行控件的更新
+ */
 open class ObservableViewModel : ViewModel(), Observable {
 
     private val callbacks: PropertyChangeRegistry = PropertyChangeRegistry()

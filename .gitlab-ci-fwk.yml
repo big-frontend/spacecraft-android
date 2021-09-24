@@ -14,7 +14,7 @@ fwk-common:
 #    #upload mave
     - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
 #    #upload mave
-    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
+#    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
 #    #upload mave
     - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
 #    #upload mave
@@ -57,14 +57,14 @@ fwk-image:
     - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
     - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
-fwk-map:
-  only:
-    changes:
-      - framework/map/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#fwk-map:
+#  only:
+#    changes:
+#      - framework/map/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
+#    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-mockserver:
 #  only:
