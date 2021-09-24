@@ -14,7 +14,7 @@ public class Test2 {
 
         Long d = Long.valueOf(111);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Color.valueOf( Color.parseColor("#1232424"));
+            Color.valueOf( Color.parseColor("#1232424dasfasf"));
         }
     }
 }
