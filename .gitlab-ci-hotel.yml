@@ -80,13 +80,19 @@ hotel-bundle2-deploy:
     - ./gradlew :components:hotel-module:bundle2:publishToMavenLocal
 # ========================
 
-hotel-daily-check:
+hotel-daily-check1:
   only:
     changes:
       - components/hotel-module/**/*
   stage: build
   script:
     - ./gradlew :components:hotel-module:main:fileCounter
+hotel-daily-check2:
+  only:
+    changes:
+      - components/hotel-module/**/*
+  stage: build
+  script:
     - ./gradlew :components:hotel-module:main:dangerousApiTask
 #lint job
 #hotelLint:
