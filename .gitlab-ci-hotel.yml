@@ -6,9 +6,6 @@ hotel-foundation-build:
   stage: build
   script:
     - ./gradlew :components:hotel-module:foundation:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=hotel-foundation
-    # todo:并发执行bundle1 bundle2
-    - ./gradlew :framework:bundle1:assemble publishToMavenLocal
-    - ./gradlew :framework:bundle2:assemble publishToMavenLocal
 hotel-foundation-lint:
   only:
     changes:
@@ -23,13 +20,28 @@ hotel-foundation-lint:
 #  stage: test
 #  script:
 #    - ./gradlew :components:hotel-module:foundation:test
-hotel-foundation-deploy:
+hotel-foundation-deploy1:
   only:
     changes:
       - components/hotel-module/foundation/**/*
   stage: deploy
   script:
     - ./gradlew :components:hotel-module:foundation:publishToMavenLocal #发布到远程仓库
+hotel-foundation-deploy2:
+  only:
+    changes:
+      - components/hotel-module/foundation/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:hotel-module:bundle1:assemble publishToMavenLocal #发布到远程仓库
+
+hotel-foundation-deploy3:
+  only:
+    changes:
+      - components/hotel-module/foundation/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:hotel-module:bundle2:assemble publishToMavenLocal #发布到远程仓库
 # ========================
 hotel-bundle1-build:
   only:
