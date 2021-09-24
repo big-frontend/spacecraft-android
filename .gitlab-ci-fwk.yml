@@ -4,22 +4,21 @@ fwk-common:
       - framework/common/**/*
   stage: build
   script:
-    - ./gradlew :framework:common:build
+    - ./gradlew :framework:common:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-common
 #    #upload mave
-#    - ./gradlew :framework:av:build
+    - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
 #    #upload mave
-#    - ./gradlew :framework:hybrid:build
+    - ./gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
 #    #upload mave
-#    - ./gradlew :framework:image:build
+    - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
 #    #upload mave
-#    - ./gradlew :framework:map:build
+    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
 #    #upload mave
-#    - ./gradlew :framework:network:build
+    - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
 #    #upload mave
-#    - ./gradlew :framework:storage:build
+    - ./gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
 #    #upload mave
-#    - ./gradlew :framework:loader:build
-    #upload mave
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-av:
   only:
@@ -27,7 +26,8 @@ fwk-av:
       - framework/av/**/*
   stage: build
   script:
-    - ./gradlew :framework:av:build
+    - ./gradlew :framework:av:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-flutter:
 #  only:
@@ -43,7 +43,8 @@ fwk-hybrid:
       - framework/hybrid/**/*
   stage: build
   script:
-    - ./gradlew :framework:hybrid:build
+    - ./gradlew :framework:hybrid:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-image:
   only:
@@ -51,7 +52,8 @@ fwk-image:
       - framework/image/**/*
   stage: build
   script:
-    - ./gradlew :framework:image:build
+    - ./gradlew :framework:image:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-map:
   only:
@@ -59,7 +61,8 @@ fwk-map:
       - framework/map/**/*
   stage: build
   script:
-    - ./gradlew :framework:map:build
+    - ./gradlew :framework:map:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-mockserver:
 #  only:
@@ -68,6 +71,7 @@ fwk-map:
 #  stage: build
 #  script:
 #    - ./gradlew :framework:mockserver:build
+#     - ./gradlew :framework:loader:assemble
 # ========================
 fwk-network:
   only:
@@ -75,7 +79,8 @@ fwk-network:
       - framework/network/**/*
   stage: build
   script:
-    - ./gradlew :framework:network:build
+    - ./gradlew :framework:network:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-storage:
   only:
@@ -83,7 +88,8 @@ fwk-storage:
       - framework/storage/**/*
   stage: build
   script:
-    - ./gradlew :framework:storage:build
+    - ./gradlew :framework:storage:build publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-loader:
   only:
@@ -91,7 +97,7 @@ fwk-loader:
       - framework/loader/**/*
   stage: build
   script:
-    - ./gradlew :framework:loader:build
+    - ./gradlew :framework:loader:build publishToMavenLocal
 # ========================
 #buildBigApp job
 #build-big-app:

@@ -144,7 +144,7 @@ ext {
     }
     modules = gradle.ext.sourceModuleMap.values() + gradle.ext.binaryModuleMap.values()
 }
-
+apply from:'./script/module_builder.gradle'
 
 //对所有sub project进行依赖绑定
 //gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
@@ -170,69 +170,6 @@ ext {
 //    void afterEvaluate(Project p, ProjectState projectState) {
 //    }
 //})
-static def isWindows() {
-    return System.properties['os.name'].contains('Windows');
-}
 
-task publishAll {
-    doLast {
-        def ret = []
-        try {
-            gradle.ext.sourceModuleMap.each { canonicalName, module ->
-                if (canonicalName != ':app'
-                        && canonicalName != ':components:hotel-module:hotel-lint'
-                        && canonicalName != ':framework:flutter'
-                        && module.format != 'app') {
-                    ret += canonicalName
-                    exec {
-                        executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
-                        workingDir rootDir
-                        def argv = []
-                        argv << "${canonicalName}:publishToMavenLocal"
-                        args = argv
-                    }
-                }
-            }
-        } catch (Exception ignored) {
-            println(">>>> 出现异常没有全部发布，需要动手处理一下")
-        } finally {
-            Collections.sort(ret)
-            println(">>>> publish ${ret.size()} modules !!!!!! !!!!!!")
-            println(">>>> ${ret}")
-        }
-    }
-}
-task includeAll {
-    doLast {
-        def localProperties = new Properties()
-        def localPropertiesFile = new File(rootDir, 'local.properties')
-        if (localPropertiesFile.exists()) {
-            localPropertiesFile.withReader('UTF-8') { reader ->
-                localProperties.load(reader)
-            }
-        }
-        StringBuffer sourcesb = new StringBuffer();
-        gradle.ext.allModules.each { m ->
-            if (
-//            m.canonicalName == ':components:hotel-module:hotel-lint' ||
-            m.canonicalName == ':framework:flutter') return
-            sourcesb.append(m.simpleName);
-            sourcesb.append(",");
-        }
-        localProperties.setProperty("sourceModules", sourcesb.toString());
-        OutputStream outputstream = new FileOutputStream(localPropertiesFile);
-        localProperties.store(outputstream, "update modules");
-    }
-}
-task buildBigApp {
-    doLast {
-        exec {
-            executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
-            workingDir rootDir
-            def argv = []
-            argv << "app:assembleDebug"
-            args = argv
-        }
-    }
-}
-buildBigApp.dependsOn("includeAll")
+
+

@@ -1,0 +1,201 @@
+static void configModule(Project project, String moduleName, boolean includeModule, boolean isBinary = null) {
+    def localProperties = new Properties()
+    def localPropertiesFile = new File(project.rootDir, 'local.properties')
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.withReader('UTF-8') { reader ->
+            localProperties.load(reader)
+        }
+    }
+    String sm = localProperties.getProperty("sourceModules")
+    if (includeModule) {
+        if (isBinary && sm.contains(moduleName)) {
+            sm = sm.replace("${moduleName},", "")
+            updateSourceModules(localPropertiesFile, localProperties, sm)
+        } else if (!isBinary && !sm.contains(moduleName)) {
+            sm = "${sm}${moduleName},"
+            updateSourceModules(localPropertiesFile, localProperties, sm)
+        }
+    } else {
+        sm = sm.replace("${moduleName},", "")
+        updateSourceModules(localPropertiesFile, localProperties, sm)
+    }
+
+
+    String em = localProperties.getProperty("excludeModules")
+    if (includeModule) {
+        if (em.contains(moduleName)) {
+            em = em.replace("${moduleName},", "")
+            updateExcludeModules(localPropertiesFile, localProperties, em)
+        }
+    } else {
+        if (!em.contains(moduleName)) {
+            em = "${em}${moduleName},"
+            updateExcludeModules(localPropertiesFile, localProperties, em)
+        }
+    }
+}
+
+static void updateSourceModules(File localPropertiesFile, Properties localProperties, String sm) {
+    localProperties.setProperty("sourceModules", sm)
+    OutputStream propertyFileOs = new FileOutputStream(localPropertiesFile)
+    localProperties.store(propertyFileOs, "update modules")
+    propertyFileOs.close()
+}
+
+static void updateExcludeModules(File localPropertiesFile, Properties localProperties, String em) {
+    localProperties.setProperty("excludeModules", em)
+    OutputStream propertyFileOs = new FileOutputStream(localPropertiesFile)
+    localProperties.store(propertyFileOs, "update modules")
+    propertyFileOs.close()
+}
+
+static void includeM(Project project, String moduleName, boolean isBinary) {
+    configModule(project, moduleName, true, isBinary)
+}
+
+static void excludeM(Project project, String moduleName) {
+    configModule(project, moduleName, false)
+
+}
+
+static def isWindows() {
+    return System.properties['os.name'].contains('Windows');
+}
+
+task includeSourceModule {
+    doLast {
+        if (project.hasProperty("moduleName")) {
+            def moduleName = project.getProperty("moduleName")
+            includeM(project, moduleName, false)
+        } else {
+            throw new IllegalArgumentException("请传想要include的模块 eg. ./gradlew includeSourceModule -PmoduleName=home-myhome")
+        }
+    }
+
+}
+task includeBinaryModule {
+    doLast {
+        if (project.hasProperty("moduleName")) {
+            def moduleName = project.getProperty("moduleName")
+            includeM(project, moduleName, true)
+        } else {
+            throw new IllegalArgumentException("请传想要include的模块 eg. ./gradlew includeBinaryModule -PmoduleName=home-myhome")
+        }
+    }
+}
+
+task excludeModule {
+    doLast {
+        if (project.hasProperty("moduleName")) {
+            def moduleName = project.getProperty("moduleName")
+            excludeM(project, moduleName)
+        } else {
+            throw new IllegalArgumentException("请传想要exclude的模块 eg. ./gradlew excludeModule -PmoduleName=home-myhome")
+        }
+    }
+}
+task includeAll {
+    doLast {
+        def localProperties = new Properties()
+        def localPropertiesFile = new File(rootDir, 'local.properties')
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withReader('UTF-8') { reader ->
+                localProperties.load(reader)
+            }
+        }
+        StringBuffer sourcesb = new StringBuffer();
+        gradle.ext.allModules.each { m ->
+            if (m.canonicalName == ':framework:flutter') return
+            sourcesb.append(m.simpleName);
+            sourcesb.append(",");
+        }
+        localProperties.setProperty("sourceModules", sourcesb.toString());
+        OutputStream outputstream = new FileOutputStream(localPropertiesFile);
+        localProperties.store(outputstream, "update modules")
+
+        localProperties.setProperty("excludeModules", "")
+        localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
+    }
+}
+task publishModule {
+    doLast {
+        if (project.hasProperty("moduleName")) {
+            def moduleName = project.getProperty("moduleName")
+            includeM(project, moduleName, false)
+            gradle.ext.sourceModuleMap.each { canonicalName, module ->
+                if (module.simpleName != moduleName) {
+                    exec {
+                        executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                        workingDir rootDir
+                        def argv = []
+                        argv << "${canonicalName}:assemble"
+                        argv << "publishToMavenLocal"
+                        args = argv
+                        println("command line:${commandLine}")
+                    }
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("请传想要publish的模块 eg. ./gradlew publishModule -PmoduleName=home-myhome")
+        }
+    }
+}
+/**
+ *
+ * 模块之间的依赖关系如下
+ *        app__
+         /   \
+         b1     b2
+         \     /
+         loader
+         /  \
+         image net ...
+         \     /
+         common
+ * 优化发布：当common模块被编译就将其发布到本地maven，然后再并发编译image net 等模块这个过程集成的是common二进制组件，在本地maven，然后再编译loader，打包出一个供上传使用的包
+ */
+task publishAll {
+    doLast {
+        def ret = []
+        try {
+            gradle.ext.sourceModuleMap.each { canonicalName, module ->
+                if (canonicalName != ':app'
+                        && canonicalName != ':components:hotel-module:hotel-lint'
+                        && canonicalName != ':framework:flutter'
+                        && module.format != 'app') {
+                    ret += canonicalName
+                    exec {
+                        executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                        workingDir rootDir
+                        def argv = []
+                        argv << "${canonicalName}:assemble"
+                        argv << "publishToMavenLocal"
+                        args = argv
+                        println("command line:${commandLine}")
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+            println(">>>> 出现异常没有全部发布，需要动手处理一下")
+        } finally {
+            Collections.sort(ret)
+            println(">>>> publish ${ret.size()} modules !!!!!! !!!!!!")
+            println(">>>> ${ret}")
+        }
+    }
+}
+
+
+task buildBigApp {
+    doLast {
+        exec {
+            executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+            workingDir rootDir
+            def argv = []
+            argv << "app:assembleDebug"
+            args = argv
+        }
+    }
+}
+buildBigApp.dependsOn("includeAll")
+

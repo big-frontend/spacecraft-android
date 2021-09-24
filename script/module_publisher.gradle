@@ -106,7 +106,7 @@ afterEvaluate {
             }
         }
     }
-    publishToMavenLocal.dependsOn assemble
-    publishDebugPublicationToMavenLocal.dependsOn assembleDebug
-    publishReleasePublicationToMavenLocal.dependsOn assembleRelease
+//    publishToMavenLocal.dependsOn assemble
+//    publishDebugPublicationToMavenLocal.dependsOn assembleDebug
+//    publishReleasePublicationToMavenLocal.dependsOn assembleRelease
 }
