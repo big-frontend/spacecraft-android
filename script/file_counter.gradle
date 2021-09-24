@@ -164,16 +164,16 @@ class CounterTask extends DefaultTask {
                          </html>
                 """)
 //        sendEmail(content)
-        project.exec {
-            println "[post email] post  start"
-            executable isWindows() ? "python" : "python3"
-            workingDir project.rootDir
-            def argv = []
-            argv << "${project.rootDir.path}${File.separator}script${File.separator}post_email.py"
-            argv << content.toString()
-            args = argv
-            println "[post email] post  end"
-        }
+//        project.exec {
+//            println "[post email] post  start"
+//            executable isWindows() ? "python" : "python3"
+//            workingDir project.rootDir
+//            def argv = []
+//            argv << "${project.rootDir.path}${File.separator}script${File.separator}post_email.py"
+//            argv << content.toString()
+//            args = argv
+//            println "[post email] post  end"
+//        }
     }
 //      需要导入classpath 'javax.mail:javax.mail-api:1.5.1'
 //    void sendEmail(String content) {

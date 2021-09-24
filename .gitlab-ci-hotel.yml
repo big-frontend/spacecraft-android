@@ -1,19 +1,35 @@
+#确保每次给到测试的包都是最新的
 hotel-foundation-build:
   only:
     changes:
       - components/hotel-module/foundation/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:foundation:build
-
+    - ./gradlew :components:hotel-module:foundation:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=hotel-foundation
+    # todo:并发执行bundle1 bundle2
+    - ./gradlew :framework:bundle1:assemble publishToMavenLocal
+    - ./gradlew :framework:bundle2:assemble publishToMavenLocal
+hotel-foundation-lint:
+  only:
+    changes:
+      - components/hotel-module/foundation/**/*
+  stage: build
+  script:
+    - ./gradlew :components:hotel-module:foundation:lintInhouse
+#hotel-foundation-test:
+#  only:
+#    changes:
+#      - components/hotel-module/bundle1/**/*
+#  stage: test
+#  script:
+#    - ./gradlew :components:hotel-module:foundation:test
 hotel-foundation-deploy:
   only:
     changes:
       - components/hotel-module/foundation/**/*
   stage: deploy
   script:
-    - ./gradlew :components:hotel-module:foundation:publishToMavenLocal
-
+    - ./gradlew :components:hotel-module:foundation:publishToMavenLocal #发布到远程仓库
 # ========================
 hotel-bundle1-build:
   only:
@@ -21,7 +37,7 @@ hotel-bundle1-build:
       - components/hotel-module/bundle1/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:bundle1:build
+    - ./gradlew :components:hotel-module:bundle1:assemble
 
 hotel-bundle1-lint:
   only:
@@ -37,7 +53,7 @@ hotel-bundle1-deploy:
       - components/hotel-module/bundle1/**/*
   stage: deploy
   script:
-    - ./gradlew :components:hotel-module:bundle1:publishToMavenLocal
+    - ./gradlew :components:hotel-module:bundle1:publishToMavenLocal #发布到远程仓库
 # ========================
 hotel-bundle2-build:
   only:
@@ -45,7 +61,15 @@ hotel-bundle2-build:
       - components/hotel-module/bundle2/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:bundle2:build
+    - ./gradlew :components:hotel-module:bundle2:assemble
+
+hotel-bundle2-lint:
+  only:
+    changes:
+      - components/hotel-module/bundle2/**/*
+  stage: build
+  script:
+    - ./gradlew :components:hotel-module:bundle2:lintInhouse
 
 hotel-bundle2-deploy:
   only:
