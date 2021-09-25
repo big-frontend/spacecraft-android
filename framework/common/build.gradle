@@ -221,7 +221,7 @@ dependencies {
     // Integration with activities
     api 'androidx.activity:activity-compose:1.3.1'
     // Integration with ViewModels
-    api 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-beta01'
+    api 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
     // Integration with observables
     api 'androidx.compose.runtime:runtime-livedata:1.0.2'
     api 'androidx.compose.runtime:runtime-rxjava2:1.0.2'

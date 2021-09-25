@@ -184,7 +184,7 @@ task publishAll {
         }
     }
 }
-publishAll.dependsOn("includeAll")
+//publishAll.dependsOn("includeAll")
 
 task buildBigApp {
     doLast {

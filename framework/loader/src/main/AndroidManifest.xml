@@ -130,6 +130,9 @@
             <meta-data
                 android:name="com.jamesfchen.loader.CrossPlatformInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.EmojiInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>

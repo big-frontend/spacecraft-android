@@ -19,30 +19,7 @@ public class AppLifecycle implements DefaultLifecycleObserver {
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
         Log.d("cjf","bundle2 app onCreate");
-//        FontRequest fontRequest = new FontRequest(
-//                "com.google.android.gms.fonts",
-//                "com.google.android.gms",
-//                "emoji compat Font Query",
-//                R.array.com_google_android_gms_fonts_certs);
-////        owner.getLifecycle()
-//        ProcessLifecycleOwner.get()
-//        EmojiCompat.Config emojiCompatConfig = new FontRequestEmojiCompatConfig((Application)owner, fontRequest)
-//                .setReplaceAll(true)
-//                .setEmojiSpanIndicatorColor(Color.GREEN)
-//                .registerInitCallback(new EmojiCompat.InitCallback() {
-//                    @Override
-//                    public void onInitialized() {
-//                        super.onInitialized();
-//                    }
-//
-//                    @Override
-//                    public void onFailed(@Nullable Throwable throwable) {
-//                        super.onFailed(throwable);
-//                    }
-//                })
-//                .setEmojiSpanIndicatorEnabled(true);
-//        EmojiCompat.Config bundledEmojiCompatConfig = new BundledEmojiCompatConfig((Application)owner);
-//        EmojiCompat.init(emojiCompatConfig);
+
     }
 
     @Override

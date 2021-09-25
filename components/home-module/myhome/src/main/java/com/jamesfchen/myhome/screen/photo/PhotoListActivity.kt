@@ -1,5 +1,6 @@
 package com.jamesfchen.myhome.screen.photo
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock
@@ -17,6 +18,7 @@ import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
+import com.jamesfchen.myhome.widget.ImageListView
 import jamesfchen.widget.Divider
 import kotlinx.coroutines.flow.collectLatest
 
@@ -35,6 +37,8 @@ class PhotoListActivity : AppCompatActivity() {
     @AddTrace(name = "PhotoListActivity#onCreate", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val view = ImageListView(this)
+
         //init view
         rvPhotoList = RecyclerView(this)
         rvPhotoList.setBackgroundColor(Color.CYAN)
@@ -49,13 +53,13 @@ class PhotoListActivity : AppCompatActivity() {
         rvPhotoList.adapter = concatAdapter
 //        val preloader = RecyclerViewPreloader(adapter.glideRequestBuilder, adapter, adapter, 4)
 //        rvPhotoList.addOnScrollListener(preloader)
-        rvPhotoList.addRecyclerListener { holder ->
-            (holder.itemView as HorizontalScrollView).children.forEach {
-                adapter.glideRequestBuilder.clear(it)
-            }
-        }
+//        rvPhotoList.addRecyclerListener { holder ->
+//            (holder.itemView as HorizontalScrollView).children.forEach {
+//                adapter.glideRequestBuilder.clear(it)
+//            }
+//        }
         //有固定的size
-        rvPhotoList.setHasFixedSize(true)
+//        rvPhotoList.setHasFixedSize(true)
 //        rvPhotoList.setOnTouchListener { view, motionEvent ->
 ////            MatrixLog.i("TestPluginListener", "onTouch=$motionEvent")
 //            SystemClock.sleep(80)

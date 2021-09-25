@@ -48,14 +48,16 @@ object StockImages {
 //            Uri.parse("https://firebasestorage.googleapis.com/v0/b/spacecraft-22dc1.appspot.com/o/WechatIMG176.jpeg?alt=media&token=6769a004-5d06-49fd-89d3-e72802399dd4"),
 //            Uri.parse("https://firebasestorage.googleapis.com/v0/b/spacecraft-22dc1.appspot.com/o/WechatIMG176.jpeg?alt=media&token=6769a004-5d06-49fd-89d3-e72802399dd4"),
 //            Uri.parse("https://firebasestorage.googleapis.com/v0/b/spacecraft-22dc1.appspot.com/o/WechatIMG176.jpeg?alt=media&token=6769a004-5d06-49fd-89d3-e72802399dd4"),
-            Uri.parse("file:///android_asset/images/lit_pier.jpg"),
-            Uri.parse("file:///android_asset/images/parting_ways.jpg"),
-            Uri.parse("file:///android_asset/images/wrong_way.jpg"),
-            Uri.parse("file:///android_asset/images/jack_beach.jpg"),
-            Uri.parse("file:///android_asset/images/webp/jack_blur.webp"),
-            Uri.parse("file:///android_asset/images/webp/jack_road.webp"),
-            Uri.parse("file:///android_asset/images/webp/wechatimg211.webp"),
-            Uri.parse("file:///android_asset/images/wechatimg212.png")
+            Uri.parse("file:///android_asset/images/lit_pier.jpg?w=1600&h=1066"),
+            Uri.parse("file:///android_asset/images/parting_ways.jpg?w=2048&h=857"),
+            Uri.parse("file:///android_asset/images/wrong_way.jpg?w=1600&h=900"),
+            Uri.parse("file:///android_asset/images/jack_beach.jpg?w=512&h=512"),
+            Uri.parse("file:///android_asset/images/webp/jack_blur.webp?w=512&h=683"),
+            Uri.parse("file:///android_asset/images/webp/jack_road.webp?w=512&h=640"),
+            Uri.parse("file:///android_asset/images/webp/jack_road.webp?w=512&h=640"),
+            Uri.parse("file:///android_asset/images/webp/jack_road.webp?w=512&h=640"),
+//            Uri.parse("file:///android_asset/images/webp/wechatimg211.webp"),
+//            Uri.parse("file:///android_asset/images/wechatimg212.png")
     )
 
     /**

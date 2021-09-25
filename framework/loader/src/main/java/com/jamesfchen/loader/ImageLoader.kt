@@ -49,7 +49,7 @@ class ImageLoader {
             .connectTimeout(15_000, TimeUnit.MILLISECONDS)//15s
             .readTimeout(15_000, TimeUnit.MILLISECONDS)//
             .writeTimeout(15_000, TimeUnit.MILLISECONDS)//
-            .connectionPool(ConnectionPool(5, 10_000, TimeUnit.MILLISECONDS))//空闲5个，保活10s
+            .connectionPool(ConnectionPool(5, 10_000, TimeUnit.MILLISECONDS))//默认最多空闲5个，每个连接最多保活5分钟，将保活时间修改为10s
             .addInterceptor { chain ->//应用层的拦截器
                 return@addInterceptor chain.proceed(chain.request())
             }
