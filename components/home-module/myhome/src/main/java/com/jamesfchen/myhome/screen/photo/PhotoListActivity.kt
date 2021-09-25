@@ -1,24 +1,21 @@
 package com.jamesfchen.myhome.screen.photo
 
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.os.SystemClock
-import android.widget.HorizontalScrollView
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.firebase.perf.metrics.AddTrace
+import com.jamesfchen.export.AccountService
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
-import com.jamesfchen.myhome.widget.ImageListView
 import jamesfchen.widget.Divider
 import kotlinx.coroutines.flow.collectLatest
 
@@ -37,8 +34,8 @@ class PhotoListActivity : AppCompatActivity() {
     @AddTrace(name = "PhotoListActivity#onCreate", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val view = ImageListView(this)
-
+        val isLogin = (ARouter.getInstance().build("/account/exportService").navigation() as? AccountService)?.isLogin()
+        Log.d("cjf", "isLogin ${isLogin}")
         //init view
         rvPhotoList = RecyclerView(this)
         rvPhotoList.setBackgroundColor(Color.CYAN)

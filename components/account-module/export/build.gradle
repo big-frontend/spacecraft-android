@@ -1,0 +1,2 @@
+apply from: "$rootDir.path/script/api_module.gradle"
+

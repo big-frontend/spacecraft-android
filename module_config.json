@@ -33,8 +33,16 @@
       "group": "account",
       "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-login:1.0",
       "deps": [
-        ":framework:loader"
+        ":framework:loader",
+        ":components:account-module:export"
       ]
+    },
+    {
+      "simpleName": "account-export",
+      "canonicalName": ":components:account-module:export",
+      "format": "bundle",
+      "group": "account",
+      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-export:1.0"
     },
     {
       "simpleName": "home-main",
@@ -53,7 +61,8 @@
       "group": "home",
       "binary_artifact": "com.jamesfchen.spacecraft:home-myhome:1.0",
       "deps": [
-        ":framework:loader"
+        ":framework:loader",
+        ":components:account-module:export"
       ]
     },
     {

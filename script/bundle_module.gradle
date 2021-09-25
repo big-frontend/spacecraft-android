@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: "${rootDir.path}/script/base_module.gradle"
 apply plugin: 'com.alibaba.arouter'
-//apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.google.protobuf'
 //protobuf {
 //    protoc {
@@ -35,18 +34,18 @@ apply plugin: 'com.alibaba.arouter'
 //        }
 //    }
 //}
-//kapt {
-//    arguments {
-//        arg("AROUTER_MODULE_NAME", project.getName())
-//    }
-//}
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 android {
     defaultConfig {
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
-            }
-        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+//            }
+//        }
     }
 }
 
@@ -66,7 +65,8 @@ dependencies {
     //当开启buildFeatures时AGP 会自动注入databinding compiler
 //    kapt 'androidx.databinding:databinding-compiler:7.0.0-beta03'
 
-    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+//    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
