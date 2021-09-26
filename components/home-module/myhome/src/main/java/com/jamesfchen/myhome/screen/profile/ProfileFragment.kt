@@ -15,12 +15,22 @@ import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentProfileBinding
 import com.jamesfchen.myhome.databinding.ViewstubTagSampleBinding
 import com.jamesfchen.myhome.screen.profile.vm.ProfileViewModel
+import com.jamesfchen.myhome.util.Util
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.flow.*
 import okhttp3.Response
 
+/**
+ *
+viewbinding
+简化findviewbyid的方案有
+- kotlin的合成方法(类型不安全，空不安全，只支持kotlin)
+- viewbinding
+
+在编译期通过扫描layout布局文件生成一个对应的ViewBinding类，编译期的时候会通过layout对代码做空安全检查与类型安全检查,检查不合法会发生编译报错，这也是其两大优点。
+ */
 class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
     val viewStubBinding: ViewstubTagSampleBinding by lazy {
@@ -41,13 +51,19 @@ class ProfileFragment : Fragment() {
             binding.btSettings.setOnClickListener {
 //                findNavController().navigate(directions)
                 findNavController().navigate(R.id.action_settings)
+//                val location = IntArray(2)
+//                it.getLocationOnScreen(location)
+//                ProfileDetailActivity.openActivity(activity as Context, location[0],
+//                    location[1],
+//                    it.getHeight()
+//                )
             }
 
             binding.btInflate.setOnClickListener {
 //                viewStubBinding =
 //                    ViewstubTagSampleBinding.bind(binding.somethingViewstub.inflate())
 //                viewStubBinding.btViewstub.textr
-                Log.d("cjf","topactivity:${MemMonitor.refActivity?.get()}")
+                Log.d("cjf","top activity: ${Util.getI().topActivity?.get()}")
             }
 
         }

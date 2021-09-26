@@ -9,6 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jamesfchen.myhome.R;
+import com.jamesfchen.myhome.screen.photo.model.Photo;
+
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -16,11 +21,13 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.viewpager.widget.ViewPager;
 
-import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.photo.model.Photo;
-
-import java.util.ArrayList;
-
+/**
+ *三种内存策略
+ * 低 < 70
+ * 中  70< .. <130
+ * 搞  > 130
+ * 根据这三个内存策略可以压缩(采样率，宽高、质量)不同质量的图片
+ */
 public class PhotoActivity extends AppCompatActivity {
 
 
