@@ -36,3 +36,11 @@ in going：查看对象被谁引用
 分析
 - 静息态内存分析
 - 运行时动态内存分析
+
+oom原因
+- 内存泄露：
+    - Activity被ApplicationProxy持有
+    - 视频控件没有调用release，导致注册事件没有被注销
+    - Webview被H5Plugin持有，没有被释放
+- bitmap图片
+

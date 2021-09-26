@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.DeviceUtils
+import com.blankj.utilcode.util.ScreenUtils
 import com.jamesfchen.myhome.MemMonitor
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentProfileBinding
@@ -97,9 +99,9 @@ class ProfileFragment : Fragment() {
     val channel = Channel<Int>()
     override fun onResume() {
         super.onResume()
+        Log.d("cjf","密度${ScreenUtils.getScreenDensity()} ${ScreenUtils.getScreenDensityDpi()}")
         //启动一个协程，该协程内部的挂起函数不会阻塞主线程
         val job = lifecycleScope.launch {
-            CoroutineScope(Dispatchers.Main.immediate)
             Log.d("cjf", "step 1")
             //async挂起函数不会阻塞协程，不同于其他挂起函数。因为async会在内部启动另外一个协程
             //这样就可以实现懒加载，async在开始就启动，等到流程后面再调用awiat获取数据刷新ui
@@ -121,7 +123,10 @@ class ProfileFragment : Fragment() {
                     }
                 }
             }
-            val a = suspendCancellableCoroutine<Response>{
+            val a = suspendCancellableCoroutine<Int>{
+                it.resume(1){
+
+                }
 
             }
             withContext(Dispatchers.Main) {
@@ -177,27 +182,27 @@ class ProfileFragment : Fragment() {
 
         }
         updateSettingWidget()
-        lifecycleScope.launch {
-            val c = produce<Int> {
-                repeat(100) {
-                    send(it)
-                }
-                close()
-            }
-            val f = flow {
-                for (i in 1..3) {
-                    delay(500)
-                    emit(i)
-                }
-            }
-            withTimeoutOrNull(1600) {
-                f.collect {
-                    delay(500)
-                    Log.d("cjf", "coume ${it}")
-                }
-            }
-            Log.d("cjf", "cancel")
-        }
+//        lifecycleScope.launch {
+//            val c = produce<Int> {
+//                repeat(100) {
+//                    send(it)
+//                }
+//                close()
+//            }
+//            val f = flow {
+//                for (i in 1..3) {
+//                    delay(500)
+//                    emit(i)
+//                }
+//            }
+//            withTimeoutOrNull(1600) {
+//                f.collect {
+//                    delay(500)
+//                    Log.d("cjf", "coume ${it}")
+//                }
+//            }
+//            Log.d("cjf", "cancel")
+//        }
         Log.d("cjf", "onResume")
     }
 

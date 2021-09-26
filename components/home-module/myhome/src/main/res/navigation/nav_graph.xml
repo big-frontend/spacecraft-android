@@ -49,7 +49,9 @@
         tools:layout="@layout/activity_webview">
         <argument
             android:name="url"
-            android:defaultValue="https://i.spacecraft.com/c/ZDg0Y2FhNjMt" />
+            android:defaultValue="file:///android_asset/test.html"
+            />
+<!--            android:defaultValue="https://i.spacecraft.com/c/ZDg0Y2FhNjMt"-->
     </activity>
 
 

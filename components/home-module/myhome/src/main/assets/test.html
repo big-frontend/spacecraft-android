@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>this is title</title>
+    <script>
+        function onClick(){
+
+            alert("native say:"+myActivity.nativeSay());
+        }
+        function jsAlert(){
+            alert("calling from native")
+            return "sbs"
+        }
+    </script>
+</head>
+<body>
+<button type="button" id="bt" onclick="onClick()">call to native</button>
+</body>
+</html>
