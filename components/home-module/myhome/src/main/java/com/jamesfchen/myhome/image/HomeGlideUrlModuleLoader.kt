@@ -23,7 +23,8 @@ class HomeGlideUrlModuleLoader private constructor(
     }
 
     override fun getUrl(model: Photo?, width: Int, height: Int, options: Options?): String {
-        TODO("Not yet implemented")
+        //利用远程切图优化网络下载图片的性能
+        return "${model?.uri}?w=${width}&h=${height}&q=${model?.quality}"
     }
     override fun getAlternateUrls(
         model: Photo?,
@@ -36,9 +37,7 @@ class HomeGlideUrlModuleLoader private constructor(
     class Factory : ModelLoaderFactory<Photo, InputStream> {
         private val modelCache: ModelCache<Photo, GlideUrl> = ModelCache<Photo, GlideUrl>(500)
         override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<Photo, InputStream> {
-            return HomeGlideUrlModuleLoader(
-                multiFactory.build(GlideUrl::class.java, InputStream::class.java), modelCache
-            )
+            return HomeGlideUrlModuleLoader(multiFactory.build(GlideUrl::class.java, InputStream::class.java), modelCache)
         }
         override fun teardown() {}
     }

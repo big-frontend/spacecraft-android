@@ -4,6 +4,13 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
+import com.bumptech.glide.load.Key;
+
+import java.security.MessageDigest;
+import java.util.Objects;
+
 
 /**
  * Copyright ® $ 2017
@@ -12,8 +19,9 @@ import android.os.Parcelable;
  * @author: jamesfchen
  * @since: Dec/02/2019  Mon
  */
-public class Photo implements Parcelable {
+public class Photo implements Parcelable, Key {
     public Uri uri;
+    public int quality;
     public Uri thumbnailUri;
 
     public Photo(Uri thumbnailUri, Uri uri) {
@@ -48,4 +56,22 @@ public class Photo implements Parcelable {
             return new Photo[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Photo photo = (Photo) o;
+        return quality == photo.quality && Objects.equals(uri, photo.uri) && Objects.equals(thumbnailUri, photo.thumbnailUri);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uri, quality, thumbnailUri);
+    }
+
+    @Override
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+
+    }
 }
