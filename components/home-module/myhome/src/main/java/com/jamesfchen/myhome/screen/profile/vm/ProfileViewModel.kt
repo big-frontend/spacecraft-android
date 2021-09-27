@@ -1,16 +1,10 @@
 package com.jamesfchen.myhome.screen.profile.vm
 
 import android.app.Application
-import android.widget.TextView
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.*
-import com.jamesfchen.mvvm.ObservableViewModel
-import com.jamesfchen.myhome.model.L7
 import com.jamesfchen.myhome.network.api.LocationApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
 
 /**
  * Copyright ® $ 2017

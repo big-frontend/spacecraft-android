@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "28459008283",
+    "firebase_url": "https://spacecraft-22dc1.firebaseio.com",
+    "project_id": "spacecraft-22dc1",
+    "storage_bucket": "spacecraft-22dc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28459008283:android:e548fa9e94f41c78",
+        "android_client_info": {
+          "package_name": "com.hawksjamesf.spacecraft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hawksjamesf.spacecraft.debug"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28459008283:android:eec8423def514660",
+        "android_client_info": {
+          "package_name": "com.hawksjamesf.spacecraft.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hawksjamesf.spacecraft.debug"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28459008283:android:59551e794495ed5ede13be",
+        "android_client_info": {
+          "package_name": "com.jamesfchen.spacecraft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hawksjamesf.spacecraft.debug"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28459008283:android:ebe10d6b29c497a5de13be",
+        "android_client_info": {
+          "package_name": "com.jamesfchen.spacecraft.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hawksjamesf.spacecraft.debug"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

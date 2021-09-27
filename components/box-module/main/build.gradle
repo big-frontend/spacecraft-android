@@ -1,0 +1,29 @@
+apply from: "$rootDir.path/script/app_module.gradle"
+android {
+    defaultConfig {
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+//    kotlinOptions {
+//        jvmTarget = '1.8'
+//        useIR = true
+//    }
+    //想要使用dataBinding一定要在app主模块配置，其他lib模块配置不好使
+    buildFeatures {
+        dataBinding true
+    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion compose_version
+//        kotlinCompilerVersion '1.4.32'
+//    }
+    defaultConfig {
+        resValue "string", "app_name","box.app"
+    }
+}
+
+dependencies {
+    api 'androidx.databinding:databinding-runtime:7.0.0-beta03'
+    api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
+}

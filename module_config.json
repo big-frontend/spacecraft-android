@@ -12,7 +12,6 @@
         ":components:hotel-module:bundle1",
         ":components:hotel-module:bundle2",
         ":components:home-module:myhome",
-        ":components:account-module:login",
         ":components:account-module:login"
       ]
     },
@@ -40,7 +39,7 @@
     {
       "simpleName": "account-export",
       "canonicalName": ":components:account-module:export",
-      "format": "bundle",
+      "format": "bundle_foundation",
       "group": "account",
       "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-export:1.0"
     },
@@ -109,6 +108,26 @@
       "format": "bundle_foundation",
       "group": "hotel",
       "binary_artifact": "com.jamesfchen.spacecraft:hotel-foundation:1.0",
+      "deps": [
+        ":framework:loader"
+      ]
+    },
+    {
+      "simpleName": "box-main",
+      "canonicalName": ":components:box-module:main",
+      "format": "app",
+      "group": "box",
+      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:box-main:1.0",
+      "deps": [
+        ":components:box-module:tool"
+      ]
+    },
+    {
+      "simpleName": "box-tool",
+      "canonicalName": ":components:box-module:tool",
+      "format": "bundle",
+      "group": "box",
+      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:box-tool:1.0",
       "deps": [
         ":framework:loader"
       ]

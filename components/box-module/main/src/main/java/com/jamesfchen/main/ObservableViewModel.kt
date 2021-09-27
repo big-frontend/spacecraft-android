@@ -1,4 +1,4 @@
-package com.jamesfchen.mvvm
+package com.jamesfchen.mian
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
