@@ -1,5 +1,6 @@
 package com.jamesfchen.main
 
+import android.util.Log
 import androidx.databinding.*
 import androidx.lifecycle.viewModelScope
 import com.jamesfchen.mian.ObservableViewModel
@@ -32,6 +33,12 @@ class InfosViewModel : ObservableViewModel() {
                 notification.set("您有一条新消息，请注意查收 ${it}")
             }
         }
+        notification.addOnPropertyChangedCallback(object :
+            androidx.databinding.Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: androidx.databinding.Observable?, propertyId: Int) {
+                Log.d("cjf","发起网络请求 ${propertyId}")
+            }
+        })
     }
 
     private fun ObservableInt.increment() {

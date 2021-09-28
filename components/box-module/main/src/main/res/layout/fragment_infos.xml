@@ -11,10 +11,18 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/afasf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/afasf"
         tools:context=".screen.notification.InfosFragment">
+
+        <com.jamesfchen.main.BaseImageView
+            android:id="@+id/biv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_notification"

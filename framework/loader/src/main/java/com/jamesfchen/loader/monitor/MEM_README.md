@@ -37,6 +37,7 @@ in going：查看对象被谁引用
 - 静息态内存分析
 - 运行时动态内存分析
 
+## 总共发生了2743次oom影响了2529个用户
 oom原因
 - 内存泄露：
     - Activity被ApplicationProxy持有
@@ -44,3 +45,6 @@ oom原因
     - Webview被H5Plugin持有，没有被释放
 - bitmap图片
 
+
+[使用内存性能分析器查看应用的内存使用情况](https://developer.android.com/studio/profile/memory-profiler)
+[Android 内存暴减的秘密](https://cloud.tencent.com/developer/article/1013705)

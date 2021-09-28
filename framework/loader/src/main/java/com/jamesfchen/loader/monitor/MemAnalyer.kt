@@ -1,13 +1,12 @@
-package com.jamesfchen.myhome
+package com.jamesfchen.loader.monitor
 
 import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import com.jamesfchen.common.util.MemoryUtil
 import java.lang.ref.WeakReference
 
-class MemMonitor {
+class MemAnalyer {
     companion object {
         var refActivity: WeakReference<Activity>? = null
         var app:Application?=null
@@ -21,6 +20,7 @@ class MemMonitor {
                 override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                     refActivity = WeakReference(activity)
                     MemoryUtil.printAppMemory(activity)
+
                 }
 
                 override fun onActivityStarted(activity: Activity) {

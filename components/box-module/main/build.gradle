@@ -4,6 +4,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        buildConfigField('String', 'IMAGE_BASE_URL', '"http://10.32.151.130:9000"')
     }
 
 //    kotlinOptions {
