@@ -37,13 +37,13 @@ import kotlin.math.roundToInt
  *
  */
 object MemoryUtil {
-    val am by lazy {
-        ContextCompat.getSystemService(Monitor.app, ActivityManager::class.java)
+    val am:ActivityManager? by lazy {
+        ContextCompat.getSystemService(AppMonitor.app, ActivityManager::class.java)
     }
-
-    //android4.4版本以下都被认为低ram设备
+//
+//    //android4.4版本以下都被认为低ram设备
     val isLowRamDevice = am?.isLowRamDevice
-    val hasLargeHeap = Monitor.app.applicationInfo.flags and ApplicationInfo.FLAG_LARGE_HEAP != 0
+    val hasLargeHeap = AppMonitor.app.applicationInfo.flags and ApplicationInfo.FLAG_LARGE_HEAP != 0
 
     //memoryClass为普通app的heap单位为m
     fun availableHeap() = if (hasLargeHeap) am?.largeMemoryClass else am?.memoryClass
@@ -107,6 +107,6 @@ object MemoryUtil {
                     "[device Ram] availMem:${availMemKb}k totalMem:${(totalMemKb / (1024f * 1024f)).roundToInt()}g threshold:${lowMemThresholdKb}k lowMemory:${isLowMemory}\n" +
                     "[app pss] totalPss:${totalPssKb}k dalvikPss:${dalvikPssKb}k nativePss:${nativePssKb}k otherPss:${otherPssKb}k\n" +
                     "[app heap] freeMemory:${freeKb}k allocated:${allocatedKb}k maxMemory:${maxKb/1024}m memoryClass:${am?.memoryClass}m largeMemoryClass${am?.largeMemoryClass}m"
-        Log.d(TAG_APM_MONITOR, content.toString())
+        Log.d(TAG_MEM_MONITOR, content.toString())
     }
 }

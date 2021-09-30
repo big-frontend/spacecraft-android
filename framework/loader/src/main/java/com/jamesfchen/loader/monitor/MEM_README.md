@@ -45,6 +45,15 @@ oom原因
     - Webview被H5Plugin持有，没有被释放
 - bitmap图片
 
+gc root对象：
+- 类(方法区静态成员变量引用的对象)
+- 活动的Thread实例
+- 局部变量或者方法参数变量持有的对象(java 虚拟机堆栈 、 本地方法堆栈)
+- JNILocalReference引用的对象
+- JNIGlobalReference引用的对象
+- synchronize关键字用到的对象
 
 [使用内存性能分析器查看应用的内存使用情况](https://developer.android.com/studio/profile/memory-profiler)
 [Android 内存暴减的秘密](https://cloud.tencent.com/developer/article/1013705)
+[探索 Android 内存优化方法](https://juejin.cn/post/6844903897958449166#heading-35)
+[Matrix ResourceCanary](https://github.com/Tencent/matrix/wiki/Matrix-Android-ResourceCanary)

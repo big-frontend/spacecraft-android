@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.jamesfchen.common.util.ActivityUtil;
 import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.MainActivity;
+import com.jamesfchen.myhome.screen.photo.PhotoListActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -49,9 +49,8 @@ public class SplashActivity extends AbsPermissionsActivity {
         Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-
-//                    ActivityUtil.startActivity(PhotoListActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-                    ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+                    ActivityUtil.startActivity(PhotoListActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+//                    ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                     finish();
                 });

@@ -3,6 +3,7 @@ package com.jamesfchen.myhome.screen.photo
 import android.app.Activity
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -16,6 +17,7 @@ import com.jamesfchen.myhome.screen.photo.model.Item
 import java.util.*
 import com.bumptech.glide.util.FixedPreloadSizeProvider
 import com.jamesfchen.myhome.databinding.ItemPhotoTextBinding
+import com.jamesfchen.myhome.widget.CollapseTextView
 
 
 /**
@@ -40,24 +42,31 @@ class PhotoListAdapter(
         private const val imageWidthPixels = 1024;
         private const val imageHeightPixels = 768;
     }
+
     val glideRequestBuilder = G.with(context)
+
     //ViewPreloadSizeProvider:RecyclerView 里有统一的 View 尺寸、你使用 into(ImageView)来加载图片并且你没有使用 override() 方法来设置一个不同的尺寸
     //FixedPreloadSizeProvider:使用 override() 方法或其他情况导致加载的图片尺寸并不完全匹配你的 View 尺寸
     val viewPreloadSizeProvider = ViewPreloadSizeProvider<Uri>()
     val fixedPreloadSizeProvider =
         FixedPreloadSizeProvider<Uri>(imageWidthPixels, imageHeightPixels);
-    class MyViewHolder(val binding:ItemPhotoTextBinding):RecyclerView.ViewHolder(binding.root)
+
+    class MyViewHolder(val binding: ItemPhotoTextBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding =ItemPhotoTextBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemPhotoTextBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
+  
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = getItem(position) ?: return
         holder.binding.tvIndex.text = "$position"
-        holder.binding.tvText.setCollapseText("photo list size:${item.uriList.size} afadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafa")
-        holder.binding.ilvPhotoList.setOnItemClickListener{_,pos->
+        holder.binding.tvText.setText("photo list size:${item.uriList.size} afadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafaafadsfasdfasfasfdsafasfafasdfsdafasfsafa")
+        holder.binding.tvText.autoRecoverStateByUniqueKey(position)
+
+        holder.binding.ilvPhotoList.setOnItemClickListener { _, pos ->
             //                val thumbnailBitmapList = arrayListOf<Bitmap>()
 //                linearLayout.children.forEach {
 //                    if (it is ImageView) {
@@ -74,8 +83,10 @@ class PhotoListAdapter(
 //                    item.uriList, i
 //                )
 
-            PhotoActivity.startActivity(context as Activity,
-                item.uriList.toMutableList() as ArrayList<Uri>?,pos)
+            PhotoActivity.startActivity(
+                context as Activity,
+                item.uriList.toMutableList() as ArrayList<Uri>?, pos
+            )
 //                PhotoActivity.startActivityWithScaleUp(
 //                        context as Activity, it,
 //                        it.width / 2, it.height / 2,
@@ -89,11 +100,13 @@ class PhotoListAdapter(
     }
 
     override fun getPreloadItems(position: Int): MutableList<Uri> {
-        return getItem(position)?.uriList?.toMutableList()?: mutableListOf()
+        return getItem(position)?.uriList?.toMutableList() ?: mutableListOf()
     }
+
     override fun getPreloadRequestBuilder(uri: Uri): RequestBuilder<*> {
         return glideRequestBuilder.load(uri)
     }
+
     override fun getPreloadSize(uri: Uri, adapterPosition: Int, perItemPosition: Int) =
         viewPreloadSizeProvider.getPreloadSize(uri, adapterPosition, perItemPosition)
 }

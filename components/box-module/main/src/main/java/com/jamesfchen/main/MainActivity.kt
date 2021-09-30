@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 //            .add(InfosFragment(), "tag_infos") #当做一种后台fragment
             .commitAllowingStateLoss()
     }
+
 }
 
 @Composable

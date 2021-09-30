@@ -1,35 +1,34 @@
-package com.jamesfchen.loader.monitor
+package com.jamesfchen.myhome.util
 
-import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.Application
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
+import java.lang.ref.WeakReference
 
-const val TAG_APM_MONITOR = "app-monitor"
-
-class Monitor(val app: Application) {
-    companion object {
-        lateinit var app:Application
-        fun init(p: Application) {
-            app = p
-            Monitor(p).start()
+class Util {
+    companion object{
+        private var i:Util?=null
+        @JvmName("getI1")
+        @Synchronized
+        fun  getI():Util{
+            if(i==null){
+                i = Util()
+            }
+            return i!!
         }
     }
+    var topActivity: WeakReference<Activity>? = null
 
-    @SuppressLint("NewApi")
-    private fun start() {
+    fun init(app: Application) {
         app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-                MemoryUtil.printAppMemory(activity)
+                topActivity = WeakReference(activity)
+
             }
 
-            //前台
             override fun onActivityStarted(activity: Activity) {
-                FrameTrace0.start(activity)
-                FrameTrace1.start(activity)
-                FrameTrace2.start()
 
             }
 
@@ -39,11 +38,7 @@ class Monitor(val app: Application) {
             override fun onActivityPaused(activity: Activity) {
             }
 
-            //后台
             override fun onActivityStopped(activity: Activity) {
-                FrameTrace0.stop(activity)
-                FrameTrace1.stop(activity)
-                FrameTrace2.stop()
             }
 
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
@@ -53,6 +48,4 @@ class Monitor(val app: Application) {
             }
         })
     }
-
-
 }

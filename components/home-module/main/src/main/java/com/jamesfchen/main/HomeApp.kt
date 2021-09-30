@@ -13,7 +13,6 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.jamesfchen.loader.App
-import com.jamesfchen.myhome.MemMonitor
 import com.jamesfchen.myhome.util.Util
 
 @com.jamesfchen.lifecycle.App
@@ -21,7 +20,6 @@ class HomeApp : App() {
     override fun onCreate() {
         super.onCreate()
         Util.getI().init(this)
-        MemMonitor.init(this)
         val activityManager: ActivityManager = getSystemService(ActivityManager::class.java)
         registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

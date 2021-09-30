@@ -104,7 +104,7 @@
             android:theme="@style/PhotoTheme" />
         <activity
             android:name=".screen.photo.PhotoListActivity"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".screen.photo.LargePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light" />

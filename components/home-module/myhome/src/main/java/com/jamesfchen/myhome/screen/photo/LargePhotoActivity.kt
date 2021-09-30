@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.myhome.R
+import com.jamesfchen.myhome.widget.PhotoView
 
 /**
  * Copyright ® $ 2017

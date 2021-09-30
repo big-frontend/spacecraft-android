@@ -3,8 +3,13 @@ package com.jamesfchen.myhome.screen.photo
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.FEATURE_ACTION_MODE_OVERLAY
+import androidx.appcompat.app.AppCompatDelegate.FEATURE_SUPPORT_ACTION_BAR
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -41,6 +46,11 @@ class PhotoListActivity : AppCompatActivity() {
         rvPhotoList.setBackgroundColor(Color.CYAN)
         rvPhotoList.layoutManager = LinearLayoutManager(this)
         rvPhotoList.addItemDecoration(Divider(this))
+        val  toolbar = Toolbar(this)
+        toolbar.setOnClickListener {
+            (rvPhotoList.layoutManager as LinearLayoutManager).scrollToPosition(0)
+        }
+        setSupportActionBar(toolbar)
 
         val adapter = PhotoListAdapter(this)
 //        val headerAdapter = HeaderAdapter()
@@ -93,5 +103,9 @@ class PhotoListActivity : AppCompatActivity() {
     @AddTrace(name = "PhotoListActivity#onResume", enabled = true)
     override fun onResume() {
         super.onResume()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
     }
 }

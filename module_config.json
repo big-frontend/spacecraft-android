@@ -20,7 +20,7 @@
       "canonicalName": ":components:account-module:main",
       "format": "app",
       "group": "account",
-      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-main:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:account-main:1.0",
       "deps": [
         ":components:account-module:login"
       ]
@@ -30,7 +30,7 @@
       "canonicalName": ":components:account-module:login",
       "format": "bundle",
       "group": "account",
-      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-login:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:account-login:1.0",
       "deps": [
         ":framework:loader",
         ":components:account-module:export"
@@ -41,14 +41,14 @@
       "canonicalName": ":components:account-module:export",
       "format": "bundle_foundation",
       "group": "account",
-      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:account-export:1.0"
+      "binary_artifact": "com.jamesfchen.spacecraft:account-export:1.0"
     },
     {
       "simpleName": "home-main",
       "canonicalName": ":components:home-module:main",
       "format": "app",
       "group": "home",
-      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:home-main:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:home-main:1.0",
       "deps": [
         ":components:home-module:myhome"
       ]
@@ -117,7 +117,7 @@
       "canonicalName": ":components:box-module:main",
       "format": "app",
       "group": "box",
-      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:box-main:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:box-main:1.0",
       "deps": [
         ":components:box-module:tool"
       ]
@@ -127,7 +127,7 @@
       "canonicalName": ":components:box-module:tool",
       "format": "bundle",
       "group": "box",
-      "binary_artifact": "com.jamesfchen.spacecraft.spacecraft:box-tool:1.0",
+      "binary_artifact": "com.jamesfchen.spacecraft:box-tool:1.0",
       "deps": [
         ":framework:loader"
       ]

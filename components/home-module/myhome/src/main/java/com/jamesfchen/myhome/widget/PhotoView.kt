@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo
+package com.jamesfchen.myhome.widget
 
 import android.app.Activity
 import android.content.Context
@@ -7,8 +7,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.Display
 import android.view.MotionEvent
+import android.widget.ImageView
 import androidx.annotation.RawRes
-import androidx.appcompat.widget.AppCompatImageView
 import com.almeros.android.multitouch.MoveGestureDetector
 import com.blankj.utilcode.util.ImageUtils
 
@@ -33,11 +33,13 @@ import com.blankj.utilcode.util.ImageUtils
     - 优化：先加载模糊图，在加载大图
     - 转场动画
  */
-class PhotoView : AppCompatImageView {
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-    lateinit var moveGestureDetector:MoveGestureDetector
+class PhotoView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = -1,
+    defStyleRes: Int = -1
+): ImageView (context, attrs, defStyleAttr, defStyleRes) {
+    var moveGestureDetector:MoveGestureDetector
     private var mFocusX = 0f
     private var mFocusY = 0f
     private val mMatrix: Matrix = Matrix()

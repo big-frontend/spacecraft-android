@@ -24,30 +24,30 @@ import com.jamesfchen.loader.GlideRequests
  * @author: jamesfchen
  * @since: Sep/25/2021  Sat
  */
-class ImageListView : LinearLayout {
+class PhotoListView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = -1,
+    defStyleRes: Int = -1
+) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
     private var mUriList: List<Uri>? = null
     private var mOnClick: OnClick? = null
     var mRequestBuilder: GlideRequests = G.with(context)
-    val glideDrawableRequest = mRequestBuilder?.asDrawable()
-    val gldeGifRequest = mRequestBuilder?.asGif()
-    val gldeBitmapRequest = mRequestBuilder?.asBitmap()
-    val l1 = LinearLayout(context)
-    val l2 = LinearLayout(context)
-    val l3 = LinearLayout(context)
+    val glideDrawableRequest = mRequestBuilder.asDrawable()
+    val gldeGifRequest = mRequestBuilder.asGif()
+    val gldeBitmapRequest = mRequestBuilder.asBitmap()
+    private val l1 = LinearLayout(context)
+    private val l2 = LinearLayout(context)
+    private val l3 = LinearLayout(context)
     init {
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
         l1.orientation = HORIZONTAL
         l2.orientation = HORIZONTAL
         l3.orientation = HORIZONTAL
     }
 
-    constructor(context: Context) : super(context) {}
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
-
     fun setDataList(uriList: List<Uri>?) {
-        Log.d("imagelistview", "setDataList0 size:${uriList?.size ?: 0}")
+        Log.d("PhotoListView", "setDataList0 size:${uriList?.size ?: 0}")
         removeAllViews()
         l1.removeAllViews()
         l2.removeAllViews()
@@ -65,7 +65,7 @@ class ImageListView : LinearLayout {
             var width = uri.getQueryParameter("w")?.toInt() ?: 0
             var height = uri.getQueryParameter("h")?.toInt() ?: 0
             var rawUri = uri.buildUpon().clearQuery().build()
-            Log.d("imagelistview", "setDataList1 ${width}/${height} ${rawUri}")
+            Log.d("PhotoListView", "setDataList1 ${width}/${height} ${rawUri}")
             mRequestBuilder?.load(rawUri)
 //                ?.logo()
                 ?.into(img)
