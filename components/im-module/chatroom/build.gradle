@@ -1,4 +1,16 @@
-//apply plugin: 'foundation-module'
-apply from: "${rootDir.path}/script/bundle_module.gradle"
+apply from: "$rootDir.path/script/bundle_module.gradle"
+android {
+    buildFeatures {
+
+        // Disable unused AGP features
+        buildConfig false
+        aidl false
+        renderScript false
+        resValues false
+        shaders false
+    }
+}
 dependencies {
+    api 'com.google.accompanist:accompanist-insets:+'
+
 }

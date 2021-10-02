@@ -14,4 +14,5 @@ class InfosViewModel(val app: Application) : AndroidViewModel(app) {
         }
     }
 
+
 }

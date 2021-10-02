@@ -3,15 +3,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 //apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply from: "${rootDir.path}/script/console.gradle"
-//def snmae=
-//def lastindex= snmae.indexOf('ModulePlugin')
-//def type= snmae.substring(0,lastindex).toLowerCase()
-//project.beforeEvaluate {
-//    com.jamesfchen.plugin.util.P.info("==>>>>>>>>>>>>>>>>$type[${project.name}] start")
-//}
-//project.afterEvaluate {
-//    com.jamesfchen.plugin.util.P.info("<<<<<<<<<<<<<<<==$type[${project.name}] end")
-//}
 android {
     compileSdkVersion Integer.parseInt(rootProject.compileSdkVersion)
     buildToolsVersion rootProject.buildToolsVersion
@@ -32,7 +23,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.0.0-rc02'
+        kotlinCompilerExtensionVersion '1.0.2'
 //        kotlinCompilerVersion "1.5.10"
 //        kotlinCompilerExtensionVersion "1.0.0-beta08"
     }

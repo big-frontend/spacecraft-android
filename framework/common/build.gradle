@@ -72,9 +72,10 @@ android {
     }
 }
 dependencies {
-    api "androidx.activity:activity-ktx:1.2.3"
+    api "androidx.appcompat:appcompat:1.3.1"
+    api 'androidx.activity:activity-compose:1.3.1'
+    api "androidx.activity:activity-ktx:1.3.1"
     api 'androidx.fragment:fragment-ktx:1.3.5'
-    api "androidx.activity:activity:1.2.3"
     api 'androidx.core:core-ktx:1.5.0'
     api "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
     api "com.blankj:utilcode:1.24.2"
@@ -90,7 +91,6 @@ dependencies {
     // if you want to show more attrs a bout Fresco's DraweeView
 //    debugApi 'me.ele:uetool-fresco:1.0.17'
     api "com.squareup.okio:okio:2.9.0"
-    api "androidx.appcompat:appcompat:1.3.0"
     api 'com.jakewharton:disklrucache:2.0.2'
     /**
      * ===============================async start================================
@@ -198,39 +198,4 @@ dependencies {
     /**
      * ===============================monitor end=============================
      */
-
-    /**
-     * ===============================ui start=============================
-     */
-//    api "androidx.compose.ui:ui:1.0.1"
-//    api "androidx.compose.material:material:1.0.1"
-//    api "androidx.compose.ui:ui-tooling:1.0.1"
-//    api 'androidx.activity:activity-compose:1.3.1'
-    api "androidx.compose.compiler:compiler:1.0.2"
-//    androidTestApi "androidx.compose.ui:ui-test-junit4:1.0.1"
-    api 'androidx.compose.ui:ui:1.0.2'
-    // Tooling support (Previews, etc.)
-    api 'androidx.compose.ui:ui-tooling:1.0.2'
-    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    api 'androidx.compose.foundation:foundation:1.0.2'
-    // Material Design
-    api 'androidx.compose.material:material:1.0.2'
-    // Material design icons
-    api 'androidx.compose.material:material-icons-core:1.0.2'
-    api 'androidx.compose.material:material-icons-extended:1.0.2'
-    // Integration with activities
-    api 'androidx.activity:activity-compose:1.3.1'
-    // Integration with ViewModels
-    api 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
-    // Integration with observables
-    api 'androidx.compose.runtime:runtime-livedata:1.0.2'
-    api 'androidx.compose.runtime:runtime-rxjava2:1.0.2'
-
-    // UI Tests
-    androidTestApi 'androidx.compose.ui:ui-test-junit4:1.0.2'
-    /**
-     * ===============================ui end=============================
-     */
-
-
 }

@@ -1,7 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.jamesfchen.chatroom">
-        <application>
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.jamesfchen.chatroom">
 
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Jetchat.NoActionBar"
+        tools:replace="android:theme,android:allowBackup">
 
-        </application>
+        <activity
+            android:name="com.example.compose.jetchat.NavActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize" />
+
+    </application>
 </manifest>
