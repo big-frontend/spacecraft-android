@@ -1,0 +1,36 @@
+dependencies{
+    api 'com.google.accompanist:accompanist-insets:0.19.0'
+    api "com.google.accompanist:accompanist-insets-ui:0.19.0"
+    //compose
+    def composeVersion = '1.0.2'
+    api "androidx.compose.foundation:foundation-layout:${composeVersion}"
+    api "androidx.compose.runtime:runtime:${composeVersion}"
+    api "androidx.compose.ui:ui-util:${composeVersion}"
+    api "androidx.compose.ui:ui-viewbinding:${composeVersion}"
+    api "androidx.compose.compiler:compiler:${composeVersion}"
+    api "androidx.compose.ui:ui:${composeVersion}"
+    // Tooling support (Previews, etc.)
+    api "androidx.compose.ui:ui-tooling:${composeVersion}"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    api "androidx.compose.foundation:foundation:${composeVersion}"
+    api "androidx.compose.material:material:${composeVersion}"
+    api "androidx.compose.material:material-icons-core:${composeVersion}"
+    api "androidx.compose.material:material-icons-extended:${composeVersion}"
+    // Integration with observables
+    api "androidx.compose.runtime:runtime-livedata:${composeVersion}"
+    api "androidx.compose.runtime:runtime-rxjava2:${composeVersion}"
+    // UI Tests
+    androidTestApi "androidx.compose.ui:ui-test-junit4:${composeVersion}"
+
+    // Integration with ViewModels
+    api 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
+    api "androidx.navigation:navigation-compose:1.0.0-alpha10"
+    api 'androidx.navigation:navigation-common-ktx:2.3.5'
+    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
+    api "com.google.android.material:material:1.4.0"
+
+
+}

@@ -1,6 +1,45 @@
-内存不足会造成两个问题异常(oom,内存分配失败，llk,设备重启等)与卡顿(触发频繁的gc)
+## 为什么要做内存分析
+当内存不足会造成两个问题异常(oom,内存分配失败，llk,设备重启等)与卡顿(触发频繁的gc)，这个时候就需要分析内存从中找出优化点
 
-内存优化
+### 术语
+Shallow Size：对象自身占用的内存大小，不包括它引用的对象
+Retained Size：被GC后Heap上释放的内存大小，即当前对象大小+当前对象可直接或间接引用到的对象的大小总和
+outgoing reference(当前对象引用的外部对象)：查看对象为什么耗内存，我们看到一个线程池占用了>25mb的内存
+ingoing reference(直接引用了当前对象的对象)：查看对象被谁引用
+
+gc root对象：
+- 类(方法区静态成员变量引用的对象)
+- 活动的Thread实例
+- 局部变量或者方法参数变量持有的对象(java 虚拟机堆栈 、 本地方法堆栈)
+- JNILocalReference引用的对象
+- JNIGlobalReference引用的对象
+- synchronize关键字用到的对象
+
+
+### 分析的工具
+- mat
+- memory profile
+- LeakCanary
+
+mat 的坑
+- android hprof 转为mat hprof：hprof-conv android.hprof mat.hprof
+- 新版mat必须支持jdk11 ，在ini文件首行配置：
+```
+window:
+-vm
+D:/android-studio/jre/bin/javaw.exe
+
+macos:
+-vm
+/Applications/dev/Android Studio.app/Contents/jre/Contents/Home/bin
+```
+
+### 分析思路
+分析
+- 静息态内存分析(优化app在后台时的内存，防止被llk):做内存分析，统计大图加载；动画播放；内存泄露；数据结构不合理
+- 运行时动态内存分析(优化OOM问题)：
+
+### 内存优化
 - 设备分级
     1. 设备分级:对于低端设备可以关闭动画；使用RBG_565
     2. 缓存管理:设计一套统一的缓存管理机制
@@ -15,45 +54,14 @@
             native内存监控：malloc debug or malloc hook，不稳定
             针对无法重编 so 的情况：
             针对可重编的 so 情况
-内存监控：
-    - 内存异常率
-    - 内存触顶率:超过最大堆的85%限制，gc就会频繁，容易oom与卡顿
+### 内存监控
 
-## 内存分析(mat 、 )
-mat 的坑
-- android hprof 转为mat hprof：hprof-conv android.hprof mat.hprof
-- 新版mat必须支持jdk11 ，在ini文件首行配置：
-```
--vm
-D:/android-studio/jre/bin/javaw.exe
-```
+- 内存异常率
+- 内存触顶率:超过最大堆的85%限制，gc就会频繁，容易oom与卡顿
 
-Shallow Size：对象自身占用的内存大小，不包括它引用的对象
-Retained Size：被GC后Heap上释放的内存大小，即当前对象大小+当前对象可直接或间接引用到的对象的大小总和
-out going：查看对象为什么耗内存，我们看到一个线程池占用了>25mb的内存
-in going：查看对象被谁引用
-
-分析
-- 静息态内存分析(优化app在后台时的内存，防止被llk):做内存分析，统计大图加载；动画播放；内存泄露；数据结构不合理
-- 运行时动态内存分析(优化OOM问题)：
-
-## 总共发生了2743次oom影响了2529个用户
-oom原因
-- 内存泄露：
-    - Activity被ApplicationProxy持有
-    - 视频控件没有调用release，导致注册事件没有被注销
-    - Webview被H5Plugin持有，没有被释放
-- bitmap图片
-
-gc root对象：
-- 类(方法区静态成员变量引用的对象)
-- 活动的Thread实例
-- 局部变量或者方法参数变量持有的对象(java 虚拟机堆栈 、 本地方法堆栈)
-- JNILocalReference引用的对象
-- JNIGlobalReference引用的对象
-- synchronize关键字用到的对象
-
-[使用内存性能分析器查看应用的内存使用情况](https://developer.android.com/studio/profile/memory-profiler)
 [Android 内存暴减的秘密](https://cloud.tencent.com/developer/article/1013705)
 [探索 Android 内存优化方法](https://juejin.cn/post/6844903897958449166#heading-35)
 [Matrix ResourceCanary](https://github.com/Tencent/matrix/wiki/Matrix-Android-ResourceCanary)
+
+[使用内存性能分析器查看应用的内存使用情况](https://developer.android.com/studio/profile/memory-profiler)
+[JVM 内存分析工具 MAT 的深度讲解与实践——进阶篇](https://juejin.cn/post/6911624328472133646#heading-24)

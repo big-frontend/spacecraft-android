@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.drawToBitmap
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -37,6 +38,7 @@ import java.util.concurrent.TimeUnit
 class InfosFragment : Fragment() {
     lateinit var binding: FragmentInfosBinding
     val infoViewModel: InfosViewModel by viewModels()
+    val mainViewModel by activityViewModels<MainViewModel>()
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }

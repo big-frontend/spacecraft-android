@@ -1,9 +1,10 @@
 //apply plugin: 'bundle-module'
 apply from: "$rootDir.path/script/bundle_module.gradle"
+apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
-        buildConfigField('String', 'CONFIG_SERVER_BASE_URL', '"http://192.168.149.103:9000"')
+        buildConfigField('String', 'CONFIG_SERVER_BASE_URL', '"http://192.168.5.103:9000"')
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"

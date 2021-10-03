@@ -1,5 +1,11 @@
 apply from: "$rootDir.path/script/app_module.gradle"
 android {
+    buildFeatures {
+        compose true
+    }
+    defaultConfig {
+        resValue "string", "app_name","im.app"
+    }
 }
 dependencies {
 }

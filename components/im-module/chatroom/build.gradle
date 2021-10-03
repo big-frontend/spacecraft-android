@@ -1,6 +1,8 @@
 apply from: "$rootDir.path/script/bundle_module.gradle"
+apply from: "${rootDir.path}/script/ui_compose.gradle"
 android {
     buildFeatures {
+        compose true
 
         // Disable unused AGP features
         buildConfig false
@@ -11,6 +13,4 @@ android {
     }
 }
 dependencies {
-    api 'com.google.accompanist:accompanist-insets:+'
-
 }

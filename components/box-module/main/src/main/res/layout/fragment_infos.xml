@@ -39,6 +39,8 @@
             tools:text="adsfasdf" />
 
         <com.jamesfchen.main.PoemView
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:id="@+id/myTextView"
             poem="@={viewmodel.notification}"
             android:layout_width="wrap_content"

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.R
+import com.jamesfchen.loader.R
 
 /**
  * Copyright ® $ 2017

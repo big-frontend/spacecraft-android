@@ -1,5 +1,6 @@
 //apply plugin: 'foundation-module'
 apply from: "${rootDir.path}/script/foundation_module.gradle"
+apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')

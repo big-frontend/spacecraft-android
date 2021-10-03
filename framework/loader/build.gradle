@@ -25,16 +25,6 @@ android {
     }
 }
 dependencies {
-//    api project(path: ':framework:uicomponent')
-//    api project(path: ':framework:map')
-//    api project(path: ':framework:av')
-//    implementation project(path: ':framework:chatroom')
-//    api project(path: ':framework:network')
-//    implementation project(path: ':framework:storage')
-//    api project(path: ':framework:image')
-//    api project(path: ':framework:flutter')
-//    api project(path: ':framework:router')
-
 //    api 'com.google.firebase:firebase-analytics'
 //    api 'com.google.firebase:firebase-crashlytics'
 //    api 'com.google.firebase:firebase-crashlytics-ndk'
@@ -53,104 +43,22 @@ dependencies {
     api 'com.firebaseui:firebase-ui-firestore:6.0.2'
     api 'com.firebaseui:firebase-ui-storage:6.0.2'
 
-    /**
-     * ================================ui start=====================================
-     */
-    api 'com.google.accompanist:accompanist-insets:0.19.0'
-    api "com.google.accompanist:accompanist-insets-ui:0.19.0"
-    //compose
-    def composeVersion = '1.0.2'
-    api "androidx.compose.foundation:foundation-layout:${composeVersion}"
-    api "androidx.compose.runtime:runtime:${composeVersion}"
-    api "androidx.compose.ui:ui-util:${composeVersion}"
-    api "androidx.compose.ui:ui-viewbinding:${composeVersion}"
-    api "androidx.compose.compiler:compiler:${composeVersion}"
-    api "androidx.compose.ui:ui:${composeVersion}"
-    // Tooling support (Previews, etc.)
-    api "androidx.compose.ui:ui-tooling:${composeVersion}"
-    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    api "androidx.compose.foundation:foundation:${composeVersion}"
-    api "androidx.compose.material:material:${composeVersion}"
-    api "androidx.compose.material:material-icons-core:${composeVersion}"
-    api "androidx.compose.material:material-icons-extended:${composeVersion}"
-    // Integration with observables
-    api "androidx.compose.runtime:runtime-livedata:${composeVersion}"
-    api "androidx.compose.runtime:runtime-rxjava2:${composeVersion}"
-    // UI Tests
-    androidTestApi "androidx.compose.ui:ui-test-junit4:${composeVersion}"
 
-    // Integration with ViewModels
-    api 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
-
-    api 'jp.wasabeef:recyclerview-animators:4.0.2'
-    api 'com.github.DingMouRen:LayoutManagerGroup:1e6f4f96eb'
-    api "androidx.recyclerview:recyclerview:1.2.1"
-    api 'androidx.navigation:navigation-fragment:2.3.5'
-    api 'androidx.navigation:navigation-ui:2.3.5'
-    api 'androidx.navigation:navigation-common-ktx:2.3.5'
-    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
-    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
-
-    api 'com.scwang.smart:refresh-layout-kernel:2.0.3'      //核心必须依赖
-    api 'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
-    api 'com.scwang.smart:refresh-header-radar:2.0.3'       //雷达刷新头
-    api 'com.scwang.smart:refresh-header-falsify:2.0.3'     //虚拟刷新头
-    api 'com.scwang.smart:refresh-header-material:2.0.3'    //谷歌刷新头
-    api 'com.scwang.smart:refresh-header-two-level:2.0.3'   //二级刷新头
-    api 'com.scwang.smart:refresh-footer-ball:2.0.3'        //球脉冲加载
-    api 'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
-
-
-    //layout start
-    api 'androidx.constraintlayout:constraintlayout:2.1.0'
-    api 'com.google.android:flexbox:1.1.0'
-    //layout end
-
-    api 'androidx.palette:palette-ktx:1.0.0'
-    /*
-   *该库和`com.android.support:design:`都存在v4，编译时会报错：
-   *com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: *android/support/v4/app/INotificationSideChannel$Stub$Proxy.class
-   *解决方法：需要exclude掉v4包
-    */
-    api "com.google.android.material:material:1.4.0"
-    api 'androidx.vectordrawable:vectordrawable:1.1.0'
-
-
-    //animotor
-    api 'com.airbnb.android:lottie:3.2.2'
-    api 'com.github.Almeros:android-gesture-detectors:v1.0'
-
-    //rx ui
-    api 'com.jakewharton.rxbinding3:rxbinding-core:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-appcompat:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-drawerlayout:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-leanback:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-recyclerview:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.0.0'
-    api 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.0.0'
-
-    api "androidx.paging:paging-runtime-ktx:3.0.1"
-    testImplementation "androidx.paging:paging-common-ktx:3.0.1"
-//    api "androidx.paging:paging-rxjava3-ktx:3.0.1"
-    api "androidx.paging:paging-compose:1.0.0-alpha12"
-
+    api 'androidx.emoji:emoji:1.1.0'
+    api 'androidx.emoji:emoji-appcompat:1.1.0'
+    api 'androidx.emoji:emoji-bundled:1.1.0'
     api "androidx.work:work-runtime:2.5.0"
     api "androidx.work:work-runtime-ktx:2.5.0"
 //    api "androidx.work:work-rxjava2:2.5.0"
     api "androidx.work:work-gcm:2.5.0"
     androidTestImplementation "androidx.work:work-testing:2.5.0"
 //    api "androidx.work:work-firebase:2.2.0"
-
-
-    api 'androidx.emoji:emoji:1.1.0'
-    api 'androidx.emoji:emoji-appcompat:1.1.0'
-    api 'androidx.emoji:emoji-bundled:1.1.0'
-
-    /**
-     * ================================ui end=====================================
-     */
+    api 'androidx.navigation:navigation-fragment:2.3.5'
+    api 'androidx.navigation:navigation-ui:2.3.5'
+    api 'androidx.navigation:navigation-common-ktx:2.3.5'
+    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     /**
      * ================================apm start=====================================

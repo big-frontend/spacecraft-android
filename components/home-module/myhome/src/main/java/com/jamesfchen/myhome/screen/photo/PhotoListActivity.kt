@@ -21,7 +21,6 @@ import com.jamesfchen.export.AccountService
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
 import com.jamesfchen.myhome.screen.photo.repository.CacheRegion
 import com.jamesfchen.myhome.screen.photo.repository.ServiceLocator
-import jamesfchen.widget.Divider
 import kotlinx.coroutines.flow.collectLatest
 
 class PhotoListActivity : AppCompatActivity() {
@@ -45,7 +44,7 @@ class PhotoListActivity : AppCompatActivity() {
         rvPhotoList = RecyclerView(this)
         rvPhotoList.setBackgroundColor(Color.CYAN)
         rvPhotoList.layoutManager = LinearLayoutManager(this)
-        rvPhotoList.addItemDecoration(Divider(this))
+//        rvPhotoList.addItemDecoration(Divider(this))
         val  toolbar = Toolbar(this)
         toolbar.setOnClickListener {
             (rvPhotoList.layoutManager as LinearLayoutManager).scrollToPosition(0)

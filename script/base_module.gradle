@@ -20,13 +20,13 @@ android {
     }
     buildFeatures {
         viewBinding true
-        compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.2'
 //        kotlinCompilerVersion "1.5.10"
 //        kotlinCompilerExtensionVersion "1.0.0-beta08"
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
 //        useIR = true
@@ -118,4 +118,4 @@ dependencies {
      * ===============================test end=============================
      */
 }
-apply from : "${rootDir.path}/script/module_publisher.gradle"
+apply from: "${rootDir.path}/script/module_publisher.gradle"

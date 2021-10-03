@@ -4,7 +4,6 @@ import android.app.Activity
 import android.util.Log
 import android.view.Choreographer
 import android.view.ViewTreeObserver
-import jamesfchen.widget.getViewOffsetHelper
 
 /**
  * ui没有更新监听回调不断，有性能损耗

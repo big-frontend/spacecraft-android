@@ -17,6 +17,7 @@
 package com.example.compose.jetchat
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -63,6 +64,7 @@ class NavActivity : AppCompatActivity() {
 
                     val drawerOpen by viewModel.drawerShouldBeOpened.collectAsState()
                     if (drawerOpen) {
+                        Log.d("cjf","drawerOpen:${drawerOpen}")
                         // Open drawer and reset state in VM.
                         LaunchedEffect(Unit) {
                             scaffoldState.drawerState.open()
@@ -73,6 +75,7 @@ class NavActivity : AppCompatActivity() {
                     // Intercepts back navigation when the drawer is open
                     val scope = rememberCoroutineScope()
                     if (scaffoldState.drawerState.isOpen) {
+                        Log.d("cjf","isOpen:${scaffoldState.drawerState.isOpen}")
                         BackPressHandler {
                             scope.launch {
                                 scaffoldState.drawerState.close()
@@ -80,7 +83,7 @@ class NavActivity : AppCompatActivity() {
                         }
                     }
 
-                    JetchatScaffold(
+                    return@CompositionLocalProvider JetchatScaffold(
                         scaffoldState,
                         onChatClicked = {
                             findNavController().popBackStack(R.id.nav_home, true)

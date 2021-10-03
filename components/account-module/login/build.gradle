@@ -1,6 +1,6 @@
 //apply plugin: 'bundle-module'
 apply from: "$rootDir.path/script/bundle_module.gradle"
-
+apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig{
         buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
