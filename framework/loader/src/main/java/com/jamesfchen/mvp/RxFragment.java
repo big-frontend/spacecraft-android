@@ -15,9 +15,9 @@ import androidx.fragment.app.Fragment;
  */
 
 public abstract class RxFragment<P extends RxPresenter> extends Fragment {
-    P presenter;
+    protected P presenter;
 
-    abstract P createPresenter();
+    protected abstract P createPresenter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

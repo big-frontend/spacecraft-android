@@ -26,7 +26,7 @@ public abstract class RxPresenter<V> {
         }
     }
 
-    void addsubscriber(Disposable d) {
+    protected void addsubscriber(Disposable d) {
         if (disposable == null) {
             disposable = new CompositeDisposable();
         }
@@ -34,12 +34,12 @@ public abstract class RxPresenter<V> {
 
     }
 
-    void onAttach(V view) {
+    protected void onAttach(V view) {
         this.view = view;
 
     }
 
-    void onDetach() {
+    protected void onDetach() {
         this.view = null;
         removeSubscriber();
 

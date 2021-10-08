@@ -18,7 +18,7 @@ public abstract class RxActivity<P extends RxPresenter> extends AppCompatActivit
 
     protected P presenter;
 
-    public abstract P createPresenter();
+    protected abstract P createPresenter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
