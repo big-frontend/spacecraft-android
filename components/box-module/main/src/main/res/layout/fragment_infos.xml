@@ -16,13 +16,15 @@
         android:background="@color/afasf"
         tools:context=".screen.notification.InfosFragment">
 
-        <com.jamesfchen.main.BaseImageView
-            android:id="@+id/biv"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="400dp"
-            android:layout_height="200dp"
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:layout_height="200dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_notification"
@@ -34,17 +36,17 @@
             app:layout_constraintBottom_toTopOf="@id/myTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll"
             app:layout_constraintVertical_chainStyle="spread"
             tools:text="adsfasdf" />
 
         <com.jamesfchen.main.PoemView
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:id="@+id/myTextView"
             poem="@={viewmodel.notification}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

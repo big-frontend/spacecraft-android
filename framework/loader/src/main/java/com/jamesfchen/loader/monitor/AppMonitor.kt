@@ -19,6 +19,8 @@ object AppMonitor : ILifecycleObserver{
         app.registerActivityLifecycleCallbacks(MemMonitor())
 //        ProcessLifecycleOwner.get().lifecycle.addObserver(FrameMonitor())
 //        app.registerActivityLifecycleCallbacks(FrameMonitor())
+        ProcessLifecycleOwner.get().lifecycle.addObserver(LayoutMonitor())
+        app.registerActivityLifecycleCallbacks(LayoutMonitor())
         inited = true
     }
 }

@@ -6,6 +6,7 @@ android {
             useSupportLibrary true
         }
         buildConfigField('String', 'IMAGE_BASE_URL', '"http://192.168.5.103:9000"')
+        buildConfigField('String', 'IMAGE_BASE_URL', '"http://10.32.151.130:9000"')
     }
     //想要使用dataBinding一定要在app主模块配置，其他lib模块配置不好使
     buildFeatures {

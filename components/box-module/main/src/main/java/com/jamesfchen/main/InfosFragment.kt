@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.view.drawToBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -68,9 +70,12 @@ class InfosFragment : Fragment() {
             Log.d("baseimageview", "wait after")
             val images = getImageApi().getImages()
             for (image in images) {
+                val imageView = ImageView(context)
+                binding.ll.addView(imageView,LinearLayout.LayoutParams(dp2px(400f), dp2px(200f)))
                 Glide.with(this@InfosFragment)
                     .asBitmap()
-                    .load(R.raw.parting_ways_600_300)
+//                    .load(R.raw.parting_ways_600_300)
+                    .load(image)
                     .addListener(object : RequestListener<Bitmap> {
                         override fun onLoadFailed(
                             e: GlideException?,
@@ -90,12 +95,23 @@ class InfosFragment : Fragment() {
                         ): Boolean {
                             Log.d(
                                 "baseimageview",
-                                "bitmap w/h:${resource?.width}/${resource?.height} imageview w/h:${binding.biv.width}/${binding.biv.height} dataSource:${dataSource?.name}"
+                                "bitmap w/h:${resource?.width}/${resource?.height} size:${resource?.allocationByteCount} imageview w/h:${imageView.width}/${imageView.height} dataSource:${dataSource?.name}"
                             )
                             return false
                         }
                     })
-                    .into(binding.biv)
+//                    .into(imageView)
+                    .into(object: CustomTarget<Bitmap>() {
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: Transition<in Bitmap>?
+                        ) {
+                            imageView.setImageBitmap(resource)
+                        }
+
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                        }
+                    })
                 MyIntentService.bindAndStartService(requireContext(), object : ServiceConnection {
                     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
 
@@ -108,4 +124,5 @@ class InfosFragment : Fragment() {
         }
 
     }
+
 }
