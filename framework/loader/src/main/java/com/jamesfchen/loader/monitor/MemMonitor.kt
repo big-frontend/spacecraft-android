@@ -2,30 +2,46 @@ package com.jamesfchen.loader.monitor
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.MessageQueue.IdleHandler
 import android.os.SystemClock
 import android.util.Log
 import com.jamesfchen.lifecycle.AppLifecycle
 import java.lang.ref.WeakReference
 import java.util.ArrayList
 
+/**
+ * 内存监控专项
+ * - 监控内存泄露
+ * - 监控大图
+ * -
+ */
 const val TAG_MEM_MONITOR = "mem-monitor"
+
 @AppLifecycle
 class MemMonitor : ILifecycleObserver {
-    companion object {
-//        @GuardedBy("lock")
-//        private var sInstance: MemMonitor? = null
-//        private val lock = Any()
-//        fun getInstance(): MemMonitor {
-//            if (sInstance == null) {
-//                synchronized(lock) {
-//                    if (sInstance == null) {
-//                        sInstance = MemMonitor()
-//                    }
-//                }
-//            }
-//            return sInstance!!
-//        }
+    val leakMemoryItem = LeakMemoryItem()
+    val bigBitmapItem = BigBitmapItem()
+    override fun onAppCreate() {
+        super.onAppCreate()
+        leakMemoryItem.start()
+        bigBitmapItem.start()
 
+    }
+
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        MemoryUtil.printAppMemory(activity)
+    }
+
+    override fun onActivityDestroyed(activity: Activity) {
+        super.onActivityDestroyed(activity)
+        Log.d(TAG_MEM_MONITOR, "finish activity:${activity}")
+        leakMemoryItem.checkLeakEvent()
+    }
+
+}
+
+class LeakMemoryItem {
+    companion object {
         var sLastGcTime: Long = 0
         var sGcWatcher = WeakReference(GcWatcher())
         var sGcWatchers = ArrayList<Runnable>()
@@ -37,38 +53,31 @@ class MemMonitor : ILifecycleObserver {
         }
 
         private var j = 0
-        fun forceGc(reason: String) {
-//            System.gc()
-            j += 1
-            Runtime.getRuntime().gc()
-            try {
-                Thread.sleep(100)
-            } catch (e: InterruptedException) {
-                Log.e(TAG_MEM_MONITOR, Log.getStackTraceString(e))
-            }
-            Runtime.getRuntime().runFinalization()
-        }
 
 
     }
 
     private var i = 0
-
-    override fun onAppCreate() {
-        super.onAppCreate()
+    fun start() {
         addGcWatcher {
             i += 1
             Log.d(TAG_MEM_MONITOR, "总计发生${i}次gc，应用触发${j}次gc")
         }
     }
 
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        MemoryUtil.printAppMemory(activity)
+    fun forceGc(reason: String) {
+//            System.gc()
+        j += 1
+        Runtime.getRuntime().gc()
+        try {
+            Thread.sleep(100)
+        } catch (e: InterruptedException) {
+            Log.e(TAG_MEM_MONITOR, Log.getStackTraceString(e))
+        }
+        Runtime.getRuntime().runFinalization()
     }
 
-    override fun onActivityDestroyed(activity: Activity) {
-        super.onActivityDestroyed(activity)
-        Log.d(TAG_MEM_MONITOR, "finish activity:${activity}")
+    fun checkLeakEvent() {
         forceGc("")
     }
 
@@ -91,7 +100,32 @@ class MemMonitor : ILifecycleObserver {
         }
     }
 
+    internal class GcIdler : IdleHandler {
+        override fun queueIdle(): Boolean {
+//            forceGc("")
+//            doGcIfNeeded()
+            return false
+        }
+    }
+
+    fun doGcIfNeeded() {
+//        mGcIdlerScheduled = false
+//        val now = SystemClock.uptimeMillis()
+//        //Slog.i(TAG, "**** WE MIGHT WANT TO GC: then=" + Binder.getLastGcTime()
+//        //        + "m now=" + now);
+//        if (BinderInternal.getLastGcTime() + android.app.ActivityThread.MIN_TIME_BETWEEN_GCS < now) {
+//            //Slog.i(TAG, "**** WE DO, WE DO WANT TO GC!");
+//            BinderInternal.forceGc("bg")
+//        }
+    }
+
     class MemAnalyzer {
 
+    }
+}
+
+class BigBitmapItem {
+    fun start() {
+        //todo:start hook art
     }
 }

@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 import androidx.work.Configuration;
 
+import static com.jamesfchen.loader.monitor.StartupMonitorKt.TAG_STARTUP_MONITOR;
+
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -46,23 +48,6 @@ public class App extends Application implements Configuration.Provider {
         super.attachBaseContext(base);
         MultiDex.install(this);
         app = this;
-        Log.d("cjf","App#attachBaseContext");
-        for (PackageInfo pack : getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS)) {
-            ProviderInfo[] providers = pack.providers;
-            if (providers == null) continue;
-            for (ProviderInfo provider : providers) {
-                if ((provider.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-                    if (provider.packageName.equals(getPackageName())){
-                        Log.d("cjf", "当前provider package: "+provider.packageName+" authority: " + provider.authority+" name: "+provider.name);
-                    }else{
-//                        Log.d("cjf", "第三方provider package: "+provider.packageName+" authority: " + provider.authority+" name: "+provider.name);
-                    }
-                }else {
-//                    Log.d("cjf", "系统provider package: "+provider.packageName+" authority: " + provider.authority+" name: "+provider.name);
-
-                }
-            }
-        }
         start = SystemClock.elapsedRealtime();
 //        Debug.startMethodTracing(getExternalCacheDir().getParent()+"/contentprovidertrace");
         Trace.beginSection("contentprovidertrace");
@@ -76,7 +61,7 @@ public class App extends Application implements Configuration.Provider {
     @AddTrace(name = "App#onCreate",enabled = true)
     @Override
     public void onCreate() {
-        Log.d("cjf","ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
+        Log.d(TAG_STARTUP_MONITOR,"ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();

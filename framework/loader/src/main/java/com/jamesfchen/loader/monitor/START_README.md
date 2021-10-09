@@ -57,3 +57,7 @@
  *  - 类加载：通过hook java虚拟机，去掉verify class的过程，在类加载的过程可以提升50%的速度
  *  - 保活：Hyper Boost or Hardcoder
  *  - 插件化与热修复：不行了
+
+ App / Activity 启动
+ - App启动通过Zygote fork出子进程，会连通art虚拟机已经虚拟机预加载的资源和类一块复制到子进程(预热)，然后在启动ActivityThread#main,完成Application与ContentProvider的生命周期之后，Looper还会等待来自fwk 关于Launch Activity的事件。
+ - 当启动Activity时，fwk会将目标Activity所在的任务栈移动到前台，然后发送启动事件给目标App进程，当目标Activity完成create、start、resume生命周期后以及View树的测绘处于resumed就可见了

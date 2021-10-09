@@ -23,7 +23,6 @@ class PoemView @JvmOverloads constructor(
     attrs,
     defStyleAttr
 )
-
 //自定义双向绑定 start
 @BindingAdapter("poem")
 fun setText(view: PoemView, newValue: String) {
@@ -40,14 +39,18 @@ fun getText(view: PoemView): String {
     return view.text.toString()
 }
 
-@BindingAdapter("app:poemAttrChanged")
+@BindingAdapter("poemAttrChanged")
 fun setListeners(view: PoemView, attrChange: InverseBindingListener) {
     //发送控件变化,数据流由上至下 or 由上至其他控件
     Log.d("cjf", "poemAttrChanged")
     view.addTextChangedListener(object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        override fun beforeTextChanged(
+            s: CharSequence?,
+            start: Int,
+            count: Int,
+            after: Int
+        ) {
         }
-
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         }
 
@@ -57,3 +60,4 @@ fun setListeners(view: PoemView, attrChange: InverseBindingListener) {
     })
 }
 //自定义双向绑定 end
+

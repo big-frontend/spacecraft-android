@@ -1,6 +1,8 @@
 package com.jamesfchen.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -29,13 +31,33 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-//        startActivity(Intent(MainActivity@this, SpringBoardActivity::class.java))
+//        startActivity(Intent(MainActivity@this, TestActivity::class.java))
         supportFragmentManager.beginTransaction()
-            .add(android.R.id.content,InfosFragment(), "tag_infos")
+            .add(android.R.id.content, InfosFragment(), "tag_infos")
 //            .add(InfosFragment(), "tag_infos") #当做一种后台fragment
             .commitAllowingStateLoss()
+        Log.d("cjf", "MainActivity#onCreate")
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d("cjf", "MainActivity#onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("cjf", "MainActivity#onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("cjf", "MainActivity#onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("cjf", "MainActivity#onStop")
+    }
 }
 
 @Composable
