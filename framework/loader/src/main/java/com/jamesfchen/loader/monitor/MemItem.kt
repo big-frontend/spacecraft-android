@@ -17,8 +17,8 @@ import java.util.ArrayList
  */
 const val TAG_MEM_MONITOR = "mem-monitor"
 
-@AppLifecycle
-class MemMonitor : ILifecycleObserver {
+@MonitoredItem
+class MemItem : ILifecycleObserver {
     val leakMemoryItem = LeakMemoryItem()
     val bigBitmapItem = BigBitmapItem()
     override fun onAppCreate() {

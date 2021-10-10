@@ -2,10 +2,6 @@ package com.jamesfchen.loader;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ProviderInfo;
 import android.os.Debug;
 import android.os.SystemClock;
 import android.os.Trace;
@@ -19,7 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 import androidx.work.Configuration;
 
-import static com.jamesfchen.loader.monitor.StartupMonitorKt.TAG_STARTUP_MONITOR;
+import static com.jamesfchen.loader.monitor.tracer.StartupKt.TAG_STARTUP_MONITOR;
 
 /**
  * Copyright ® $ 2017

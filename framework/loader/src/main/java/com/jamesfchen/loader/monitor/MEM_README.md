@@ -15,6 +15,17 @@ gc root对象：
 - JNIGlobalReference引用的对象
 - synchronize关键字用到的对象
 
+## 分代垃圾算法
+大部分的对象都是"朝生夕死"，经过几次gc之后就会被转移到老年代。新生代占内存区域的1/3而老年代占内存区域的2/3，新生代使用MinorGC，老年代使用MajorGC/FullGC回收整块堆
+- 新生代
+gc:MinorGC
+采用算法 ：标记复制法(浪费预留区域的空间，如果遇到大量存活的对象，就需要频繁复制才能释放少量的空间，所以更适合新生代)
+分区：Eden区 、S0区(survivor)、S1区(survivor) 比例为8：1：1，压缩了预留空间，从原来的1/2到1/10
+
+存活的对象会在S0与S1之间来回移动，并且年龄累加1
+- 老年代
+gc:MajorGC
+采用的算法：标记清除算法(遇到大部分需要回收的对象时，执行效率不高；容易产生碎片化) or 标记整理算法(若存在大量存活对象，就需要移动更多的对象来换取少量的空间)
 
 ### 分析的工具
 - mat
@@ -62,6 +73,6 @@ macos:
 [Android 内存暴减的秘密](https://cloud.tencent.com/developer/article/1013705)
 [探索 Android 内存优化方法](https://juejin.cn/post/6844903897958449166#heading-35)
 [Matrix ResourceCanary](https://github.com/Tencent/matrix/wiki/Matrix-Android-ResourceCanary)
-
+[图解 Java 垃圾回收算法及详细过程！](https://xie.infoq.cn/article/9d4830f6c0c1e2df0753f9858)
 [使用内存性能分析器查看应用的内存使用情况](https://developer.android.com/studio/profile/memory-profiler)
 [JVM 内存分析工具 MAT 的深度讲解与实践——进阶篇](https://juejin.cn/post/6911624328472133646#heading-24)

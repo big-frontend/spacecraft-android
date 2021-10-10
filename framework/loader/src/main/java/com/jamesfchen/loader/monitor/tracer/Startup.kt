@@ -1,15 +1,16 @@
-package com.jamesfchen.loader.monitor
+package com.jamesfchen.loader.monitor.tracer
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
-import android.content.ContentProvider
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.content.pm.ProviderInfo
 import android.os.IBinder
 import android.util.ArrayMap
 import android.util.Log
 import com.blankj.utilcode.util.ReflectUtils
+import com.jamesfchen.loader.monitor.AppMonitor
+import com.jamesfchen.loader.monitor.ILifecycleObserver
+import com.jamesfchen.loader.monitor.MonitoredItem
 
 /**
  *
@@ -20,7 +21,7 @@ import com.blankj.utilcode.util.ReflectUtils
  *
  * activity start up
  *  - 页面最早渲染出2个文本控件的时间(tti)
- *  - onCreate 到 onWindowFocusChanged
+ *  - onCreate 到 onWindowFocusChanged 的时间
  *
  *  service start up
  *
@@ -29,12 +30,14 @@ import com.blankj.utilcode.util.ReflectUtils
  */
 const val TAG_STARTUP_MONITOR = "startup-monitor"
 
-class StartupMonitor : ILifecycleObserver {
+@MonitoredItem
+class StartupItem : ILifecycleObserver {
     override fun onAppCreate() {
         super.onAppCreate()
     }
 
     var alreadyCheck = false
+
     @SuppressLint("LogNotTimber")
     override fun onAppForeground() {
         super.onAppForeground()
@@ -59,13 +62,15 @@ class StartupMonitor : ILifecycleObserver {
             }
             alreadyCheck = true
             val at =
-                ReflectUtils.reflect("android.app.ActivityThread").method("currentActivityThread").get<Any>()
+                ReflectUtils.reflect("android.app.ActivityThread").method("currentActivityThread")
+                    .get<Any>()
             val mProviderMap: ArrayMap<Any, Any>? =
                 ReflectUtils.reflect(at).field("mProviderMap").get<ArrayMap<Any, Any>>()
             val mProviderRefCountMap: ArrayMap<IBinder, Any>? =
                 ReflectUtils.reflect(at).field("mProviderRefCountMap").get<ArrayMap<IBinder, Any>>()
             val mLocalProvidersByName: ArrayMap<ComponentName, Any>? =
-                ReflectUtils.reflect(at).field("mLocalProvidersByName").get<ArrayMap<ComponentName, Any>>()
+                ReflectUtils.reflect(at).field("mLocalProvidersByName")
+                    .get<ArrayMap<ComponentName, Any>>()
 //            val mLocalProviders: ArrayMap<Any, Any>? =
 //                ReflectUtils.reflect(at).field("mLocalProviders").get<ArrayMap<Any, Any>>()
             if (mLocalProvidersByName != null && mLocalProvidersByName.isNotEmpty()) {
@@ -78,7 +83,10 @@ class StartupMonitor : ILifecycleObserver {
 
             if (mProviderRefCountMap != null && mProviderRefCountMap.isNotEmpty()) {
                 mProviderRefCountMap.forEach { entry ->
-                    Log.d(TAG_STARTUP_MONITOR, "mProviderRefCountMap：${entry.value::class.java.canonicalName}")
+                    Log.d(
+                        TAG_STARTUP_MONITOR,
+                        "mProviderRefCountMap：${entry.value::class.java.canonicalName}"
+                    )
 //                    val holder= ReflectUtils.reflect(entry.value).field("holder").get<`Object`>()
 //                    val info = ReflectUtils.reflect(holder).field("info").get<ProviderInfo>()
 //                    Log.d(TAG_STARTUP_MONITOR, "remote provider:${info.name}")
@@ -90,5 +98,5 @@ class StartupMonitor : ILifecycleObserver {
     }
 }
 
-class AppStartupItem {}
-class ActivityStartupItem {}
+class AppStartup {}
+class ActivityStartup {}
