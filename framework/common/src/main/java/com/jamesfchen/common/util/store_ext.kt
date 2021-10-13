@@ -7,6 +7,13 @@ import android.os.Environment
 import java.io.File
 
 /**
+ *android10对app访问外部存储进行了限制
+ * - app访问自己的私有目录不需要权限
+ * - app访问公共目录需要使用MediaStore Api
+ */
+
+
+/**
  * /cache
  */
 val getDownloadCacheDir = Environment.getDownloadCacheDirectory()

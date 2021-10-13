@@ -10,6 +10,7 @@
         android:background="@color/apricot">
 
         <com.jamesfchen.bundle2.customview.CustomView
+            android:id="@+id/cv"
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@android:color/white"

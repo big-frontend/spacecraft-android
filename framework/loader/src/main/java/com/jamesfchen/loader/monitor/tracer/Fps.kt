@@ -200,6 +200,18 @@ class FpsItem : ILifecycleObserver {
             }
         }
     }
+//    class FrameTrace3 {
+//        companion object {
+//            fun start() {
+//                Looper.setObserver(MyObserver())
+//            }
+//
+//            fun stop() {
+//            }
+//
+//           private class MyObserver :Looper.Observer{}
+//        }
+//    }
     /**
      * 慢函数监控
      *

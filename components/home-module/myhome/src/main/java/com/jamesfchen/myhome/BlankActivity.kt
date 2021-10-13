@@ -3,6 +3,7 @@ package com.jamesfchen.myhome;
 import android.app.WallpaperManager
 import android.graphics.Color
 import android.os.Bundle;
+import android.os.Looper
 import android.util.Log
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,10 +1,12 @@
 package com.jamesfchen.bundle2.customview;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.jamesfchen.bundle2.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Copyright ® $ 2017
@@ -19,6 +21,17 @@ public class CustomViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customview);
+        View cv = findViewById(R.id.cv);
+
+        cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewGroup.LayoutParams layoutParams = cv.getLayoutParams();
+                layoutParams.height = 300;
+                cv.setLayoutParams(layoutParams);
+            }
+        });
+
     }
 
 }

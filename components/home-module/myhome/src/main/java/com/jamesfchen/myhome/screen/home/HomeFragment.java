@@ -129,8 +129,6 @@ public class HomeFragment extends RxFragment<HomePresenter> implements HomeContr
 
             }
         });
-        getChildFragmentManager().saveFragmentInstanceState()
-
     }
 
     static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {

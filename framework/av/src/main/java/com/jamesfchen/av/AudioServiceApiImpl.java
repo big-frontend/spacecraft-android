@@ -25,7 +25,7 @@ public class AudioServiceApiImpl extends IAudioServiceApi.Stub implements MediaP
     private MediaPlayer mMediaPlayer;
     private Context mContext;
 
-    AudioServiceApiImpl(Context context) {
+    public AudioServiceApiImpl(Context context) {
         mContext = context;
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setOnPreparedListener(this);

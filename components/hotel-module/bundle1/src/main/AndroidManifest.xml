@@ -7,12 +7,8 @@
     <application>
         <activity
             android:name=".Bundle1Activity"
-            android:exported="true" />
-        <activity
-            android:name="com.jamesfchen.bundle1.HomeActivity"
-            android:exported="true"
             android:theme="@style/Theme.SpacecraftAndroid.NoActionBar"
-            />
+            android:exported="true" />
     </application>
 
 </manifest>

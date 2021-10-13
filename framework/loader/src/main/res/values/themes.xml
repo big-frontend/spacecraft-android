@@ -35,44 +35,6 @@
         <!--支持2.0以上-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-
-        <!-- New MaterialComponents attributes. -->
-        <!--colorPrimary-->
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <!--colorSecondary-->
-        <item name="colorSecondaryVariant">#018786</item>
-        <item name="colorOnSecondary">#000000</item>
-        <!--android:colorBackground-->
-        <!--colorOnBackground-->
-        <item name="colorOnSurface">#FFFFFF</item>
-        <item name="colorSurface">#000000</item>
-        <!--<item name="colorOnSurface"></item>-->
-        <item name="colorError">#C51162</item>
-        <item name="colorOnError">#FFFFFF</item>
-        <item name="scrimBackground">@android:color/white</item>
-        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1
-        </item>
-        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2
-        </item>
-        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3
-        </item>
-        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4
-        </item>
-        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5
-        </item>
-        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6
-        </item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1
-        </item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2
-        </item>
-        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
-        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
-
     </style>
     <!--老版本使用actionbar-->
     <style name="AppTheme.ActionBar" parent="Widget.AppCompat.ActionBar"/>
