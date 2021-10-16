@@ -16,6 +16,26 @@
       ]
     },
     {
+      "simpleName": "codescanner-main",
+      "canonicalName": ":components:codescanner-module:main",
+      "format": "app",
+      "group": "codescanner",
+      "binary_artifact": "com.jamesfchen.spacecraft:codescanner-main:1.0",
+      "deps": [
+        ":components:codescanner-module:qrcode"
+      ]
+    },
+    {
+      "simpleName": "codescanner-qrcode",
+      "canonicalName": ":components:codescanner-module:qrcode",
+      "format": "bundle",
+      "group": "codescanner",
+      "binary_artifact": "com.jamesfchen.spacecraft:codescanner-qrcode:1.0",
+      "deps": [
+        ":framework:loader"
+      ]
+    },
+    {
       "simpleName": "im-main",
       "canonicalName": ":components:im-module:main",
       "format": "app",

@@ -1,0 +1,10 @@
+//apply plugin: 'bundle-module'
+apply from: "$rootDir.path/script/bundle_module.gradle"
+apply from: "${rootDir.path}/script/ui_tradition.gradle"
+android {
+    defaultConfig {
+    }
+}
+dependencies {
+    api 'com.google.zxing:core:3.3.3'
+}

@@ -1,0 +1,11 @@
+apply from: "$rootDir.path/script/app_module.gradle"
+android {
+    defaultConfig {
+        resValue "string", "app_name","home.app"
+    }
+
+}
+
+dependencies{
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+}
