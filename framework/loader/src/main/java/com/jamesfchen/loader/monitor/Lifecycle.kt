@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 
-interface IActivityLifecycleObserver : Application.ActivityLifecycleCallbacks {
+internal interface IActivityLifecycleObserver : Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
     @Deprecated("换了个脸面，改了个名字", ReplaceWith("onActivityForeground(activity)"))
     override fun onActivityStarted(activity: Activity) { onActivityForeground(activity) }
@@ -21,7 +21,7 @@ interface IActivityLifecycleObserver : Application.ActivityLifecycleCallbacks {
     fun onActivityWindowFocusChanged(activity: Activity, hasFocus: Boolean) {}
 }
 
-interface IAppLifecycleObserver : DefaultLifecycleObserver {
+internal interface IAppLifecycleObserver : DefaultLifecycleObserver {
     @Deprecated("换了个脸面，改了个名字", ReplaceWith("onAppCreate()"))
     override fun onCreate(owner: LifecycleOwner) {onAppCreate()}
     @Deprecated("换了个脸面，改了个名字", ReplaceWith("onAppForeground()"))
@@ -41,5 +41,5 @@ interface IAppLifecycleObserver : DefaultLifecycleObserver {
     fun onAppBackground() {}
 }
 
-interface ILifecycleObserver : IAppLifecycleObserver, IActivityLifecycleObserver
+internal interface ILifecycleObserver : IAppLifecycleObserver, IActivityLifecycleObserver
 
