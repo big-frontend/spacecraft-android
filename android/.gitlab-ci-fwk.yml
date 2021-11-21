@@ -5,22 +5,22 @@ fwk-common:
       - framework/common/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:common:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-common
+    - ./gradlew :framework:common:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-common
     # todo:并发执行 av hybrid image map storage network
 #    #upload mave
-    - ./android/gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
+    - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
 #    #upload mave
-    - ./android/gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
+    - ./gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
 #    #upload mave
-    - ./android/gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
+    - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
 #    #upload mave
-#    - ./android/gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
+#    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
 #    #upload mave
-    - ./android/gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
+    - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
 #    #upload mave
-    - ./android/gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
+    - ./gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
 #    #upload mave
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-av:
   only:
@@ -28,8 +28,8 @@ fwk-av:
       - framework/av/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-flutter:
 #  only:
@@ -37,7 +37,7 @@ fwk-av:
 #      - framework/flutter/**/*
 #  stage: build
 #  script:
-#    - ./android/gradlew :framework:flutter:build
+#    - ./gradlew :framework:flutter:build
 # ========================
 fwk-hybrid:
   only:
@@ -45,8 +45,8 @@ fwk-hybrid:
       - framework/hybrid/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-image:
   only:
@@ -54,8 +54,8 @@ fwk-image:
       - framework/image/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-map:
 #  only:
@@ -63,8 +63,8 @@ fwk-image:
 #      - framework/map/**/*
 #  stage: build
 #  script:
-#    - ./android/gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
-#    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
+#    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #fwk-mockserver:
 #  only:
@@ -72,8 +72,8 @@ fwk-image:
 #      - framework/mockserver
 #  stage: build
 #  script:
-#    - ./android/gradlew :framework:mockserver:build
-#     - ./android/gradlew :framework:loader:assemble
+#    - ./gradlew :framework:mockserver:build
+#     - ./gradlew :framework:loader:assemble
 # ========================
 fwk-network:
   only:
@@ -81,8 +81,8 @@ fwk-network:
       - framework/network/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-storage:
   only:
@@ -90,8 +90,8 @@ fwk-storage:
       - framework/storage/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 fwk-loader:
   only:
@@ -99,14 +99,14 @@ fwk-loader:
       - framework/loader/**/*
   stage: build
   script:
-    - ./android/gradlew :framework:loader:assemble publishToMavenLocal
+    - ./gradlew :framework:loader:assemble publishToMavenLocal
 # ========================
 #buildBigApp job
 #build-big-app:
 #  stage: build
 #  script:
-#    - ./android/gradlew buildBigApp
-#  #    - ./android/gradlew reportMappingDebug  &&  ./android/gradlew reportSoDebug
+#    - ./gradlew buildBigApp
+#  #    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
 #  artifacts:
 #    paths:
 #      - app/build/outputs/app-release.apk
@@ -115,14 +115,14 @@ fwk-loader:
 #    - master
 #  stage: build
 #  script:
-#    #    - ./android/gradlew :app:fileCounter
-#    - ./android/gradlew :app:dangerousApiTask
+#    #    - ./gradlew :app:fileCounter
+#    - ./gradlew :app:dangerousApiTask
 #deploy2Firebase:
 #  only:
 #    - master
 #  stage: deploy
 #  script:
-#    - ./android/gradlew :app:appDistributionUploadRelease
+#    - ./gradlew :app:appDistributionUploadRelease
 #deploy2Pgyer:
 #  only:
 #    - master
@@ -141,12 +141,12 @@ fwk-loader:
 #  #  before_script:#会覆盖最外层的before_script流程
 #  #    - echo "lint before script"
 #  script:
-#    - ./android/gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
+#    - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
 
 #debugTests:
 #  stage: test
 #  script:
-#    - ./android/gradlew -Pci --console=plain :app:testDebug
+#    - ./gradlew -Pci --console=plain :app:testDebug
 
 #docker build:
 #  script: docker build -t my-image:$CI_COMMIT_REF_SLUG .
