@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--该文件可以通过gradle tranform api收集多个bundle的BundleManifest.xml merge而来-->
+<routers>
+    <router name="hotel-bundle1-router" class="com.jamesfchen.bundle1.Bundle1Router" scheme="bundle">
+        <page name="sayme" class="com.jamesfchen.bundle1.SayMeActivity">
+            <param name="from" type="String"/>
+        </page>
+    </router>
+    <router name="com.jamesfchen.bundle1.HttpRouter" scheme="http">
+    </router>
+
+    <router name="hotel-bundle2-router" class="com.jamesfchen.bundle2.Bundle2Router" scheme="bundle">
+        <page name="sayhi" class="com.jamesfchen.bundle2.SayHiActivity">
+            <param name="from" type="String"/>
+        </page>
+        <page name="main" class="com.jamesfchen.bundle2.MainActivity">
+            <param name="from" type="String"/>
+        </page>
+    </router>
+</routers>

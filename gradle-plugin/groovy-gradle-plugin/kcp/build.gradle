@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+//    id("org.jetbrains.intellij") version "0.6.4"
+}
+
+//intellij {
+//    version = intellijVersion
+//}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    def kotlinBaseVersion= '1.5.21'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinBaseVersion"
+    implementation "org.jetbrains.kotlin:kotlin-android-extensions-runtime:$kotlinBaseVersion"
+    implementation("org.jetbrains.kotlin:kotlin-compiler:$kotlinBaseVersion")
+
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinBaseVersion"
+    testImplementation("org.jetbrains.kotlin:kotlin-compiler:$kotlinBaseVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-compiler-internal-test-framework:$kotlinBaseVersion")
+//    testImplementation("org.jetbrains.kotlin:test-infrastructure-utils:$kotlinBaseVersion")
+//    testImplementation("org.jetbrains.kotlin:tests-compiler-utils:$kotlinBaseVersion")
+//    testImplementation("org.jetbrains.kotlin:tests-mutes:$kotlinBaseVersion")
+//    testImplementation("org.jetbrains.kotlin:tests-common:$kotlinBaseVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-scripting-compiler:$kotlinBaseVersion")
+    testImplementation("junit:junit:4.13.2")
+}

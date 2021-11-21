@@ -52,24 +52,10 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-/viewpagerindicator_library/
-/viewpagerindicator_library/viewpagerindicator_library.iml
-viewpagerindicator_library
 .DS_Store
 /generation_version.properties
-common/.cxx
-ypose/.cxx
 app/BuglyUploadLog.txt
-image/.cxx
-map/src/main/assets/l7_list_trip.json
-map/src/main/java/com/hawksjamesf/map/model/L7_trip.java
-framework/common/.cxx
-framework/image/.cxx
-frida/node_modules
-guard/.cxx
-components/myhome/.cxx/cmake
-components/myhome/.cxx
+*/.cxx
 dangerous_api_result.txt
 lint-report*.html
 lint-report*.xml
-components/home-module/myhome/.cxx

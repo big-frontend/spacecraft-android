@@ -1,0 +1,27 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.15.0"
+}
+pluginBundle {
+    vcsUrl = 'https://github.com/JamesfChen/spacecraft-android-gradle-plugin'
+    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+    tags = ['app ibc']
+    version = '1.0.0'
+}
+
+
+apply from: "${rootDir}/script/base.gradle"
+moduleInfo{
+    srcDirs=['ibc']
+}
+apply plugin: "java-gradle-plugin"
+
+gradlePlugin {
+    plugins {
+        perfplugin {
+            id = 'com.jamesfchen.ibc-plugin'
+            implementationClass = 'com.jamesfchen.ibc.PerfPlugin'
+            displayName = 'inter-bundle communication  plugin'
+            description = "inter-bundle communication annotation"
+        }
+    }
+}

@@ -1,0 +1,3 @@
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/app/build/outputs/mapping/debug/app-mapping.txt --> a438eecf0e3d4474e9d5337fd944d0780439185e
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/app/build/outputs/mapping/debug/app-mapping.txt --> a438eecf0e3d4474e9d5337fd944d0780439185e
+/Users/hawks.jamesf/tech/Spacecraft/SpacecraftAndroid/app/build/outputs/mapping/release/app-mapping.txt --> 75dcafee1892f72d7f38bc8dc4ac3d17a5cd70aa
