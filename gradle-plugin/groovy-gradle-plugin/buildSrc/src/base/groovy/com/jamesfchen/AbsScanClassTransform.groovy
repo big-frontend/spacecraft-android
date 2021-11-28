@@ -6,7 +6,6 @@ import groovy.io.FileType
 import org.apache.commons.io.FileUtils
 
 import java.util.jar.JarFile
-import com.android.build.gradle.internal.pipeline.TransformManager
 abstract class AbsScanClassTransform extends Transform implements IScanClass {
 
     @Override
