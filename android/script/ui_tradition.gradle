@@ -44,6 +44,7 @@ dependencies{
     testImplementation "androidx.paging:paging-common-ktx:3.0.1"
 //    api "androidx.paging:paging-rxjava3-ktx:3.0.1"
     api 'com.daimajia.androidanimations:library:2.4@aar'
+    api 'it.chengdazhi.styleimageview:styleimageview:1.0.4'
 
 
 }
