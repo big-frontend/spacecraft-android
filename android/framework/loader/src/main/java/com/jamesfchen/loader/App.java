@@ -7,13 +7,25 @@ import android.os.SystemClock;
 import android.os.Trace;
 import android.util.Log;
 
-import com.google.firebase.perf.metrics.AddTrace;
-import com.jamesfchen.common.util.Util;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 import androidx.work.Configuration;
+
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.uimanager.ViewManager;
+import com.facebook.soloader.SoLoader;
+import com.google.firebase.perf.metrics.AddTrace;
+import com.jamesfchen.common.util.Util;
+import com.jamesfchen.rn.MyNativeViewManager;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static com.jamesfchen.loader.monitor.tracer.StartupKt.TAG_STARTUP_MONITOR;
 
@@ -26,7 +38,7 @@ import static com.jamesfchen.loader.monitor.tracer.StartupKt.TAG_STARTUP_MONITOR
  *
  */
 @com.jamesfchen.lifecycle.App
-public class App extends Application implements Configuration.Provider {
+public class App extends Application implements Configuration.Provider, ReactApplication {
     private static App app;
     public static App getInstance() {
         if (app == null) {
@@ -61,6 +73,7 @@ public class App extends Application implements Configuration.Provider {
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();
+        SoLoader.init(this, /* native exopackage */ false);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 //        Utils.init(this);
         Util.init(this);
@@ -91,5 +104,30 @@ public class App extends Application implements Configuration.Provider {
         return new Configuration.Builder()
                 .setMinimumLoggingLevel(Log.VERBOSE)
                 .build();
+    }
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return new ReactNativeHost(this) {
+            @Override
+            public boolean getUseDeveloperSupport() {
+                return BuildConfig.DEBUG;
+            }
+
+            @Override
+            protected List<ReactPackage> getPackages() {
+                return Arrays.<ReactPackage>asList(new ReactPackage() {
+                    @Override
+                    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+                        return Collections.emptyList();
+                    }
+
+                    @Override
+                    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+                        return Collections.singletonList(new MyNativeViewManager());
+                    }
+                });
+            }
+        };
     }
 }

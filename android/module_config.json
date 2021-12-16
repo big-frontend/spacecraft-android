@@ -181,7 +181,9 @@
       "deps": [
         ":framework:network",
         ":framework:av",
-        ":framework:image"
+        ":framework:image",
+        ":framework:flutter",
+        ":framework:rn"
       ]
     },
     {
@@ -193,6 +195,20 @@
       "deps": [
         ":framework:common"
       ]
+    },
+    {
+      "simpleName": "framework-rn",
+      "canonicalName": ":framework:rn",
+      "format": "framework_foundation",
+      "group": "fwk",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-rn:1.0"
+    },
+    {
+      "simpleName": "framework-flutter",
+      "canonicalName": ":framework:flutter",
+      "format": "framework_foundation",
+      "group": "fwk",
+      "binary_artifact": "com.jamesfchen.spacecraft:framework-flutter:1.0"
     },
     {
       "simpleName": "framework-network",
