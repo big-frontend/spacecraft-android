@@ -1,0 +1,34 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.15.0"
+}
+//    id 'org.jetbrains.kotlin.jvm' version "1.3.72"
+pluginBundle {
+    vcsUrl = 'https://github.com/JamesfChen/spacecraft-android-gradle-plugin'
+    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+    tags = ['app ibc']
+    version = '1.0.0'
+}
+
+
+apply from: "${rootDir}/script/java_app.gradle"
+apply plugin: "java-gradle-plugin"
+gradlePlugin {
+    plugins {
+        perfplugin {
+            id = 'com.jamesfchen.ibc-plugin'
+            implementationClass = 'com.jamesfchen.ibc.IbcPlugin'
+            displayName = 'inter-bundle communication  plugin'
+            description = "inter-bundle communication annotation"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "androidx.annotation:annotation:1.2.0"
+    implementation "com.android.tools.build:gradle:4.1.2"
+    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+    api project(':base-plugin')
+}

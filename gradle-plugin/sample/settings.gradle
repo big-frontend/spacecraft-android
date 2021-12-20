@@ -1,0 +1,17 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "sample"
+include ':app'
+include ':bundle1'
+include ':bundle2'
+includeBuild("../groovy-gradle-plugin")
+include ':ibc:api'
+include ':ibc:annotations'
+project(':ibc:api').projectDir = new File(rootProject.projectDir, '../groovy-gradle-plugin/ibc/api')
+project(':ibc:annotations').projectDir = new File(rootProject.projectDir, '../groovy-gradle-plugin/ibc/annotations')

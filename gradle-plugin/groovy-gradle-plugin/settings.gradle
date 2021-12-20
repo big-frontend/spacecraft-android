@@ -11,15 +11,12 @@
 //    }
 //}
 rootProject.name = "groovy-gradle-plugin"
-include ':app'
-include ':annotations', ':processor'
-//include ':gradle-plugin:base-plugin'
-include ':gradle-plugin:lifecycle-plugin'
-//include ':gradle-plugin:perf-plugin'
-include ':bundle1'
-include ':bundle2'
-
-include ':lifecycle-api'
-include ':ibc:api',':ibc:complier'
-include ':ibc:annotations'
+include ":base-plugin"
+include ':perf:annotations', ':perf:complier',":perf:perf-plugin"
+include ':lifecycle:api',':lifecycle:lifecycle-plugin'
+include ':ibc:api',':ibc:complier',"ibc:ibc-plugin",':ibc:annotations'
 include ':ksp',':kcp'
+include ':counter-plugin'
+include ':bugly-plugin'
+include ':temple-plugin'
+include ':proguard-plugin'

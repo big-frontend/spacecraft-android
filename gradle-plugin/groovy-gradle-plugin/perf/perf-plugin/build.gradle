@@ -1,0 +1,25 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.15.0"
+}
+pluginBundle {
+    vcsUrl = 'https://github.com/JamesfChen/spacecraft-android-gradle-plugin'
+    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+    tags = ['app performance']
+    version = '1.0.0'
+}
+apply from: "${rootDir}/script/java_app.gradle"
+apply plugin: "java-gradle-plugin"
+
+gradlePlugin {
+    plugins {
+        perfplugin {
+            id = 'com.jamesfchen.perf-plugin'
+            implementationClass = 'com.jamesfchen.perf.PerfPlugin'
+            displayName = 'performance plugin'
+            description = "方法耗时统计"
+        }
+    }
+}
+dependencies {
+    api project(':base-plugin')
+}

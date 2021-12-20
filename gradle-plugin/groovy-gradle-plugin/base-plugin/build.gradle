@@ -1,0 +1,17 @@
+apply from: "${rootDir}/script/java_lib.gradle"
+//java {
+//    withJavadocJar()
+//    withSourcesJar()
+//}
+group 'com.jamesfchen'
+version '1.0.0'
+
+//发布到maven
+apply from: "${rootDir}/script/publisher.gradle"
+publish {
+    name="base-plugin"
+    groupId = "io.github.jamesfchen"
+    artifactId = "base-plugin"
+    version = "1.0.0"
+    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+}

@@ -1,0 +1,4 @@
+apply from: "${rootDir}/script/java_app.gradle"
+dependencies {
+    api project(':base-plugin')
+}

@@ -1,0 +1,19 @@
+apply from: "${rootDir}/script/java_app.gradle"
+
+apply plugin: "java-gradle-plugin"
+gradlePlugin {
+    plugins {
+
+        testplugin {
+            id = 'com.jamesfchen.test-plugin'
+            implementationClass = 'com.jamesfchen.TestPlugin'
+        }
+        testkotlinplugin {
+            id = 'com.jamesfchen.test-kotlin-plugin'
+            implementationClass = 'com.jamesfchen.TestKotlinPlugin'
+        }
+    }
+}
+dependencies {
+    api project(':base-plugin')
+}

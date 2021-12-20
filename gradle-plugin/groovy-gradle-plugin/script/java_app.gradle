@@ -1,0 +1,62 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'java'
+apply plugin: 'groovy'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+configurations {
+    compileOnly
+}
+sourceSets {
+    main {
+        compileClasspath += configurations.compileOnly
+    }
+}
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "androidx.annotation:annotation:1.2.0"
+    implementation "com.android.tools.build:gradle:4.1.2"
+//    implementation "org.javassist:javassist:3.20.0-GA"
+    //    implementation group: 'org.ow2.asm', name: 'asm', version: '5.1'
+//    implementation group: 'org.ow2.asm', name: 'asm-commons', version: '5.1'
+}
+//extensions.create("moduleInfo", ModuleInfo)
+//afterEvaluate {
+//    def module = project['moduleInfo'] as ModuleInfo
+//    sourceSets {
+//        main {
+//            groovy.srcDirs += ['src/main/groovy', "$rootDir/buildSrc/src/base/groovy"]
+//            if (module.srcDirs != null) {
+//                module.srcDirs.each { srcDir ->
+//                    groovy.srcDirs += ["$rootDir/buildSrc/src/${srcDir}/groovy"]
+//                    java.srcDirs += ["$rootDir/buildSrc/src/${srcDir}/java"]
+//                    kotlin.srcDirs += ["$rootDir/buildSrc/src/${srcDir}/kotlin"]
+//
+//                }
+//            }
+//            resources.srcDirs += ['src/main/resources', "$rootDir/buildSrc/src/base/resources"]
+//            if (module.resources != null) {
+//                module.resources.each { resource ->
+//                    resources.srcDirs += ["$rootDir/buildSrc/src/${resource}/resources"]
+//
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//class ModuleInfo {
+//    List<String> srcDirs
+//    List<String> resources
+//}
