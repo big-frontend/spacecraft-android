@@ -1,4 +1,4 @@
-apply plugin: 'org.jetbrains.kotlin.jvm'
+//apply plugin: 'org.jetbrains.kotlin.jvm'
 apply plugin: 'java'
 apply plugin: 'groovy'
 java {
@@ -18,9 +18,9 @@ sourceSets {
         compileClasspath += configurations.compileOnly
     }
 }
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
+//compileKotlin {
+//    kotlinOptions.jvmTarget = "1.8"
+//}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation gradleApi()

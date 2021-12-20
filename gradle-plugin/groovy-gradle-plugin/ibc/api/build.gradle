@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
-    id 'kotlin-android'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
@@ -42,8 +42,8 @@ dependencies {
     api project(':ibc:annotations')
 }
 apply from: "${rootDir}/script/publisher.gradle"
-publish{
-    name="ibc-api"
+publish {
+    name = "ibc-api"
     groupId = rootProject.groupId
     artifactId = "ibc-api"
     version = "1.0.0"

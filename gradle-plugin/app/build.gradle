@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id("com.android.application")
     id 'kotlin-android'
 //    id 'com.jamesfchen.lifecycle-plugin'
     id 'com.jamesfchen.test-plugin'

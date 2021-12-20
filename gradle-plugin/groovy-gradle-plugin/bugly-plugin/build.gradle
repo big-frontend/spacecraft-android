@@ -1,5 +1,5 @@
 apply from: "${rootDir}/script/java_app.gradle"
 dependencies {
     implementation files('libs/buglySymbolAndroid.jar')
-    api project(':base-plugin')
+    implementation project(':base-plugin')
 }
