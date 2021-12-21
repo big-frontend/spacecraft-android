@@ -1,5 +1,8 @@
-apply from: "${rootDir}/script/java_app.gradle"
-
+apply plugin: 'groovy'
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 apply plugin: "java-gradle-plugin"
 gradlePlugin {
     plugins {
@@ -15,5 +18,6 @@ gradlePlugin {
     }
 }
 dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':base-plugin')
 }

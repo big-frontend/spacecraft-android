@@ -43,7 +43,7 @@ dependencies {
     api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     api 'androidx.navigation:navigation-ui-ktx:2.3.5'
     api 'io.github.jamesfchen:lifecycle-api:1.0.2'
-//    api project(path: ':lifecycle-api')
-//    api project(path: ':perf:annotations')
-    api project(path: ':ibc:api')
+//    implementation project(':g:lifecycle:api')
+    implementation 'io.github.jamesfchen:ibc-api:1.0.0'
+    implementation 'io.github.jamesfchen:perf-api:1.0.0'
 }

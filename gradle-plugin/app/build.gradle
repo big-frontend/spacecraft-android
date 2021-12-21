@@ -1,15 +1,15 @@
 plugins {
-    id("com.android.application")
+    id "com.android.application"
     id 'kotlin-android'
 //    id 'com.jamesfchen.lifecycle-plugin'
-    id 'com.jamesfchen.test-plugin'
+//    id 'com.jamesfchen.test-plugin'
 //    id 'com.google.devtools.ksp'
-    id 'com.github.jamesfchen.lifecycle-plugin'
-    id 'com.jamesfchen.ibc-plugin'
-    id 'com.jamesfchen.test-kotlin-plugin'
+//    id 'com.github.jamesfchen.lifecycle-plugin'
+//    id 'com.jamesfchen.ibc-plugin'
+//    id 'com.jamesfchen.test-kotlin-plugin'
 }
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.jamesfchen.perf-plugin'
+//apply plugin: 'com.jamesfchen.perf-plugin'
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.2"
@@ -42,7 +42,20 @@ android {
 //
 //    }
 }
-
+//configurations {
+//    // A configuration meant for consumers that need the API of this component
+//    exposedApi {
+//        // This configuration is an "outgoing" configuration, it's not meant to be resolved
+//        canBeResolved = false
+//        // As an outgoing configuration, explain that consumers may want to consume it
+//        canBeConsumed = true
+//    }
+//    // A configuration meant for consumers that need the implementation of this component
+//    exposedRuntime {
+//        canBeResolved = false
+//        canBeConsumed = true
+//    }
+//}
 dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

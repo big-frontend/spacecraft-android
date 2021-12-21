@@ -9,8 +9,17 @@ pluginBundle {
     version = '1.0.0'
 }
 
+apply plugin: 'java'
+apply plugin: 'groovy'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
-apply from: "${rootDir}/script/java_app.gradle"
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 apply plugin: "java-gradle-plugin"
 gradlePlugin {
     plugins {
@@ -24,11 +33,5 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation gradleApi()
-    implementation localGroovy()
-    implementation "androidx.annotation:annotation:1.2.0"
-    implementation "com.android.tools.build:gradle:4.1.2"
-    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
     api project(':base-plugin')
 }

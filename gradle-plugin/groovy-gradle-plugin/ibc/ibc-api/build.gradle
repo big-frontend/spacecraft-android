@@ -1,7 +1,5 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
@@ -15,6 +13,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,5 +37,13 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'io.github.jamesfchen:ibc-api:1.0.0'
+    api project(':ibc:annotations')
+}
+apply from: "${rootDir}/script/publisher.gradle"
+publish {
+    name = "ibc-api"
+    groupId = rootProject.groupId
+    artifactId = "ibc-api"
+    version = "1.0.0"
+    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
 }

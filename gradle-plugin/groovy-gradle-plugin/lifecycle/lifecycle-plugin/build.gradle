@@ -2,7 +2,6 @@ plugins {
     id "com.gradle.plugin-publish" version "0.15.0"
     id "java-gradle-plugin"
 }
-apply from: "${rootDir}/script/java_app.gradle"
 gradlePlugin {
     plugins {
         lifecycleplugin {
@@ -10,6 +9,17 @@ gradlePlugin {
             implementationClass = 'com.jamesfchen.lifecycle.InjectLifecyclePlugin'
         }
     }
+}
+apply plugin: 'java'
+apply plugin: 'groovy'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 }
 //发布到远程gradle plugin portal，获得approval超级慢
 pluginBundle {

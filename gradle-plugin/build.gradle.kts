@@ -12,7 +12,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.2")
+        classpath("com.android.tools.build:gradle:7.0.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20")
         classpath("com.github.dcendents:android-maven-gradle-plugin:2.1")
 //        classpath "com.jamesfchen:lifecycle-plugin:1.0.0"
@@ -20,9 +20,9 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-plugins {
-    id("com.jamesfchen.perf-plugin") version "1.0.0" apply false
-}
+//plugins {
+//    id("com.jamesfchen.perf-plugin") version "1.0.0" apply false
+//}
 allprojects {
     repositories {
         maven { url = uri("https://jitpack.io") }
@@ -39,11 +39,12 @@ allprojects {
 //        task.sourceCompatibility = JavaVersion.VERSION_1_8
 //        task.targetCompatibility = JavaVersion.VERSION_1_8
 //    }
-//    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile::class.java).configureEach { task ->
-//        task.kotlinOptions {
-//            jvmTarget = '1.8'
-//        }
-//    }
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_11.majorVersion
+        }
+    }
+
     afterEvaluate {
     }
 }
