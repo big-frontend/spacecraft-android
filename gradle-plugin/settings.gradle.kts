@@ -19,9 +19,11 @@ pluginManagement {
 rootProject.name = "gradle-plugin"
 includeBuild("groovy-gradle-plugin") {
 //    name = "g"
-//    dependencySubstitution {
-//        substitute(module("io.jamesfchen:api")).using(project(":"))
-//    }
+    dependencySubstitution {
+//        substitute(module("io.github.jamesfchen:lifecycle-api")).using(project(":"))
+//        substitute(module("io.github.jamesfchen:ibc-api")).using(project(":"))
+//        substitute(module("io.github.jamesfchen:perf-api")).using(project(":"))
+    }
 }
 include(
     ":app",

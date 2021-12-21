@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -44,6 +47,6 @@ dependencies {
     api 'androidx.navigation:navigation-ui-ktx:2.3.5'
     api 'io.github.jamesfchen:lifecycle-api:1.0.2'
 //    implementation project(':g:lifecycle:api')
-    implementation 'io.github.jamesfchen:ibc-api:1.0.0'
-    implementation 'io.github.jamesfchen:perf-api:1.0.0'
+    api 'io.github.jamesfchen:ibc-api:1.0.0'
+    api 'io.github.jamesfchen:perf-api:1.0.0'
 }

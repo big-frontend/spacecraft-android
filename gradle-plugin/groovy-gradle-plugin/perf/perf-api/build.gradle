@@ -1,19 +1,16 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 android {
-    compileSdk 31
+    compileSdkVersion 29
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        minSdk 24
-        targetSdk 31
+        minSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,9 +30,6 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -44,9 +38,9 @@ dependencies {
 
 apply from: "${rootDir}/script/publisher.gradle"
 publish {
-    name = "ibc-api"
+    name = "perf-api"
     groupId = rootProject.groupId
-    artifactId = "ibc-api"
+    artifactId = "perf-api"
     version = "1.0.0"
     website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
 }
