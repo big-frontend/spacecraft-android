@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'kotlin'
+//    id 'kotlin'
 //    id("org.jetbrains.intellij") version "0.6.4"
 }
 

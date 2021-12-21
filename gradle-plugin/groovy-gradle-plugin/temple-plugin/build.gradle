@@ -1,0 +1,23 @@
+apply plugin: 'groovy'
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+apply plugin: "java-gradle-plugin"
+gradlePlugin {
+    plugins {
+
+        testplugin {
+            id = 'com.jamesfchen.test-plugin'
+            implementationClass = 'com.jamesfchen.TestPlugin'
+        }
+        testkotlinplugin {
+            id = 'com.jamesfchen.test-kotlin-plugin'
+            implementationClass = 'com.jamesfchen.TestKotlinPlugin'
+        }
+    }
+}
+dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':base-plugin')
+}

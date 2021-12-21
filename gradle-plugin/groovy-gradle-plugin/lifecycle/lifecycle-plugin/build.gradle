@@ -1,0 +1,65 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.15.0"
+    id "java-gradle-plugin"
+}
+gradlePlugin {
+    plugins {
+        lifecycleplugin {
+            id = 'com.github.jamesfchen.lifecycle-plugin'
+            implementationClass = 'com.jamesfchen.lifecycle.InjectLifecyclePlugin'
+        }
+    }
+}
+apply plugin: 'java'
+apply plugin: 'groovy'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+//发布到远程gradle plugin portal，获得approval超级慢
+pluginBundle {
+    vcsUrl = 'https://github.com/JamesfChen/spacecraft-android-gradle-plugin'
+    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+    description = "monitor app lifecycle for bundle project"
+    plugins {
+        lifecycleplugin {
+            displayName = 'lifecycle plugin'
+//            description = "组件化之后，组件监听app的生命周期工具"
+            tags = ['app-lifecycle']
+            version '1.0.0'
+        }
+    }
+    mavenCoordinates {
+        groupId = 'com.github.jamesfchen'
+        artifactId = "lifecycle-plugin"
+        version = "1.0.0"
+    }
+}
+//java {
+//    withJavadocJar()
+//    withSourcesJar()
+//}
+//发布到maven
+//apply from: "${rootDir}/script/publisher_plugin.gradle"
+//publish {
+//    name="lifecycle-plugin"
+//    groupId = "com.jamesfchen"
+//    artifactId = "lifecycle-plugin"
+//    version = "1.0.0"
+//    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+//}
+//publish {
+//    name="lifecycle-plugin"
+//    groupId = "io.github.jamesfchen"
+//    artifactId = "lifecycle-plugin"
+//    version = "1.0.0"
+//    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+//}
+dependencies {
+    api project(':base-plugin')
+}

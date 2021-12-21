@@ -2,10 +2,12 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 extensions.create('publish', PublishExtension)
+
 def isAndroid() {
     return project.getPlugins().hasPlugin('com.android.application') ||
             project.getPlugins().hasPlugin('com.android.library')
 }
+
 private void loadUserInfo(Project project, PublishExtension ext) {
     Properties properties = new Properties()
     File localPropertiesFile = project.rootProject.file("local.properties");
@@ -21,10 +23,10 @@ private void loadUserInfo(Project project, PublishExtension ext) {
 
 afterEvaluate {
     def ext = project['publish'] as PublishExtension
-    loadUserInfo(project,ext)
+    loadUserInfo(project, ext)
     publishing {
         publications { publications ->
-            publications.each {MavenPublication publication ->
+            publications.each { MavenPublication publication ->
                 println("cjf ${publication.groupId}:${publication.artifactId}:${publication.version} before")
 //                publication.groupId = ext.groupId
 //                publication.artifactId = ext.artifactId
@@ -34,21 +36,21 @@ afterEvaluate {
             }
         }
         repositories {
-//            maven {
-//                name = 'myProject'
-//                url = "${rootDir}/local-repo"
-//            }
-            //./gradlew publishAllPublicationsToMavenCentralRepository
             maven {
-                name = "mavenCentral"
-                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-                credentials {
-                    username = ext.ossrhUsername
-                    password = ext.ossrhPassword
-                }
+                name = 'myProject'
+                url = "${rootDir}/local-repo"
             }
+            //./gradlew publishAllPublicationsToMavenCentralRepository
+//            maven {
+//                name = "mavenCentral"
+//                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+//                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+//                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+//                credentials {
+//                    username = ext.ossrhUsername
+//                    password = ext.ossrhPassword
+//                }
+//            }
         }
     }
     project.tasks.findByName("publishAllPublicationsToMavenCentralRepository").doFirst {

@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+dependencies {
+    implementation files('libs/buglySymbolAndroid.jar')
+    implementation project(':base-plugin')
+}

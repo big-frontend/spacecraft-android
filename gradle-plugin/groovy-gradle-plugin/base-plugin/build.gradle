@@ -1,0 +1,51 @@
+//apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'java-library'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+apply plugin: 'groovy'
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+configurations {
+    compileOnly
+}
+sourceSets {
+    main {
+        compileClasspath += configurations.compileOnly
+    }
+}
+apply plugin: 'kotlin'
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api gradleApi()
+    api localGroovy()
+    api "androidx.annotation:annotation:1.2.0"
+    api "com.android.tools.build:gradle:4.1.2"
+//    implementation "org.javassist:javassist:3.20.0-GA"
+    //    implementation group: 'org.ow2.asm', name: 'asm', version: '5.1'
+//    implementation group: 'org.ow2.asm', name: 'asm-commons', version: '5.1'
+
+}
+//java {
+//    withJavadocJar()
+//    withSourcesJar()
+//}
+group 'com.jamesfchen'
+version '1.0.0'
+
+//发布到maven
+//apply from: "${rootDir}/script/publisher.gradle"
+//publish {
+//    name="base-plugin"
+//    groupId = "io.github.jamesfchen"
+//    artifactId = "base-plugin"
+//    version = "1.0.0"
+//    website = "https://github.com/JamesfChen/spacecraft-android-gradle-plugin"
+//}
