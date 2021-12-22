@@ -1,11 +1,8 @@
 plugins {
     id "com.android.application"
     id 'kotlin-android'
-//    id 'com.jamesfchen.lifecycle-plugin'
 //    id 'com.jamesfchen.test-plugin'
 //    id 'com.google.devtools.ksp'
-//    id 'com.github.jamesfchen.lifecycle-plugin'
-//    id 'com.jamesfchen.ibc-plugin'
 //    id 'com.jamesfchen.test-kotlin-plugin'
 }
 apply plugin: 'kotlin-kapt'

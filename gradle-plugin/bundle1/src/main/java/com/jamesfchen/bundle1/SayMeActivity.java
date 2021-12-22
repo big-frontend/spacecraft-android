@@ -7,8 +7,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.jamesfchen.ibc.router.IBCRouter;
-
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -32,7 +30,7 @@ public class SayMeActivity extends Activity {
             public void onClick(View view) {
 //                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("jamesfchen://www.jamesfchen.com/hotel/main"));
 //                startActivity(intent);
-                IBCRouter.goNativeBundle(SayMeActivity.this,"bundle2router/sayhi");
+//                IBCRouter.goNativeBundle(SayMeActivity.this,"bundle2router/sayhi");
             }
         });
     }

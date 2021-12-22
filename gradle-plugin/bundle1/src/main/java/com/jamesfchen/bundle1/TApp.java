@@ -2,9 +2,6 @@ package com.jamesfchen.bundle1;
 
 import android.app.Application;
 
-import com.jamesfchen.ibc.router.IBCRouter;
-import com.jamesfchen.lifecycle.App;
-
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -12,7 +9,6 @@ import com.jamesfchen.lifecycle.App;
  * author jamesfchen
  * since 2017/7/4
  */
-@App
 public class TApp extends Application {
     private static TApp app;
 
@@ -34,7 +30,6 @@ public class TApp extends Application {
 //            e.printStackTrace();
 //            Log.d("cjf",Log.getStackTraceString(e));
 //        }
-        IBCRouter.init(this);
 
 
 

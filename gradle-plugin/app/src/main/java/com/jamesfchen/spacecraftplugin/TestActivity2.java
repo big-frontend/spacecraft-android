@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.jamesfchen.annotations.TraceTime;
-import com.jamesfchen.lifecycle.App;
 
 /**
  * Copyright ® $ 2021
@@ -17,7 +16,6 @@ import com.jamesfchen.lifecycle.App;
  * email: hawksjamesf@gmail.com
  * since 六月/24/2021  星期四
  */
-@App
 public class TestActivity2 extends Activity {
     @TraceTime
     @Override
