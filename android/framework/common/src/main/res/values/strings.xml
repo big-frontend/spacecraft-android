@@ -12,8 +12,4 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
-    <string name="title_activity_splash_acvitivy">SplashAcvitivy</string>
-    <string name="title_activity_setup_wizard">SetupWizardActivity</string>
-    <string name="title_activity_main">MainActivity</string>
-
 </resources>

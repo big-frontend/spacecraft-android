@@ -1,6 +1,6 @@
 //noinspection GradleDynamicVersion
 //apply plugin: 'foundation-module'
-apply from: "${rootDir.path}/script/foundation_module.gradle"
+apply from: "${rootDir}/script/foundation_module.gradle"
 android {
     defaultConfig {
         externalNativeBuild {
@@ -180,10 +180,10 @@ dependencies {
     /**
      * ===============================monitor start=============================
      */
-    api "com.orhanobut:logger:${rootProject.ext.loggerVersion}"
+    api "com.orhanobut:logger:$LOGGER_VERSION"
     api 'com.jakewharton.timber:timber:4.7.1'
 
-    api platform('com.google.firebase:firebase-bom:28.0.1')
+    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
     api 'com.google.firebase:firebase-perf'
     api 'com.google.firebase:firebase-perf-ktx'
     api 'com.google.firebase:firebase-crashlytics'

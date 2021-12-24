@@ -17,25 +17,26 @@ dependencies {
      * ================================database start==============================
      */
     //room database
-    testImplementation 'androidx.room:room-testing:2.3.0'
-    api 'androidx.room:room-runtime:2.3.0'
-    api 'androidx.room:room-rxjava2:2.3.0'
-    api "androidx.room:room-ktx:2.3.0"
-    kapt 'androidx.room:room-compiler:2.3.0'
+    testImplementation "androidx.room:room-testing:${ROOM_VERSION}"
+    api "androidx.room:room-runtime:${ROOM_VERSION}"
+    api "androidx.room:room-rxjava2:${ROOM_VERSION}"
+    api "androidx.room:room-ktx:${ROOM_VERSION}"
+    kapt "androidx.room:room-compiler:${ROOM_VERSION}"
 
     //realm database
-    api "io.realm:realm-annotations:5.7.0"
-    api "io.realm:realm-android-library:5.7.0"
-    api "io.realm:realm-android-kotlin-extensions:5.7.0"
-    kapt "io.realm:realm-annotations-processor:5.7.0"
+    api "io.realm:realm-annotations:${REALM_VERSION}"
+    api "io.realm:realm-android-library:${REALM_VERSION}"
+    api "io.realm:realm-android-kotlin-extensions:${REALM_VERSION}"
+    kapt "io.realm:realm-annotations-processor:${REALM_VERSION}"
 
     //firebase database
+    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
     api 'com.google.firebase:firebase-database'
     api 'com.google.firebase:firebase-firestore'
     api 'com.google.firebase:firebase-storage'
     api 'com.google.firebase:firebase-storage-ktx'
     api 'com.google.firebase:firebase-config'
-    api 'com.tencent:mmkv-static:1.2.10'
+    api "com.tencent:mmkv-static:${MMKV_VERSION}"
 
 //    implementation "androidx.datastore:datastore:1.0.0-rc01"
 //    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"

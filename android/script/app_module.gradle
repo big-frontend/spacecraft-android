@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: "${rootDir.path}/script/base_module.gradle"
+apply from: "${rootDir}/script/base_module.gradle"
 //apply plugin: "com.github.jamesfchen.lifecycle-plugin"
 //apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
@@ -136,15 +136,16 @@ configurations {
     apkCheckerDependency
     sevenZipDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    all*.exclude group:'com.facebook.infer.annotation',module:'infer-annotation'
 //    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
 //    all*.exclude group: 'com.squareup.leakcanary', module: 'leakcanary-analyzer'
 }
 dependencies {
     teenager("${project.path} app begin ========================================================================================")
-    def deps = rootProject.ext.findDepProjects(project.path)
-    for (def d : deps) {
-        teenager("api  ${d}")
-        api d
+    rootProject.importDeps(project){dep->
+        teenager("implementation  ${dep}")
+        project.dependencies.add("implementation", dep)
+        return project.rootProject.findDepProjects(dep)
     }
     teenager("${project.path} app end ========================================================================================")
     apkCheckerDependency("com.tencent.matrix:matrix-apk-canary:${MATRIX_VERSION}")

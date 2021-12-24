@@ -44,7 +44,11 @@ dependencies{
     testImplementation "androidx.paging:paging-common-ktx:3.0.1"
 //    api "androidx.paging:paging-rxjava3-ktx:3.0.1"
     api 'com.daimajia.androidanimations:library:2.4@aar'
-    api 'it.chengdazhi.styleimageview:styleimageview:1.0.4'
+    //styleimageview库导致编译报错：> A failure occurred while executing com.android.build.gradle.tasks.VerifyLibraryResourcesTask$Action
+    //   > There was a failure while executing work items
+    //      > A failure occurred while executing com.android.build.gradle.internal.res.ResourceCompilerRunnable
+    //         > Resource compilation failed. Check logs for details.
+//    api 'it.chengdazhi.styleimageview:styleimageview:1.0.4'
 
 
 }

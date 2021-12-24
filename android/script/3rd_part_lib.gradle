@@ -1,0 +1,116 @@
+dependencies {
+    /**
+     * ================================network start==============================
+     */
+//    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    //    api 'com.android.volley:volley:1.1.1'
+    api "com.squareup.okhttp3:okhttp-tls:${OKHTTP_TLS_VERSION}"
+    api "com.facebook.stetho:stetho-okhttp3:${OKHTTP_STETHO_VERSION}"
+    api "com.squareup.okhttp3:logging-interceptor:${OKHTTP_LOGGING_VERSION}"
+    /*
+    >>>> http style  start
+    */
+
+    //restful
+    api "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:retrofit-converters:2.8.1"
+    api "com.squareup.retrofit2:adapter-rxjava3:${RETROFIT_VERSION}"
+    api "com.squareup.retrofit2:converter-wire:${RETROFIT_VERSION}"
+    api "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:converter-moshi:2.9.0"
+//    api "com.squareup.retrofit2:converter-protobuf:2.9.0"
+    //rpc
+//    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
+//        exclude group:  'com.google.guava'
+//        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+//    }
+//    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
+//    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
+
+    /*
+      http style  end
+    */
+
+//    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+//    implementation "com.github.jnr:jnr-unixsocket:0.23"
+    implementation "com.google.android.gms:play-services-cronet:${CRONET_VERSION}"
+    api "com.squareup.okhttp3:mockwebserver:${OKHTTP_MOCK_VERSION}"
+    api "com.squareup.retrofit2:retrofit-mock:${RETROFIT_VERSION}"
+    /**
+     * ================================network end==============================
+     */
+    /**
+     * ================================database start==============================
+     */
+    //room database
+    api "androidx.room:room-runtime:${ROOM_VERSION}"
+    api "androidx.room:room-rxjava2:${ROOM_VERSION}"
+    api "androidx.room:room-ktx:${ROOM_VERSION}"
+    kapt "androidx.room:room-compiler:${ROOM_VERSION}"
+
+    //realm database
+    api "io.realm:realm-annotations:${REALM_VERSION}"
+    api "io.realm:realm-android-library:${REALM_VERSION}"
+    api "io.realm:realm-android-kotlin-extensions:${REALM_VERSION}"
+    kapt "io.realm:realm-annotations-processor:${REALM_VERSION}"
+
+    //firebase database
+    api 'com.google.firebase:firebase-database'
+    api 'com.google.firebase:firebase-firestore'
+    api 'com.google.firebase:firebase-storage'
+    api 'com.google.firebase:firebase-storage-ktx'
+    api 'com.google.firebase:firebase-config'
+    api "com.tencent:mmkv-static:${MMKV_VERSION}"
+
+//    implementation "androidx.datastore:datastore:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
+//    implementation "com.dropbox.mobile.store:store4:4.0.1"
+    /**
+     * ================================database end==============================
+     */
+    /**
+     * ================================hybrid start==============================
+     */
+    api "com.facebook.react:react-native:${RN_VERSION}"
+    /**
+     * ================================hybrid end==============================
+     */
+    /**
+     * ================================map start==============================
+     */
+//    implementation project(path: ':framework::common')
+//    api project(path: ':framework:uicomponent')
+    api "com.amap.api:location:${AMAP_LOCATION_VERSION}"
+    api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
+    api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
+//    api project(path: ':storage')
+    /**
+     * ================================map end==============================
+     */
+    /**
+     * ===============================image start=============================
+     */
+    api "androidx.exifinterface:exifinterface:${EXIFINTERFACE_VERISON}"
+
+    api "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    api "com.github.bumptech.glide:recyclerview-integration:${GLIDE_VERSION}"
+    api "com.github.bumptech.glide:okhttp3-integration:${GLIDE_VERSION}"
+
+    api "com.facebook.fresco:fresco:${FRESCO_VERSION}"
+    api "com.facebook.fresco:animated-gif:${FRESCO_GIF_VERSION}"
+    // 支持 WebP （静态图+动图），需要添加
+    api "com.facebook.fresco:animated-webp:${FRESCO_WEBP_VERSION}"
+    api "com.facebook.fresco:webpsupport:${FRESCO_WEBP_VERSION}"
+    api "com.facebook.fresco:imagepipeline-okhttp3:${FRESCO_OKHTTP3_VERSION}"
+    api "com.squareup.picasso:picasso:${PICASSO_VERSION}"
+    api "com.squareup.picasso:picasso-pollexor:${PICASSO_VERSION}"
+
+    api "com.caverock:androidsvg:${ANDROIDSVG_VERSION}"
+    api("io.coil-kt:coil:$COIL_VERSION")
+    /**
+     * ===============================image end=============================
+     */
+    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
+}

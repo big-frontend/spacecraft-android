@@ -1,14 +1,3 @@
-ext.srcDirs = [
-//        "carousel",
-//        "video",
-//        "colorpicker",
-//        "drawable",
-//        "animationsExprimental",
-//        "newLayoutExprimental",
-//        "scrollExprimental",
-
-]
-//apply plugin: 'foundation-module'
 apply from: "${rootDir.path}/script/foundation_module.gradle"
 
 dependencies {

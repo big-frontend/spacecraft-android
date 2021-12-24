@@ -66,23 +66,23 @@ dependencies {
     /**
      * ===============================image start=============================
      */
-    api 'androidx.exifinterface:exifinterface:1.3.2'
+    api "androidx.exifinterface:exifinterface:${EXIFINTERFACE_VERISON}"
 
-    api 'com.github.bumptech.glide:glide:4.11.0'
-    api 'com.github.bumptech.glide:recyclerview-integration:4.11.0'
-    api "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+    api "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    api "com.github.bumptech.glide:recyclerview-integration:${GLIDE_VERSION}"
+    api "com.github.bumptech.glide:okhttp3-integration:${GLIDE_VERSION}"
 
-    api 'com.facebook.fresco:fresco:2.0.0'
-    api 'com.facebook.fresco:animated-gif:2.2.0'
+    api "com.facebook.fresco:fresco:${FRESCO_VERSION}"
+    api "com.facebook.fresco:animated-gif:${FRESCO_GIF_VERSION}"
     // 支持 WebP （静态图+动图），需要添加
-    api 'com.facebook.fresco:animated-webp:2.1.0'
-    api 'com.facebook.fresco:webpsupport:2.2.0'
-    api 'com.facebook.fresco:imagepipeline-okhttp3:2.5.0'
-    api 'com.squareup.picasso:picasso:2.71828'
-    api 'com.squareup.picasso:picasso-pollexor:2.71828'
+    api "com.facebook.fresco:animated-webp:${FRESCO_WEBP_VERSION}"
+    api "com.facebook.fresco:webpsupport:${FRESCO_WEBP_VERSION}"
+    api "com.facebook.fresco:imagepipeline-okhttp3:${FRESCO_OKHTTP3_VERSION}"
+    api "com.squareup.picasso:picasso:${PICASSO_VERSION}"
+    api "com.squareup.picasso:picasso-pollexor:${PICASSO_VERSION}"
 
-    api 'com.caverock:androidsvg:1.2.1'
-    api("io.coil-kt:coil:1.3.2")
+    api "com.caverock:androidsvg:${ANDROIDSVG_VERSION}"
+    api("io.coil-kt:coil:$COIL_VERSION")
     /**
      * ===============================image end=============================
      */

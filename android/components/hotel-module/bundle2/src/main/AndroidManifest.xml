@@ -41,7 +41,6 @@
             android:exported="true" />
         <activity
             android:name="com.jamesfchen.bundle2.customview.CustomViewActivity"
-            android:label="@string/title_activity_setup_wizard"
             android:theme="@style/AppTheme" />
         <activity android:name="com.jamesfchen.bundle2.customview.DispatchEventActivity" />
         <activity android:name="com.jamesfchen.bundle2.customview.testStyle.TextStyleActivity" />

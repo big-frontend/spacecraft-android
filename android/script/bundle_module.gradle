@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: "${rootDir.path}/script/base_module.gradle"
+apply from: "${rootDir}/script/base_module.gradle"
 apply plugin: 'com.alibaba.arouter'
 //apply plugin: 'com.google.protobuf'
 //protobuf {
@@ -51,10 +51,11 @@ android {
 
 dependencies {
     teenager("bundles begin ========================================================================================")
-    def deps = rootProject.ext.findDepProjects(project.path)
-    for (def d : deps) {
-        teenager("api ${d}")
-        api d
+    rootProject.importDeps(project){dep->
+        teenager("implementation  ${dep}")
+        project.dependencies.add("implementation", dep)
+//        compileOnly d
+        return project.rootProject.findDepProjects(dep)
     }
     teenager("bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"

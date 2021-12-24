@@ -12,7 +12,9 @@ ext {
         //该模块为exclude，不会进行编译不需要依赖
         return null
     }
-    findDepProjects = { moduleName ->
+    findDepProjects = { p ->
+        if (!(p instanceof Project)) return []
+        def moduleName = p.path
         def module = null
         if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
             module = gradle.ext.sourceModuleMap[moduleName]
@@ -42,8 +44,21 @@ ext {
         return null
     }
     modules = gradle.ext.sourceModuleMap.values() + gradle.ext.binaryModuleMap.values()
+
+    importDeps = { def myProject,Closure closure ->
+        HashSet<String> visited = new HashSet<String>()
+        def deps = myProject.rootProject.findDepProjects(myProject)
+        recurImport(visited, deps,closure)
+    }
 }
 
+void recurImport(def visited, def deps,Closure closure) {
+    if (deps == null || deps.size() == 0) return
+    for (def d : deps) {
+        if (!visited.add(d.path)) continue
+        recurImport(visited, closure.call(d),closure)
+    }
+}
 static void configModule(Project project, String moduleName, boolean includeModule, boolean isBinary = null) {
     def localProperties = new Properties()
     def localPropertiesFile = new File(project.rootDir, 'local.properties')
@@ -171,7 +186,7 @@ task publishModule {
             gradle.ext.sourceModuleMap.each { canonicalName, module ->
                 if (module.simpleName != moduleName) {
                     exec {
-                        executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                        executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
                         workingDir rootDir
                         def argv = []
                         argv << "${canonicalName}:assemble"
@@ -211,7 +226,7 @@ task publishAll {
                         && module.format != 'app') {
                     ret += canonicalName
                     exec {
-                        executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                        executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
                         workingDir rootDir
                         def argv = []
                         argv << "${canonicalName}:assemble"
@@ -235,7 +250,7 @@ task publishAll {
 task buildBigApp {
     doLast {
         exec {
-            executable rootDir.path + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+            executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
             workingDir rootDir
             def argv = []
             argv << "app:assembleDebug"

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: "${rootDir.path}/script/base_module.gradle"
+apply from: "${rootDir}/script/base_module.gradle"
 //apply plugin: 'kotlin-kapt'
 //class ExtSourceSetsPlugin implements Plugin<Project> {
 //
@@ -19,10 +19,10 @@ apply from: "${rootDir.path}/script/base_module.gradle"
 //apply plugin: ExtSourceSetsPlugin
 dependencies {
     teenager("foundation begin ========================================================================================")
-    def deps = rootProject.ext.findDepProjects(project.path)
-    for(def d :deps){
-        teenager("api  ${d}")
-        api d
+    rootProject.importDeps(project){dep->
+        teenager("implementation  ${dep}")
+        compileOnly dep
+        return project.rootProject.findDepProjects(dep)
     }
     teenager("foundation end ========================================================================================")
 }

@@ -42,4 +42,4 @@ dependencies {
 //    kapt 'com.alibaba:arouter-compiler:1.5.2'
     api 'com.alibaba:arouter-api:1.3.2'
 }
-apply from : "${rootDir.path}/script/module_publisher.gradle"
+apply from : "${rootDir}/script/module_publisher.gradle"

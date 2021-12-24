@@ -11,12 +11,8 @@ android {
 dependencies {
 //    implementation project(path: ':framework::common')
 //    api project(path: ':framework:uicomponent')
-    api 'com.amap.api:location:4.7.2'
-    api 'com.amap.api:search:6.9.2'
-    api 'com.amap.api:3dmap:6.9.4'
+    api "com.amap.api:location:${AMAP_LOCATION_VERSION}"
+    api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
+    api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
 //    api project(path: ':storage')
-    api 'androidx.room:room-runtime:2.2.5'
-    api 'androidx.room:room-rxjava2:2.2.5'
-    api "androidx.room:room-ktx:2.2.5"
-    kapt 'androidx.room:room-compiler:2.2.5'
 }

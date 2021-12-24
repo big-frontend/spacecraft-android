@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toosl="http://schemas.android.com/apk/distribution"
     package="com.jamesfchen.main">
 
     <application
@@ -8,6 +9,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SpacecraftAndroid" />
+        toosl:replace="android:theme,android:allowBackup"
+        />
+<!--        android:theme="@style/Theme.SpacecraftAndroid"-->
 
 </manifest>

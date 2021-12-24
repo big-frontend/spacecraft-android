@@ -29,6 +29,8 @@ def appsStr = localProperties.getProperty('apps', '')
 gradle.ext.excludeModuleMap = [:]
 gradle.ext.sourceModuleMap = [:]
 gradle.ext.binaryModuleMap = [:]
+gradle.ext.framworkModuleMap = [:]
+gradle.ext.bundleModuleMap = [:]
 gradle.ext.appMap = [:]
 def findModule = { name ->
     for (def m : gradle.ext.allModules) {
@@ -56,6 +58,9 @@ sourceModulesStr.eachAfterSplit(',') {
 //    gradle.ext.appMap[m.canonicalName] = m
 //}
 gradle.ext.allModules.each { m ->
+    if (m.group == 'fwk'){
+        gradle.ext.framworkModuleMap[m.canonicalName] = m
+    }
     if (!gradle.ext.sourceModuleMap.containsKey(m.canonicalName) && !gradle.ext.excludeModuleMap.containsKey(m.canonicalName)) {
         gradle.ext.binaryModuleMap[m.canonicalName] = m
     }

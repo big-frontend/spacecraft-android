@@ -1,7 +1,7 @@
 apply from: "$rootDir.path/script/app_module.gradle"
 android {
     defaultConfig {
-        resValue "string", "app_name","home.app"
+        resValue "string", "app_name","codescanner.app"
     }
 
 }

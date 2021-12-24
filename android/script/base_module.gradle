@@ -2,7 +2,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 //apply plugin: 'androidx.navigation.safeargs.kotlin'
-apply from: "${rootDir.path}/script/console.gradle"
+apply from: "${rootDir}/script/console.gradle"
 android {
     compileSdkVersion Integer.parseInt(rootProject.compileSdkVersion)
     buildToolsVersion rootProject.buildToolsVersion
@@ -102,8 +102,8 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-idling-resource:3.1.1"
 
     // Dependencies for Android unit tests
-    androidTestImplementation "junit:junit:${project.rootProject.ext.junitVersion}"
-    androidTestImplementation "org.mockito:mockito-android:${project.rootProject.ext.mockitoVersion}"
+    androidTestImplementation "junit:junit:${JUNIT_VERSION}"
+    androidTestImplementation "org.mockito:mockito-android:$MOCKITO_VERSION"
     androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator-v18:2.2.0-alpha1'
@@ -118,4 +118,4 @@ dependencies {
      * ===============================test end=============================
      */
 }
-apply from: "${rootDir.path}/script/module_publisher.gradle"
+apply from: "${rootDir}/script/module_publisher.gradle"

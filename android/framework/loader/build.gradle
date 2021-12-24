@@ -1,5 +1,5 @@
 //apply plugin: 'foundation-module'
-apply from: "${rootDir.path}/script/foundation_module.gradle"
+apply from: "${rootDir}/script/foundation_module.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
@@ -41,7 +41,9 @@ dependencies {
 
     api 'com.firebaseui:firebase-ui-database:6.0.2'
     api 'com.firebaseui:firebase-ui-firestore:6.0.2'
-    api 'com.firebaseui:firebase-ui-storage:6.0.2'
+    api('com.firebaseui:firebase-ui-storage:6.0.2'){
+        exclude group: 'com.github.bumptech.glide',module:'glide'
+    }
 
 
     api 'androidx.emoji:emoji:1.1.0'

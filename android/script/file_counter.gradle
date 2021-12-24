@@ -104,7 +104,7 @@ class CounterTask extends DefaultTask {
         map.put("|  java|", "|  java|${j_f_totals} |${j_l_totals}|")
         map.put("|  kotlin|", "|  kotlin|${k_f_totals}|${k_l_totals}|")
         map.put("|  c or c++|", "|  c or c++|${c_f_totals}|${c_l_totals}|")
-        File file = new File(project.rootDir.path, "README.md")
+        File file = new File(project.rootDir, "README.md")
         replace(file, map)
         def ext = project.extensions['counterConfig'] as CounterExtension
         StringBuilder content = new StringBuilder()
@@ -169,7 +169,7 @@ class CounterTask extends DefaultTask {
 //            executable isWindows() ? "python" : "python3"
 //            workingDir project.rootDir
 //            def argv = []
-//            argv << "${project.rootDir.path}${File.separator}script${File.separator}post_email.py"
+//            argv << "${project.rootDir}${File.separator}script${File.separator}post_email.py"
 //            argv << content.toString()
 //            args = argv
 //            println "[post email] post  end"
