@@ -59,3 +59,4 @@ app/BuglyUploadLog.txt
 dangerous_api_result.txt
 lint-report*.html
 lint-report*.xml
+flutter_bundle/.dart_tool

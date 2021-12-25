@@ -21,8 +21,8 @@ dependencies {
     teenager("foundation begin ========================================================================================")
     rootProject.importDeps(project){dep->
         teenager("implementation  ${dep}")
-        compileOnly dep
-        return project.rootProject.findDepProjects(dep)
+        implementation dep
+        return project.rootProject.findDeps(dep)
     }
     teenager("foundation end ========================================================================================")
 }

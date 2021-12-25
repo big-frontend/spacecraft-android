@@ -6,12 +6,12 @@ def child(Object msg) {
 /**
  * 读取module_config.json信息以此来include具体的模块，对于模块的描述应该有这些信息
  * class Module{*    require  def simpleName 模块名的简写,给idea plugin读取
- *    require def canonicalName :components:hotel-module:foundation
+ *    require def sourcePath :components:hotel-module:foundation
  *    require def format 模块格式(bundle/bundle foundation/framework foundation/jar ,bundle可以不参加编译，即exclude，但是framwork foundation必须被include)
  *    require def group 分组是为了当exclude某个app时，其下的依赖的同组模块也会exclude
  *    option def deps
  *    不应有这个属性，要编译成什么应该通过excludeModule和sourceModule,默认都是aar编译//option def build_source(source or binary),binary(aar jar)编译更快
- *    require def binary_artifact default: {package}:simpleName:1.0.0 ,默认的binary_artifact需要保证simpelName唯一性,先暂时用1.0.0站位，后面应该通过获取远程版本和本地版本进行自动升级
+ *    require def binaryPath default: {package}:simpleName:1.0.0 ,默认的binary_artifact需要保证simpelName唯一性,先暂时用1.0.0站位，后面应该通过获取远程版本和本地版本进行自动升级
  *}*
  */
 def config = new JsonSlurper().parse(file("$rootDir/module_config.json"))
@@ -26,9 +26,9 @@ if (localPropertiesFile.exists()) {
 def excludeModulesStr = localProperties.getProperty('excludeModules', '')
 def sourceModulesStr = localProperties.getProperty('sourceModules', '')
 def appsStr = localProperties.getProperty('apps', '')
-gradle.ext.excludeModuleMap = [:]
-gradle.ext.sourceModuleMap = [:]
-gradle.ext.binaryModuleMap = [:]
+gradle.ext.excludeModuleMap = new LinkedHashMap<String,Object>()
+gradle.ext.sourceModuleMap = new LinkedHashMap<String,Object>()
+gradle.ext.binaryModuleMap = new LinkedHashMap<String,Object>()
 gradle.ext.framworkModuleMap = [:]
 gradle.ext.bundleModuleMap = [:]
 gradle.ext.appMap = [:]
@@ -49,60 +49,43 @@ String.metaClass.eachAfterSplit { reg, Closure closure ->
     }
 }
 excludeModulesStr.eachAfterSplit(',') {
-    gradle.ext.excludeModuleMap[it.canonicalName] = it
+    gradle.ext.excludeModuleMap[it.simpleName] = it
 }
 sourceModulesStr.eachAfterSplit(',') {
-    gradle.ext.sourceModuleMap[it.canonicalName] = it
+    gradle.ext.sourceModuleMap[it.simpleName] = it
 }
 //appsStr.eachAfterSplit(',') { m ->
-//    gradle.ext.appMap[m.canonicalName] = m
+//    gradle.ext.appMap[m.simpleName] = m
 //}
 gradle.ext.allModules.each { m ->
     if (m.group == 'fwk'){
-        gradle.ext.framworkModuleMap[m.canonicalName] = m
+        gradle.ext.framworkModuleMap[m.simpleName] = m
     }
-    if (!gradle.ext.sourceModuleMap.containsKey(m.canonicalName) && !gradle.ext.excludeModuleMap.containsKey(m.canonicalName)) {
-        gradle.ext.binaryModuleMap[m.canonicalName] = m
+    if (!gradle.ext.sourceModuleMap.containsKey(m.simpleName) && !gradle.ext.excludeModuleMap.containsKey(m.simpleName)) {
+        gradle.ext.binaryModuleMap[m.simpleName] = m
     }
 }
-//include ':components:hotel-module:foundation'
-//include ':components:hotel-module:hotel-lint'
-//include ':components:hotel-module:bundle1'
-//include ':components:hotel-module:bundle2'
-//include ':components:myhome',
-//        ':components:login'
-//include ':components:template'
-//include ':components:module1'
-//include ':mockserver'
-//include ':framework:common', ':framework:loader',':framework:router',
-//        ':framework:network', ':framework:storage', ':framework:image',
-//        ':framework:av', ':framework:map', ':framework:chatroom',
-//        ':framework:uicomponent'
-//setBinding(new Binding([gradle: this]))
-//evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
-//include ':lint-rules'
-//include ':lint-checker'
 child("module begin ========================================================================================")
 //gradle.ext.appMap.each { _, module ->
-//    child("app ${module.canonicalName}")
+//    child("app ${module.simpleName}")
 //}
-gradle.ext.sourceModuleMap.each { _, module ->
-    child("include module   ${module.canonicalName}")
+gradle.ext.sourceModuleMap.each { name, module ->
+    child("source module\t${module.sourcePath}")
     if (module.simpleName == 'framework-flutter') {
         setBinding(new Binding([gradle: this]))
         evaluate(new File(settingsDir, 'script/flutter/include_flutter.gradle'))
     } else {
-        include module.canonicalName
-        if (module.path) {
-            project(module.canonicalName).projectDir = new File(rootProject.projectDir, module.path)
+        include module.sourcePath
+        if (module.projectDir) {
+            project(module.sourcePath).projectDir = new File(rootProject.projectDir, module.projectDir)
         }
     }
 }
 gradle.ext.excludeModuleMap.each { _, module ->
-    child("\u001B[31mexclude module\u001B[0m  ${module.canonicalName}")
+    child("\u001B[31mexclude module\u001B[0m\t${module.sourcePath}")
 }
 gradle.ext.binaryModuleMap.each { _, module ->
-    child("binary module  ${module.binary_artifact}")
+    child("binary module\t${module.binaryPath}")
 }
 
 child("module end ========================================================================================")

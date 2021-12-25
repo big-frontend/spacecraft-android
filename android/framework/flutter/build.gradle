@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
 //apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply from: "$rootDir/script/flutter/flutter.gradle"
 flutter {
-    source "${rootProject.projectDir}${File.separator}..${File.separator}flutter_bundle"
+    source "${rootDir}${File.separator}..${File.separator}flutter_bundle"
 }
 //group 'com.jamesfchen.flutter_bundle'
 //version '1.0'
@@ -47,6 +47,13 @@ android {
         //用于性能分析
         profile {
             initWith debug
+        }
+        inhouse {
+            initWith debug
+            lintOptions {
+                warningsAsErrors false
+                abortOnError true
+            }
         }
     }
 }

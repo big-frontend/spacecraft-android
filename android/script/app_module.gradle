@@ -145,7 +145,7 @@ dependencies {
     rootProject.importDeps(project){dep->
         teenager("implementation  ${dep}")
         project.dependencies.add("implementation", dep)
-        return project.rootProject.findDepProjects(dep)
+        return project.rootProject.findDeps(dep)
     }
     teenager("${project.path} app end ========================================================================================")
     apkCheckerDependency("com.tencent.matrix:matrix-apk-canary:${MATRIX_VERSION}")

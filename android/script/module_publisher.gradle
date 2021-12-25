@@ -15,9 +15,9 @@ def findArtifact() {
     def moduleSimpleName = ''
     def moduleCanonicalNmae = ''
     for (def module : rootProject.ext.modules) {
-        if (project.path == module.canonicalName) {
+        if (project.path == module.sourcePath) {
             moduleSimpleName = module.simpleName
-            moduleCanonicalNmae = module.canonicalName
+            moduleCanonicalNmae = module.sourcePath
             break
         }
     }

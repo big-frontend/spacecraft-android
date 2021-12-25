@@ -1,64 +1,93 @@
 ext {
-    findProject = { moduleName ->
-        if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
-            def module = gradle.ext.binaryModuleMap[moduleName]
-            if (module.binary_artifact.isEmpty()) {
-                throw new IllegalArgumentException("binary module 的binary_artifact不能为空")
+    findModulePath = { simpleName ->
+        if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
+            def module = gradle.ext.binaryModuleMap[simpleName]
+            if (module.binaryPath.isEmpty()) {
+                throw new IllegalArgumentException("binary module 的binaryPath不能为空")
             }
-            return module.binary_artifact
-        } else if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
-            return gradle.rootProject.findProject(moduleName)
+            return module.binaryPath //'com.jamesfchen:box-tool:1.0.0'
+        } else if (gradle.ext.sourceModuleMap.containsKey(simpleName)) {
+            def module = gradle.ext.sourceModuleMap[simpleName]
+            if (module.sourcePath.isEmpty()) {
+                throw new IllegalArgumentException("source module 的sourcePath不能为空")
+            }
+            return module.sourcePath //':framework:common'
         }
         //该模块为exclude，不会进行编译不需要依赖
         return null
     }
-    findDepProjects = { p ->
-        if (!(p instanceof Project)) return []
-        def moduleName = p.path
-        def module = null
-        if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
-            module = gradle.ext.sourceModuleMap[moduleName]
-            if (module.deps == null) return []
-        } else if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
-            module = gradle.ext.binaryModuleMap[moduleName]
-            if (module.deps == null) return []
+    findDeps = { someOne ->
+        def myPath
+        if (someOne instanceof Project) {
+            myPath = someOne.path //source path
+        } else {
+            myPath = someOne //binary path
+        }
+        def pickupModule = null
+        if (isSourcePath(myPath)) {
+            gradle.sourceModuleMap.each { _, m ->
+                if (m.sourcePath == myPath) {
+                    pickupModule = m
+                    return
+                }
+            }
+        } else {
+            gradle.binaryModuleMap.each { _, m ->
+                if (m.binaryPath == myPath) {
+                    pickupModule = m
+                    return
+                }
+            }
         }
         d = []
-        if (module != null) {
-            module.deps.each { dep ->
-                def m = findProject(dep)
-                if (m != null) {
-                    d.add(m)
+        if (pickupModule != null) {
+            if (pickupModule.deps == null) return []
+            pickupModule.deps.each { dep ->
+                def path = findModulePath(dep)
+                if (path != null) {
+                    if (isSourcePath(path)) {
+                        path = gradle.rootProject.findProject(path)
+                    }
+                    d.add(path)
                 }
             }
         }
         return d
 
     }
-    findModule = { moduleName ->
-        if (gradle.ext.binaryModuleMap.containsKey(moduleName)) {
-            return gradle.ext.binaryModuleMap[moduleName]
-        } else if (gradle.ext.sourceModuleMap.containsKey(moduleName)) {
-            return gradle.ext.sourceModuleMap[moduleName]
+    findModule = { simpleName ->
+        if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
+            return gradle.ext.binaryModuleMap[simpleName]
+        } else if (gradle.ext.sourceModuleMap.containsKey(simpleName)) {
+            return gradle.ext.sourceModuleMap[simpleName]
         }
         return null
     }
     modules = gradle.ext.sourceModuleMap.values() + gradle.ext.binaryModuleMap.values()
 
-    importDeps = { def myProject,Closure closure ->
+    importDeps = { def myProject, Closure closure ->
         HashSet<String> visited = new HashSet<String>()
-        def deps = myProject.rootProject.findDepProjects(myProject)
-        recurImport(visited, deps,closure)
+        def deps = myProject.rootProject.findDeps(myProject)
+        recurImport(visited, deps, closure)
+    }
+}
+static boolean isSourcePath(def path){
+    return !path.contains(".")
+}
+void recurImport(def visited, def deps, Closure closure) {
+    if (deps == null || deps.size() == 0) return
+    for (def d : deps) {
+        if (d instanceof String) {
+            if (!visited.add(d)) {
+                continue
+            }
+        } else if (!visited.add(d.path)) {
+            continue
+        }
+        recurImport(visited, closure.call(d), closure)
     }
 }
 
-void recurImport(def visited, def deps,Closure closure) {
-    if (deps == null || deps.size() == 0) return
-    for (def d : deps) {
-        if (!visited.add(d.path)) continue
-        recurImport(visited, closure.call(d),closure)
-    }
-}
 static void configModule(Project project, String moduleName, boolean includeModule, boolean isBinary = null) {
     def localProperties = new Properties()
     def localPropertiesFile = new File(project.rootDir, 'local.properties')
@@ -166,7 +195,6 @@ task includeAll {
         }
         StringBuffer sourcesb = new StringBuffer();
         gradle.ext.allModules.each { m ->
-            if (m.canonicalName == ':framework:flutter') return
             sourcesb.append(m.simpleName);
             sourcesb.append(",");
         }
@@ -183,13 +211,13 @@ task publishModule {
         if (project.hasProperty("moduleName")) {
             def moduleName = project.getProperty("moduleName")
             includeM(project, moduleName, false)
-            gradle.ext.sourceModuleMap.each { canonicalName, module ->
+            gradle.ext.sourceModuleMap.each { sourcePath, module ->
                 if (module.simpleName != moduleName) {
                     exec {
                         executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
                         workingDir rootDir
                         def argv = []
-                        argv << "${canonicalName}:assemble"
+                        argv << "${sourcePath}:assemble"
                         argv << "publishToMavenLocal"
                         args = argv
                         println("command line:${commandLine}")
@@ -205,31 +233,30 @@ task publishModule {
  *
  * 模块之间的依赖关系如下
  *        app__
-         /   \
-         b1     b2
-         \     /
-         loader
-         /  \
-         image net ...
-         \     /
-         common
+ /   \
+ b1     b2
+ \     /
+ loader
+ /  \
+ image net ...
+ \     /
+ common
  * 优化发布：当common模块被编译就将其发布到本地maven，然后再并发编译image net 等模块这个过程集成的是common二进制组件，在本地maven，然后再编译loader，打包出一个供上传使用的包
  */
 task publishAll {
     doLast {
         def ret = []
         try {
-            gradle.ext.sourceModuleMap.each { canonicalName, module ->
-                if (canonicalName != ':app'
-                        && canonicalName != ':components:hotel-module:hotel-lint'
-                        && canonicalName != ':framework:flutter'
+            gradle.ext.sourceModuleMap.each { sourcePath, module ->
+                if (sourcePath != ':app'
+                        && sourcePath != ':components:hotel-module:hotel-lint'
                         && module.format != 'app') {
-                    ret += canonicalName
+                    ret += sourcePath
                     exec {
                         executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
                         workingDir rootDir
                         def argv = []
-                        argv << "${canonicalName}:assemble"
+                        argv << "${sourcePath}:assemble"
                         argv << "publishToMavenLocal"
                         args = argv
                         println("command line:${commandLine}")

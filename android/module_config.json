@@ -4,269 +4,264 @@
   "allModules": [
     {
       "simpleName": "app",
-      "canonicalName": ":app",
       "format": "app",
       "group": "father",
-      "binary_artifact": "com.jamesfchen.spacecraft:app:1.0",
+      "sourcePath": ":app",
+      "binaryPath": "com.jamesfchen.spacecraft:app:1.0",
       "deps": [
-        ":components:hotel-module:bundle1",
-        ":components:hotel-module:bundle2",
-        ":components:home-module:myhome",
-        ":components:account-module:login"
+        "hotel-bundle1",
+        "hotel-bundle2",
+        "home-myhome",
+        "account-login",
+        "codescanner-qrcode",
+        "im-chatroom"
       ]
     },
     {
       "simpleName": "codescanner-main",
-      "canonicalName": ":components:codescanner-module:main",
-      "format": "app",
+      "formt": "app",
       "group": "codescanner",
-      "binary_artifact": "com.jamesfchen.spacecraft:codescanner-main:1.0",
+      "sourcePath": ":components:codescanner-module:main",
+      "binaryPath": "com.jamesfchen.spacecraft:codescanner-main:1.0",
       "deps": [
-        ":components:codescanner-module:qrcode"
+        "codescanner-qrcode"
       ]
     },
     {
       "simpleName": "codescanner-qrcode",
-      "canonicalName": ":components:codescanner-module:qrcode",
+      "projectDir": "",
       "format": "bundle",
       "group": "codescanner",
-      "binary_artifact": "com.jamesfchen.spacecraft:codescanner-qrcode:1.0",
+      "sourcePath": ":components:codescanner-module:qrcode",
+      "binaryPath": "com.jamesfchen.spacecraft:codescanner-qrcode:1.0",
       "deps": [
-        ":framework:loader"
+        "framework-loader"
       ]
     },
     {
       "simpleName": "im-main",
-      "canonicalName": ":components:im-module:main",
       "format": "app",
       "group": "im",
-      "binary_artifact": "com.jamesfchen.spacecraft:im-main:1.0",
+      "sourcePath": ":components:im-module:main",
+      "binaryPath": "com.jamesfchen.spacecraft:im-main:1.0",
       "deps": [
-        ":components:im-module:chatroom"
+        "im-chatroom"
       ]
     },
     {
       "simpleName": "im-chatroom",
-      "canonicalName": ":components:im-module:chatroom",
       "format": "bundle",
       "group": "im",
-      "binary_artifact": "com.jamesfchen.spacecraft:im-chatroom:1.0",
+      "sourcePath": ":components:im-module:chatroom",
+      "binaryPath": "com.jamesfchen.spacecraft:im-chatroom:1.0",
       "deps": [
-        ":framework:loader"
+        "framework-loader"
       ]
     },
     {
       "simpleName": "account-main",
-      "canonicalName": ":components:account-module:main",
       "format": "app",
       "group": "account",
-      "binary_artifact": "com.jamesfchen.spacecraft:account-main:1.0",
+      "sourcePath": ":components:account-module:main",
+      "binaryPath": "com.jamesfchen.spacecraft:account-main:1.0",
       "deps": [
-        ":components:account-module:login"
+        "account-login"
       ]
     },
     {
       "simpleName": "account-login",
-      "canonicalName": ":components:account-module:login",
       "format": "bundle",
       "group": "account",
-      "binary_artifact": "com.jamesfchen.spacecraft:account-login:1.0",
+      "sourcePath": ":components:account-module:login",
+      "binaryPath": "com.jamesfchen.spacecraft:account-login:1.0",
       "deps": [
-        ":framework:loader",
-        ":components:account-module:export"
+        "framework-loader",
+        "account-export"
       ]
     },
     {
       "simpleName": "account-export",
-      "canonicalName": ":components:account-module:export",
       "format": "bundle_foundation",
       "group": "account",
-      "binary_artifact": "com.jamesfchen.spacecraft:account-export:1.0"
+      "sourcePath": ":components:account-module:export",
+      "binaryPath": "com.jamesfchen.spacecraft:account-export:1.0"
     },
     {
       "simpleName": "home-main",
-      "canonicalName": ":components:home-module:main",
       "format": "app",
       "group": "home",
-      "binary_artifact": "com.jamesfchen.spacecraft:home-main:1.0",
+      "sourcePath": ":components:home-module:main",
+      "binaryPath": "com.jamesfchen.spacecraft:home-main:1.0",
       "deps": [
-        ":components:home-module:myhome"
+        "home-myhome"
       ]
     },
     {
       "simpleName": "home-myhome",
-      "canonicalName": ":components:home-module:myhome",
       "format": "bundle",
       "group": "home",
-      "binary_artifact": "com.jamesfchen.spacecraft:home-myhome:1.0",
+      "sourcePath": ":components:home-module:myhome",
+      "binaryPath": "com.jamesfchen.spacecraft:home-myhome:1.0",
       "deps": [
-        ":framework:loader",
-        ":components:account-module:export"
+        "framework-loader",
+        "account-export"
       ]
     },
     {
       "simpleName": "hotel-main",
-      "canonicalName": ":components:hotel-module:main",
       "format": "app",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen.spacecraft:hotel-main:1.0",
+      "sourcePath": ":components:hotel-module:main",
+      "binaryPath": "com.jamesfchen.spacecraft:hotel-main:1.0",
       "deps": [
-        ":components:hotel-module:bundle1",
-        ":components:hotel-module:bundle2"
+        "hotel-bundle1",
+        "hotel-bundle2"
       ]
     },
     {
       "simpleName": "hotel-bundle1",
-      "canonicalName": ":components:hotel-module:bundle1",
       "format": "bundle",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen.spacecraft:hotel-bundle1:1.0",
+      "sourcePath": ":components:hotel-module:bundle1",
+      "binaryPath": "com.jamesfchen.spacecraft:hotel-bundle1:1.0",
       "deps": [
-        ":components:hotel-module:foundation"
+        "hotel-foundation"
       ]
     },
     {
       "simpleName": "hotel-bundle2",
-      "canonicalName": ":components:hotel-module:bundle2",
       "format": "bundle",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen.spacecraft:hotel-bundle2:1.0",
+      "sourcePath": ":components:hotel-module:bundle2",
+      "binaryPath": "com.jamesfchen.spacecraft:hotel-bundle2:1.0",
       "deps": [
-        ":components:hotel-module:foundation"
+        "hotel-foundation"
       ]
     },
     {
       "simpleName": "hotel-lint",
-      "canonicalName": ":components:hotel-module:hotel-lint",
       "format": "jar",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen.spacecraft:hotel-lint:1.0"
+      "sourcePath": ":components:hotel-module:hotel-lint",
+      "binaryPath": "com.jamesfchen.spacecraft:hotel-lint:1.0"
     },
     {
       "simpleName": "hotel-foundation",
-      "canonicalName": ":components:hotel-module:foundation",
       "format": "bundle_foundation",
       "group": "hotel",
-      "binary_artifact": "com.jamesfchen.spacecraft:hotel-foundation:1.0",
+      "sourcePath": ":components:hotel-module:foundation",
+      "binaryPath": "com.jamesfchen.spacecraft:hotel-foundation:1.0",
       "deps": [
-        ":framework:loader"
+        "framework-loader"
       ]
     },
     {
       "simpleName": "box-main",
-      "canonicalName": ":components:box-module:main",
       "format": "app",
       "group": "box",
-      "binary_artifact": "com.jamesfchen.spacecraft:box-main:1.0",
+      "sourcePath": ":components:box-module:main",
+      "binaryPath": "com.jamesfchen.spacecraft:box-main:1.0",
       "deps": [
-        ":components:box-module:tool"
+        "box-tool"
       ]
     },
     {
       "simpleName": "box-tool",
-      "canonicalName": ":components:box-module:tool",
       "format": "bundle",
       "group": "box",
-      "binary_artifact": "com.jamesfchen.spacecraft:box-tool:1.0",
+      "sourcePath": ":components:box-module:tool",
+      "binaryPath": "com.jamesfchen.spacecraft:box-tool:1.0",
       "deps": [
-        ":framework:loader"
+        "framework-loader"
       ]
     },
     {
       "simpleName": "framework-loader",
-      "canonicalName": ":framework:loader",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-loader:1.0",
+      "sourcePath": ":framework:loader",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-loader:1.0",
       "deps": [
-        ":framework:network",
-        ":framework:av",
-        ":framework:image",
-        ":framework:flutter",
-        ":framework:rn"
+        "framework-network",
+        "framework-av",
+        "framework-image",
+        "framework-rn"
       ]
     },
     {
       "simpleName": "framework-hybrid",
-      "canonicalName": ":framework:hybrid",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-hybrid:1.0",
+      "sourcePath": ":framework:hybrid",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-hybrid:1.0",
       "deps": [
-        ":framework:common"
+        "framework-common"
       ]
     },
     {
       "simpleName": "framework-rn",
-      "canonicalName": ":framework:rn",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-rn:1.0"
-    },
-    {
-      "simpleName": "framework-flutter",
-      "canonicalName": ":framework:flutter",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-flutter:1.0"
+      "sourcePath": ":framework:rn",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-rn:1.0"
     },
     {
       "simpleName": "framework-network",
-      "canonicalName": ":framework:network",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-network:1.0",
+      "sourcePath": ":framework:network",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-network:1.0",
       "deps": [
-        ":framework:common",
-        ":framework:mockserver"
+        "framework-common",
+        "framework-mockserver"
       ]
     },
     {
       "simpleName": "framework-av",
-      "canonicalName": ":framework:av",
-      "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-av:1.0",
+      "format": "framework_foundation",
+      "sourcePath": ":framework:av",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-av:1.0",
       "deps": [
-        ":framework:common"
+        "framework-common"
       ]
     },
     {
       "simpleName": "framework-image",
-      "canonicalName": ":framework:image",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-image:1.0",
+      "sourcePath": ":framework:image",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-image:1.0",
       "deps": [
-        ":framework:common"
+        "framework-common"
       ]
     },
     {
       "simpleName": "framework-mockserver",
-      "canonicalName": ":framework:mockserver",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-mockserver:1.0",
+      "sourcePath": ":framework:mockserver",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-mockserver:1.0",
       "deps": [
-        ":framework:common"
+        "framework-common"
       ]
     },
     {
       "simpleName": "framework-storage",
-      "canonicalName": ":framework:storage",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-storage:1.0",
+      "sourcePath": ":framework:storage",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-storage:1.0",
       "deps": [
-        ":framework:common"
+        "framework-common"
       ]
     },
     {
       "simpleName": "framework-common",
-      "canonicalName": ":framework:common",
       "format": "framework_foundation",
       "group": "fwk",
-      "binary_artifact": "com.jamesfchen.spacecraft:framework-common:1.0"
+      "sourcePath": ":framework:common",
+      "binaryPath": "com.jamesfchen.spacecraft:framework-common:1.0"
     }
   ]
 }
