@@ -29,8 +29,8 @@ def appsStr = localProperties.getProperty('apps', '')
 gradle.ext.excludeModuleMap = new LinkedHashMap<String,Object>()
 gradle.ext.sourceModuleMap = new LinkedHashMap<String,Object>()
 gradle.ext.binaryModuleMap = new LinkedHashMap<String,Object>()
-gradle.ext.framworkModuleMap = [:] //目前只使用了7个fwk的模块，其余模块暂且搁置
-gradle.ext.bundleModuleMap = [:]
+gradle.ext.framworkSrcModuleMap = [:] //目前只使用了7个fwk的模块，其余模块暂且搁置
+gradle.ext.bundleSrcModuleMap = [:]
 gradle.ext.appMap = [:]
 def findModule = { name ->
     for (def m : gradle.ext.allModules) {
@@ -52,18 +52,18 @@ excludeModulesStr.eachAfterSplit(',') {
     gradle.ext.excludeModuleMap[it.simpleName] = it
 }
 sourceModulesStr.eachAfterSplit(',') {
+    if (it.group == 'fwk'){
+        gradle.ext.framworkSrcModuleMap[it.simpleName] = it
+    }
+    if (it.format.contains('bundle')){
+        gradle.ext.bundleSrcModuleMap[it.simpleName] = it
+    }
     gradle.ext.sourceModuleMap[it.simpleName] = it
 }
 //appsStr.eachAfterSplit(',') { m ->
 //    gradle.ext.appMap[m.simpleName] = m
 //}
 gradle.ext.allModules.each { m ->
-    if (m.group == 'fwk'){
-        gradle.ext.framworkModuleMap[m.simpleName] = m
-    }
-    if (m.format.contains('bundle')){
-        gradle.ext.bundleModuleMap[m.simpleName] = m
-    }
     if (!gradle.ext.sourceModuleMap.containsKey(m.simpleName) && !gradle.ext.excludeModuleMap.containsKey(m.simpleName)) {
         gradle.ext.binaryModuleMap[m.simpleName] = m
     }

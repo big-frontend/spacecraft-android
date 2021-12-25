@@ -140,10 +140,15 @@ task publishModule {
     }
 }
 task publishFwk {
+    doFirst{
+        if (gradle.ext.framworkSrcModuleMap.isEmpty()){
+            println("没有framework模块")
+        }
+    }
     doLast {
         def ret = []
         try {
-            gradle.ext.framworkModuleMap.each { name, module ->
+            gradle.ext.framworkSrcModuleMap.each { name, module ->
                 ret += name
                 exec {
                     executable "$rootDir$File.separator" + (isWindows() ? 'gradlew.bat' : 'gradlew')
@@ -165,10 +170,15 @@ task publishFwk {
 }
 
 task publishBundle {
+    doFirst{
+        if (gradle.ext.bundleSrcModuleMap.isEmpty()){
+            println("没有bundle模块")
+        }
+    }
     doLast {
         def ret = []
         try {
-            gradle.ext.bundleModuleMap.each { name, module ->
+            gradle.ext.bundleSrcModuleMap.each { name, module ->
                 ret += name
                 exec {
                     executable "$rootDir$File.separator" + (isWindows() ? 'gradlew.bat' : 'gradlew')

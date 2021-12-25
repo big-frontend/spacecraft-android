@@ -19,9 +19,6 @@ android {
         }
 
     }
-    buildFeatures {
-        viewBinding true
-    }
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.2'
 //        kotlinCompilerVersion "1.5.10"
@@ -119,7 +116,33 @@ dependencies {
      * ===============================test end=============================
      */
 }
+def findArtifact() {
+    def applicationId = rootProject.applicationId
+    def moduleSimpleName = ''
+    def moduleCanonicalNmae = ''
+    for (def module : gradle.ext.modules) {
+        if (project.path == module.sourcePath) {
+            moduleSimpleName = module.simpleName
+            moduleCanonicalNmae = module.sourcePath
+            break
+        }
+    }
+    if ((moduleSimpleName == null || moduleSimpleName.isEmpty())
+            || (moduleCanonicalNmae == null || moduleCanonicalNmae.isEmpty())
+    ) {
+        throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :moduleCanonicalNmae${moduleCanonicalNmae} 这两个参数都要配置")
+    }
+    return [applicationId, moduleSimpleName]
+}
+def (applicationId, moduleSimpleName) = findArtifact()
 apply from: "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = moduleSimpleName
+    groupId = applicationId
+    artifactId = moduleSimpleName
+    version = "1.0.0"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+}
 ext {
     findModulePath = { simpleName ->
         if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
