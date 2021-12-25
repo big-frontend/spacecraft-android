@@ -19,7 +19,7 @@
     },
     {
       "simpleName": "codescanner-main",
-      "formt": "app",
+      "format": "app",
       "group": "codescanner",
       "sourcePath": ":components:codescanner-module:main",
       "binaryPath": "com.jamesfchen.spacecraft:codescanner-main:1.0",

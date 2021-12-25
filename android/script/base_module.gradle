@@ -3,6 +3,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 //apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply from: "${rootDir}/script/console.gradle"
+
 android {
     compileSdkVersion Integer.parseInt(rootProject.compileSdkVersion)
     buildToolsVersion rootProject.buildToolsVersion
@@ -119,3 +120,90 @@ dependencies {
      */
 }
 apply from: "${rootDir}/script/module_publisher.gradle"
+ext {
+    findModulePath = { simpleName ->
+        if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
+            def module = gradle.ext.binaryModuleMap[simpleName]
+            if (module.binaryPath.isEmpty()) {
+                throw new IllegalArgumentException("binary module 的binaryPath不能为空")
+            }
+            return module.binaryPath //'com.jamesfchen:box-tool:1.0.0'
+        } else if (gradle.ext.sourceModuleMap.containsKey(simpleName)) {
+            def module = gradle.ext.sourceModuleMap[simpleName]
+            if (module.sourcePath.isEmpty()) {
+                throw new IllegalArgumentException("source module 的sourcePath不能为空")
+            }
+            return module.sourcePath //':framework:common'
+        }
+        //该模块为exclude，不会进行编译不需要依赖
+        return null
+    }
+    findDeps = { someOne ->
+        def myPath
+        if (someOne instanceof Project) {
+            myPath = someOne.path //source path
+        } else {
+            myPath = someOne //binary path
+        }
+        def pickupModule = null
+        if (isSourcePath(myPath)) {
+            gradle.sourceModuleMap.each { _, m ->
+                if (m.sourcePath == myPath) {
+                    pickupModule = m
+                    return
+                }
+            }
+        } else {
+            gradle.binaryModuleMap.each { _, m ->
+                if (m.binaryPath == myPath) {
+                    pickupModule = m
+                    return
+                }
+            }
+        }
+        d = []
+        if (pickupModule != null) {
+            if (pickupModule.deps == null) return []
+            pickupModule.deps.each { dep ->
+                def path = findModulePath(dep)
+                if (path != null) {
+                    if (isSourcePath(path)) {
+                        path = gradle.rootProject.findProject(path)
+                    }
+                    d.add(path)
+                }
+            }
+        }
+        return d
+
+    }
+    findModule = { simpleName ->
+        if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
+            return gradle.ext.binaryModuleMap[simpleName]
+        } else if (gradle.ext.sourceModuleMap.containsKey(simpleName)) {
+            return gradle.ext.sourceModuleMap[simpleName]
+        }
+        return null
+    }
+    importDeps = { def myProject, Closure closure ->
+        HashSet<String> visited = new HashSet<String>()
+        def deps = myProject.findDeps(myProject)
+        recurImport(visited, deps, closure)
+    }
+}
+static boolean isSourcePath(def path){
+    return !path.contains(".")
+}
+void recurImport(def visited, def deps, Closure closure) {
+    if (deps == null || deps.size() == 0) return
+    for (def d : deps) {
+        if (d instanceof String) {
+            if (!visited.add(d)) {
+                continue
+            }
+        } else if (!visited.add(d.path)) {
+            continue
+        }
+        recurImport(visited, closure.call(d), closure)
+    }
+}

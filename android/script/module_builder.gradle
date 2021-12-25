@@ -1,93 +1,3 @@
-ext {
-    findModulePath = { simpleName ->
-        if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
-            def module = gradle.ext.binaryModuleMap[simpleName]
-            if (module.binaryPath.isEmpty()) {
-                throw new IllegalArgumentException("binary module 的binaryPath不能为空")
-            }
-            return module.binaryPath //'com.jamesfchen:box-tool:1.0.0'
-        } else if (gradle.ext.sourceModuleMap.containsKey(simpleName)) {
-            def module = gradle.ext.sourceModuleMap[simpleName]
-            if (module.sourcePath.isEmpty()) {
-                throw new IllegalArgumentException("source module 的sourcePath不能为空")
-            }
-            return module.sourcePath //':framework:common'
-        }
-        //该模块为exclude，不会进行编译不需要依赖
-        return null
-    }
-    findDeps = { someOne ->
-        def myPath
-        if (someOne instanceof Project) {
-            myPath = someOne.path //source path
-        } else {
-            myPath = someOne //binary path
-        }
-        def pickupModule = null
-        if (isSourcePath(myPath)) {
-            gradle.sourceModuleMap.each { _, m ->
-                if (m.sourcePath == myPath) {
-                    pickupModule = m
-                    return
-                }
-            }
-        } else {
-            gradle.binaryModuleMap.each { _, m ->
-                if (m.binaryPath == myPath) {
-                    pickupModule = m
-                    return
-                }
-            }
-        }
-        d = []
-        if (pickupModule != null) {
-            if (pickupModule.deps == null) return []
-            pickupModule.deps.each { dep ->
-                def path = findModulePath(dep)
-                if (path != null) {
-                    if (isSourcePath(path)) {
-                        path = gradle.rootProject.findProject(path)
-                    }
-                    d.add(path)
-                }
-            }
-        }
-        return d
-
-    }
-    findModule = { simpleName ->
-        if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
-            return gradle.ext.binaryModuleMap[simpleName]
-        } else if (gradle.ext.sourceModuleMap.containsKey(simpleName)) {
-            return gradle.ext.sourceModuleMap[simpleName]
-        }
-        return null
-    }
-    modules = gradle.ext.sourceModuleMap.values() + gradle.ext.binaryModuleMap.values()
-
-    importDeps = { def myProject, Closure closure ->
-        HashSet<String> visited = new HashSet<String>()
-        def deps = myProject.rootProject.findDeps(myProject)
-        recurImport(visited, deps, closure)
-    }
-}
-static boolean isSourcePath(def path){
-    return !path.contains(".")
-}
-void recurImport(def visited, def deps, Closure closure) {
-    if (deps == null || deps.size() == 0) return
-    for (def d : deps) {
-        if (d instanceof String) {
-            if (!visited.add(d)) {
-                continue
-            }
-        } else if (!visited.add(d.path)) {
-            continue
-        }
-        recurImport(visited, closure.call(d), closure)
-    }
-}
-
 static void configModule(Project project, String moduleName, boolean includeModule, boolean isBinary = null) {
     def localProperties = new Properties()
     def localPropertiesFile = new File(project.rootDir, 'local.properties')
@@ -211,13 +121,13 @@ task publishModule {
         if (project.hasProperty("moduleName")) {
             def moduleName = project.getProperty("moduleName")
             includeM(project, moduleName, false)
-            gradle.ext.sourceModuleMap.each { sourcePath, module ->
-                if (module.simpleName != moduleName) {
+            gradle.ext.sourceModuleMap.each { name, module ->
+                if (name != moduleName) {
                     exec {
-                        executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                        executable "$rootDir$File.separator" + (isWindows() ? 'gradlew.bat' : 'gradlew')
                         workingDir rootDir
                         def argv = []
-                        argv << "${sourcePath}:assemble"
+                        argv << "${module.sourcePath}:assemble"
                         argv << "publishToMavenLocal"
                         args = argv
                         println("command line:${commandLine}")
@@ -226,6 +136,55 @@ task publishModule {
             }
         } else {
             throw new IllegalArgumentException("请传想要publish的模块 eg. ./gradlew publishModule -PmoduleName=home-myhome")
+        }
+    }
+}
+task publishFwk {
+    doLast {
+        def ret = []
+        try {
+            gradle.ext.framworkModuleMap.each { name, module ->
+                ret += name
+                exec {
+                    executable "$rootDir$File.separator" + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                    workingDir rootDir
+                    def argv = []
+                    argv << "${module.sourcePath}:publishToMavenLocal"
+                    args = argv
+                    println("command line:${commandLine}")
+                }
+            }
+        } catch (Exception ignored) {
+            println(">>>> 出现异常没有全部发布，需要动手处理一下 !!!!!! !!!!!!")
+        } finally {
+            Collections.sort(ret)
+            println(">>>> publish ${ret.size()} modules")
+            println(">>>> ${ret}")
+        }
+    }
+}
+
+task publishBundle {
+    doLast {
+        def ret = []
+        try {
+            gradle.ext.bundleModuleMap.each { name, module ->
+                ret += name
+                exec {
+                    executable "$rootDir$File.separator" + (isWindows() ? 'gradlew.bat' : 'gradlew')
+                    workingDir rootDir
+                    def argv = []
+                    argv << "${module.sourcePath}:publishToMavenLocal"
+                    args = argv
+                    println("command line:${commandLine}")
+                }
+            }
+        } catch (Exception ignored) {
+            println(">>>> 出现异常没有全部发布，需要动手处理一下 !!!!!! !!!!!!")
+        } finally {
+            Collections.sort(ret)
+            println(">>>> publish ${ret.size()} modules")
+            println(">>>> ${ret}")
         }
     }
 }
@@ -243,41 +202,14 @@ task publishModule {
  common
  * 优化发布：当common模块被编译就将其发布到本地maven，然后再并发编译image net 等模块这个过程集成的是common二进制组件，在本地maven，然后再编译loader，打包出一个供上传使用的包
  */
-task publishAll {
-    doLast {
-        def ret = []
-        try {
-            gradle.ext.sourceModuleMap.each { sourcePath, module ->
-                if (sourcePath != ':app'
-                        && sourcePath != ':components:hotel-module:hotel-lint'
-                        && module.format != 'app') {
-                    ret += sourcePath
-                    exec {
-                        executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
-                        workingDir rootDir
-                        def argv = []
-                        argv << "${sourcePath}:assemble"
-                        argv << "publishToMavenLocal"
-                        args = argv
-                        println("command line:${commandLine}")
-                    }
-                }
-            }
-        } catch (Exception ignored) {
-            println(">>>> 出现异常没有全部发布，需要动手处理一下 !!!!!! !!!!!!")
-        } finally {
-            Collections.sort(ret)
-            println(">>>> publish ${ret.size()} modules")
-            println(">>>> ${ret}")
-        }
-    }
-}
-//publishAll.dependsOn("includeAll")
+def assemble = getTasksByName("assembleDebug", true)
+task publishAll(dependsOn:[includeAll,assemble,publishFwk,publishBundle])
+
 
 task buildBigApp {
     doLast {
         exec {
-            executable rootDir + File.separator + (isWindows() ? 'gradlew.bat' : 'gradlew')
+            executable "$rootDir$File.separator" + (isWindows() ? 'gradlew.bat' : 'gradlew')
             workingDir rootDir
             def argv = []
             argv << "app:assembleDebug"

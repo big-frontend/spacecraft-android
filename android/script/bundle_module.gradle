@@ -51,10 +51,10 @@ android {
 
 dependencies {
     teenager("bundles begin ========================================================================================")
-    rootProject.importDeps(project){dep->
+    importDeps(project){dep->
         teenager("implementation  ${dep}")
         project.dependencies.add("implementation", dep)
-        return project.rootProject.findDeps(dep)
+        return findDeps(dep)
     }
     teenager("bundles end ========================================================================================")
     kapt "com.google.dagger:dagger-compiler:2.16"

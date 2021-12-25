@@ -14,7 +14,7 @@ def findArtifact() {
     def applicationId = rootProject.applicationId
     def moduleSimpleName = ''
     def moduleCanonicalNmae = ''
-    for (def module : rootProject.ext.modules) {
+    for (def module : gradle.ext.modules) {
         if (project.path == module.sourcePath) {
             moduleSimpleName = module.simpleName
             moduleCanonicalNmae = module.sourcePath

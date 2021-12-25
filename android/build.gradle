@@ -103,7 +103,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-apply from: './script/ext_rootproject.gradle'
+apply from: './script/module_builder.gradle'
 
 //对所有sub project进行依赖绑定
 //gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {

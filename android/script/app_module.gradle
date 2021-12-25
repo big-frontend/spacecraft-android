@@ -142,10 +142,10 @@ configurations {
 }
 dependencies {
     teenager("${project.path} app begin ========================================================================================")
-    rootProject.importDeps(project){dep->
+    importDeps(project){dep->
         teenager("implementation  ${dep}")
         project.dependencies.add("implementation", dep)
-        return project.rootProject.findDeps(dep)
+        return findDeps(dep)
     }
     teenager("${project.path} app end ========================================================================================")
     apkCheckerDependency("com.tencent.matrix:matrix-apk-canary:${MATRIX_VERSION}")

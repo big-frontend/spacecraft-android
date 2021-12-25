@@ -19,10 +19,10 @@ apply from: "${rootDir}/script/base_module.gradle"
 //apply plugin: ExtSourceSetsPlugin
 dependencies {
     teenager("foundation begin ========================================================================================")
-    rootProject.importDeps(project){dep->
+    importDeps(project){dep->
         teenager("implementation  ${dep}")
         implementation dep
-        return project.rootProject.findDeps(dep)
+        return findDeps(dep)
     }
     teenager("foundation end ========================================================================================")
 }
