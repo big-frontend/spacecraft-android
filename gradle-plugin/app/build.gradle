@@ -66,3 +66,9 @@ dependencies {
 //    ksp project(path: ':kprocessor')
 
 }
+afterEvaluate {
+    def compileReleaseJavaWithJavac = project.tasks.findByName("compileReleaseJavaWithJavac")
+    compileReleaseJavaWithJavac.doLast {
+        println("cjf compileReleaseJavaWithJavac app")
+    }
+}

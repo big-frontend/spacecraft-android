@@ -30,3 +30,5 @@ include(
     ":bundle1",
     ":bundle2",
 )
+include(":common")
+include(":loader")
