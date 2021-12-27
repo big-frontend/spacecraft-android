@@ -34,3 +34,12 @@ jar {
 //project.configurations.all {
 //    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
 //}
+//发布到maven
+apply from: "${rootDir}/script/module_publisher.gradle"
+publish {
+    name="hotel-lint"
+    groupId = rootProject.groupId
+    artifactId = "hotel-lint"
+    version = "1.0.0"
+    website = "https://github.com/JamesfChen/bundles-assembler"
+}

@@ -19,7 +19,7 @@
  * ps：对于发布的类型来说只会有两种aar和jar
  */
 apply plugin: 'maven-publish'
-//apply plugin: 'signing'  #暂时去掉signing
+apply plugin: 'signing'
 extensions.create('publish', PublishExtension)
 
 afterEvaluate {
@@ -36,16 +36,11 @@ private void loadUserInfo(Project project, PublishExtension ext) {
     File localPropertiesFile = project.rootProject.file("local.properties");
     if (localPropertiesFile.exists()) {
         properties.load(localPropertiesFile.newDataInputStream())
-//        def keyId = properties['signing.keyId'] != null ? properties['signing.keyId']:'5CDFE9D2'
-//        project.ext["signing.keyId"] = keyId
-//        def password = properties['signing.password'] != null ? properties['signing.password']:'jf123456'
-//        project.ext["signing.password"] = password
-//        def secretKeyRingFile = properties['signing.secretKeyRingFile'] != null ? properties['signing.secretKeyRingFile']:'/Users/hawks.jamesf/.gnupg/secring.gpg'
-//        project.ext["signing.secretKeyRingFile"] = secretKeyRingFile
-        def ossrhUsername = properties['ossrhUsername'] != null ? properties['ossrhUsername']:'delta'
-        ext.ossrhUsername = ossrhUsername
-        def ossrhPassword = properties['ossrhPassword'] != null ? properties['ossrhPassword']:'vCKe*5vHBh3xH2.'
-        ext.ossrhPassword = ossrhPassword
+        project.ext["signing.keyId"] = properties.getProperty("signingKeyId")
+        project.ext["signing.password"] = properties.getProperty("signingPassword")
+        project.ext["signing.secretKeyRingFile"] = properties.getProperty("signingSecretKeyRingFile")
+        ext.ossrhUsername = properties.getProperty("ossrhUsername")
+        ext.ossrhPassword = properties.getProperty("ossrhPassword")
     }
 }
 //配置maven local 和 maven central两个仓库
@@ -93,9 +88,9 @@ def configMaven(Project project, PublishExtension ext) {
     project.tasks.findByName("publish${taskName.capitalize()}PublicationToMavenCentralRepository").doFirst {
         ext.check(true)
     }
-//    SigningExtension signing = project.extensions.getByType(SigningExtension)
+    SigningExtension signing = project.extensions.getByType(SigningExtension)
 //    signing.useInMemoryPgpKeys(ext.signingKeyId, ext.signingSecretKeyRingFile,ext.signingPassword)
-//    signing.sign(publishing.publications)
+    signing.sign(publishing.publications)
 
 }
 
@@ -151,7 +146,7 @@ private void configJavadoc(Project project, MavenPublication publication, Publis
 
         task javadoc(type: Javadoc) {
             source = android.sourceSets.main.java.source
-            classpath += configurations.compile
+            classpath += configurations.implementation
             classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
         }
 
