@@ -7,7 +7,7 @@
       "format": "app",
       "group": "father",
       "sourcePath": ":app",
-      "binaryPath": "com.jamesfchen.spacecraft:app:1.0",
+      "binaryPath": "io.github.jamesfchen:app:1.0",
       "deps": [
         "hotel-bundle1",
         "hotel-bundle2",
@@ -22,7 +22,7 @@
       "format": "app",
       "group": "codescanner",
       "sourcePath": ":components:codescanner-module:main",
-      "binaryPath": "com.jamesfchen.spacecraft:codescanner-main:1.0",
+      "binaryPath": "io.github.jamesfchen:codescanner-main:1.0",
       "deps": [
         "codescanner-qrcode"
       ]
@@ -33,7 +33,7 @@
       "format": "bundle",
       "group": "codescanner",
       "sourcePath": ":components:codescanner-module:qrcode",
-      "binaryPath": "com.jamesfchen.spacecraft:codescanner-qrcode:1.0",
+      "binaryPath": "io.github.jamesfchen:codescanner-qrcode:1.0",
       "deps": [
         "framework-loader"
       ]
@@ -43,7 +43,7 @@
       "format": "app",
       "group": "im",
       "sourcePath": ":components:im-module:main",
-      "binaryPath": "com.jamesfchen.spacecraft:im-main:1.0",
+      "binaryPath": "io.github.jamesfchen:im-main:1.0",
       "deps": [
         "im-chatroom"
       ]
@@ -53,7 +53,7 @@
       "format": "bundle",
       "group": "im",
       "sourcePath": ":components:im-module:chatroom",
-      "binaryPath": "com.jamesfchen.spacecraft:im-chatroom:1.0",
+      "binaryPath": "io.github.jamesfchen:im-chatroom:1.0",
       "deps": [
         "framework-loader"
       ]
@@ -63,7 +63,7 @@
       "format": "app",
       "group": "account",
       "sourcePath": ":components:account-module:main",
-      "binaryPath": "com.jamesfchen.spacecraft:account-main:1.0",
+      "binaryPath": "io.github.jamesfchen:account-main:1.0",
       "deps": [
         "account-login"
       ]
@@ -73,7 +73,7 @@
       "format": "bundle",
       "group": "account",
       "sourcePath": ":components:account-module:login",
-      "binaryPath": "com.jamesfchen.spacecraft:account-login:1.0",
+      "binaryPath": "io.github.jamesfchen:account-login:1.0",
       "deps": [
         "framework-loader",
         "account-export"
@@ -84,14 +84,14 @@
       "format": "bundle_foundation",
       "group": "account",
       "sourcePath": ":components:account-module:export",
-      "binaryPath": "com.jamesfchen.spacecraft:account-export:1.0"
+      "binaryPath": "io.github.jamesfchen:account-export:1.0"
     },
     {
       "simpleName": "home-main",
       "format": "app",
       "group": "home",
       "sourcePath": ":components:home-module:main",
-      "binaryPath": "com.jamesfchen.spacecraft:home-main:1.0",
+      "binaryPath": "io.github.jamesfchen:home-main:1.0",
       "deps": [
         "home-myhome"
       ]
@@ -101,7 +101,7 @@
       "format": "bundle",
       "group": "home",
       "sourcePath": ":components:home-module:myhome",
-      "binaryPath": "com.jamesfchen.spacecraft:home-myhome:1.0",
+      "binaryPath": "io.github.jamesfchen:home-myhome:1.0",
       "deps": [
         "framework-loader",
         "account-export"
@@ -112,7 +112,7 @@
       "format": "app",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:main",
-      "binaryPath": "com.jamesfchen.spacecraft:hotel-main:1.0",
+      "binaryPath": "io.github.jamesfchen:hotel-main:1.0",
       "deps": [
         "hotel-bundle1",
         "hotel-bundle2"
@@ -123,7 +123,7 @@
       "format": "bundle",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:bundle1",
-      "binaryPath": "com.jamesfchen.spacecraft:hotel-bundle1:1.0",
+      "binaryPath": "io.github.jamesfchen:hotel-bundle1:1.0",
       "deps": [
         "hotel-foundation"
       ]
@@ -133,7 +133,7 @@
       "format": "bundle",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:bundle2",
-      "binaryPath": "com.jamesfchen.spacecraft:hotel-bundle2:1.0",
+      "binaryPath": "io.github.jamesfchen:hotel-bundle2:1.0",
       "deps": [
         "hotel-foundation"
       ]
@@ -143,14 +143,14 @@
       "format": "jar",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:hotel-lint",
-      "binaryPath": "com.jamesfchen.spacecraft:hotel-lint:1.0"
+      "binaryPath": "io.github.jamesfchen:hotel-lint:1.0"
     },
     {
       "simpleName": "hotel-foundation",
       "format": "bundle_foundation",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:foundation",
-      "binaryPath": "com.jamesfchen.spacecraft:hotel-foundation:1.0",
+      "binaryPath": "io.github.jamesfchen:hotel-foundation:1.0",
       "deps": [
         "framework-loader"
       ]
@@ -160,7 +160,7 @@
       "format": "app",
       "group": "box",
       "sourcePath": ":components:box-module:main",
-      "binaryPath": "com.jamesfchen.spacecraft:box-main:1.0",
+      "binaryPath": "io.github.jamesfchen:box-main:1.0",
       "deps": [
         "box-tool"
       ]
@@ -170,7 +170,7 @@
       "format": "bundle",
       "group": "box",
       "sourcePath": ":components:box-module:tool",
-      "binaryPath": "com.jamesfchen.spacecraft:box-tool:1.0",
+      "binaryPath": "io.github.jamesfchen:box-tool:1.0",
       "deps": [
         "framework-loader"
       ]
@@ -180,7 +180,7 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:loader",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-loader:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-loader:1.0",
       "deps": [
         "framework-network",
         "framework-av",
@@ -193,7 +193,7 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:hybrid",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-hybrid:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-hybrid:1.0",
       "deps": [
         "framework-common"
       ]
@@ -203,14 +203,14 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:rn",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-rn:1.0"
+      "binaryPath": "io.github.jamesfchen:framework-rn:1.0"
     },
     {
       "simpleName": "framework-network",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:network",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-network:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-network:1.0",
       "deps": [
         "framework-common",
         "framework-mockserver"
@@ -221,7 +221,7 @@
       "group": "fwk",
       "format": "framework_foundation",
       "sourcePath": ":framework:av",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-av:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-av:1.0",
       "deps": [
         "framework-common"
       ]
@@ -231,7 +231,7 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:image",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-image:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-image:1.0",
       "deps": [
         "framework-common"
       ]
@@ -241,7 +241,7 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:mockserver",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-mockserver:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-mockserver:1.0",
       "deps": [
         "framework-common"
       ]
@@ -251,7 +251,7 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:storage",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-storage:1.0",
+      "binaryPath": "io.github.jamesfchen:framework-storage:1.0",
       "deps": [
         "framework-common"
       ]
@@ -261,7 +261,7 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:common",
-      "binaryPath": "com.jamesfchen.spacecraft:framework-common:1.0"
+      "binaryPath": "io.github.jamesfchen:framework-common:1.0"
     }
   ]
 }

@@ -19,6 +19,9 @@ android {
         }
 
     }
+    buildFeatures {
+        viewBinding true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.2'
 //        kotlinCompilerVersion "1.5.10"
@@ -117,29 +120,38 @@ dependencies {
      */
 }
 def findArtifact() {
-    def applicationId = rootProject.applicationId
+    def myGroupId = ''
+    def myArtifactId = ''
+    def myVersion = ''
     def moduleSimpleName = ''
-    def moduleCanonicalNmae = ''
+    def sourcePath = ''
+    def binaryPath = ''
     for (def module : gradle.ext.modules) {
         if (project.path == module.sourcePath) {
             moduleSimpleName = module.simpleName
-            moduleCanonicalNmae = module.sourcePath
+            sourcePath = module.sourcePath
+            binaryPath = module.binaryPath
+            myGroupId = binaryPath.split(":")[0]
+            myArtifactId = binaryPath.split(":")[1]
+            myVersion = binaryPath.split(":")[2]
+            println("cjf ${myGroupId} $myArtifactId $myVersion")
             break
         }
     }
     if ((moduleSimpleName == null || moduleSimpleName.isEmpty())
-            || (moduleCanonicalNmae == null || moduleCanonicalNmae.isEmpty())
+            || (sourcePath == null || sourcePath.isEmpty())
+            || (binaryPath == null || binaryPath.isEmpty())
     ) {
-        throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :moduleCanonicalNmae${moduleCanonicalNmae} 这两个参数都要配置")
+        throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :sourcePath${sourcePath} :binaryPath${binaryPath} 这些参数都要配置")
     }
-    return [applicationId, moduleSimpleName]
+    return [moduleSimpleName,myGroupId,myArtifactId,myVersion]
 }
-def (applicationId, moduleSimpleName) = findArtifact()
-apply from: "${rootDir}/script/module_publisher.gradle"
+def (moduleSimpleName,myGroupId, myArtifactId,myVersion) = findArtifact()
+apply from : "${rootDir}/script/module_publisher.gradle"
 publish {
     name = moduleSimpleName
-    groupId = applicationId
-    artifactId = moduleSimpleName
+    groupId = myGroupId
+    artifactId = myArtifactId
     version = "1.0.0"
     website = "https://github.com/JamesfChen/spacecrafe-android"
 }
