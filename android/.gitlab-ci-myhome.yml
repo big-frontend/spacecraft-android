@@ -1,4 +1,4 @@
-home-myhome-build:
+homeMyhomeBuild:
   only:
     changes:
 #      - components/home-module/myhome/*.{java,kt,xml,gradle}
@@ -15,7 +15,7 @@ home-myhome-build:
 #  script:
 #    - ./gradlew :components:home-module:myhome:lintInhouse
 #
-home-myhome-deploy:
+homeMyhomeDeploy:
   only:
     changes:
       - components/home-module/myhome/**/*
@@ -44,7 +44,3 @@ home-myhome-deploy:
 ##  script:
 ##    - ./gradlew -Pci --console=plain :app:testDebug
 #
-assembleDebug:
-  stage: build
-  script:
-    - echo "root after script"
