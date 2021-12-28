@@ -38,8 +38,8 @@ jar {
 apply from: "${rootDir}/script/module_publisher.gradle"
 publish {
     name="hotel-lint"
-    groupId = rootProject.groupId
+    groupId = 'io.github.jamesfchen'
     artifactId = "hotel-lint"
-    version = "1.0.0"
+    version = "1.0.0-SNAPSHOT"
     website = "https://github.com/JamesfChen/bundles-assembler"
 }

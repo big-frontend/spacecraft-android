@@ -57,7 +57,6 @@ def findArtifact() {
             myGroupId = binaryPath.split(":")[0]
             myArtifactId = binaryPath.split(":")[1]
             myVersion = binaryPath.split(":")[2]
-            println("cjf ${myGroupId} $myArtifactId $myVersion")
             break
         }
     }
@@ -75,6 +74,6 @@ publish {
     name = moduleSimpleName
     groupId = myGroupId
     artifactId = myArtifactId
-    version = "1.0.0"
+    version = myVersion
     website = "https://github.com/JamesfChen/spacecrafe-android"
 }

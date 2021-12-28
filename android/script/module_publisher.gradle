@@ -36,12 +36,18 @@ private void loadUserInfo(Project project, PublishExtension ext) {
     File localPropertiesFile = project.rootProject.file("local.properties");
     if (localPropertiesFile.exists()) {
         properties.load(localPropertiesFile.newDataInputStream())
-        project.ext["signing.keyId"] = properties.getProperty("signingKeyId")
-        project.ext["signing.password"] = properties.getProperty("signingPassword")
-        project.ext["signing.secretKeyRingFile"] = properties.getProperty("signingSecretKeyRingFile")
-        ext.ossrhUsername = properties.getProperty("ossrhUsername")
-        ext.ossrhPassword = properties.getProperty("ossrhPassword")
+        //发布release必须要求签名，否则发布会失败
+        if (!version.endsWith('SNAPSHOT')){
+            project.ext["signing.keyId"] = properties.getProperty("signingKeyId")
+            project.ext["signing.password"] = properties.getProperty("signingPassword")
+            project.ext["signing.secretKeyRingFile"] = properties.getProperty("signingSecretKeyRingFile")
+            ext.signingKeyId = properties.getProperty("signingKeyId")
+            ext.signingSecretKeyRingFile = properties.getProperty("signingPassword")
+            ext.signingPassword = properties.getProperty("signingSecretKeyRingFile")
+        }
     }
+    ext.ossrhUsername =  properties.containsKey("ossrhUsername") ? properties.getProperty("ossrhUsername") :'delta'
+    ext.ossrhPassword = properties.containsKey("ossrhPassword") ? properties.getProperty("ossrhPassword"):'vCKe*5vHBh3xH2.'
 }
 //配置maven local 和 maven central两个仓库
 def configMaven(Project project, PublishExtension ext) {
