@@ -27,7 +27,7 @@ before_script:
   #  - apt-get install lib32ncurses5
   #  - apt install zlib1g-dev libncurses5-dev lib32z1 lib32ncurses6 -y
   - cd android
-#  - ./gradlew includeAll
+  - ./gradlew includeAll
 after_script:
   - echo "root after script"
 #  - cd ..
