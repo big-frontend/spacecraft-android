@@ -21,6 +21,7 @@ import com.facebook.react.uimanager.ViewManager;
 import com.facebook.soloader.SoLoader;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
+import com.jamesfchen.loader.systemfilter.SystemFilter;
 import com.jamesfchen.rn.MyNativeViewManager;
 
 import java.util.Arrays;
@@ -77,6 +78,7 @@ public class App extends Application implements Configuration.Provider, ReactApp
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 //        Utils.init(this);
         Util.init(this);
+        SystemFilter.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
     }
 

@@ -11,6 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:src="@drawable/tmp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:text="切换灰色背景"
+            android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:text="垂直布局，水平联动"

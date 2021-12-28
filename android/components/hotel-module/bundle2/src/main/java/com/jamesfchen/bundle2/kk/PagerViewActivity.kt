@@ -1,10 +1,15 @@
 package com.jamesfchen.bundle2.kk
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.PagerSnapHelper
 import com.jamesfchen.bundle2.R
 import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
+import com.jamesfchen.loader.systemfilter.SystemFilter
 import jamesfchen.widget.kk.TabsLayout
 
 /**
@@ -51,12 +56,35 @@ class PagerViewActivity : AppCompatActivity() {
             add(PagerViewModel(tabItem8, list))
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         val binding = ActivityPagerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.button.setOnClickListener{
+            if (SystemFilter.isGrayMode){
+                SystemFilter.clearGrayMode(this@PagerViewActivity)
+            }else{
+                SystemFilter.applyGrayMode(this@PagerViewActivity)
+            }
+        }
+        binding.image.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            val view: View = LayoutInflater.from(this).inflate(R.layout.dialog_card, null)
+            builder.setView(view).setPositiveButton(
+                "添加"
+            ) { dialog, which ->
+                startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
+            }.setNegativeButton(
+                "取消"
+            ) { dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog: Dialog = builder.create()
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.show()
 
+        }
         var adapter1h = Adapter1H()
         binding.pvHorizontal1.setAdapter(adapter1h)
         adapter1h.setDataList(pagerviewList)

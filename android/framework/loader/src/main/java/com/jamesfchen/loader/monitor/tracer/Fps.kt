@@ -242,7 +242,7 @@ class LayoutInflateItem : IAppLifecycleObserver, IActivityLifecycleObserver {
             f.activityRef = WeakReference<AppCompatActivity>(activity)
             LayoutInflaterCompat.setFactory2(activity.layoutInflater, f)
         } else {
-            Log.e(TAG_LAYOUT_MONITOR, "activity不是appcompat activity，无法hook")
+            Log.e(TAG_LAYOUT_MONITOR, "${activity}不是appcompat activity，无法hook")
         }
 
     }

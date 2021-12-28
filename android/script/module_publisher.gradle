@@ -88,9 +88,11 @@ def configMaven(Project project, PublishExtension ext) {
     project.tasks.findByName("publish${taskName.capitalize()}PublicationToMavenCentralRepository").doFirst {
         ext.check(true)
     }
-    SigningExtension signing = project.extensions.getByType(SigningExtension)
+    if (ext.signingKeyId && ext.signingSecretKeyRingFile && ext.signingPassword){
+        SigningExtension signing = project.extensions.getByType(SigningExtension)
 //    signing.useInMemoryPgpKeys(ext.signingKeyId, ext.signingSecretKeyRingFile,ext.signingPassword)
-    signing.sign(publishing.publications)
+        signing.sign(publishing.publications)
+    }
 
 }
 
@@ -205,6 +207,10 @@ class PublishExtension {
 
     String ossrhUsername
     String ossrhPassword
+    String signingKeyId
+    String signingSecretKeyRingFile
+    String signingPassword
+
 
     void check(boolean isMavenCentral) {
         checkField(name, "name")
