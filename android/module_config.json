@@ -185,6 +185,8 @@
         "framework-network",
         "framework-av",
         "framework-image",
+        "framework-hybrid",
+        "framework-storage",
         "framework-rn"
       ]
     },
