@@ -39,5 +39,7 @@ stages:
 #  - '/android/.gitlab-ci-fwk.yml'
 #  - '/android/.gitlab-ci-myhome.yml'
 #  - '/android/.gitlab-ci-hotel.yml'
-build:
-  - echo "root after script"
+assembleDebug:
+  stage: build
+  script:
+    - echo "root after script"
