@@ -1,0 +1,194 @@
+# 确保fwk每个修改点都输出最新的fwk包给上层
+fwk-common-build:
+  only:
+    changes:
+      - framework/common/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-common
+    - ./gradlew :framework:common:assemble
+fwk-common-deploy:
+  only:
+    changes:
+      - components/hotel-module/foundation/**/*
+  stage: deploy
+  script:
+    - ./gradlew :framework:common:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+# ========================
+fwk-av-build:
+  only:
+    changes:
+      - framework/av/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-av
+    - ./gradlew :framework:av:assemble
+fwk-av-deploy:
+  only:
+    changes:
+      - framework/av/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:av:publishAarPublicationToMavenCentralRepository
+# ========================
+#fwk-flutter:
+#  only:
+#    changes:
+#      - framework/flutter/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:flutter:build
+# ========================
+fwk-hybrid-build:
+  only:
+    changes:
+      - framework/hybrid/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-hybrid
+    - ./gradlew :framework:hybrid:assemble
+fwk-hybrid-deploy:
+  only:
+    changes:
+      - framework/hybrid/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:hybrid:publishAarPublicationToMavenCentralRepository
+# ========================
+fwk-image-build:
+  only:
+    changes:
+      - framework/image/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-image
+    - ./gradlew :framework:image:assemble
+fwk-image-deploy:
+  only:
+    changes:
+      - framework/image/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:image:publishAarPublicationToMavenCentralRepository
+# ========================
+#fwk-map:
+#  only:
+#    changes:
+#      - framework/map/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:map:assemble publishAarPublicationToMavenCentralRepository includeBinaryModule  -PmoduleName=framework-map
+#    - ./gradlew :framework:loader:assemble publishAarPublicationToMavenCentralRepository
+# ========================
+#fwk-mockserver:
+#  only:
+#    changes:
+#      - framework/mockserver
+#  stage: build
+#  script:
+#    - ./gradlew :framework:mockserver:build
+#     - ./gradlew :framework:loader:assemble
+# ========================
+fwk-network-build:
+  only:
+    changes:
+      - framework/network/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-network
+    - ./gradlew :framework:network:assemble
+fwk-network-deploy:
+  only:
+    changes:
+      - framework/network/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:network:publishAarPublicationToMavenCentralRepository
+# ========================
+fwk-storage-build:
+  only:
+    changes:
+      - framework/storage/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-storage
+    - ./gradlew :framework:storage:assemble
+fwk-storage-deploy:
+  only:
+    changes:
+      - framework/storage/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:storage:publishAarPublicationToMavenCentralRepository
+# ========================
+fwk-loader-build:
+  only:
+    changes:
+      - framework/loader/**/*
+  stage: build
+  script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-loader
+    - ./gradlew :framework:loader:assemble
+fwk-loader-deploy:
+  only:
+    changes:
+      - framework/loader/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:loader:publishAarPublicationToMavenCentralRepository
+# ========================
+#buildBigApp job
+#build-big-app:
+#  stage: build
+#  script:
+#    - ./gradlew buildBigApp
+#  #    - ./gradlew reportMappingDebug  &&  ./gradlew reportSoDebug
+#  artifacts:
+#    paths:
+#      - app/build/outputs/app-release.apk
+#dailyCheck:
+#  only:
+#    - master
+#  stage: build
+#  script:
+#    #    - ./gradlew :app:fileCounter
+#    - ./gradlew :app:dangerousApiTask
+#deploy2Firebase:
+#  only:
+#    - master
+#  stage: deploy
+#  script:
+#    - ./gradlew :app:appDistributionUploadRelease
+#deploy2Pgyer:
+#  only:
+#    - master
+#  stage: deploy
+#  script:
+#    - ./script/pgyer_upload.sh "${CI_PROJECT_DIR}/app/build/outputs/apk/release/app-release.apk" $PG_API_KEY $PG_APP_KEY ${CI_PROJECT_DIR}
+#    - echo "deploy to pgyer"
+# ========================
+
+
+#lint job
+#lintDebug:
+#  only:
+#    - master
+#  stage: build
+#  #  before_script:#会覆盖最外层的before_script流程
+#  #    - echo "lint before script"
+#  script:
+#    - ./gradlew -Pci --console=plain -PbuildDir=lint :app:lintDebug
+
+#debugTests:
+#  stage: test
+#  script:
+#    - ./gradlew -Pci --console=plain :app:testDebug
+
+#docker build:
+#  script: docker build -t my-image:$CI_COMMIT_REF_SLUG .
+#  only:
+#    changes:
+#      - Dockerfile #The Dockerfile file
+#      - docker/scripts/* #Any of the files inside docker/scripts/ directory.
+#      - dockerfiles/**/*  #Any of the files and subdirectories inside the dockerfiles directory.
+#      - more_scripts/*.{rb,py,sh} #Any of the files with rb, py, sh extensions inside the more_scripts directory.
