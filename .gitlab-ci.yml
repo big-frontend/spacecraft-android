@@ -33,7 +33,7 @@ after_script:
 #  - cd ..
 stages:
   - build
-  - test
+#  - test
   - deploy
 include:
   - '/.gitlab-ci-fwk.yml'
