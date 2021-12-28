@@ -39,7 +39,7 @@ if (!localProperties.containsKey("sourceModules")){
     localProperties.setProperty("excludeModules", "")
     localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
 
-    excludeModulesStr= sourcesb.toString()
+    sourceModulesStr= sourcesb.toString()
     excludeModulesStr = ''
 }
 def appsStr = localProperties.getProperty('apps', '')
