@@ -2,7 +2,7 @@
 fwk-common-build:
   only:
     changes:
-      - framework/common/**/*
+      - android/framework/common/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-common
@@ -18,7 +18,7 @@ fwk-common-deploy:
 fwk-av-build:
   only:
     changes:
-      - framework/av/**/*
+      - android/framework/av/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-av
@@ -26,7 +26,7 @@ fwk-av-build:
 fwk-av-deploy:
   only:
     changes:
-      - framework/av/**/*
+      - android/framework/av/**/*
   stage: build
   script:
     - ./gradlew :framework:av:publishAarPublicationToMavenCentralRepository
@@ -34,7 +34,7 @@ fwk-av-deploy:
 #fwk-flutter:
 #  only:
 #    changes:
-#      - framework/flutter/**/*
+#      - android/framework/flutter/**/*
 #  stage: build
 #  script:
 #    - ./gradlew :framework:flutter:build
@@ -42,7 +42,7 @@ fwk-av-deploy:
 fwk-hybrid-build:
   only:
     changes:
-      - framework/hybrid/**/*
+      - android/framework/hybrid/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-hybrid
@@ -50,7 +50,7 @@ fwk-hybrid-build:
 fwk-hybrid-deploy:
   only:
     changes:
-      - framework/hybrid/**/*
+      - android/framework/hybrid/**/*
   stage: build
   script:
     - ./gradlew :framework:hybrid:publishAarPublicationToMavenCentralRepository
@@ -58,7 +58,7 @@ fwk-hybrid-deploy:
 fwk-image-build:
   only:
     changes:
-      - framework/image/**/*
+      - android/framework/image/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-image
@@ -66,7 +66,7 @@ fwk-image-build:
 fwk-image-deploy:
   only:
     changes:
-      - framework/image/**/*
+      - android/framework/image/**/*
   stage: build
   script:
     - ./gradlew :framework:image:publishAarPublicationToMavenCentralRepository
@@ -74,7 +74,7 @@ fwk-image-deploy:
 #fwk-map:
 #  only:
 #    changes:
-#      - framework/map/**/*
+#      - android/framework/map/**/*
 #  stage: build
 #  script:
 #    - ./gradlew :framework:map:assemble publishAarPublicationToMavenCentralRepository includeBinaryModule  -PmoduleName=framework-map
@@ -83,7 +83,7 @@ fwk-image-deploy:
 #fwk-mockserver:
 #  only:
 #    changes:
-#      - framework/mockserver
+#      - android/framework/mockserver
 #  stage: build
 #  script:
 #    - ./gradlew :framework:mockserver:build
@@ -92,7 +92,7 @@ fwk-image-deploy:
 fwk-network-build:
   only:
     changes:
-      - framework/network/**/*
+      - android/framework/network/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-network
@@ -100,7 +100,7 @@ fwk-network-build:
 fwk-network-deploy:
   only:
     changes:
-      - framework/network/**/*
+      - android/framework/network/**/*
   stage: build
   script:
     - ./gradlew :framework:network:publishAarPublicationToMavenCentralRepository
@@ -108,7 +108,7 @@ fwk-network-deploy:
 fwk-storage-build:
   only:
     changes:
-      - framework/storage/**/*
+      - android/framework/storage/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-storage
@@ -116,7 +116,7 @@ fwk-storage-build:
 fwk-storage-deploy:
   only:
     changes:
-      - framework/storage/**/*
+      - android/framework/storage/**/*
   stage: build
   script:
     - ./gradlew :framework:storage:publishAarPublicationToMavenCentralRepository
@@ -124,7 +124,7 @@ fwk-storage-deploy:
 fwk-loader-build:
   only:
     changes:
-      - framework/loader/**/*
+      - android/framework/loader/**/*
   stage: build
   script:
 #    - ./gradlew includeSourceModule  -PmoduleName=framework-loader
@@ -132,7 +132,7 @@ fwk-loader-build:
 fwk-loader-deploy:
   only:
     changes:
-      - framework/loader/**/*
+      - android/framework/loader/**/*
   stage: build
   script:
     - ./gradlew :framework:loader:publishAarPublicationToMavenCentralRepository
