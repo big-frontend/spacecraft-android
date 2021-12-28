@@ -15,14 +15,14 @@ home-myhome-build:
 #  script:
 #    - ./gradlew :components:home-module:myhome:lintInhouse
 #
-#home-myhome-deploy:
-#  only:
-#    changes:
-#      - components/home-module/myhome/**/*
-#  stage: deploy
-#  script:
-#    - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
-#
+home-myhome-deploy:
+  only:
+    changes:
+      - components/home-module/myhome/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+
 ## ========================
 #home-daily-check1:
 #  only:
