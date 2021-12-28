@@ -31,11 +31,13 @@ before_script:
 after_script:
   - echo "root after script"
 #  - cd ..
-#stages:
-#  - build
-#  - test
-#  - deploy
+stages:
+  - build
+  - test
+  - deploy
 #include:
 #  - '/android/.gitlab-ci-fwk.yml'
 #  - '/android/.gitlab-ci-myhome.yml'
 #  - '/android/.gitlab-ci-hotel.yml'
+build:
+  - echo "root after script"
