@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -6,5 +5,5 @@ package PACKAGE_NAME;
  * @author: jamesfchen
  * @since: Dec/29/2021  Wed
  */
-   class Test   {
+class Test {
 }
