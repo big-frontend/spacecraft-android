@@ -35,8 +35,8 @@ stages:
   - build
   - test
   - deploy
-includes:
-  - '.gitlab-ci-fwk.yml'
-  - '/android/.gitlab-ci-myhome.yml'
-  - '/android/.gitlab-ci-hotel.yml'
+include:
+  - '/.gitlab-ci-fwk.yml'
+#  - '/android/.gitlab-ci-myhome.yml'
+#  - '/android/.gitlab-ci-hotel.yml'
 
