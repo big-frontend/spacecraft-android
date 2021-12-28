@@ -25,6 +25,23 @@ if (localPropertiesFile.exists()) {
 }
 def excludeModulesStr = localProperties.getProperty('excludeModules', '')
 def sourceModulesStr = localProperties.getProperty('sourceModules', '')
+//includeAll
+if (!localProperties.containsKey("sourceModules")){
+    StringBuffer sourcesb = new StringBuffer();
+    gradle.ext.allModules.each { m ->
+                sourcesb.append(m.simpleName)
+                sourcesb.append(",")
+    }
+    localProperties.setProperty("sourceModules", sourcesb.toString());
+    OutputStream outputstream = new FileOutputStream(localPropertiesFile);
+    localProperties.store(outputstream, "update modules")
+
+    localProperties.setProperty("excludeModules", "")
+    localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
+
+    excludeModulesStr= sourcesb.toString()
+    excludeModulesStr = ''
+}
 def appsStr = localProperties.getProperty('apps', '')
 gradle.ext.excludeModuleMap = new LinkedHashMap<String,Object>()
 gradle.ext.sourceModuleMap = new LinkedHashMap<String,Object>()
