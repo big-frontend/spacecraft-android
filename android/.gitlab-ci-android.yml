@@ -35,11 +35,12 @@ stages:
   - build
   - test
   - deploy
-#include:
-#  - '/android/.gitlab-ci-fwk.yml'
-#  - '/android/.gitlab-ci-myhome.yml'
-#  - '/android/.gitlab-ci-hotel.yml'
 assembleDebug:
   stage: build
   script:
     - echo "root after script"
+include:
+#  - '/android/.gitlab-ci-fwk.yml'
+  - '/android/.gitlab-ci-myhome.yml'
+#  - '/android/.gitlab-ci-hotel.yml'
+
