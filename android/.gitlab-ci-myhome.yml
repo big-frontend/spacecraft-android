@@ -1,47 +1,51 @@
-home-myhome-build:
-  only:
-    changes:
-#      - components/home-module/myhome/*.{java,kt,xml,gradle}
-      - components/home-module/myhome/**/*
-  stage: build
-  script:
-#    - ./gradlew includeSourceModule  -PmoduleName=framework-myhome
-    - ./gradlew :components:home-module:myhome:assemble
-
-hotel-myhome-lint:
-  only:
-    changes:
-      - components/home-module/myhome/**/*
-  stage: build
-  script:
-    - ./gradlew :components:home-module:myhome:lintInhouse
-
-home-myhome-deploy:
-  only:
-    changes:
-      - components/home-module/myhome/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
-
-# ========================
-home-daily-check1:
-  only:
-    changes:
-      - components/home-module/**/*
-  stage: build
-  script:
-    - ./gradlew :components:hotel-module:main:fileCounter
-home-daily-check2:
-  only:
-    changes:
-      - components/home-module/**/*
-  stage: build
-  script:
-    - ./gradlew :components:hotel-module:main:dangerousApiTask
-
-#debugTests:
-#  stage: test
+#home-myhome-build:
+#  only:
+#    changes:
+##      - components/home-module/myhome/*.{java,kt,xml,gradle}
+#      - components/home-module/myhome/**/*
+#  stage: build
 #  script:
-#    - ./gradlew -Pci --console=plain :app:testDebug
-
+##    - ./gradlew includeSourceModule  -PmoduleName=framework-myhome
+#    - ./gradlew :components:home-module:myhome:assemble
+#
+#hotel-myhome-lint:
+#  only:
+#    changes:
+#      - components/home-module/myhome/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :components:home-module:myhome:lintInhouse
+#
+#home-myhome-deploy:
+#  only:
+#    changes:
+#      - components/home-module/myhome/**/*
+#  stage: deploy
+#  script:
+#    - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+#
+## ========================
+#home-daily-check1:
+#  only:
+#    changes:
+#      - components/home-module/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :components:hotel-module:main:fileCounter
+#home-daily-check2:
+#  only:
+#    changes:
+#      - components/home-module/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :components:hotel-module:main:dangerousApiTask
+#
+##debugTests:
+##  stage: test
+##  script:
+##    - ./gradlew -Pci --console=plain :app:testDebug
+#
+assembleDebug:
+  stage: build
+  script:
+    - echo "root after script"
