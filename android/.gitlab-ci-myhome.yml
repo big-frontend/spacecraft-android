@@ -1,11 +1,12 @@
 homeMyhomeBuild:
-  only:
-    changes:
+#  only:
+#    changes:
 #      - components/home-module/myhome/*.{java,kt,xml,gradle}
-      - components/home-module/myhome/**/*
+#      - components/home-module/myhome/**/*
   stage: build
   script:
     - ./gradlew :components:home-module:myhome:assemble
+
 #
 #hotel-myhome-lint:
 #  only:
