@@ -5,6 +5,7 @@ home-myhome-build:
       - components/home-module/myhome/**/*
   stage: build
   script:
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-myhome
     - ./gradlew :components:home-module:myhome:assemble
 
 hotel-myhome-lint:
@@ -21,7 +22,7 @@ home-myhome-deploy:
       - components/home-module/myhome/**/*
   stage: deploy
   script:
-    - ./gradlew :components:home-module:myhome:publishToMavenLocal #发布到远程仓库
+    - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 
 # ========================
 home-daily-check1:

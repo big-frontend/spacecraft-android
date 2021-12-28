@@ -1,35 +1,35 @@
 # 确保fwk每个修改点都输出最新的fwk包给上层
-fwk-common:
+fwk-common-build:
   only:
     changes:
       - framework/common/**/*
   stage: build
   script:
-    - ./gradlew :framework:common:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-common
-    # todo:并发执行 av hybrid image map storage network
-#    #upload mave
-    - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
-#    #upload mave
-    - ./gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
-#    #upload mave
-    - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
-#    #upload mave
-#    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
-#    #upload mave
-    - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
-#    #upload mave
-    - ./gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
-#    #upload mave
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-common
+    - ./gradlew :framework:common:assemble
+fwk-common-deploy:
+  only:
+    changes:
+      - components/hotel-module/foundation/**/*
+  stage: deploy
+  script:
+    - ./gradlew :framework:common:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 # ========================
-fwk-av:
+fwk-av-build:
   only:
     changes:
       - framework/av/**/*
   stage: build
   script:
-    - ./gradlew :framework:av:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-av
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-av
+    - ./gradlew :framework:av:assemble
+fwk-av-deploy:
+  only:
+    changes:
+      - framework/av/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:av:publishAarPublicationToMavenCentralRepository
 # ========================
 #fwk-flutter:
 #  only:
@@ -39,23 +39,37 @@ fwk-av:
 #  script:
 #    - ./gradlew :framework:flutter:build
 # ========================
-fwk-hybrid:
+fwk-hybrid-build:
   only:
     changes:
       - framework/hybrid/**/*
   stage: build
   script:
-    - ./gradlew :framework:hybrid:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-hybrid
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-hybrid
+    - ./gradlew :framework:hybrid:assemble
+fwk-hybrid-deploy:
+  only:
+    changes:
+      - framework/hybrid/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:hybrid:publishAarPublicationToMavenCentralRepository
 # ========================
-fwk-image:
+fwk-image-build:
   only:
     changes:
       - framework/image/**/*
   stage: build
   script:
-    - ./gradlew :framework:image:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-image
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-image
+    - ./gradlew :framework:image:assemble
+fwk-image-deploy:
+  only:
+    changes:
+      - framework/image/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:image:publishAarPublicationToMavenCentralRepository
 # ========================
 #fwk-map:
 #  only:
@@ -63,8 +77,8 @@ fwk-image:
 #      - framework/map/**/*
 #  stage: build
 #  script:
-#    - ./gradlew :framework:map:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-map
-#    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew :framework:map:assemble publishAarPublicationToMavenCentralRepository includeBinaryModule  -PmoduleName=framework-map
+#    - ./gradlew :framework:loader:assemble publishAarPublicationToMavenCentralRepository
 # ========================
 #fwk-mockserver:
 #  only:
@@ -75,31 +89,53 @@ fwk-image:
 #    - ./gradlew :framework:mockserver:build
 #     - ./gradlew :framework:loader:assemble
 # ========================
-fwk-network:
+fwk-network-build:
   only:
     changes:
       - framework/network/**/*
   stage: build
   script:
-    - ./gradlew :framework:network:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-network
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-network
+    - ./gradlew :framework:network:assemble
+fwk-network-deploy:
+  only:
+    changes:
+      - framework/network/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:network:publishAarPublicationToMavenCentralRepository
 # ========================
-fwk-storage:
+fwk-storage-build:
   only:
     changes:
       - framework/storage/**/*
   stage: build
   script:
-    - ./gradlew :framework:storage:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=framework-storage
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-storage
+    - ./gradlew :framework:storage:assemble
+fwk-storage-deploy:
+  only:
+    changes:
+      - framework/storage/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:storage:publishAarPublicationToMavenCentralRepository
 # ========================
-fwk-loader:
+fwk-loader-build:
   only:
     changes:
       - framework/loader/**/*
   stage: build
   script:
-    - ./gradlew :framework:loader:assemble publishToMavenLocal
+#    - ./gradlew includeSourceModule  -PmoduleName=framework-loader
+    - ./gradlew :framework:loader:assemble
+fwk-loader-deploy:
+  only:
+    changes:
+      - framework/loader/**/*
+  stage: build
+  script:
+    - ./gradlew :framework:loader:publishAarPublicationToMavenCentralRepository
 # ========================
 #buildBigApp job
 #build-big-app:

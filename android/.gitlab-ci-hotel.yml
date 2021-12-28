@@ -5,7 +5,8 @@ hotel-foundation-build:
       - components/hotel-module/foundation/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:foundation:assemble publishToMavenLocal includeBinaryModule  -PmoduleName=hotel-foundation
+#    - ./gradlew includeSourceModule  -PmoduleName=hotel-foundation
+    - ./gradlew :components:hotel-module:foundation:assemble
 hotel-foundation-lint:
   only:
     changes:
@@ -20,28 +21,13 @@ hotel-foundation-lint:
 #  stage: test
 #  script:
 #    - ./gradlew :components:hotel-module:foundation:test
-hotel-foundation-deploy1:
+hotel-foundation-deploy:
   only:
     changes:
       - components/hotel-module/foundation/**/*
   stage: deploy
   script:
-    - ./gradlew :components:hotel-module:foundation:publishToMavenLocal #发布到远程仓库
-hotel-foundation-deploy2:
-  only:
-    changes:
-      - components/hotel-module/foundation/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:bundle1:assemble publishToMavenLocal #发布到远程仓库
-
-hotel-foundation-deploy3:
-  only:
-    changes:
-      - components/hotel-module/foundation/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:bundle2:assemble publishToMavenLocal #发布到远程仓库
+    - ./gradlew :components:hotel-module:foundation:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 # ========================
 hotel-bundle1-build:
   only:
@@ -49,6 +35,7 @@ hotel-bundle1-build:
       - components/hotel-module/bundle1/**/*
   stage: build
   script:
+#    - ./gradlew includeSourceModule  -PmoduleName=hotel-bundle1
     - ./gradlew :components:hotel-module:bundle1:assemble
 
 hotel-bundle1-lint:
@@ -65,7 +52,7 @@ hotel-bundle1-deploy:
       - components/hotel-module/bundle1/**/*
   stage: deploy
   script:
-    - ./gradlew :components:hotel-module:bundle1:publishToMavenLocal #发布到远程仓库
+    - ./gradlew :components:hotel-module:bundle1:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 # ========================
 hotel-bundle2-build:
   only:
@@ -73,6 +60,7 @@ hotel-bundle2-build:
       - components/hotel-module/bundle2/**/*
   stage: build
   script:
+#    - ./gradlew includeSourceModule  -PmoduleName=hotel-bundle2
     - ./gradlew :components:hotel-module:bundle2:assemble
 
 hotel-bundle2-lint:
@@ -89,7 +77,7 @@ hotel-bundle2-deploy:
       - components/hotel-module/bundle2/**/*
   stage: deploy
   script:
-    - ./gradlew :components:hotel-module:bundle2:publishToMavenLocal
+    - ./gradlew :components:hotel-module:bundle2:publishAarPublicationToMavenCentralRepository
 # ========================
 
 hotel-daily-check1:
