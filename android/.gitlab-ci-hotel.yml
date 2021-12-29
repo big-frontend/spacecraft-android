@@ -1,18 +1,19 @@
 #确保每次给到测试的包都是最新的
-hotel-foundation-build:
+hotel-foundation:
   only:
     changes:
       - android/components/hotel-module/foundation/**/*
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-foundation
-    - ./gradlew :components:hotel-module:foundation:assemble
+    - ./gradlew :components:hotel-module:foundation:assemble publishAarPublicationToMavenCentralRepository
 hotel-foundation-lint:
   only:
     changes:
       - android/components/hotel-module/foundation/**/*
   stage: test
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-foundation
     - ./gradlew :components:hotel-module:foundation:lintInhouse
 #hotel-foundation-test:
 #  only:
@@ -21,22 +22,15 @@ hotel-foundation-lint:
 #  stage: test
 #  script:
 #    - ./gradlew :components:hotel-module:foundation:test
-hotel-foundation-deploy:
-  only:
-    changes:
-      - android/components/hotel-module/foundation/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:foundation:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 # ========================
-hotel-bundle1-build:
+hotel-bundle1:
   only:
     changes:
       - android/components/hotel-module/bundle1/**/*
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle1
-    - ./gradlew :components:hotel-module:bundle1:assemble
+    - ./gradlew :components:hotel-module:bundle1:assemble publishAarPublicationToMavenCentralRepository
 
 hotel-bundle1-lint:
   only:
@@ -44,24 +38,18 @@ hotel-bundle1-lint:
       - android/components/hotel-module/bundle1/**/*
   stage: test
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle1
     - ./gradlew :components:hotel-module:bundle1:lintInhouse
 
-hotel-bundle1-deploy:
-  only:
-    changes:
-      - android/components/hotel-module/bundle1/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:bundle1:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 # ========================
-hotel-bundle2-build:
+hotel-bundle2:
   only:
     changes:
       - android/components/hotel-module/bundle2/**/*
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2
-    - ./gradlew :components:hotel-module:bundle2:assemble
+    - ./gradlew :components:hotel-module:bundle2:assemble publishAarPublicationToMavenCentralRepository
 
 hotel-bundle2-lint:
   only:
@@ -69,15 +57,8 @@ hotel-bundle2-lint:
       - android/components/hotel-module/bundle2/**/*
   stage: test
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2
     - ./gradlew :components:hotel-module:bundle2:lintInhouse
-
-hotel-bundle2-deploy:
-  only:
-    changes:
-      - android/components/hotel-module/bundle2/**/*
-  stage: deploy
-  script:
-    - ./gradlew :components:hotel-module:bundle2:publishAarPublicationToMavenCentralRepository
 # ========================
 
 hotel-daily-check1:

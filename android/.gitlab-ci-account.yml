@@ -15,6 +15,7 @@ account-login-lint:
       - android/components/account-module/login/**/*
   stage: test
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-login
     - ./gradlew :components:account-module:login:lintInhouse
 
 account-login-deploy:
@@ -23,6 +24,7 @@ account-login-deploy:
       - android/components/account-module/login/**/*
   stage: deploy
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-login
     - ./gradlew :components:account-module:login:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
@@ -44,6 +46,7 @@ account-export-lint:
       - android/components/account-module/export/**/*
   stage: test
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-export
     - ./gradlew :components:account-module:export:lintInhouse
 
 account-export-deploy:
@@ -52,6 +55,7 @@ account-export-deploy:
       - android/components/account-module/export/**/*
   stage: deploy
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-export
     - ./gradlew :components:account-module:export:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
