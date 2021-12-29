@@ -37,5 +37,5 @@ stages:
   - deploy
 include:
 #  - '/android/.gitlab-ci-fwk.yml'
-  - '/android/.gitlab-ci-myhome.yml'
+  - 'android/.gitlab-ci-myhome.yml'
 #  - '/android/.gitlab-ci-hotel.yml'
