@@ -15,6 +15,7 @@ home-myhome-lint:
       - android/components/home-module/myhome/**/*
   stage: test
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=home-myhome
     - ./gradlew :components:home-module:myhome:lintInhouse
 
 home-myhome-deploy:
@@ -23,6 +24,7 @@ home-myhome-deploy:
       - android/components/home-module/myhome/**/*
   stage: deploy
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=home-myhome
     - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
