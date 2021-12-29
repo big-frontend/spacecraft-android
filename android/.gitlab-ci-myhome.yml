@@ -9,7 +9,7 @@ home-myhome-build:
     - ./gradlew :components:home-module:myhome:assemble
 
 
-hotel-myhome-lint:
+home-myhome-lint:
   only:
     changes:
       - android/components/home-module/myhome/**/*
