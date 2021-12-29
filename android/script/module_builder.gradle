@@ -1,4 +1,4 @@
-static void configModule(Project project, String moduleName, boolean includeModule, boolean isBinary = null) {
+static void configModule(Project project, String moduleList, boolean includeModule, boolean isBinary = null) {
     def localProperties = new Properties()
     def localPropertiesFile = new File(project.rootDir, 'local.properties')
     if (localPropertiesFile.exists()) {
@@ -7,39 +7,43 @@ static void configModule(Project project, String moduleName, boolean includeModu
         }
     }
     if (!localProperties.contains("sourceModules")){
-        updateSourceModules(localPropertiesFile, localProperties,  "${moduleName},")
+        updateSourceModules(localPropertiesFile, localProperties,  "${moduleList},")
         return
     }
-    if (!localProperties.contains("excludeModules")){
-        updateExcludeModules(localPropertiesFile, localProperties,  "${moduleName},")
-        return
-    }
+//    if (!localProperties.contains("excludeModules")){
+//        updateExcludeModules(localPropertiesFile, localProperties,  "${moduleName},")
+//        return
+//    }
     String sm = localProperties.getProperty("sourceModules")
-    if (includeModule) {
-        if (isBinary && sm.contains(moduleName)) {
-            sm = sm.replace("${moduleName},", "")
-            updateSourceModules(localPropertiesFile, localProperties, sm)
-        } else if (!isBinary && !sm.contains(moduleName)) {
-            sm = "${sm}${moduleName},"
-            updateSourceModules(localPropertiesFile, localProperties, sm)
-        }
-    } else {
-        sm = sm.replace("${moduleName},", "")
-        updateSourceModules(localPropertiesFile, localProperties, sm)
-    }
-
-
     String em = localProperties.getProperty("excludeModules")
     if (includeModule) {
-        if (em.contains(moduleName)) {
-            em = em.replace("${moduleName},", "")
-            updateExcludeModules(localPropertiesFile, localProperties, em)
+        def modules = moduleList.split(",")
+        for (def moduleName in modules){
+            if (isBinary && sm.contains(moduleName)) {
+                sm = sm.replace("${moduleName},", "")
+            } else if (!isBinary && !sm.contains(moduleName)) {
+                sm = "${sm}${moduleName},"
+            }
+            if (em.contains(moduleName)) {
+                em = em.replace("${moduleName},", "")
+            }
         }
+        updateSourceModules(localPropertiesFile, localProperties, sm)
+        updateExcludeModules(localPropertiesFile, localProperties, em)
+
     } else {
-        if (!em.contains(moduleName)) {
-            em = "${em}${moduleName},"
-            updateExcludeModules(localPropertiesFile, localProperties, em)
+        def modules = moduleList.split(",")
+        for (def moduleName in modules){
+            sm = sm.replace("${moduleName},", "")
+            if (em.contains(moduleName)) {
+                em = em.replace("${moduleName},", "")
+            }
+            if (!em.contains(moduleName)) {
+                em = "${em}${moduleName},"
+            }
         }
+        updateExcludeModules(localPropertiesFile, localProperties, em)
+        updateSourceModules(localPropertiesFile, localProperties, sm)
     }
 }
 
@@ -57,12 +61,12 @@ static void updateExcludeModules(File localPropertiesFile, Properties localPrope
     propertyFileOs.close()
 }
 
-static void includeM(Project project, String moduleName, boolean isBinary) {
-    configModule(project, moduleName, true, isBinary)
+static void includeM(Project project, String moduleList, boolean isBinary) {
+    configModule(project, moduleList, true, isBinary)
 }
 
-static void excludeM(Project project, String moduleName) {
-    configModule(project, moduleName, false)
+static void excludeM(Project project, String moduleList) {
+    configModule(project, moduleList, false)
 
 }
 
@@ -72,33 +76,33 @@ static def isWindows() {
 
 task includeSourceModule {
     doLast {
-        if (project.hasProperty("moduleName")) {
-            def moduleName = project.getProperty("moduleName")
-            includeM(project, moduleName, false)
+        if (project.hasProperty("moduleList")) {
+            def moduleList = project.getProperty("moduleList")
+            includeM(project, moduleList, false)
         } else {
-            throw new IllegalArgumentException("请传想要include的模块 eg. ./gradlew includeSourceModule -PmoduleName=home-myhome")
+            throw new IllegalArgumentException("请传想要include的模块 eg. ./gradlew includeSourceModule -PmoduleList=home-myhome")
         }
     }
 
 }
 task includeBinaryModule {
     doLast {
-        if (project.hasProperty("moduleName")) {
-            def moduleName = project.getProperty("moduleName")
-            includeM(project, moduleName, true)
+        if (project.hasProperty("moduleList")) {
+            def moduleList = project.getProperty("moduleList")
+            includeM(project, moduleList, true)
         } else {
-            throw new IllegalArgumentException("请传想要include的模块 eg. ./gradlew includeBinaryModule -PmoduleName=home-myhome")
+            throw new IllegalArgumentException("请传想要include的模块 eg. ./gradlew includeBinaryModule -PmoduleList=home-myhome")
         }
     }
 }
 
 task excludeModule {
     doLast {
-        if (project.hasProperty("moduleName")) {
-            def moduleName = project.getProperty("moduleName")
-            excludeM(project, moduleName)
+        if (project.hasProperty("moduleList")) {
+            def moduleList = project.getProperty("moduleList")
+            excludeM(project, moduleList)
         } else {
-            throw new IllegalArgumentException("请传想要exclude的模块 eg. ./gradlew excludeModule -PmoduleName=home-myhome")
+            throw new IllegalArgumentException("请传想要exclude的模块 eg. ./gradlew excludeModule -PmoduleList=home-myhome")
         }
     }
 }
