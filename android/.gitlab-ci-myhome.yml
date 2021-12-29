@@ -13,7 +13,7 @@ home-myhome-lint:
   only:
     changes:
       - android/components/home-module/myhome/**/*
-  stage: build
+  stage: test
   script:
     - ./gradlew :components:home-module:myhome:lintInhouse
 

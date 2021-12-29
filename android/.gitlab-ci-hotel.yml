@@ -5,13 +5,13 @@ hotel-foundation-build:
       - android/components/hotel-module/foundation/**/*
   stage: build
   script:
-#    - ./gradlew includeSourceModule  -PmoduleName=hotel-foundation
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-foundation
     - ./gradlew :components:hotel-module:foundation:assemble
 hotel-foundation-lint:
   only:
     changes:
       - android/components/hotel-module/foundation/**/*
-  stage: build
+  stage: test
   script:
     - ./gradlew :components:hotel-module:foundation:lintInhouse
 #hotel-foundation-test:
@@ -35,14 +35,14 @@ hotel-bundle1-build:
       - android/components/hotel-module/bundle1/**/*
   stage: build
   script:
-#    - ./gradlew includeSourceModule  -PmoduleName=hotel-bundle1
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle1
     - ./gradlew :components:hotel-module:bundle1:assemble
 
 hotel-bundle1-lint:
   only:
     changes:
       - android/components/hotel-module/bundle1/**/*
-  stage: build
+  stage: test
   script:
     - ./gradlew :components:hotel-module:bundle1:lintInhouse
 
@@ -60,14 +60,14 @@ hotel-bundle2-build:
       - android/components/hotel-module/bundle2/**/*
   stage: build
   script:
-#    - ./gradlew includeSourceModule  -PmoduleName=hotel-bundle2
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2
     - ./gradlew :components:hotel-module:bundle2:assemble
 
 hotel-bundle2-lint:
   only:
     changes:
       - android/components/hotel-module/bundle2/**/*
-  stage: build
+  stage: test
   script:
     - ./gradlew :components:hotel-module:bundle2:lintInhouse
 
@@ -86,6 +86,7 @@ hotel-daily-check1:
       - android/components/hotel-module/**/*
   stage: build
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2,hotel-bunlde1,hotel-main,hotel-foundation
     - ./gradlew :components:hotel-module:main:fileCounter
 hotel-daily-check2:
   only:
@@ -93,6 +94,7 @@ hotel-daily-check2:
       - android/components/hotel-module/**/*
   stage: build
   script:
+    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2,hotel-bunlde1,hotel-main,hotel-foundation
     - ./gradlew :components:hotel-module:main:dangerousApiTask
 #lint job
 #hotelLint:

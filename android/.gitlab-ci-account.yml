@@ -1,7 +1,7 @@
 account-login-build:
   only:
     changes:
-      #      - components/account-module/myhome/*.{java,kt,xml,gradle}
+      #      - components/account-module/login/*.{java,kt,xml,gradle}
       - android/components/account-module/login/**/*
   stage: build
   script:
@@ -13,7 +13,7 @@ account-login-lint:
   only:
     changes:
       - android/components/account-module/login/**/*
-  stage: build
+  stage: test
   script:
     - ./gradlew :components:account-module:login:lintInhouse
 
@@ -30,7 +30,7 @@ account-login-deploy:
 account-export-build:
   only:
     changes:
-      #      - components/account-module/myhome/*.{java,kt,xml,gradle}
+      #      - components/account-module/login/*.{java,kt,xml,gradle}
       - android/components/account-module/export/**/*
   stage: build
   script:
@@ -42,7 +42,7 @@ account-export-lint:
   only:
     changes:
       - android/components/account-module/export/**/*
-  stage: build
+  stage: test
   script:
     - ./gradlew :components:account-module:export:lintInhouse
 
@@ -61,7 +61,7 @@ account-daily-check1:
       - android/components/account-module/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main
+    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main,account-export
     - ./gradlew :components:account-module:main:fileCounter
 account-daily-check2:
   only:
@@ -69,7 +69,7 @@ account-daily-check2:
       - android/components/account-module/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main
+    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main,account-export
     - ./gradlew :components:account-module:main:dangerousApiTask
 
 ##debugTests:
