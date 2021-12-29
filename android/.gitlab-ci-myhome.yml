@@ -5,6 +5,7 @@ home-myhome-build:
       - android/components/home-module/myhome/**/*
   stage: build
   script:
+    - ./gradlew includeSourceModule  -PmoduleName=home-myhome
     - ./gradlew :components:home-module:myhome:assemble
 
 
