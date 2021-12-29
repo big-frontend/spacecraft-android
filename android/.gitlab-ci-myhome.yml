@@ -40,7 +40,7 @@ home-daily-check2:
       - android/components/home-module/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=home-myhome
+    - ./gradlew includeSourceModule  -PmoduleList=home-myhome,home-main
     - ./gradlew :components:home-module:main:dangerousApiTask
 
 ##debugTests:
