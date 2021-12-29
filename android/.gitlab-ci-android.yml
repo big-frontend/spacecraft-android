@@ -33,9 +33,9 @@ after_script:
 #  - cd ..
 stages:
   - build
-  #  - test
+  - test
   - deploy
 include:
-  - '/android/.gitlab-ci-fwk.yml'
+#  - '/android/.gitlab-ci-fwk.yml'
   - '/android/.gitlab-ci-myhome.yml'
-  - '/android/.gitlab-ci-hotel.yml'
+#  - '/android/.gitlab-ci-hotel.yml'
