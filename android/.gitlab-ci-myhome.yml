@@ -33,7 +33,7 @@ home-daily-check1:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleName=home-myhome
-    - ./gradlew :components:hotel-module:main:fileCounter
+    - ./gradlew :components:home-module:main:fileCounter
 home-daily-check2:
   only:
     changes:
@@ -41,7 +41,7 @@ home-daily-check2:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleName=home-myhome
-    - ./gradlew :components:hotel-module:main:dangerousApiTask
+    - ./gradlew :components:home-module:main:dangerousApiTask
 
 ##debugTests:
 ##  stage: test
