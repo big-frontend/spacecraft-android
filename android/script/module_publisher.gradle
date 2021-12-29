@@ -63,12 +63,23 @@ def configMaven(Project project, PublishExtension ext) {
     PublishingExtension publishing = project.extensions.getByType(PublishingExtension)
     project.components.configureEach{}
     project.components.each { component ->
-        if (component.name == 'release' || component.name == 'java') {
-            publishing.publications.create(taskName, MavenPublication, { MavenPublication publication ->
+        def newVersion=''
+        if (ext.version.endsWith('SNAPSHOT')){
+            def a = ext.version.split('-')
+            newVersion = "${a[0]}-$component.name-${a[1]}"
+        }else{
+            newVersion = "${ext.version}-${component.name}"
+        }
+        println("cjf ${ext.groupId} ${ext.artifactId} $newVersion")
+        if (component.name.contains('Release')
+                || component.name.contains('release')
+//                || component.name == 'java'
+        ) {
+            publishing.publications.create("$component.name$taskName", MavenPublication, { MavenPublication publication ->
                 publication.from(component)
                 publication.groupId = ext.groupId
                 publication.artifactId = ext.artifactId
-                publication.version = ext.version
+                publication.version = "$newVersion"
 //                configJavadoc(project, publication, ext)
                 configPom(publication.pom, ext)
             })
