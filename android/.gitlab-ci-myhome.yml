@@ -8,13 +8,13 @@ home-myhome-build:
     - ./gradlew :components:home-module:myhome:assemble
 
 
-#hotel-myhome-lint:
-#  only:
-#    changes:
-#      - android/components/home-module/myhome/**/*
-#  stage: build
-#  script:
-#    - ./gradlew :components:home-module:myhome:lintInhouse
+hotel-myhome-lint:
+  only:
+    changes:
+      - android/components/home-module/myhome/**/*
+  stage: build
+  script:
+    - ./gradlew :components:home-module:myhome:lintInhouse
 
 home-myhome-deploy:
   only:
@@ -25,20 +25,20 @@ home-myhome-deploy:
     - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
-#home-daily-check1:
-#  only:
-#    changes:
-#      - android/components/home-module/**/*
-#  stage: build
-#  script:
-#    - ./gradlew :components:hotel-module:main:fileCounter
-#home-daily-check2:
-#  only:
-#    changes:
-#      - android/components/home-module/**/*
-#  stage: build
-#  script:
-#    - ./gradlew :components:hotel-module:main:dangerousApiTask
+home-daily-check1:
+  only:
+    changes:
+      - android/components/home-module/**/*
+  stage: build
+  script:
+    - ./gradlew :components:hotel-module:main:fileCounter
+home-daily-check2:
+  only:
+    changes:
+      - android/components/home-module/**/*
+  stage: build
+  script:
+    - ./gradlew :components:hotel-module:main:dangerousApiTask
 
 ##debugTests:
 ##  stage: test
