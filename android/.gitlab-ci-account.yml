@@ -1,0 +1,79 @@
+account-login-build:
+  only:
+    changes:
+      #      - components/account-module/myhome/*.{java,kt,xml,gradle}
+      - android/components/account-module/login/**/*
+  stage: build
+  script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-login
+    - ./gradlew :components:account-module:login:assemble
+
+
+account-login-lint:
+  only:
+    changes:
+      - android/components/account-module/login/**/*
+  stage: build
+  script:
+    - ./gradlew :components:account-module:login:lintInhouse
+
+account-login-deploy:
+  only:
+    changes:
+      - android/components/account-module/login/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:account-module:login:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+
+## ========================
+
+account-export-build:
+  only:
+    changes:
+      #      - components/account-module/myhome/*.{java,kt,xml,gradle}
+      - android/components/account-module/export/**/*
+  stage: build
+  script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-export
+    - ./gradlew :components:account-module:export:assemble
+
+
+account-export-lint:
+  only:
+    changes:
+      - android/components/account-module/export/**/*
+  stage: build
+  script:
+    - ./gradlew :components:account-module:export:lintInhouse
+
+account-export-deploy:
+  only:
+    changes:
+      - android/components/account-module/export/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:account-module:export:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+
+## ========================
+account-daily-check1:
+  only:
+    changes:
+      - android/components/account-module/**/*
+  stage: build
+  script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main
+    - ./gradlew :components:account-module:main:fileCounter
+account-daily-check2:
+  only:
+    changes:
+      - android/components/account-module/**/*
+  stage: build
+  script:
+    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main
+    - ./gradlew :components:account-module:main:dangerousApiTask
+
+##debugTests:
+##  stage: test
+##  script:
+##    - ./gradlew -Pci --console=plain :app:testDebug
+#
