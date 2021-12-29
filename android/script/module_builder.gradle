@@ -6,6 +6,14 @@ static void configModule(Project project, String moduleName, boolean includeModu
             localProperties.load(reader)
         }
     }
+    if (!localProperties.contains("sourceModules")){
+        updateSourceModules(localPropertiesFile, localProperties,  "${moduleName},")
+        return
+    }
+    if (!localProperties.contains("excludeModules")){
+        updateExcludeModules(localPropertiesFile, localProperties,  "${moduleName},")
+        return
+    }
     String sm = localProperties.getProperty("sourceModules")
     if (includeModule) {
         if (isBinary && sm.contains(moduleName)) {
