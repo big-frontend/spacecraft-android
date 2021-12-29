@@ -32,6 +32,7 @@ home-daily-check1:
       - android/components/home-module/**/*
   stage: build
   script:
+    - ./gradlew includeSourceModule  -PmoduleName=home-myhome
     - ./gradlew :components:hotel-module:main:fileCounter
 home-daily-check2:
   only:
@@ -39,6 +40,7 @@ home-daily-check2:
       - android/components/home-module/**/*
   stage: build
   script:
+    - ./gradlew includeSourceModule  -PmoduleName=home-myhome
     - ./gradlew :components:hotel-module:main:dangerousApiTask
 
 ##debugTests:
