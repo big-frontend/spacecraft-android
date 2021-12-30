@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.os.*
+import android.text.TextUtils
 import android.util.ArrayMap
 import android.util.AttributeSet
 import android.util.Log
 import android.util.Printer
 import android.view.*
+import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.LayoutInflaterCompat
@@ -16,6 +18,7 @@ import com.jamesfchen.loader.monitor.IActivityLifecycleObserver
 import com.jamesfchen.loader.monitor.IAppLifecycleObserver
 import com.jamesfchen.loader.monitor.ILifecycleObserver
 import com.jamesfchen.loader.monitor.MonitoredItem
+import com.jamesfchen.loader.systemfilter.SystemFilter
 import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit
 import kotlin.time.ExperimentalTime
@@ -256,9 +259,26 @@ class LayoutInflateItem : IAppLifecycleObserver, IActivityLifecycleObserver {
             context: Context,
             attrs: AttributeSet
         ): View? {
+            if ("FrameLayout" == name) {
+                val count = attrs.attributeCount
+                for (i in 0 until count) {
+                    val attrName = attrs.getAttributeName(i)
+                    val attrValue = attrs.getAttributeValue(i)
+                    if (TextUtils.equals(attrName, "id")) {
+                        val id = attrValue.substring(1).toInt()
+                        val idValue: String = com.jamesfchen.loader.App.getInstance().getResources().getResourceName(id)
+                        Log.e(TAG_LAYOUT_MONITOR, "idValue:${idValue}")
+                        if ("android:id/content" == idValue) {
+                            val grayFrameLayout = FrameLayout(context, attrs)
+                            SystemFilter.setGrayLayer(grayFrameLayout)
+                            return grayFrameLayout
+                        }
+                    }
+                }
+            }
             val activity = activityRef.get() ?: return null
-            val start = System.currentTimeMillis()
             val view = activity.delegate.createView(parent, name, context, attrs)
+            val start = System.currentTimeMillis()
             Log.d(
                 TAG_LAYOUT_MONITOR,
                 "onCreateView 1 parent:$parent name:$name 初始化耗时:${System.currentTimeMillis() - start}ms"
