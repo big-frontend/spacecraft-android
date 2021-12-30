@@ -12,7 +12,7 @@
         "hotel-bundle1",
         "hotel-bundle2",
         "home-myhome",
-        "account-login",
+        "account-impl",
         "codescanner-qrcode",
         "im-chatroom"
       ]
@@ -65,15 +65,15 @@
       "sourcePath": ":components:account-module:main",
       "binaryPath": "io.github.jamesfchen:account-main:1.0.0-SNAPSHOT",
       "deps": [
-        "account-login"
+        "account-impl"
       ]
     },
     {
-      "simpleName": "account-login",
+      "simpleName": "account-impl",
       "format": "bundle",
       "group": "account",
-      "sourcePath": ":components:account-module:login",
-      "binaryPath": "io.github.jamesfchen:account-login:1.0.0-SNAPSHOT",
+      "sourcePath": ":components:account-module:impl",
+      "binaryPath": "io.github.jamesfchen:account-impl:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader",
         "account-export"

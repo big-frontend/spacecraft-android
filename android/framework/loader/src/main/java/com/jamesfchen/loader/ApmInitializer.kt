@@ -71,7 +71,7 @@ class ApmInitializer : Initializer<Unit> {
         val dynamicConfig = DynamicConfigImplDemo()
         MatrixLog.i(APM_TAG, "Start Matrix configurations.")
         // Builder. Not necessary while some plugins can be configured separately.
-        val builder = Matrix.Builder(App.getInstance())
+        val builder = Matrix.Builder(SApp.getInstance())
 
         // Reporter. Matrix will callback this listener when found issue then emitting it.
         builder.pluginListener(TestPluginListener(context))

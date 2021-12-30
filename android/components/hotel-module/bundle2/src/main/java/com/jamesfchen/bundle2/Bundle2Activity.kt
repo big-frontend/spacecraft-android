@@ -29,9 +29,9 @@ class Bundle2Activity : ComponentActivity() {
 //        }
 //        startActivity(Intent(Bundle2Activity@this, ConstraintPerformanceActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, CustomViewActivity::class.java))
-        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
+//        startActivity(Intent(Bundle2Activity@this, SpringBoardActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, OptimizationActivity::class.java))
-//        startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
+        startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
 //        startActivity(Intent(Bundle2Activity@this, NestedScrollActivity::class.java))
         //        startActivity(new Intent(this, Bundle1Activity.class));
         finish()

@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.bundle2.R
@@ -56,29 +59,44 @@ class PagerViewActivity : AppCompatActivity() {
             add(PagerViewModel(tabItem8, list))
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        setContentView(TextView(this))
         val binding = ActivityPagerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.button.setOnClickListener{
-            if (SystemFilter.isGrayMode){
+        binding.button.setOnClickListener {
+            if (SystemFilter.isGrayMode) {
                 SystemFilter.clearGrayMode(this@PagerViewActivity)
-            }else{
+            } else {
                 SystemFilter.applyGrayMode(this@PagerViewActivity)
             }
         }
-        binding.image.setOnClickListener{
+        binding.image.setOnClickListener {
             val builder = AlertDialog.Builder(this)
+            builder.setTitle("title")
+            builder.setIcon(R.drawable.tmp)
+            builder.setMessage("message")
             val view: View = LayoutInflater.from(this).inflate(R.layout.dialog_card, null)
-            builder.setView(view).setPositiveButton(
+//            builder.setView(view)
+            builder.setPositiveButton(
                 "添加"
             ) { dialog, which ->
-                startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
+//                startActivity(Intent(Bundle2Activity@this, PagerViewActivity::class.java))
+                val p = PopupWindow(this@PagerViewActivity)
+                p.setContentView(view)
+                p.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT)
+                p.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                p.showAsDropDown(binding.image)
             }.setNegativeButton(
                 "取消"
             ) { dialog, which ->
-                dialog.dismiss()
+//                dialog.dismiss()
+                val d = Dialog(this@PagerViewActivity,R.style.MyTheme_Dialog)
+                d.setContentView(view)
+                d.setOwnerActivity(this@PagerViewActivity)
+                d.show()
             }
             val dialog: Dialog = builder.create()
             dialog.setCanceledOnTouchOutside(false)

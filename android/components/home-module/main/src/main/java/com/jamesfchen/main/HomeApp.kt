@@ -12,11 +12,11 @@ import android.os.Environment
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
-import com.jamesfchen.loader.App
+import com.jamesfchen.loader.SApp
 import com.jamesfchen.myhome.util.Util
 
 @com.jamesfchen.lifecycle.App
-class HomeApp : App() {
+class HomeApp : SApp() {
     override fun onCreate() {
         super.onCreate()
         Util.getI().init(this)

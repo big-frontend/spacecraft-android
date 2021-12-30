@@ -1,0 +1,250 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="#ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/logo"
+        android:minHeight="36dp"
+        android:minWidth="244dp" />
+    <View
+        android:id="@+id/umcsdk_title_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#a9a9a9"
+        android:layout_marginTop="17dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f7f7f9"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/network_btn"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="2"
+                android:textSize="12sp"
+                android:background="@drawable/selector_btn"
+                android:text="获取网络类型和运营商信息" />
+
+            <TextView
+                android:id="@+id/cline_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
+                android:text="客户端取token"
+                android:textColor="#0086d0"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/over_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:hint="超时时间"
+                    android:textSize="12sp"
+                    android:inputType="number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <Button
+                    android:id="@+id/pre_getphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/over_time"
+                    android:background="@drawable/selector_btn"
+                    android:text="getPhoneInfo(取号)"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+                <LinearLayout
+                    android:id="@+id/login_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pre_getphone"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/wap_login_display"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/selector_btn"
+                        android:textSize="12sp"
+                        android:text="loginAuth(授权登录)" />
+
+                    <Button
+                        android:id="@+id/wap_login1"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:background="@drawable/selector_btn"
+                        android:text="mobileAuth(号码校验)" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/wap_login_display_window"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/login_layout"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/selector_btn"
+                    android:textSize="12sp"
+                    android:text="loginAuth(弹窗授权登录)" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="服务端取号/校验"
+                android:layout_marginTop="40dp"
+                android:textColor="#0086d0"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/token_validate_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="一键登录取号:"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/get_user_info"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/token_validate_tv"
+                    android:background="@drawable/selector_btn"
+                    android:enabled="true"
+                    android:textSize="12sp"
+                    android:text="umc_get_user_info"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                >
+
+                <TextView
+                    android:id="@+id/phone_validate_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="本机号码校验:"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/phone_et"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/phone_validate_tv"
+                    android:gravity="center"
+                    android:hint="输入手机号码"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/validate_phone_bt"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/selector_btn"
+                    android:text="校验"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/del_scrip"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/timeout_et"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="50dp"
+                    android:textSize="12sp"
+                    android:background="@drawable/selector_btn"
+                    android:text="清除取号缓存"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:textColor="#999999" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

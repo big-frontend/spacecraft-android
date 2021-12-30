@@ -4,11 +4,13 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.os.Bundle
 import android.util.Log
-import com.jamesfchen.loader.App
+import com.jamesfchen.loader.SApp
+import com.jamesfchen.loader.systemfilter.SystemFilter
 
-class HotelApp : App() {
+class HotelApp : SApp() {
     override fun onCreate() {
         super.onCreate()
+        SystemFilter.applyGrayMode()
         val activityManager: ActivityManager = getSystemService(ActivityManager::class.java)
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

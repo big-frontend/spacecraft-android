@@ -102,9 +102,9 @@ def configMaven(Project project, PublishExtension ext) {
             }
         }
     }
-    project.tasks.findByName("publish${taskName.capitalize()}PublicationToMavenCentralRepository").doFirst {
-        ext.check(true)
-    }
+//    project.tasks.findByName("publish${taskName.capitalize()}PublicationToMavenCentralRepository").doFirst {
+//        ext.check(true)
+//    }
     if (ext.signingKeyId && ext.signingSecretKeyRingFile && ext.signingPassword){
         SigningExtension signing = project.extensions.getByType(SigningExtension)
 //    signing.useInMemoryPgpKeys(ext.signingKeyId, ext.signingSecretKeyRingFile,ext.signingPassword)

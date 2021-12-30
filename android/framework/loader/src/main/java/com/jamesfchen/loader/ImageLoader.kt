@@ -71,12 +71,12 @@ class ImageLoader {
             }
 
         }
-        val diskCacheConfig = DiskCacheConfig.newBuilder(App.getInstance())
-            .setBaseDirectoryPath(App.getInstance().cacheDir)
+        val diskCacheConfig = DiskCacheConfig.newBuilder(SApp.getInstance())
+            .setBaseDirectoryPath(SApp.getInstance().cacheDir)
             .setBaseDirectoryName("fresco_cache")
             .setMaxCacheSize(diskCacheSize)
             .build()
-        val config = ImagePipelineConfig.newBuilder(App.getInstance())
+        val config = ImagePipelineConfig.newBuilder(SApp.getInstance())
             .setDownsampleEnabled(true)
             .setNetworkFetcher(OkHttpNetworkFetcher(okhttpClient))
             .setBitmapsConfig(Bitmap.Config.RGB_565)
@@ -90,6 +90,6 @@ class ImageLoader {
             .setMainDiskCacheConfig(diskCacheConfig)
             .setMemoryTrimmableRegistry(memTrimRegistry)
             .build()
-//        Fresco.initialize(App.getInstance(),config)
+//        Fresco.initialize(SApp.getInstance(),config)
     }
 }

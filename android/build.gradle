@@ -61,6 +61,14 @@ allprojects {
         mavenLocal()
         mavenCentral()
         google()
+        flatDir {
+            if (findProject(':components:account-module:impl') !=null){
+                dirs project(':components:account-module:impl').file('libs')
+            }
+        }
+        flatDir {
+            dirs 'libs'
+        }
     }
     configurations.all {
         // don't cache changing modules at all，check for updates every build
@@ -70,7 +78,8 @@ allprojects {
         //gradlew build --refresh-dependencies前置刷新依赖
         // [理解Maven中的SNAPSHOT版本和正式版本](https://www.cnblogs.com/huang0925/p/5169624.html)
         //[更新maven组件的坑](https://qa.1r1g.com/sf/ask/2944103851/)
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheChangingModulesFor 60, 'seconds'
         resolutionStrategy {
             //出现两个不同版本时会报错，比如：glide:4.8 与 glide：4.11
 //            failOnVersionConflict()

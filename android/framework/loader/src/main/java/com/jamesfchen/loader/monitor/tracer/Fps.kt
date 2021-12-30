@@ -266,7 +266,7 @@ class LayoutInflateItem : IAppLifecycleObserver, IActivityLifecycleObserver {
                     val attrValue = attrs.getAttributeValue(i)
                     if (TextUtils.equals(attrName, "id")) {
                         val id = attrValue.substring(1).toInt()
-                        val idValue: String = com.jamesfchen.loader.App.getInstance().getResources().getResourceName(id)
+                        val idValue: String = com.jamesfchen.loader.SApp.getInstance().getResources().getResourceName(id)
                         Log.e(TAG_LAYOUT_MONITOR, "idValue:${idValue}")
                         if ("android:id/content" == idValue) {
                             val grayFrameLayout = FrameLayout(context, attrs)

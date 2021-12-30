@@ -59,7 +59,7 @@
 
     <!--        android:allowBackup="${allowBackup}"-->
     <application
-        android:name="com.jamesfchen.loader.App"
+        android:name="com.jamesfchen.loader.SApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"

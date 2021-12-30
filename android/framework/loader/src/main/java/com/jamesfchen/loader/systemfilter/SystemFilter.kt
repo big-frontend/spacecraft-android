@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.jamesfchen.loader.App
+import com.jamesfchen.loader.SApp
 import com.jamesfchen.loader.monitor.IActivityLifecycleObserver
 import com.jamesfchen.loader.monitor.IAppLifecycleObserver
 
@@ -24,7 +24,7 @@ class SystemFilter : IAppLifecycleObserver, IActivityLifecycleObserver {
         }
 
         @JvmStatic
-        fun init(app: App) {
+        fun init(app: SApp) {
             ProcessLifecycleOwner.get().lifecycle.addObserver(SystemFilter())
             app.registerActivityLifecycleCallbacks(SystemFilter())
         }
@@ -38,6 +38,11 @@ class SystemFilter : IAppLifecycleObserver, IActivityLifecycleObserver {
             }
         }
 
+        @JvmStatic
+        fun applyGrayMode() {
+            isGrayMode =true
+            isDarkMode = false
+        }
         @JvmStatic
         fun applyGrayMode(activity: Activity) {
             isGrayMode =true

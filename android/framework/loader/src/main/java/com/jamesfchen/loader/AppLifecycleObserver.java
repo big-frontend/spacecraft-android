@@ -22,7 +22,7 @@ public class AppLifecycleObserver implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void connectListener(LifecycleOwner lifecycleOwner) {
         Log.d("AppLifecycleObserver", "connectListener");
-        MockManager.init(App.getInstance(), BuildConfig.DEBUG);
+        MockManager.init(SApp.getInstance(), BuildConfig.DEBUG);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
@@ -33,7 +33,7 @@ public class AppLifecycleObserver implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void disconnectListener(LifecycleOwner lifecycleOwner) {
         Log.d("AppLifecycleObserver", "disconnectListener");
-        MockManager.clear(App.getInstance(), BuildConfig.DEBUG);
+        MockManager.clear(SApp.getInstance(), BuildConfig.DEBUG);
     }
 
     //Methods annotated with ON_ANY can receive the second argument

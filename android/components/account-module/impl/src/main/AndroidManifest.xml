@@ -1,0 +1,42 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jamesfchen.account">
+
+    <application>
+        <activity android:name="com.jamesfchen.login.LoginActivity" />
+
+        <activity
+            android:name="com.jamesfchen.login.signin.SignInActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="www.spacecraft.com"
+                    android:path="/login"
+                    android:scheme="ilogin" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jamesfchen.login.signin.SignUpActivity"
+            android:parentActivityName="com.jamesfchen.login.signin.SignInActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name="com.cmic.sso.activity.MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="portrait"-->
+        <activity
+            android:name="com.cmic.sso.sdk.view.LoginAuthActivity"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+    </application>
+</manifest>

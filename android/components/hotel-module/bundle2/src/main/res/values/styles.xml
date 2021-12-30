@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2017, hapjs.org. All rights reserved.
+-->
+<resources>
+    <style name="MyTheme.Dialog" parent="Theme.AppCompat.Light.Dialog"></style>
+</resources>

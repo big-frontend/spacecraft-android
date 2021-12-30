@@ -1,38 +1,38 @@
-account-login-build:
+account-impl-build:
   only:
     changes:
-      #      - components/account-module/login/*.{java,kt,xml,gradle}
-      - android/components/account-module/login/**/*
+      #      - components/account-module/impl/*.{java,kt,xml,gradle}
+      - android/components/account-module/impl/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login
-    - ./gradlew :components:account-module:login:assemble
+    - ./gradlew includeSourceModule  -PmoduleList=account-impl
+    - ./gradlew :components:account-module:impl:assemble
 
 
-account-login-lint:
+account-impl-lint:
   only:
     changes:
-      - android/components/account-module/login/**/*
+      - android/components/account-module/impl/**/*
   stage: test
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login
-    - ./gradlew :components:account-module:login:lintInhouse
+    - ./gradlew includeSourceModule  -PmoduleList=account-impl
+    - ./gradlew :components:account-module:impl:lintInhouse
 
-account-login-deploy:
+account-impl-deploy:
   only:
     changes:
-      - android/components/account-module/login/**/*
+      - android/components/account-module/impl/**/*
   stage: deploy
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login
-    - ./gradlew :components:account-module:login:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew includeSourceModule  -PmoduleList=account-impl
+    - ./gradlew :components:account-module:impl:publishAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 
 account-export-build:
   only:
     changes:
-      #      - components/account-module/login/*.{java,kt,xml,gradle}
+      #      - components/account-module/impl/*.{java,kt,xml,gradle}
       - android/components/account-module/export/**/*
   stage: build
   script:
@@ -65,7 +65,7 @@ account-daily-check1:
       - android/components/account-module/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main,account-export
+    - ./gradlew includeSourceModule  -PmoduleList=account-impl,account-main,account-export
     - ./gradlew :components:account-module:main:fileCounter
 account-daily-check2:
   only:
@@ -73,7 +73,7 @@ account-daily-check2:
       - android/components/account-module/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-login,account-main,account-export
+    - ./gradlew includeSourceModule  -PmoduleList=account-impl,account-main,account-export
     - ./gradlew :components:account-module:main:dangerousApiTask
 
 ##debugTests:
