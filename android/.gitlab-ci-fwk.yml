@@ -67,7 +67,7 @@ fwk-network-build:
       - android/framework/network/**/*
   stage: build
   script:
-#    - ./gradlew includeSourceModule  -PmoduleList=framework-network
+    - ./gradlew includeSourceModule  -PmoduleList=framework-network
     - ./gradlew :framework:network:assemble publishAarPublicationToMavenCentralRepository
 # ========================
 fwk-storage-build:
@@ -76,7 +76,7 @@ fwk-storage-build:
       - android/framework/storage/**/*
   stage: build
   script:
-#    - ./gradlew includeSourceModule  -PmoduleList=framework-storage
+    - ./gradlew includeSourceModule  -PmoduleList=framework-storage
     - ./gradlew :framework:storage:assemble publishAarPublicationToMavenCentralRepository
 # ========================
 fwk-loader-build:
@@ -85,7 +85,7 @@ fwk-loader-build:
       - android/framework/loader/**/*
   stage: build
   script:
-#    - ./gradlew includeSourceModule  -PmoduleList=framework-loader
+    - ./gradlew includeSourceModule  -PmoduleList=framework-loader
     - ./gradlew :framework:loader:assemble publishAarPublicationToMavenCentralRepository
 # ========================
 #buildBigApp job
