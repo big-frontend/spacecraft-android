@@ -84,7 +84,7 @@ sourceModulesStr.eachAfterSplit(',') {
 //    gradle.ext.appMap[m.simpleName] = m
 //}
 gradle.ext.allModules.each { m ->
-    m.binaryPath = "${gradle.ext.groupId}:${m.simpleName}:1.0.0"
+    m.binaryPath = "${gradle.ext.groupId}:${m.simpleName}:1.0.0-SNAPSHOT"
     if (!gradle.ext.sourceModuleMap.containsKey(m.simpleName) && !gradle.ext.excludeModuleMap.containsKey(m.simpleName)) {
         gradle.ext.binaryModuleMap[m.simpleName] = m
     }

@@ -4,18 +4,18 @@ apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
     }
-    flavorDimensions 'platform', 'publishType'
-    productFlavors {
-        tv {
-            dimension 'platform'
-        }
-        phone {
-            dimension 'platform'
-        }
-        beta {
-            dimension 'publishType'
-        }
-    }
+//    flavorDimensions 'platform', 'publishType'
+//    productFlavors {
+//        tv {
+//            dimension 'platform'
+//        }
+//        phone {
+//            dimension 'platform'
+//        }
+//        beta {
+//            dimension 'publishType'
+//        }
+//    }
 
 }
 dependencies {
@@ -27,7 +27,9 @@ publish {
     name = "hotel-bundle2"
     groupId = gradle.groupId
     artifactId = "hotel-bundle2"
+//    version = "1.0.0-$gradle.activeBuildVariant-SNAPSHOT"
     version = "1.0.0-SNAPSHOT"
     website = "https://github.com/JamesfChen/spacecrafe-android"
     buildVariant = "debug"
+//    buildVariant = gradle.activeBuildVariant
 }

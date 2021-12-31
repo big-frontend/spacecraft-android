@@ -7,12 +7,30 @@
  */
 buildscript {
     repositories {
-//        maven { url "https://jitpack.io" }
+
+        //publish 同时包含rlease与snapshot
+        maven {
+            credentials{
+                username 'delta'
+                password 'vCKe*5vHBh3xH2.'
+            }
+            url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven {
+            credentials{
+                username 'delta'
+                password 'vCKe*5vHBh3xH2.'
+            }
+            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+        maven {
+            credentials{
+                username 'delta'
+                password 'vCKe*5vHBh3xH2.'
+            }
+            url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' }
+        maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url "https://maven.aliyun.com/repository/public" }
-        //publish 同时包含rlease与snapshot
-        maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
         maven { url uri("$rootDir/repo") }
         mavenCentral()
         mavenLocal()
@@ -52,11 +70,28 @@ buildscript {
 
 allprojects {
     repositories {
-//        maven { url "https://jitpack.io" }
+        maven {
+            credentials{
+                username 'delta'
+                password 'vCKe*5vHBh3xH2.'
+            }
+            url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven {
+            credentials{
+                username 'delta'
+                password 'vCKe*5vHBh3xH2.'
+            }
+            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+        maven {
+            credentials{
+                username 'delta'
+                password 'vCKe*5vHBh3xH2.'
+            }
+            url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' }
+        maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'https://maven.aliyun.com/repository/google/' }
-        maven { url "https://maven.aliyun.com/repository/public" }
-        maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven {url 'https://maven.aliyun.com/repository/google/' }
+        maven {url "https://maven.aliyun.com/repository/public" }
         maven { url uri("$rootDir/repo") }
         mavenLocal()
         mavenCentral()
@@ -65,8 +100,6 @@ allprojects {
             if (findProject(':components:account-module:impl') !=null){
                 dirs project(':components:account-module:impl').file('libs')
             }
-        }
-        flatDir {
             dirs 'libs'
         }
     }
