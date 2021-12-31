@@ -7,7 +7,7 @@
  */
 buildscript {
     repositories {
-        maven { url "https://jitpack.io" }
+//        maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url "https://maven.aliyun.com/repository/public" }
@@ -52,7 +52,7 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://jitpack.io" }
+//        maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url "https://maven.aliyun.com/repository/public" }
