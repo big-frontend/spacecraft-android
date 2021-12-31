@@ -25,7 +25,7 @@ account-impl-deploy:
   stage: deploy
   script:
     - ./gradlew includeSourceModule  -PmoduleList=account-impl
-    - ./gradlew :components:account-module:impl:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew :components:account-module:impl:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 
@@ -56,7 +56,7 @@ account-export-deploy:
   stage: deploy
   script:
     - ./gradlew includeSourceModule  -PmoduleList=account-export
-    - ./gradlew :components:account-module:export:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew :components:account-module:export:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 account-daily-check1:

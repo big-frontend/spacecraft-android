@@ -57,3 +57,12 @@ dependencies {
 //    implementation "com.github.jnr:jnr-unixsocket:0.23"
     api "com.google.android.gms:play-services-cronet:${CRONET_VERSION}"
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-network"
+    groupId = gradle.groupId
+    artifactId = "framework-network"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

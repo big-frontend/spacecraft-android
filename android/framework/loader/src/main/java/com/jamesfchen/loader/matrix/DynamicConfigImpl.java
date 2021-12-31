@@ -7,10 +7,10 @@ import com.tencent.mrs.plugin.IDynamicConfig;
 
 import java.util.concurrent.TimeUnit;
 
-public class DynamicConfigImplDemo implements IDynamicConfig {
+public class DynamicConfigImpl implements IDynamicConfig {
     private static final String TAG = "Matrix.DynamicConfigImplDemo";
 
-    public DynamicConfigImplDemo() {
+    public DynamicConfigImpl() {
 
     }
 

@@ -199,3 +199,12 @@ dependencies {
      * ===============================monitor end=============================
      */
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-common"
+    groupId = gradle.groupId
+    artifactId = "framework-common"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

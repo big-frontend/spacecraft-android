@@ -26,3 +26,12 @@ dependencies {
     lintChecks project(path: ':components:hotel-module:hotel-lint')
     lintPublish project(path: ':components:hotel-module:hotel-lint')
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "hotel-foundation"
+    groupId = gradle.groupId
+    artifactId = "hotel-foundation"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

@@ -74,3 +74,9 @@ dependencies {
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
 
+
+//afterEvaluate {
+//    project.components.each{component->
+//        println("cjf $component.name")
+//    }
+//}

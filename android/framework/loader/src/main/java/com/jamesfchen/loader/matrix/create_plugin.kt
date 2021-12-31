@@ -17,7 +17,7 @@ import java.io.File
 import java.util.*
 
 const val APM_TAG = "ApmInitializer"
-fun configureTracePlugin(context: Context, dynamicConfig: DynamicConfigImplDemo): TracePlugin {
+fun configureTracePlugin(context: Context, dynamicConfig: DynamicConfigImpl): TracePlugin {
     val fpsEnable = dynamicConfig.isFPSEnable
     val traceEnable = dynamicConfig.isTraceEnable
     val signalAnrTraceEnable: Boolean = dynamicConfig.isSignalAnrTraceEnable
@@ -81,7 +81,7 @@ fun useSignalAnrTraceAlone(anrFilePath: String, printTraceFile: String) {
 
 fun configureIOCanaryPlugin(
     context: Context,
-    dynamicConfig: DynamicConfigImplDemo
+    dynamicConfig: DynamicConfigImpl
 ): IOCanaryPlugin {
     return IOCanaryPlugin(
         IOConfig.Builder()

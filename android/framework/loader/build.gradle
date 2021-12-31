@@ -103,3 +103,12 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-loader"
+    groupId = gradle.groupId
+    artifactId = "framework-loader"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

@@ -8,3 +8,12 @@ android {
 dependencies {
     api 'com.google.zxing:core:3.3.3'
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "codescanner-qrcode"
+    groupId = gradle.groupId
+    artifactId = "codescanner-qrcode"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

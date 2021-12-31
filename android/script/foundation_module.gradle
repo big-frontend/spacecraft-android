@@ -1,22 +1,5 @@
 apply plugin: 'com.android.library'
 apply from: "${rootDir}/script/base_module.gradle"
-//apply plugin: 'kotlin-kapt'
-//class ExtSourceSetsPlugin implements Plugin<Project> {
-//
-//    @Override
-//    void apply(Project project) {
-//        def srcDirs = project.extensions.create("SourcesExtension", SourcesExtension)
-//        project.beforeEvaluate {
-//
-//
-//        }
-//    }
-//}
-//
-//class SourcesExtension {
-//    List<String> srcDirs
-//}
-//apply plugin: ExtSourceSetsPlugin
 dependencies {
     teenager("foundation begin ========================================================================================")
     importDeps(project){dep->

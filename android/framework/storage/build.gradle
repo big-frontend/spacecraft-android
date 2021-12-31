@@ -47,3 +47,12 @@ dependencies {
      * ================================database end==============================
      */
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-storage"
+    groupId = gradle.groupId
+    artifactId = "framework-storage"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

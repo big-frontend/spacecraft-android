@@ -16,3 +16,12 @@ dependencies {
     api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
 //    api project(path: ':storage')
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-map"
+    groupId = gradle.groupId
+    artifactId = "framework-map"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

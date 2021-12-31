@@ -68,13 +68,13 @@ class ApmInitializer : Initializer<Unit> {
 
     private fun startMatrix(context: Context) {
         // Switch.
-        val dynamicConfig = DynamicConfigImplDemo()
+        val dynamicConfig = DynamicConfigImpl()
         MatrixLog.i(APM_TAG, "Start Matrix configurations.")
         // Builder. Not necessary while some plugins can be configured separately.
         val builder = Matrix.Builder(SApp.getInstance())
 
         // Reporter. Matrix will callback this listener when found issue then emitting it.
-        builder.pluginListener(TestPluginListener(context))
+        builder.pluginListener(MyPluginListener(context))
 
         // Configure trace canary.
         val tracePlugin: TracePlugin = configureTracePlugin(context, dynamicConfig)

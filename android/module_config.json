@@ -1,13 +1,22 @@
 {
   "author": "jamesfchen",
   "description": "该配置文件给idea plugin插件和gradle plugin读取,idea plugin通过该文件可以实现管理想要编译的模块，gradle plugin则可以根据这些模块信息生成快速模块",
+  "buildVariants": [
+    "phoneBetaDebug",
+    "tvBetaDebug",
+    "watchBetaDebug",
+    "phoneBetaRelease",
+    "tvBetaRelease",
+    "watchBetaRelease"
+  ],
+  "activeBuildVariant": "phoneBetaDebug",
+  "groupId": "io.github.jamesfchen",
   "allModules": [
     {
       "simpleName": "app",
       "format": "app",
       "group": "father",
       "sourcePath": ":app",
-      "binaryPath": "io.github.jamesfchen:app:1.0.0-SNAPSHOT",
       "deps": [
         "hotel-bundle1",
         "hotel-bundle2",
@@ -22,7 +31,6 @@
       "format": "app",
       "group": "codescanner",
       "sourcePath": ":components:codescanner-module:main",
-      "binaryPath": "io.github.jamesfchen:codescanner-main:1.0.0-SNAPSHOT",
       "deps": [
         "codescanner-qrcode"
       ]
@@ -33,7 +41,6 @@
       "format": "bundle",
       "group": "codescanner",
       "sourcePath": ":components:codescanner-module:qrcode",
-      "binaryPath": "io.github.jamesfchen:codescanner-qrcode:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader"
       ]
@@ -43,7 +50,6 @@
       "format": "app",
       "group": "im",
       "sourcePath": ":components:im-module:main",
-      "binaryPath": "io.github.jamesfchen:im-main:1.0.0-SNAPSHOT",
       "deps": [
         "im-chatroom"
       ]
@@ -53,7 +59,6 @@
       "format": "bundle",
       "group": "im",
       "sourcePath": ":components:im-module:chatroom",
-      "binaryPath": "io.github.jamesfchen:im-chatroom:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader"
       ]
@@ -63,7 +68,6 @@
       "format": "app",
       "group": "account",
       "sourcePath": ":components:account-module:main",
-      "binaryPath": "io.github.jamesfchen:account-main:1.0.0-SNAPSHOT",
       "deps": [
         "account-impl"
       ]
@@ -73,7 +77,6 @@
       "format": "bundle",
       "group": "account",
       "sourcePath": ":components:account-module:impl",
-      "binaryPath": "io.github.jamesfchen:account-impl:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader",
         "account-export"
@@ -83,15 +86,13 @@
       "simpleName": "account-export",
       "format": "bundle_foundation",
       "group": "account",
-      "sourcePath": ":components:account-module:export",
-      "binaryPath": "io.github.jamesfchen:account-export:1.0.0-SNAPSHOT"
+      "sourcePath": ":components:account-module:export"
     },
     {
       "simpleName": "home-main",
       "format": "app",
       "group": "home",
       "sourcePath": ":components:home-module:main",
-      "binaryPath": "io.github.jamesfchen:home-main:1.0.0-SNAPSHOT",
       "deps": [
         "home-myhome"
       ]
@@ -101,7 +102,6 @@
       "format": "bundle",
       "group": "home",
       "sourcePath": ":components:home-module:myhome",
-      "binaryPath": "io.github.jamesfchen:home-myhome:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader",
         "account-export"
@@ -112,7 +112,6 @@
       "format": "app",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:main",
-      "binaryPath": "io.github.jamesfchen:hotel-main:1.0.0-SNAPSHOT",
       "deps": [
         "hotel-bundle1",
         "hotel-bundle2"
@@ -123,7 +122,6 @@
       "format": "bundle",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:bundle1",
-      "binaryPath": "io.github.jamesfchen:hotel-bundle1:1.0.0-SNAPSHOT",
       "deps": [
         "hotel-foundation"
       ]
@@ -133,7 +131,6 @@
       "format": "bundle",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:bundle2",
-      "binaryPath": "io.github.jamesfchen:hotel-bundle2:1.0.0-SNAPSHOT",
       "deps": [
         "hotel-foundation"
       ]
@@ -142,15 +139,13 @@
       "simpleName": "hotel-lint",
       "format": "jar",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:hotel-lint",
-      "binaryPath": "io.github.jamesfchen:hotel-lint:1.0.0-SNAPSHOT"
+      "sourcePath": ":components:hotel-module:hotel-lint"
     },
     {
       "simpleName": "hotel-foundation",
       "format": "bundle_foundation",
       "group": "hotel",
       "sourcePath": ":components:hotel-module:foundation",
-      "binaryPath": "io.github.jamesfchen:hotel-foundation:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader"
       ]
@@ -160,7 +155,6 @@
       "format": "app",
       "group": "box",
       "sourcePath": ":components:box-module:main",
-      "binaryPath": "io.github.jamesfchen:box-main:1.0.0-SNAPSHOT",
       "deps": [
         "box-tool"
       ]
@@ -170,7 +164,6 @@
       "format": "bundle",
       "group": "box",
       "sourcePath": ":components:box-module:tool",
-      "binaryPath": "io.github.jamesfchen:box-tool:1.0.0-SNAPSHOT",
       "deps": [
         "framework-loader"
       ]
@@ -180,7 +173,6 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:loader",
-      "binaryPath": "io.github.jamesfchen:framework-loader:1.0.0-SNAPSHOT",
       "deps": [
         "framework-network",
         "framework-av",
@@ -195,7 +187,6 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:hybrid",
-      "binaryPath": "io.github.jamesfchen:framework-hybrid:1.0.0-SNAPSHOT",
       "deps": [
         "framework-common"
       ]
@@ -204,15 +195,13 @@
       "simpleName": "framework-rn",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:rn",
-      "binaryPath": "io.github.jamesfchen:framework-rn:1.0.0-SNAPSHOT"
+      "sourcePath": ":framework:rn"
     },
     {
       "simpleName": "framework-network",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:network",
-      "binaryPath": "io.github.jamesfchen:framework-network:1.0.0-SNAPSHOT",
       "deps": [
         "framework-common",
         "framework-mockserver"
@@ -223,7 +212,6 @@
       "group": "fwk",
       "format": "framework_foundation",
       "sourcePath": ":framework:av",
-      "binaryPath": "io.github.jamesfchen:framework-av:1.0.0-SNAPSHOT",
       "deps": [
         "framework-common"
       ]
@@ -233,7 +221,6 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:image",
-      "binaryPath": "io.github.jamesfchen:framework-image:1.0.0-SNAPSHOT",
       "deps": [
         "framework-common"
       ]
@@ -243,7 +230,6 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:mockserver",
-      "binaryPath": "io.github.jamesfchen:framework-mockserver:1.0.0-SNAPSHOT",
       "deps": [
         "framework-common"
       ]
@@ -253,7 +239,6 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:storage",
-      "binaryPath": "io.github.jamesfchen:framework-storage:1.0.0-SNAPSHOT",
       "deps": [
         "framework-common"
       ]
@@ -262,8 +247,7 @@
       "simpleName": "framework-common",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:common",
-      "binaryPath": "io.github.jamesfchen:framework-common:1.0.0-SNAPSHOT"
+      "sourcePath": ":framework:common"
     }
   ]
 }

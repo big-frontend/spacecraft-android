@@ -6,7 +6,7 @@ hotel-foundation:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-foundation
-    - ./gradlew :components:hotel-module:foundation:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :components:hotel-module:foundation:assemble publishDebugAarPublicationToMavenCentralRepository
 hotel-foundation-lint:
   only:
     changes:
@@ -30,7 +30,7 @@ hotel-bundle1:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle1
-    - ./gradlew :components:hotel-module:bundle1:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :components:hotel-module:bundle1:assemble publishDebugAarPublicationToMavenCentralRepository
 
 hotel-bundle1-lint:
   only:
@@ -49,7 +49,7 @@ hotel-bundle2:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2
-    - ./gradlew :components:hotel-module:bundle2:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :components:hotel-module:bundle2:assemble publishDebugAarPublicationToMavenCentralRepository
 
 hotel-bundle2-lint:
   only:

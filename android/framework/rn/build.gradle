@@ -137,3 +137,12 @@ dependencies {
 //        implementation jscFlavor
 //    }
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-rn"
+    groupId = gradle.groupId
+    artifactId = "framework-rn"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

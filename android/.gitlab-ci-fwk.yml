@@ -6,7 +6,7 @@ fwk-common-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-common
-    - ./gradlew :framework:common:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:common:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-av-build:
   only:
@@ -15,7 +15,7 @@ fwk-av-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-av
-    - ./gradlew :framework:av:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:av:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-flutter:
 #  only:
@@ -32,7 +32,7 @@ fwk-hybrid-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-hybrid
-    - ./gradlew :framework:hybrid:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:hybrid:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-image-build:
   only:
@@ -41,7 +41,7 @@ fwk-image-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-image
-    - ./gradlew :framework:image:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:image:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-map:
 #  only:
@@ -49,8 +49,8 @@ fwk-image-build:
 #      - android/framework/map/**/*
 #  stage: build
 #  script:
-#    - ./gradlew :framework:map:assemble publishAarPublicationToMavenCentralRepository includeBinaryModule  -PmoduleList=framework-map
-#    - ./gradlew :framework:loader:assemble publishAarPublicationToMavenCentralRepository
+#    - ./gradlew :framework:map:assemble publishDebugAarPublicationToMavenCentralRepository includeBinaryModule  -PmoduleList=framework-map
+#    - ./gradlew :framework:loader:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-mockserver:
 #  only:
@@ -68,7 +68,7 @@ fwk-network-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-network
-    - ./gradlew :framework:network:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:network:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-storage-build:
   only:
@@ -77,7 +77,7 @@ fwk-storage-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-storage
-    - ./gradlew :framework:storage:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:storage:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-loader-build:
   only:
@@ -86,7 +86,7 @@ fwk-loader-build:
   stage: build
   script:
     - ./gradlew includeSourceModule  -PmoduleList=framework-loader
-    - ./gradlew :framework:loader:assemble publishAarPublicationToMavenCentralRepository
+    - ./gradlew :framework:loader:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #buildBigApp job
 #build-big-app:

@@ -1,2 +1,11 @@
 apply from: "$rootDir.path/script/api_module.gradle"
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "account-export"
+    groupId = gradle.groupId
+    artifactId = "account-export"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}
 

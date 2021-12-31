@@ -1,3 +1,6 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
@@ -72,6 +75,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    variantFilter { variant ->
+        def flavors = variant.flavors*.name
+        def buildType = variant.buildType.name
+        def a = gradle.ext.activeBuildVariant.toLowerCase()
+        if (!a.contains(buildType)) {
+            setIgnore(true)
+        }
+        for (def flavor in flavors) {
+            if (!a.contains(flavor)) {
+                setIgnore(true)
+            }
+        }
+    }
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -119,42 +135,59 @@ dependencies {
      * ===============================test end=============================
      */
 }
-def findArtifact() {
-    def myGroupId = ''
-    def myArtifactId = ''
-    def myVersion = ''
-    def moduleSimpleName = ''
-    def sourcePath = ''
-    def binaryPath = ''
-    for (def module : gradle.ext.modules) {
-        if (project.path == module.sourcePath) {
-            moduleSimpleName = module.simpleName
-            sourcePath = module.sourcePath
-            binaryPath = module.binaryPath
-            myGroupId = binaryPath.split(":")[0]
-            myArtifactId = binaryPath.split(":")[1]
-            myVersion = binaryPath.split(":")[2]
-            break
+ext {
+    getCurrentApplicationId = {
+        def currFlavor = getCurrentFlavor()
+
+        def outStr = ''
+        android.productFlavors.all { flavor ->
+
+            if (flavor.name == currFlavor)
+                outStr = flavor.applicationId
+        }
+
+        return outStr
+    }
+    getCurrentVariant = {
+        Gradle gradle = getGradle()
+        String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+
+        Pattern pattern
+
+        if (tskReqStr.contains("assemble"))
+            pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
+        else
+            pattern = Pattern.compile("generate(\\w+)(Release|Debug)")
+
+        Matcher matcher = pattern.matcher(tskReqStr)
+
+        if (matcher.find()) {
+            return matcher.group(2).toLowerCase()
+        } else {
+            println "NO MATCH FOUND"
+            return ""
         }
     }
-    if ((moduleSimpleName == null || moduleSimpleName.isEmpty())
-            || (sourcePath == null || sourcePath.isEmpty())
-            || (binaryPath == null || binaryPath.isEmpty())
-    ) {
-        throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :sourcePath${sourcePath} :binaryPath${binaryPath} 这些参数都要配置")
+    getCurrentFlavor = {
+        Gradle gradle = getGradle()
+        String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+
+        Pattern pattern
+
+        if (tskReqStr.contains("assemble"))
+            pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
+        else
+            pattern = Pattern.compile("generate(\\w+)(Release|Debug)")
+
+        Matcher matcher = pattern.matcher(tskReqStr)
+
+        if (matcher.find())
+            return matcher.group(1).toLowerCase()
+        else {
+            println "NO MATCH FOUND"
+            return ""
+        }
     }
-    return [moduleSimpleName,myGroupId,myArtifactId,myVersion]
-}
-def (moduleSimpleName,myGroupId, myArtifactId,myVersion) = findArtifact()
-apply from : "${rootDir}/script/module_publisher.gradle"
-publish {
-    name = moduleSimpleName
-    groupId = myGroupId
-    artifactId = myArtifactId
-    version = myVersion
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-}
-ext {
     findModulePath = { simpleName ->
         if (gradle.ext.binaryModuleMap.containsKey(simpleName)) {
             def module = gradle.ext.binaryModuleMap[simpleName]
@@ -224,18 +257,49 @@ ext {
         def deps = myProject.findDeps(myProject)
         recurImport(visited, deps, closure)
     }
+    findArtifact = {
+        def myGroupId = ''
+        def myArtifactId = ''
+        def myVersion = ''
+        def moduleSimpleName = ''
+        def sourcePath = ''
+        def binaryPath = ''
+        for (def module : gradle.ext.modules) {
+            if (project.path == module.sourcePath) {
+                moduleSimpleName = module.simpleName
+                sourcePath = module.sourcePath
+                binaryPath = module.binaryPath
+                myGroupId = binaryPath.split(":")[0]
+                myArtifactId = binaryPath.split(":")[1]
+                myVersion = binaryPath.split(":")[2]
+                break
+            }
+        }
+
+        if ((moduleSimpleName == null || moduleSimpleName.isEmpty())
+                || (sourcePath == null || sourcePath.isEmpty())
+                || (binaryPath == null || binaryPath.isEmpty())
+        ) {
+            throw IllegalArgumentException("moduleSimpleName:${moduleSimpleName} :sourcePath${sourcePath} :binaryPath${binaryPath} 这些参数都要配置")
+        }
+        //todo:buildVariant跟随gradle.ext.activeBuildVariant变化
+
+        return [moduleSimpleName, myGroupId, myArtifactId, myVersion,'debug']
+    }
 }
-static boolean isSourcePath(def path){
+
+static boolean isSourcePath(def path) {
     return !path.contains(".")
 }
+
 void recurImport(def visited, def deps, Closure closure) {
     if (deps == null || deps.size() == 0) return
     for (def d : deps) {
-        if (d instanceof String) {
-            if (!visited.add(d)) {
+        if (d instanceof Project) {
+            if (!visited.add(d.path)) {
                 continue
             }
-        } else if (!visited.add(d.path)) {
+        } else if (!visited.add(d)) {
             continue
         }
         recurImport(visited, closure.call(d), closure)

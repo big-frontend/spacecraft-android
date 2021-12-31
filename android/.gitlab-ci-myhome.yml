@@ -25,7 +25,7 @@ home-myhome-deploy:
   stage: deploy
   script:
     - ./gradlew includeSourceModule  -PmoduleList=home-myhome
-    - ./gradlew :components:home-module:myhome:publishAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew :components:home-module:myhome:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 home-daily-check1:

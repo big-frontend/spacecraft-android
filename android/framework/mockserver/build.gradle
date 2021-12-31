@@ -17,3 +17,12 @@ dependencies {
     api "com.squareup.okhttp3:mockwebserver:${OKHTTP_MOCK_VERSION}"
     api "com.squareup.retrofit2:retrofit-mock:${RETROFIT_VERSION}"
 }
+apply from : "${rootDir}/script/module_publisher.gradle"
+publish {
+    name = "framework-mockserver"
+    groupId = gradle.groupId
+    artifactId = "framework-mockserver"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}

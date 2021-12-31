@@ -37,7 +37,7 @@ private void loadUserInfo(Project project, PublishExtension ext) {
     if (localPropertiesFile.exists()) {
         properties.load(localPropertiesFile.newDataInputStream())
         //发布release必须要求签名，否则发布会失败
-        if (!version.endsWith('SNAPSHOT')){
+        if (!version.endsWith('SNAPSHOT')) {
             project.ext["signing.keyId"] = properties.getProperty("signingKeyId")
             project.ext["signing.password"] = properties.getProperty("signingPassword")
             project.ext["signing.secretKeyRingFile"] = properties.getProperty("signingSecretKeyRingFile")
@@ -46,45 +46,45 @@ private void loadUserInfo(Project project, PublishExtension ext) {
             ext.signingPassword = properties.getProperty("signingSecretKeyRingFile")
         }
     }
-    ext.ossrhUsername =  properties.containsKey("ossrhUsername") ? properties.getProperty("ossrhUsername") :'delta'
-    ext.ossrhPassword = properties.containsKey("ossrhPassword") ? properties.getProperty("ossrhPassword"):'vCKe*5vHBh3xH2.'
+    ext.ossrhUsername = properties.containsKey("ossrhUsername") ? properties.getProperty("ossrhUsername") : 'delta'
+    ext.ossrhPassword = properties.containsKey("ossrhPassword") ? properties.getProperty("ossrhPassword") : 'vCKe*5vHBh3xH2.'
 }
 //配置maven local 和 maven central两个仓库
 def configMaven(Project project, PublishExtension ext) {
     def taskName
     def pkg
     if (isAar()) {
-        taskName = 'aar'
+        taskName = 'Aar'
         pkg = "$buildDir/outputs/aar/${ext.artifactId}-release.aar"
     } else {
-        taskName = 'jar'
+        taskName = 'Jar'
         pkg = "$buildDir/libs/${ext.artifactId}-${ext.version}.jar"
     }
     PublishingExtension publishing = project.extensions.getByType(PublishingExtension)
-    project.components.configureEach{}
+    project.components.configureEach {}
     project.components.each { component ->
-        def newVersion=''
-        if (ext.version.endsWith('SNAPSHOT')){
-            def a = ext.version.split('-')
-            newVersion = "${a[0]}-$component.name-${a[1]}"
-        }else{
-            newVersion = "${ext.version}-${component.name}"
-        }
-        println("cjf ${ext.groupId} ${ext.artifactId} $newVersion")
-        if (component.name.contains('Release')
-                || component.name.contains('release')
-//                || component.name == 'java'
-        ) {
-            publishing.publications.create("$component.name$taskName", MavenPublication, { MavenPublication publication ->
+        if(ext.buildVariant == null){
+            publishing.publications.create("${component.name}$taskName", MavenPublication, { MavenPublication publication ->
                 publication.from(component)
                 publication.groupId = ext.groupId
                 publication.artifactId = ext.artifactId
-                publication.version = "$newVersion"
+                publication.version = ext.version
 //                configJavadoc(project, publication, ext)
                 configPom(publication.pom, ext)
             })
+        }else if (component.name == ext.buildVariant) {
+            publishing.publications.create("${component.name}$taskName", MavenPublication, { MavenPublication publication ->
+                publication.from(component)
+                publication.groupId = ext.groupId
+                publication.artifactId = ext.artifactId
+                publication.version = ext.version
+//                configJavadoc(project, publication, ext)
+                configPom(publication.pom, ext)
+            })
+            return
         }
     }
+
     //远程仓库
     publishing.repositories { artifactRepositories ->
 //        artifactRepositories.maven {mavenArtifactRepository->
@@ -105,7 +105,7 @@ def configMaven(Project project, PublishExtension ext) {
 //    project.tasks.findByName("publish${taskName.capitalize()}PublicationToMavenCentralRepository").doFirst {
 //        ext.check(true)
 //    }
-    if (ext.signingKeyId && ext.signingSecretKeyRingFile && ext.signingPassword){
+    if (ext.signingKeyId && ext.signingSecretKeyRingFile && ext.signingPassword) {
         SigningExtension signing = project.extensions.getByType(SigningExtension)
 //    signing.useInMemoryPgpKeys(ext.signingKeyId, ext.signingSecretKeyRingFile,ext.signingPassword)
         signing.sign(publishing.publications)
@@ -212,15 +212,20 @@ private void configJavadoc(Project project, MavenPublication publication, Publis
 }
 
 def isApk() { return project.getPlugins().hasPlugin('com.android.application') }
+
 def isAar() { return project.getPlugins().hasPlugin('com.android.library') }
+
 def isJar() { return project.getPlugins().hasPlugin('java-library') }
+
 def isJava() { return project.getPlugins().hasPlugin('java') }
+
 class PublishExtension {
     String name
     String groupId
     String artifactId
     String version
     String website
+    String buildVariant //只创建指定的变种发布task
 
     String ossrhUsername
     String ossrhPassword

@@ -1,5 +1,5 @@
-
 import groovy.json.JsonSlurper
+
 def child(Object msg) {
     println("👶[ gradle initialzation ] " + msg);
 }
@@ -16,6 +16,9 @@ def child(Object msg) {
  */
 def config = new JsonSlurper().parse(file("$rootDir/module_config.json"))
 gradle.ext.allModules = config.allModules
+gradle.ext.groupId = config.groupId
+gradle.ext.buildVariants = config.buildVariants
+gradle.ext.activeBuildVariant = config.activeBuildVariant
 def localProperties = new Properties()
 def localPropertiesFile = new File(rootDir, 'local.properties')
 if (localPropertiesFile.exists()) {
@@ -43,9 +46,9 @@ def sourceModulesStr = localProperties.getProperty('sourceModules', '')
 //    excludeModulesStr = ''
 //}
 def appsStr = localProperties.getProperty('apps', '')
-gradle.ext.excludeModuleMap = new LinkedHashMap<String,Object>()
-gradle.ext.sourceModuleMap = new LinkedHashMap<String,Object>()
-gradle.ext.binaryModuleMap = new LinkedHashMap<String,Object>()
+gradle.ext.excludeModuleMap = new LinkedHashMap<String, Object>()
+gradle.ext.sourceModuleMap = new LinkedHashMap<String, Object>()
+gradle.ext.binaryModuleMap = new LinkedHashMap<String, Object>()
 gradle.ext.framworkSrcModuleMap = [:] //目前只使用了7个fwk的模块，其余模块暂且搁置
 gradle.ext.bundleSrcModuleMap = [:]
 gradle.ext.appMap = [:]
@@ -69,10 +72,10 @@ excludeModulesStr.eachAfterSplit(',') {
     gradle.ext.excludeModuleMap[it.simpleName] = it
 }
 sourceModulesStr.eachAfterSplit(',') {
-    if (it.group == 'fwk'){
+    if (it.group == 'fwk') {
         gradle.ext.framworkSrcModuleMap[it.simpleName] = it
     }
-    if (it.format.contains('bundle')){
+    if (it.format.contains('bundle')) {
         gradle.ext.bundleSrcModuleMap[it.simpleName] = it
     }
     gradle.ext.sourceModuleMap[it.simpleName] = it
@@ -81,6 +84,7 @@ sourceModulesStr.eachAfterSplit(',') {
 //    gradle.ext.appMap[m.simpleName] = m
 //}
 gradle.ext.allModules.each { m ->
+    m.binaryPath = "${gradle.ext.groupId}:${m.simpleName}:1.0.0"
     if (!gradle.ext.sourceModuleMap.containsKey(m.simpleName) && !gradle.ext.excludeModuleMap.containsKey(m.simpleName)) {
         gradle.ext.binaryModuleMap[m.simpleName] = m
     }
