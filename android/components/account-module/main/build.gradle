@@ -1,4 +1,5 @@
 apply from: "$rootDir.path/script/app_module.gradle"
+apply from: "${rootDir.path}/script/file_counter.gradle"
 android {
     defaultConfig {
         resValue "string", "app_name","account.app"
