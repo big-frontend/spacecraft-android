@@ -69,7 +69,7 @@ def configMaven(Project project, PublishExtension ext) {
                 publication.groupId = ext.groupId
                 publication.artifactId = ext.artifactId
                 publication.version = ext.version
-//                configJavadoc(project, publication, ext)
+                configJavadoc(project, publication, ext)
                 configPom(publication.pom, ext)
             })
         }else if (component.name == ext.buildVariant) {
@@ -78,7 +78,7 @@ def configMaven(Project project, PublishExtension ext) {
                 publication.groupId = ext.groupId
                 publication.artifactId = ext.artifactId
                 publication.version = ext.version
-//                configJavadoc(project, publication, ext)
+                configJavadoc(project, publication, ext)
                 configPom(publication.pom, ext)
             })
             return
@@ -156,6 +156,9 @@ def configPom(org.gradle.api.publish.maven.MavenPom pom, PublishExtension ext) {
 }
 
 private void configJavadoc(Project project, MavenPublication publication, PublishExtension ext) {
+    //上传的android aar 文档有点问题,maven校验不通过
+    if (isAar()) return
+    if (isKotlin()) return
     if (isAar()) {
         // This generates sources.jar
         task sourcesJar(type: Jar) {
@@ -218,6 +221,7 @@ def isAar() { return project.getPlugins().hasPlugin('com.android.library') }
 def isJar() { return project.getPlugins().hasPlugin('java-library') }
 
 def isJava() { return project.getPlugins().hasPlugin('java') }
+def isKotlin() { return project.getPlugins().hasPlugin('kotlin') }
 
 class PublishExtension {
     String name

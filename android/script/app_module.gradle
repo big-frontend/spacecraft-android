@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir}/script/base_module.gradle"
-//apply plugin: "com.github.jamesfchen.lifecycle-plugin"
 //apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: "io.github.jamesfchen.ibc-plugin"
+//apply plugin: "io.github.jamesfchen.lifecycle-plugin"
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
 //apply plugin: 'com.tencent.buglyplugin'

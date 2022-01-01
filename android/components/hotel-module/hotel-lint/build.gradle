@@ -40,7 +40,7 @@ publish {
     name="hotel-lint"
     groupId = gradle.groupId
     artifactId = "hotel-lint"
-    version = "1.0.0-SNAPSHOT"
+    version = "1.0.0"
     website = "https://github.com/JamesfChen/spacecrafe-android"
     buildVariant = "java"
 }
