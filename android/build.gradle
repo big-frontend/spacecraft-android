@@ -9,24 +9,9 @@ buildscript {
     repositories {
 
         //publish 同时包含rlease与snapshot
-        maven {
-            credentials{
-                username 'delta'
-                password 'vCKe*5vHBh3xH2.'
-            }
-            url 'https://s01.oss.sonatype.org/content/repositories/public/' }
-        maven {
-            credentials{
-                username 'delta'
-                password 'vCKe*5vHBh3xH2.'
-            }
-            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
-        maven {
-            credentials{
-                username 'delta'
-                password 'vCKe*5vHBh3xH2.'
-            }
-            url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' }
+        maven {url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven {url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+        maven {url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' }
         maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.aliyun.com/repository/google/' }
@@ -58,7 +43,7 @@ buildscript {
         classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
 //        classpath "com.uber:infer-plugin:0.7.4"
         classpath "io.github.jamesfchen:lifecycle-plugin:1.0.0"
-        classpath "io.github.jamesfchen:ibc-plugin:1.0.1"
+        classpath "io.github.jamesfchen:ibc-plugin:1.2.0"
 
         classpath "com.alibaba:arouter-register:1.0.2"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
@@ -66,6 +51,7 @@ buildscript {
 //        classpath 'com.google.code.gson:gson:2.7'
 //        classpath  'com.google.gradle:osdetector-gradle-plugin:1.6.0'
         classpath "cn.hikyson.methodcanary:plugin:0.15.5"
+        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
     }
 }
 
@@ -77,24 +63,9 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            credentials{
-                username 'delta'
-                password 'vCKe*5vHBh3xH2.'
-            }
-            url 'https://s01.oss.sonatype.org/content/repositories/public/' }
-        maven {
-            credentials{
-                username 'delta'
-                password 'vCKe*5vHBh3xH2.'
-            }
-            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
-        maven {
-            credentials{
-                username 'delta'
-                password 'vCKe*5vHBh3xH2.'
-            }
-            url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' }
+        maven {url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven {url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+        maven {url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/' }
         maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven {url 'https://maven.aliyun.com/repository/google/' }

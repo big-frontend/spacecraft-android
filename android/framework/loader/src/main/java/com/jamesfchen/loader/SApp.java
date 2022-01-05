@@ -1,6 +1,5 @@
 package com.jamesfchen.loader;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Debug;
 import android.os.SystemClock;
@@ -23,6 +22,8 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
 import com.jamesfchen.loader.systemfilter.SystemFilter;
 import com.jamesfchen.rn.MyNativeViewManager;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,7 +40,7 @@ import static com.jamesfchen.loader.monitor.tracer.StartupKt.TAG_STARTUP_MONITOR
  *
  */
 @com.jamesfchen.lifecycle.App
-public class SApp extends Application implements Configuration.Provider, ReactApplication {
+public class SApp extends TinkerApplication implements Configuration.Provider, ReactApplication {
     private static SApp app;
     public static SApp getInstance() {
         if (app == null) {
@@ -52,6 +53,15 @@ public class SApp extends Application implements Configuration.Provider, ReactAp
     private static final String PROCESS_2 = ":mock_server";
     private static final String PROCESS_3 = ":mock_jobserver";
     private long start = 0;
+    public SApp() {
+        super(
+                //tinkerFlags, which types is supported
+                //dex only, library only, all support
+                ShareConstants.TINKER_ENABLE_ALL,
+                // This is passed as a string so the shell application does not
+                // have a binary dependency on your ApplicationLifeCycle class.
+                "com.jamesfchen.loader.SAppLike");
+    }
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
