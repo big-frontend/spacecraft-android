@@ -21,7 +21,7 @@
 
 #include "FrameSequenceJNI.h"
 
-#define JNI_PACKAGE "android/support/rastermill"
+#define JNI_PACKAGE "android/rastermill"
 
 static struct {
     jclass clazz;

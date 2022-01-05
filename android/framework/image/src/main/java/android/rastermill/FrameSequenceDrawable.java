@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package android.support.rastermill;
+package android.rastermill;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -31,6 +31,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
 import android.os.SystemClock;
+import android.rastermill.FrameSequence;
 import android.util.Log;
 
 public class FrameSequenceDrawable extends Drawable implements Animatable, Runnable {
