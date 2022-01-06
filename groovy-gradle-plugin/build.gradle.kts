@@ -5,8 +5,10 @@ buildscript {
         maven { url = uri("https://maven.oschina.net/content/groups/public/") }
         maven { url = uri("https://plugins.gradle.org/m2/") }
         maven { url = uri("./local-repo") }
-
         maven { url = uri("https://maven.aliyun.com/repository/google/") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }
+        maven { url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") }
         mavenLocal()
         mavenCentral()
         google()
@@ -30,6 +32,9 @@ allprojects {
         maven { url = uri("https://plugins.gradle.org/m2/") }
         maven { url = uri("https://maven.aliyun.com/repository/google/") }
         maven { url = uri("./local-repo") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }
+        maven { url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") }
         mavenLocal()
         mavenCentral()
         google()
@@ -39,12 +44,11 @@ allprojects {
 //        task.sourceCompatibility = JavaVersion.VERSION_1_8
 //        task.targetCompatibility = JavaVersion.VERSION_1_8
 //    }
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.majorVersion
-        }
-    }
-
+//    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile::class.java).configureEach { task ->
+//        task.kotlinOptions {
+//            jvmTarget = '1.8'
+//        }
+//    }
     afterEvaluate {
     }
 }

@@ -1,2 +1,10 @@
 apply from:'./script/trace_gradle.gradle'
 apply from:'./script/module_registry.gradle'
+includeBuild("../groovy-gradle-plugin") {
+//    name = "g"
+    dependencySubstitution {
+//        substitute(module("io.github.jamesfchen:lifecycle-api")).using(project(":"))
+//        substitute(module("io.github.jamesfchen:ibc-api")).using(project(":"))
+//        substitute(module("io.github.jamesfchen:perf-api")).using(project(":"))
+    }
+}
