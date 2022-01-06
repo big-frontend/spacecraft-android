@@ -74,12 +74,12 @@ allprojects {
         mavenLocal()
         mavenCentral()
         google()
-        flatDir {
-            if (findProject(':components:account-module:impl') !=null){
-                dirs project(':components:account-module:impl').file('libs')
-            }
-            dirs 'libs'
-        }
+//        flatDir {
+//            if (findProject(':components:account-module:impl') !=null){
+//                dirs project(':components:account-module:impl').file('libs')
+//            }
+//            dirs 'libs'
+//        }
     }
     configurations.all {
         // don't cache changing modules at all，check for updates every build

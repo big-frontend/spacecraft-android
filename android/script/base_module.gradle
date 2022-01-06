@@ -205,6 +205,21 @@ ext {
         //该模块为exclude，不会进行编译不需要依赖
         return null
     }
+    depsConfig= { configuration,simpleName ->
+        def path = moduleify(simpleName)
+        if (path){
+            project.dependencies.add(configuration,path)
+        }
+    }
+    moduleify = {simpleName ->
+        def path = findModulePath(simpleName)
+        if (path != null) {
+            if (isSourcePath(path)) {
+                path = gradle.rootProject.findProject(path)
+            }
+        }
+        return path
+    }
     findDeps = { someOne ->
         def myPath
         if (someOne instanceof Project) {

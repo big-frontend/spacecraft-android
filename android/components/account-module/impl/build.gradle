@@ -36,8 +36,9 @@ android {
 }
 
 dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     //电信一键登入文档：http://dev.10086.cn/docInside?contentId=10000067541479
-    implementation(name:"cmic_quick_login_android_5.9.1", ext:"aar")
+//    implementation(name:"cmic_quick_login_android_5.9.1", ext:"aar")
     //联通一键登入文档：https://onlinebusiness.10010.com/product/5302?chnl=none
     //移动一键登入文档：https://id.189.cn/banner/unPassword
     //    implementation 'com.google.firebase:firebase-auth:21.0.1'
