@@ -1,4 +1,15 @@
-//apply plugin: 'bundle-module'
+plugins {
+    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+}
+publish {
+    name = "box-tool"
+    groupId = gradle.groupId
+    artifactId = "box-tool"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}
+
 apply from: "$rootDir.path/script/bundle_module.gradle"
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
@@ -10,14 +21,4 @@ android {
 
 dependencies {
 
-}
-
-apply from : "${rootDir}/script/module_publisher.gradle"
-publish {
-    name = "box-tool"
-    groupId = gradle.groupId
-    artifactId = "box-tool"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
 }

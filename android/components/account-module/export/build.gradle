@@ -1,5 +1,6 @@
-apply from: "$rootDir.path/script/api_module.gradle"
-apply from : "${rootDir}/script/module_publisher.gradle"
+plugins {
+    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+}
 publish {
     name = "account-export"
     groupId = gradle.groupId
@@ -8,4 +9,4 @@ publish {
     website = "https://github.com/JamesfChen/spacecrafe-android"
     buildVariant = "debug"
 }
-
+apply from: "$rootDir.path/script/api_module.gradle"

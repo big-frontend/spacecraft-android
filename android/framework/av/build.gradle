@@ -1,3 +1,14 @@
+plugins {
+    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+}
+publish {
+    name = "framework-av"
+    groupId = gradle.groupId
+    artifactId = "framework-av"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}
 apply from: "${rootDir.path}/script/foundation_module.gradle"
 
 dependencies {
@@ -31,13 +42,4 @@ dependencies {
     /**
      * ===============================av end=============================
      */
-}
-apply from : "${rootDir}/script/module_publisher.gradle"
-publish {
-    name = "framework-av"
-    groupId = gradle.groupId
-    artifactId = "framework-av"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
 }

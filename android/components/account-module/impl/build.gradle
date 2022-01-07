@@ -1,4 +1,15 @@
-//apply plugin: 'bundle-module'
+plugins {
+    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+}
+publish {
+    name = "account-impl"
+    groupId = gradle.groupId
+    artifactId = "account-impl"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}
+
 apply from: "$rootDir.path/script/bundle_module.gradle"
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
@@ -63,13 +74,4 @@ dependencies {
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'//微信官方依赖库
     //test个
-}
-apply from : "${rootDir}/script/module_publisher.gradle"
-publish {
-    name = "account-impl"
-    groupId = gradle.groupId
-    artifactId = "account-impl"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
 }

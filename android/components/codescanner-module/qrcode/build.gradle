@@ -1,4 +1,15 @@
-//apply plugin: 'bundle-module'
+plugins {
+    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+}
+publish {
+    name = "codescanner-qrcode"
+    groupId = gradle.groupId
+    artifactId = "codescanner-qrcode"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}
+
 apply from: "$rootDir/script/bundle_module.gradle"
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
@@ -7,13 +18,4 @@ android {
 }
 dependencies {
     api 'com.google.zxing:core:3.3.3'
-}
-apply from : "${rootDir}/script/module_publisher.gradle"
-publish {
-    name = "codescanner-qrcode"
-    groupId = gradle.groupId
-    artifactId = "codescanner-qrcode"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
 }

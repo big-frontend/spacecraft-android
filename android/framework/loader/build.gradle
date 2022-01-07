@@ -1,4 +1,14 @@
-//apply plugin: 'foundation-module'
+plugins {
+    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+}
+publish {
+    name = "framework-loader"
+    groupId = gradle.groupId
+    artifactId = "framework-loader"
+    version = "1.0.0-SNAPSHOT"
+    website = "https://github.com/JamesfChen/spacecrafe-android"
+    buildVariant = "debug"
+}
 apply from: "${rootDir}/script/foundation_module.gradle"
 android {
     defaultConfig {
@@ -106,13 +116,4 @@ dependencies {
     annotationProcessor('com.tencent.tinker:tinker-android-anno:1.9.1')
     //tinker's main Android lib
     implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
-}
-apply from : "${rootDir}/script/module_publisher.gradle"
-publish {
-    name = "framework-loader"
-    groupId = gradle.groupId
-    artifactId = "framework-loader"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
 }

@@ -20,13 +20,3 @@ dependencies {
 //    kapt 'com.alibaba:arouter-compiler:1.5.2'
     api 'com.alibaba:arouter-api:1.3.2'
 }
-//def (moduleSimpleName,myGroupId, myArtifactId,myVersion) = project.findArtifact()
-//apply from : "${rootDir}/script/module_publisher.gradle"
-//publish {
-//    name = moduleSimpleName
-//    groupId = myGroupId
-//    artifactId = myArtifactId
-//    version = "$myVersion-SNAPSHOT"
-//    website = "https://github.com/JamesfChen/spacecrafe-android"
-////    buildVariant = "debug"
-//}
