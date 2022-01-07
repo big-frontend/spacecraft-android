@@ -1,0 +1,16 @@
+image: openjdk:11-jdk
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+after_script:
+  - echo "root after script"
+#  - cd ..
+stages:
+  - build
+  - test
+  - deploy
+account-impl-build:
+  stage: build
+  script:
+    - echo "root after script"
