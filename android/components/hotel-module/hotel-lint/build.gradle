@@ -10,7 +10,6 @@ publish {
     artifactId = "hotel-lint"
     version = "1.0.0"
     website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "java"
 }
 dependencies {
     // so many stdlib to choose from!
