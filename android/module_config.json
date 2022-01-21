@@ -27,6 +27,18 @@
       ]
     },
     {
+      "simpleName": "update-main",
+      "format": "app",
+      "group": "update",
+      "sourcePath": ":components:update-module:main"
+    },
+    {
+      "simpleName": "update-appupdate",
+      "format": "bundle",
+      "group": "update",
+      "sourcePath": ":components:update-module:appupdate"
+    },
+    {
       "simpleName": "codescanner-main",
       "format": "app",
       "group": "codescanner",
