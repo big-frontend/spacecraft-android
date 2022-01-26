@@ -1,16 +1,11 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.foundation-plugin"
 }
-publish {
-    name = "framework-av"
-    groupId = gradle.groupId
-    artifactId = "framework-av"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
+android{
+    buildFeatures {
+        viewBinding true
+    }
 }
-apply from: "${rootDir.path}/script/foundation_module.gradle"
-
 dependencies {
 //    implementation project(path: ':framework::common')
     /**
@@ -42,4 +37,5 @@ dependencies {
     /**
      * ===============================av end=============================
      */
+    implementation project.moduleify("framework-common")
 }

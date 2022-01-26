@@ -1,25 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        maven { url = uri("https://jitpack.io") }
-        maven { url = uri("https://maven.oschina.net/content/groups/public/") }
-        maven { url = uri("https://plugins.gradle.org/m2/") }
         maven { url = uri("./local-repo") }
-        maven { url = uri("https://maven.aliyun.com/repository/google/") }
-        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
-        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }
-        maven { url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") }
         mavenLocal()
         mavenCentral()
-        google()
+        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
+        maven { url = uri("https://maven.oschina.net/content/groups/public/") }
+        maven { url = uri("https://maven.aliyun.com/repository/google/") }
+        maven { url = uri("https://jitpack.io") }
+
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20")
-        classpath("com.github.dcendents:android-maven-gradle-plugin:2.1")
-//        classpath "com.jamesfchen:lifecycle-plugin:1.0.0"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 //plugins {
@@ -27,17 +21,15 @@ buildscript {
 //}
 allprojects {
     repositories {
-        maven { url = uri("https://jitpack.io") }
-        maven { url = uri("https://maven.oschina.net/content/groups/public/") }
-        maven { url = uri("https://plugins.gradle.org/m2/") }
-        maven { url = uri("https://maven.aliyun.com/repository/google/") }
         maven { url = uri("./local-repo") }
-        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
-        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }
-        maven { url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") }
         mavenLocal()
         mavenCentral()
-        google()
+        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
+        maven { url = uri("https://maven.oschina.net/content/groups/public/") }
+        maven { url = uri("https://maven.aliyun.com/repository/google/") }
+
     }
 //    tasks.withType(JavaCompile::class.java).configureEach { task ->
 //        task.options.encoding = 'UTF-8'
@@ -49,8 +41,6 @@ allprojects {
 //            jvmTarget = '1.8'
 //        }
 //    }
-    afterEvaluate {
-    }
 }
 
 tasks.register("clean", Delete::class.java) {

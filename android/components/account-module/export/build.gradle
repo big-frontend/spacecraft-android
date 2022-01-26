@@ -1,12 +1,23 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.api-plugin"
 }
-publish {
-    name = "account-export"
-    groupId = gradle.groupId
-    artifactId = "account-export"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
+apply plugin: 'com.alibaba.arouter'
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
 }
-apply from: "$rootDir.path/script/api_module.gradle"
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+    }
+}
+dependencies {
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+//    kapt 'com.alibaba:arouter-compiler:1.5.2'
+    api 'com.alibaba:arouter-api:1.3.2'
+}

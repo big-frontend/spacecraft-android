@@ -10,7 +10,6 @@ pluginBundle {
     plugins {
         ibcplugin {
             displayName = 'budly plugin'
-//            description = "组件化之后，组件监听app的生命周期工具"
             tags = ['budly-plugin']
             version '1.0.0'
         }

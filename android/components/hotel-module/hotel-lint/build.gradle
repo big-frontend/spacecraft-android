@@ -1,15 +1,5 @@
 plugins {
-    id 'java-library'
-    id 'kotlin'
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
-}
-//发布到maven
-publish {
-    name="hotel-lint"
-    groupId = gradle.groupId
-    artifactId = "hotel-lint"
-    version = "1.0.0"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
+    id "io.github.jamesfchen.lint-plugin"
 }
 dependencies {
     // so many stdlib to choose from!
@@ -19,17 +9,6 @@ dependencies {
 //    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0"
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.0"
-//    compileOnly "com.android.tools.lint:lint::27.2.1"
-    ////         Current lint target: Studio 4.2 / AGP 7
-    //        gradlePluginVersion = '4.2.0-beta05'
-    //        lintVersion = '27.2.0-beta05'
-    //
-    //        // Upcoming lint target: Arctic Fox / AGP 7
-    //        gradlePluginVersion = '7.0.0-alpha10'
-    //        lintVersion = '30.0.0-alpha10' // if gradle plugin was 4.1.2, you'd use 27.1.2 here
-    compileOnly "com.android.tools.lint:lint-api:30.0.0-alpha10"
-    compileOnly "com.android.tools.lint:lint-checks:30.0.0-alpha10"
-    testImplementation "com.android.tools.lint:lint-tests:30.0.0-alpha10"
 }
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
@@ -39,8 +18,3 @@ jar {
         attributes("Lint-Registry-v2": "com.jamesfchen.lint.MyIssueRegistry")
     }
 }
-//实时更新
-//project.configurations.all {
-//    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
-//}
-

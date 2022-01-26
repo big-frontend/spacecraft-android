@@ -1,15 +1,3 @@
-//pluginManagement {
-//    repositories {
-//        maven {
-//            url =uri("./local-repo")
-//        }
-//        gradlePluginPortal()
-//    }
-//    plugins {
-//        id("com.github.jamesfchen.perf-plugin")  version "1.0.0"
-//    }
-//}
-rootProject.name = "groovy-gradle-plugin"
 include(
     ":perf:annotations", ":perf:complier", ":perf:perf-plugin",":perf:perf-api",
     ":ksp", ":kcp",

@@ -1,4 +1,7 @@
-apply from: "$rootDir.path/script/app_module.gradle"
+plugins {
+    id "io.github.jamesfchen.app-plugin"
+}
+apply from:"$rootDir/script/app_config.gradle"
 
 android {
     defaultConfig {
@@ -21,4 +24,5 @@ android {
 dependencies {
     api 'androidx.databinding:databinding-runtime:7.0.0-beta03'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
+    project.depsConfig("implementation", "box-tool")
 }

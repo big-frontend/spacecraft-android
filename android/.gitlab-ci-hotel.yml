@@ -61,7 +61,7 @@ hotel-bundle2-lint:
     - ./gradlew :components:hotel-module:bundle2:lintInhouse
 # ========================
 
-hotel-daily-check1:
+hotel-daily-check:
   only:
     changes:
       - android/components/hotel-module/**/*
@@ -69,14 +69,6 @@ hotel-daily-check1:
   script:
     - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2,hotel-bunlde1,hotel-main,hotel-foundation
     - ./gradlew :components:hotel-module:main:fileCounter
-hotel-daily-check2:
-  only:
-    changes:
-      - android/components/hotel-module/**/*
-  stage: build
-  script:
-    - ./gradlew includeSourceModule  -PmoduleList=hotel-bundle2,hotel-bunlde1,hotel-main,hotel-foundation
-    - ./gradlew :components:hotel-module:main:dangerousApiTask
 #lint job
 #hotelLint:
 #  only:

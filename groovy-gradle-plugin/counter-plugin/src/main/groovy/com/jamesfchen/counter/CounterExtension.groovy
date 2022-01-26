@@ -1,6 +1,6 @@
 package com.jamesfchen.counter
 
 class CounterExtension {
-    boolean seaSrcDirs = false
-
+    String sea = 'all'
+    Set<String> pickupModules
 }

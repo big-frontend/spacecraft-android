@@ -59,7 +59,7 @@ account-export-deploy:
     - ./gradlew :components:account-module:export:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
-account-daily-check1:
+account-daily-check:
   only:
     changes:
       - android/components/account-module/**/*
@@ -67,14 +67,6 @@ account-daily-check1:
   script:
     - ./gradlew includeSourceModule  -PmoduleList=account-impl,account-main,account-export
     - ./gradlew :components:account-module:main:fileCounter
-account-daily-check2:
-  only:
-    changes:
-      - android/components/account-module/**/*
-  stage: build
-  script:
-    - ./gradlew includeSourceModule  -PmoduleList=account-impl,account-main,account-export
-    - ./gradlew :components:account-module:main:dangerousApiTask
 
 ##debugTests:
 ##  stage: test

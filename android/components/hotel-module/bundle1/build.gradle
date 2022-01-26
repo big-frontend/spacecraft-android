@@ -1,15 +1,7 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.bundle-plugin"
 }
-publish {
-    name = "hotel-bundle1"
-    groupId = gradle.groupId
-    artifactId = "hotel-bundle1"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
-}
-apply from: "$rootDir.path/script/bundle_module.gradle"
+
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android {
     defaultConfig {
@@ -29,4 +21,7 @@ android {
 
     }
 
+}
+dependencies {
+    implementation project.moduleify("hotel-foundation")
 }

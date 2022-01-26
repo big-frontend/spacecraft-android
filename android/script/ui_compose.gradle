@@ -1,3 +1,36 @@
+android {
+    defaultConfig {
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+    }
+    buildFeatures {
+        compose true
+
+        // Disable unused AGP features
+        buildConfig false
+        aidl false
+        renderScript false
+        resValues false
+        shaders false
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.2'
+//        kotlinCompilerVersion "1.5.10"
+//        kotlinCompilerExtensionVersion "1.0.0-beta08"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+//        useIR = true
+//        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
+    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+}
 dependencies{
     api 'com.google.accompanist:accompanist-insets:0.19.0'
     api "com.google.accompanist:accompanist-insets-ui:0.19.0"
@@ -24,12 +57,11 @@ dependencies{
 
     // Integration with ViewModels
     api 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
-    api "androidx.navigation:navigation-compose:1.0.0-alpha10"
-    api 'androidx.navigation:navigation-common-ktx:2.3.5'
-    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
-    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
-
+//    api "androidx.navigation:navigation-compose:1.0.0-alpha10"
+//    api 'androidx.navigation:navigation-common-ktx:2.3.5'
+//    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
+//    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+//    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
     api "com.google.android.material:material:1.4.0"
 
 

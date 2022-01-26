@@ -1,15 +1,7 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.foundation-plugin"
 }
-publish {
-    name = "framework-map"
-    groupId = gradle.groupId
-    artifactId = "framework-map"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
-}
-apply from: "${rootDir.path}/script/foundation_module.gradle"
+
 android {
     defaultConfig {
         ndk {
@@ -25,4 +17,6 @@ dependencies {
     api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
     api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
 //    api project(path: ':storage')
+
+    implementation project.moduleify("framework-common")
 }

@@ -44,6 +44,5 @@ gradlePlugin {
     }
 }
 dependencies {
-    implementation files('libs/buglySymbolAndroid.jar')
     implementation 'io.github.jamesfchen:base-plugin:1.0.2'
 }

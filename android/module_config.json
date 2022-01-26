@@ -16,15 +16,7 @@
       "simpleName": "app",
       "format": "app",
       "group": "father",
-      "sourcePath": ":app",
-      "deps": [
-        "hotel-bundle1",
-        "hotel-bundle2",
-        "home-myhome",
-        "account-impl",
-        "codescanner-qrcode",
-        "im-chatroom"
-      ]
+      "sourcePath": ":app"
     },
     {
       "simpleName": "update-main",
@@ -42,47 +34,44 @@
       "simpleName": "codescanner-main",
       "format": "app",
       "group": "codescanner",
-      "sourcePath": ":components:codescanner-module:main",
-      "deps": [
-        "codescanner-qrcode"
-      ]
+      "sourcePath": ":components:codescanner-module:main"
     },
     {
       "simpleName": "codescanner-qrcode",
       "projectDir": "",
       "format": "bundle",
       "group": "codescanner",
-      "sourcePath": ":components:codescanner-module:qrcode",
-      "deps": [
-        "framework-loader"
-      ]
+      "sourcePath": ":components:codescanner-module:qrcode"
     },
     {
       "simpleName": "im-main",
       "format": "app",
       "group": "im",
-      "sourcePath": ":components:im-module:main",
-      "deps": [
-        "im-chatroom"
-      ]
+      "sourcePath": ":components:im-module:main"
     },
     {
       "simpleName": "im-chatroom",
       "format": "bundle",
       "group": "im",
-      "sourcePath": ":components:im-module:chatroom",
-      "deps": [
-        "framework-loader"
-      ]
+      "sourcePath": ":components:im-module:chatroom"
     },
     {
       "simpleName": "account-main",
       "format": "app",
       "group": "account",
-      "sourcePath": ":components:account-module:main",
-      "deps": [
-        "account-impl"
-      ]
+      "sourcePath": ":components:account-module:main"
+    },
+    {
+      "simpleName": "account-rnplugin",
+      "format": "bundle_foundation",
+      "group": "account",
+      "sourcePath": ":components:account-module:rnplugin"
+    },
+    {
+      "simpleName": "account-foundation",
+      "format": "bundle_foundation",
+      "group": "account",
+      "sourcePath": ":components:account-module:foundation"
     },
     {
       "simpleName": "account-impl",
@@ -104,48 +93,31 @@
       "simpleName": "home-main",
       "format": "app",
       "group": "home",
-      "sourcePath": ":components:home-module:main",
-      "deps": [
-        "home-myhome"
-      ]
+      "sourcePath": ":components:home-module:main"
     },
     {
       "simpleName": "home-myhome",
       "format": "bundle",
       "group": "home",
-      "sourcePath": ":components:home-module:myhome",
-      "deps": [
-        "framework-loader",
-        "account-export"
-      ]
+      "sourcePath": ":components:home-module:myhome"
     },
     {
       "simpleName": "hotel-main",
       "format": "app",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:main",
-      "deps": [
-        "hotel-bundle1",
-        "hotel-bundle2"
-      ]
+      "sourcePath": ":components:hotel-module:main"
     },
     {
       "simpleName": "hotel-bundle1",
       "format": "bundle",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:bundle1",
-      "deps": [
-        "hotel-foundation"
-      ]
+      "sourcePath": ":components:hotel-module:bundle1"
     },
     {
       "simpleName": "hotel-bundle2",
       "format": "bundle",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:bundle2",
-      "deps": [
-        "hotel-foundation"
-      ]
+      "sourcePath": ":components:hotel-module:bundle2"
     },
     {
       "simpleName": "hotel-lint",
@@ -157,109 +129,68 @@
       "simpleName": "hotel-foundation",
       "format": "bundle_foundation",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:foundation",
-      "deps": [
-        "framework-loader"
-      ]
+      "sourcePath": ":components:hotel-module:foundation"
     },
     {
       "simpleName": "box-main",
       "format": "app",
       "group": "box",
-      "sourcePath": ":components:box-module:main",
-      "deps": [
-        "box-tool"
-      ]
+      "sourcePath": ":components:box-module:main"
     },
     {
       "simpleName": "box-tool",
       "format": "bundle",
       "group": "box",
-      "sourcePath": ":components:box-module:tool",
-      "deps": [
-        "framework-loader"
-      ]
+      "sourcePath": ":components:box-module:tool"
     },
     {
       "simpleName": "framework-loader",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:loader",
-      "deps": [
-        "framework-network",
-        "framework-av",
-        "framework-image",
-        "framework-hybrid",
-        "framework-storage",
-        "framework-rn"
-      ]
-    },
-    {
-      "simpleName": "framework-hybrid",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:hybrid",
-      "deps": [
-        "framework-common"
-      ]
-    },
-    {
-      "simpleName": "framework-rn",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:rn"
+      "type": "api"
     },
     {
       "simpleName": "framework-network",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:network",
-      "deps": [
-        "framework-common",
-        "framework-mockserver"
-      ]
+      "type": "api"
     },
     {
       "simpleName": "framework-av",
       "group": "fwk",
       "format": "framework_foundation",
       "sourcePath": ":framework:av",
-      "deps": [
-        "framework-common"
-      ]
+      "type": "api"
     },
     {
       "simpleName": "framework-image",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:image",
-      "deps": [
-        "framework-common"
-      ]
+      "type": "api"
     },
     {
       "simpleName": "framework-mockserver",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:mockserver",
-      "deps": [
-        "framework-common"
-      ]
+      "type": "api"
     },
     {
       "simpleName": "framework-storage",
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:storage",
-      "deps": [
-        "framework-common"
-      ]
+      "type": "api"
     },
     {
       "simpleName": "framework-common",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:common"
+      "sourcePath": ":framework:common",
+      "type": "api"
     }
   ]
 }

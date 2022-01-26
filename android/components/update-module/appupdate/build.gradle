@@ -1,23 +1,11 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.bundle-plugin"
 }
-publish {
-    name = "update-app"
-    groupId = gradle.groupId
-    artifactId = "update-app"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
-}
-repositories {
-    maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
-}
-apply from: "$rootDir.path/script/bundle_module.gradle"
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
 
 }
 
 dependencies {
-    implementation 'com.pgyersdk:sdk:2.8.1'
+//    implementation 'com.pgyersdk:sdk:2.8.1'
 }

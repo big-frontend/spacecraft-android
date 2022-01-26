@@ -1,49 +1,36 @@
-apply from: "$rootDir.path/script/app_module.gradle"
-apply plugin: 'com.google.firebase.appdistribution'
-apply from: "${rootDir.path}/script/file_counter.gradle"
+plugins {
+    id "io.github.jamesfchen.app-plugin"
+    id 'io.github.jamesfchen.counter-plugin'
+}
+apply from:"$rootDir/script/app_config.gradle"
 counterConfig {
     sea = 'all'
-}
-apply from: "${rootDir.path}/script/check_dangerous_api.gradle"
-checker {
-    filters = ['SafeConverts.java']
-    dangerousApis = [
-            "Color.parseColor",
-            "Integer.valueOf",
-            "Integer.parseInt",
-            "Long.parseLong",
-            "Long.valueOf",
-            "Float.valueOf",
-            "Float.parseFloat",
-            "Double.valueOf",
-            "Double.parseDouble"
-    ]
 }
 android {
     defaultConfig {
         resValue "string", "app_name", "spacecraft.app"
     }
     buildTypes {
-        release {
-            firebaseAppDistribution {
+            release {
+                firebaseAppDistribution {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                testers = "hawksjamesf@gmail.com"
-                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
-                artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
+                    testers = "hawksjamesf@gmail.com"
+                    serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+                    artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
+                }
             }
-        }
-        debug {
-            firebaseAppDistribution {
+            debug {
+                firebaseAppDistribution {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                testers = "hawksjamesf@gmail.com"
-                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
-                artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
+                    testers = "hawksjamesf@gmail.com"
+                    serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+                    artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
+                }
             }
-        }
     }
-    /**
-     * 渠道包 start
-     */
+        /**
+         * 渠道包 start
+         */
 //    flavorDimensions 'default'
 //    productFlavors {
 //        xiaomi {
@@ -57,7 +44,17 @@ android {
 //            ]
 //        }
 //    }
-    /**
-     * 渠道包 end
-     */
+        /**
+         * 渠道包 end
+         */
+}
+dependencies{
+    project.depsConfig("implementation", "hotel-bundle1")
+    project.depsConfig("implementation", "hotel-bundle2")
+    project.depsConfig("implementation", "home-myhome")
+    project.depsConfig("implementation", "account-impl")
+    project.depsConfig("implementation", "codescanner-qrcode")
+    project.depsConfig("implementation", "im-chatroom")
+    project.depsConfig("implementation", "hotel-foundation")
+    project.depsConfig("implementation", "update-appupdate")
 }

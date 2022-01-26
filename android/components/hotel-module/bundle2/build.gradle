@@ -1,17 +1,6 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.bundle-plugin"
 }
-publish {
-    name = "hotel-bundle2"
-    groupId = gradle.groupId
-    artifactId = "hotel-bundle2"
-//    version = "1.0.0-$gradle.activeBuildVariant-SNAPSHOT"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
-//    buildVariant = gradle.activeBuildVariant
-}
-apply from: "$rootDir.path/script/bundle_module.gradle"
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
@@ -31,6 +20,6 @@ android {
 
 }
 dependencies {
-//    implementation project(path: ':components:hotel-module:foundation')
     implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
+    implementation project.moduleify("hotel-foundation")
 }

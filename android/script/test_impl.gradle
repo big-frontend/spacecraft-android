@@ -1,0 +1,46 @@
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    /**
+     * ===============================test start=============================
+     */
+    //    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0',{
+//        exclude group: 'com.android.support', module: 'multidex'
+//    }
+
+    // Dependencies for local unit tests
+    testImplementation 'junit:junit:4.12'
+//    testImplementation "org.mockito:mockito-all:1.10.19"
+//    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
+//    testImplementation "org.mockito:mockito-inline:${rootProject.ext.mockitoVersion}"
+//    testImplementation "org.hamcrest:hamcrest-all:${rootProject.ext.hamcrestVersion}"
+
+    // Espresso dependencies
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-accessibility:3.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-web:3.1.1"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:3.1.1"
+    // The following Espresso dependency can be either "implementation"
+    // or "androidTestImplementation", depending on whether you want the
+    // dependency to appear on your APK's compile classpath or the test APK
+    // classpath.
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:3.1.1"
+
+    // Dependencies for Android unit tests
+    androidTestImplementation "junit:junit:${JUNIT_VERSION}"
+    androidTestImplementation "org.mockito:mockito-android:$MOCKITO_VERSION"
+    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
+    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator-v18:2.2.0-alpha1'
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation "androidx.test:runner:1.1.1"
+    androidTestImplementation "androidx.test:rules:1.1.1"
+    androidTestImplementation 'androidx.test:monitor:1.1.0'
+
+    /**
+     * ===============================test end=============================
+     */
+}

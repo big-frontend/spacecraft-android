@@ -1,15 +1,6 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
+    id "io.github.jamesfchen.foundation-plugin"
 }
-publish {
-    name = "framework-loader"
-    groupId = gradle.groupId
-    artifactId = "framework-loader"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
-}
-apply from: "${rootDir}/script/foundation_module.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
@@ -65,12 +56,6 @@ dependencies {
     api "androidx.work:work-gcm:2.5.0"
     androidTestImplementation "androidx.work:work-testing:2.5.0"
 //    api "androidx.work:work-firebase:2.2.0"
-    api 'androidx.navigation:navigation-fragment:2.3.5'
-    api 'androidx.navigation:navigation-ui:2.3.5'
-    api 'androidx.navigation:navigation-common-ktx:2.3.5'
-    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
-    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     /**
      * ================================apm start=====================================
@@ -116,4 +101,11 @@ dependencies {
     annotationProcessor('com.tencent.tinker:tinker-android-anno:1.9.1')
     //tinker's main Android lib
     implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
+//
+    implementation project.moduleify("framework-common")
+    implementation project.moduleify("framework-network")
+    implementation project.moduleify("framework-mockserver")
+    implementation project.moduleify("framework-av")
+    implementation project.moduleify("framework-image")
+    implementation project.moduleify("framework-storage")
 }

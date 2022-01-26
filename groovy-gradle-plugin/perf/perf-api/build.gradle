@@ -1,3 +1,13 @@
+plugins{
+    id "io.github.jamesfchen.module-publisher-plugin" version '1.1.4'
+}
+publish {
+    name = "perf-api"
+    groupId = rootProject.groupId
+    artifactId = "perf-api"
+    version = "1.0.0"
+    website = "https://github.com/JamesfChen/spacecraft-android"
+}
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 android {
@@ -36,11 +46,4 @@ dependencies {
     api project(':perf:annotations')
 }
 
-apply from: "${rootDir}/script/publisher.gradle"
-publish {
-    name = "perf-api"
-    groupId = rootProject.groupId
-    artifactId = "perf-api"
-    version = "1.0.0"
-    website = "https://github.com/JamesfChen/spacecraft-android"
-}
+

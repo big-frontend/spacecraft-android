@@ -1,22 +1,10 @@
-apply from: "$rootDir.path/script/app_module.gradle"
-apply from: "${rootDir.path}/script/file_counter.gradle"
+plugins {
+    id "io.github.jamesfchen.app-plugin"
+    id 'io.github.jamesfchen.counter-plugin'
+}
+apply from:"$rootDir/script/app_config.gradle"
 counterConfig {
     pickupModules=[':components:home-module:myhome']
-}
-apply from: "${rootDir.path}/script/check_dangerous_api.gradle"
-checker {
-    filters = ['SafeConverts.java']
-    dangerousApis = [
-            "Color.parseColor",
-            "Integer.valueOf",
-            "Integer.parseInt",
-            "Long.parseLong",
-            "Long.valueOf",
-            "Float.valueOf",
-            "Float.parseFloat",
-            "Double.valueOf",
-            "Double.parseDouble"
-    ]
 }
 android {
     defaultConfig {
@@ -27,4 +15,5 @@ android {
 
 dependencies{
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    project.depsConfig("implementation", "home-myhome")
 }

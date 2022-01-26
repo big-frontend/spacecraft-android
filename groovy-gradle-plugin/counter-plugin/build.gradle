@@ -5,12 +5,11 @@ plugins {
 pluginBundle {
     vcsUrl = 'https://github.com/JamesfChen/spacecraft-android'
     website = "https://github.com/JamesfChen/spacecraft-android"
-    description = "counter  plugin"
+    description = "counter plugin"
     tags = ['counter']
     plugins {
         ibcplugin {
             displayName = 'counter plugin'
-//            description = "组件化之后，组件监听app的生命周期工具"
             tags = ['counter']
             version '1.0.0'
         }

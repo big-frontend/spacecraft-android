@@ -1,10 +1,37 @@
-apply from:'./script/trace_gradle.gradle'
-apply from:'./script/module_registry.gradle'
-includeBuild("../groovy-gradle-plugin") {
-//    name = "g"
-    dependencySubstitution {
-//        substitute(module("io.github.jamesfchen:lifecycle-api")).using(project(":"))
-//        substitute(module("io.github.jamesfchen:ibc-api")).using(project(":"))
-//        substitute(module("io.github.jamesfchen:perf-api")).using(project(":"))
+pluginManagement {
+    repositories {
+        maven { url uri("$rootDir/repo") }
+        mavenLocal()
+        mavenCentral()
+//        google()
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+//        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        maven { url "https://jitpack.io" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        gradlePluginPortal()
+    }
+    plugins {
     }
 }
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url uri("$rootDir/repo") }
+        mavenLocal()
+        mavenCentral()
+//        google()
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+//        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://jitpack.io" }
+        gradlePluginPortal()
+    }
+}
+apply from:'./script/trace_gradle.gradle'
+apply from:'./script/module_registry.gradle'
+includeBuild("../groovy-gradle-plugin")
+

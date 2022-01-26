@@ -1,16 +1,7 @@
 plugins {
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.1.0"
-}
-publish {
-    name = "account-impl"
-    groupId = gradle.groupId
-    artifactId = "account-impl"
-    version = "1.0.0-SNAPSHOT"
-    website = "https://github.com/JamesfChen/spacecrafe-android"
-    buildVariant = "debug"
+    id "io.github.jamesfchen.bundle-plugin"
 }
 
-apply from: "$rootDir.path/script/bundle_module.gradle"
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
@@ -75,4 +66,12 @@ dependencies {
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'//微信官方依赖库
     //test个
+
+    kapt "com.google.dagger:dagger-compiler:2.16"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation project.moduleify('account-export')
+
 }
+

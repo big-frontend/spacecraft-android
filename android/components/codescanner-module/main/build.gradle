@@ -1,4 +1,7 @@
-apply from: "$rootDir.path/script/app_module.gradle"
+plugins {
+    id "io.github.jamesfchen.app-plugin"
+}
+apply from:"$rootDir/script/app_config.gradle"
 android {
     defaultConfig {
         resValue "string", "app_name","codescanner.app"
@@ -8,4 +11,5 @@ android {
 
 dependencies{
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    project.depsConfig("implementation", "codescanner-qrcode")
 }
