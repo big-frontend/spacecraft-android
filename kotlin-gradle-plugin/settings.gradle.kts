@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "kotlin-gradle-plugin"
 include(":app")
+include(":haha-plugin")

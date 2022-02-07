@@ -9,7 +9,6 @@
 |  apk  |  [download url](https://www.pgyer.com/rDcO) |
 
 ```
-hotel-module
 --- android 组件化项目
 --- groovy-gradle-plugin android项目的gradle plugin for groovy
 --- kotlin-gradle-plugin android项目的gradle plugin for kotlin
@@ -70,5 +69,46 @@ hotel-module
 4. performance plugin: trace method(instrumentation)
 - [x] CI / CD
 - [x] hook:jni hook、java hook
+
+#  项目管理
+## 代码管理
+- gerrit
+- Gogs
+- gitlab
+
+## 任务管理
+- redmine
+- Phabricator
+- jira
+
+## git 工作流程
+- git flow(版本发布)
+
+存在两种长期分支
+1. master:面向用户，稳定版本
+2. develop:面向开发者，不稳定版本
+
+存在三种临时分支
+1. feature分支在于开发功能的时候创建的，由develop分支衍生出来的，开发完成会被并入develop分支
+2. release分支用于发布版本之前创建的分支，由develop分支衍生出来的，如果测试有bug需要在此上面修复，然后会被并入master分支和develop分支；如果测试没有bug直接并入。
+3.hotfix分支，在上线之后出现bug，由master分支衍生出来。修复之后并入master分支和develop分支。
+
+很多手机厂商都是使用这种工作流程，比如小米手机既有稳定版本也有面试开发者的版本；google AOSP团队在发布正式版本之前都会开放预览版本，本质上和开发者版本相同。而对于Android App就没有听过面向开发者的版本，一般都做了隐藏，只公布稳定版供用户使用。为什么App没有开发者版本呢？理由很简单，竞争太他妈激烈了。有开发者版本不就让竞争对手知道了自己下一步的动作了吗。所以对于有开发者版本的公司，瞬间就让我肃然起敬。
+
+
+- github flow（持续发布）
+
+github flow的开发模式相对来说就更好理解了，只有master这个长期分支。通过提交pr让大家讨论pr从而促进团队交流。其实AOSP团队在使用gerrit的时候也使用这个机制。
+
+- gitlab flow(前两者的有点结合)
+
+Chromium项目采用该工作流程
+
+参考文章：[Git 工作流程](http://www.ruanyifeng.com/blog/2015/12/git-workflow.html)
+
+## 开发模式
+
+- 瀑布流式
+- 敏捷开发
 
 

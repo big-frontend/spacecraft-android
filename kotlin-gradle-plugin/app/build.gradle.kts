@@ -2,12 +2,12 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("com.jamesfchen.perfplugin")
+//    id("com.jamesfchen.perfplugin")
 }
 
-configure<com.jamesfchen.plugin.PerfExtension> {
-    disable.set(true)
-}
+//configure<com.jamesfchen.plugin.PerfExtension> {
+//    disable.set(true)
+//}
 android {
     compileSdk = 29
 
