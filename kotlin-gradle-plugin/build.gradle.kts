@@ -1,8 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        google()
+        maven { url = uri("./local-repo") }
+        mavenLocal()
         mavenCentral()
+        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
+        maven { url = uri("https://maven.oschina.net/content/groups/public/") }
+        maven { url = uri("https://maven.aliyun.com/repository/google/") }
+        maven { url = uri("https://jitpack.io") }
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.2")
