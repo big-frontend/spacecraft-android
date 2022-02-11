@@ -107,7 +107,7 @@ public class BarUtil {
         }
     }
 
-    public static void setStatusBarBackgroudColor(@NonNull final Activity activity, @ColorInt int colorInt) {
+    public static void setStatusBarBackgroundColor(@NonNull final Activity activity, @ColorInt int colorInt) {
         setBarsColor(activity, flag_isStatusBar, colorInt, -1);
     }
 
