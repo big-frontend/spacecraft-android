@@ -1,14 +1,14 @@
-package com.jamesfchen.counter
+package com.jamesfchen.perf.counter
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-
+import com.jamesfchen.perf.Constants
 class CounterPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         project.extensions.create("counterConfig", CounterExtension)
         def totalSrcDir = new ArrayList<File>();
-        project.tasks.create(name: "fileLinesCounter", group: 'counter', type: FileLinesCounter, constructorArgs: [totalSrcDir]).doFirst {
+        project.tasks.create(name: "fileLinesCounter", group: Constants.TASK_GROUP, type: FileLinesCounter, constructorArgs: [totalSrcDir]).doFirst {
             def counterExtension = project["counterConfig"] as CounterExtension
             project.rootProject.allprojects.each { proj ->
                 if (!proj.subprojects.isEmpty()) return
@@ -21,7 +21,7 @@ class CounterPlugin implements Plugin<Project> {
                 }
             }
         }
-        project.tasks.create(name:'appSizeCounter',group: 'counter',type:AppSizeCounter){
+        project.tasks.create(name:'appSizeCounter',group: Constants.TASK_GROUP,type:AppSizeCounter){
             doFirst{
 
             }
@@ -29,7 +29,7 @@ class CounterPlugin implements Plugin<Project> {
 
             }
         }
-        project.tasks.create(name:'libSizeCounter',group: 'counter',type:LibSizeCounter){
+        project.tasks.create(name:'libSizeCounter',group: Constants.TASK_GROUP,type:LibSizeCounter){
             doFirst{
 
             }

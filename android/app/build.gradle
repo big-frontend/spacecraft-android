@@ -1,6 +1,11 @@
 plugins {
     id "io.github.jamesfchen.app-plugin"
     id 'io.github.jamesfchen.counter-plugin'
+    id 'io.github.jamesfchen.bugly-plugin'
+}
+bugly {
+    appId = '3d62251014'
+    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 }
 apply from:"$rootDir/script/app_config.gradle"
 counterConfig {

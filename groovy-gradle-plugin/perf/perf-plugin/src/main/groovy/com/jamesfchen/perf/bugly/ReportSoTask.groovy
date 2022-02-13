@@ -1,4 +1,4 @@
-package com.jamesfchen.bugly
+package com.jamesfchen.perf.bugly
 
 import com.android.builder.core.DefaultManifestParser
 import com.jamesfchen.P

@@ -1,10 +1,8 @@
-package com.jamesfchen.bugly
+package com.jamesfchen.perf.bugly
 
-import com.android.build.api.transform.*
-import com.android.build.gradle.internal.pipeline.TransformManager
+
 import com.android.builder.core.DefaultManifestParser
 import com.jamesfchen.P
-import com.jamesfchen.F
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.Input

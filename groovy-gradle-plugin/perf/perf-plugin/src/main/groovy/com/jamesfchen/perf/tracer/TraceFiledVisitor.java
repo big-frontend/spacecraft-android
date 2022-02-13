@@ -1,4 +1,4 @@
-package com.jamesfchen.perf;
+package com.jamesfchen.perf.tracer;
 
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;

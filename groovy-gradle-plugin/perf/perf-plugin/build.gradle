@@ -5,20 +5,35 @@ plugins {
 pluginBundle {
     vcsUrl = 'https://github.com/JamesfChen/spacecraft-android'
     website = "https://github.com/JamesfChen/spacecraft-android"
-    description = "perf  plugin"
+    description = "perf plugin"
     tags = ['perf-plugin']
+    def ver = '1.0.0'
     plugins {
-        ibcplugin {
+        perfPlugin{
             displayName = 'perf plugin'
-//            description = "组件化之后，组件监听app的生命周期工具"
             tags = ['perf-plugin']
-            version '1.0.0'
+            version ver
+        }
+        tracePlugin {
+            displayName = 'trace plugin'
+            tags = ['trace-plugin']
+            version ver
+        }
+        buglyPlugin {
+            displayName = 'bugly plugin'
+            tags = ['bugly-plugin']
+            version ver
+        }
+        counterPlugin {
+            displayName = 'counter plugin'
+            tags = ['counter-plugin']
+            version ver
         }
     }
     mavenCoordinates {
         groupId = rootProject.groupId
         artifactId = "perf-plugin"
-        version = "1.0.0"
+        version = ver
     }
 }
 apply plugin: 'java'
@@ -35,14 +50,33 @@ tasks.withType(GroovyCompile) {
 apply plugin: "java-gradle-plugin"
 gradlePlugin {
     plugins {
-        ibcplugin {
+        perfPlugin {
             id = "${rootProject.groupId}.perf-plugin"
             implementationClass = 'com.jamesfchen.perf.PerfPlugin'
-            displayName ='performance plugin'
-            description = "方法耗时统计"
+            displayName = 'perf plugin'
+            description = 'perf plugin'
+        }
+        tracePlugin {
+            id = "${rootProject.groupId}.tracer-plugin"
+            implementationClass = 'com.jamesfchen.perf.tracer.TracePlugin'
+            displayName = 'trace plugin'
+            description = "耗时统计"
+        }
+        buglyPlugin {
+            id = "${rootProject.groupId}.bugly-plugin"
+            implementationClass = 'com.jamesfchen.perf.bugly.BuglyPlugin'
+            displayName = 'bugly plugin'
+            description = "bugly plugin"
+        }
+        counterPlugin {
+            id = "${rootProject.groupId}.counter-plugin"
+            implementationClass = 'com.jamesfchen.perf.counter.CounterPlugin'
+            displayName = 'counter plugin'
+            description = "counter plugin"
         }
     }
 }
 dependencies {
+    implementation files('libs/buglySymbolAndroid.jar')
     implementation 'io.github.jamesfchen:base-plugin:1.0.2'
 }

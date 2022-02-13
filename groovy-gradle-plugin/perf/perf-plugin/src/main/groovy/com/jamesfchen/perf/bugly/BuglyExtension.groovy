@@ -15,30 +15,18 @@
  * limitations under the License.
  */
 
-package com.jamesfchen.bugly
+package com.jamesfchen.perf.bugly
 
-/**
- * Represents extended properties of Bugly plugin.
- *
- * <p>The term "symtab file" mentioned below is an abbreviation of "symbol table file" that includes
- * mapping files (*.txt) created by Proguard and symbol files (*.symbol) created by "Symtab Tool for
- * Android" of Bugly which can be downloaded from http://bugly.qq.com/whitebook. More details can be
- * read at http://bugly.qq.com/androidsymbol.
- *
- * @author JalenChen
- */
-class BuglyPluginExtension {
+class BuglyExtension {
     // App ID of Bugly platform.
     String appId = null
     // App Key of Bugly platform.
     String appKey = null
     // Directory where symbol files would be output to.
     String outputDir = null
-
-
     @Override
     String toString() {
-        return "BuglyPluginExtension{" +
+        return "BuglyExtension{" +
                 "appId='" + appId + '\'' +
                 ", appKey='" + appKey + '\'' +
                 ", outputDir='" + outputDir + '\'' +

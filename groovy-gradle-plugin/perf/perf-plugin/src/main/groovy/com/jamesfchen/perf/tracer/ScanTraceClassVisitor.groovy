@@ -1,4 +1,4 @@
-package com.jamesfchen.perf
+package com.jamesfchen.perf.tracer
 
 import com.jamesfchen.ClassInfo
 import org.objectweb.asm.*

@@ -1,4 +1,4 @@
-package com.jamesfchen.counter
+package com.jamesfchen.perf.counter
 
 import org.gradle.api.DefaultTask
 

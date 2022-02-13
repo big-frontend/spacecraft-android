@@ -1,14 +1,7 @@
-package com.jamesfchen.bugly
+package com.jamesfchen.perf.bugly
 
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-
-/**
- * Get log file.
- *
- * @param logFileName name of log file
- * @return log file
- */
 class LogFile {
 
     public static final String UPLOAD_LOG_FILE_NAME = "BuglyUploadLog.txt"
