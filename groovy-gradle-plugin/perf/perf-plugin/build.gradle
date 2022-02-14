@@ -58,7 +58,7 @@ gradlePlugin {
         }
         tracePlugin {
             id = "${rootProject.groupId}.tracer-plugin"
-            implementationClass = 'com.jamesfchen.perf.tracer.TracePlugin'
+            implementationClass = 'com.jamesfchen.perf.tracer.TracerPlugin'
             displayName = 'trace plugin'
             description = "耗时统计"
         }

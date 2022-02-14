@@ -75,7 +75,7 @@ public class SApp extends Application implements Configuration.Provider {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 //        Utils.init(this);
         Util.init(this);
-        SystemFilter.init(this);
+//        SystemFilter.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
     }
 

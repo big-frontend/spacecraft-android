@@ -9,6 +9,9 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.loader.matrix.*
 import com.jamesfchen.loader.monitor.AppMonitor
+import com.jamesfchen.loader.monitor.AppMonitor.start
+import com.pgyer.pgyersdk.PgyerSDKManager
+import com.pgyer.pgyersdk.pgyerenum.Features
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.bugly.crashreport.CrashReport.UserStrategy
 import com.tencent.matrix.Matrix
@@ -47,9 +50,9 @@ class ApmInitializer : Initializer<Unit> {
 //            startAndroidGodEye(context)
         }
         AppMonitor.start(context as Application)
-        Log.d(APM_TAG,"ApmInitializer#end")
+        Log.d(APM_TAG, "ApmInitializer#end")
+        initPgyerSDK(context as Application);
     }
-
     override fun dependencies(): List<Class<out Initializer<*>>> {
         return emptyList()
     }
@@ -113,4 +116,16 @@ class ApmInitializer : Initializer<Unit> {
 //            .install(GodEyeConfig.fromAssets("android-godeye-config/install.config"))
         Log.d(APM_TAG, "godeye configurations end.");
     }
+
+    /**
+     *  初始化蒲公英SDK
+     * @param application
+     */
+    private fun initPgyerSDK(application: Application) {
+        PgyerSDKManager.Init()
+            .setContext(application) //设置上下问对象
+            .enable(Features.CHECK_UPDATE)//开启自动更新检测（不设置默认功能关闭 ，AndroidManifest中也可以设置该属性的开关）
+            .start()
+    }
+
 }

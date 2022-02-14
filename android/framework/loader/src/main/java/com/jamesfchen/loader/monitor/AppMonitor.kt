@@ -22,8 +22,8 @@ object AppMonitor : ILifecycleObserver{
         app.registerActivityLifecycleCallbacks(MemItem())
         ProcessLifecycleOwner.get().lifecycle.addObserver(FpsItem())
         app.registerActivityLifecycleCallbacks(FpsItem())
-        ProcessLifecycleOwner.get().lifecycle.addObserver(LayoutInflateItem())
-        app.registerActivityLifecycleCallbacks(LayoutInflateItem())
+//        ProcessLifecycleOwner.get().lifecycle.addObserver(LayoutInflateItem())
+//        app.registerActivityLifecycleCallbacks(LayoutInflateItem())
         ProcessLifecycleOwner.get().lifecycle.addObserver(StartupItem())
         app.registerActivityLifecycleCallbacks(StartupItem())
         inited = true

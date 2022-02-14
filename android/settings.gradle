@@ -5,7 +5,9 @@ pluginManagement {
         mavenCentral()
 //        google()
         maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
-        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+        maven { url "https://frontjs-static.pgyer.com/dist/sdk/pgyersdk" }  //主力仓库
+        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" } //备用仓库（主力仓库下载不下来使用）
+        maven { url "https://raw.githubusercontent.com/PGYER/analytics/master" }  //备用仓库（主力仓库下载不下来使用）
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url 'https://maven.aliyun.com/repository/releases' }
         maven { url "https://jitpack.io" }
@@ -23,7 +25,9 @@ dependencyResolutionManagement {
         mavenCentral()
 //        google()
         maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
-        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+        maven { url "https://frontjs-static.pgyer.com/dist/sdk/pgyersdk" }  //主力仓库
+        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" } //备用仓库（主力仓库下载不下来使用）
+        maven { url "https://raw.githubusercontent.com/PGYER/analytics/master" }  //备用仓库（主力仓库下载不下来使用）
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url 'https://maven.aliyun.com/repository/releases' }
         maven { url "https://plugins.gradle.org/m2/" }

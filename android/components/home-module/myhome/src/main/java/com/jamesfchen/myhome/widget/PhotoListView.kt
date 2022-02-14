@@ -39,6 +39,7 @@ class PhotoListView @JvmOverloads constructor(
     private val l1 = LinearLayout(context)
     private val l2 = LinearLayout(context)
     private val l3 = LinearLayout(context)
+
     init {
         orientation = VERTICAL
         l1.orientation = HORIZONTAL
@@ -66,6 +67,9 @@ class PhotoListView @JvmOverloads constructor(
             var height = uri.getQueryParameter("h")?.toInt() ?: 0
             var rawUri = uri.buildUpon().clearQuery().build()
             Log.d("PhotoListView", "setDataList1 ${width}/${height} ${rawUri}")
+            img.setOnClickListener {
+                mOnClick?.invoke(img, i)
+            }
             mRequestBuilder?.load(rawUri)
 //                ?.logo()
                 ?.into(img)

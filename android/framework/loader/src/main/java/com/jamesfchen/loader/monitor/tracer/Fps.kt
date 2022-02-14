@@ -270,7 +270,7 @@ class LayoutInflateItem : IAppLifecycleObserver, IActivityLifecycleObserver {
                         Log.e(TAG_LAYOUT_MONITOR, "idValue:${idValue}")
                         if ("android:id/content" == idValue) {
                             val grayFrameLayout = FrameLayout(context, attrs)
-                            SystemFilter.setGrayLayer(grayFrameLayout)
+//                            SystemFilter.setGrayLayer(grayFrameLayout)
                             return grayFrameLayout
                         }
                     }

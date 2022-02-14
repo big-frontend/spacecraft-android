@@ -47,10 +47,6 @@
 
         </activity>
         <activity
-            android:name=".screen.home.HomeActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/HomeTheme" />
-        <activity
             android:name=".screen.WebViewActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter android:autoVerify="true">
