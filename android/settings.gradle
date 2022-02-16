@@ -37,5 +37,5 @@ dependencyResolutionManagement {
 }
 apply from:'./script/trace_gradle.gradle'
 apply from:'./script/module_registry.gradle'
-includeBuild("../groovy-gradle-plugin")
-includeBuild("../kotlin-gradle-plugin")
+includeBuild("../composite-builds")
+includeBuild("../composite-builds2")
