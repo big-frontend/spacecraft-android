@@ -1,0 +1,49 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.15.0"
+}
+//发布到远程gradle plugin portal，获得approval超级慢
+pluginBundle {
+    vcsUrl = 'https://github.com/JamesfChen/spacecraft-android'
+    website = "https://github.com/JamesfChen/spacecraft-android"
+    description = "bullet plugin"
+    tags = ['bullet-plugin']
+    def ver = '1.0.0'
+    plugins {
+        bulletPlugin {
+            displayName = 'v plugin'
+            tags = ['bullet-plugin']
+            version ver
+        }
+    }
+    mavenCoordinates {
+        groupId = rootProject.groupId
+        artifactId = "bullet-plugin"
+        version = ver
+    }
+}
+apply plugin: 'java'
+apply plugin: 'groovy'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+apply plugin: "java-gradle-plugin"
+gradlePlugin {
+    plugins {
+        bulletPlugin {
+            id = "${rootProject.groupId}.bullet-plugin"
+            implementationClass = 'com.jamesfchen.bullet.BulletPlugin'
+            displayName = 'bullet plugin'
+            description = "bullet plugin"
+        }
+    }
+}
+dependencies {
+    implementation files('libs/buglySymbolAndroid.jar')
+    implementation 'io.github.jamesfchen:base-plugin:1.0.2'
+}

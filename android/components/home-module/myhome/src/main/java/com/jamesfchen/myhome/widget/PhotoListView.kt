@@ -67,8 +67,10 @@ class PhotoListView @JvmOverloads constructor(
             var height = uri.getQueryParameter("h")?.toInt() ?: 0
             var rawUri = uri.buildUpon().clearQuery().build()
             Log.d("PhotoListView", "setDataList1 ${width}/${height} ${rawUri}")
+            img.tag = i
             img.setOnClickListener {
-                mOnClick?.invoke(img, i)
+                Log.d("PhotoListView", "itemclick post:${img.tag as Int}")
+                mOnClick?.invoke(img, img.tag as Int)
             }
             mRequestBuilder?.load(rawUri)
 //                ?.logo()
@@ -85,7 +87,7 @@ class PhotoListView @JvmOverloads constructor(
                 }
                 val lp = LayoutParams(width, height)
                 img.layoutParams = lp
-                img.tag = rawUri
+//                img.tag = rawUri
                 l1.addView(img, lp)
             } else {
                 width = dp2px(70f)
@@ -93,12 +95,12 @@ class PhotoListView @JvmOverloads constructor(
                 if (uriList.size < 4) {
                     val lp = LayoutParams(width, height)
                     img.layoutParams = lp
-                    img.tag = rawUri
+//                    img.tag = rawUri
                     l1.addView(img, lp)
                 } else if (uriList.size == 4) {
                     val lp = LayoutParams(width, height)
                     img.layoutParams = lp
-                    img.tag = rawUri
+//                    img.tag = rawUri
                     if (i < 2) {
                         l1.addView(img, lp)
                     } else {
@@ -107,7 +109,7 @@ class PhotoListView @JvmOverloads constructor(
                 } else {
                     val lp = LayoutParams(width, height)
                     img.layoutParams = lp
-                    img.tag = rawUri
+//                    img.tag = rawUri
                     if (i < 3) {
                         l1.addView(img, lp)
                     } else if (i < 6) {

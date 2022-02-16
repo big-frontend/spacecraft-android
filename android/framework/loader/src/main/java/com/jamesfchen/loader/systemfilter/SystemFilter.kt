@@ -4,14 +4,11 @@ import android.app.Activity
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.jamesfchen.loader.SApp
-import com.jamesfchen.loader.monitor.IActivityLifecycleObserver
-import com.jamesfchen.loader.monitor.IAppLifecycleObserver
 
-class SystemFilter : IAppLifecycleObserver, IActivityLifecycleObserver {
+class SystemFilter {
     companion object {
         var isGrayMode = false
         var isDarkMode = false
@@ -25,8 +22,8 @@ class SystemFilter : IAppLifecycleObserver, IActivityLifecycleObserver {
 
         @JvmStatic
         fun init(app: SApp) {
-            ProcessLifecycleOwner.get().lifecycle.addObserver(SystemFilter())
-            app.registerActivityLifecycleCallbacks(SystemFilter())
+//            ProcessLifecycleOwner.get().lifecycle.addObserver(SystemFilter())
+//            app.registerActivityLifecycleCallbacks(SystemFilter())
         }
 
         @JvmStatic
@@ -64,11 +61,4 @@ class SystemFilter : IAppLifecycleObserver, IActivityLifecycleObserver {
             activity.recreate()
         }
     }
-
-    override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
-        super.onActivityPreCreated(activity, savedInstanceState)
-
-    }
-
-
 }

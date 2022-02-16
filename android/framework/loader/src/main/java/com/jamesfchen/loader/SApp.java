@@ -1,5 +1,7 @@
 package com.jamesfchen.loader;
 
+import static com.jamesfchen.viapm.tracer.StartupKt.TAG_STARTUP_MONITOR;
+
 import android.app.Application;
 import android.content.Context;
 import android.os.Debug;
@@ -14,9 +16,7 @@ import androidx.work.Configuration;
 
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
-import com.jamesfchen.loader.systemfilter.SystemFilter;
 
-import static com.jamesfchen.loader.monitor.tracer.StartupKt.TAG_STARTUP_MONITOR;
 
 /**
  * Copyright ® $ 2017

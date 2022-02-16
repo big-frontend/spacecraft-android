@@ -1,7 +1,7 @@
 plugins {
     id "io.github.jamesfchen.bundle-plugin"
 }
-apply from: "${rootDir.path}/script/ui_tradition.gradle"
+apply from: "$rootDir/script/ui_tradition.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')

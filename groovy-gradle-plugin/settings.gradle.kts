@@ -1,5 +1,6 @@
 include(
-    ":perf:annotations", ":perf:perf-compiler", ":perf:perf-plugin",":perf:perf-api",
+    ":viapm:viapm-annotations", ":viapm:viapm-compiler", ":viapm:viapm-plugin",":viapm:viapm-api",
+    "viopt:bullet:bullet-plugin","viopt:bullet:bullet-api",
     ":ksp", ":kcp",
     ":temple-plugin",
     ":proguard-plugin"

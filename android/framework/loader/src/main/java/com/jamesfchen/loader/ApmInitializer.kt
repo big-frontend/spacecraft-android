@@ -8,8 +8,7 @@ import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.loader.matrix.*
-import com.jamesfchen.loader.monitor.AppMonitor
-import com.jamesfchen.loader.monitor.AppMonitor.start
+import com.jamesfchen.viapm.ViMonitor
 import com.pgyer.pgyersdk.PgyerSDKManager
 import com.pgyer.pgyersdk.pgyerenum.Features
 import com.tencent.bugly.crashreport.CrashReport
@@ -49,7 +48,7 @@ class ApmInitializer : Initializer<Unit> {
         GlobalScope.launch {
 //            startAndroidGodEye(context)
         }
-        AppMonitor.start(context as Application)
+        ViMonitor.start(context as Application)
         Log.d(APM_TAG, "ApmInitializer#end")
         initPgyerSDK(context as Application);
     }
