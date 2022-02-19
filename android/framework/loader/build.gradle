@@ -104,11 +104,6 @@ dependencies {
      */
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    //optional, help to generate the final application
-    annotationProcessor('com.tencent.tinker:tinker-android-anno:1.9.1')
-    //tinker's main Android lib
-    implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
-//
     implementation project.moduleify("framework-common")
     implementation project.moduleify("framework-network")
     implementation project.moduleify("framework-mockserver")

@@ -44,7 +44,6 @@ buildscript {
 //        classpath 'com.google.code.gson:gson:2.7'
 //        classpath  'com.google.gradle:osdetector-gradle-plugin:1.6.0'
         classpath "cn.hikyson.methodcanary:plugin:0.15.5"
-        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
     }
 }
 plugins {

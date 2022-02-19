@@ -18,7 +18,6 @@ def child(Object msg) {
 def config = new JsonSlurper().parse(file("$rootDir/module_config.json"))
 gradle.ext.allModules = config.allModules
 gradle.ext.groupId = config.groupId
-gradle.ext.activeBuildVariant = config.activeBuildVariant
 def localProperties = new Properties()
 def localPropertiesFile = new File(rootDir, 'local.properties')
 if (localPropertiesFile.exists()) {
@@ -28,6 +27,7 @@ if (localPropertiesFile.exists()) {
 }
 def excludeModulesStr = localProperties.getProperty('excludeModules', '')
 def sourceModulesStr = localProperties.getProperty('sourceModules', '')
+gradle.ext.activeBuildVariant = localProperties.getProperty('activeBuildVariant', '')
 gradle.ext.excludeModuleMap = new LinkedHashMap<String, Object>()
 gradle.ext.sourceModuleMap = new LinkedHashMap<String, Object>()
 gradle.ext.binaryModuleMap = new LinkedHashMap<String, Object>()
