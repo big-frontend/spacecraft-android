@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen.spacecraft
 
 import android.graphics.Bitmap
 import com.facebook.cache.disk.DiskCacheConfig
@@ -10,8 +10,6 @@ import com.facebook.imagepipeline.cache.MemoryCacheParams
 import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.jamesfchen.common.util.ThreadUtil
 import okhttp3.*
-import java.util.concurrent.Executors
-import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
 /**

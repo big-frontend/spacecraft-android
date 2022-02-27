@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen.spacecraft
 
 import android.app.Application
 import android.content.Context
@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.startup.Initializer
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.firebase.perf.metrics.AddTrace
+import com.jamesfchen.loader.BuildConfig
 
 class BundleInitializer : Initializer<Unit> {
     @AddTrace(name = "RouterInitializer#create",enabled = true)

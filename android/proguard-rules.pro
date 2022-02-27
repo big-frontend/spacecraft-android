@@ -58,11 +58,6 @@
 #You can specify any path and filename.
 -printconfiguration ./build/tmp/full-r8-config.txt
 
--keep class com.jamesfchen.template.IMyAidlInterface{*;}
--keep class com.jamesfchen.template.IMyAidlInterface$Default{*;}
--keep class com.jamesfchen.template.IMyAidlInterface$Stub{*;}
--keep class com.jamesfchen.template.IMyAidlInterface$Stub$Proxy{*;}
--keep class com.jamesfchen.template.ipc.BinderEntry{*;}
 
 -keep public class com.alibaba.android.arouter.routes.**{*;}
 -keep public class com.alibaba.android.arouter.facade.**{*;}

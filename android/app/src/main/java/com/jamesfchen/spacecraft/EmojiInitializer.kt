@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen.spacecraft
 
 import android.content.Context
 import android.graphics.Color

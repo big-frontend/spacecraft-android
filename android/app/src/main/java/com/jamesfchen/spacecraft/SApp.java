@@ -1,4 +1,4 @@
-package com.jamesfchen.loader;
+package com.jamesfchen.spacecraft;
 
 import static com.jamesfchen.viapm.tracer.StartupKt.TAG_STARTUP_MONITOR;
 
@@ -67,7 +67,7 @@ public class SApp extends Application implements Configuration.Provider {
     @AddTrace(name = "App#onCreate",enabled = true)
     @Override
     public void onCreate() {
-        Log.d(TAG_STARTUP_MONITOR,"ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
+        Log.d(StartupKt.TAG_STARTUP_MONITOR,"ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();

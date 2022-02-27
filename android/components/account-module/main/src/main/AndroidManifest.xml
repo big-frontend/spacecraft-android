@@ -3,23 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jamesfchen.main">
 
-    <application
-        android:name="com.jamesfchen.main.AccountlApp"
-        android:allowBackup="false"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:name,android:allowBackup"
-        android:icon="@mipmap/ic_launcher"
-        >
-        <activity android:name="com.jamesfchen.login.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--    <application-->
+<!--        android:name="com.jamesfchen.main.AccountlApp"-->
+<!--        android:allowBackup="false"-->
+<!--        android:label="@string/app_name"-->
+<!--        android:supportsRtl="true"-->
+<!--        android:usesCleartextTraffic="true"-->
+<!--        tools:replace="android:name,android:allowBackup"-->
+<!--        android:icon="@mipmap/ic_launcher"-->
+<!--        >-->
+<!--        <activity android:name="com.jamesfchen.login.LoginActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+<!--    </application>-->
 
 </manifest>

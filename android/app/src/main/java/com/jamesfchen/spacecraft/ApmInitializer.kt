@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen.spacecraft
 
 import android.app.Application
 import android.content.Context
@@ -7,7 +7,8 @@ import androidx.startup.Initializer
 import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
-import com.jamesfchen.loader.matrix.*
+import com.jamesfchen.loader.BuildConfig
+import com.jamesfchen.spacecraft.matrix.*
 import com.jamesfchen.viapm.ViMonitor
 import com.pgyer.pgyersdk.PgyerSDKManager
 import com.pgyer.pgyersdk.pgyerenum.Features

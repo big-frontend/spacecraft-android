@@ -1,4 +1,4 @@
-package com.jamesfchen.loader;
+package com.jamesfchen.spacecraft;
 
 import android.util.Log;
 

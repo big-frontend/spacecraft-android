@@ -1,9 +1,7 @@
-package com.jamesfchen.loader.matrix
+package com.jamesfchen.spacecraft.matrix
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import com.jamesfchen.loader.SApp
 import com.tencent.matrix.iocanary.IOCanaryPlugin
 import com.tencent.matrix.iocanary.config.IOConfig
 import com.tencent.matrix.trace.TracePlugin
@@ -55,7 +53,7 @@ fun configureTracePlugin(context: Context, dynamicConfig: DynamicConfigImpl): Tr
 }
 
 fun useSignalAnrTraceAlone(anrFilePath: String, printTraceFile: String) {
-    val signalAnrTracer = SignalAnrTracer(SApp.getInstance(), anrFilePath, printTraceFile)
+    val signalAnrTracer = SignalAnrTracer(com.jamesfchen.spacecraft.SApp.getInstance(), anrFilePath, printTraceFile)
     signalAnrTracer.setSignalAnrDetectedListener { stackTrace, mMessageString, mMessageWhen, fromProcessErrorState ->
         // got an ANR
     }

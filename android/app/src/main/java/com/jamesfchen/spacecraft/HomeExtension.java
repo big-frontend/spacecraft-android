@@ -1,10 +1,11 @@
-package com.jamesfchen.loader;
+package com.jamesfchen.spacecraft;
 
 import com.bumptech.glide.annotation.GlideExtension;
 import com.bumptech.glide.annotation.GlideOption;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.jamesfchen.loader.GlideRequest;
 
 import androidx.annotation.NonNull;
 

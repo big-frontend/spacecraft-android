@@ -3,28 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jamesfchen.home">
 
-    <application
-        android:name="com.jamesfchen.main.HomeApp"
-        android:allowBackup="false"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:name,android:allowBackup"
-        android:icon="@mipmap/ic_launcher"
-        >
-        <activity
-            android:name="com.jamesfchen.myhome.splash.SplashActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="adjustPan">
-            <!--            launcher启动 start-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--    <application-->
+<!--        android:name="com.jamesfchen.main.HomeApp"-->
+<!--        android:allowBackup="false"-->
+<!--        android:label="@string/app_name"-->
+<!--        android:supportsRtl="true"-->
+<!--        android:usesCleartextTraffic="true"-->
+<!--        tools:replace="android:name,android:allowBackup"-->
+<!--        android:icon="@mipmap/ic_launcher"-->
+<!--        >-->
+<!--        <activity-->
+<!--            android:name="com.jamesfchen.myhome.splash.SplashActivity"-->
+<!--            android:launchMode="singleTop"-->
+<!--            android:theme="@style/FullscreenTheme"-->
+<!--            android:windowSoftInputMode="adjustPan">-->
+<!--            &lt;!&ndash;            launcher启动 start&ndash;&gt;-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <!--            launcher启动 end -->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--            &lt;!&ndash;            launcher启动 end &ndash;&gt;-->
 
-        </activity>
-    </application>
+<!--        </activity>-->
+<!--    </application>-->
 </manifest>

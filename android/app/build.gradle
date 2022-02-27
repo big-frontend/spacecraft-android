@@ -7,35 +7,54 @@ bugly {
     appId = '3d62251014'
     appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 }
-apply from:"$rootDir/script/app_config.gradle"
+apply from: "$rootDir/script/app_config.gradle"
 counterConfig {
     sea = 'all'
 }
 android {
     defaultConfig {
         resValue "string", "app_name", "spacecraft.app"
+        buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
+        buildConfigField('String', 'BUGLY_APP_KEY', '"a15ecf84-1786-40c6-abf5-fe975fce22e6"')
+        buildConfigField('String', 'XIAOMI_APP_ID', '"2882303761517994447"')
+        buildConfigField('String', 'XIAOMI_APP_KEY', '"5921799441447"')
+        buildConfigField('String', 'AMAP_KEY', '"84198333a8ab4404cd35829dbb4ec435"')
+        manifestPlaceholders = [
+                'BUGLY_APP_ID'     : '3d62251014', 'BUGLY_APP_KEY': 'a15ecf84-1786-40c6-abf5-fe975fce22e6', "BUGLY_APP_VERSION": "${rootProject.ext.versionName}",
+                'AMAP_KEY'         : '84198333a8ab4404cd35829dbb4ec435',
+                "PGYER_APPID"      : '0ba5ba7940deded0f77b37b7655b252e',
+                "PGYER_API_KEY"    : '8543d53b97cbb4daa5f55f807ab7e31e',
+                "PGYER_FRONTJS_KEY": "ac450bcd9fdca58dddb1a630bb752dd7"
+        ]
     }
     buildTypes {
-            release {
-                firebaseAppDistribution {
+        release {
+            manifestPlaceholders = [
+                    'QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf'
+
+            ]
+            firebaseAppDistribution {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                    testers = "hawksjamesf@gmail.com"
-                    serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
-                    artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
-                }
+                testers = "hawksjamesf@gmail.com"
+                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+                artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
             }
-            debug {
-                firebaseAppDistribution {
+        }
+        debug {
+            manifestPlaceholders = [
+                    'QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf'
+            ]
+            firebaseAppDistribution {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                    testers = "hawksjamesf@gmail.com"
-                    serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
-                    artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
-                }
+                testers = "hawksjamesf@gmail.com"
+                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+                artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
             }
+        }
     }
-        /**
-         * 渠道包 start
-         */
+    /**
+     * 渠道包 start
+     */
 //    flavorDimensions 'default'
 //    productFlavors {
 //        xiaomi {
@@ -49,11 +68,11 @@ android {
 //            ]
 //        }
 //    }
-        /**
-         * 渠道包 end
-         */
+    /**
+     * 渠道包 end
+     */
 }
-dependencies{
+dependencies {
     project.depsConfig("implementation", "hotel-bundle1")
     project.depsConfig("implementation", "hotel-bundle2")
     project.depsConfig("implementation", "home-myhome")
@@ -62,4 +81,52 @@ dependencies{
     project.depsConfig("implementation", "im-chatroom")
     project.depsConfig("implementation", "hotel-foundation")
     project.depsConfig("implementation", "update-appupdate")
+
+    //android 21+可以不接入该sdk，android sdk默认集成
+    api 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.startup:startup-runtime:1.1.0"
+    /**
+     * ================================apm start=====================================
+     */
+    //crash and anr
+    api 'com.tencent.bugly:nativecrashreport:3.7.1'
+    api 'com.tencent.bugly:crashreport:3.0.0'
+    def matrixModules = [
+            "matrix-commons",
+            "matrix-battery-canary",
+            "matrix-android-lib",
+            "matrix-android-commons",
+            "matrix-trace-canary",
+//            "matrix-resource-canary-android",
+//            "matrix-resource-canary-common",
+            "matrix-io-canary",
+            "matrix-sqlite-lint-android-sdk",
+            "matrix-hooks",
+            "matrix-fd",
+            "matrix-jectl",
+            "matrix-backtrace",
+    ]
+
+    matrixModules.each { moduleName ->
+        api group: "com.tencent.matrix", name: moduleName, version: MATRIX_VERSION, changing: true
+    }
+
+    // releaseImplementation group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: MATRIX_VERSION, changing: true
+
+    api("cn.hikyson.godeye:godeye-core:3.0.0")
+    api "cn.hikyson.godeye:godeye-toolbox:3.0.0"
+    releaseApi("cn.hikyson.godeye:godeye-monitor-no-op:2.7.4")
+    debugApi("cn.hikyson.godeye:godeye-monitor:3.0.0")
+
+    //memory leak
+//    debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
+//    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+//    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
+    api 'com.github.markzhai:blockcanary-android:1.5.0'
+
+
+    implementation("io.github.jamesfchen:viapm-api:1.0.0")
+    /**
+     * ================================apm end=====================================
+     */
 }
