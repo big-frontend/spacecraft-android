@@ -9,7 +9,6 @@
     "tvBetaRelease",
     "watchBetaRelease"
   ],
-  "activeBuildVariant": "phoneBetaDebug",
   "groupId": "io.github.jamesfchen",
   "allModules": [
     {

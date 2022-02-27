@@ -5,19 +5,6 @@ apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
     }
-//    flavorDimensions 'platform', 'publishType'
-//    productFlavors {
-//        tv {
-//            dimension 'platform'
-//        }
-//        phone {
-//            dimension 'platform'
-//        }
-//        beta {
-//            dimension 'publishType'
-//        }
-//    }
-
 }
 dependencies {
     implementation 'com.facebook.device.yearclass:yearclass:2.1.0'

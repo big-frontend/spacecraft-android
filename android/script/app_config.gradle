@@ -12,7 +12,7 @@ apply plugin: 'com.google.gms.google-services'
 //}
 
 ext.removeUnusedResourcesV2Enable = true
-android{
+android {
     defaultConfig {
         multiDexEnabled = true//support android 20 or lower
 //        multiDexKeepFile file('multiDexKeep.txt')
@@ -45,6 +45,21 @@ android{
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
             }
+        }
+    }
+    flavorDimensions 'device', 'env'
+    productFlavors {
+        tv {
+            dimension 'device'
+        }
+        phone {
+            dimension 'device'
+        }
+        beta {
+            dimension 'env'
+        }
+        dev{
+            dimension 'env'
         }
     }
     lintOptions {
@@ -140,7 +155,7 @@ configurations {
     apkCheckerDependency
     sevenZipDependency
     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
-    all*.exclude group:'com.facebook.infer.annotation',module:'infer-annotation'
+    all*.exclude group: 'com.facebook.infer.annotation', module: 'infer-annotation'
 //    all*.exclude group: "com.google.protobuf", module: "protobuf-javalite"
 //    all*.exclude group: 'com.squareup.leakcanary', module: 'leakcanary-analyzer'
 }
