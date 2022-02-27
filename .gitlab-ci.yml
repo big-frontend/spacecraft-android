@@ -1,4 +1,4 @@
 include:
   - '/android/.gitlab-ci-android.yml'
-  - '/groovy-gradle-plugin/.gitlab-ci-plugin.yml'
+  - '/composite-builds/.gitlab-ci-plugin.yml'
 
