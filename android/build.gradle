@@ -47,7 +47,7 @@ buildscript {
 }
 plugins {
     id("io.github.jamesfchen.lifecycle-plugin") version "1.0.1"
-    id("io.github.jamesfchen.ibc-plugin") version "1.5.0"
+    id("io.github.jamesfchen.ibc-plugin") version "$IBCROUTER_VERSION"
     id "io.github.jamesfchen.module-publisher-plugin" version "1.4.0" apply(false)
     id "io.github.jamesfchen.module-chef-plugin" version "1.7.0"
     id 'io.github.jamesfchen.counter-plugin' version '1.0.0'
