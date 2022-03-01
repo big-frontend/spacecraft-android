@@ -1,12 +1,6 @@
-apply plugin: 'groovy'
-tasks.withType(GroovyCompile) {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
 apply plugin: "java-gradle-plugin"
 gradlePlugin {
     plugins {
-
         testplugin {
             id = 'com.jamesfchen.test-plugin'
             implementationClass = 'com.jamesfchen.TestPlugin'
@@ -17,7 +11,18 @@ gradlePlugin {
         }
     }
 }
+apply plugin: 'java'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+apply plugin: 'groovy'
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 dependencies {
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'io.github.jamesfchen:base-plugin:1.0.2'
+    implementation 'io.github.jamesfchen:base-plugin:1.1.0'
+    implementation 'org.javassist:javassist:3.18.2-GA'
 }
