@@ -47,21 +47,21 @@ android {
             }
         }
     }
-    flavorDimensions 'device', 'env'
-    productFlavors {
-        tv {
-            dimension 'device'
-        }
-        phone {
-            dimension 'device'
-        }
-        beta {
-            dimension 'env'
-        }
-        dev{
-            dimension 'env'
-        }
-    }
+//    flavorDimensions 'device', 'env'
+//    productFlavors {
+//        tv {
+//            dimension 'device'
+//        }
+//        phone {
+//            dimension 'device'
+//        }
+//        beta {
+//            dimension 'env'
+//        }
+//        dev{
+//            dimension 'env'
+//        }
+//    }
     lintOptions {
         quiet true
         lintConfig project.file("$project.rootDir/lint.xml")

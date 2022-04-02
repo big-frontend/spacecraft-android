@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.alibaba.android.arouter.launcher.ARouter
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.export.AccountService
 import com.jamesfchen.myhome.screen.photo.vm.PhotoListViewModel
@@ -38,8 +37,8 @@ class PhotoListActivity : AppCompatActivity() {
     @AddTrace(name = "PhotoListActivity#onCreate", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val isLogin = (ARouter.getInstance().build("/account/exportService").navigation() as? AccountService)?.isLogin()
-        Log.d("cjf", "isLogin ${isLogin}")
+//        val isLogin = (ARouter.getInstance().build("/account/exportService").navigation() as? AccountService)?.isLogin()
+//        Log.d("cjf", "isLogin ${isLogin}")
         //init view
         rvPhotoList = RecyclerView(this)
         rvPhotoList.setBackgroundColor(Color.CYAN)

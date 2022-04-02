@@ -3,7 +3,6 @@ package com.jamesfchen.login.signin
 import android.app.Activity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.widget.editorActions
 import com.jakewharton.rxbinding2.widget.textChanges
 import com.jakewharton.rxbinding3.view.clicks
@@ -23,7 +22,7 @@ import io.reactivex.rxkotlin.Observables
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-@Route(path = "/account/signup")
+//@Route(path = "/account/signup")
 class SignUpActivity : SignInContract.View() {
     private val TAG = "SignUpActivity"
     lateinit var binding : ActivitySignupBinding

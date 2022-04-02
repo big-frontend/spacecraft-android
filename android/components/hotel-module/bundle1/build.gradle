@@ -4,23 +4,9 @@ plugins {
 
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android {
-    defaultConfig {
-
+    buildFeatures {
+        viewBinding true
     }
-    buildFeatures{
-        compose true
-    }
-    buildTypes {
-        inhouse {
-            initWith debug
-            lintOptions {
-                warningsAsErrors false
-                abortOnError true
-            }
-        }
-
-    }
-
 }
 dependencies {
     implementation project.moduleify("hotel-foundation")

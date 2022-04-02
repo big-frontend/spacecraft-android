@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -32,7 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author: jamesfchen
  * @since: Sep/27/2019  Fri
  */
-@Route(path = "/account/login")
+//@Route(path = "/account/login")
 public class LoginActivity extends Activity {
     private FirebaseAuth mAuth;
     private String mEmail = "jamesfchen@gmail.com";

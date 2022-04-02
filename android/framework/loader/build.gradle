@@ -11,7 +11,7 @@ dependencies {
 
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    api 'io.github.jamesfchen:lifecycle-api:1.0.2'
+    api 'io.github.jamesfchen:lifecycle-api:1.1.0'
 
     api 'com.firebaseui:firebase-ui-database:6.0.2'
     api 'com.firebaseui:firebase-ui-firestore:6.0.2'
@@ -37,5 +37,51 @@ dependencies {
     implementation project.moduleify("framework-av")
     implementation project.moduleify("framework-image")
     implementation project.moduleify("framework-storage")
+    //android 21+可以不接入该sdk，android sdk默认集成
+    api 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.startup:startup-runtime:1.1.0"
+    /**
+     * ================================apm start=====================================
+     */
+    //crash and anr
+    api 'com.tencent.bugly:nativecrashreport:3.7.1'
+    api 'com.tencent.bugly:crashreport:3.0.0'
+    def matrixModules = [
+            "matrix-commons",
+            "matrix-battery-canary",
+            "matrix-android-lib",
+            "matrix-android-commons",
+            "matrix-trace-canary",
+//            "matrix-resource-canary-android",
+//            "matrix-resource-canary-common",
+            "matrix-io-canary",
+            "matrix-sqlite-lint-android-sdk",
+            "matrix-hooks",
+            "matrix-fd",
+            "matrix-jectl",
+            "matrix-backtrace",
+    ]
 
+    matrixModules.each { moduleName ->
+        api group: "com.tencent.matrix", name: moduleName, version: MATRIX_VERSION, changing: true
+    }
+
+    // releaseImplementation group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: MATRIX_VERSION, changing: true
+
+    api("cn.hikyson.godeye:godeye-core:3.0.0")
+    api "cn.hikyson.godeye:godeye-toolbox:3.0.0"
+    releaseApi("cn.hikyson.godeye:godeye-monitor-no-op:2.7.4")
+    debugApi("cn.hikyson.godeye:godeye-monitor:3.0.0")
+
+    //memory leak
+//    debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
+//    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+//    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
+    api 'com.github.markzhai:blockcanary-android:1.5.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation("io.github.jamesfchen:viapm-api:1.0.0")
+    /**
+     * ================================apm end=====================================
+     */
 }

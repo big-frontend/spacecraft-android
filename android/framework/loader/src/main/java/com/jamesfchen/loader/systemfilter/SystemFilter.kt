@@ -5,7 +5,7 @@ import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
 import android.view.View
-import com.jamesfchen.spacecraft.SApp
+import com.jamesfchen.loader.SApp
 
 class SystemFilter {
     companion object {
@@ -20,7 +20,7 @@ class SystemFilter {
         }
 
         @JvmStatic
-        fun init(app: com.jamesfchen.spacecraft.SApp) {
+        fun init(app: SApp) {
 //            ProcessLifecycleOwner.get().lifecycle.addObserver(SystemFilter())
 //            app.registerActivityLifecycleCallbacks(SystemFilter())
         }

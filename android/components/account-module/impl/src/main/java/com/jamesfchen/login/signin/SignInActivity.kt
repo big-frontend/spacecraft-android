@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.widget.textChanges
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.view.clicks
@@ -31,7 +30,7 @@ import io.reactivex.rxkotlin.Observables
  * @author: hawks.jamesf
  * @since: Oct/23/2018  Tue
  */
-@Route(path = "/account/signin")
+//@Route(path = "/account/signin")
 class SignInActivity : SignInContract.View() {
 //    @Inject override lateinit  var presenter:SignInContract.Presenter
 

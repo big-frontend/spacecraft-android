@@ -1,7 +1,9 @@
 package com.jamesfchen.export;
 
-import com.alibaba.android.arouter.facade.template.IProvider;
+import com.jamesfchen.ibc.Api;
+import com.jamesfchen.ibc.cbpc.IExport;
 
-public interface AccountService extends IProvider {
-    boolean isLogin();
+@Api
+public abstract class AccountService extends IExport {
+    protected abstract boolean isLogin();
 }

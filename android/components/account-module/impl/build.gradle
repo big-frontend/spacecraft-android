@@ -38,7 +38,7 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    api (name: 'cmic_quick_login_android_5.9.1', ext: 'aar')
     //电信一键登入文档：http://dev.10086.cn/docInside?contentId=10000067541479
 //    implementation(name:"cmic_quick_login_android_5.9.1", ext:"aar")
     //联通一键登入文档：https://onlinebusiness.10010.com/product/5302?chnl=none

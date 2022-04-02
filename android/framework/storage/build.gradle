@@ -1,5 +1,6 @@
 plugins {
     id "io.github.jamesfchen.foundation-plugin"
+    id("com.google.devtools.ksp") version "1.5.30-1.0.0"
 }
 //apply plugin: 'realm-android'
 android {
@@ -22,7 +23,7 @@ dependencies {
     api "androidx.room:room-runtime:${ROOM_VERSION}"
     api "androidx.room:room-rxjava2:${ROOM_VERSION}"
     api "androidx.room:room-ktx:${ROOM_VERSION}"
-    kapt "androidx.room:room-compiler:${ROOM_VERSION}"
+    ksp "androidx.room:room-compiler:${ROOM_VERSION}"
 
     //realm database
     api "io.realm:realm-annotations:${REALM_VERSION}"

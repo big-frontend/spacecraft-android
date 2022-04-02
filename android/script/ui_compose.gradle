@@ -1,3 +1,8 @@
+def ktOptions = [
+        //1.5.10-1.0.0  1.6.10-1.1.1
+        ktceVersion: "1.0.3",
+        ktcVersion : "1.5.30"
+]
 android {
     defaultConfig {
         vectorDrawables {
@@ -9,16 +14,15 @@ android {
         compose true
 
         // Disable unused AGP features
-        buildConfig false
-        aidl false
-        renderScript false
-        resValues false
-        shaders false
+//        buildConfig false
+//        aidl false
+//        renderScript false
+//        resValues false
+//        shaders false
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.0.2'
-//        kotlinCompilerVersion "1.5.10"
-//        kotlinCompilerExtensionVersion "1.0.0-beta08"
+        kotlinCompilerExtensionVersion ktOptions.ktceVersion
+        kotlinCompilerVersion ktOptions.ktcVersion
     }
 
     kotlinOptions {
@@ -26,16 +30,16 @@ android {
 //        useIR = true
 //        freeCompilerArgs = freeCompilerArgs + [ "-P","plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"]
     }
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
-dependencies{
+dependencies {
     api 'com.google.accompanist:accompanist-insets:0.19.0'
     api "com.google.accompanist:accompanist-insets-ui:0.19.0"
     //compose
-    def composeVersion = '1.0.2'
+    def composeVersion = ktOptions.ktceVersion
     api "androidx.compose.foundation:foundation-layout:${composeVersion}"
     api "androidx.compose.runtime:runtime:${composeVersion}"
     api "androidx.compose.ui:ui-util:${composeVersion}"
@@ -57,11 +61,7 @@ dependencies{
 
     // Integration with ViewModels
     api 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
-//    api "androidx.navigation:navigation-compose:1.0.0-alpha10"
-//    api 'androidx.navigation:navigation-common-ktx:2.3.5'
-//    api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
-//    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-//    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
     api "com.google.android.material:material:1.4.0"
     api 'androidx.activity:activity-compose:1.3.1'
 

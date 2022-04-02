@@ -61,7 +61,6 @@
 
     <!--        android:allowBackup="${allowBackup}"-->
     <application
-        android:name="com.jamesfchen.spacecraft.SApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -70,6 +69,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        tools:replace="android:theme,android:allowBackup"
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="GoogleAppIndexingWarning">
         <meta-data
@@ -130,35 +130,7 @@
         <meta-data
             android:name="PGYER_FPS_THRESHOLD"
             android:value="10"/>
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <!--            tools:node="remove"-->
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.ApmInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.BundleInitializer"
-                android:value="androidx.startup" />
-            <!--                tools:node="remove"-->
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.LoggerInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.ImageInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.StorageInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.CrossPlatformInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.jamesfchen.spacecraft.EmojiInitializer"
-                android:value="androidx.startup" />
-        </provider>
+
         <provider
             android:name="com.squareup.picasso.PicassoProvider"
             android:authorities="${applicationId}.com.squareup.picasso"
