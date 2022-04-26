@@ -26,7 +26,3 @@ object ViMonitor : ILifecycleObserver {
         inited = true
     }
 }
-//todo:通过gradle插桩自动注册每个Item模块
-@Target(AnnotationTarget.CLASS)
-@Retention(AnnotationRetention.BINARY)
-annotation class MonitoredItem

@@ -1,7 +1,6 @@
 include(
-    ":viapm:viapm-annotations", ":viapm:viapm-compiler", ":viapm:viapm-plugin",":viapm:viapm-api",
-    ":viopt:bullet:bullet-plugin",":viopt:bullet:bullet-api",
+    ":viapm:viapm-annotations", ":viapm:viapm-compiler-plugin", ":viapm:viapm-gradle-plugin",":viapm:viapm-api",
+    ":viopt:startup:startup-gradle-plugin",":viopt:startup:startup-api",
     ":kcp",
-    ":temple-plugin",
     ":proguard-plugin"
 )

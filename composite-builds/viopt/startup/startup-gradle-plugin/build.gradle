@@ -5,49 +5,47 @@ plugins {
 pluginBundle {
     vcsUrl = 'https://github.com/JamesfChen/spacecraft-android'
     website = "https://github.com/JamesfChen/spacecraft-android"
-    description = "proguard  plugin"
-    tags = ['proguard-plugin']
+    description = "startup gradle plugin"
+    tags = ['startup-gradle-plugin']
+    def ver = '1.0.0'
     plugins {
-        ibcplugin {
-            displayName = 'proguard plugin'
-//            description = "组件化之后，组件监听app的生命周期工具"
-            tags = ['proguard-plugin']
-            version '1.0.0'
+        bulletPlugin {
+            displayName = 'v plugin'
+            tags = ['startup-gradle-plugin']
+            version ver
         }
     }
     mavenCoordinates {
         groupId = rootProject.groupId
-        artifactId = "proguard-plugin"
-        version = "1.0.0"
+        artifactId = "startup-plugin"
+        version = ver
     }
 }
 apply plugin: 'java'
+apply plugin: 'groovy'
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
-apply plugin: 'groovy'
+
 tasks.withType(GroovyCompile) {
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
 }
-
-//apply plugin: 'kotlin'
-//compileKotlin {
-//    kotlinOptions.jvmTarget = "1.8"
-//}
-
 apply plugin: "java-gradle-plugin"
 gradlePlugin {
     plugins {
-        ibcplugin {
-            id = "${rootProject.groupId}.proguard-plugin"
-            implementationClass = 'com.jamesfchen.proguard.ProGuardPlugin'
-            displayName ='proguard plugin'
-            description = "proguard"
+        bulletPlugin {
+            id = "${rootProject.groupId}.startup-plugin"
+            implementationClass = 'com.jamesfchen.startup.BulletPlugin'
+            displayName = 'startup gradle plugin'
+            description = "startup gradle plugin"
         }
     }
 }
 dependencies {
+    implementation files('libs/buglySymbolAndroid.jar')
     implementation 'io.github.jamesfchen:base-plugin:1.2.0'
+    compileOnly "com.android.tools.build:gradle:${rootProject.agpVersion}"
+    implementation localGroovy()
 }
