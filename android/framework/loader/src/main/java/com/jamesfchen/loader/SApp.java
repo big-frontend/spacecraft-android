@@ -28,7 +28,7 @@ import com.jamesfchen.viapm.tracer.StartupKt;
  * @since: 2017/7/4
  *
  */
-@Delegate(name = "StartupDelegate")
+@Delegate
 public class SApp extends Application implements Configuration.Provider {
     private static SApp app;
     public static SApp getInstance() {
