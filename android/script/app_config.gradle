@@ -47,20 +47,21 @@ android {
             }
         }
     }
-//    flavorDimensions 'device', 'env'
+//    flavorDimensions 'env','device'
 //    productFlavors {
-//        tv {
-//            dimension 'device'
-//        }
-//        phone {
-//            dimension 'device'
-//        }
 //        beta {
 //            dimension 'env'
 //        }
 //        dev{
 //            dimension 'env'
 //        }
+//        tv {
+//            dimension 'device'
+//        }
+//        phone {
+//            dimension 'device'
+//        }
+
 //    }
     lintOptions {
         quiet true

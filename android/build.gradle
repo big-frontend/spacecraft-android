@@ -10,14 +10,14 @@ buildscript {
         maven { url uri("$rootDir/repo") }
         mavenCentral()
         mavenLocal()
-//        google()
         //publish 同时包含release与snapshot
         maven {url 'https://s01.oss.sonatype.org/content/repositories/public/' }
-        maven { url "https://jitpack.io" }
+//        maven { url "https://jitpack.io" }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url "https://maven.aliyun.com/repository/public" }
         maven{ url "https://dl.bintray.com/kotlin/kotlin-eap"}
+        gradlePluginPortal()
 
     }
     dependencies {
@@ -44,15 +44,14 @@ buildscript {
 //        classpath 'com.google.code.gson:gson:2.7'
 //        classpath  'com.google.gradle:osdetector-gradle-plugin:1.6.0'
         classpath "cn.hikyson.methodcanary:plugin:0.15.5"
+        classpath "io.github.jamesfchen:bundles-assembler-plugin:1.7.0"
+        classpath "io.github.jamesfchen:ibc-plugin:${rootProject.IBCROUTER_VERSION}"
+        classpath "io.github.jamesfchen:module-publisher-plugin:1.4.3"
     }
 }
-plugins {
-    id("io.github.jamesfchen.lifecycle-plugin") version "1.0.1"
-    id("io.github.jamesfchen.ibc-plugin") version "$IBCROUTER_VERSION"
-    id "io.github.jamesfchen.module-publisher-plugin" version "1.4.3" apply(false)
-    id "io.github.jamesfchen.module-chef-plugin" version "1.7.0"
-    id 'io.github.jamesfchen.counter-plugin' version '1.0.0'
-}
+//plugins {
+//    id 'io.github.jamesfchen.counter-plugin' version '1.0.0'
+//}
 allprojects {
     configurations.all {
         // don't cache changing modules at all，check for updates every build

@@ -3,7 +3,8 @@
   "description": "该配置文件给idea plugin插件和gradle plugin读取,idea plugin通过该文件可以实现管理想要编译的模块，gradle plugin则可以根据这些模块信息生成快速模块",
   "buildVariants": [
     "debug",
-    "release"
+    "release",
+    "inhouse"
   ],
   "groupId": "io.github.jamesfchen",
   "allModules": [
