@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.MessageQueue.IdleHandler
 import android.os.SystemClock
 import android.util.Log
+import com.jamesfchen.lifecycle.AppLifecycle
+import com.jamesfchen.lifecycle.IAppLifecycleObserver
 import java.lang.ref.WeakReference
 import java.util.ArrayList
 
@@ -16,8 +18,8 @@ import java.util.ArrayList
  */
 const val TAG_MEM_MONITOR = "mem-monitor"
 
-@MonitoredItem
-class MemItem : ILifecycleObserver {
+@AppLifecycle
+class MemItem : IAppLifecycleObserver {
     val leakMemoryItem = LeakMemoryItem()
     val bigBitmapItem = BigBitmapItem()
     override fun onAppCreate() {

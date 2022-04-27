@@ -16,6 +16,7 @@ import androidx.work.Configuration;
 
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
+import com.jamesfchen.startup.Delegate;
 import com.jamesfchen.viapm.tracer.StartupKt;
 
 
@@ -27,6 +28,7 @@ import com.jamesfchen.viapm.tracer.StartupKt;
  * @since: 2017/7/4
  *
  */
+@Delegate(name = "StartupDelegate")
 public class SApp extends Application implements Configuration.Provider {
     private static SApp app;
     public static SApp getInstance() {

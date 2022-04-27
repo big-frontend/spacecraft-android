@@ -11,6 +11,7 @@ apply from: "$rootDir/script/app_config.gradle"
 counterConfig {
     sea = 'all'
 }
+apply plugin: 'io.github.jamesfchen.startup-plugin'
 android {
     defaultConfig {
         resValue "string", "app_name", "spacecraft.app"

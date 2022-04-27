@@ -8,9 +8,9 @@ import android.os.IBinder
 import android.util.ArrayMap
 import android.util.Log
 import com.blankj.utilcode.util.ReflectUtils
+import com.jamesfchen.lifecycle.AppLifecycle
+import com.jamesfchen.lifecycle.IAppLifecycleObserver
 import com.jamesfchen.viapm.ViMonitor
-import com.jamesfchen.viapm.ILifecycleObserver
-import com.jamesfchen.viapm.MonitoredItem
 
 /**
  *
@@ -30,8 +30,8 @@ import com.jamesfchen.viapm.MonitoredItem
  */
 const val TAG_STARTUP_MONITOR = "startup-monitor"
 
-@MonitoredItem
-class StartupItem : ILifecycleObserver {
+@AppLifecycle
+class StartupItem : IAppLifecycleObserver {
     override fun onAppCreate() {
         super.onAppCreate()
     }

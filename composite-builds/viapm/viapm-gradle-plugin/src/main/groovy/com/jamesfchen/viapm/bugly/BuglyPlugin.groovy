@@ -10,7 +10,7 @@ class BuglyPlugin implements Plugin<Project> {
     void apply(Project project) {
         P.info("project[${project}] apply ${this.getClass().getSimpleName()}")
         project.extensions.create("bugly", BuglyExtension)
-        if (!project.plugins.hasPlugin("com.android.application")) throw new IllegalArgumentException("bugly plugin必须在app模块中配置")
+//        if (!project.plugins.hasPlugin("com.android.application")) throw new IllegalArgumentException("bugly plugin必须在app模块中配置")
 
         //project 加载完成之后
         project.gradle.projectsLoaded {

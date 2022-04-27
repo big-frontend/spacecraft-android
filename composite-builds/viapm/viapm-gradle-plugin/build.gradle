@@ -79,6 +79,6 @@ gradlePlugin {
 dependencies {
     implementation files('libs/buglySymbolAndroid.jar')
     implementation 'io.github.jamesfchen:base-plugin:1.2.0'
-    compileOnly "com.android.tools.build:gradle:${rootProject.agpVersion}"
+    compileOnly "com.android.tools.build:gradle:${rootProject.AGP_VERSION}"
     implementation localGroovy()
 }

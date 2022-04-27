@@ -7,10 +7,10 @@ pluginBundle {
     website = "https://github.com/JamesfChen/spacecraft-android"
     description = "startup gradle plugin"
     tags = ['startup-gradle-plugin']
-    def ver = '1.0.0'
+    def ver = rootProject.STARTUP_VERSION
     plugins {
-        bulletPlugin {
-            displayName = 'v plugin'
+        startupPlugin {
+            displayName = 'startup gradle plugin'
             tags = ['startup-gradle-plugin']
             version ver
         }
@@ -22,30 +22,28 @@ pluginBundle {
     }
 }
 apply plugin: 'java'
-apply plugin: 'groovy'
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-tasks.withType(GroovyCompile) {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+apply plugin: 'kotlin'
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
 }
 apply plugin: "java-gradle-plugin"
 gradlePlugin {
     plugins {
-        bulletPlugin {
+        startupPlugin {
             id = "${rootProject.groupId}.startup-plugin"
-            implementationClass = 'com.jamesfchen.startup.BulletPlugin'
+            implementationClass = 'com.jamesfchen.startup.StartupPlugin'
             displayName = 'startup gradle plugin'
             description = "startup gradle plugin"
         }
     }
 }
 dependencies {
-    implementation files('libs/buglySymbolAndroid.jar')
-    implementation 'io.github.jamesfchen:base-plugin:1.2.0'
-    compileOnly "com.android.tools.build:gradle:${rootProject.agpVersion}"
-    implementation localGroovy()
+    implementation 'io.github.jamesfchen:base-plugin:1.2.1'
+    compileOnly "com.android.tools.build:gradle:${rootProject.AGP_VERSION}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.KOTLIN_VERSION}"
 }

@@ -45,7 +45,7 @@ class ApmInitializer : Initializer<Unit> {
         CrashReport.setIsDevelopmentDevice(context, BuildConfig.DEBUG)
         CrashReport.initCrashReport(context, strategy)
         startFirebase(context)
-        startMatrix(context)
+//        startMatrix(context)
         GlobalScope.launch {
 //            startAndroidGodEye(context)
         }

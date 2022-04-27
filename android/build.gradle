@@ -49,9 +49,10 @@ buildscript {
         classpath "io.github.jamesfchen:module-publisher-plugin:1.4.3"
     }
 }
-//plugins {
+plugins {
 //    id 'io.github.jamesfchen.counter-plugin' version '1.0.0'
-//}
+    id 'io.github.jamesfchen.startup-plugin' apply false
+}
 allprojects {
     configurations.all {
         // don't cache changing modules at all，check for updates every build

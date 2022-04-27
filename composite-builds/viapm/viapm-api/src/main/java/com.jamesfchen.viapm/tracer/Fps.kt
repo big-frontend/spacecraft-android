@@ -10,14 +10,11 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.Printer
 import android.view.*
-import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.LayoutInflaterCompat
-import com.jamesfchen.viapm.IActivityLifecycleObserver
-import com.jamesfchen.viapm.IAppLifecycleObserver
-import com.jamesfchen.viapm.ILifecycleObserver
-import com.jamesfchen.viapm.MonitoredItem
+import com.jamesfchen.lifecycle.AppLifecycle
+import com.jamesfchen.lifecycle.IAppLifecycleObserver
 import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit
 import kotlin.time.ExperimentalTime
@@ -30,18 +27,22 @@ import kotlin.time.ExperimentalTime
  *  收集的帧数大于300帧时，处理300帧都是level，如果帧数消耗时间总计为10s就上报这10s内的所有帧数情况。
  */
 const val TAG_FRAME_MONITOR = "fps-monitor"
-@MonitoredItem
-class FpsItem : ILifecycleObserver {
+@AppLifecycle
+class FpsItem : IAppLifecycleObserver {
     override fun onActivityForeground(activity: Activity) {
         super.onActivityForeground(activity)
-        FrameTrace0.start(activity)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            FrameTrace0.start(activity)
+        }
         FrameTrace1.start(activity)
         FrameTrace2.start()
     }
 
     override fun onActivityBackground(activity: Activity) {
         super.onActivityBackground(activity)
-        FrameTrace0.stop(activity)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            FrameTrace0.stop(activity)
+        }
         FrameTrace1.stop(activity)
         FrameTrace2.stop()
     }
@@ -230,8 +231,8 @@ class FpsItem : ILifecycleObserver {
  *  每个控件加载耗时：LayoutInflater.Factory2
  */
 const val TAG_LAYOUT_MONITOR = "layoutinflater-monitor"
-@MonitoredItem
-class LayoutInflateItem : IAppLifecycleObserver, IActivityLifecycleObserver {
+//@AppLifecycle
+class LayoutInflateItem : IAppLifecycleObserver {
     val f = MyLayoutInflaterFactoryV2()
     override fun onAppCreate() {
         super.onAppCreate()
