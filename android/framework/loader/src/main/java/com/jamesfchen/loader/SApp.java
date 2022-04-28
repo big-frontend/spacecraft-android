@@ -16,6 +16,7 @@ import androidx.work.Configuration;
 
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
+import com.jamesfchen.startup.AppDelegate;
 import com.jamesfchen.startup.Delegate;
 import com.jamesfchen.viapm.tracer.StartupKt;
 
@@ -51,6 +52,7 @@ public class SApp extends Application implements Configuration.Provider {
 //                // have a binary dependency on your ApplicationLifeCycle class.
 //                "com.jamesfchen.loader.SAppLike");
 //    }
+    AppDelegate appDelegate;
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -59,6 +61,8 @@ public class SApp extends Application implements Configuration.Provider {
         start = SystemClock.elapsedRealtime();
 //        Debug.startMethodTracing(getExternalCacheDir().getParent()+"/contentprovidertrace");
         Trace.beginSection("contentprovidertrace");
+        appDelegate = new AppDelegate();
+        appDelegate.attachBaseContext(base);
     }
 
     /**
@@ -79,6 +83,7 @@ public class SApp extends Application implements Configuration.Provider {
         Util.init(this);
 //        SystemFilter.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+        appDelegate.onCreate();
     }
 
     /**
