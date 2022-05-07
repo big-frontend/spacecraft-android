@@ -53,6 +53,7 @@ plugins {
 //    id 'io.github.jamesfchen.counter-plugin' version '1.0.0'
     id 'io.github.jamesfchen.startup-plugin' apply false
 }
+apply plugin: "io.github.jamesfchen.module-chef-plugin"
 allprojects {
     configurations.all {
         // don't cache changing modules at all，check for updates every build
