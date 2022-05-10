@@ -1,6 +1,6 @@
 package net.sourceforge.simcpux;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

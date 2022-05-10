@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelbiz.SubscribeMessage;
 import com.tencent.mm.opensdk.openapi.IWXAPI;

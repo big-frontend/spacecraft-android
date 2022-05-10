@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelpay.JumpToOfflinePay;
 import com.tencent.mm.opensdk.openapi.IWXAPI;

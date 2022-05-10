@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 
 
 public class ResultDialog extends Dialog {

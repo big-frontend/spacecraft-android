@@ -3,7 +3,7 @@ package net.sourceforge.simcpux.uikit;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;

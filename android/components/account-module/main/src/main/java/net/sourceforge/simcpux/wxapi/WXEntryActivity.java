@@ -8,7 +8,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 
 import net.sourceforge.simcpux.uikit.NetworkUtil;
 

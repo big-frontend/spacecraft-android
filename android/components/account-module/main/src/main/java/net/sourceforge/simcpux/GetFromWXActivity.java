@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.jamesfchen.account.R;
+import com.jamesfchen.main.R;
 import com.tencent.mm.opensdk.modelmsg.GetMessageFromWX;
 import com.tencent.mm.opensdk.modelmsg.WXAppExtendObject;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
