@@ -3,6 +3,7 @@ plugins {
     id 'io.github.jamesfchen.counter-plugin'
 }
 apply from:"$rootDir/script/app_config.gradle"
+apply from: "${rootDir.path}/script/ui_tradition.gradle"
 counterConfig {
     pickupModules=[':components:account-module:export',':components:account-module:impl']
 }
