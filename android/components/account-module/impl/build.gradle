@@ -1,7 +1,6 @@
 plugins {
     id "io.github.jamesfchen.bundle-plugin"
 }
-
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     defaultConfig {
@@ -45,8 +44,8 @@ dependencies {
     //移动一键登入文档：https://id.189.cn/banner/unPassword
     //    implementation 'com.google.firebase:firebase-auth:21.0.1'
 //    api "io.github.jamesfchen:cmic-quick-login-android:5.9.1"
-    implementation 'com.firebaseui:firebase-ui-auth:6.0.2'
-    api 'com.google.firebase:firebase-auth'
+//    implementation 'com.firebaseui:firebase-ui-auth:6.0.2'
+//    api 'com.google.firebase:firebase-auth'
 
     // 友盟基础组件库（所有友盟业务SDK都依赖基础组件库）
     implementation 'com.umeng.umsdk:common:9.4.4'// (必选)
@@ -64,14 +63,20 @@ dependencies {
 
     implementation 'com.umeng.umsdk:share-wx:7.1.7' //微信完整版
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'//微信官方依赖库
+//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'//微信官方依赖库
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
     //test个
 
-    kapt "com.google.dagger:dagger-compiler:2.16"
+//    kapt "com.google.dagger:dagger-compiler:2.16"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+//    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation project.moduleify('account-export')
+
+    compileOnly project.moduleify("framework-baseui")
+    compileOnly project.moduleify("framework-network")
+    compileOnly project.moduleify("framework-common")
 
 }
 

@@ -9,6 +9,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         binding.wxPay.setOnClickListener{
             startActivity(Intent(this@MainActivity,net.sourceforge.simcpux.MainActivity::class.java))
         }

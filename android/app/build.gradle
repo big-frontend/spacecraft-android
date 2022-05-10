@@ -12,6 +12,7 @@ counterConfig {
     sea = 'all'
 }
 apply plugin: 'io.github.jamesfchen.startup-plugin'
+apply plugin: 'com.google.gms.google-services'
 android {
     defaultConfig {
         resValue "string", "app_name", "spacecraft.app"
@@ -82,4 +83,12 @@ dependencies {
     project.depsConfig("implementation", "im-chatroom")
     project.depsConfig("implementation", "hotel-foundation")
     project.depsConfig("implementation", "update-appupdate")
+    implementation project.moduleify("framework-baseui")
+    implementation project.moduleify("framework-loader")
+    implementation project.moduleify("framework-network")
+    implementation project.moduleify("framework-av")
+    implementation project.moduleify("framework-image")
+    implementation project.moduleify("framework-storage")
+//    implementation project.moduleify("framework-mockserver")
+    implementation project.moduleify("framework-common")
 }

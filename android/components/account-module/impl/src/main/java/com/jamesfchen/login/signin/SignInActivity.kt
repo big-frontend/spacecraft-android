@@ -6,9 +6,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.textChanges
 import com.jakewharton.rxbinding3.view.clicks
-import com.jakewharton.rxbinding3.view.clicks
-import com.jakewharton.rxbinding3.view.clicks
-import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
 import com.jamesfchen.account.databinding.ActivitySigninBinding
 import com.jamesfchen.mvp.AutoDisposable

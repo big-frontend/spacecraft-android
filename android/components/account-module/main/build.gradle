@@ -2,14 +2,22 @@ plugins {
     id "io.github.jamesfchen.app-plugin"
     id 'io.github.jamesfchen.counter-plugin'
 }
-apply from:"$rootDir/script/app_config.gradle"
+apply from: "$rootDir/script/app_config.gradle"
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 counterConfig {
-    pickupModules=[':components:account-module:export',':components:account-module:impl']
+    pickupModules = [':components:account-module:export', ':components:account-module:impl']
 }
 android {
     defaultConfig {
-        resValue "string", "app_name","account.app"
+        resValue "string", "app_name", "account.app"
+        applicationId "net.sourceforge.simcpux"
+    }
+    buildTypes {
+        release {
+        }
+        debug {
+            applicationIdSuffix ""
+        }
     }
 }
 dependencies {
@@ -17,4 +25,8 @@ dependencies {
     project.depsConfig("implementation", "account-rnplugin")
     project.depsConfig("implementation", "account-foundation")
     project.depsConfig("implementation", "account-export")
+
+    implementation project.moduleify("framework-baseui")
+    implementation project.moduleify("framework-network")
+    implementation project.moduleify("framework-common")
 }
