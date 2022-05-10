@@ -35,6 +35,10 @@ import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * wx api send req ---> WXEntryActivity ---> wx(校验并且发送支付请求)
+ *
+ */
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 	private static String TAG = "MicroMsg.WXEntryActivity";
 
