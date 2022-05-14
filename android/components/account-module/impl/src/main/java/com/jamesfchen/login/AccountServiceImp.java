@@ -1,4 +1,4 @@
-package com.jamesfchen;
+package com.jamesfchen.login;
 
 import android.util.Log;
 

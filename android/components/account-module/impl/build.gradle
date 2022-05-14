@@ -1,7 +1,7 @@
 plugins {
     id "io.github.jamesfchen.bundle-plugin"
 }
-apply from: "${rootDir.path}/script/ui_tradition.gradle"
+apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
     defaultConfig {
         buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
@@ -62,10 +62,8 @@ dependencies {
 //    implementation 'com.alibaba.android:ddsharesdk:1.2.0@jar'//钉钉官方依赖库
 
     implementation 'com.umeng.umsdk:share-wx:7.1.7' //微信完整版
-//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'//微信官方依赖库
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
-    //test个
 
 //    kapt "com.google.dagger:dagger-compiler:2.16"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.16"

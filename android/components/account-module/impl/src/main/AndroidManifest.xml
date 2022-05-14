@@ -13,7 +13,7 @@
         <activity android:name="com.jamesfchen.login.LoginActivity" />
 
         <activity
-            android:name="com.jamesfchen.login.signin.SignInActivity"
+            android:name="com.jamesfchen.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -27,8 +27,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jamesfchen.login.signin.SignUpActivity"
-            android:parentActivityName="com.jamesfchen.login.signin.SignInActivity"
+            android:name="com.jamesfchen.login.SignUpActivity"
+            android:parentActivityName="com.jamesfchen.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
             android:name="com.cmic.sso.activity.MainActivity"

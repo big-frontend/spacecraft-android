@@ -1,7 +1,5 @@
 package com.jamesfchen;
 
-import com.jamesfchen.login.signin.SigInModule;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;

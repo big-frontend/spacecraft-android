@@ -1,4 +1,4 @@
-package com.jamesfchen.login.signin
+package com.jamesfchen.login
 
 import com.jamesfchen.login.modle.ClientState
 import com.jamesfchen.login.modle.Profile
