@@ -43,7 +43,7 @@ dependencies {
     implementation project.moduleify("framework-storage")
     //android 21+可以不接入该sdk，android sdk默认集成
     api 'androidx.multidex:multidex:2.0.1'
-    implementation "androidx.startup:startup-runtime:1.1.0"
+
     /**
      * ================================apm start=====================================
      */
@@ -89,4 +89,6 @@ dependencies {
      * ================================apm end=====================================
      */
     implementation("io.github.jamesfchen:startup-api:1.0.0")
+    implementation "androidx.startup:startup-runtime:1.1.0"
+    implementation 'com.alibaba.android:alpha:1.0.0.1@aar'
 }

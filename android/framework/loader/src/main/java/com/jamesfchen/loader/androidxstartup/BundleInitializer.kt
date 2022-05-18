@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen.loader.androidxstartup
 
 import android.app.Application
 import android.content.Context

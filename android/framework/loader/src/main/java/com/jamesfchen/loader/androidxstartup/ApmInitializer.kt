@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen.loader.androidxstartup
 
 import android.app.Application
 import android.content.Context
@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.loader.BuildConfig
+import com.jamesfchen.loader.SApp
 import com.jamesfchen.loader.matrix.*
 import com.jamesfchen.viapm.ViMonitor
 import com.pgyer.pgyersdk.PgyerSDKManager

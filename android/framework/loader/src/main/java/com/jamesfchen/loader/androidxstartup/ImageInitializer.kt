@@ -1,9 +1,10 @@
-package com.jamesfchen.loader
+package com.jamesfchen.loader.androidxstartup
 
 import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
 import com.google.firebase.perf.metrics.AddTrace
+import com.jamesfchen.loader.ImageLoader
 
 class ImageInitializer : Initializer<Unit> {
     @AddTrace(name = "ImageInitializer#create",enabled = true)

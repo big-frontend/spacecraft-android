@@ -12,26 +12,26 @@
             tools:node="merge">
             <!--            tools:node="remove"-->
             <meta-data
-                android:name="com.jamesfchen.loader.ApmInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.ApmInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.BundleInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.BundleInitializer"
                 android:value="androidx.startup" />
             <!--                tools:node="remove"-->
             <meta-data
-                android:name="com.jamesfchen.loader.LoggerInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.LoggerInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.ImageInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.ImageInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.StorageInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.StorageInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.CrossPlatformInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.CrossPlatformInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.EmojiInitializer"
+                android:name="com.jamesfchen.loader.androidxstartup.EmojiInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

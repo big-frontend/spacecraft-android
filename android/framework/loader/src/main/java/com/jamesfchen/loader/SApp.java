@@ -5,6 +5,8 @@ import static com.jamesfchen.viapm.tracer.StartupKt.TAG_STARTUP_MONITOR;
 import android.app.Application;
 import android.content.Context;
 import android.os.Debug;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.util.Log;
@@ -14,8 +16,10 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 import androidx.work.Configuration;
 
+import com.alibaba.android.alpha.OnProjectExecuteListener;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.common.util.Util;
+import com.jamesfchen.loader.alialpha.ConfigTest;
 import com.jamesfchen.startup.AppDelegate;
 import com.jamesfchen.viapm.tracer.StartupKt;
 
@@ -82,6 +86,23 @@ public class SApp extends Application implements Configuration.Provider {
 //        SystemFilter.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
         appDelegate.onCreate();
+        ConfigTest test = new ConfigTest(getApplicationContext());
+        test.setOnProjectExecuteListener(new OnProjectExecuteListener() {
+            @Override
+            public void onProjectStart() {
+
+            }
+
+            @Override
+            public void onTaskFinish(String taskName) {
+
+            }
+
+            @Override
+            public void onProjectFinish() {
+            }
+        });
+        test.start();
     }
 
     /**
