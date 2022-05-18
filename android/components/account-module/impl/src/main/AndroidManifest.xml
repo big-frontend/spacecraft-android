@@ -48,9 +48,15 @@
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
         <activity
+            android:name="com.jamesfchen.pay.wx.WXPayActivity"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale|screenLayout|keyboardHidden"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity-alias
             android:name="${applicationId}.wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:targetActivity="com.jamesfchen.pay.wx.WXPayActivity"/>
     </application>
 </manifest>

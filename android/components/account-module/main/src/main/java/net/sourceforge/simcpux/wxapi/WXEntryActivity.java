@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
@@ -105,6 +106,14 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 
 	@Override
 	public void onReq(BaseReq req) {
+		Log.d("cjf","onReq main thread: "+ Looper.getMainLooper().isCurrentThread());
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Log.d("cjf","onReq main thread1: "+ Looper.getMainLooper().isCurrentThread());
+
+			}
+		}).start();
 		switch (req.getType()) {
 		case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
 			goToGetMsg();		
@@ -120,6 +129,14 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 
 	@Override
 	public void onResp(BaseResp resp) {
+		Log.d("cjf"," main thread: "+ Looper.getMainLooper().isCurrentThread());
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+		Log.d("cjf"," main thread1: "+ Looper.getMainLooper().isCurrentThread());
+
+			}
+		}).start();
 		int result = 0;
 		
 		switch (resp.errCode) {

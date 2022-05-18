@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.umeng.umsdk:share-wx:7.1.7' //微信完整版
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'//微信官方依赖库
+    implementation 'com.nearme.instant.platform:alipaySdk:15.6.8'
 
 //    kapt "com.google.dagger:dagger-compiler:2.16"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
