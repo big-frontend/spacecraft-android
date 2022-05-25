@@ -1,0 +1,19 @@
+apply plugin: "io.github.jamesfchen.module-publisher-plugin"
+publish {
+    name = "tasklist-composer"
+    groupId = rootProject.groupId
+    artifactId = "tasklist-composer"
+    version = rootProject.TASKLIST_COMPOSER_VERSION
+    website = "https://github.com/JamesfChen/spacecraft-android"
+}
+apply from: "$rootDir/aar.gradle"
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.3.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    api 'androidx.core:core-ktx:1.5.0'
+}
+
+
