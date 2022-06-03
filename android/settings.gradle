@@ -34,7 +34,8 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
 }
+includeBuild("../composite-builds")
+includeBuild("../vivian")
 apply from:'./script/trace_gradle.gradle'
 apply from:'./script/module_registry.gradle'
-includeBuild("../composite-builds")
 //includeBuild("framework/network/super-retrofit")
