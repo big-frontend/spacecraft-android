@@ -1,6 +1,6 @@
 package com.jamesfchen.myhome.model
 
-import com.jamesfchen.mockserver.model.weather.City
+import com.jamesfchen.myhome.model.weather.City
 
 /**
  * Copyright ® $ 2017

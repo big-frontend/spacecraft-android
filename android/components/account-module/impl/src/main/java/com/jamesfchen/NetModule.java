@@ -1,15 +1,6 @@
 package com.jamesfchen;
 
-import com.jamesfchen.common.util.Util;
-import com.jamesfchen.login.source.SignInDataSource;
-import com.jamesfchen.login.source.mock.MockSignInDataSource;
-import com.jamesfchen.login.source.mock.UncertaintyConditions;
-import com.jamesfchen.login.source.remote.rest.signin.RemoteSignInDataSource;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Copyright ® $ 2017
@@ -27,17 +18,17 @@ public class NetModule {
 //    }
 
 
-    @Provides
-    @Singleton
-    public SignInDataSource provideSignInDataSource() {
-        if (false) {
-            return new MockSignInDataSource(Util.getApp(), new UncertaintyConditions.UncertaintyParams(
-                    0f, 0, 1500L, 500L
-            ));
-        } else {
-            return new RemoteSignInDataSource();
-        }
-    }
+//    @Provides
+//    @Singleton
+//    public SignInDataSource provideSignInDataSource() {
+//        if (false) {
+//            return new MockSignInDataSource(Util.getApp(), new UncertaintyConditions.UncertaintyParams(
+//                    0f, 0, 1500L, 500L
+//            ));
+//        } else {
+//            return new RemoteSignInDataSource();
+//        }
+//    }
 
 
 //    @Provides

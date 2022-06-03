@@ -13,9 +13,9 @@ import androidx.annotation.IntDef
 import androidx.core.content.ContextCompat
 import androidx.emoji.widget.EmojiTextView
 import com.blankj.utilcode.util.ConvertUtils.dp2px
-import com.jamesfchen.loader.R
 import android.text.StaticLayout
 import android.util.Log
+import com.jamesfchen.myhome.R
 
 
 /**

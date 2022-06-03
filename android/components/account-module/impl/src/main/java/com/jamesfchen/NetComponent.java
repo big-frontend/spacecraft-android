@@ -1,7 +1,6 @@
 package com.jamesfchen;
 
 
-import com.jamesfchen.login.source.SignInDataSource;
 
 import javax.inject.Singleton;
 
@@ -18,7 +17,7 @@ import dagger.Component;
 @Component(modules = NetModule.class)
 public interface NetComponent {
 
-    SignInDataSource getSignInDataSource();
+//    SignInDataSource getSignInDataSource();
 //    WeatherDataSource getWeatherDataSource();
 
 //    Client client();

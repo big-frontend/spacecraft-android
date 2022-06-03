@@ -27,4 +27,6 @@ dependencies {
 //    lintChecks project(path: ':components:hotel-module:hotel-lint')
 //    lintPublish project(path: ':components:hotel-module:hotel-lint')
     implementation project.moduleify("framework-baseui")
+    compileOnly project.moduleify("framework-image")
+    compileOnly project.moduleify("framework-common")
 }

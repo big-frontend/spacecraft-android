@@ -9,4 +9,12 @@ android {
 dependencies {
     implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
     implementation project.moduleify("hotel-foundation")
+    compileOnly project.moduleify('framework-common')
+    implementation project.moduleify('framework-baseui')
+    compileOnly project.moduleify('framework-image')
+    compileOnly project.moduleify('framework-network')
+    compileOnly project.moduleify('framework-storage')
+    compileOnly project.moduleify('framework-loader')
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

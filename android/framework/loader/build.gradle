@@ -34,7 +34,7 @@ dependencies {
 //    api "androidx.work:work-firebase:2.2.0"
 
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation project.moduleify("framework-common")
     implementation project.moduleify("framework-network")
     implementation project.moduleify("framework-mockserver")
