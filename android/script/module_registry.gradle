@@ -3,54 +3,6 @@ import groovy.json.JsonSlurper
 def child(Object msg) {
     println("👶[ gradle initialzation ] " + msg);
 }
-/**
- * 读取module_config.json信息以此来include具体的模块，对于模块的描述应该有这些信息
- * class Module{
- *    require  def simpleName 模块名的简写,给idea plugin读取
- *    require def format 模块格式(plugin bundle foundation jar ,bundle可以不参加编译，即exclude，但是framwork foundation必须被include)
- *    require def group 分组是为了当exclude某个app时，其下的依赖的同组模块也会exclude
- *    require def type {api,processor,tool} 对于framework内部的模块来说，有暴露给app层的api模块，还有有processor、tool
- *    require def sourcePath :components:hotel-module:foundation
- *    require def binaryPath default: {package}:simpleName:1.0.0 ,默认的binary_artifact需要保证simpelName唯一性,先暂时用1.0.0站位，后面应该通过获取远程版本和本地版本进行自动升级
- *    option def deps 不应有这个属性，要编译成什么应该通过excludeModule和sourceModule,默认都是aar编译//option def build_source(source or binary),binary(aar jar)编译更快
- *}
- */
-def config = new JsonSlurper().parse(file("$rootDir/module_config.json"))
-gradle.ext.allModules = config.allModules
-gradle.ext.groupId = config.groupId
-gradle.ext.buildVariants = config.buildVariants
-gradle.ext.buildArtifacts = config.buildArtifacts
-def localProperties = new Properties()
-def localPropertiesFile = new File(rootDir, 'local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-def excludeModulesStr = localProperties.getProperty('excludeModules', '')
-def sourceModulesStr = localProperties.getProperty('sourceModules', '')
-if (localProperties.getProperty('activeBuildVariant', '')){
-    gradle.ext.activeBuildVariant = localProperties.getProperty('activeBuildVariant', '')
-}else {
-    gradle.ext.activeBuildVariant = gradle.ext.buildVariants.get(0)
-    localProperties.setProperty("activeBuildVariant", gradle.ext.activeBuildVariant)
-    localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
-}
-if (localProperties.getProperty('activeBuildArtifact', '')){
-    gradle.ext.activeBuildArtifact = localProperties.getProperty('activeBuildArtifact', '')
-}else if (gradle.ext.buildArtifacts !=null && !gradle.ext.buildArtifacts.isEmpty()){
-    gradle.ext.activeBuildArtifact = gradle.ext.buildArtifacts.get(0)
-    localProperties.setProperty("activeBuildArtifact", gradle.ext.activeBuildArtifact)
-    localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
-}
-gradle.ext.excludeModuleMap = new LinkedHashMap<String, Object>()
-gradle.ext.sourceModuleMap = new LinkedHashMap<String, Object>()
-gradle.ext.binaryModuleMap = new LinkedHashMap<String, Object>()
-gradle.ext.sourcePath2SimpleNameMap = [:]
-
-gradle.ext.pluginSrcModuleMap = [:]
-gradle.ext.pluginBinaryModuleMap = [:]
-gradle.ext.framworkApiModuleMap = [:]
 def findModule = { name ->
     for (def m : gradle.ext.allModules) {
         if (m.simpleName == name) {
@@ -67,6 +19,70 @@ String.metaClass.eachAfterSplit { reg, Closure closure ->
         }
     }
 }
+/**
+ * 读取module_config.json信息以此来include具体的模块，对于模块的描述应该有这些信息
+ * class Module{
+ *    require  def simpleName 模块名的简写,给idea plugin读取
+ *    require def format 模块格式(nsbundle ndbundle h5bundle rnbundle flutterbundle foundation jar ,bundle可以不参加编译，即exclude，但是framework foundation必须被include)
+ *    require def group 分组是为了当exclude某个app时，其下的依赖的同组模块也会exclude
+ *    require def type {api,processor,tool} 对于framework内部的模块来说，有暴露给app层的api模块，还有有processor、tool
+ *    require def sourcePath :components:hotel-module:foundation
+ *    require def binaryPath default: {package}:simpleName:1.0.0 ,默认的binary_artifact需要保证simpelName唯一性,先暂时用1.0.0站位，后面应该通过获取远程版本和本地版本进行自动升级
+ *}
+ */
+def config = new JsonSlurper().parse(file("$rootDir/module_config.json"))
+gradle.ext.allModules = config.allModules
+gradle.ext.groupId = config.groupId
+gradle.ext.buildVariants = config.buildVariants
+def localProperties = new Properties()
+def localPropertiesFile = new File(rootDir, 'local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+def excludeModulesStr = localProperties.getProperty('excludeModules', '')
+def sourceModulesStr = localProperties.getProperty('sourceModules', '')
+if (localProperties.getProperty('activeBuildVariant', '')){
+    gradle.ext.activeBuildVariant = localProperties.getProperty('activeBuildVariant', '')
+}else {
+    gradle.ext.activeBuildVariant = gradle.ext.buildVariants.get(0)
+    localProperties.setProperty("activeBuildVariant", gradle.ext.activeBuildVariant)
+    localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
+}
+//includeAll
+if (!localProperties.containsKey("sourceModules")) {
+    StringBuffer sourcesb = new StringBuffer();
+    StringBuffer excludesb = new StringBuffer();
+    gradle.ext.allModules.each { m ->
+        if (stripModule == m.simpleName && m.group == 'fwk'){
+            throw new IllegalAccessException("exclude 仅针对bundle,fwk组的模块不能exclude")
+        }
+        if (m.format == 'plugin' || stripModule == m.simpleName){
+            excludesb.append(m.simpleName)
+            excludesb.append(",")
+        }else {
+            sourcesb.append(m.simpleName)
+            sourcesb.append(",")
+        }
+
+    }
+    sourceModulesStr = sourcesb.toString()
+    excludeModulesStr = excludesb.toString()
+
+    localProperties.setProperty("sourceModules", sourceModulesStr);
+    OutputStream outputstream = new FileOutputStream(localPropertiesFile);
+    localProperties.store(outputstream, "update modules")
+
+    localProperties.setProperty("excludeModules", excludeModulesStr)
+    localProperties.store(new FileOutputStream(localPropertiesFile), "update modules")
+}
+gradle.ext.excludeModuleMap = new LinkedHashMap<String, Object>()
+gradle.ext.sourceModuleMap = new LinkedHashMap<String, Object>()
+gradle.ext.binaryModuleMap = new LinkedHashMap<String, Object>()
+gradle.ext.sourcePath2SimpleNameMap = [:]
+
+gradle.ext.pluginSrcModuleMap = [:]
 excludeModulesStr.eachAfterSplit(',') {
     gradle.ext.excludeModuleMap[it.simpleName] = it
 }
@@ -83,6 +99,7 @@ gradle.ext.allModules.each { m ->
         gradle.ext.binaryModuleMap[m.simpleName] = m
     }
 }
+include ":app"
 child("module info ========================================================================================")
 child("activeBuildVariant:"+gradle.ext.activeBuildVariant)
 child("module begin ========================================================================================")
@@ -98,9 +115,6 @@ gradle.ext.excludeModuleMap.each { _, module ->
 }
 gradle.ext.binaryModuleMap.each { simpleName, module ->
     child("binary module\t${module.binaryPath}")
-    if (module.dynamic){
-        gradle.ext.pluginBinaryModuleMap[simpleName] = module
-    }
 }
 
 child("module end ========================================================================================")

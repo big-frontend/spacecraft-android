@@ -5,18 +5,16 @@ home-myhome-build:
       - android/components/home-module/myhome/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=home-myhome
     - ./gradlew :components:home-module:myhome:assemble
 
 
-home-myhome-lint:
-  only:
-    changes:
-      - android/components/home-module/myhome/**/*
-  stage: test
-  script:
-    - ./gradlew includeSourceModule  -PmoduleList=home-myhome
-    - ./gradlew :components:home-module:myhome:lintInhouse
+#home-myhome-lint:
+#  only:
+#    changes:
+#      - android/components/home-module/myhome/**/*
+#  stage: test
+#  script:
+#    - ./gradlew :components:home-module:myhome:lintInhouse
 
 home-myhome-deploy:
   only:
@@ -24,18 +22,16 @@ home-myhome-deploy:
       - android/components/home-module/myhome/**/*
   stage: deploy
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=home-myhome
     - ./gradlew :components:home-module:myhome:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
-home-daily-check:
-  only:
-    changes:
-      - android/components/home-module/**/*
-  stage: build
-  script:
-    - ./gradlew includeSourceModule  -PmoduleList=home-myhome,home-main
-    - ./gradlew :components:home-module:main:fileCounter
+#home-daily-check:
+#  only:
+#    changes:
+#      - android/components/home-module/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :components:home-module:main:fileCounter
 
 ##debugTests:
 ##  stage: test

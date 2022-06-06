@@ -73,11 +73,7 @@
       "simpleName": "account-impl",
       "format": "bundle",
       "group": "account",
-      "sourcePath": ":components:account-module:impl",
-      "deps": [
-        "framework-loader",
-        "account-export"
-      ]
+      "sourcePath": ":components:account-module:impl"
     },
     {
       "simpleName": "account-export",
@@ -143,57 +139,49 @@
       "simpleName": "framework-loader",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:loader",
-      "type": "api"
+      "sourcePath": ":framework:loader"
     },
     {
       "simpleName": "framework-baseui",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:baseui",
-      "type": "api"
+      "sourcePath": ":framework:baseui"
     },
     {
       "simpleName": "framework-network",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:network",
-      "type": "api"
+      "sourcePath": ":framework:network"
     },
     {
       "simpleName": "framework-av",
       "group": "fwk",
       "format": "framework_foundation",
-      "sourcePath": ":framework:av",
-      "type": "api"
+      "sourcePath": ":framework:av"
     },
     {
       "simpleName": "framework-image",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:image",
-      "type": "api"
+      "sourcePath": ":framework:image"
     },
     {
-      "simpleName": "framework-mockserver",
+      "simpleName": "mock",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:mockserver",
-      "type": "api"
+      "sourcePath": "mock"
     },
     {
       "simpleName": "framework-storage",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:storage",
-      "type": "api"
+      "sourcePath": ":framework:storage"
     },
     {
       "simpleName": "framework-common",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:common",
-      "type": "api"
+      "sourcePath": ":framework:common"
     }
   ]
 }

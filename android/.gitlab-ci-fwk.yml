@@ -5,7 +5,6 @@ fwk-common-build:
       - android/framework/common/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-common
     - ./gradlew :framework:common:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-av-build:
@@ -14,7 +13,6 @@ fwk-av-build:
       - android/framework/av/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-av
     - ./gradlew :framework:av:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-flutter:
@@ -31,7 +29,6 @@ fwk-hybrid-build:
       - android/framework/hybrid/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-hybrid
     - ./gradlew :framework:hybrid:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-image-build:
@@ -40,7 +37,6 @@ fwk-image-build:
       - android/framework/image/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-image
     - ./gradlew :framework:image:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-map:
@@ -67,7 +63,6 @@ fwk-network-build:
       - android/framework/network/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-network
     - ./gradlew :framework:network:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-storage-build:
@@ -76,7 +71,6 @@ fwk-storage-build:
       - android/framework/storage/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-storage
     - ./gradlew :framework:storage:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 fwk-loader-build:
@@ -85,7 +79,6 @@ fwk-loader-build:
       - android/framework/loader/**/*
   stage: build
   script:
-    - ./gradlew includeSourceModule  -PmoduleList=framework-loader
     - ./gradlew :framework:loader:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #buildBigApp job
