@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
-
+    implementation "com.liulishuo.okdownload:okdownload:1.0.7"
+    implementation "com.liulishuo.okdownload:sqlite:1.0.7"
+    implementation "com.liulishuo.okdownload:okhttp:1.0.7"
 }

@@ -1,14 +1,14 @@
-home-myhome-build:
+home-module-build:
   only:
     changes:
       #      - components/home-module/myhome/*.{java,kt,xml,gradle}
-      - android/components/home-module/myhome/**/*
+      - android/components/home-module/**/*
   stage: build
   script:
-    - ./gradlew :components:home-module:myhome:assemble
+    - ./gradlew :components:home-module:assemble
 
 
-#home-myhome-lint:
+#home-module-lint:
 #  only:
 #    changes:
 #      - android/components/home-module/myhome/**/*
@@ -16,13 +16,13 @@ home-myhome-build:
 #  script:
 #    - ./gradlew :components:home-module:myhome:lintInhouse
 
-home-myhome-deploy:
+home-module-deploy:
   only:
     changes:
-      - android/components/home-module/myhome/**/*
+      - android/components/home-module/**/*
   stage: deploy
   script:
-    - ./gradlew :components:home-module:myhome:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew :components:home-module:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 #home-daily-check:

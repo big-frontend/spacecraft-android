@@ -9,12 +9,6 @@
   "groupId": "io.github.jamesfchen",
   "allModules": [
     {
-      "simpleName": "app",
-      "format": "app",
-      "group": "father",
-      "sourcePath": ":app"
-    },
-    {
       "simpleName": "update-main",
       "format": "app",
       "group": "update",
@@ -40,16 +34,10 @@
       "sourcePath": ":components:codescanner-module:qrcode"
     },
     {
-      "simpleName": "im-main",
-      "format": "app",
-      "group": "im",
-      "sourcePath": ":components:im-module:main"
-    },
-    {
-      "simpleName": "im-chatroom",
+      "simpleName": "im-module",
       "format": "bundle",
       "group": "im",
-      "sourcePath": ":components:im-module:chatroom"
+      "sourcePath": ":components:im-module"
     },
     {
       "simpleName": "account-main",
@@ -82,16 +70,10 @@
       "sourcePath": ":components:account-module:export"
     },
     {
-      "simpleName": "home-main",
-      "format": "app",
-      "group": "home",
-      "sourcePath": ":components:home-module:main"
-    },
-    {
-      "simpleName": "home-myhome",
+      "simpleName": "home-module",
       "format": "bundle",
       "group": "home",
-      "sourcePath": ":components:home-module:myhome"
+      "sourcePath": ":components:home-module"
     },
     {
       "simpleName": "hotel-main",
