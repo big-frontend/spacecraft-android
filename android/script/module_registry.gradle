@@ -55,10 +55,7 @@ if (!localProperties.containsKey("sourceModules")) {
     StringBuffer sourcesb = new StringBuffer();
     StringBuffer excludesb = new StringBuffer();
     gradle.ext.allModules.each { m ->
-        if (stripModule == m.simpleName && m.group == 'fwk'){
-            throw new IllegalAccessException("exclude 仅针对bundle,fwk组的模块不能exclude")
-        }
-        if (m.format == 'plugin' || stripModule == m.simpleName){
+        if (m.format == 'plugin'){
             excludesb.append(m.simpleName)
             excludesb.append(",")
         }else {
