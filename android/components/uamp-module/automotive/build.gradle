@@ -1,0 +1,84 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+    id "io.github.jamesfchen.app-plugin"
+}
+apply plugin: 'kotlin-android-extensions'
+ext {
+    // Dependency versions.
+    androidx_app_compat_version = '1.2.0'
+    androidx_car_version = '1.0.0-alpha7'
+    androidx_core_ktx_version = '1.3.1'
+    androidx_media_version = '1.0.1'
+    androidx_preference_version = '1.1.1'
+    androidx_test_runner_version = '1.3.0'
+    arch_lifecycle_version = '2.2.0'
+    constraint_layout_version = '2.0.1'
+    espresso_version = '3.3.0'
+    exoplayer_version = '2.16.0'
+    fragment_version = '1.2.5'
+    glide_version = '4.11.0'
+    gms_strict_version_matcher_version = '1.0.3'
+    gradle_version = '3.1.4'
+    gson_version = '2.8.5'
+    junit_version = '4.13'
+    kotlin_version = '1.3.72'
+    kotlin_coroutines_version = '1.1.0'
+    multidex_version = '1.0.3'
+    play_services_auth_version = '18.1.0'
+    recycler_view_version = '1.1.0'
+    robolectric_version = '4.2'
+    test_runner_version = '1.1.0'
+}
+
+android {
+    defaultConfig {
+        applicationId "com.example.android.uamp.next"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project.moduleify('uamp-uamp')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    implementation "androidx.core:core-ktx:$androidx_core_ktx_version"
+    implementation "androidx.preference:preference:$androidx_preference_version"
+    implementation "androidx.car:car:$androidx_car_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    implementation "androidx.appcompat:appcompat:$androidx_app_compat_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_lifecycle_version"
+
+    implementation "com.google.android.gms:play-services-auth:$play_services_auth_version"
+
+    testImplementation "junit:junit:$junit_version"
+
+    androidTestImplementation "androidx.test:runner:$androidx_test_runner_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+}

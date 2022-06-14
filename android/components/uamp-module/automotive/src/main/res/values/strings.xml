@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2019 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">UAMP</string>
+    <string name="settings_label">UAMP Settings</string>
+
+    <!-- Sign in -->
+    <string name="error_login_button">Login</string>
+    <string name="error_require_login">Authentication required</string>
+    <string name="password_hint">Enter password</string>
+    <string name="email_hint">Email</string>
+    <string name="login_button_label">Login</string>
+    <string name="missing_fields_error">Please fill in missing fields</string>
+    <string name="username_help_text">Forgot username? | Use phone app to sign in</string>
+    <string name="password_help_text">Forgot password? | Reset with phone app</string>
+    <string name="sign_in_next_button_label">Next</string>
+    <string name="sign_in_submit_button_label">Next</string>
+    <string name="sign_in_user_id_hint">Enter username</string>
+    <string name="sign_in_username_error">Invalid input</string>
+    <string name="sign_in_primary_text">Sign in with Aural</string>
+    <string name="username_and_password_sign_in_primary_text">Sign in with Aural</string>
+    <string name="phone_sign_in_button_label">Sign in with phone</string>
+    <string name="phone_sign_in_primary_text">Choose phone sign-in method</string>
+    <string name="pin_sign_in_button_label">PIN</string>
+    <string name="pin_sign_in_primary_text">Sign in with PIN</string>
+    <string name="pin_sign_in_secondary_text">Go to example.com/fast-pair on your phone</string>
+    <string name="qr_sign_in_button_label">QR code</string>
+    <string name="qr_sign_in_primary_text">Sign in with QR code</string>
+    <string name="qr_sign_in_secondary_text">Use your phone\'s camera to capture this code</string>
+    <string name="google_sign_in_button_label">Sign in with Google</string>
+    <string name="sign_in_footer">By signing in with Aural, you agree to the &lt;a href=&quot;http://www.google.com&quot;&gt;Terms &amp; Conditions&lt;/a&gt; and &lt;a href=&quot;http://www.google.com&quot;&gt;Privacy policy&lt;/a&gt;</string>
+    <string name="qr_code_url">https://chart.apis.google.com/chart?cht=qr&amp;chs=392x392&amp;chl=https://www.youtube.com/watch?v=8I8mCFYYfdk</string>
+    <string name="sign_in_success_message">Sign in successful</string>
+    <string name="sign_in_failed_message">Sign in failed with error code: %1$d</string>
+
+    <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+</resources>

@@ -9,6 +9,24 @@
   "groupId": "io.github.jamesfchen",
   "allModules": [
     {
+      "simpleName": "uamp-automotive",
+      "format": "app",
+      "group": "uamp",
+      "sourcePath": ":components:uamp-module:automotive"
+    },
+    {
+      "simpleName": "uamp-main",
+      "format": "app",
+      "group": "uamp",
+      "sourcePath": ":components:uamp-module:main"
+    },
+    {
+      "simpleName": "uamp-uamp",
+      "format": "bundle",
+      "group": "uamp",
+      "sourcePath": ":components:uamp-module:uamp"
+    },
+    {
       "simpleName": "update-main",
       "format": "app",
       "group": "update",

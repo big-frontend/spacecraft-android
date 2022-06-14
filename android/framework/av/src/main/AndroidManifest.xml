@@ -2,13 +2,13 @@
     package="com.jamesfchen.av">
 
     <application>
-        <activity android:name="com.jamesfchen.av.RecorderActivity" />
+        <activity android:name="com.jamesfchen.av.AvRecorderActivity" />
         <service
             android:foregroundServiceType="mediaProjection"
-            android:name="com.jamesfchen.av.RecorderService"
+            android:name="com.jamesfchen.av.AvRecorderService"
             />
         <activity
-            android:name="com.jamesfchen.av.VideoActivity"
+            android:name="com.jamesfchen.av.video.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:supportsPictureInPicture="true"
             />
