@@ -39,6 +39,9 @@ android {
     buildFeatures {
         prefab = true
     }
+//    sourceSets.getByName("main"){
+//        jniLibs.srcDirs("${project.projectDir}/libs")
+//    }
 }
 
 dependencies {
@@ -51,7 +54,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     // https://mvnrepository.com/artifact/com.eclipsesource.j2v8/j2v8
     api("com.eclipsesource.j2v8:j2v8:6.2.1@aar")
-//    implementation "org.webkit:android-jsc:r174650"
+//    implementation("org.webkit:android-jsc:r174650")
 //    api("io.github.taoweiji.quickjs:quickjs-android:1.+")
     api("com.facebook.fbjni:fbjni:0.2.2")
 }

@@ -4,8 +4,7 @@ import com.eclipsesource.v8.JavaVoidCallback
 import com.eclipsesource.v8.V8
 import com.eclipsesource.v8.V8Array
 import com.eclipsesource.v8.V8Object
-import com.quickjs.JSContext
-import com.quickjs.QuickJS
+import com.quickjs.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -29,10 +28,31 @@ class JSRuntimeTest {
     }
 
     fun testQuickJs() {
-        val quickJS = QuickJS.createRuntime()
-        val context: JSContext = quickJS.createContext()
-        val result: Int = context.executeIntegerScript("var a = 2+10;\n a;", "file.js")
-        context.close()
-        quickJS.close()
+        QuickJS.createRuntime().use { quickJS ->
+            //创建主线程的EventQueue
+            quickJS.createContext().use { context: JSContext ->
+
+                //如果在主线程调用executeIntegerScript，则直接执行，如果在其他线程调用executeIntegerScript则会通过Handler#post切到主线程在调用
+                val result: Int = context.executeIntegerScript("var a = 2+10;\n a;", "file.js")
+                //js调用java在同一个线程
+                context.registerJavaMethod(object : JavaCallback {
+                    override fun invoke(receiver: JSObject?, args: JSArray?): Any {
+                        return 1
+                    }
+
+                },"jsFunc1")
+                context.registerJavaMethod({ receiver, args ->
+
+                }, "jsFunc2")
+                context.registerClass(object:JavaConstructorCallback{
+                    override fun invoke(thisObj: JSObject?, args: JSArray?) {
+
+                    }
+
+                },"jsClass1")
+
+            }
+
+        }
     }
 }
