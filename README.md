@@ -11,16 +11,17 @@
 ```
 --- android 组件化项目
 --- composite-builds
+--- vi  #apm
     - viapm 项目性能监控系统
     - viopt 项目性能优化
---- apm server #apm服务
+    - dashboard apm表盘
 ```
 
 # To be Architect
 > 驽马十驾功在不舍
 
 ![architecture](./art/architecture.png)
-
+ 
 |  language  |  files |lines|
 |---| --- |---|
 |  java|201 |24923|

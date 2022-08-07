@@ -136,6 +136,12 @@
       "sourcePath": ":components:box-module:tool"
     },
     {
+      "simpleName": "box-jsruntime",
+      "format": "bundle",
+      "group": "box",
+      "sourcePath": ":components:box-module:jsruntime"
+    },
+    {
       "simpleName": "framework-loader",
       "format": "framework_foundation",
       "group": "fwk",

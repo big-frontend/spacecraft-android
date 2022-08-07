@@ -4,6 +4,7 @@ plugins {
 apply from:"$rootDir/script/app_config.gradle"
 
 android {
+    ndkVersion = "22.0.7026061"
     defaultConfig {
         vectorDrawables {
             useSupportLibrary true
@@ -11,18 +12,35 @@ android {
         buildConfigField('String', 'IMAGE_BASE_URL', '"http://192.168.5.103:9000"')
         buildConfigField('String', 'IMAGE_BASE_URL', '"http://10.32.151.130:9000"')
     }
+
     //想要使用dataBinding一定要在app主模块配置，其他lib模块配置不好使
     buildFeatures {
+//        prefab true
         dataBinding true
         compose true
     }
     defaultConfig {
         resValue "string", "app_name","box.app"
     }
+//    sourceSets{
+//        main.jniLibs.srcDirs +="${project.projectDir}/main/jniLibs"
+//    }
+    packagingOptions {
+        exclude 'META-INF/proguard/coroutines.pro'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libfbjni.so'
+        pickFirst 'lib/arm64-v8a/libfbjni.so'
+        pickFirst 'lib/x86/libfbjni.so'
+        pickFirst 'lib/x86_64/libfbjni.so'
+    }
 }
 
 dependencies {
-    api 'androidx.databinding:databinding-runtime:7.0.0-beta03'
+    api 'androidx.databinding:databinding-runtime:7.2.1'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
     project.depsConfig("implementation", "box-tool")
+    project.depsConfig("implementation", "box-jsruntime")
 }
