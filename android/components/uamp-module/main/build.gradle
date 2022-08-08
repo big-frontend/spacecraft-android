@@ -4,7 +4,7 @@ plugins {
 apply plugin: 'kotlin-android-extensions'
 android {
     defaultConfig {
-        resValue "string", "app_name","uamp.app"
+        resValue "string", "app_name","u"
     }
     buildFeatures {
         viewBinding true

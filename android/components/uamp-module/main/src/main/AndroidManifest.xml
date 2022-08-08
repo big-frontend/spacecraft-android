@@ -39,7 +39,8 @@
         <!-- Declare that UAMP supports Cast. -->
         <meta-data android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
             android:value="com.example.android.uamp.cast.UampCastOptionsProvider"/>
-
+        <activity android:name=".AActivity" android:process=":a" android:taskAffinity=":a" android:launchMode="singleTask"/>
+        <activity android:name=".BActivity" android:process=":b" android:taskAffinity=":b" android:launchMode="singleTask"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,7 +86,9 @@
             android:name=".media.MusicService"
             android:enabled="true"
             android:exported="true"
-            tools:ignore="ExportedService">
+            tools:ignore="ExportedService"
+            android:process=":a"
+            >
 
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />

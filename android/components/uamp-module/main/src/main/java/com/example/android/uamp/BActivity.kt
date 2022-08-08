@@ -31,9 +31,8 @@ import com.example.android.uamp.utils.Event
 import com.example.android.uamp.utils.InjectorUtils
 import com.example.android.uamp.viewmodels.MainActivityViewModel
 import com.google.android.gms.cast.framework.CastButtonFactory
-import com.google.android.gms.cast.framework.CastContext
 
-class MainActivity : AppCompatActivity() {
+class BActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<MainActivityViewModel> {
         InjectorUtils.provideMainActivityViewModel(this)
@@ -49,10 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.bta).setOnClickListener{
-            startActivity(Intent(this@MainActivity,AActivity::class.java))
-        }
-        findViewById<Button>(R.id.btb).setOnClickListener{
-            startActivity(Intent(this@MainActivity,BActivity::class.java))
+            startActivity(Intent(this@BActivity,AActivity::class.java))
         }
         // Since UAMP is a music player, the volume controls should adjust the music volume while
         // in the app.

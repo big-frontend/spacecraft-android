@@ -77,7 +77,7 @@ android {
 dependencies {
     project.depsConfig("implementation", "hotel-bundle1")
     project.depsConfig("implementation", "hotel-bundle2")
-    project.depsConfig("implementation", "home-myhome")
+    project.depsConfig("implementation", "home-module")
     project.depsConfig("implementation", "account-impl")
     project.depsConfig("implementation", "codescanner-qrcode")
     project.depsConfig("implementation", "im-chatroom")

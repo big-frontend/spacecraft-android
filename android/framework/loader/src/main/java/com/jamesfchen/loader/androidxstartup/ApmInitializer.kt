@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
 import com.blankj.utilcode.util.ProcessUtils
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.loader.BuildConfig
 import com.jamesfchen.loader.SApp
@@ -66,8 +65,8 @@ class ApmInitializer : Initializer<Unit> {
 //                .setStorageBucket("spacecraft-22dc1.appspot.com")
 //                .build()
 //        FirebaseApp.initializeApp(context,firebaseOptions);
-        val crashlytics = FirebaseCrashlytics.getInstance()
-        crashlytics.setCrashlyticsCollectionEnabled(true)
+//        val crashlytics = FirebaseCrashlytics.getInstance()
+//        crashlytics.setCrashlyticsCollectionEnabled(true)
     }
 
     private fun startMatrix(context: Context) {
