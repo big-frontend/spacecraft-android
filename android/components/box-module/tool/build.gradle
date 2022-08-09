@@ -25,5 +25,7 @@ android {
 }
 
 dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-compiler:1.7.10'
+    compileOnly project.moduleify("framework-common")
 
 }
