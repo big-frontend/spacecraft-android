@@ -5,10 +5,17 @@ import com.android.build.gradle.AppExtension
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.entity.mime.MultipartEntityBuilder
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.impl.client.HttpClients
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import java.io.File
+import java.net.http.HttpClient
+import java.net.http.HttpResponse
+
 
 interface BuglyExtension {
     val appId: Property<String>
@@ -27,6 +34,27 @@ data class SymbolReq(
     val isMappingFile: Boolean = true
 )
 
+fun uploadSymtab(r: SymbolReq) {
+    val url = buildString {
+        append(SYMBOL_UPLOAD_URL)
+        append("?app_id=${r.appId}")
+        append("&app_key=${r.appKey}")
+    }
+
+    val entity = MultipartEntityBuilder.create().addTextBody("app_id", r.appId)
+        .addTextBody("app_key", r.appKey).addTextBody("api_version", "1").addTextBody("channel", "")
+        .addTextBody("symbolType", if (r.isMappingFile) "1" else "3")
+        .addTextBody("bundleId", r.packageName).addTextBody("productVersion", "2.1.0")
+        .addTextBody("fileName", r.file.name).addBinaryBody("file", r.file.absoluteFile)
+        .build()
+    val post = HttpPost(url)
+    post.entity = entity
+    val client = HttpClients.createDefault()
+    val response = client.execute(post)
+    println(response.entity)
+
+}
+
 private fun postSymbol(r: SymbolReq) {
     val url = buildString {
         append(SYMBOL_UPLOAD_URL)
@@ -36,21 +64,14 @@ private fun postSymbol(r: SymbolReq) {
     println(r)
     println(r.file.name)
     val form =
-        MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart("api_version", "1")
-            .addFormDataPart("app_id", r.appId)
-            .addFormDataPart("app_key", r.appKey)
+        MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("api_version", "1")
+            .addFormDataPart("app_id", r.appId).addFormDataPart("app_key", r.appKey)
             .addFormDataPart("channel", r.channel)
             .addFormDataPart("symbolType", if (r.isMappingFile) "1" else "3")
-            .addFormDataPart("bundleId", r.packageName)
-                .addFormDataPart("productVersion", r.version)
-            .addFormDataPart("fileName", r.file.name)
-            .addFormDataPart(
-                "file",
-                r.file.name,
-                RequestBody.create(MediaType.parse("text/plain"), r.file)
-            )
-            .build()
+            .addFormDataPart("bundleId", r.packageName).addFormDataPart("productVersion", r.version)
+            .addFormDataPart("fileName", r.file.name).addFormDataPart(
+                "file", r.file.name, RequestBody.create(MediaType.parse("text/plain"), r.file)
+            ).build()
     Api.postForm(url, form)
 }
 
@@ -67,8 +88,7 @@ class BuglyPlugin : Plugin<Project> {
             appExtension.applicationVariants.all { variant ->
                 val variantName = variant.name.capitalize()//DevPhoneRelease
                 project.tasks.create("report${variantName}Mapping")
-                    .apply { group = Constants.TASK_GROUP }
-                    .doFirst {
+                    .apply { group = Constants.TASK_GROUP }.doFirst {
                         checkNotNull(buglyExtension.appId)
                         checkNotNull(buglyExtension.appKey)
                     }.doLast {
@@ -77,7 +97,7 @@ class BuglyPlugin : Plugin<Project> {
                         val versionName = appExtension.defaultConfig.versionName
                         val versionCode = appExtension.defaultConfig.versionCode
                         val mappingFile = variant.mappingFileProvider.get().singleFile
-                        postSymbol(
+                        uploadSymtab(
                             SymbolReq(
                                 buglyExtension.appId.get(),
                                 buglyExtension.appKey.get(),
@@ -99,8 +119,7 @@ class BuglyPlugin : Plugin<Project> {
 //                    soTask.dependsOn project . tasks ["externalNativeBuild${variantName}"]
 //                }
             }
-            project.tasks.create("reportAllMapping")
-                .apply { group = Constants.TASK_GROUP }
+            project.tasks.create("reportAllMapping").apply { group = Constants.TASK_GROUP }
                 .doFirst {
                     checkNotNull(buglyExtension.appId)
                     checkNotNull(buglyExtension.appKey)
