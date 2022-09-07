@@ -44,5 +44,4 @@ dependencies {
     api 'androidx.databinding:databinding-runtime:7.2.1'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'
     project.depsConfig("implementation", "box-tool")
-    project.depsConfig("implementation", "box-jsruntime")
 }

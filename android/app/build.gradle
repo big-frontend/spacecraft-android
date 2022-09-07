@@ -1,6 +1,6 @@
 plugins {
     id "io.github.jamesfchen.app-plugin"
-    id 'io.github.jamesfchen.counter-plugin'
+//    id 'io.github.jamesfchen.counter-plugin'
     id 'io.github.jamesfchen.bugly-plugin'
 }
 bugly {
@@ -8,9 +8,9 @@ bugly {
     appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
 }
 apply from: "$rootDir/script/app_config.gradle"
-counterConfig {
-    sea = 'all'
-}
+//counterConfig {
+//    sea = 'all'
+//}
 apply plugin: 'io.github.jamesfchen.startup-plugin'
 apply plugin: 'com.google.gms.google-services'
 android {
