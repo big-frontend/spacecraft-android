@@ -26,7 +26,7 @@ android {
 dependencies {
 //    lintChecks project(path: ':components:hotel-module:hotel-lint')
 //    lintPublish project(path: ':components:hotel-module:hotel-lint')
-    implementation project.moduleify("framework-baseui")
+    implementation project.moduleify("framework-base")
     compileOnly project.moduleify("framework-image")
     compileOnly project.moduleify("framework-common")
 }

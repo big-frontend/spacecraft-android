@@ -1,7 +1,6 @@
 package com.jamesfchen.myhome.image
 
 import android.content.Context
-import androidx.annotation.NonNull
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.LibraryGlideModule
 import com.bumptech.glide.Glide
@@ -35,16 +34,18 @@ class HomeModule : LibraryGlideModule() {
         .connectionPool(ConnectionPool(5, 10_000, TimeUnit.MILLISECONDS))//空闲5个，保活10s
         .addInterceptor { chain ->//应用层的拦截器
             return@addInterceptor chain.proceed(chain.request())
-        }
-        .build()
+        }.build()
+
     override fun registerComponents(
-        @NonNull context: Context,
-        @NonNull glide: Glide,
-        @NonNull registry: Registry
+        context: Context, glide: Glide, registry: Registry
     ) {
         //替换默认的HttpGlideUrlLoader，使用Okhttp网络库并且优化任务分发池与连接池
-        registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(okhttpClient))
+        registry.replace(
+            GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(okhttpClient)
+        )
         //处理Glide.load(Photo对象)
-        registry.append(Photo::class.java, InputStream::class.java, HomeGlideUrlModuleLoader.Factory())
+        registry.append(
+            Photo::class.java, InputStream::class.java, HomeGlideUrlModuleLoader.Factory()
+        )
     }
 }

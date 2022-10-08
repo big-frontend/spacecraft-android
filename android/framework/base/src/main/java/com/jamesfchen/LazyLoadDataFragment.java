@@ -1,4 +1,4 @@
-package com.jamesfchen.loader;
+package com.jamesfchen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

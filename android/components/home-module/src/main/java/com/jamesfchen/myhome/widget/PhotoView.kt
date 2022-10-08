@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.Display
 import android.view.MotionEvent
-import android.widget.ImageView
 import androidx.annotation.RawRes
 import com.almeros.android.multitouch.MoveGestureDetector
 import com.blankj.utilcode.util.ImageUtils

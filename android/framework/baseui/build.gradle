@@ -1,7 +1,0 @@
-plugins{
-    id "io.github.jamesfchen.foundation-plugin"
-}
-dependencies {
-    implementation project.moduleify("framework-common")
-}
-

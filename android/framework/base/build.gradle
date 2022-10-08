@@ -1,0 +1,13 @@
+plugins{
+    id "io.github.jamesfchen.foundation-plugin"
+}
+dependencies {
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation project.moduleify("framework-common")
+    implementation project.moduleify("framework-network")
+    implementation project.moduleify("framework-av")
+    implementation project.moduleify("framework-image")
+    implementation project.moduleify("framework-storage")
+}
+

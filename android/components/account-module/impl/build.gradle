@@ -73,7 +73,7 @@ dependencies {
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation project.moduleify('account-export')
 
-    compileOnly project.moduleify("framework-baseui")
+    compileOnly project.moduleify("framework-base")
     compileOnly project.moduleify("framework-network")
     compileOnly project.moduleify("framework-common")
 

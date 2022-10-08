@@ -27,7 +27,7 @@ dependencies {
 //    lintChecks project(path: ':lint-rules')
     implementation project.moduleify('account-export')
     compileOnly project.moduleify('framework-common')
-    implementation project.moduleify('framework-baseui')
+    implementation project.moduleify('framework-base')
     compileOnly project.moduleify('framework-image')
     compileOnly project.moduleify('framework-network')
     compileOnly project.moduleify('framework-storage')

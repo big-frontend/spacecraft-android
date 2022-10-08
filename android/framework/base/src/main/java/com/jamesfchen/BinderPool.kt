@@ -1,4 +1,4 @@
-package com.jamesfchen.loader
+package com.jamesfchen
 
 import android.app.Service
 import android.content.ComponentName
@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.SparseArray
+import com.jamesfchen.common.util.Util
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -45,15 +46,15 @@ private val binderPoolCon by lazy {
 }
 
 private fun bindBinderPoolService(con: ServiceConnection) {
-    SApp.getInstance().bindService(
-        Intent(SApp.getInstance(), BinderPoolService::class.java),
+    Util.getApp().bindService(
+        Intent(Util.getApp(), BinderPoolService::class.java),
         con,
         Context.BIND_AUTO_CREATE or Context.BIND_AUTO_CREATE
     )
 }
 
 private fun unbindBinderPoolService(con: ServiceConnection) {
-    SApp.getInstance().unbindService(con)
+    Util.getApp().unbindService(con)
 }
 
 class BinderPoolConnection : ServiceConnection {

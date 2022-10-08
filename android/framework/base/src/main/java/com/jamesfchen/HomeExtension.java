@@ -1,13 +1,13 @@
-package com.jamesfchen.loader;
+package com.jamesfchen;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.annotation.GlideExtension;
 import com.bumptech.glide.annotation.GlideOption;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.jamesfchen.loader.GlideRequest;
-
-import androidx.annotation.NonNull;
+import com.jamesfchen.base.R;
 
 /**
  * Copyright ® $ 2017
@@ -42,21 +42,21 @@ public final class HomeExtension {
         if (options instanceof GlideRequest) {
             return ((GlideRequest) options)
 //                    .transition(DrawableTransitionOptions.withCrossFade(3000))
-                    .placeholder(com.jamesfchen.loader.R.mipmap.ic_launcher)
-                    .error(com.jamesfchen.loader.R.mipmap.ic_launcher)
-                    .fallback(com.jamesfchen.loader.R.mipmap.ic_launcher);
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .fallback(R.mipmap.ic_launcher);
         }else if (options instanceof GlideRequest){
             return ((GlideRequest) options)
 //                    .transition(BitmapTransitionOptions.withCrossFade(3000))
-                    .placeholder(com.jamesfchen.loader.R.mipmap.ic_launcher)
-                    .error(com.jamesfchen.loader.R.mipmap.ic_launcher)
-                    .fallback(com.jamesfchen.loader.R.mipmap.ic_launcher);
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .fallback(R.mipmap.ic_launcher);
 //        }else if (options instanceof GlideOptions){
         } else {
             return options
-                    .placeholder(com.jamesfchen.loader.R.mipmap.ic_launcher)
-                    .error(com.jamesfchen.loader.R.mipmap.ic_launcher)
-                    .fallback(com.jamesfchen.loader.R.mipmap.ic_launcher);
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .fallback(R.mipmap.ic_launcher);
         }
 
     }

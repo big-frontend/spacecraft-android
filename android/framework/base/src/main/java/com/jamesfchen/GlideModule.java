@@ -1,8 +1,10 @@
-package com.jamesfchen.loader;
+package com.jamesfchen;
 
 
 import android.content.Context;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
@@ -13,9 +15,7 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.module.AppGlideModule;
-import com.jamesfchen.loader.BuildConfig;
-
-import androidx.annotation.NonNull;
+import com.jamesfchen.base.BuildConfig;
 
 /**
  * Copyright ® $ 2017

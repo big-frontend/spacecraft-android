@@ -1,5 +1,5 @@
 // IBinderPoolApi.aidl
-package com.jamesfchen.loader;
+package com.jamesfchen;
 
 interface IBinderPoolApi {
     IBinder queryApi(int apiId);

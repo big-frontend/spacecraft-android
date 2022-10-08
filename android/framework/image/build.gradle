@@ -17,7 +17,6 @@ android {
                 //输出制定三种abi体系结构下的so库
             }
         }
-
     }
     buildFeatures {
         viewBinding true
@@ -26,49 +25,10 @@ android {
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
-            //path 'src/main/cpp/CMakeLists.txt'
-        }
-    }
-    sourceSets {
-        def srcDirs = [
-        ]
-        main {
-            java.excludes = [
-                    '**/build/**',
-            ]
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/main/assets"
-                aidl.srcDirs += "$projectDir/$it/main/aidl"
-                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
-                res.srcDirs += "$projectDir/$it/main/res"
-                java.srcDirs += "$projectDir/$it/main/java"
-
-//                    assets.srcDirs += "$projectDir/src/inhouse/assets"
-//                    aidl.srcDirs += "$projectDir/src/inhouse/aidl"
-//                    res.srcDirs += "$projectDir/src/inhouse/res"
-//                    java.srcDirs += "$projectDir/src/inhouse/java"
-            }
-        }
-        androidTest {
-            srcDirs.forEach {
-                assets.srcDirs += "$projectDir/$it/androidTest/assets"
-                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
-                res.srcDirs += "$projectDir/$it/androidTest/res"
-                java.srcDirs += "$projectDir/$it/androidTest/java"
-
-            }
-        }
-        test {
-            srcDirs.forEach {
-                java.srcDirs += "$projectDir/$it/test/java"
-            }
-
         }
     }
 }
-
 dependencies {
-//    api project(path: ':framework:common')
     /**
      * ===============================image start=============================
      */

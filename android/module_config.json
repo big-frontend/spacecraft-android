@@ -142,10 +142,10 @@
       "sourcePath": ":framework:loader"
     },
     {
-      "simpleName": "framework-baseui",
+      "simpleName": "framework-base",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:baseui"
+      "sourcePath": ":framework:base"
     },
     {
       "simpleName": "framework-network",
