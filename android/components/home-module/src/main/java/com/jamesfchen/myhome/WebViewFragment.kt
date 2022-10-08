@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen
+package com.jamesfchen.myhome
 
 import android.net.http.SslError
 import android.os.Bundle

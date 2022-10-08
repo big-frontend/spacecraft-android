@@ -9,7 +9,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_main"
             android:launchMode="singleTop"
             >
 <!--            android:theme="@style/HomeTheme"-->
@@ -44,7 +43,7 @@
         <activity android:name=".screen.profile.SettingsActivity" />
         <activity
             android:exported="true"
-            android:name=".screen.WebViewActivity"
+            android:name=".WebViewActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jamesfchen.myhome.screen
+package com.jamesfchen.myhome.screen.home
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider

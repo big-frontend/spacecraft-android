@@ -1,8 +1,7 @@
-package com.jamesfchen.myhome.screen
+package com.jamesfchen.myhome
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.net.http.SslError
 import android.os.Bundle

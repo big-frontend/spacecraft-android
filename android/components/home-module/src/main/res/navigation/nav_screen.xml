@@ -49,7 +49,7 @@
 
     <activity
         android:id="@+id/dest_settings"
-        android:name="com.jamesfchen.myhome.screen.WebViewActivity"
+        android:name="com.jamesfchen.myhome.WebViewActivity"
         android:label="settings "
         tools:layout="@layout/activity_webview">
         <argument
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/fragment_flow_step_one_dest"
-        android:name="com.jamesfchen.myhome.screen.FlowStepFragment"
+        android:name="com.jamesfchen.myhome.screen.home.FlowStepFragment"
         android:label="fragment_flow_step_one"
         tools:layout="@layout/fragment_flow_step_one">
         <argument
@@ -77,7 +77,7 @@
 
     <fragment
         android:id="@+id/fragment_flow_step_two_dest"
-        android:name="com.jamesfchen.myhome.screen.FlowStepFragment"
+        android:name="com.jamesfchen.myhome.screen.home.FlowStepFragment"
         android:label="fragment_flow_step_two"
         tools:layout="@layout/fragment_flow_step_two">
         <argument
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_deep_link"
-        android:name="com.jamesfchen.myhome.screen.DeepLinkFragment"
+        android:name="com.jamesfchen.myhome.screen.home.DeepLinkFragment"
         android:label="fragment_deep_link"
         tools:layout="@layout/fragment_deep_link">
 

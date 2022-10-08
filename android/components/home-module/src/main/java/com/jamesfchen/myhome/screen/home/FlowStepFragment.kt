@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen
+package com.jamesfchen.myhome.screen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

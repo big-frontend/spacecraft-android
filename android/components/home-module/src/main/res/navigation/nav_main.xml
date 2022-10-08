@@ -16,10 +16,14 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_ad_splash"
-            app:destination="@+id/dest_ad_splash" />
+            app:destination="@+id/dest_ad_splash"
+            app:popUpTo="@+id/dest_blank_splash"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_welcome_splash"
-            app:destination="@+id/dest_welcome_splash" />
+            app:destination="@+id/dest_welcome_splash"
+            app:popUpTo="@+id/dest_blank_splash"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/dest_ad_splash"
