@@ -24,7 +24,7 @@ class StartupPlugin : ScanClassPlugin() {
     override fun getName() = "Startup"
     lateinit var appDelegateClassFile: File
     var appClassInfo: ClassInfo? = null
-
+    override fun isIncremental() = false
     override fun onScanBegin(transformInvocation: TransformInvocation) {
         val dest = transformInvocation.outputProvider.getContentLocation(
             "Startup", TransformManager.CONTENT_CLASS,

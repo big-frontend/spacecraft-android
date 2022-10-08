@@ -1,8 +1,7 @@
-package com.jamesfchen.myhome.screen.photo.repository
+package com.jamesfchen.myhome.screen.newfeeds.repository
 
-import androidx.annotation.MainThread
 import androidx.paging.*
-import com.jamesfchen.myhome.screen.photo.model.Item
+import com.jamesfchen.myhome.screen.newfeeds.model.Item
 import kotlinx.coroutines.flow.Flow
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -14,16 +13,26 @@ import java.util.concurrent.Executors
  * @author: hawks.jamesf
  * @since: Nov/24/2019  Sun
  */
-interface PhotoRepository {
+interface Repository {
     val flow: Flow<PagingData<Item>>
 }
 
-class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
+class NewFeedsRepositoryImpl(private val region: CacheRegion) : Repository {
     companion object {
         private val DISK_IO = Executors.newSingleThreadExecutor()
         private val NETWORK_IO = Executors.newFixedThreadPool(3)
     }
-    var executor: Executor
+    var executor: Executor = when (region) {
+        CacheRegion.IN_MEMORY_BY_PAGE -> {
+            NETWORK_IO
+        }
+        CacheRegion.IN_MEMORY_BY_ITEM -> {
+            NETWORK_IO
+        }
+        CacheRegion.IN_DB -> {
+            DISK_IO
+        }
+    }
     private val api by lazy {
         NetworkApi.create()
     }
@@ -73,18 +82,5 @@ class PhotoRepositoryImpl(private val region: CacheRegion) : PhotoRepository {
                 }
             }
         }
-    init {
-        executor = when (region) {
-            CacheRegion.IN_MEMORY_BY_PAGE -> {
-                NETWORK_IO
-            }
-            CacheRegion.IN_MEMORY_BY_ITEM -> {
-                NETWORK_IO
-            }
-            CacheRegion.IN_DB -> {
-                DISK_IO
-            }
-        }
-    }
 
 }

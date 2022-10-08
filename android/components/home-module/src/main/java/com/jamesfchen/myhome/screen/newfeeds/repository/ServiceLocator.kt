@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo.repository
+package com.jamesfchen.myhome.screen.newfeeds.repository
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
@@ -33,5 +33,5 @@ class ServiceLocator {
     }
 
 
-    fun getPhotoRepository(region: CacheRegion) = PhotoRepositoryImpl(region)
+    fun getNewFeedsRepository(region: CacheRegion) = NewFeedsRepositoryImpl(region)
 }

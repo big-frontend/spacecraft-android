@@ -9,9 +9,9 @@
         android:title="首页"/>
 
     <item
-        android:id="@+id/dest_friend"
+        android:id="@+id/dest_newFeeds"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="朋友"/>
+        android:title="朋友圈"/>
     <item
         android:id="@+id/dest_editor"
         android:icon="@drawable/ic_baseline_add_24" />

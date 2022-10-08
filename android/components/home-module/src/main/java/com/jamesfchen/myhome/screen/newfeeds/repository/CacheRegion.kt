@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo.repository
+package com.jamesfchen.myhome.screen.newfeeds.repository
 
 /**
  * Copyright ® $ 2017

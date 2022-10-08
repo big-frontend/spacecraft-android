@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo
+package com.jamesfchen.myhome.screen.newfeeds
 
 import android.view.View
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class FooterAdapter : LoadStateAdapter<FooterAdapter.ViewHolder>() {
+class HeaderAdapter : LoadStateAdapter<HeaderAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }

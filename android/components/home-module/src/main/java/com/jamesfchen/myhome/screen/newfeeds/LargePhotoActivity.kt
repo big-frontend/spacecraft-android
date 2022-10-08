@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo
+package com.jamesfchen.myhome.screen.newfeeds
 
 import android.os.Bundle
 import android.view.ViewGroup

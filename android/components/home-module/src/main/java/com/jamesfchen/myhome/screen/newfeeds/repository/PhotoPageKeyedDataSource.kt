@@ -1,12 +1,9 @@
-package com.jamesfchen.myhome.screen.photo.repository
+package com.jamesfchen.myhome.screen.newfeeds.repository
 
 import android.util.Log
 import androidx.paging.PagingSource
-import java.util.ArrayList
 import androidx.paging.PagingState
-import com.jamesfchen.myhome.screen.photo.model.Item
-import java.util.concurrent.atomic.AtomicInteger
-import kotlin.coroutines.Continuation
+import com.jamesfchen.myhome.screen.newfeeds.model.Item
 
 /**
  * Copyright ® $ 2017
@@ -18,11 +15,12 @@ import kotlin.coroutines.Continuation
 class PhotoPageKeyedDataSource(var api: NetworkApi) : PagingSource<String, Item>() {
     companion object {
         private const val BASE_URL = "gs://spacecraft-22dc1.appspot.com"
+
     }
 
-    var nextPageNumber =0
-    override fun getRefreshKey(state: PagingState<String, Item>): String? {
-        return if (state.anchorPosition != null) state.closestPageToPosition(state.anchorPosition!!)!!.nextKey else null
+    var nextPageNumber = 0
+    override fun getRefreshKey(state: PagingState<String, Item>) = state.anchorPosition?.let {
+        state.closestPageToPosition(it)?.nextKey
     }
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Item> {
@@ -32,43 +30,39 @@ class PhotoPageKeyedDataSource(var api: NetworkApi) : PagingSource<String, Item>
             val items = ArrayList<Item>()
             items.add(
                 Item(
-                    uriList.subList(
-                        uriList.size - 2,
-                        uriList.size
+                    StockImages.a, uriList.subList(
+                        uriList.size - 2, uriList.size
                     )
                 )
             )
-            items.add(Item(uriList.subList(0, 3)))
-            items.add(Item(uriList.subList(3, 4)))
+            items.add(Item(StockImages.a, uriList.subList(0, 3)))
+            items.add(Item(StockImages.a, uriList.subList(3, 4)))
             for (i in 0..19) {
-                items.add(Item(uriList.subList(3, 4)))
-                items.add(Item(uriList.subList(4, 7)))
+                items.add(Item(StockImages.a, uriList.subList(3, 4)))
+                items.add(Item(StockImages.a, uriList.subList(4, 7)))
             }
             items.add(
                 Item(
-                    uriList.subList(
-                        0,
-                        uriList.size
+                    StockImages.a, uriList.subList(
+                        0, uriList.size
                     )
                 )
             )
             items.add(
                 Item(
-                    uriList.subList(
-                        uriList.size - 8,
-                        uriList.size - 2
+                    StockImages.a, uriList.subList(
+                        uriList.size - 8, uriList.size - 2
                     )
                 )
             )
             items.add(
                 Item(
-                    uriList.subList(
-                        uriList.size - 2,
-                        uriList.size
+                    StockImages.a, uriList.subList(
+                        uriList.size - 2, uriList.size
                     )
                 )
             )
-            nextPageNumber +=items.size
+            nextPageNumber += items.size
             return LoadResult.Page(items, null, "nextKey-${nextPageNumber}")
         } else {
 //            FirebaseStorage storage = FirebaseStorage.getInstance(BASE_URL);

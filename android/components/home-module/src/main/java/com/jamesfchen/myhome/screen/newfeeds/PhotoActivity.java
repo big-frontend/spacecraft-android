@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo;
+package com.jamesfchen.myhome.screen.newfeeds;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.photo.model.Photo;
+import com.jamesfchen.myhome.screen.newfeeds.model.Photo;
 
 import java.util.ArrayList;
 

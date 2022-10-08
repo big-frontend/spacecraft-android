@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo.model
+package com.jamesfchen.myhome.screen.newfeeds.model
 
 import android.net.Uri
 
@@ -10,6 +10,7 @@ import android.net.Uri
  * @since: Jun/07/2020  Sun
  */
 data class Item(
-        val uriList: List<Uri>,
+    val text: String? = null,
+    val photoList: List<Uri>? = null,
 //        val thumbnailUriList: List<Uri>
 )

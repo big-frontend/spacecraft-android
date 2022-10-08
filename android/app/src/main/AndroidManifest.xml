@@ -166,6 +166,12 @@
             <!--            launcher启动 end -->
 
         </activity>
+        <activity
+            android:name="com.github.moduth.blockcanary.ui.DisplayActivity"
+            android:exported="true"/>
+        <activity
+            android:name="com.squareup.leakcanary.internal.DisplayLeakActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

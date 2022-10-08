@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -58,12 +59,12 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             mPermissionRequestCount = savedInstanceState.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0);
         }
+        requestPermissionsIfNecessary();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        requestPermissionsIfNecessary();
     }
 
     @Override
@@ -84,8 +85,8 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
                     sb.append('\n');
                 }
                 Toast.makeText(this, "need permission:" + sb, Toast.LENGTH_LONG).show();
+                onRequestPermissionsResult();
             }
-            onRequestPermissionsResult();
         } else {
             onRequestPermissionsResult();
         }

@@ -40,6 +40,7 @@ public class SplashActivity extends AbsPermissionsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
     }
 
     @SuppressLint("CheckResult")
@@ -48,7 +49,6 @@ public class SplashActivity extends AbsPermissionsActivity {
         Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-//                    ActivityUtil.startActivity(PhotoListActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
                     ActivityUtil.startActivity(MainActivity.class, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
 //                        startActivity(FlutterActivity.createDefaultIntent(SplashActivity.this));
                     finish();

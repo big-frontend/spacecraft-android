@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo.model;
+package com.jamesfchen.myhome.screen.newfeeds.model;
 
 import android.net.Uri;
 import android.os.Parcel;

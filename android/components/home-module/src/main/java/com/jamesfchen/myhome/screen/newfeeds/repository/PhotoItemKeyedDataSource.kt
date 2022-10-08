@@ -1,8 +1,8 @@
-package com.jamesfchen.myhome.screen.photo.repository
+package com.jamesfchen.myhome.screen.newfeeds.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.jamesfchen.myhome.screen.photo.model.Item
+import com.jamesfchen.myhome.screen.newfeeds.model.Item
 
 /**
  * Copyright ® $ 2017

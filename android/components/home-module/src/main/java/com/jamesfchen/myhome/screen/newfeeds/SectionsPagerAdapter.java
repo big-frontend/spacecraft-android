@@ -1,8 +1,8 @@
-package com.jamesfchen.myhome.screen.photo;
+package com.jamesfchen.myhome.screen.newfeeds;
 
 import android.util.Log;
 
-import com.jamesfchen.myhome.screen.photo.model.Photo;
+import com.jamesfchen.myhome.screen.newfeeds.model.Photo;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,10 +6,7 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application>
-        <activity
-            android:name=".splash.ad.AdActivity"
-            android:exported="true" />
-        <activity android:name=".screen.profile.SettingsActivity" />
+
         <activity
             android:name=".splash.SplashActivity"
             android:launchMode="singleTop"
@@ -47,6 +44,11 @@
 
         </activity>
         <activity
+            android:name=".screen.profile.ProfileDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name=".screen.profile.SettingsActivity" />
+        <activity
+            android:exported="true"
             android:name=".screen.WebViewActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter android:autoVerify="true">
@@ -95,18 +97,13 @@
         </receiver>
 
         <activity
-            android:name=".screen.photo.PhotoActivity"
+            android:name=".screen.newfeeds.PhotoActivity"
             android:label="PhotoActivity"
             android:theme="@style/PhotoTheme" />
         <activity
-            android:name=".screen.photo.PhotoListActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".screen.photo.LargePhotoActivity"
+            android:name=".screen.newfeeds.LargePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity
-            android:name=".screen.profile.ProfileDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light" />
+
     </application>
 
 </manifest>

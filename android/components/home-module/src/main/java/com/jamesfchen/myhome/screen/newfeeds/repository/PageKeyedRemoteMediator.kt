@@ -1,10 +1,10 @@
-package com.jamesfchen.myhome.screen.photo.repository
+package com.jamesfchen.myhome.screen.newfeeds.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.jamesfchen.myhome.screen.photo.model.Item
+import com.jamesfchen.myhome.screen.newfeeds.model.Item
 
 @OptIn(ExperimentalPagingApi::class)
 class PageKeyedRemoteMediator(val api:NetworkApi) : RemoteMediator<String, Item>() {

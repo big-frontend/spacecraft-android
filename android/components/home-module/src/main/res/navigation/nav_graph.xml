@@ -20,9 +20,15 @@
             app:destination="@+id/dest_profile" />
     </fragment>
     <fragment
+        android:id="@+id/dest_newFeeds"
+        android:name="com.jamesfchen.myhome.screen.newfeeds.NewFeedsFragment"
+        android:label="fragment_newfeeds"
+        >
+    </fragment>
+    <fragment
         android:id="@+id/dest_infos"
         android:name="com.jamesfchen.myhome.screen.notification.InfosFragment"
-        android:label="fragment_profile"
+        android:label="fragment_infos"
         tools:layout="@layout/fragment_infos">
         <!--app:destination="@id/flow_step_two_dest"/>-->
         <!--NavController-->

@@ -3,6 +3,7 @@ package com.jamesfchen.myhome.widget
 import android.app.Activity
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.Display
@@ -37,8 +38,7 @@ class PhotoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
-): ImageView (context, attrs, defStyleAttr, defStyleRes) {
+): androidx.appcompat.widget.AppCompatImageView (context, attrs, defStyleAttr) {
     var moveGestureDetector:MoveGestureDetector
     private var mFocusX = 0f
     private var mFocusY = 0f
@@ -108,12 +108,16 @@ class PhotoView @JvmOverloads constructor(
         val rawHeight = options.outHeight
 
         try {
-            val decoder = BitmapRegionDecoder.newInstance(openRawResource, false)
+            val decoder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                BitmapRegionDecoder.newInstance(openRawResource)
+            } else {
+                BitmapRegionDecoder.newInstance(openRawResource,false)
+            }
             val rect = Rect(0, 0, rawWidth, rawHeight/4)
             val regionOptions = BitmapFactory.Options()
             regionOptions.inPreferredConfig = Bitmap.Config.RGB_565
-            val regionBitmap = decoder.decodeRegion(rect, regionOptions)
-            Log.d(TAG, "loadFull: "+regionBitmap.byteCount/(1024f*1024f)+"m")
+            val regionBitmap = decoder?.decodeRegion(rect, regionOptions)
+            Log.d(TAG, "loadFull: "+(regionBitmap?.byteCount?:0)/(1024f*1024f)+"m")
             setImageBitmap(regionBitmap)
         } catch (e: Exception) {
             e.printStackTrace()

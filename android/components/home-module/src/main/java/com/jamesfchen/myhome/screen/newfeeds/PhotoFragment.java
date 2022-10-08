@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.screen.photo;
+package com.jamesfchen.myhome.screen.newfeeds;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -27,7 +27,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.jamesfchen.common.util.ImageUtil;
 import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.photo.model.Photo;
+import com.jamesfchen.myhome.screen.newfeeds.model.Photo;
 
 import java.security.MessageDigest;
 
