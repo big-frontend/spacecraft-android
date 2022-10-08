@@ -153,10 +153,10 @@
             android:initOrder="101"
             android:multiprocess="true" />
         <activity
-            android:name="com.jamesfchen.myhome.splash.SplashActivity"
+            android:name="com.jamesfchen.myhome.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/FullscreenTheme"
+            android:theme="@style/HomeTheme"
             android:windowSoftInputMode="adjustPan">
             <!--            launcher启动 start-->
             <intent-filter>

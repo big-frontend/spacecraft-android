@@ -6,18 +6,13 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application>
-
         <activity
-            android:name=".splash.SplashActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".screen.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
             android:launchMode="singleTop"
-            android:theme="@style/HomeTheme">
+            >
+<!--            android:theme="@style/HomeTheme"-->
 
             <!-- 通过url路由调用改页面 -->
             <intent-filter android:autoVerify="true">

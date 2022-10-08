@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
+import com.jamesfchen.myhome.MainActivity;
 import com.jamesfchen.myhome.R;
-import com.jamesfchen.myhome.screen.MainActivity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

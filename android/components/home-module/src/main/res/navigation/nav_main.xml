@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/dest_blank_splash">
+    <fragment
+        android:id="@+id/dest_blank_splash"
+        android:name="com.jamesfchen.myhome.splash.BlankSplashFragment"
+        android:label="fragment_blank_splash"
+        tools:layout="@layout/fragment_blank_splash">
+        <action
+            android:id="@+id/action_screen"
+            app:destination="@+id/dest_screen"
+            app:popUpTo="@+id/dest_blank_splash"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_ad_splash"
+            app:destination="@+id/dest_ad_splash" />
+        <action
+            android:id="@+id/action_welcome_splash"
+            app:destination="@+id/dest_welcome_splash" />
+    </fragment>
+    <fragment
+        android:id="@+id/dest_ad_splash"
+        android:name="com.jamesfchen.myhome.splash.ad.AdFragment"
+        android:label="fragment_ad_splash"
+        tools:layout="@layout/fragment_ad">
+        <action
+            android:id="@+id/action_screen"
+            app:destination="@+id/dest_screen"
+            app:popUpTo="@+id/dest_ad_splash"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/dest_welcome_splash"
+        android:name="com.jamesfchen.myhome.splash.welcome.WelcomeFragment"
+        android:label="fragment_welcome_splash"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_screen"
+            app:destination="@+id/dest_screen"
+            app:popUpTo="@+id/dest_welcome_splash"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dest_screen"
+        android:name="com.jamesfchen.myhome.screen.ScreenFragment"
+        android:label="fragment_screen"
+        tools:layout="@layout/fragment_screen">
+
+    </fragment>
+</navigation>

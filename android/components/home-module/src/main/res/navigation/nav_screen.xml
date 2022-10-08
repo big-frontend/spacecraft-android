@@ -2,9 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/nav_screen"
     app:startDestination="@id/dest_home">
-
     <fragment
         android:id="@+id/dest_home"
         android:name="com.jamesfchen.myhome.screen.home.HomeFragment"
@@ -15,12 +14,12 @@
 <!--        <action-->
 <!--            android:id="@+id/action_step_two"-->
 <!--            app:destination="@+id/fragment_flow_step_two_dest" />-->
-        <action
-            android:id="@+id/action_profile"
-            app:destination="@+id/dest_profile" />
+<!--        <action-->
+<!--            android:id="@+id/action_profile"-->
+<!--            app:destination="@+id/dest_profile" />-->
     </fragment>
     <fragment
-        android:id="@+id/dest_newFeeds"
+        android:id="@+id/dest_new_feeds"
         android:name="com.jamesfchen.myhome.screen.newfeeds.NewFeedsFragment"
         android:label="fragment_newfeeds"
         >

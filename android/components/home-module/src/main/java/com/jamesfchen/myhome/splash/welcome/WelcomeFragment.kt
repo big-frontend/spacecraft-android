@@ -6,25 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.jamesfchen.common.util.BarUtil
 import com.jamesfchen.myhome.R
+import com.jamesfchen.myhome.databinding.FragmentAdBinding
+import com.jamesfchen.myhome.databinding.FragmentWelcomeBinding
+import com.jamesfchen.myhome.splash.ad.AdViewModel
 
 class WelcomeFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = WelcomeFragment()
-    }
-
-    private val viewModel: WelcomeViewModel by viewModels()
-
+    private val viewModel by viewModels<WelcomeViewModel>()
+    lateinit var binding: FragmentWelcomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.welcome_fragment, container, false)
+    ): View {
+        binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.bt.setOnClickListener {
+            BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
+            findNavController().navigate(R.id.action_screen)
+        }
     }
-
 }

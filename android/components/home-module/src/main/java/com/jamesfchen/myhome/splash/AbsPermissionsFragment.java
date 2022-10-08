@@ -1,11 +1,9 @@
 package com.jamesfchen.myhome.splash;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -13,10 +11,10 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
-public abstract class AbsPermissionsActivity extends AppCompatActivity {
+public abstract class AbsPermissionsFragment extends Fragment {
     private final List<String> mPermissions = new ArrayList<String>() {
         {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -54,7 +52,7 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
     private static final String KEY_PERMISSIONS_REQUEST_COUNT = "KEY_PERMISSIONS_REQUEST_COUNT";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             mPermissionRequestCount = savedInstanceState.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0);
@@ -62,13 +60,9 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
         requestPermissionsIfNecessary();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_PERMISSIONS_REQUEST_COUNT, mPermissionRequestCount);
     }
@@ -84,7 +78,7 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
                     sb.append(p);
                     sb.append('\n');
                 }
-                Toast.makeText(this, "need permission:" + sb, Toast.LENGTH_LONG).show();
+                Toast.makeText(requireContext(), "need permission:" + sb, Toast.LENGTH_LONG).show();
                 onRequestPermissionsResult();
             }
         } else {
@@ -95,7 +89,7 @@ public abstract class AbsPermissionsActivity extends AppCompatActivity {
     private boolean hasPermission() {
         boolean hasPermission = true;
         for (String permission : mPermissions) {
-            boolean b = (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED);
+            boolean b = (ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED);
             if (!b) {
                 mFailurePermissions.add(permission);
             }
