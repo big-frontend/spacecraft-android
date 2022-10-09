@@ -1,0 +1,56 @@
+@file:Suppress("UnstableApiUsage") // We know that Lint APIs aren't final.
+
+package com.vanniktech.lintrules.android
+
+import com.android.tools.lint.client.api.LintClient
+import com.android.tools.lint.detector.api.TextFormat.RAW
+import org.junit.After
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+import java.io.File
+
+class IssueRegistryTest {
+  @Before fun setUp() {
+    LintClient.clientName = "Test"
+  }
+
+  @After fun tearDown() {
+    LintClient.resetClientName()
+  }
+
+  @Test fun everyBriefDescriptionIsASentence() {
+    IssueRegistry().issues
+      .map { it.getBriefDescription(RAW) }
+      .forEach { assertTrue("$it is not a sentence", it.first().isUpperCase() && it.last() == '.' && it == it.trim()) }
+  }
+
+  @Test fun everyExplanationConsistsOfSentences() {
+    IssueRegistry().issues
+      .map { it.getExplanation(RAW) }
+      .forEach { assertTrue("$it is not a sentence", it.first().isUpperCase() && it.last() == '.' && it == it.trim()) }
+  }
+
+  @Test fun idsDoNotHaveDetector() {
+    IssueRegistry().issues
+      .map { it.id }
+      .forEach { assertTrue("$it is containing Detector", !it.contains("Detector")) }
+  }
+
+  @Test fun readmeContent() {
+    val output = IssueRegistry().issues
+      .sortedBy { it.id }
+      .joinToString(separator = "\n") { "- **${it.id}** - ${it.getExplanation(RAW)}" }
+
+    requireNotNull(
+      File(requireNotNull(IssueRegistryTest::class.java.classLoader).getResource(".").file)
+        .parentFile
+        ?.parentFile
+        ?.parentFile
+        ?.parentFile
+        ?.parentFile
+        ?.resolve("lint-rules-android.md"),
+    )
+      .writeText(output)
+  }
+}

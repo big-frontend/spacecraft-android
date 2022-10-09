@@ -1,0 +1,27 @@
+apply plugin:  'com.android.library'
+
+android {
+    namespace = "com.jamesfchen.checker"
+    compileSdk 33
+
+    defaultConfig {
+        minSdk  23
+        targetSdk 33
+    }
+}
+apply plugin: "io.github.jamesfchen.module-publisher-plugin"
+publish {
+    name = "lint-checker"
+    groupId = rootProject.groupId
+    artifactId = "lint-checker"
+    version = "1.0.0"
+    website = "https://github.com/JamesfChen/spacecraft-android"
+}
+/** Package the given lint checks library into this AAR  */
+dependencies {
+//    lintChecks project(':lint-rules')
+    // Compiles lint checks from the ':checks-to-publish'
+    // into a lint.jar file and publishes it to your
+    // Android library.
+    lintPublish project(path: ':lint-rules')
+}
