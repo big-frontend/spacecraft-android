@@ -64,18 +64,6 @@
       "sourcePath": ":components:account-module:main"
     },
     {
-      "simpleName": "account-rnplugin",
-      "format": "bundle_foundation",
-      "group": "account",
-      "sourcePath": ":components:account-module:rnplugin"
-    },
-    {
-      "simpleName": "account-foundation",
-      "format": "bundle_foundation",
-      "group": "account",
-      "sourcePath": ":components:account-module:foundation"
-    },
-    {
       "simpleName": "account-impl",
       "format": "bundle",
       "group": "account",
