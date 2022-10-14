@@ -1,4 +1,4 @@
-package com.jamesfchen.av.audio
+package com.jamesfchen.av.recorder
 
 import android.media.MediaRecorder
 

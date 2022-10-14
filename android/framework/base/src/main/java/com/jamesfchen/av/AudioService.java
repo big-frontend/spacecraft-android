@@ -1,4 +1,4 @@
-package com.jamesfchen.av.audio;
+package com.jamesfchen.av;
 
 import android.app.Service;
 import android.content.Intent;

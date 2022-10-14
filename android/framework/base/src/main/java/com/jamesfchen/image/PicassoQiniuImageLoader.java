@@ -1,4 +1,4 @@
-package com.jamesfchen;
+package com.jamesfchen.image;
 
 /**
  * Copyright (c) 2015 LingoChamp Inc.

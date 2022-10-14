@@ -11,7 +11,8 @@ import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.util.Log
 import android.widget.Toast
-import com.jamesfchen.av.video.VideoRecorder
+import com.jamesfchen.av.recorder.VideoRecorder
+import com.jamesfchen.base.R
 
 
 class AvRecorderService : Service() {

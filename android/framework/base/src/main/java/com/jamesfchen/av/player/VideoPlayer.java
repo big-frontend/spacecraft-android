@@ -1,4 +1,4 @@
-package com.jamesfchen.av.video;
+package com.jamesfchen.av.player;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;

@@ -9,10 +9,10 @@ import android.os.Environment
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 import android.widget.Toast
-import com.jamesfchen.av.databinding.ActivityRecoderBinding
-import com.jamesfchen.av.video.VideoRecorder
+import com.jamesfchen.av.recorder.VideoRecorder
+import com.jamesfchen.base.R
+import com.jamesfchen.base.databinding.ActivityRecoderBinding
 import java.io.File
-import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +37,8 @@ class AvRecorderActivity : Activity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRecoderBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mMediaProjectionManager = applicationContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        mMediaProjectionManager =
+            applicationContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         binding.rgType.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.rb_audio -> {
@@ -52,12 +53,15 @@ class AvRecorderActivity : Activity() {
         if (!outputFile.exists()) {
             outputFile.createNewFile()
         }
-        val videoRecoder = VideoRecorder.createAndBindCameraFacingBack(this,outputFile,  binding.svPreview)
+        val videoRecoder =
+            VideoRecorder.createAndBindCameraFacingBack(this, outputFile, binding.svPreview)
         binding.btStartRecodingCamera.setOnClickListener { theView ->
             videoRecoder.start()
         }
         binding.btStopRecodingCamera.setOnClickListener { theView ->
-            Toast.makeText(this@AvRecorderActivity, "file size: ${outputFile.length()}", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this@AvRecorderActivity, "file size: ${outputFile.length()}", Toast.LENGTH_LONG
+            ).show()
             videoRecoder.stop()
         }
         binding.btStartRecodingSceen.setOnClickListener { theView ->
@@ -100,8 +104,8 @@ class AvRecorderActivity : Activity() {
         // using Environment.getExternalStorageState() before doing this.
 
         val mediaStorageDir = File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                "MyCameraApp"
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+            "MyCameraApp"
         )
         mediaStorageDir.apply {
             if (!exists()) {

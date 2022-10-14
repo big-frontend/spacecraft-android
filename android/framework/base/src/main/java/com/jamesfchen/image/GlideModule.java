@@ -1,4 +1,4 @@
-package com.jamesfchen;
+package com.jamesfchen.image;
 
 
 import android.content.Context;

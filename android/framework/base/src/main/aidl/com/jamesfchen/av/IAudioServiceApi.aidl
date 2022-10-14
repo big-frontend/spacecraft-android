@@ -1,5 +1,5 @@
 // IAudioServiceApi.aidl
-package com.jamesfchen.uicomponent;
+package com.jamesfchen.av;
 
 // Declare any non-default types here with import statements
 

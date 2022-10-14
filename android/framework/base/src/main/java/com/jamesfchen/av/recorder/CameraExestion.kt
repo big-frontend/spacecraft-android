@@ -1,4 +1,4 @@
-package com.jamesfchen.av
+package com.jamesfchen.av.recorder
 
 import android.graphics.SurfaceTexture
 import android.hardware.Camera

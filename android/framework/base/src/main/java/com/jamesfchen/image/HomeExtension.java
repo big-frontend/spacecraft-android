@@ -1,4 +1,4 @@
-package com.jamesfchen;
+package com.jamesfchen.image;
 
 import androidx.annotation.NonNull;
 

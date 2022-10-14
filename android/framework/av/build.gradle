@@ -1,11 +1,7 @@
 plugins {
     id "io.github.jamesfchen.foundation-plugin"
 }
-android{
-    buildFeatures {
-        viewBinding true
-    }
-}
+
 dependencies {
 //    implementation project(path: ':framework::common')
     /**

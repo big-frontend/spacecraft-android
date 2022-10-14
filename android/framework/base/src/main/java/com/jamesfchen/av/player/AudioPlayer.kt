@@ -1,4 +1,4 @@
-package com.jamesfchen.av.audio
+package com.jamesfchen.av.player
 
 import android.content.Context
 import android.content.res.AssetFileDescriptor

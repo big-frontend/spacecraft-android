@@ -1,4 +1,4 @@
-package com.jamesfchen.av.video
+package com.jamesfchen.av.recorder
 
 import android.content.Context
 import android.content.res.Resources
@@ -18,10 +18,7 @@ import android.view.TextureView
 import android.view.WindowManager
 import androidx.annotation.AnyThread
 import androidx.annotation.RequiresApi
-import com.jamesfchen.av.recorder.QUALITY
-import com.jamesfchen.av.recorder.StreamRecorder
-import com.jamesfchen.av.recorder.VIDEO_ENCODING_FULL_SCREEN
-import com.jamesfchen.av.restartPreview
+import com.jamesfchen.av.player.VideoPlayer
 import java.io.File
 import java.io.FileDescriptor
 

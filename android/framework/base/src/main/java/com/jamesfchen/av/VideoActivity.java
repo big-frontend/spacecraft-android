@@ -1,4 +1,4 @@
-package com.jamesfchen.av.video;
+package com.jamesfchen.av;
 
 
 import android.annotation.SuppressLint;
@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jamesfchen.av.R;
+import com.jamesfchen.base.R;
 
 public class VideoActivity extends AppCompatActivity {
     private static final boolean AUTO_HIDE = true;

@@ -1,4 +1,4 @@
-package com.jamesfchen.av.audio;
+package com.jamesfchen.av;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.jamesfchen.uicomponent.IAudioServiceApi;
+import com.jamesfchen.av.IAudioServiceApi;
 
 import java.io.IOException;
 
