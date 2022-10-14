@@ -7,4 +7,21 @@ set(lib_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jni)
 #set(lib_build_dir ${CMAKE_CURRENT_SOURCE_DIR}/.cxx/tmp/${ANDROID_ABI})
 #file(MAKE_DIRECTORY ${lib_build_dir})
 
-add_subdirectory(${lib_src_dir})
+cmake_minimum_required(VERSION 3.4.1)
+add_library(client_key SHARED
+        client_key.cpp
+        )
+find_library( # Sets the name of the path variable.
+        log-lib
+        log)
+#target_include_directories(client_key PRIVATE
+#
+#        ${ANDROID_NDK}/sources/android/native_app_glue
+#        ../codec/include
+#        ../utils/include
+#        )
+
+target_link_libraries( # Specifies the target library.
+        client_key
+        ${log-lib}
+        )

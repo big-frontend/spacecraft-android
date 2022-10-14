@@ -14,5 +14,7 @@ dependencies {
     implementation project.moduleify("framework-av")
     implementation project.moduleify("framework-image")
     implementation project.moduleify("framework-storage")
+    api 'com.pgyersdk:sdk:3.0.10'
+    api 'com.pgyer:analytics:4.2.1'//最好写上具体依赖的版本号 如：4.2.1
 }
 
