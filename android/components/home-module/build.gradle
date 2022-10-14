@@ -34,6 +34,6 @@ dependencies {
     compileOnly project.moduleify('framework-loader')
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    api 'com.theartofdev.edmodo:android-image-cropper:'
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'top.zibin:Luban:1.1.8'
 }
