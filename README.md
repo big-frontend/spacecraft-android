@@ -8,7 +8,7 @@
 
 | branches  | Build Status   |
 |---| --- |
-|  github/SpacecraftAndroid master branch |  [![Build Status](https://travis-ci.org/JamesfChen/Spacecraft.svg?branch=master)](https://travis-ci.org/JamesfChen/Spacecraft)  |
+|  github/SpacecraftAndroid master branch |  [![Android CI](https://github.com/spacecraft-plan/spacecraft-android/actions/workflows/android.yml/badge.svg)](https://github.com/spacecraft-plan/spacecraft-android/actions/workflows/android.yml)  |
 |  gitlab/SpacecraftAndroid master branch |  [![pipeline status](https://gitlab.com/spacecraft-plan/spacecraftandroid/badges/master/pipeline.svg)](https://gitlab.com/spacecraft-plan/spacecraftandroid/-/commits/master) |
 |  apk  |  [download url](https://www.pgyer.com/rDcO) |
 
