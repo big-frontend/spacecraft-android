@@ -1,28 +1,15 @@
 package com.jamesfchen.myhome.network
 
-import android.util.Log
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
-import com.jamesfchen.myhome.model.L7
-import com.jamesfchen.network.DefaultAuthenticator
 import com.jamesfchen.network.DefaultDns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import okhttp3.*
-import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
-import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.reflect.ParameterizedType
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
-class Httper {
+class Okhttper {
     val okHttpClient: OkHttpClient
 
     init {
@@ -42,11 +29,11 @@ class Httper {
     }
 
     companion object {
-        private var httper: Httper? = null
+        private var httper: Okhttper? = null
 
         @Synchronized
-        fun getInstance(): Httper {
-            if (httper == null) httper = Httper()
+        fun getInstance(): Okhttper {
+            if (httper == null) httper = Okhttper()
             return httper!!
         }
     }
