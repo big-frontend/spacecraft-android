@@ -13,6 +13,7 @@ import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.callFactory.OkHttpCallFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
@@ -68,6 +69,7 @@ object RetrofitHelper {
 //                .addConverterFactory(MoshiConverterFactory.create())
 //                .addConverterFactory(ProtoConverterFactory.create())
                 .addConverterFactory(WireConverterFactory.create())
+            .addCallAdapterFactory(OkHttpCallFactory.create(okHttpClient))
                 .build()
                 .create(WeatherApi::class.java)
     }
