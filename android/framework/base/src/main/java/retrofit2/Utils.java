@@ -33,7 +33,7 @@ import kotlin.Unit;
 import okhttp3.ResponseBody;
 import okio.Buffer;
 
-final class Utils {
+public final class Utils {
   static final Type[] EMPTY_TYPE_ARRAY = new Type[0];
 
   private Utils() {
@@ -320,7 +320,7 @@ final class Utils {
     return false;
   }
 
-  static ResponseBody buffer(final ResponseBody body) throws IOException {
+  public static ResponseBody buffer(final ResponseBody body) throws IOException {
     Buffer buffer = new Buffer();
     body.source().readAll(buffer);
     return ResponseBody.create(body.contentType(), body.contentLength(), buffer);
@@ -526,7 +526,7 @@ final class Utils {
 
   // https://github.com/ReactiveX/RxJava/blob/6a44e5d0543a48f1c378dc833a155f3f71333bc2/
   // src/main/java/io/reactivex/exceptions/Exceptions.java#L66
-  static void throwIfFatal(Throwable t) {
+  public static void throwIfFatal(Throwable t) {
     if (t instanceof VirtualMachineError) {
       throw (VirtualMachineError) t;
     } else if (t instanceof ThreadDeath) {

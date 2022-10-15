@@ -21,6 +21,7 @@ import okhttp3.Headers;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
+import retrofit2.callFactory.NoContentResponseBody;
 
 /** An HTTP response. */
 public final class Response<T> {
@@ -93,7 +94,7 @@ public final class Response<T> {
     return error(
         body,
         new okhttp3.Response.Builder() //
-            .body(new OkHttpCall.NoContentResponseBody(body.contentType(), body.contentLength()))
+            .body(new NoContentResponseBody(body.contentType(), body.contentLength()))
             .code(code)
             .message("Response.error()")
             .protocol(Protocol.HTTP_1_1)

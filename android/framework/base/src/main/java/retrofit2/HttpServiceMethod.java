@@ -18,6 +18,7 @@ package retrofit2;
 import static retrofit2.Utils.getRawType;
 import static retrofit2.Utils.methodError;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -26,6 +27,7 @@ import javax.annotation.Nullable;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import okhttp3.ResponseBody;
+import retrofit2.callFactory.OkHttpCallFactory;
 
 /** Adapts an invocation of an interface method into an HTTP call. */
 abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<ReturnT> {
@@ -89,7 +91,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
     Converter<ResponseBody, ResponseT> responseConverter =
         createResponseConverter(retrofit, method, responseType);
 
-    okhttp3.Call.Factory callFactory = retrofit.callFactory;
+    Call.Factory callFactory = retrofit.callFactory;
     if (!isKotlinSuspendFunction) {
       return new CallAdapted<>(requestFactory, callFactory, responseConverter, callAdapter);
     } else if (continuationWantsResponse) {
@@ -134,12 +136,12 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
   }
 
   private final RequestFactory requestFactory;
-  private final okhttp3.Call.Factory callFactory;
+  private final Call.Factory callFactory;
   private final Converter<ResponseBody, ResponseT> responseConverter;
 
   HttpServiceMethod(
       RequestFactory requestFactory,
-      okhttp3.Call.Factory callFactory,
+      Call.Factory callFactory,
       Converter<ResponseBody, ResponseT> responseConverter) {
     this.requestFactory = requestFactory;
     this.callFactory = callFactory;
@@ -148,7 +150,12 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
   @Override
   final @Nullable ReturnT invoke(Object[] args) {
-    Call<ResponseT> call = new OkHttpCall<>(requestFactory, args, callFactory, responseConverter);
+    Call<ResponseT> call = null;
+    try {
+      call = callFactory.newCall(requestFactory.create(args),responseConverter);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
     return adapt(call, args);
   }
 
@@ -159,7 +166,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
     CallAdapted(
         RequestFactory requestFactory,
-        okhttp3.Call.Factory callFactory,
+        Call.Factory callFactory,
         Converter<ResponseBody, ResponseT> responseConverter,
         CallAdapter<ResponseT, ReturnT> callAdapter) {
       super(requestFactory, callFactory, responseConverter);
@@ -177,7 +184,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
     SuspendForResponse(
         RequestFactory requestFactory,
-        okhttp3.Call.Factory callFactory,
+        Call.Factory callFactory,
         Converter<ResponseBody, ResponseT> responseConverter,
         CallAdapter<ResponseT, Call<ResponseT>> callAdapter) {
       super(requestFactory, callFactory, responseConverter);
@@ -208,7 +215,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
     SuspendForBody(
         RequestFactory requestFactory,
-        okhttp3.Call.Factory callFactory,
+        Call.Factory callFactory,
         Converter<ResponseBody, ResponseT> responseConverter,
         CallAdapter<ResponseT, Call<ResponseT>> callAdapter,
         boolean isNullable,
