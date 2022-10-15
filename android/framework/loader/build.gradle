@@ -81,7 +81,7 @@ dependencies {
 //    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
     api 'com.github.markzhai:blockcanary-android:1.5.0'
 
-    implementation("io.github.jamesfchen:viapm-api:1.0.0")
+    implementation("io.github.jamesfchen:vi-api:1.0.0")
     /**
      * ================================apm end=====================================
      */
