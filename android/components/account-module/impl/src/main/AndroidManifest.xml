@@ -48,7 +48,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
         <activity
-            android:name="com.jamesfchen.pay.wx.WXPayActivity"
+            android:name="com.jamesfchen.pay.WXPayActivity"
             android:launchMode="singleTop"
             android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale|screenLayout|keyboardHidden"
             android:exported="true"
@@ -57,6 +57,6 @@
         <activity-alias
             android:name="${applicationId}.wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:targetActivity="com.jamesfchen.pay.wx.WXPayActivity"/>
+            android:targetActivity="com.jamesfchen.pay.WXPayActivity"/>
     </application>
 </manifest>

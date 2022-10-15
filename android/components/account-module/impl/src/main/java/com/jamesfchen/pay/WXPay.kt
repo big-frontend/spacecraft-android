@@ -1,12 +1,11 @@
-package com.jamesfchen.pay.wx
+package com.jamesfchen.pay
 
 import android.app.Activity
 import android.content.Context
 import android.text.TextUtils
 import androidx.annotation.GuardedBy
-import com.jamesfchen.pay.IPay
-import com.jamesfchen.pay.IPayCallback
-import com.jamesfchen.pay.RespCode
+import com.jamesfchen.export.pay.IPayCallback
+import com.jamesfchen.export.pay.WXPayInfo
 import com.jamesfchen.pay.RespCode.WXErrCodeEx.getMessageByCode
 import com.tencent.mm.opensdk.constants.Build
 import com.tencent.mm.opensdk.modelbase.BaseResp

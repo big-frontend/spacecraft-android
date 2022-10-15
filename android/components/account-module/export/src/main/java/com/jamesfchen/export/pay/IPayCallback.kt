@@ -1,14 +1,13 @@
-package com.jamesfchen.pay
+package com.jamesfchen.export.pay
 
 import androidx.annotation.MainThread
-import androidx.annotation.Nullable
 
 interface IPayCallback {
     @MainThread
     fun success()
 
     @MainThread
-    fun failed(code: Int, @Nullable message: String?)
+    fun failed(code: Int, message: String?)
 
     @MainThread
     fun cancel()

@@ -23,7 +23,7 @@ import com.bumptech.glide.ListPreloader
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.util.FixedPreloadSizeProvider
 import com.bumptech.glide.util.ViewPreloadSizeProvider
-import com.jamesfchen.loader.G
+import com.jamesfchen.image.G
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentInfosBinding
 import com.jamesfchen.myhome.databinding.ItemPhotoTextBinding

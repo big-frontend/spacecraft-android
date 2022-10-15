@@ -1,10 +1,9 @@
-package com.jamesfchen.pay.wx
+package com.jamesfchen.pay
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.MainThread
-import com.jamesfchen.pay.wx.WXPay
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbase.BaseResp

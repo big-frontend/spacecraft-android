@@ -1,4 +1,4 @@
-package com.jamesfchen.pay.ali
+package com.jamesfchen.pay
 class AliPayResult(rawResult: Map<String, String?>) {
     val resultStatus: String? by rawResult
     val result: String? by rawResult

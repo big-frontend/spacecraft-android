@@ -1,4 +1,4 @@
-package com.jamesfchen.pay.wx
+package com.jamesfchen.export.pay
 
 data class WXPayInfo(
     val sign: String?,

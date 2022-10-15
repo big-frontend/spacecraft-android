@@ -1,4 +1,4 @@
-package com.jamesfchen.pay.ali
+package com.jamesfchen.pay
 
 import android.app.Activity
 import android.os.Handler
@@ -6,9 +6,8 @@ import android.os.Looper
 import android.os.Message
 import android.text.TextUtils
 import com.alipay.sdk.app.PayTask
-import com.jamesfchen.pay.IPay
-import com.jamesfchen.pay.IPayCallback
-import com.jamesfchen.pay.RespCode
+import com.jamesfchen.export.pay.AliPayInfo
+import com.jamesfchen.export.pay.IPayCallback
 import kotlin.concurrent.thread
 
 /**
