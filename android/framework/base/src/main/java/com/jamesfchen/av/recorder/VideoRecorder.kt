@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi
 import com.jamesfchen.av.player.VideoPlayer
 import java.io.File
 import java.io.FileDescriptor
+import kotlin.math.abs
 
 /**
  * Copyright ® $ 2017
@@ -199,7 +200,7 @@ class VideoRecorder constructor(val context: Context)
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-        Log.d(TAG, "surfaceChanged format:" + format + "--->surface size:" + width + "/" + height)
+        Log.d(TAG, "surfaceChanged format:$format--->surface size:$width/$height")
         mSurfaceHolder = holder
         mCamera?.restartPreview(holder)
         val optimalVideoSize = getOptimalVideoSize(mSupportedVideoSizes, mSupportedPreviewSizes, width, height)
@@ -223,7 +224,7 @@ class VideoRecorder constructor(val context: Context)
     override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
         Log.d(TAG, "onSurfaceTextureAvailable");
         mSurfaceTexture = surface
-            surface?.let { mCamera?.restartPreview(it) }
+        mCamera?.restartPreview(surface)
         val optimalVideoSize = getOptimalVideoSize(mSupportedVideoSizes, mSupportedPreviewSizes, width, height)
         //        profile.videoFrameWidth = optimalVideoSize?.width ?: 0
 //        profile.videoFrameHeight = optimalVideoSize?.height ?: 0
@@ -324,8 +325,7 @@ class VideoRecorder constructor(val context: Context)
 
         // Supported video sizes list might be null, it means that we are allowed to use the preview
         // sizes
-        val videoSizes: List<Camera.Size>
-        videoSizes = supportedVideoSizes ?: previewSizes
+        val videoSizes: List<Camera.Size> = supportedVideoSizes ?: previewSizes
         var optimalSize: Camera.Size? = null
 
         // Start with max value and refine as we iterate over available video sizes. This is the
@@ -339,10 +339,10 @@ class VideoRecorder constructor(val context: Context)
         // still maintain the aspect ratio.
         for (size in videoSizes) {
             val ratio = size.width.toDouble() / size.height
-            if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE) continue
-            if (Math.abs(size.height - h) < minDiff && previewSizes.contains(size)) {
+            if (abs(ratio - targetRatio) > ASPECT_TOLERANCE) continue
+            if (abs(size.height - h) < minDiff && previewSizes.contains(size)) {
                 optimalSize = size
-                minDiff = Math.abs(size.height - h).toDouble()
+                minDiff = abs(size.height - h).toDouble()
             }
         }
 
