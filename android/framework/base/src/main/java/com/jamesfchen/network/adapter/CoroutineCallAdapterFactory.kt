@@ -15,6 +15,8 @@ import java.lang.reflect.Type
  * @since: Sep/19/2019  Thu
  *
  * source code from:https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter/blob/master/src/main/java/com/jakewharton/retrofit2/adapter/kotlin/coroutines/CoroutineCallAdapterFactory.kt
+ *
+ * java 语法调用支持kotlin协程
  */
 class CoroutineCallAdapterFactory private constructor() : CallAdapter.Factory() {
     companion object {
