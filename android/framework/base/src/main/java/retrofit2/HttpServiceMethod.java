@@ -27,7 +27,6 @@ import javax.annotation.Nullable;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import okhttp3.ResponseBody;
-import retrofit2.callFactory.OkHttpCallFactory;
 
 /** Adapts an invocation of an interface method into an HTTP call. */
 abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<ReturnT> {
@@ -150,12 +149,7 @@ abstract class HttpServiceMethod<ResponseT, ReturnT> extends ServiceMethod<Retur
 
   @Override
   final @Nullable ReturnT invoke(Object[] args) {
-    Call<ResponseT> call = null;
-    try {
-      call = callFactory.newCall(requestFactory.create(args),responseConverter);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    Call<ResponseT> call = callFactory.newCall(requestFactory,args,responseConverter);
     return adapt(call, args);
   }
 

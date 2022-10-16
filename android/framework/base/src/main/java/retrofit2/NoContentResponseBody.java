@@ -1,4 +1,4 @@
-package retrofit2.callFactory;
+package retrofit2;
 
 import javax.annotation.Nullable;
 

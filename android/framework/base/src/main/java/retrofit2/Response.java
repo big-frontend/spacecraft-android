@@ -21,7 +21,6 @@ import okhttp3.Headers;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
-import retrofit2.callFactory.NoContentResponseBody;
 
 /** An HTTP response. */
 public final class Response<T> {
