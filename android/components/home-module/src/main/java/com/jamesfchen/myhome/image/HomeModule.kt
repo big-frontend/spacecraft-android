@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.Registry
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
 import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.jamesfchen.common.util.ThreadUtil
 import com.jamesfchen.myhome.screen.newfeeds.model.Photo
 import okhttp3.ConnectionPool
@@ -36,16 +37,16 @@ class HomeModule : LibraryGlideModule() {
             return@addInterceptor chain.proceed(chain.request())
         }.build()
 
-    override fun registerComponents(
-        context: Context, glide: Glide, registry: Registry
-    ) {
-        //替换默认的HttpGlideUrlLoader，使用Okhttp网络库并且优化任务分发池与连接池
-        registry.replace(
-            GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(okhttpClient)
-        )
-        //处理Glide.load(Photo对象)
-        registry.append(
-            Photo::class.java, InputStream::class.java, HomeGlideUrlModuleLoader.Factory()
-        )
+    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
+        registry.apply {
+            //替换默认的HttpGlideUrlLoader，使用Okhttp网络库并且优化任务分发池与连接池
+            replace(
+                GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(okhttpClient)
+            )
+            //处理Glide.load(Photo对象)
+            append(
+                Photo::class.java, InputStream::class.java, HomeGlideUrlModuleLoader.Factory()
+            )
+        }
     }
 }
