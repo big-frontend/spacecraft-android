@@ -16,11 +16,11 @@
 package retrofit2;
 
 
-import org.jetbrains.annotations.NotNull;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 public final class OkHttpCallFactory implements Call.Factory {
   private final okhttp3.Call.Factory callFactory;
@@ -38,7 +38,7 @@ public final class OkHttpCallFactory implements Call.Factory {
   }
 
   @Override
-  public <T> Call<T> newCall(@NotNull RequestFactory requestFactory, @Nullable Object[] args, @NotNull Converter<ResponseBody, T> responseConverter) {
+  public <T> Call<T> newCall(@Nonnull RequestFactory requestFactory, @Nullable Object[] args, @Nonnull Converter<ResponseBody, T> responseConverter) {
     return new OkHttpCall<>(requestFactory, args, callFactory, responseConverter);
   }
 

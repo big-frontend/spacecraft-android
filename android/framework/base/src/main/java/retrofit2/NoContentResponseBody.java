@@ -11,7 +11,6 @@ import okio.BufferedSource;
  * All right reserved.
  *
  * @author jamesfchen
- * @email hawksjamesf@gmail.com
  * @since 9月/28/2021  周二
  */
 public final class NoContentResponseBody extends ResponseBody {

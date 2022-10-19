@@ -16,7 +16,6 @@ import okio.Okio;
  * All right reserved.
  *
  * @author jamesfchen
- * @email hawksjamesf@gmail.com
  * @since 9月/28/2021  周二
  */
 public final class ExceptionCatchingResponseBody extends ResponseBody {
