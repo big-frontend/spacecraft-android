@@ -35,5 +35,8 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.+'
     implementation 'top.zibin:Luban:1.1.8'
+    implementation 'com.danikula:videocache:2.7.1'
+    implementation 'com.github.danylovolokh:video-player-manager:0.2.0'
 }
