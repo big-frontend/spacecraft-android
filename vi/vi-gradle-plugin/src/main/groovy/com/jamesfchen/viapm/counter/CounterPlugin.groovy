@@ -2,7 +2,7 @@ package com.jamesfchen.viapm.counter
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import com.jamesfchen.viapm.Constants
+import com.jamesfchen.vi.Constants
 class CounterPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {

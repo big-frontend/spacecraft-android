@@ -1,7 +1,8 @@
-package com.jamesfchen.viapm
+package com.jamesfchen.vi.stability
 
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.api.ApplicationVariant
+import com.jamesfchen.vi.Constants
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ProjectDependency

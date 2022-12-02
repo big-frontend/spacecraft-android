@@ -1,5 +1,2 @@
-include(
-    ":viapm-annotations", ":viapm-processor", ":viapm-gradle-plugin",":vi-api",
-    ":viopt:startup:startup-gradle-plugin",":viopt:startup:startup-api",
-    ":viopt:tasklist-composer",
-)
+include(":vi-gradle-plugin", ":vi-api")
+include(":startup:startup-gradle-plugin", ":startup:startup-api", ":startup:tasklist-composer")

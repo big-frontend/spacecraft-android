@@ -1,4 +1,4 @@
-package com.jamesfchen.viapm
+package com.jamesfchen.vi
 
 import okhttp3.*
 import java.io.IOException

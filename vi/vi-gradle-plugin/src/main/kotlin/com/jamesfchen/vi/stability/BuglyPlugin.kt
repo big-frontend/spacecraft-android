@@ -1,22 +1,15 @@
-package com.jamesfchen.viapm
+package com.jamesfchen.vi.stability
 
 
-import com.android.build.gradle.AppExtension
 import com.android.build.gradle.api.ApplicationVariant
+import com.jamesfchen.vi.Api
 import com.tencent.bugly.symtabtool.android.SymtabToolAndroid
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.apache.http.client.methods.HttpPost
-import org.apache.http.entity.mime.MultipartEntityBuilder
-import org.apache.http.impl.client.DefaultHttpClient
-import org.apache.http.impl.client.HttpClients
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import java.io.File
-import java.net.http.HttpClient
-import java.net.http.HttpResponse
 
 
 interface BuglyExtension {

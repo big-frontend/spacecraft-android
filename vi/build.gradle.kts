@@ -3,12 +3,11 @@ buildscript {
     repositories {
         maven { url = uri("./local-repo") }
         mavenLocal()
-        mavenCentral()
-        maven { url = uri("https://plugins.gradle.org/m2/") }
         maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
         maven { url = uri("https://maven.oschina.net/content/groups/public/") }
         maven { url = uri("https://maven.aliyun.com/repository/google/") }
-        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
+        mavenCentral()
 
     }
     dependencies {
@@ -25,12 +24,11 @@ allprojects {
     repositories {
         maven { url = uri("./local-repo") }
         mavenLocal()
-        mavenCentral()
-        maven { url = uri("https://plugins.gradle.org/m2/") }
-        maven { url = uri("https://jitpack.io") }
         maven { url = uri("https://s01.oss.sonatype.org/content/repositories/public") }
         maven { url = uri("https://maven.oschina.net/content/groups/public/") }
         maven { url = uri("https://maven.aliyun.com/repository/google/") }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
+        mavenCentral()
 
     }
 //    tasks.withType(JavaCompile::class.java).configureEach { task ->

@@ -1,4 +1,4 @@
-package com.jamesfchen.viapm
+package com.jamesfchen.vi
 object Constants {
     const val TASK_GROUP = "viapm"
 }

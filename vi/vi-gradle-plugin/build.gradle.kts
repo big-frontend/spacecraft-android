@@ -11,14 +11,14 @@ gradlePlugin {
     plugins {
         create("buglyplugin") {
             id = "${groupId}.bugly-plugin"
-            implementationClass = "com.jamesfchen.viapm.BuglyPlugin"
+            implementationClass = "com.jamesfchen.vi.stability.BuglyPlugin"
             displayName = "bugly-plugin"
             description = "bugly-plugin"
         }
     }
 }
-group = "${groupId}.viapm-plugin"
-description = "viapm-plugin"
+group = "${groupId}.vi-plugin"
+description = "vi-plugin"
 version = "1.0.0"
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
