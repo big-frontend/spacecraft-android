@@ -1,6 +1,6 @@
 ## 技术分享
 
-[spacecraft-android 项目wiki](https://github.com/electrolyteJ/spacecraft-android/wiki/Home)
+[pisces 项目wiki](https://github.com/big-frontend/pisces/wiki)
 
 [bundles-assembler 项目wiki](https://github.com/electrolyteJ/bundles-assembler/wiki)
 
@@ -8,17 +8,14 @@
 
 | branches  | Build Status   |
 |---| --- |
-|  github/SpacecraftAndroid master branch |  [![Android CI](https://github.com/spacecraft-plan/spacecraft-android/actions/workflows/android.yml/badge.svg)](https://github.com/spacecraft-plan/spacecraft-android/actions/workflows/android.yml)  |
-|  gitlab/SpacecraftAndroid master branch |  [![pipeline status](https://gitlab.com/spacecraft-plan/spacecraftandroid/badges/master/pipeline.svg)](https://gitlab.com/spacecraft-plan/spacecraftandroid/-/commits/master) |
+|  github/pisces master branch |  [![Android CI](https://github.com/big-frontend/pisces/actions/workflows/android.yml/badge.svg)](https://github.com/big-frontend/pisces/actions/workflows/android.yml)  |
+|  gitlab/pisces master branch |  [![pipeline status](https://gitlab.com/big-frontend/pisces/badges/master/pipeline.svg)](https://gitlab.com/big-frontend/pisces/-/commits/master) |
 |  apk  |  [download url](https://www.pgyer.com/rDcO) |
 
 ```
 --- android 项目
---- composite-builds
---- vi  #apm & opt
-    - viapm 项目性能监控系统
-    - viopt 项目性能优化
-    - dashboard apm表盘
+--- arch # 关注项目架构：开发效率、项目耦合
+--- vi  #performance  monitor & optimization
 ```
 
 |  language  |  files |lines|

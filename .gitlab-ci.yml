@@ -1,5 +1,5 @@
 include:
   - '/android/.gitlab-ci-android.yml'
   - '/composite-builds/.gitlab-ci-plugin.yml'
-  - '/vivian/.gitlab-ci-vivian.yml'
+  - '/vivian/.gitlab-ci-vi.yml'
 
