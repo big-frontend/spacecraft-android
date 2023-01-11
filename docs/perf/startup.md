@@ -1,5 +1,8 @@
 # 启动(startup)
+
+
 启动时间：初步显示所用时间(The time to initial display,TTID)、完全显示所用时间 (The Time to full display,TTFD)
+
 启动场景：冷启动(cold)、温启动(warn)、热启动(hot)
 
 anr指标
