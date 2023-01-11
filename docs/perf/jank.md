@@ -1,3 +1,5 @@
+# 卡顿(jank)
+
 每秒帧数(帧率,60fps) 或者每帧耗时(16ms/frame))都可以用来衡量是否发生掉帧。
 
 ## 指标
@@ -78,19 +80,19 @@ ui thread帧率主要通过两次postFrameCallback，能计算出时间差、帧
 ```
 
 我们知道从js bundle加载到页面渲染完成，会有大量js <--> cpp <--> java 操作。react native在这里做了细分
+
 - onTransitionToBridgeBusy/onTransitionToBridgeIdle: 大量js <--> cpp <--> java 桥操作，onTransitionToBridgeBusy/onTransitionToBridgeIdle每次回调都会记录时间到mTransitionToIdleEvents/mTransitionToBusyEvents
 - onViewHierarchyUpdateEnqueued/onViewHierarchyUpdateFinished:纯java代码操作，从全部绘制指令入栈到完成绘制。onViewHierarchyUpdateEnqueued/onViewHierarchyUpdateFinished的每次回调都会记录到mViewHierarchyUpdateEnqueuedEvents/mViewHierarchyUpdateFinishedEvents
 
 了解这些我们再来看看getDidJSHitFrameAndCleanup函数，react框架一帧的完成存在这样情况。
+
 1. 如果 上一帧vsync的时间 <=mViewHierarchyUpdateFinishedEvents获取的时间 < 当前帧vsync的时间,那么说明一帧完成。
 2. 如果条件一不成立，说明绘制指令没执行。这个时候如果bridge处于idle(从mTransitionToIdleEvents获取的最新时间 > 从mTransitionToBusyEvents获取的最新时间) 并且 所有绘制指令已经入队列，等待vsync到来执行绘制指令(从mViewHierarchyUpdateEnqueuedEvents获取的时间不在上一帧vsync的时间与当前帧vsync的时间的区间内)，则说明js thread一帧完成。
 
-
 react native 认为framesDropped >= 4 才是算掉帧，小于4都算容错区间可宽容理解。每次framesDropped >= 4 就口吃一次,也就是掉帧了得注意了(mTotal4PlusFrameStutters++)。
 
-
-
 造成卡顿的原因有很多
+
 - 内存问题：内存不足触发频繁gc导致主线程阻塞
 - 启动问题：启动过程中存在慢函数或者锁等待
 - 渲染问题：ui布局层级深或者过度重绘
