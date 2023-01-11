@@ -23,6 +23,7 @@ jobs:
       - name: Build with Gradle
         run: cd  android && ./gradlew build
   deploy_docs:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Deploy docs
