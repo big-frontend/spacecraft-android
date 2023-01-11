@@ -35,7 +35,9 @@ Dropbox|Android系统
 [Sentry](https://develop.sentry.dev/)| cpp sentry,sentry提供server+client采集方案
 
 ## 案例
+
 anr常见根源
+
 - 应用在主线程上非常缓慢地执行涉及 I/O 的操作。
 - 应用在主线程上进行长时间的计算。
 - 主线程在对另一个进程进行同步 binder 调用，而后者需要很长时间才能返回。
