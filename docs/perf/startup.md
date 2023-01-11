@@ -17,10 +17,11 @@ anr指标
 - Context.startForegroundService() did not then call Service.startForeground()：应用调用startForegroundService，然后5s内未调用startForeground出现ANR或者Crash，此问题属于应用未适配Android版本sdk。
 
 ## 监控
-js:
+
+js
 - to od 
     
-android:
+android
 - 应用冷启动：启动Application 到 Activity#onWindowFocusChange
 - 应用温启动：应用进程还没有从lruprocess移除时，启动Activity 到 Activity#onWindowFocusChange
 - 应用热启动：在后台变前台时，Activity#onStart 到 Activity#onWindowFocusChange
