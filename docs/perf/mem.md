@@ -3,6 +3,7 @@
 JVM内存
 
 引用类型
+
 - 强可及对象（strongly reachable）：可以通过强引用访问的对象。
 - 软可及对象（softly reachable）：不是强可及对象，并且能够通过软引用访问的对象。
 - 弱可及对象（weakly reachable）：不是强可及对象也不是软可及对象，并且能够通过弱引用访问的对象。
