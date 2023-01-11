@@ -7,7 +7,7 @@ site_author: electrolyteJ
 remote_branch: gh-pages
 edit_uri: ""
 
-copyright: 'Copyright &copy; 2022 Block, Inc.'
+# copyright: 'Copyright &copy; 2022 Block, Inc.'
 
 theme:
   name: 'material'
