@@ -1,0 +1,102 @@
+site_name: Pisces
+site_url: https://github.com/big-frontend/pisces
+repo_name: Pisces
+repo_url: https://github.com/big-frontend/pisces
+site_description: "混合开发框架"
+site_author: electrolyteJ
+remote_branch: gh-pages
+edit_uri: ""
+
+copyright: 'Copyright &copy; 2022 Block, Inc.'
+
+theme:
+  name: 'material'
+  # favicon: assets/images/icon-bfe.png
+  # logo: assets/images/icon-bfe.png
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: blue
+      toggle:
+        icon: octicons/sun-24
+        name: "Switch to Dark Mode"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: blue
+      toggle:
+        icon: octicons/moon-24
+        name: "Switch to Light Mode"
+  features:
+  - navigation.tabs
+
+extra_css:
+  - 'assets/css/app.css'
+
+markdown_extensions:
+  - smarty
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - attr_list
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+
+plugins:
+  - search
+  - redirects:
+      redirect_maps:
+        # Redirect all feature pages to features/*
+        # 'caching.md': 'features/caching.md'
+        # 'calls.md': 'features/calls.md'
+        # 'connections.md': 'features/connections.md'
+        # 'events.md': 'features/events.md'
+        # 'https.md': 'features/events.md'
+        # 'interceptors.md': 'features/interceptors.md'
+        # 'r8_proguard.md': 'features/r8_proguard.md'
+        # # Redirect all Security pages to security/*
+        # 'security.md': 'security/security.md'
+        # 'security_providers.md': 'security/security_providers.md'
+        # 'tls_configuration_history.md': 'security/tls_configuration_history.md'
+        # # Redirect all changelog pages to changelog/*
+        # 'changelog.md': 'changelogs/changelog.md'
+        # 'upgrading_to_okhttp_4.md': 'changelogs/upgrading_to_okhttp_4.md'
+        # 'changelog_3x.md': 'changelogs/changelog_3x.md'
+        # 'changelog_2x.md': 'changelogs/changelog_2x.md'
+        # 'changelog_1x.md': 'changelogs/changelog_1x.md'
+        # # Redirect all contributing pages to contribute/*
+        # 'contributing.md': 'contribute/contributing.md'
+        # 'code_of_conduct.md': 'contribute/code_of_conduct.md'
+        # 'concurrency.md': 'contribute/concurrency.md'
+        # 'debug_logging.md': 'contribute/debug_logging.md'
+
+nav:
+  - 'Overview':
+    - 'Overview': index.md
+  - 'Architecture':
+    - '1': arch/index.md
+  - 'DevOps': devops/index.md
+  - 'Application Performance Monitoring and Optimization':
+    - 'Stability': perf/stability.md
+    - 'Startup': perf/startup.md
+    - 'Jank': perf/jank.md
+    - 'Startup': perf/startup.md
+    - 'Render': perf/render.md
+    - 'App Size': perf/appsize.md
+    - 'Cpu': perf/cpu.md
+    - 'Memory': perf/mem.md
+    - 'Network': perf/net.md
