@@ -3,7 +3,7 @@
 # To be Architect
 > 驽马十驾功在不舍
 
-![architecture](https://github.com/electrolyteJ/spacecraft-android/blob/master/art/architecture.png)
+![architecture](../assets/images/architecture.png)
 
 从使用Gradle构建系统开始，Android的模块也开始了演变，由原来的模块化到插件化、组件化。模块化是插件化、组件化的基石，如果一个项目没有通过模块化将项目进行职责梳理，那么直接进行插件化、组件化项目的结构只会越弄越糟糕。
 ## 模块化
