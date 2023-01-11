@@ -89,7 +89,7 @@ nav:
   - 'Architecture':
     - 'Index': arch/index.md
   - 'DevOps': 
-  - 'Index': devops/index.md
+    - 'Index': devops/index.md
   - 'Performance':
     - 'Index': perf/index.md
     - 'Stability': perf/stability.md
