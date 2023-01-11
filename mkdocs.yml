@@ -30,19 +30,6 @@ theme:
         name: "Switch to Light Mode"
   features:
   - navigation.tabs
-  language: zh
-extra:
-  alternate:
-    - name: English
-      link: /en/ 
-      lang: en
-    - name: Chinese (Simplified)
-      link: /zh/
-      lang: zh 
-    - name: Chinese (Traditional)
-      link: /zh-Hant/
-      lang: zh-Hant 
-
 extra_css:
   - 'assets/css/app.css'
 
@@ -70,8 +57,13 @@ markdown_extensions:
 
 plugins:
   - search
-  - redirects:
-      redirect_maps:
+  - i18n:
+      default_language: zh
+      languages:
+        en: English
+        zh: Chinese (Simplified)
+  # - redirects:
+      # redirect_maps:
         # Redirect all feature pages to features/*
         # 'caching.md': 'features/caching.md'
         # 'calls.md': 'features/calls.md'
