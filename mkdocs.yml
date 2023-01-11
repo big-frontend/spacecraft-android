@@ -30,7 +30,7 @@ theme:
         name: "Switch to Light Mode"
   features:
   - navigation.tabs
-  language: en
+  language: zh
 extra:
   alternate:
     - name: English
