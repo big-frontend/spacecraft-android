@@ -85,15 +85,14 @@ plugins:
         # 'debug_logging.md': 'contribute/debug_logging.md'
 
 nav:
-  - 'Overview':
-    - 'Index': README.md
+  - 'Overview': README.md
   - 'Architecture':
     - 'Index': arch/index.md
-  - 'DevOps': devops/index.md
+  - 'DevOps': 
+  - 'Index': devops/index.md
   - 'Performance':
     - 'Index': perf/index.md
     - 'Stability': perf/stability.md
-    - 'Startup': perf/startup.md
     - 'Jank': perf/jank.md
     - 'Startup': perf/startup.md
     - 'Render': perf/render.md
