@@ -86,12 +86,12 @@ plugins:
 
 nav:
   - 'Overview':
-    - 'Overview': README.md
+    - 'Index': README.md
   - 'Architecture':
-    - 'index': arch/index.md
+    - 'Index': arch/index.md
   - 'DevOps': devops/index.md
-  - 'Application Performance Monitoring and Optimization':
-    - 'index': perf/index.md
+  - 'Performance':
+    - 'Index': perf/index.md
     - 'Stability': perf/stability.md
     - 'Startup': perf/startup.md
     - 'Jank': perf/jank.md

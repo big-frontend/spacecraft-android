@@ -1,7 +1,8 @@
 ## 技术分享主题
-[pisces](https://big-frontend.github.io/pisces/)
-
-[bundles-assembler 项目wiki](https://github.com/electrolyteJ/bundles-assembler/wiki)
+- [Architecture](https://big-frontend.github.io/pisces/arch/)
+- [DevOps](https://big-frontend.github.io/pisces/devops/)
+- [Performance ](https://big-frontend.github.io/pisces/performance /)
+- [bundles-assembler 项目wiki](https://github.com/electrolyteJ/bundles-assembler/wiki)
 
 # Healthy Condition
 
