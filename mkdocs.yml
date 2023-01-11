@@ -86,7 +86,7 @@ plugins:
 
 nav:
   - 'Overview':
-    - 'Overview': index.md
+    - 'Overview': README.md
   - 'Architecture':
     - 'index': arch/index.md
   - 'DevOps': devops/index.md
