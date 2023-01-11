@@ -30,6 +30,18 @@ theme:
         name: "Switch to Light Mode"
   features:
   - navigation.tabs
+  language: en
+extra:
+  alternate:
+    - name: English
+      link: /en/ 
+      lang: en
+    - name: Chinese (Simplified)
+      link: /zh/
+      lang: zh 
+    - name: Chinese (Traditional)
+      link: /zh-Hant/
+      lang: zh-Hant 
 
 extra_css:
   - 'assets/css/app.css'
@@ -88,8 +100,6 @@ nav:
   - 'Overview': README.md
   - 'Architecture':
     - 'Index': arch/index.md
-  - 'DevOps': 
-    - 'Index': devops/index.md
   - 'Performance':
     - 'Index': perf/index.md
     - 'Stability': perf/stability.md
@@ -100,3 +110,5 @@ nav:
     - 'Cpu': perf/cpu.md
     - 'Memory': perf/mem.md
     - 'Network': perf/net.md
+  - 'DevOps': 
+    - 'Index': devops/index.md

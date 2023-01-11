@@ -1,4 +1,4 @@
-# 包体积(appsize)
+# 包体积(Appsize)
 
 
 - Android包:so、dex、资源
