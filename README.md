@@ -3,7 +3,7 @@ Android技术已经走过了十多年了，从技术的增长期到技术的爆�
 
 ## 技术分享主题
 
-- [Architecture](https://big-frontend.github.io/pisces/arch/):模块化、插件化、组件化、热修复、动态化
+- [Architecture](https://big-frontend.github.io/pisces/arch/): 模块化、插件化、组件化、热修复、动态化
 - [DevOps](https://big-frontend.github.io/pisces/devops/)：编码、测试、发布、运营
 - [Performance](https://big-frontend.github.io/pisces/performance/)：Application Performance Monitoring 、Profiling 、 Optimization
 - [bundles-assembler 项目wiki](https://github.com/electrolyteJ/bundles-assembler/wiki)
