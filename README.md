@@ -12,8 +12,8 @@ Android技术已经走过了十多年了，从技术的增长期到技术的爆�
 
 | branches  | Build Status   |
 |---| --- |
-|  github/pisces master branch |  [![Android CI](https://github.com/big-frontend/pisces/actions/workflows/android.yml/badge.svg)](https://github.com/big-frontend/pisces/actions/workflows/android.yml)  |
-|  gitlab/pisces master branch |  [![pipeline status](https://gitlab.com/big-frontend/pisces/badges/master/pipeline.svg)](https://gitlab.com/big-frontend/pisces/-/commits/master) |
+|  github/pisces main branch |  [![Pisces CI](https://github.com/big-frontend/pisces/actions/workflows/pisces.yml/badge.svg)](https://github.com/big-frontend/pisces/actions/workflows/pisces.yml)  |
+|  gitlab/pisces main branch |  [![pipeline status](https://gitlab.com/big-frontend/pisces/badges/master/pipeline.svg)](https://gitlab.com/big-frontend/pisces/-/commits/master) |
 |  apk  |  [download url](https://www.pgyer.com/rDcO) |
 
 ```
