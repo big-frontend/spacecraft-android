@@ -12,6 +12,7 @@ Tracer是trace cpu工具的统称，可用来分析卡顿、启动、渲染问�
 [墙上时钟时间 ，用户cpu时间 ，系统cpu时间](https://www.cnblogs.com/vinozly/p/5078755.html)
 
 android平台的trace分析工具
+
 - Android Studio CPU Profiler:整合了 systrace(命令行：`py -2 systrace.py --help`) 、traceview、simpleperf
 - Perfetto 命令行工具（Android 10 及更高版本）
 - System tracing utility:android手机设置中开发者模式提供的“系统跟踪”功能
@@ -28,6 +29,7 @@ Nanoscope| ... |instrument|Call Chart|在ArtMethod执行入口和执行结束位
 
 
 React Native框架提供的trace类是为systrace工具埋入trace数据
+
 | lang  |trace    |
 | --- | --- |
 |  javascript | Systrace.js 
