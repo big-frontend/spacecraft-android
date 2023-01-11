@@ -29,10 +29,10 @@ Nanoscope| ... |instrument|Call Chart|在ArtMethod执行入口和执行结束位
 
 React Native框架提供的trace类是为systrace工具埋入trace数据
 | lang  |trace    |
-| --- | --- 
-|  javascript | Systrace.js |  
-| cpp | ... |  
-|java|SystraceMessage.java/Systrace.java|
+| --- | --- |
+|  javascript | Systrace.js 
+| cpp | ... 
+|java|SystraceMessage.java/Systrace.java
 
 ## 参考资料
 [Profiling](https://reactnative.dev/docs/profiling)
