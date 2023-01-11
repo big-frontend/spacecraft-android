@@ -88,9 +88,10 @@ nav:
   - 'Overview':
     - 'Overview': index.md
   - 'Architecture':
-    - '1': arch/index.md
+    - 'index': arch/index.md
   - 'DevOps': devops/index.md
   - 'Application Performance Monitoring and Optimization':
+    - 'index': perf/index.md
     - 'Stability': perf/stability.md
     - 'Startup': perf/startup.md
     - 'Jank': perf/jank.md

@@ -1,6 +1,6 @@
 ## 技术分享
 
-[pisces 项目wiki](https://github.com/big-frontend/pisces/wiki)
+[pisces](https://big-frontend.github.io/pisces/)
 
 [bundles-assembler 项目wiki](https://github.com/electrolyteJ/bundles-assembler/wiki)
 
