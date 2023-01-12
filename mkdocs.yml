@@ -96,8 +96,7 @@ nav:
     - 'Index': perf/index.md
     - 'Stability': perf/stability.md
     - 'Jank': perf/jank.md
-    - 'Startup': perf/startup.md
-    - 'Render': perf/render.md
+    - 'Startup/Render': perf/startup_render.md
     - 'App Size': perf/appsize.md
     - 'Cpu': perf/cpu.md
     - 'Memory': perf/mem.md
