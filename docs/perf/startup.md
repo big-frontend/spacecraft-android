@@ -1,36 +1,40 @@
-# 启动(startup)
+# 启动(Startup)
 
+## 指标
+Vitals提供指标(指标存疑，[App startup time](https://developer.android.com/topic/performance/vitals/launch-time))
 
-启动时间：初步显示所用时间(The time to initial display,TTID)、完全显示所用时间 (The Time to full display,TTFD)
+- 冷启动(cold)：大于5s温启动需优化
+- 温启动(warn)：大于2s温启动需优化
+- 热启动(hot)：大于1.5s温启动需优化
+- 初步显示所用时间(The time to initial display,TTID)：第一帧之前的启动耗时
+- 完全显示所用时间 (The Time to full display,TTFD)：全部展示帧之前的启动耗时
 
-启动场景：冷启动(cold)、温启动(warn)、热启动(hot)
+Matrix中指标
 
-anr指标
+- 冷启动(applicationCost、firstScreenCost、coldCost)：大于10冷启动需优化
+- 温启动(warmCost)：大于4s温启动需优化
 
-- Input dispatching timed out：输入时间分发超过5s，包括按键和触屏事件。
-
-- Broadcast of Intent：前台广播需要在10s内完成，后台广播需要在60s内完成。
-
-- executing service：前台服务需要在20s内完成，后台则需要在200s内完成。
-
-- ContentProvider：几乎非常少见，publish执行未在10s内完成。
-
-- Context.startForegroundService() did not then call Service.startForeground()：应用调用startForegroundService，然后5s内未调用startForeground出现ANR或者Crash，此问题属于应用未适配Android版本sdk。
+> ps:Android官网定义的启动与Matrix定义的启动有点不同，前者把页面measure、layout部分也算进启动，认为初次draw之前都算启动一部分。
 
 ## 监控
 
-js
+React Native启动监控
 
-- to od 
+- 冷启动：SceneTracker
+```javascript
+//启动时间
+import  SceneTracker from 'react-native/Libraries/Utilities/SceneTracker';
+SceneTracker.addActiveSceneChangedListener((scene: Scene)=>{
+    var startMs = new Date().getTime();
+    console.log('runApplication start', scene);
+});
+```
     
-android
+Matrix中Android端实现
 
-- 应用冷启动：启动Application 到 Activity#onWindowFocusChange
-- 应用温启动：应用进程还没有从lruprocess移除时，启动Activity 到 Activity#onWindowFocusChange
-- 应用热启动：在后台变前台时，Activity#onStart 到 Activity#onWindowFocusChange
-- 初步显示所用时间：渲染首帧回调OnPreDrawListener
-- 完全显示所用时间：
+- 冷启动：启动Application 到 Activity#onWindowFocusChange
+- 温启动：应用进程还没有从lruprocess移除时，启动Activity 到 Activity#onWindowFocusChange
 
-## 参考资料
-[App startup time](https://developer.android.com/topic/performance/vitals/launch-time)
+## 案例
 
+- [Be aware of common issues](https://developer.android.com/topic/performance/vitals/launch-time#common)

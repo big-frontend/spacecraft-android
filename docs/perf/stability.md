@@ -1,4 +1,4 @@
-# 稳定性(crash & anr)
+# 稳定性(Crash & ANR)
 
 应用退出的情况
 
@@ -38,18 +38,11 @@ Dropbox|Android系统
 
 ## 案例
 
-anr常见根源
-
-- 应用在主线程上非常缓慢地执行涉及 I/O 的操作。
-- 应用在主线程上进行长时间的计算。
-- 主线程在对另一个进程进行同步 binder 调用，而后者需要很长时间才能返回。
-- 主线程处于阻塞状态，为发生在另一个线程上的长操作等待同步的块。
-- 主线程在进程中或通过 binder 调用与另一个线程之间发生死锁。主线程不只是在等待长操作执行完毕，而且处于死锁状态。
-
+- [字节ANR剖析](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI1MzYzMjE0MQ==&action=getalbum&album_id=1780091311874686979&scene=173&from_msgid=2247488243&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+- [Fix the problems](https://developer.android.com/topic/performance/vitals/anr#fix)
 
 ## 参考资料
 [得物App Android Crash治理演进](https://juejin.cn/post/7001060315056046117)
 
 [得物App ANR监控平台设计](https://juejin.cn/post/7009297034440081422)
 
-[ANR](https://developer.android.com/topic/performance/vitals/anr)
