@@ -18,7 +18,7 @@ shopify's TTI
 - [携程页面性能](https://mp.weixin.qq.com/s?__biz=MjM5MDI3MjA5MQ==&mid=2697269379&idx=1&sn=1227a77caf29ae0e732d976f3f909540&scene=21#wechat_redirect)
 - [shopify TTI](https://shopify.engineering/measuring-react-native-rendering-times)
 
-从两者的方案可以看到TTI的开始时间都是从Activity#onCreate开始，但是结束时间却很不相同，携程认为掐头去尾的页面区域存在大于两组的文字则是截止时间，shopify认为完全显示出来才是截止时间。
+从两者的方案可以看到TTI的开始时间都是从应用的onCreate开始，但是结束时间却很不相同，携程认为掐头去尾的页面区域存在大于两组的文字则是截止时间，shopify认为完全显示出来才是截止时间。
 
 ## 案例
 布局层级过深 、过度绘制等问题
