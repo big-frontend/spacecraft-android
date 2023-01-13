@@ -15,7 +15,10 @@ JVM内存
 - 内存泄漏
 - OOM
 
-
+## 虚拟机/引擎
+  - Android：art
+  - React Native/小程序：quickjs 、v8、hermes、javascriptcore，js引擎如何选型?
+  - Flutter:dart vm
 
 
 ## 分析工具

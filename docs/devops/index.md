@@ -1,3 +1,12 @@
+#  效率工程
+
+## 效率工具
+- idea插件开发：[intellij-sdk-code-samples
+](https://github.com/JetBrains/intellij-sdk-code-samples)、[IntelliJ Platform SDK](https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl.html#layout-structure)、[IntelliJ Platform UI Guidelines](https://jetbrains.design/intellij/)
+
+- chrome插件开发：[chrome-extensions-samples](https://github.com/GoogleChrome/chrome-extensions-samples)、[extensions](https://developer.chrome.com/docs/extensions/mv3/)
+
+
 团队规模分类
 - 早期创业研发团队：2人android 2人ios 3个server  1个测试
 - 中厂研发团队: 150多人android 大致也150人ios
