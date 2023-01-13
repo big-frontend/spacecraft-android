@@ -9,14 +9,7 @@
 ## 组件化/插件化
 组件化的目的是优化构建速度与项目解耦，而插件化不仅拥有组件化的这些能力还能提高启动速度、降低包体积、优化内存。那么如何落地一个项目组件化与插件化，请移步这个项目[bundles-assembler](https://github.com/electrolyteJ/bundles-assembler)，欢迎star与提issue。
 
-## 热修复
-tinker & robous
-
 ## 动态化
-React Native 、小程序、Flutter
-
-
-## 动态化方案
 - Android
     - 插件化：[RePlugin](https://github.com/Qihoo360/RePlugin)
     - 热修复：[tinker](https://github.com/Tencent/tinker)、[Robust](https://github.com/Meituan-Dianping/Robust):前者需要重启应用patch才生效，后者实时生效。
