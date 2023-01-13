@@ -43,7 +43,7 @@
         <activity android:name=".screen.profile.SettingsActivity" />
         <activity
             android:exported="true"
-            android:name=".WebViewActivity"
+            android:name="com.jamesfchen.h5container.WebViewActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />

@@ -34,8 +34,6 @@ dependencies {
 //    api "androidx.work:work-firebase:2.2.0"
 
     implementation project.moduleify("framework-common")
-    implementation project.moduleify("framework-network")
-    implementation project.moduleify("mock")
     implementation project.moduleify("framework-av")
     implementation project.moduleify("framework-image")
     implementation project.moduleify("framework-storage")

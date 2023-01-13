@@ -12,7 +12,6 @@ dependencies {
     compileOnly project.moduleify('framework-common')
     implementation project.moduleify('framework-base')
     compileOnly project.moduleify('framework-image')
-    compileOnly project.moduleify('framework-network')
     compileOnly project.moduleify('framework-storage')
     compileOnly project.moduleify('framework-loader')
     kapt 'com.github.bumptech.glide:compiler:4.11.0'

@@ -27,6 +27,5 @@ dependencies {
     project.depsConfig("implementation", "account-export")
 
     implementation project.moduleify("framework-base")
-    implementation project.moduleify("framework-network")
     implementation project.moduleify("framework-common")
 }

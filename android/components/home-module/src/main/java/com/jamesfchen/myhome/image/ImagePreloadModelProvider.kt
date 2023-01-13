@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.bumptech.glide.ListPreloader
 import com.bumptech.glide.RequestBuilder
-import com.jamesfchen.loader.G
 import java.util.*
 
 class ImagePreloadModelProvider : ListPreloader.PreloadModelProvider<String> {
@@ -41,11 +41,11 @@ class ImagePreloadModelProvider : ListPreloader.PreloadModelProvider<String> {
 
     override fun getPreloadRequestBuilder(url: String): RequestBuilder<Drawable> =
         fragment?.let {
-            G.with(it)
+            Glide.with(it)
                 .load(url)
                 .override(imageWidthPixels, imageHeightPixels)
         } ?: activity?.let {
-            G.with(it)
+            Glide.with(it)
                 .load(url)
                 .override(imageWidthPixels, imageHeightPixels)
         } ?: throw IllegalArgumentException("activit fragment都为null")

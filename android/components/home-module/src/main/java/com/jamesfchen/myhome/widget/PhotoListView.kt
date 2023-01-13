@@ -14,8 +14,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.jamesfchen.common.util.ConvertUtil.dp2px
-import com.jamesfchen.loader.G
-import com.jamesfchen.loader.GlideRequests
+import com.jamesfchen.image.G
+import com.jamesfchen.image.GlideRequests
 
 /**
  * Copyright ® $ 2017

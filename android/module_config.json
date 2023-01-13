@@ -136,12 +136,6 @@
       "sourcePath": ":framework:base"
     },
     {
-      "simpleName": "framework-network",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:network"
-    },
-    {
       "simpleName": "framework-av",
       "group": "fwk",
       "format": "framework_foundation",
@@ -152,12 +146,6 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":framework:image"
-    },
-    {
-      "simpleName": "mock",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": "mock"
     },
     {
       "simpleName": "framework-storage",

@@ -4,15 +4,6 @@ import android.util.Log;
 
 import com.jamesfchen.lifecycle.AppLifecycle;
 import com.jamesfchen.lifecycle.IAppLifecycleObserverAdapter;
-import com.jamesfchen.mockserver.BuildConfig;
-import com.jamesfchen.mockserver.MockManager;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
-
 /**
  * Copyright ® $ 2017
  * All right reserved.
@@ -27,7 +18,7 @@ public class AppLifecycleObserver extends IAppLifecycleObserverAdapter {
     public void onAppCreate() {
         super.onAppCreate();
         Log.d("AppLifecycleObserver", "onAppCreate");
-        MockManager.init(SApp.getInstance(), BuildConfig.DEBUG);
+//        MockManager.init(SApp.getInstance(), BuildConfig.DEBUG);
     }
 
     @Override

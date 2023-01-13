@@ -7,15 +7,11 @@ import com.jamesfchen.network.DefaultAuthenticator
 import com.jamesfchen.network.DefaultDns
 import com.jamesfchen.network.adapter.ObservableOrMainCallAdapterFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.OkHttpCallFactory
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -77,13 +73,15 @@ object Retrofiter {
     @JvmStatic
     fun <T> createApi(service: Class<T>): T? =
         Retrofit.Builder().baseUrl(BASE_URL).callFactory(OkHttpCallFactory.create(okHttpClient))
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
+//            .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
             //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
 //                .addConverterFactory(MoshiConverterFactory.create())
 //                .addConverterFactory(ProtoConverterFactory.create())
-            .addConverterFactory(WireConverterFactory.create()).build().create(service)
+//            .addConverterFactory(WireConverterFactory.create())
+            .build()
+            .create(service)
 
 }

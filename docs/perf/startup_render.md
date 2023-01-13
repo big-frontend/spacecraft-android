@@ -31,6 +31,10 @@ SceneTracker.addActiveSceneChangedListener((scene: Scene)=>{
     console.log('runApplication start', scene);
 });
 ```
+
+- 启动时间监控：[react-native-startup-time](https://github.com/doomsower/react-native-startup-time)
+
+- 基于Flipper的性能监控：[shopify/react-native-performance](https://github.com/Shopify/react-native-performance)
     
 Matrix中Android端实现
 
@@ -41,6 +45,15 @@ Matrix中Android端实现
 
 - [Be aware of common issues](https://developer.android.com/topic/performance/vitals/launch-time#common)
 
+### React Native
+
+- 分包(code split)：[react-native-multibundler](https://github.com/smallnew/react-native-multibundler)、[metro-code-split](https://github.com/wuba/metro-code-split)
+- 模块懒加载模块require:[react-native-bundle-splitter](https://github.com/kirillzyusko/react-native-bundle-splitter)
+
+
+### React
+
+- 分包：[代码分离](https://webpack.docschina.org/guides/code-splitting/)
 
 ## 启动+渲染指标：TTI
 

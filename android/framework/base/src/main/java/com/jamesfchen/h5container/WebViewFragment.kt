@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome
+package com.jamesfchen.h5container
 
 import android.net.http.SslError
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import com.jamesfchen.myhome.databinding.FragmentWebviewBinding
+import com.jamesfchen.base.databinding.FragmentWebviewBinding
 
 /**
  * Copyright ® $ 2020
@@ -30,7 +30,7 @@ class WebViewFragment : Fragment() {
             return fragment
         }
     }
-lateinit var binding:FragmentWebviewBinding
+    lateinit var binding: FragmentWebviewBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentWebviewBinding.inflate(inflater,container,false)
         return binding.root

@@ -74,7 +74,6 @@ dependencies {
     implementation project.moduleify('account-export')
 
     compileOnly project.moduleify("framework-base")
-    compileOnly project.moduleify("framework-network")
     compileOnly project.moduleify("framework-common")
 
 }

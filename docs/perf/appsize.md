@@ -4,6 +4,11 @@
 - Android包:so、dex、资源
 - js bundle:js.bundle 
 
+
+## 监控
+
+- 包体积分析：[react-native-bundle-visualizer](https://github.com/IjzerenHein/react-native-bundle-visualizer)
+
 ## 优化
 minify
 - Code shrinking(or tree-shaking，摇树优化) 、obfuscated(混淆) 

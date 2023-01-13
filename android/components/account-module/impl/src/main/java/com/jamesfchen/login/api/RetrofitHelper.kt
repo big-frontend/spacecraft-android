@@ -11,8 +11,6 @@ import okhttp3.Protocol
 import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.wire.WireConverterFactory
 import java.security.KeyStore
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -68,10 +66,10 @@ object RetrofitHelper {
             .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
             //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
 //                .addConverterFactory(MoshiConverterFactory.create())
 //                .addConverterFactory(ProtoConverterFactory.create())
-            .addConverterFactory(WireConverterFactory.create())
+//            .addConverterFactory(WireConverterFactory.create())
             .build()
             .create(service.java)
     }

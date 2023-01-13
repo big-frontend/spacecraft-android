@@ -17,9 +17,9 @@ set(gifplayer_src_files
         ${gifplayer_src_dir}/gif_jni.cpp
         )
 add_library(gifplayer SHARED ${gifcodec_src_files})
-target_include_directories(framesequence PRIVATE
-        ${ANDROID_NDK}/sources/android/native_app_glue ${gifcodec_src_dir}/include
-        )
+#target_include_directories(framesequence PRIVATE
+#        ${ANDROID_NDK}/sources/android/native_app_glue ${gifcodec_src_dir}/include
+#        )
 target_link_libraries( # Specifies the target library.
         gifplayer
         gifcodec android z EGL jnigraphics mediandk

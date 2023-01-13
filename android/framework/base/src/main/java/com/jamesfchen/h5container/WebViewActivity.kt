@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome
+package com.jamesfchen.h5container
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,8 @@ import android.os.Bundle
 import android.util.Log
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.myhome.databinding.ActivityWebviewBinding
+import com.jamesfchen.base.databinding.ActivityWebviewBinding
+
 
 /**
  * Copyright ® $ 2020

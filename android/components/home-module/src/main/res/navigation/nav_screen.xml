@@ -49,7 +49,7 @@
 
     <activity
         android:id="@+id/dest_settings"
-        android:name="com.jamesfchen.myhome.WebViewActivity"
+        android:name="com.jamesfchen.h5container.WebViewActivity"
         android:label="settings "
         tools:layout="@layout/activity_webview">
         <argument

@@ -14,9 +14,9 @@ dependencies {
     //restful
 //    api "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
 //    api "com.squareup.retrofit2:retrofit-converters:2.8.1"
-    api "com.squareup.retrofit2:adapter-rxjava3:${RETROFIT_VERSION}"
-    api "com.squareup.retrofit2:converter-wire:${RETROFIT_VERSION}"
-    api "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:adapter-rxjava3:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:converter-wire:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
 //    api "com.squareup.retrofit2:converter-moshi:2.9.0"
 //    api "com.squareup.retrofit2:converter-protobuf:2.9.0"
     //rpc

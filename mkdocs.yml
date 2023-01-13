@@ -89,9 +89,12 @@ plugins:
         # 'debug_logging.md': 'contribute/debug_logging.md'
 
 nav:
-  - 'Overview': README.md
+  - 'Overview': 
+    - 'Index': README.md
+    - 'Cross-Platform': cross_platform.md
   - 'Architecture':
     - 'Index': arch/index.md
+    - 'Dynamic': arch/dynamic.md
   - 'Performance':
     - 'Index': perf/index.md
     - 'Stability': perf/stability.md
@@ -103,3 +106,4 @@ nav:
     - 'Network': perf/net.md
   - 'DevOps': 
     - 'Index': devops/index.md
+    - 'Build': devops/build.md

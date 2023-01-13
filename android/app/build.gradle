@@ -85,7 +85,6 @@ dependencies {
     project.depsConfig("implementation", "update-appupdate")
     implementation project.moduleify("framework-base")
     implementation project.moduleify("framework-loader")
-    implementation project.moduleify("framework-network")
     implementation project.moduleify("framework-av")
     implementation project.moduleify("framework-image")
     implementation project.moduleify("framework-storage")
