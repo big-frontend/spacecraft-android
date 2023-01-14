@@ -8,7 +8,7 @@ This is word
 <!-- ![](/art/WX20180802-234453@2x.png) -->
 
 
-## [设计模式原则 Design Principle](#DesignPrinciple)
+## 设计模式原则 Design Principle
 
 - 单一职责(Single responsibility principle,SRP):每个类或者模块应该负责软件提供的功能单一部分
 - 开闭原则(Open/Closed Principle,OCP):对于扩展进行开放，对于内部修改进行关闭。
