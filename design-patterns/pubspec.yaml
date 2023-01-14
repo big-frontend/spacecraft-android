@@ -1,0 +1,10 @@
+name: design_patterns
+description: design patterns
+version: 1.0.0
+author: hawks jamesf
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+dependencies:
+  test: ^1.6.0
+  flutter:
+    sdk: flutter

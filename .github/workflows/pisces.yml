@@ -28,6 +28,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: cp readme.md
         run: cp README.md docs/README.md
+        run: cp design-patterns/README.md docs/arch/design_patterns.md
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
