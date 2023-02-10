@@ -108,3 +108,8 @@ nav:
   - 'DevOps': 
     - 'Index': devops/index.md
     - 'Build': devops/build.md
+
+extra:
+  analytics:
+    provider: google
+    property: G-190117026
