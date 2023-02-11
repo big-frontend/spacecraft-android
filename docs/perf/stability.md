@@ -1,3 +1,6 @@
+---
+comments: true
+---
 # 稳定性(Crash & ANR)
 
 应用退出的情况

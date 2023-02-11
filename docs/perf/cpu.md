@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # CPU
 
 Tracer是trace cpu工具的统称，可用来分析卡顿、启动、渲染问题，帮忙我们快速找出慢函数。

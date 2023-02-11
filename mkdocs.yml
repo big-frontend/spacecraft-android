@@ -11,6 +11,7 @@ edit_uri: ""
 
 theme:
   name: 'material'
+  custom_dir: overrides
   # favicon: assets/images/icon-bfe.png
   # logo: assets/images/icon-bfe.png
   palette:
@@ -87,7 +88,6 @@ plugins:
         # 'code_of_conduct.md': 'contribute/code_of_conduct.md'
         # 'concurrency.md': 'contribute/concurrency.md'
         # 'debug_logging.md': 'contribute/debug_logging.md'
-
 nav:
   - 'Overview': 
     - 'Index': README.md

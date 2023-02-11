@@ -1,3 +1,6 @@
+---
+comments: true
+---
 # 内存(Memory)
 
 JVM内存
