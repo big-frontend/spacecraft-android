@@ -33,7 +33,8 @@ replugin、aab
    - lint:少用枚举用@IntDef替代、AnimatedDrawable替换为AnimatedVectorDrawable
    - R Filed内联等
    - [redex](https://github.com/facebook/redex)
-
+   
+#### 更多阅读
 - [Android App包瘦身优化实践](https://tech.meituan.com/2017/04/07/android-shrink-overall-solution.html)
 - [缩减应用大小](https://developer.android.com/topic/performance/reduce-apk-size?hl=zh-cn)
 - [性能优化：得物App包体积治理之路](https://mp.weixin.qq.com/s/1aAgY4OPnZl650Q8vD3LNA)
