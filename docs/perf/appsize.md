@@ -28,6 +28,7 @@ comments: true
 
 - [ProGuard and R8: Comparing Optimizers](https://www.guardsquare.com/blog/proguard-and-r8)
 - [redex](https://github.com/facebook/redex)
+- [ByteX](https://github.com/bytedance/ByteX)
 - [Smaller APKs with resource optimization](https://jakewharton.com/smaller-apks-with-resource-optimization/)
 - [Android App包瘦身优化实践](https://tech.meituan.com/2017/04/07/android-shrink-overall-solution.html)
 - [缩减应用大小](https://developer.android.com/topic/performance/reduce-apk-size?hl=zh-cn)
