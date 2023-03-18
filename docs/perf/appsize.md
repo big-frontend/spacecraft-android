@@ -17,7 +17,7 @@ comments: true
 ## 优化
 
 ### 拆包
-- 动态下发：replugin、aab
+- 动态下发：replugin、aab、[so](https://github.com/IMFWorks/Android-So-Handler)
 - Gradle Product Flavor：分解业务
 
 ### Minify(Shrink、Obfuscate、Optimize)
