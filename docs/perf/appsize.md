@@ -16,9 +16,14 @@ comments: true
 
 ## 优化
 
+### 去重
+ - 同时存在Glide 与 Fresco
+ - OkHttp 与 Volley
+ 
 ### 拆包
 - 动态下发：replugin、aab、[so](https://github.com/IMFWorks/Android-So-Handler)
 - Gradle Product Flavor：分解业务
+- Gradle resConfig、split
 
 ### Minify(Shrink、Obfuscate、Optimize)
 
