@@ -6,7 +6,7 @@ comments: true
 
 Tracer是trace cpu工具的统称，可用来分析卡顿、启动、渲染问题，帮忙我们快速找出慢函数。
 
-## 名词解释
+## 术语
 
 - wall duration:函数执行时间(包含等待时间)，函数wall时间 = 运行时间+其他时间(阻塞(io、加锁)、就绪等情况)
 - wall self time:函数执行时间(不包含等待时间)
