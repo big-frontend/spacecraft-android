@@ -5,18 +5,15 @@ comments: true
 
 为什么要做内存分析 ？ 当内存不足会造成异常(oom,内存分配失败，llk,设备重启等)与卡顿(触发频繁的gc)，而出现内存不足的原因有很多比如内存泄漏，为了减少oom与卡顿这个时候就需要分析内存从中找出优化点
 
-## 内存指标
-- 内存异常率
-- 内存触顶率:超过最大堆的85%限制，gc就会频繁，容易oom与卡顿
+## 虚拟机/引擎
+- Android：art
+- React Native/小程序：quickjs 、v8、hermes、javascriptcore，js引擎如何选型?
+- Flutter:dart vm
 
-## 内存监控
-- [LeakCanary](https://github.com/square/leakcanary)
-- [Matrix ResourceCanary](https://github.com/Tencent/matrix/wiki/Matrix-Android-ResourceCanary)
-- [大图监控]()
-
-## 术语
+### 术语
 
 引用类型
+
 - 强可及对象（strongly reachable）：可以通过强引用访问的对象。
 - 软可及对象（softly reachable）：不是强可及对象，并且能够通过软引用访问的对象。
 - 弱可及对象（weakly reachable）：不是强可及对象也不是软可及对象，并且能够通过弱引用访问的对象。
@@ -33,6 +30,7 @@ outgoing reference(当前对象引用的外部对象)：查看对象为什么耗
 ingoing reference(直接引用了当前对象的对象)：查看对象被谁引用
 
 gc root对象：
+
 - 类(方法区静态成员变量引用的对象)
 - 活动的Thread实例
 - 局部变量或者方法参数变量持有的对象(java 虚拟机堆栈 、 本地方法堆栈)
@@ -40,7 +38,7 @@ gc root对象：
 - JNIGlobalReference引用的对象
 - synchronize关键字用到的对象
 
-## 分代垃圾算法
+### 分代垃圾算法
 
 大部分的对象都是"朝生夕死"，经过几次gc之后就会被转移到老年代。新生代占内存区域的1/3而老年代占内存区域的2/3，新生代使用MinorGC，老年代使用MajorGC/FullGC回收整块堆
 
@@ -50,22 +48,29 @@ gc root对象：
   - 存活的对象会在S0与S1之间来回移动，并且年龄累加1
 
 - 老年代(gc:MajorGC)
-采用的算法：标记清除算法(遇到大部分需要回收的对象时，执行效率不高；容易产生碎片化) or 标记整理算法(若存在大量存活对象，就需要移动更多的对象来换取少量的空间)
+  - 采用的算法：标记清除算法(遇到大部分需要回收的对象时，执行效率不高；容易产生碎片化) or 标记整理算法(若存在大量存活对象，就需要移动更多的对象来换取少量的空间)
 
+## 内存指标
+- 内存异常率
+- 内存触顶率:超过最大堆的85%限制，gc就会频繁，容易oom与卡顿
 
+## 内存监控
+- [LeakCanary](https://github.com/square/leakcanary)
+- [Matrix ResourceCanary](https://github.com/Tencent/matrix/wiki/Matrix-Android-ResourceCanary)
+- [大图监控]()
 
+## 分析
 
-## 虚拟机/引擎
-  - Android：art
-  - React Native/小程序：quickjs 、v8、hermes、javascriptcore，js引擎如何选型?
-  - Flutter:dart vm
+### 分析思路
+- 静息态内存分析(优化app在后台时的内存，防止被llk):做内存分析，统计大图加载；动画播放；内存泄露；数据结构不合理
+- 运行时动态内存分析(优化OOM问题)：
 
-
-## 分析工具
-- [利用Android Studio、MAT对Android进行内存泄漏检测](https://joyrun.github.io/2016/08/08/AndroidMemoryLeak/)
+### 分析工具
+- [memory profile](https://developer.android.com/studio/profile/memory-profiler)
 - [内存分析工具 MAT 的使用](http://www.cnblogs.com/tianzhijiexian/p/4268131.html)
 
 mat 的坑
+
 - android hprof 转为mat hprof：hprof-conv android.hprof mat.hprof
 - 新版mat必须支持jdk11 ，在ini文件首行配置：
 ```
@@ -78,13 +83,7 @@ macos:
 /Applications/dev/Android Studio.app/Contents/jre/Contents/Home/bin
 ```
 
-
-### 分析思路
-分析
-- 静息态内存分析(优化app在后台时的内存，防止被llk):做内存分析，统计大图加载；动画播放；内存泄露；数据结构不合理
-- 运行时动态内存分析(优化OOM问题)：
-
-### 内存优化
+## 内存优化
 - 设备分级
     1. 设备分级:对于低端设备可以关闭动画；使用RBG_565
     2. 缓存管理:设计一套统一的缓存管理机制
@@ -104,11 +103,8 @@ macos:
 - 单例模式导致
 - 无限循环属性动画导致。
 
-
-
 ## 更多阅读
 - [Android 内存暴减的秘密](https://cloud.tencent.com/developer/article/1013705)
 - [探索 Android 内存优化方法](https://juejin.cn/post/6844903897958449166#heading-35)
 - [图解 Java 垃圾回收算法及详细过程！](https://xie.infoq.cn/article/9d4830f6c0c1e2df0753f9858)
-- [使用内存性能分析器查看应用的内存使用情况](https://developer.android.com/studio/profile/memory-profiler)
 - [JVM 内存分析工具 MAT 的深度讲解与实践——进阶篇](https://juejin.cn/post/6911624328472133646#heading-24)
