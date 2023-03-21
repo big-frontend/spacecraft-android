@@ -5,7 +5,7 @@ comments: true
 # 包体积(Appsize)
 
 
-- Android包:so、dex、资源
+- Android包:n、dex、资源
 - js bundle:js.bundle 
 
 
@@ -43,3 +43,6 @@ comments: true
 - [缩减应用大小](https://developer.android.com/topic/performance/reduce-apk-size?hl=zh-cn)
 - [性能优化：得物App包体积治理之路](https://mp.weixin.qq.com/s/1aAgY4OPnZl650Q8vD3LNA)
 - [Booster](https://booster.johnsonlee.io/zh/guide/)
+- [浅谈Android中的R文件作用以及将R资源inline减少包大小](https://yuweiguocn.github.io/android-r-inline/)
+- [R 之初体验](https://medium.com/@morefreefg/%E5%85%B3%E4%BA%8E-r-%E7%9A%84%E4%B8%80%E5%88%87-355f5049bc2c)
+- [Android对so体积优化的探索与实践](https://tech.meituan.com/2022/06/02/meituans-technical-exploration-and-practice-of-android-so-volume-optimization.html)
