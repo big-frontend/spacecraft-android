@@ -1,0 +1,107 @@
+{
+    "--log": "DEBUG",
+    "options": [
+        {"name": "-manifest"},
+        {
+            "--min": "10",
+            "name": "-fileSize",
+            "--order": "desc",
+            "--suffix": "png, jpg, jpeg, gif, arsc"
+        },
+        {
+            "name": "-countMethod",
+            "--group": "package"
+        },
+        {"name": "-checkResProguard"},
+        {
+            "--min": "10",
+            "name": "-findNonAlphaPng"
+        },
+        {
+            "name": "-uncompressedFile",
+            "--suffix": "png, jpg, jpeg, gif, arsc"
+        },
+        {"name": "-countR"},
+        {"name": "-duplicatedFile"},
+        {
+            "--rTxt": "android\\app\\build\\intermediates\\runtime_symbol_list\\devPhoneRelease\\R.txt",
+            "name": "-unusedResources",
+            "--ignoreResources": [
+                "R.raw.*",
+                "R.style.*",
+                "R.attr.*",
+                "R.id.*",
+                "R.string.ignore_*",
+                "R.integer.min_screen_width_bucket",
+                "R.style.DialogAnimationUp",
+                "R.style.DialogAnimationRight",
+                "R.style.DialogFullScreen",
+                "R.drawable.gdt_*",
+                "R.drawable.menubar_share_img",
+                "R.drawable.menubar_share_img_dark",
+                "R.drawable.menubar_shortcut_img",
+                "R.drawable.menubar_shortcut_img_dark",
+                "R.drawable.menubar_home_img",
+                "R.drawable.menubar_home_img_dark",
+                "R.drawable.menubar_home_colour_img",
+                "R.drawable.menubar_home_colour_img_dark",
+                "R.drawable.menubar_point_ever_save",
+
+                "R.drawable.menubar_feedback_img",
+                "R.drawable.menubar_feedback_img_dark",
+                "R.drawable.menubar_feedback_img_top",
+                "R.drawable.menubar_feedback_img_top_dark",
+                "R.drawable.menubar_setting_img",
+                "R.drawable.menubar_setting_img_dark",
+                "R.drawable.menubar_quick_app_center",
+                "R.drawable.menubar_quick_app_center_dark",
+                "R.drawable.menubar_add_to_my_quick_apps",
+                "R.drawable.menubar_add_to_my_quick_apps_dark",
+                "R.drawable.menubar_remove_from_my_quick_apps",
+                "R.drawable.menubar_remove_from_my_quick_apps_dark",
+                "R.drawable.menubar_refresh_img",
+                "R.drawable.menubar_refresh_img_dark",
+                "R.drawable.menubar_subscribe_service_img",
+                "R.drawable.menubar_subscribe_service_img_dark",
+                "R.drawable.menubar_unsubscribe_service_img",
+                "R.drawable.menubar_unsubscribe_service_img_dark",
+                "R.drawable.menubar_service_news_img",
+                "R.drawable.menubar_service_news_img_dark"
+            ]
+        },
+        {
+            "--ignoreAssets": ["*.so"],
+            "name": "-unusedAssets"
+        },
+        {"name": "-checkMultiLibrary"},
+        {
+            "name": "-checkMultiSTL",
+            "--toolnm": "E:\\Sdk\\ndk-bundle\\toolchains\\aarch64-linux-android-4.9\\prebuilt\\windows-x86_64\\bin\\aarch64-linux-android-nm.exe"
+        },
+        {
+            "name": "-unstrippedSo",
+            "--toolnm": "E:\\Sdk\\ndk-bundle\\toolchains\\aarch64-linux-android-4.9\\prebuilt\\windows-x86_64\\bin\\aarch64-linux-android-nm.exe"
+        }
+    ],
+    "--format": "mm.html,mm.json",
+    "--mappingTxt": "android\\app\\build\\outputs\\mapping\\devPhoneRelease\\mapping.txt",
+    "--apk": "android\\app\\build\\outputs\\apk\\devPhone\\release\\InstantToolkitPhone_6.6.0_a901014_230310.apk",
+    "--output": "android\\app\\build/outputs/apk-checker-result",
+    "--formatConfig": [{
+        "name": "-countMethod",
+        "group": [
+            {
+                "package": "android",
+                "name": "Android System"
+            },
+            {
+                "package": "java",
+                "name": "java system"
+            },
+            {
+                "package": "com.tencent.test.$",
+                "name": "com.tencent.test.$"
+            }
+        ]
+    }]
+}

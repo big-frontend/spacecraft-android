@@ -1,0 +1,24 @@
+COMMON: &common
+  # app设置
+  DEBUG: False
+  TESTING: False
+  THREADED: False
+  SECRET_KEY: insecure
+  # 日志配置文件路径
+  LOGGING_CONFIG_PATH: ./config/logging.yaml
+  # 日志文件存放位置
+  LOGGING_PATH: ./logs
+
+DEVELOPMENT: &development
+  <<: *common
+  ENV:  dev
+  DEBUG: True
+TESTING: &testing
+  <<: *common
+  ENV: test
+  TESTING: True
+#python -c 'import os; print(os.urandom(16))'
+PRODUCTION: &production
+  <<: *common
+  ENV: prod
+  SECRET_KEY: b'\xfd\xdec\xf4+\r\xef\x81#Qe\xc2\xad5\x89\xa2'

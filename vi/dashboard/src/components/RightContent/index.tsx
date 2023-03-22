@@ -18,7 +18,7 @@ const GlobalHeaderRight: React.FC = () => {
   const { navTheme, layout } = initialState.settings;
   let className = styles.right;
 
-  if ((navTheme === 'dark' && layout === 'top') || layout === 'mix') {
+  if ((navTheme === 'realDark' && layout === 'top') || layout === 'mix') {
     className = `${styles.right}  ${styles.dark}`;
   }
   return (
@@ -46,15 +46,15 @@ const GlobalHeaderRight: React.FC = () => {
         //   console.log('input', value);
         // }}
       />
-      <span
+      {/* <span
         className={styles.action}
         onClick={() => {
           window.open('https://pro.ant.design/docs/getting-started');
         }}
-      >
-        <QuestionCircleOutlined />
-      </span>
-      <Avatar />
+      > */}
+        {/* <QuestionCircleOutlined /> */}
+      {/* </span> */}
+      {/* <Avatar /> */}
       <SelectLang className={styles.action} />
     </Space>
   );

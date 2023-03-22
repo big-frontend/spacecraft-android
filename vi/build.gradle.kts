@@ -7,7 +7,9 @@ buildscript {
         maven { url = uri("https://maven.oschina.net/content/groups/public/") }
         maven { url = uri("https://maven.aliyun.com/repository/google/") }
         maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri("https://artifact.bytedance.com/repository/byteX/") }
         mavenCentral()
+        gradlePluginPortal()
 
     }
     dependencies {
@@ -28,7 +30,9 @@ allprojects {
         maven { url = uri("https://maven.oschina.net/content/groups/public/") }
         maven { url = uri("https://maven.aliyun.com/repository/google/") }
         maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri("https://artifact.bytedance.com/repository/byteX/") }
         mavenCentral()
+        gradlePluginPortal()
 
     }
 //    tasks.withType(JavaCompile::class.java).configureEach { task ->

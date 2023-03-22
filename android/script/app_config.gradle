@@ -224,3 +224,179 @@ project.tasks.whenTaskAdded {
         }
     }
 }
+
+//apply plugin: 'io.github.jamesfchen.vi-plugin'
+//vi{
+//    apkAnalyzer{
+//        variant = [
+//                "devPhoneRelease",
+//                "officialPhoneRelease"
+//        ]
+//        configPath = "${project.rootDir}/apk-checker-config.json"
+//    }
+//    minifier{
+//        variant = [
+//                "devPhoneRelease",
+//                "officialPhoneRelease"
+//        ]
+//        use7zip = true
+//        useZipAlign = true
+//        useApkSign = false
+//        code {
+////            rFiledInline {
+////                enable false
+////                enableInDebug false
+////                logLevel "DEBUG"
+////                keepList = [
+////                        // keep android.support.constraint.R里所有id
+////                        "android.support.constraint.R.id",
+////                        // keep 所有以im_e为前缀的drawable字段
+////                        "R.drawable.im_e+",
+////                ]
+////                resCheck {
+////                    enable true // 无用资源检查的开关
+////                    // 根据资源所在的路径做模糊匹配（因为第三方库用到的冗余资源没法手动删）
+////                    onlyCheck = [
+////                            // 只检查主工程里的资源
+////                            "app/build"
+////                    ]
+////                    // 检查白名单。这些资源就算是冗余资源也不会report出来
+////                    keepRes = [
+////                            "R.id.*", "R.bool.*", "R.layout.unused_layout",
+////                            //腾讯优量汇
+////                            "R.integer.min_screen_width_bucket",
+////                            "R.style.DialogAnimationUp",
+////                            "R.style.DialogAnimationRight",
+////                            "R.style.DialogFullScreen",
+////                            "R.drawable.gdt_*",
+////                            //menubar 使用了getIdentifier
+////                            "R.drawable.menubar_share_img",
+////                            "R.drawable.menubar_share_img_dark",
+////                            "R.drawable.menubar_shortcut_img",
+////                            "R.drawable.menubar_shortcut_img_dark",
+////                            "R.drawable.menubar_home_img",
+////                            "R.drawable.menubar_home_img_dark",
+////                            "R.drawable.menubar_home_colour_img",
+////                            "R.drawable.menubar_home_colour_img_dark",
+////                            "R.drawable.menubar_point_ever_save",
+////
+////                            "R.drawable.menubar_feedback_img",
+////                            "R.drawable.menubar_feedback_img_dark",
+////                            "R.drawable.menubar_feedback_img_top",
+////                            "R.drawable.menubar_feedback_img_top_dark",
+////                            "R.drawable.menubar_setting_img",
+////                            "R.drawable.menubar_setting_img_dark",
+////                            "R.drawable.menubar_quick_app_center",
+////                            "R.drawable.menubar_quick_app_center_dark",
+////                            "R.drawable.menubar_add_to_my_quick_apps",
+////                            "R.drawable.menubar_add_to_my_quick_apps_dark",
+////                            "R.drawable.menubar_remove_from_my_quick_apps",
+////                            "R.drawable.menubar_remove_from_my_quick_apps_dark",
+////                            "R.drawable.menubar_refresh_img",
+////                            "R.drawable.menubar_refresh_img_dark",
+////                            "R.drawable.menubar_subscribe_service_img",
+////                            "R.drawable.menubar_subscribe_service_img_dark",
+////                            "R.drawable.menubar_unsubscribe_service_img",
+////                            "R.drawable.menubar_unsubscribe_service_img_dark",
+////                            "R.drawable.menubar_service_news_img",
+////                            "R.drawable.menubar_service_news_img_dark",
+////                    ]
+////                }
+////
+////                assetsCheck {
+////                    enable false // 冗余assets资源检查开关
+////                    keepBySuffix = [
+////                            ".model",
+////                            ".otf",
+////                            ".ttf"
+////                    ]
+////                    keepAssets = [
+////                            "start_anim/",
+////                            "Contour_2D/",
+////                    ]
+////                }
+////            }
+//////            accessInline {
+//////                enable true
+//////                enableInDebug false
+//////                logLevel "DEBUG"
+//////            }
+////            constInline{
+////                enable false
+////                enableInDebug true
+////                logLevel "INFO"
+////                autoFilterReflectionField = true  //Use the plugin's built-in reflection check to filter out possible reflection constants,  true is recommended
+////                //supposesReflectionWithString = false //Use plugin built-in string matching may reflect constants, false is recommended
+////                skipWithRuntimeAnnotation true //Filter out constants with runtime annotations, true is recommended
+////                skipWithAnnotations = [
+////                        //Filter out constants annotated, including class annotations
+////                        "android/support/annotation/Keep",
+////                ]
+////                whiteList = [
+////                        //Skip optimized list
+////                        "com/meizu/cloud/*",
+////                ]
+////
+////            }
+//        }
+//        resource{
+//            shrinkDuplicates = false
+//            shrinkArsc = false
+//            ignoreResources = [
+//                    "R.id.*", "R.bool.*", "R.layout.unused_layout",
+//                    //腾讯优量汇
+//                    "R.integer.min_screen_width_bucket",
+//                    "R.style.DialogAnimationUp",
+//                    "R.style.DialogAnimationRight",
+//                    "R.style.DialogFullScreen",
+//                    "R.drawable.gdt_*",
+//                    //menubar 使用了getIdentifier
+//                    "R.drawable.menubar_share_img",
+//                    "R.drawable.menubar_share_img_dark",
+//                    "R.drawable.menubar_shortcut_img",
+//                    "R.drawable.menubar_shortcut_img_dark",
+//                    "R.drawable.menubar_home_img",
+//                    "R.drawable.menubar_home_img_dark",
+//                    "R.drawable.menubar_home_colour_img",
+//                    "R.drawable.menubar_home_colour_img_dark",
+//                    "R.drawable.menubar_point_ever_save",
+//
+//                    "R.drawable.menubar_feedback_img",
+//                    "R.drawable.menubar_feedback_img_dark",
+//                    "R.drawable.menubar_feedback_img_top",
+//                    "R.drawable.menubar_feedback_img_top_dark",
+//                    "R.drawable.menubar_setting_img",
+//                    "R.drawable.menubar_setting_img_dark",
+//                    "R.drawable.menubar_quick_app_center",
+//                    "R.drawable.menubar_quick_app_center_dark",
+//                    "R.drawable.menubar_add_to_my_quick_apps",
+//                    "R.drawable.menubar_add_to_my_quick_apps_dark",
+//                    "R.drawable.menubar_remove_from_my_quick_apps",
+//                    "R.drawable.menubar_remove_from_my_quick_apps_dark",
+//                    "R.drawable.menubar_refresh_img",
+//                    "R.drawable.menubar_refresh_img_dark",
+//                    "R.drawable.menubar_subscribe_service_img",
+//                    "R.drawable.menubar_subscribe_service_img_dark",
+//                    "R.drawable.menubar_unsubscribe_service_img",
+//                    "R.drawable.menubar_unsubscribe_service_img_dark",
+//                    "R.drawable.menubar_service_news_img",
+//                    "R.drawable.menubar_service_news_img_dark",
+//
+//            ]
+//            shrinkAssets = false
+//            ignoreAssets = []
+//            obfuscateArsc = false
+//            shrinkImage {
+//                png2webp = false
+////                pngEncode = ''
+//            }
+//        }
+//        so{
+//            shrinkSo = false
+//        }
+//
+//    }
+//    trace{
+//        enable true
+//    }
+//}

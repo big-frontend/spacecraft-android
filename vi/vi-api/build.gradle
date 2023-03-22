@@ -1,24 +1,31 @@
-apply plugin: "io.github.jamesfchen.module-publisher-plugin"
-publish {
-    name = "viapm-api"
-    groupId = rootProject.groupId
-    artifactId = "viapm-api"
-    version = "1.0.0"
-    website = "https://github.com/JamesfChen/spacecraft-android"
-}
 apply from: "$rootDir/aar.gradle"
+setGroup(rootProject.groupId)
+setVersion(rootProject.VI_VERSION)
+apply plugin: 'maven-publish'
 
+android {
+    lintOptions {
+        checkDependencies true
+    }
+}
+publishing {
+    publications {
+        viApiRelease(MavenPublication) {
+            groupId rootProject.groupId
+            artifactId "vi-api"
+            version rootProject.VI_VERSION
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
 dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation 'androidx.annotation:annotation:1.3.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    api "androidx.appcompat:appcompat:1.3.1"
-    api "androidx.activity:activity-ktx:1.3.1"
-    api 'androidx.fragment:fragment-ktx:1.3.5'
-    api 'androidx.core:core-ktx:1.5.0'
-    api "com.blankj:utilcode:1.24.2"
-    api "io.github.jamesfchen:lifecycle-api:1.1.0"
+    implementation "androidx.core:core-ktx:1.3.1"
+    lintPublish project(path: ':vi-lint-rules')
+    implementation project(path: ':vi-lint-rules')
 }
 
 

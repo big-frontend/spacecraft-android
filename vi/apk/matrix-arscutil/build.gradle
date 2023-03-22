@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'kotlin-kapt'
+version = '2.0.8'
+//group rootProject.ext.GROUP
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'commons-io:commons-io:2.6'
+    implementation project(':apk:matrix-commons')
+    annotationProcessor  'com.google.auto.value:auto-value:1.5.2'
+    implementation 'com.jakewharton.auto.value:auto-value-annotations:1.3'
+    implementation 'com.google.guava:guava:24.1-jre'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

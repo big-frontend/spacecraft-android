@@ -66,7 +66,7 @@ export default () => {
       placeholder="站内搜索"
       defaultValue="umi ui"
       options={[
-        { label: 'Ant Design Pro', value: 'Ant Design Pro' },
+        { label: 'apm', value: 'apm' },
         {
           label: 'Ant Design',
           value: 'Ant Design',
@@ -206,7 +206,7 @@ export default () => {
 ### NoticeIconData
 
 ```tsx | pure
-export interface NoticeIconData {
+export type NoticeIconData {
   id: string;
   key: string;
   avatar: string;
