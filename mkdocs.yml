@@ -96,6 +96,7 @@ nav:
     - 'Design Patterns': arch/design_patterns.md
     - 'Module Evolution': arch/module_evolution.md
     - 'Dynamic': arch/dynamic.md
+    - 'Middleware': arch/middleware.md
   - 'Performance':
     - 'Index': perf/index.md
     - 'Stability': perf/stability.md
