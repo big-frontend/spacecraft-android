@@ -24,7 +24,11 @@ class HomeGlideUrlModuleLoader private constructor(
 
     override fun getUrl(model: Photo?, width: Int, height: Int, options: Options?): String {
         //利用远程切图优化网络下载图片的性能
-        return "${model?.uri}?w=${width}&h=${height}&q=${model?.quality}"
+        return if ("https" == model?.uri?.scheme || "http" == model?.uri?.scheme) {
+            "${model.uri}?w=${width}&h=${height}&q=${model.quality}"
+        } else {
+            model?.uri.toString()
+        }
     }
     override fun getAlternateUrls(
         model: Photo?,
