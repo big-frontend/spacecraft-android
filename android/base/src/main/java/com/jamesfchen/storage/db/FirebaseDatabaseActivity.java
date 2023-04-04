@@ -1,4 +1,4 @@
-package com.jamesfchen.storage;
+package com.jamesfchen.storage.db;
 
 import android.os.Bundle;
 import android.util.Log;
