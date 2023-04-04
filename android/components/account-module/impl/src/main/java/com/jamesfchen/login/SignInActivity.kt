@@ -9,10 +9,10 @@ import com.jakewharton.rxbinding2.widget.textChanges
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.editorActions
 import com.jamesfchen.account.databinding.ActivitySigninBinding
-import com.jamesfchen.common.util.TextUtil
-import com.jamesfchen.common.util.hideSoftInput
-import com.jamesfchen.common.util.openActivity
-import com.jamesfchen.common.util.subscribeBy
+import com.jamesfchen.util.TextUtil
+import com.jamesfchen.util.hideSoftInput
+import com.jamesfchen.util.openActivity
+import com.jamesfchen.util.subscribeBy
 import com.jamesfchen.login.modle.ClientException
 import com.jamesfchen.login.modle.ClientState
 import com.jamesfchen.login.modle.SignInReqBody

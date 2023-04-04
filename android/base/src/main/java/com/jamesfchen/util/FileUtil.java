@@ -2,8 +2,8 @@ package com.jamesfchen.util;
 
 import android.annotation.SuppressLint;
 
-import com.jamesfchen.common.util.CloseUtil;
-import com.jamesfchen.common.util.FileIOUtil;
+import com.jamesfchen.util.CloseUtil;
+import com.jamesfchen.util.FileIOUtil;
 
 import java.io.BufferedInputStream;
 import java.io.File;

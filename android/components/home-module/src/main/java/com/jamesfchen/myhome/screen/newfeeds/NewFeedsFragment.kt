@@ -19,11 +19,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.ListPreloader
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.util.FixedPreloadSizeProvider
 import com.bumptech.glide.util.ViewPreloadSizeProvider
-import com.jamesfchen.image.G
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentInfosBinding
 import com.jamesfchen.myhome.databinding.ItemPhotoTextBinding
@@ -130,7 +130,8 @@ class NewFeedsAdapter(
         private const val imageHeightPixels = 768;
     }
 
-    val glideRequestBuilder = G.with(context)
+//    val glideRequestBuilder = G.with(context)
+    val glideRequestBuilder = Glide.with(context)
 
     //ViewPreloadSizeProvider:RecyclerView 里有统一的 View 尺寸、你使用 into(ImageView)来加载图片并且你没有使用 override() 方法来设置一个不同的尺寸
     //FixedPreloadSizeProvider:使用 override() 方法或其他情况导致加载的图片尺寸并不完全匹配你的 View 尺寸

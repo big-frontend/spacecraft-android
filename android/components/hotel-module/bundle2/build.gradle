@@ -3,7 +3,8 @@ plugins {
 }
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
-    defaultConfig {
+    buildFeatures {
+        viewBinding true
     }
 }
 dependencies {

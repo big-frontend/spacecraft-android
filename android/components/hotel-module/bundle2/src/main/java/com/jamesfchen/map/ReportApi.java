@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.jamesfchen.common.util.Util;
 import com.jamesfchen.map.model.LBS;
+import com.jamesfchen.util.Util;
 
 import java.io.File;
 import java.io.IOException;

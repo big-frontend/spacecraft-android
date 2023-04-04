@@ -56,7 +56,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 /**
  * Copyright ® $ 2017
@@ -805,7 +805,7 @@ public class SpanUtil {
 
         private CustomImageSpan(final Bitmap b, final int verticalAlignment) {
             super(verticalAlignment);
-            mDrawable = new BitmapDrawable(com.jamesfchen.common.util.Util.getApp().getResources(), b);
+            mDrawable = new BitmapDrawable(Util.getApp().getResources(), b);
             mDrawable.setBounds(0, 0, mDrawable.getIntrinsicWidth(), mDrawable.getIntrinsicHeight());
         }
 
@@ -834,9 +834,9 @@ public class SpanUtil {
             } else if (mContentUri != null) {
                 Bitmap bitmap;
                 try {
-                    InputStream is = com.jamesfchen.common.util.Util.getApp().getContentResolver().openInputStream(mContentUri);
+                    InputStream is = Util.getApp().getContentResolver().openInputStream(mContentUri);
                     bitmap = BitmapFactory.decodeStream(is);
-                    drawable = new BitmapDrawable(com.jamesfchen.common.util.Util.getApp().getResources(), bitmap);
+                    drawable = new BitmapDrawable(Util.getApp().getResources(), bitmap);
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                     if (is != null) {
                         is.close();

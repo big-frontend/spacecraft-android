@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 /**
  * Copyright ® $ 2017
@@ -29,15 +29,15 @@ public class ActivityUtil {
     public static boolean isActivityExists(@NonNull final String packageName, @NonNull final String className) {
         Intent intent = new Intent();
         intent.setClassName(packageName, className);
-        ResolveInfo resolveInfo = com.jamesfchen.common.util.Util.getApp().getPackageManager().resolveActivity(intent, 0);
-        ComponentName componentName = intent.resolveActivity(com.jamesfchen.common.util.Util.getApp().getPackageManager());
+        ResolveInfo resolveInfo = Util.getApp().getPackageManager().resolveActivity(intent, 0);
+        ComponentName componentName = intent.resolveActivity(Util.getApp().getPackageManager());
         //PackageManager.PERMISSION_GRANTED=0
-        List<ResolveInfo> resolveInfos = com.jamesfchen.common.util.Util.getApp().getPackageManager().queryIntentActivities(intent, 0);
+        List<ResolveInfo> resolveInfos = Util.getApp().getPackageManager().queryIntentActivities(intent, 0);
         return !(resolveInfo == null || componentName == null || resolveInfos.size() == 0);
     }
 
     public static boolean isActivityExistsInStack(@NonNull final Activity activity) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
 //        return sActivityList.contains(activity);
         for (Activity theActivity : activityList) {
             if (theActivity.equals(activity)) {
@@ -48,7 +48,7 @@ public class ActivityUtil {
     }
 
     public static boolean isActivityExistsInStack(@NonNull final Class<?> clazz) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         for (Activity activity :
                 activityList) {
             if (activity.getClass().equals(clazz)) {
@@ -59,13 +59,13 @@ public class ActivityUtil {
     }
 
     public static Activity getTopActivity() {
-        if (com.jamesfchen.common.util.Util.sTopActivityWeakRef != null) {
-            Activity activity = com.jamesfchen.common.util.Util.sTopActivityWeakRef.get();
+        if (Util.sTopActivityWeakRef != null) {
+            Activity activity = Util.sTopActivityWeakRef.get();
             if (activity != null) {
                 return activity;
             }
         }
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         int size = activityList.size();
         return size > 0 ? activityList.get(size - 1) : null;
 
@@ -73,7 +73,7 @@ public class ActivityUtil {
 
     public static Context getActivityOrApp() {
         Activity topActivity = getTopActivity();
-        return topActivity == null ? com.jamesfchen.common.util.Util.getApp() : topActivity;
+        return topActivity == null ? Util.getApp() : topActivity;
     }
 
     private static void startActivity(@NonNull final Context context,
@@ -197,18 +197,18 @@ public class ActivityUtil {
     }
 
     public static List<Activity> getActivityList() {
-        return com.jamesfchen.common.util.Util.sActivityList;
+        return Util.sActivityList;
     }
 
     public static String getLauncherActivity() {
-        return getLauncherActivity(com.jamesfchen.common.util.Util.getApp().getPackageName());
+        return getLauncherActivity(Util.getApp().getPackageName());
     }
 
     public static String getLauncherActivity(String pkg) {
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PackageManager packageManager = com.jamesfchen.common.util.Util.getApp().getPackageManager();
+        PackageManager packageManager = Util.getApp().getPackageManager();
         List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
         for (ResolveInfo ri :
                 resolveInfos) {
@@ -244,7 +244,7 @@ public class ActivityUtil {
     }
 
     public static void finishActivity(@NonNull final Class<?> clz, @NonNull final boolean isLoadAnim) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         for (Activity activity : activityList) {
             if (activity.getClass().equals(clz)) {
                 if (!isLoadAnim) {
@@ -256,7 +256,7 @@ public class ActivityUtil {
     }
 
     public static void finishActivity(@NonNull final Class<?> clz, @NonNull final int enterAnim, @NonNull final int exitAnim) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         for (Activity activity : activityList) {
             if (activity.getClass().equals(clz)) {
                 activity.finish();
@@ -266,7 +266,7 @@ public class ActivityUtil {
     }
 
     public static void finishOtherActivities(@NonNull final Class<?> clz, @NonNull final boolean isLoadAnim) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         boolean flag = false;
         for (Activity activity :
                 activityList) {
@@ -285,7 +285,7 @@ public class ActivityUtil {
 
 
     public static void finishOtherActivities(@NonNull final Class<?> clz, @NonNull final int enterAnim, @NonNull final int exitAnim) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         boolean flag = false;
         for (Activity activity :
                 activityList) {
@@ -303,7 +303,7 @@ public class ActivityUtil {
     }
 
     public static void finishAllActivities(@NonNull final boolean isLoadAnim) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         boolean flag = false;
         for (Activity activity : activityList) {
             finishActivity(activity, isLoadAnim);
@@ -311,7 +311,7 @@ public class ActivityUtil {
     }
 
     public static void finishAllActivities(@NonNull final int enterAnim, @NonNull final int exitAnim) {
-        List<Activity> activityList = com.jamesfchen.common.util.Util.sActivityList;
+        List<Activity> activityList = Util.sActivityList;
         boolean flag = false;
         for (Activity activity : activityList) {
             finishActivity(activity, enterAnim, exitAnim);
@@ -319,11 +319,11 @@ public class ActivityUtil {
     }
 
     public static Drawable getActivityIcon(@NonNull final Class<?> clz) {
-        return getActivityIcon(new ComponentName(com.jamesfchen.common.util.Util.getApp(), clz));
+        return getActivityIcon(new ComponentName(Util.getApp(), clz));
     }
 
     public static Drawable getActivityIcon(@NonNull final ComponentName activityName) {
-        PackageManager pm = com.jamesfchen.common.util.Util.getApp().getPackageManager();
+        PackageManager pm = Util.getApp().getPackageManager();
         try {
             return pm.getActivityIcon(activityName);
         } catch (PackageManager.NameNotFoundException e) {
@@ -333,7 +333,7 @@ public class ActivityUtil {
     }
 
     public static Drawable getActivityLogo(@NonNull final Class<?> clz){
-        return getActivityLogo(new ComponentName(com.jamesfchen.common.util.Util.getApp(),clz));
+        return getActivityLogo(new ComponentName(Util.getApp(),clz));
     }
     public static Drawable getActivityLogo(@NonNull final ComponentName activityName){
         PackageManager pm = Util.getApp().getPackageManager();

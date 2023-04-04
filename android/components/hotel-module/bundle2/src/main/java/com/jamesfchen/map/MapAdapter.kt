@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amap.api.maps.AMap
 import com.blankj.utilcode.util.SpanUtils
+import com.jamesfchen.bundle2.R
 import com.jamesfchen.map.model.LBS
 import java.util.*
 

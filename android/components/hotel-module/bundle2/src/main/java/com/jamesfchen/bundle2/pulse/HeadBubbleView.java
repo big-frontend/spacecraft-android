@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.jamesfchen.common.util.ConvertUtil;
+import com.jamesfchen.util.ConvertUtil;
 
 import java.util.ArrayList;
 import java.util.List;

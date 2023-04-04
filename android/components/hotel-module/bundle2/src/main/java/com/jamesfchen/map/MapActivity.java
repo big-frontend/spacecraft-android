@@ -17,7 +17,6 @@ import android.os.RemoteException;
 import android.telephony.CellInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -34,13 +33,12 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.jamesfchen.bundle2.R;
 import com.jamesfchen.map.model.AppCellInfo;
 import com.jamesfchen.map.model.AppLocation;
 import com.jamesfchen.map.model.LBS;
 import com.jamesfchen.map.model.MapViewModel;
 import com.jamesfchen.map.service.ILbsApiClient;
-import com.jamesfchen.uicomponent.widget.HeadBubbleView;
-import com.jamesfchen.uicomponent.widget.HeartLayout;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

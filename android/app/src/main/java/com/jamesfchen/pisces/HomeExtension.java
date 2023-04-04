@@ -1,4 +1,4 @@
-package com.jamesfchen.image;
+package com.jamesfchen.pisces;
 
 import androidx.annotation.NonNull;
 
@@ -7,14 +7,12 @@ import com.bumptech.glide.annotation.GlideOption;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.jamesfchen.base.R;
+import com.jamesfchen.myhome.R;
 
 /**
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: jamesfchen
- * @since: Mar/28/2020  Sat
  * <p>
  * GlideOption注解: 会在 RequestOptions 的子类中生成一个方法
  * GlideType注解：会在 RequesetManager 的子类中生成一个方法

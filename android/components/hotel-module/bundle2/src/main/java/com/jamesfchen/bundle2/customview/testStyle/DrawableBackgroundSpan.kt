@@ -6,8 +6,8 @@ import android.graphics.Paint
 import android.text.TextPaint
 import android.text.style.ReplacementSpan
 import androidx.annotation.ColorInt
-import com.jamesfchen.common.util.ConvertUtil
-import com.jamesfchen.common.util.DP
+import com.jamesfchen.util.ConvertUtil
+import com.jamesfchen.util.DP
 
 /**
  * Copyright ® $ 2017

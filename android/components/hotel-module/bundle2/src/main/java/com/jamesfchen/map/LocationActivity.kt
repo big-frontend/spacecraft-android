@@ -7,7 +7,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.blankj.utilcode.util.NetworkUtils
-import com.jamesfchen.common.util.DeviceUtil
+import com.jamesfchen.bundle2.databinding.ActivityLocationBinding
+import com.jamesfchen.util.DeviceUtil
 import com.jamesfchen.map.model.AppCellInfo
 import com.jamesfchen.map.model.AppLocation
 import com.jamesfchen.map.model.LBS
@@ -21,6 +22,7 @@ import com.jamesfchen.map.model.LBSViewModel
  * @since: Apr/27/2020  Mon
  */
 class LocationActivity : LBSActivity() {
+    lateinit var binding:ActivityLocationBinding
     private val viewModel by viewModels<LBSViewModel>()
     var ibsListenerStub: ILbsListener.Stub = object : ILbsListener.Stub() {
         val pid: Int
@@ -41,7 +43,7 @@ class LocationActivity : LBSActivity() {
             Log.d(TAG, "onLocationChanged:index:" + count + "\n" +
                     "${appLocation?.lat},${appLocation?.lon}\n" +
                     s)
-            bt_cellInfos.text = "统计次数：$count"
+            binding.btCellInfos.text = "统计次数：$count"
             viewModel.insert(appCellInfo, appLocation)
 //            ReportApi.reportLocation(appLocation,appCellInfo,count, auth)
 //            FileIOUtils.write2File(lbsFile, location, cellInfoList, count, auth)
@@ -65,7 +67,7 @@ class LocationActivity : LBSActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityLocatioinBinding.inflate(layoutInflater)
+        binding = ActivityLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val ipAddressByWifi = NetworkUtils.getIpAddressByWifi()
         val ipAddressipv4 = NetworkUtils.getIPAddress(true)
@@ -87,8 +89,8 @@ class LocationActivity : LBSActivity() {
             }
         })
         viewModel.clearAll()
-        binding.rvCellinfos.setOnRefreshListener {
-            binding.rvCellinfos.isRefreshing = false
+        binding.srfCellinfos.setOnRefreshListener {
+            binding.srfCellinfos.isRefreshing = false
         }
 //        val lbsDir = File(Environment.getExternalStorageDirectory().absoluteFile, "lbsPath")
 //        if (!lbsDir.exists()) {

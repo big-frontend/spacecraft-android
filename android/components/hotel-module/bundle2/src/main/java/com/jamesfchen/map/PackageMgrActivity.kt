@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.Signature
 import android.os.Bundle
-import com.jamesfchen.common.util.CryptoUtil
+import com.jamesfchen.util.CryptoUtil
 
 class PackageMgrActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {

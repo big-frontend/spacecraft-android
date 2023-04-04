@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.route
+package com.jamesfchen.myhome
 
 /**
  * Copyright ® $ 2021

@@ -1,6 +1,6 @@
 package com.jamesfchen.util;
 
-import com.jamesfchen.common.util.CloseUtil;
+import com.jamesfchen.util.CloseUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

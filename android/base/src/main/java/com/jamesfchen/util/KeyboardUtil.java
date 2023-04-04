@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 /**
  * Copyright ® $ 2017

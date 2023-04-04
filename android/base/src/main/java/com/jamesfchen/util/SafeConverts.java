@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.util;
+package com.jamesfchen.util;
 
 import android.graphics.Color;
 

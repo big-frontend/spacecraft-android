@@ -12,7 +12,7 @@ import com.facebook.imagepipeline.backends.okhttp3.OkHttpNetworkFetcher
 import com.facebook.imagepipeline.cache.MemoryCacheParams
 import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.google.firebase.perf.metrics.AddTrace
-import com.jamesfchen.common.util.ThreadUtil
+import com.jamesfchen.util.ThreadUtil
 import com.jamesfchen.loader.SApp
 import okhttp3.ConnectionPool
 import okhttp3.Dispatcher

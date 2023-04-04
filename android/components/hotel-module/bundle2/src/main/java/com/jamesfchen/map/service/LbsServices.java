@@ -28,9 +28,9 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.jamesfchen.bundle2.R;
 import com.jamesfchen.map.ILbsListener;
 import com.jamesfchen.map.MapActivity;
-import com.jamesfchen.map.R;
 import com.jamesfchen.map.model.AppCellInfo;
 import com.jamesfchen.map.model.AppLocation;
 

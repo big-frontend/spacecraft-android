@@ -1,5 +1,5 @@
 //@file:JvmName("ActivityUtil")
-package com.jamesfchen.common.util
+package com.jamesfchen.util
 
 import android.app.Activity
 import android.content.Intent

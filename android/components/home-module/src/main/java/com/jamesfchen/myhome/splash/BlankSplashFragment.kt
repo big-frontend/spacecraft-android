@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.jamesfchen.common.util.BarUtil
+import com.jamesfchen.util.BarUtil
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentBlankSplashBinding
 import com.jamesfchen.myhome.screen.newfeeds.repository.StockImages

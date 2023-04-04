@@ -9,13 +9,8 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import com.jamesfchen.common.util.ConvertUtil.dp2px
-import com.jamesfchen.image.G
-import com.jamesfchen.image.GlideRequests
+import com.bumptech.glide.Glide
+import com.jamesfchen.util.ConvertUtil.dp2px
 
 /**
  * Copyright ® $ 2017
@@ -32,7 +27,7 @@ class PhotoListView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
     private var mUriList: List<Uri>? = null
     private var mOnClick: OnClick? = null
-    var mRequestBuilder: GlideRequests = G.with(context)
+    var mRequestBuilder = Glide.with(context)
     val glideDrawableRequest = mRequestBuilder.asDrawable()
     val gldeGifRequest = mRequestBuilder.asGif()
     val gldeBitmapRequest = mRequestBuilder.asBitmap()

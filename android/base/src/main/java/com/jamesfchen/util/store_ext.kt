@@ -1,5 +1,5 @@
 @file:JvmName("StoreUtil")
-package com.jamesfchen.common.util
+package com.jamesfchen.util
 
 import android.content.Context
 import android.os.Build

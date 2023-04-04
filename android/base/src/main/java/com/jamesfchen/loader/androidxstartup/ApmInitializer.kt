@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.startup.Initializer
 import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.perf.metrics.AddTrace
-import com.jamesfchen.loader.BuildConfig
+import com.jamesfchen.base.BuildConfig
 import com.jamesfchen.loader.SApp
 import com.jamesfchen.loader.matrix.*
 import com.jamesfchen.viapm.ViMonitor

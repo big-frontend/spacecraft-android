@@ -2,7 +2,7 @@ package com.jamesfchen.loader.androidxstartup
 
 import android.content.Context
 import android.graphics.Color
-import com.jamesfchen.loader.R
+import com.jamesfchen.base.R
 import androidx.emoji.text.EmojiCompat
 import androidx.emoji.text.FontRequestEmojiCompatConfig
 import androidx.emoji.text.EmojiCompat.InitCallback

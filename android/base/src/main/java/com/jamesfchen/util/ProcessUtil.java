@@ -7,7 +7,7 @@ import android.os.Process;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.Utils;
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

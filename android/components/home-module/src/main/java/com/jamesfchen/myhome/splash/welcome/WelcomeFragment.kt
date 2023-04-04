@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.jamesfchen.common.util.BarUtil
+import com.jamesfchen.util.BarUtil
 import com.jamesfchen.myhome.R
-import com.jamesfchen.myhome.databinding.FragmentAdBinding
 import com.jamesfchen.myhome.databinding.FragmentWelcomeBinding
-import com.jamesfchen.myhome.splash.ad.AdViewModel
 
 class WelcomeFragment : Fragment() {
     private val viewModel by viewModels<WelcomeViewModel>()

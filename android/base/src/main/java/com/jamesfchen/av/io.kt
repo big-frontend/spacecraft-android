@@ -3,6 +3,7 @@ package com.jamesfchen.av
 import android.system.ErrnoException
 import android.system.Os
 import android.system.OsConstants
+import com.jamesfchen.base.BuildConfig
 import java.io.FileDescriptor
 import java.io.IOException
 import java.nio.ByteBuffer

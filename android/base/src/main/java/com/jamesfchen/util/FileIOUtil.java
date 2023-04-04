@@ -3,7 +3,7 @@ package com.jamesfchen.util;
 import android.annotation.TargetApi;
 import android.os.Build;
 
-import com.jamesfchen.common.util.CloseUtil;
+import com.jamesfchen.util.CloseUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -134,7 +134,7 @@ public class FileIOUtil {
             e.printStackTrace();
             return false;
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(is, os);
+            CloseUtil.closeIO(is, os);
         }
     }
 
@@ -164,7 +164,7 @@ public class FileIOUtil {
             e.printStackTrace();
             return false;
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(os);
+            CloseUtil.closeIO(os);
         }
     }
 
@@ -206,7 +206,7 @@ public class FileIOUtil {
             e.printStackTrace();
             return false;
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(fc);
+            CloseUtil.closeIO(fc);
         }
     }
 
@@ -245,7 +245,7 @@ public class FileIOUtil {
             e.printStackTrace();
             return false;
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(fc);
+            CloseUtil.closeIO(fc);
         }
     }
 
@@ -330,7 +330,7 @@ public class FileIOUtil {
             e.printStackTrace();
             return null;
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(reader);
+            CloseUtil.closeIO(reader);
         }
     }
 

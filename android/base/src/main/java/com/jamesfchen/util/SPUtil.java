@@ -12,7 +12,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.collection.SimpleArrayMap;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 /**
  * Copyright ® $ 2017

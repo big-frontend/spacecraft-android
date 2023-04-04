@@ -2,7 +2,7 @@ package com.jamesfchen.util;
 
 import androidx.annotation.FloatRange;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 /**
  * Copyright ® 2019
@@ -16,7 +16,7 @@ import com.jamesfchen.common.util.Util;
 public class ConvertUtil {
 
     public static int dp2px(@FloatRange final float dpValue) {
-        final float scale = com.jamesfchen.common.util.Util.getApp().getBaseContext().getResources().getDisplayMetrics().density;
+        final float scale = Util.getApp().getBaseContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 

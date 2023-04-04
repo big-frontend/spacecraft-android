@@ -7,9 +7,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.Registry
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
 import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.resource.gif.GifDrawable
-import com.jamesfchen.common.util.ThreadUtil
 import com.jamesfchen.myhome.screen.newfeeds.model.Photo
+import com.jamesfchen.util.ThreadUtil
 import okhttp3.ConnectionPool
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient

@@ -33,7 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jamesfchen.bundle2.R;
-import com.jamesfchen.common.util.ConvertUtil;
+import com.jamesfchen.util.ConvertUtil;
 import com.jamesfchen.bundle2.customview.animationsExprimental.evaluators.ArgbEvaluator;
 import com.jamesfchen.bundle2.customview.animationsExprimental.evaluators.HSVEvaluator;
 import com.jamesfchen.bundle2.customview.animationsExprimental.evaluators.IntEvaluator;

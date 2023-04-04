@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.jamesfchen.bundle2.R;
 import com.jamesfchen.bundle2.databinding.ActivityViewpagerBinding;
 import com.jamesfchen.bundle2.databinding.ItemDumpBinding;
-import com.jamesfchen.common.util.ConvertUtil;
+import com.jamesfchen.util.ConvertUtil;
 
 import jamesfchen.widget.carousel.CarouselView;
 import jamesfchen.widget.kk.PagerView;

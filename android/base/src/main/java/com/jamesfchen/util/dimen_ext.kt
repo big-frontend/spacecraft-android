@@ -1,5 +1,5 @@
 @file:JvmName("DimenUtil")
-package com.jamesfchen.common.util
+package com.jamesfchen.util
 
 import androidx.annotation.Dimension
 

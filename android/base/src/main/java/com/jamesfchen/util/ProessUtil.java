@@ -20,7 +20,7 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 /**
  * Copyright ® $ 2017
@@ -32,7 +32,7 @@ import com.jamesfchen.common.util.Util;
 public class ProessUtil {
     //获取前台线程包名
     public static String getForegroundProcessName() {
-        ActivityManager am = (ActivityManager) com.jamesfchen.common.util.Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) return null;
         List<ActivityManager.RunningAppProcessInfo> infors = am.getRunningAppProcesses();
         if (infors != null && infors.size() > 0) {
@@ -45,7 +45,7 @@ public class ProessUtil {
         }
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            PackageManager pm = com.jamesfchen.common.util.Util.getApp().getPackageManager();
+            PackageManager pm = Util.getApp().getPackageManager();
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             List<ResolveInfo> list = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
             if (list.size() <= 0) {
@@ -53,19 +53,19 @@ public class ProessUtil {
             }
 
             try {
-                ApplicationInfo info = pm.getApplicationInfo(com.jamesfchen.common.util.Util.getApp().getPackageName(), 0);
-                AppOpsManager aom = (AppOpsManager) com.jamesfchen.common.util.Util.getApp().getSystemService(Context.APP_OPS_SERVICE);
+                ApplicationInfo info = pm.getApplicationInfo(Util.getApp().getPackageName(), 0);
+                AppOpsManager aom = (AppOpsManager) Util.getApp().getSystemService(Context.APP_OPS_SERVICE);
                 if (aom != null) {
                     if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, info.uid, info.packageName) != AppOpsManager.MODE_ALLOWED) {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        com.jamesfchen.common.util.Util.getApp().startActivity(intent);
+                        Util.getApp().startActivity(intent);
                     }
 
                     if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, info.uid, info.packageName) != AppOpsManager.MODE_ALLOWED) {
                         return null;
                     }
                 }
-                UsageStatsManager usageStatsManager = (UsageStatsManager) com.jamesfchen.common.util.Util.getApp().getSystemService(Context.USAGE_STATS_SERVICE);
+                UsageStatsManager usageStatsManager = (UsageStatsManager) Util.getApp().getSystemService(Context.USAGE_STATS_SERVICE);
                 List<UsageStats> usageStatsList = null;
                 if (usageStatsManager != null) {
                     long endTime = System.currentTimeMillis();
@@ -91,7 +91,7 @@ public class ProessUtil {
     }
 
     public static Set<String> getAllBackgroundProcess() {
-        ActivityManager am = (ActivityManager) com.jamesfchen.common.util.Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) return Collections.emptySet();
         List<ActivityManager.RunningAppProcessInfo> infors = am.getRunningAppProcesses();
         Set<String> set = new HashSet<>();
@@ -106,7 +106,7 @@ public class ProessUtil {
     }
 
     public static Set<String> killAllBackgroundProcess() {
-        ActivityManager am = (ActivityManager) com.jamesfchen.common.util.Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) return Collections.emptySet();
         List<ActivityManager.RunningAppProcessInfo> infors = am.getRunningAppProcesses();
         Set<String> deathSet = new HashSet<>();

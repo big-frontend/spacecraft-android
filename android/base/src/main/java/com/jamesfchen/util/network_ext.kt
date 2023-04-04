@@ -1,5 +1,5 @@
 @file:JvmName("NetworkUtil")
-package com.jamesfchen.common.util
+package com.jamesfchen.util
 
 /**
  * Copyright ® $ 2020

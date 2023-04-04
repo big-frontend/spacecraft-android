@@ -1,4 +1,4 @@
-package com.jamesfchen.common.util
+package com.jamesfchen.util
 
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver

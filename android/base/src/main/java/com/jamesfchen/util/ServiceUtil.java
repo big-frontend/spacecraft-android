@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.util.Util;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,7 +21,7 @@ import java.util.Set;
  */
 public class ServiceUtil {
     public static Set getAllRunningService() {
-        ActivityManager am = (ActivityManager) com.jamesfchen.common.util.Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) return Collections.emptySet();
         List<ActivityManager.RunningServiceInfo> infos = am.getRunningServices(Integer.MAX_VALUE);
         Set<String> names = new HashSet<>();
@@ -42,8 +42,8 @@ public class ServiceUtil {
     }
 
     public static void startService(final Class<?> clz) {
-        com.jamesfchen.common.util.Util.getApp().startService(new Intent(
-                com.jamesfchen.common.util.Util.getApp(), clz
+        Util.getApp().startService(new Intent(
+                Util.getApp(), clz
         ));
 
     }
@@ -58,8 +58,8 @@ public class ServiceUtil {
     }
 
     public static boolean stopService(final Class<?> clz) {
-        return com.jamesfchen.common.util.Util.getApp().stopService(new Intent(
-                com.jamesfchen.common.util.Util.getApp(), clz
+        return Util.getApp().stopService(new Intent(
+                Util.getApp(), clz
         ));
     }
 
@@ -114,12 +114,12 @@ public class ServiceUtil {
          * Value is either 0 or combination of BIND_AUTO_CREATE, BIND_DEBUG_UNBIND, BIND_NOT_FOREGROUND（不能为foreground）,BIND_IMPORTANT（为foreground）， BIND_ABOVE_CLIENT（客户端先死）, BIND_ADJUST_WITH_ACTIVITY（客户端帮助服务端提升优先级，基于客户端的优先级），BIND_ALLOW_OOM_MANAGEMENT（允许加入oom管理）, BIND_WAIVE_PRIORITY（放弃加入oom管理，变成普通进程）.
          *
          */
-        com.jamesfchen.common.util.Util.getApp().bindService(new Intent(com.jamesfchen.common.util.Util.getApp(), clz),
+        Util.getApp().bindService(new Intent(Util.getApp(), clz),
                 connection, flag);
     }
 
     public static void unbindService(final ServiceConnection connection) {
-        com.jamesfchen.common.util.Util.getApp().unbindService(connection);
+        Util.getApp().unbindService(connection);
     }
 
     public static boolean isServiceRunning(final String className) {

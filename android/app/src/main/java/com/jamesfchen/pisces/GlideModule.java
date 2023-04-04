@@ -1,4 +1,4 @@
-package com.jamesfchen.image;
+package com.jamesfchen.pisces;
 
 
 import android.content.Context;
@@ -36,7 +36,7 @@ import com.jamesfchen.base.BuildConfig;
 @com.bumptech.glide.annotation.GlideModule(glideName = "G")
 public class GlideModule extends AppGlideModule {
     final GlideExecutor.UncaughtThrowableStrategy myUncaughtThrowableStrategy = t -> {
-        Log.e("cjf",Log.getStackTraceString(t));
+        Log.e("GlideModule",Log.getStackTraceString(t));
     };
 
     @Override

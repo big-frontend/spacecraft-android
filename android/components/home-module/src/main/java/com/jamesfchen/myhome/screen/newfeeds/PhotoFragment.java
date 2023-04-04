@@ -25,7 +25,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.jamesfchen.common.util.ImageUtil;
+import com.jamesfchen.util.ImageUtil;
 import com.jamesfchen.myhome.R;
 import com.jamesfchen.myhome.screen.newfeeds.model.Photo;
 

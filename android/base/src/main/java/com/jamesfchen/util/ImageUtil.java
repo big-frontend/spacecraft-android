@@ -28,9 +28,9 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
 
-import com.jamesfchen.common.constants.MemoryUnit;
-import com.jamesfchen.common.util.CloseUtil;
-import com.jamesfchen.common.util.Util;
+import com.jamesfchen.constants.MemoryUnit;
+import com.jamesfchen.util.CloseUtil;
+import com.jamesfchen.util.Util;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -99,7 +99,7 @@ public class ImageUtil {
     }
 
     public static Drawable bitmap2Drawable(final Bitmap bitmap) {
-        return bitmap == null ? null : new BitmapDrawable(com.jamesfchen.common.util.Util.getApp().getResources(), bitmap);
+        return bitmap == null ? null : new BitmapDrawable(Util.getApp().getResources(), bitmap);
     }
 
     public static byte[] drawable2Bytes(final Drawable drawable, final Bitmap.CompressFormat format) {
@@ -210,7 +210,7 @@ public class ImageUtil {
     }
 
     public static Bitmap getBitmap(@DrawableRes final int resId) {
-        Drawable drawable = ContextCompat.getDrawable(com.jamesfchen.common.util.Util.getApp(), resId);
+        Drawable drawable = ContextCompat.getDrawable(Util.getApp(), resId);
         Canvas canvas = new Canvas();
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         canvas.setBitmap(bitmap);
@@ -221,7 +221,7 @@ public class ImageUtil {
 
     public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        final Resources resource = com.jamesfchen.common.util.Util.getApp().getResources();
+        final Resources resource = Util.getApp().getResources();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(resource, resId, options);
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
@@ -961,7 +961,7 @@ public class ImageUtil {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(os);
+            CloseUtil.closeIO(os);
         }
         return ret;
 
@@ -993,7 +993,7 @@ public class ImageUtil {
             e.printStackTrace();
             return null;
         } finally {
-            com.jamesfchen.common.util.CloseUtil.closeIO(is);
+            CloseUtil.closeIO(is);
         }
     }
 

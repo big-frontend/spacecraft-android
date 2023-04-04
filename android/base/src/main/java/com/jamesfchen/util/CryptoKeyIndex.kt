@@ -1,4 +1,4 @@
-package com.jamesfchen.common.util
+package com.jamesfchen.util
 
 enum class CryptoKeyIndex(var value: String) {
     AESKEY("aesKey"),
