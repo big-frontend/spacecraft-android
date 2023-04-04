@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference"/>
+        <attr name="metaButtonBarButtonStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="CarouselView">
+        <attr name="cv_autoStart" format="boolean"/>
+        <attr name="cv_interval" format="integer"/>
+    </declare-styleable>
+<!--    <declare-styleable name="PagerView">-->
+<!--        <attr name="pv_orientation" format="enum">-->
+<!--            <enum name="horizontal" value="0"/>-->
+<!--            <enum name="vertical" value="1"/>-->
+<!--        </attr>-->
+<!--    </declare-styleable>-->
+    <declare-styleable name="CollapseTextView">
+        <attr name="collapseText" format="string"/>
+        <attr name="collapseTextSize" format="integer"/>
+        <attr name="collapseTextColor" format="color"/>
+        <attr name="collapseIcon" format="reference"/>
+        <attr name="collapsed" format="boolean"/>
+        <attr name="availableCollapse" format="boolean"/>
+        <attr name="contentMaxLine" format="integer"/>
+    </declare-styleable>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+     used for button bars depending on the API level.
+     ?android:attr/buttonBarStyle is new as of API 11 so this is
+     necessary to support previous API levels. -->
+    <declare-styleable name="ChaplinVideoView">
+        <attr name="shortVideo" format="reference"/>
+    </declare-styleable>
+
+</resources>

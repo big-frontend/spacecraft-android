@@ -1,0 +1,71 @@
+<resources>
+    <!--继承系统提供的样式使用parent，如果是继承自己提供的样式建议使用 .-->
+    <!--reference:
+          You can also inherit styles (except those from the platform) by extending a style's name with a dot notation, instead of using the parent attribute. That is, prefix the name of your style with the name of the style you want to inherit, separated by a period. You should usually do this only when extending your own styles, not styles from other libraries. For example, the following style inherits all styles from the GreenText style above and then increases the text size:-->
+    <!--===================== base theme========================================-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--<item name="android:textColorPrimary">?android:attr/colorForeground</item>-->
+        <!--<item name="android:textColorPrimaryInverse">-->
+        <!--@android:color/primary_text_default_material_dark-->
+        <!--</item>-->
+        <!--<item name="android:textColorSecondary">?android:attr/colorForeground</item>-->
+        <!--<item name="android:textColorSecondaryInverse">-->
+        <!--@android:color/secondary_text_default_material_dark-->
+        <!--</item>-->
+
+        <!--<item name="android:colorForeground">@android:color/background_material_light</item>-->
+        <!--<item name="android:colorBackground">@android:color/background_material_light</item>-->
+        <!--<item name="android:windowBackground">?android:attr/colorBackground</item>-->
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+
+        <!--支持3.0以上-->
+        <!--<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>-->
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
+        <!--支持3.0以上-->
+        <!--支持2.0以上-->
+        <!--<item name="windowActionBarOverlay">true</item>-->
+        <!--<item name="actionBarStyle">@style/AppTheme.ActionBar</item>-->
+        <!--支持2.0以上-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+    <!--老版本使用actionbar-->
+    <style name="AppTheme.ActionBar" parent="Widget.AppCompat.ActionBar"/>
+    <!--新版本使用toolbar-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <!--===================== base theme========================================-->
+
+
+    <!--=====================full screen========================================-->
+    <style name="FullscreenTheme" parent="AppTheme">
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <!--=====================full screen========================================-->
+
+    <!--=====================VideoTheme screen========================================-->
+    <style name="VideoTheme" parent="AppTheme">
+        <!--<item name="android:actionBarStyle">@style/VideoActionBarStyle</item>-->
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
+        <!--<item name="android:windowBackground">@null</item>-->
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="VideoActionBarStyle" parent="AppTheme.AppBarOverlay">
+        <item name="android:background">#66000000</item>
+    </style>
+
+    <!--=====================VideoTheme screen========================================-->
+
+</resources>

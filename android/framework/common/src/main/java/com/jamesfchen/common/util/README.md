@@ -1,1 +1,0 @@
-forked from https://github.com/Blankj/AndroidUtilCode and customize

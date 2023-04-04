@@ -1,19 +1,19 @@
 # 确保fwk每个修改点都输出最新的fwk包给上层
-fwk-common-build:
+fwk-base-build:
   only:
     changes:
-      - android/framework/common/**/*
+      - android/base/**/*
   stage: build
   script:
-    - ./gradlew :framework:common:assemble publishDebugAarPublicationToMavenCentralRepository
+    - ./gradlew :base:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
-fwk-av-build:
-  only:
-    changes:
-      - android/framework/av/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:av:assemble publishDebugAarPublicationToMavenCentralRepository
+#fwk-av-build:
+#  only:
+#    changes:
+#      - android/framework/av/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:av:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-flutter:
 #  only:
@@ -23,21 +23,21 @@ fwk-av-build:
 #  script:
 #    - ./gradlew :framework:flutter:build
 # ========================
-fwk-hybrid-build:
-  only:
-    changes:
-      - android/framework/hybrid/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:hybrid:assemble publishDebugAarPublicationToMavenCentralRepository
-# ========================
-fwk-image-build:
-  only:
-    changes:
-      - android/framework/image/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:image:assemble publishDebugAarPublicationToMavenCentralRepository
+#fwk-hybrid-build:
+#  only:
+#    changes:
+#      - android/framework/hybrid/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:hybrid:assemble publishDebugAarPublicationToMavenCentralRepository
+## ========================
+#fwk-image-build:
+#  only:
+#    changes:
+#      - android/framework/image/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:image:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #fwk-map:
 #  only:
@@ -57,29 +57,29 @@ fwk-image-build:
 #    - ./gradlew :framework:mockserver:build
 #     - ./gradlew :framework:loader:assemble
 # ========================
-fwk-network-build:
-  only:
-    changes:
-      - android/framework/network/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:network:assemble publishDebugAarPublicationToMavenCentralRepository
-# ========================
-fwk-storage-build:
-  only:
-    changes:
-      - android/framework/storage/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:storage:assemble publishDebugAarPublicationToMavenCentralRepository
-# ========================
-fwk-loader-build:
-  only:
-    changes:
-      - android/framework/loader/**/*
-  stage: build
-  script:
-    - ./gradlew :framework:loader:assemble publishDebugAarPublicationToMavenCentralRepository
+#fwk-network-build:
+#  only:
+#    changes:
+#      - android/framework/network/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:network:assemble publishDebugAarPublicationToMavenCentralRepository
+## ========================
+#fwk-storage-build:
+#  only:
+#    changes:
+#      - android/framework/storage/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:storage:assemble publishDebugAarPublicationToMavenCentralRepository
+## ========================
+#fwk-loader-build:
+#  only:
+#    changes:
+#      - android/framework/loader/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :framework:loader:assemble publishDebugAarPublicationToMavenCentralRepository
 # ========================
 #buildBigApp job
 #build-big-app:

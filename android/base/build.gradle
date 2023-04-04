@@ -1,0 +1,419 @@
+plugins{
+    id "io.github.jamesfchen.foundation-plugin"
+    id("com.google.devtools.ksp") version "1.5.30-1.0.0"
+}
+android{
+    defaultConfig {
+        externalNativeBuild {
+//            cmake {
+//                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+//                cppFlags "-std=c++14", "-fexceptions", "-frtti"
+//                cFlags "-D__STDC_FORMAT_MACROS"
+////                cppFlags "-std=gnu++11"
+////                targets "hawks","hotfix"
+//                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/   //输出制定三种abi体系结构下的so库
+//            }
+            cmake {
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+                cppFlags "-std=c++14", "-fexceptions", "-frtti"
+//                        "DHAVE_CONFIG_H", "-Wno-sign-compare"
+                cFlags "-D__STDC_FORMAT_MACROS", "-Wall", "-Werror", "-Wno-unused-parameter",
+                        "-Wno-unused-variable", "-Wno-overloaded-virtual", "-fvisibility=hidden"
+//                cppFlags "-std=gnu++11"
+//                targets "hawks","hotfix"
+                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/
+                //输出制定三种abi体系结构下的so库
+            }
+        }
+        javaCompileOptions.annotationProcessorOptions.arguments = [
+                "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                "room.incremental"     : "true",
+                "room.expandProjection": "true"
+        ]
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    ndkVersion '22.0.7026061'
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    //    packagingOptions {
+//        pickFirst 'lib/armeabi-v7a/libhotfix.so'
+//        pickFirst 'lib/armeabi-v7a/libhawks.so'
+////        pickFirst 'lib/arm64-v8a/libRSSupport.so'
+////        pickFirst 'lib/x86_64/libRSSupport.so'
+//        pickFirst 'lib/x86/libhotfix.so'
+//        pickFirst 'lib/x86/libhawks.so'
+////        pickFirst 'lib/mips/libRSSupport.so'
+//    }
+    def srcDirs = [
+            "async",
+            "serialization",
+    ]
+    sourceSets {
+        main {
+            java.excludes = [
+                    '**/build/**',
+            ]
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/main/assets"
+                aidl.srcDirs += "$projectDir/$it/main/aidl"
+                res.srcDirs += "$projectDir/$it/main/res-frame-animation"
+                res.srcDirs += "$projectDir/$it/main/res"
+                java.srcDirs += "$projectDir/$it/main/java"
+
+//                    assets.srcDirs += "$projectDir/src/inhouse/assets"
+//                    aidl.srcDirs += "$projectDir/src/inhouse/aidl"
+//                    res.srcDirs += "$projectDir/src/inhouse/res"
+//                    java.srcDirs += "$projectDir/src/inhouse/java"
+            }
+        }
+        androidTest {
+            srcDirs.forEach {
+                assets.srcDirs += "$projectDir/$it/androidTest/assets"
+                aidl.srcDirs += "$projectDir/$it/androidTest/aidl"
+                res.srcDirs += "$projectDir/$it/androidTest/res"
+                java.srcDirs += "$projectDir/$it/androidTest/java"
+
+            }
+        }
+        test {
+            srcDirs.forEach {
+                java.srcDirs += "$projectDir/$it/test/java"
+            }
+
+        }
+    }
+}
+dependencies {
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    api 'com.pgyersdk:sdk:3.0.10'
+    api 'com.pgyer:analytics:4.2.1'//最好写上具体依赖的版本号 如：4.2.1
+    api  'io.github.jamesfchen:retrofit:1.0.0'
+    api "io.github.jamesfchen:react-native:0.70.5-SNAPSHOT"
+
+    testImplementation files('libs/jsoup-1.12.1.jar')
+//    api project(path: ':framework:common')
+//    api project(path: ':mockserver')
+//    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    //    api 'com.android.volley:volley:1.1.1'
+    api "com.squareup.okhttp3:okhttp-tls:${OKHTTP_TLS_VERSION}"
+    api "com.facebook.stetho:stetho-okhttp3:${OKHTTP_STETHO_VERSION}"
+    api "com.squareup.okhttp3:logging-interceptor:${OKHTTP_LOGGING_VERSION}"
+    testImplementation 'com.squareup.okhttp3:okhttp-dnsoverhttps:4.0.1'
+    /*
+    >>>> http style  start
+    */
+
+    //restful
+//    api "com.squareup.retrofit2:adapter-rxjava3:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:converter-wire:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+//    api "com.squareup.retrofit2:converter-moshi:2.9.0"
+//    api "com.squareup.retrofit2:converter-protobuf:2.9.0"
+    //rpc
+//    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突
+//        exclude group:  'com.google.guava'
+//        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+//    }
+//    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
+//    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
+
+    /*
+      http style  end
+    */
+
+    kapt "com.google.dagger:dagger-compiler:2.16"
+//    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+//    implementation "com.github.jnr:jnr-unixsocket:0.23"
+    api "com.google.android.gms:play-services-cronet:${CRONET_VERSION}"
+
+    //    implementation project(path: ':framework::common')
+    /**
+     * ===============================av start=============================
+     */
+    api 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    api 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
+    //Other ABIs: optional
+    api 'com.github.ctiao:ndkbitmap-armv5:0.9.21'
+//    api 'com.github.ctiao:ndkbitmap-x86:0.9.21'
+
+    // required, enough for most devices.
+    api 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    //Other ABIs: optional
+    api 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.8'
+    api 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
+//    api 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
+//    api 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
+
+    //ExoPlayer as IMediaPlayer: optional, experimental
+    api 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
+
+//    implementation 'com.google.android.exoplayer:exoplayer:+'
+//    implementation 'com.google.android.exoplayer:exoplayer-core:+'
+//    implementation 'com.google.android.exoplayer:exoplayer-dash:+'
+//    implementation 'com.google.android.exoplayer:exoplayer-ui:+'
+    /**
+     * ===============================av end=============================
+     */
+    /**
+     * ===============================image start=============================
+     */
+    api "androidx.exifinterface:exifinterface:${EXIFINTERFACE_VERISON}"
+
+    api "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    api "com.github.bumptech.glide:recyclerview-integration:${GLIDE_VERSION}"
+    api "com.github.bumptech.glide:okhttp3-integration:${GLIDE_VERSION}"
+
+    api "com.facebook.fresco:fresco:${FRESCO_VERSION}"
+    api "com.facebook.fresco:animated-gif:${FRESCO_GIF_VERSION}"
+    // 支持 WebP （静态图+动图），需要添加
+    api "com.facebook.fresco:animated-webp:${FRESCO_WEBP_VERSION}"
+    api "com.facebook.fresco:webpsupport:${FRESCO_WEBP_VERSION}"
+    api "com.facebook.fresco:imagepipeline-okhttp3:${FRESCO_OKHTTP3_VERSION}"
+    api "com.squareup.picasso:picasso:${PICASSO_VERSION}"
+    api "com.squareup.picasso:picasso-pollexor:${PICASSO_VERSION}"
+
+    api "com.caverock:androidsvg:${ANDROIDSVG_VERSION}"
+    api("io.coil-kt:coil:$COIL_VERSION")
+    /**
+     * ===============================image end=============================
+     */
+
+
+    api 'com.pgyersdk:sdk:3.0.10'
+    api 'com.pgyer:analytics:4.2.1'//最好写上具体依赖的版本号 如：4.2.1
+
+//    implementation 'com.google.android.gms:play-services-location:16.0.0'
+//    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
+    api 'io.github.jamesfchen:lifecycle-api:1.1.0'
+
+    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
+    api 'com.google.firebase:firebase-perf'
+    api 'com.google.firebase:firebase-perf-ktx'
+    api 'com.google.firebase:firebase-crashlytics'
+    api 'com.google.firebase:firebase-crashlytics-ndk'
+    api 'com.google.firebase:firebase-analytics'
+    api 'com.firebaseui:firebase-ui-database:6.0.2'
+    api 'com.firebaseui:firebase-ui-firestore:6.0.2'
+    api('com.firebaseui:firebase-ui-storage:6.0.2') {
+        exclude group: 'com.github.bumptech.glide', module: 'glide'
+    }
+
+    api 'androidx.emoji:emoji:1.1.0'
+    api 'androidx.emoji:emoji-appcompat:1.1.0'
+    api 'androidx.emoji:emoji-bundled:1.1.0'
+    api "androidx.work:work-runtime:2.5.0"
+    api "androidx.work:work-runtime-ktx:2.5.0"
+//    api "androidx.work:work-rxjava2:2.5.0"
+    api "androidx.work:work-gcm:2.5.0"
+    androidTestImplementation "androidx.work:work-testing:2.5.0"
+//    api "androidx.work:work-firebase:2.2.0"
+
+    //android 21+可以不接入该sdk，android sdk默认集成
+    api 'androidx.multidex:multidex:2.0.1'
+
+    /**
+     * ================================apm start=====================================
+     */
+    //crash and anr
+    api 'com.tencent.bugly:nativecrashreport:3.7.1'
+    api 'com.tencent.bugly:crashreport:3.0.0'
+    def matrixModules = [
+            "matrix-commons",
+            "matrix-battery-canary",
+            "matrix-android-lib",
+            "matrix-android-commons",
+            "matrix-trace-canary",
+//            "matrix-resource-canary-android",
+//            "matrix-resource-canary-common",
+            "matrix-io-canary",
+            "matrix-sqlite-lint-android-sdk",
+            "matrix-hooks",
+            "matrix-fd",
+            "matrix-jectl",
+            "matrix-backtrace",
+    ]
+
+    matrixModules.each { moduleName ->
+        api group: "com.tencent.matrix", name: moduleName, version: MATRIX_VERSION, changing: true
+    }
+
+    // releaseImplementation group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk-no-op", version: MATRIX_VERSION, changing: true
+
+    api("cn.hikyson.godeye:godeye-core:3.0.0")
+    api "cn.hikyson.godeye:godeye-toolbox:3.0.0"
+    releaseApi("cn.hikyson.godeye:godeye-monitor-no-op:2.7.4")
+    debugApi("cn.hikyson.godeye:godeye-monitor:3.0.0")
+
+    //memory leak
+//    debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
+//    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+//    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
+    api 'com.github.markzhai:blockcanary-android:1.5.0'
+
+    implementation("io.github.jamesfchen:vi-api:1.0.0")
+    /**
+     * ================================apm end=====================================
+     */
+    implementation("io.github.jamesfchen:startup-api:1.0.0")
+    implementation "androidx.startup:startup-runtime:1.1.0"
+    implementation 'com.alibaba.android:alpha:1.0.0.1@aar'
+    //    implementation project(path: ':framework:common')
+    /**
+     * ================================database start==============================
+     */
+    //room database
+    testImplementation "androidx.room:room-testing:${ROOM_VERSION}"
+    api "androidx.room:room-runtime:${ROOM_VERSION}"
+    api "androidx.room:room-rxjava2:${ROOM_VERSION}"
+    api "androidx.room:room-ktx:${ROOM_VERSION}"
+    ksp "androidx.room:room-compiler:${ROOM_VERSION}"
+
+    //realm database
+    api "io.realm:realm-annotations:${REALM_VERSION}"
+    api "io.realm:realm-android-library:${REALM_VERSION}"
+    api "io.realm:realm-android-kotlin-extensions:${REALM_VERSION}"
+    kapt "io.realm:realm-annotations-processor:${REALM_VERSION}"
+
+    //firebase database
+    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
+    api 'com.google.firebase:firebase-database'
+    api 'com.google.firebase:firebase-firestore'
+    api 'com.google.firebase:firebase-storage'
+    api 'com.google.firebase:firebase-storage-ktx'
+    api 'com.google.firebase:firebase-config'
+    api "com.tencent:mmkv-static:${MMKV_VERSION}"
+
+//    implementation "androidx.datastore:datastore:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
+//    implementation "com.dropbox.mobile.store:store4:4.0.1"
+    /**
+     * ================================database end==============================
+     */
+    api "androidx.appcompat:appcompat:1.3.1"
+    api "androidx.activity:activity-ktx:1.3.1"
+    api 'androidx.fragment:fragment-ktx:1.3.5'
+    api 'androidx.core:core-ktx:1.5.0'
+    api "com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0"
+    api "com.blankj:utilcode:1.24.2"
+    api 'joda-time:joda-time:2.10.2'
+    api 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
+    api "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN_VERSION}"
+
+//    debugApi 'me.ele:uetool:1.0.17'
+//    releaseApi 'me.ele:uetool-no-op:1.0.17'
+    // if you want to show more attrs a bout Fresco's DraweeView
+//    debugApi 'me.ele:uetool-fresco:1.0.17'
+    api "com.squareup.okio:okio:2.9.0"
+    api 'com.jakewharton:disklrucache:2.0.2'
+    /**
+     * ===============================async start================================
+     */
+//    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
+    api "org.jetbrains.anko:anko-coroutines:0.10.8"
+    api "io.reactivex.rxjava2:rxkotlin:2.3.0"
+    api "io.reactivex.rxjava2:rxjava:2.2.18"
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
+    api "io.reactivex.rxjava3:rxjava:3.0.7"
+
+    /**
+     * ===============================async end================================
+     */
+    /**
+     * ===============================serialization start================================
+     */
+    api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"
+    annotationProcessor 'org.parceler:parceler:1.1.12'
+    api 'org.parceler:parceler-api:1.1.12'
+
+    //》》》》》》》》json
+    //api 'com.google.code.gson:gson:2.8.2'
+    api 'com.alibaba:fastjson:1.2.54'
+    api("com.squareup.moshi:moshi:1.9.2")
+    api 'com.squareup.moshi:moshi-adapters:1.8.0'
+    api("com.squareup.moshi:moshi-kotlin:1.8.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
+
+    //》》》》》》protobuf
+    //api 'com.google.protobuf:protobuf-lite:3.0.1'
+    /**
+     * ===============================serialization end================================
+     */
+
+
+    /**
+     * ===============================mvvm start================================
+     */
+
+    // Lifecycles only (no ViewModel or LiveData)
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    api 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    //If you use Java 8 Language, then observe events with DefaultLifecycleObserver
+//    api 'androidx.lifecycle:lifecycle-common-java8:2.1.0-alpha03'
+//    api 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
+//
+//// If you want to bind to Android-specific lifecycles
+//    api 'com.trello.rxlifecycle3:rxlifecycle-android:3.0.0'
+//
+//// If you want pre-written Activities and Fragments you can subclass as providers
+//    api 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'
+//
+//// If you want pre-written support preference Fragments you can subclass as providers
+//    api 'com.trello.rxlifecycle3:rxlifecycle-components-preference:3.0.0'
+//
+//// If you want to use Android Lifecycle for providers
+//    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:3.0.0'
+//
+// If you want to use Kotlin syntax
+//    api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
+// If you want to use Kotlin syntax with Android Lifecycle
+//    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:3.0.0'
+
+    /**
+     * ===============================mvvm end================================
+     */
+
+    /**
+     * ===============================decoupling start================================
+     */
+    api 'org.greenrobot:eventbus:3.1.1'
+    // Dagger dependencies
+    api "com.google.dagger:dagger:2.35.1"
+    api "com.google.dagger:dagger-android:2.35.1"
+    api "com.google.dagger:dagger-android-support:2.16"
+    /**
+     * ===============================decoupling  end================================
+     */
+
+
+    /**
+     * ===============================monitor start=============================
+     */
+    api "com.orhanobut:logger:$LOGGER_VERSION"
+    api 'com.jakewharton.timber:timber:4.7.1'
+    api 'com.facebook.stetho:stetho:1.5.1'
+    api 'com.facebook.stetho:stetho-js-rhino:1.5.1'
+
+    debugImplementation "io.github.jamesfchen:lint-checker:1.0.0"
+//    lintPublish project(path: ':lint-rules')
+    /**
+     * ===============================monitor end=============================
+     */
+    api "com.amap.api:location:${AMAP_LOCATION_VERSION}"
+    api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
+    api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
+}
+

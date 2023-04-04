@@ -26,6 +26,6 @@ android {
 
 dependencies {
 
-    compileOnly project.moduleify("framework-common")
+    compileOnly project.moduleify("framework-base")
 
 }

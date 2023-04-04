@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.jamesfchen.base">
+
+    <application
+        android:hardwareAccelerated="true"
+        android:name="com.jamesfchen.loader.SApp"
+        >
+        <activity android:name="com.jamesfchen.av.AvRecorderActivity" />
+        <service
+            android:name="com.jamesfchen.av.AvRecorderService"
+            android:foregroundServiceType="mediaProjection" />
+        <activity
+            android:name="com.jamesfchen.av.VideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:supportsPictureInPicture="true" />
+        <!--            android:theme="@style/VideoTheme" -->
+        <activity android:name="com.jamesfchen.image.gif.GifActivity" />
+        <activity android:name="com.jamesfchen.image.FrescoActivity" />
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <!--            tools:node="remove"-->
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.ApmInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.BundleInitializer"
+                android:value="androidx.startup" />
+            <!--                tools:node="remove"-->
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.LoggerInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.ImageInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.StorageInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.CrossPlatformInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.jamesfchen.loader.androidxstartup.EmojiInitializer"
+                android:value="androidx.startup" />
+        </provider>
+        <activity
+            android:name="com.jamesfchen.map.MapActivity"
+            android:label="map page"
+            android:hardwareAccelerated="true">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--            </intent-filter>-->
+        </activity>
+        <!--        <activity-alias-->
+        <!--            android:name="MapActivity2"-->
+        <!--            android:targetActivity=".MapActivity"-->
+        <!--            android:label="map page2"-->
+        <!--            >-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity-alias>-->
+
+        <activity
+            android:label="location page"
+            android:name="com.jamesfchen.map.LocationActivity"
+            android:hardwareAccelerated="true">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--                <category android:name="android.intent.category.DEFAULT"/>-->
+            <!--            </intent-filter>-->
+        </activity>
+        <service
+            android:foregroundServiceType="location"
+            android:name="com.jamesfchen.map.service.LbsServices"
+            />
+        <service
+            android:foregroundServiceType="location"
+            android:name="com.jamesfchen.map.service.LbsJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:foregroundServiceType="location"
+            android:name="com.jamesfchen.map.service.LbsJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:foregroundServiceType="location"
+            android:name="com.amap.api.location.APSService"
+            />
+    </application>
+</manifest>

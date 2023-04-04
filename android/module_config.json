@@ -124,40 +124,10 @@
       "sourcePath": ":components:box-module:tool"
     },
     {
-      "simpleName": "framework-loader",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:loader"
-    },
-    {
       "simpleName": "framework-base",
       "format": "framework_foundation",
       "group": "fwk",
-      "sourcePath": ":framework:base"
-    },
-    {
-      "simpleName": "framework-av",
-      "group": "fwk",
-      "format": "framework_foundation",
-      "sourcePath": ":framework:av"
-    },
-    {
-      "simpleName": "framework-image",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:image"
-    },
-    {
-      "simpleName": "framework-storage",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:storage"
-    },
-    {
-      "simpleName": "framework-common",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":framework:common"
+      "sourcePath": ":base"
     }
   ]
 }
