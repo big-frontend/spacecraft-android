@@ -415,5 +415,6 @@ dependencies {
     api "com.amap.api:location:${AMAP_LOCATION_VERSION}"
     api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
     api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
+    lintPublish project.moduleify("framework-lint-rules")
 }
 

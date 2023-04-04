@@ -23,5 +23,5 @@ dependencies {
     // Compiles lint checks from the ':checks-to-publish'
     // into a lint.jar file and publishes it to your
     // Android library.
-    lintPublish project(path: ':lint-rules')
+
 }
