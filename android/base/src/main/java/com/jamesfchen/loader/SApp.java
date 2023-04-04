@@ -1,7 +1,5 @@
 package com.jamesfchen.loader;
 
-import static com.jamesfchen.viapm.tracer.StartupKt.TAG_STARTUP_MONITOR;
-
 import android.app.Application;
 import android.content.Context;
 import android.os.Debug;
@@ -18,9 +16,9 @@ import androidx.work.Configuration;
 
 import com.alibaba.android.alpha.OnProjectExecuteListener;
 import com.google.firebase.perf.metrics.AddTrace;
-import com.jamesfchen.common.util.Util;
 import com.jamesfchen.loader.alialpha.ConfigTest;
 import com.jamesfchen.startup.AppDelegate;
+import com.jamesfchen.util.Util;
 import com.jamesfchen.viapm.tracer.StartupKt;
 
 
@@ -119,8 +117,6 @@ public class SApp extends Application implements Configuration.Provider {
         int dalvikPss = memoryInfo.dalvikPss;
         int nativePss = memoryInfo.nativePss;
         int otherPss = memoryInfo.otherPss;
-
-
     }
 
     @NonNull
