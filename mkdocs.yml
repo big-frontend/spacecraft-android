@@ -1,5 +1,5 @@
 site_name: Pisces
-site_url: https://github.com/big-frontend/pisces
+site_url: https://big-frontend.github.io/pisces
 site_description: Pisces
 repo_name: Pisces
 repo_url: https://github.com/big-frontend/pisces
@@ -75,10 +75,10 @@ plugins:
       length: 20
       pretty_print: false
       match_path: ".*"
-      url_parameters:
-        utm_source: "documentation"
-        utm_medium: "RSS"
-        utm_campaign: "feed-syndication"
+#       url_parameters:
+#         utm_source: "documentation"
+#         utm_medium: "RSS"
+#         utm_campaign: "feed-syndication"
   - search
   - i18n:
       default_language: zh
