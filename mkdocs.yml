@@ -1,10 +1,8 @@
 site_name: Pisces
 site_url: https://github.com/big-frontend/pisces
+site_description: Pisces
 repo_name: Pisces
 repo_url: https://github.com/big-frontend/pisces
-site_description: Pisces
-site_name: Pisces
-site_url: https://github.com/big-frontend/pisces
 site_author: electrolyteJ
 remote_branch: gh-pages
 edit_uri: ""
