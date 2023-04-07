@@ -2,7 +2,9 @@ site_name: Pisces
 site_url: https://github.com/big-frontend/pisces
 repo_name: Pisces
 repo_url: https://github.com/big-frontend/pisces
-site_description: "混合开发框架"
+site_description: Pisces
+site_name: Pisces
+site_url: https://github.com/big-frontend/pisces
 site_author: electrolyteJ
 remote_branch: gh-pages
 edit_uri: ""
@@ -57,6 +59,28 @@ markdown_extensions:
   - tables
 
 plugins:
+  - rss:
+      abstract_chars_count: 160  # -1 for full content
+      abstract_delimiter: <!-- more -->
+      categories:
+        - tags
+      comments_path: "#__comments"
+      date_from_meta:
+        as_creation: "date"
+        as_update: false
+        datetime_format: "%Y-%m-%d %H:%M"
+        default_timezone: Asia/Shanghai
+        default_time: "09:30"
+      enabled: true
+      feed_ttl: 1440
+      image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Feed-icon.svg/128px-Feed-icon.svg.png
+      length: 20
+      pretty_print: false
+      match_path: ".*"
+      url_parameters:
+        utm_source: "documentation"
+        utm_medium: "RSS"
+        utm_campaign: "feed-syndication"
   - search
   - i18n:
       default_language: zh
