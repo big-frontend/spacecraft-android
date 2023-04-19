@@ -27,7 +27,7 @@ class HomeModule : LibraryGlideModule() {
      * ResourceTranscoder，用于在不同的资源类型之间做转换，例如，从 BitmapResource 转换为 DrawableResource 。
      */
     val okhttpClient = OkHttpClient.Builder()
-        .dispatcher(Dispatcher(ThreadUtil.getIOPool()))//默认任务分发池，最多并发请求为64个，每个host最多5个，线程池最大为无线个，对于低端手机能不能根据cpu来控制线程核心数，优化图片加载任务分发池最大线程数为2*cpu+1
+        .dispatcher(Dispatcher(ThreadUtil.getIOPool()))//默认任务分发池，最多并发请求为64个，每个host最多5个，线程池容量为整形最大值，为缓存池，对于低端手机能不能根据cpu来控制线程核心数，优化图片加载任务分发池最大线程数为2*cpu+1
         .connectTimeout(15_000, TimeUnit.MILLISECONDS)//15s
         .readTimeout(15_000, TimeUnit.MILLISECONDS)//
         .writeTimeout(15_000, TimeUnit.MILLISECONDS)//
