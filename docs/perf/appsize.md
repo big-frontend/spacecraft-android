@@ -4,14 +4,16 @@ comments: true
 
 # 包体积(Appsize)
 
+- Android包:n、dex、资源
+- js bundle:js.bundle 
+
 好处
 - 提高下载转化率
 - 减少rom占用
 - 优化运行时内存占用
 - 缩短apk安装时间
 
-- Android包:n、dex、资源
-- js bundle:js.bundle 
+
 
 
 ## 开发提醒、包体积监控
