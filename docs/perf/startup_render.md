@@ -60,7 +60,7 @@ Matrix中Android端实现
 
 ## 启动+渲染指标：TTI
 
-在Android端启动与渲染的指标都是分开，但是前端在定义一个页面的性能是有的指标会将启动+渲染看做一体比如TTI,还有分开算有启动之后开始首次渲染F &&FCP，渲染出主要内容的时间FMP && LCP && SI，可交互的时间TTI && TBT。
+在Android端启动与渲染的指标都是分开，但是前端在定义一个页面的性能是有的指标会将启动+渲染看做一体比如TTI,还有分开算有启动之后开始首次渲染FP &&FCP，渲染出主要内容的时间FMP && LCP && SI，可交互的时间TTI && TBT。
 
 先来看看可交互时间(Time to Interactive,TTI)在react native中一些公司对其定义。
 
