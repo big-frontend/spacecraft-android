@@ -15,7 +15,7 @@ import javax.crypto.SecretKey
  */
 object Crypto {
     init {
-        System.loadLibrary("client_key")
+        System.loadLibrary("clientkey")
     }
 
     const val KEYSIZE_1024 = 1024
