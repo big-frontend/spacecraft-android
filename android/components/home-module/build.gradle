@@ -8,12 +8,15 @@ android {
         buildConfigField('String', 'CONFIG_SERVER_BASE_URL', '"http://192.168.5.103:9000"')
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
-                cppFlags "-std=c++14", "-fexceptions", "-frtti"
+                // issue:No compatible library found for //fbjni/fbjni Rejected the following libraries:
+                // The issue is that apps are configured to use the static STL by default. You cannot link against both the static and shared STL so you need to change your app to use the shared STL.
+                // 解决方案加入 arguments "-DANDROID_STL=c++_shared"
+                arguments  "-DANDROID_STL=c++_shared",'-DANDROID_TOOLCHAIN=clang',"-DANDROID_ARM_NEON=TRUE"
                 cFlags "-D__STDC_FORMAT_MACROS"
-//                cppFlags "-std=gnu++11"
-//                targets "hawks","hotfix"
-                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/   //输出制定三种abi体系结构下的so库
+                //https://zhuanlan.zhihu.com/p/72475595
+                cppFlags '-s'/*去除so lib 的符号表（libguard shrink之后的size2139k -->283k 7倍）*/  \
+                            , "-fvisibility=hidden", "-ffunction-sections", "-fdata-sections","-std=c++14"
+                abiFilters "arm64-v8a", "armeabi-v7a"
             }
         }
     }
