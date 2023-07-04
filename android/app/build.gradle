@@ -11,7 +11,7 @@ apply from: "$rootDir/script/app_config.gradle"
 //counterConfig {
 //    sea = 'all'
 //}
-apply plugin: 'io.github.jamesfchen.startup-plugin'
+//apply plugin: 'io.github.jamesfchen.startup-plugin'
 apply plugin: 'com.google.gms.google-services'
 android {
     defaultConfig {

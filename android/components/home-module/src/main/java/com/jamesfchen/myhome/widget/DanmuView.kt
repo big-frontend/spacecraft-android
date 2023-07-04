@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.carousel
+package com.jamesfchen.myhome.widget
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -18,9 +18,10 @@ import com.jamesfchen.util.ConvertUtil
  * @author: hawks.jamesf
  * @since: Apr/06/2020  Mon
  */
-class ViewFlipper2 : ViewFlipper {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+class DanmuView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+) : ViewFlipper(context, attrs) {
     fun showAnimation(adapter: AnimatorListenerAdapter? = null) {
         buildAnimation(0f, object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {

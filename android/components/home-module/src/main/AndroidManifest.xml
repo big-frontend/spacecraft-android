@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jamesfchen.myhome">
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.opengles.aep" android:required="true" />
@@ -41,6 +42,19 @@
             <!-- firebase app indexing启动 end -->
 
         </activity>
+        <activity-alias
+            android:name=".aMainActivity"
+            android:targetActivity=".MainActivity"
+            android:label="618"
+            android:enabled="false"
+            android:icon="@drawable/ic_stat_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <activity
             android:name=".screen.profile.ProfileDetailActivity"
             android:theme="@style/Theme.AppCompat.Light" />
@@ -101,7 +115,8 @@
         <activity
             android:name=".screen.newfeeds.LargePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light" />
-
+        <activity android:name=".screen.profile.ChangeIconActivity" />
+        <activity android:name=".GalleryActivity" />
     </application>
 
 </manifest>

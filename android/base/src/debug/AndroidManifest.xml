@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jamesfchen.loader">
+    package="com.jamesfchen.base">
 
     <application>
-        <activity android:name=".StethoActivity" />
+        <activity android:name="com.jamesfchen.StethoActivity" />
     </application>
 </manifest>

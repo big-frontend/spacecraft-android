@@ -44,4 +44,12 @@
         android:gravity="center"
         android:background="@color/apricot"
         tools:text="asdfdasfasdfdasf" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_change_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@color/apricot"
+        android:text="更换启动icon" />
 </LinearLayout>

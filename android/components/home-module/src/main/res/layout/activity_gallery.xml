@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.jamesfchen.myhome.widget.GalleryView
+        android:id="@+id/rv_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.jamesfchen.myhome.widget.carousel.CarouselView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        app:cv_autoStart="true"
+        app:cv_interval="5000" />
+
+    <com.jamesfchen.myhome.widget.DanmuView
+        android:background="@color/afasf"
+        android:id="@+id/danmu"
+        android:layout_width="244dp"
+        android:layout_height="200dp"
+        android:animateFirstView="true" />
+
+
+    <Button
+        android:id="@+id/bt_set_wallpaper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="设置为壁纸" />
+
+</LinearLayout>

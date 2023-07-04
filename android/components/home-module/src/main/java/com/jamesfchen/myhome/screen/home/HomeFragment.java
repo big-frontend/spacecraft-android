@@ -1,5 +1,6 @@
 package com.jamesfchen.myhome.screen.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jamesfchen.mvp.RxFragment;
+import com.jamesfchen.myhome.GalleryActivity;
 import com.jamesfchen.myhome.R;
 
 import androidx.annotation.NonNull;
@@ -131,7 +133,7 @@ public class HomeFragment extends RxFragment<HomePresenter> implements HomeContr
         });
     }
 
-    static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+     class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -143,6 +145,10 @@ public class HomeFragment extends RxFragment<HomePresenter> implements HomeContr
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             holder.tvText.setText("asfasdfas");
+            holder.tvText.setOnClickListener(v -> {
+                Intent i = new Intent(getActivity(), GalleryActivity.class);
+                startActivity(i);
+            });
         }
 
         @Override

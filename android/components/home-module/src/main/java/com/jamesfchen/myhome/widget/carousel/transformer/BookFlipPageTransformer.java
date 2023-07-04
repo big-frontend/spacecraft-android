@@ -1,4 +1,4 @@
-package jamesfchen.widget.carousel.transformer;
+package com.jamesfchen.myhome.widget.carousel.transformer;
 
 /**
  * Copyright ® $ 2019

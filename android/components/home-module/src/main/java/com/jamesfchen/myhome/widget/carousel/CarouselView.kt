@@ -1,4 +1,4 @@
-package jamesfchen.widget.carousel
+package com.jamesfchen.myhome.widget.carousel
 
 import android.content.Context
 import android.widget.FrameLayout
@@ -13,7 +13,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.jamesfchen.foundation.R
+import com.jamesfchen.myhome.R
 import java.lang.ref.WeakReference
 
 /**
@@ -118,7 +118,7 @@ class CarouselView @JvmOverloads constructor(
             mCurPosition = fakePosition % mPagerAdapter.pagers
             Log.d(TAG, "fakePosition" + fakePosition + "_cur position:" + mCurPosition)
             mTvIndicator.text =
-                "${(fakePosition % mPagerAdapter.pagers)} 1/${mPagerAdapter.pagers}"
+                "${(fakePosition % mPagerAdapter.pagers)+1}/${mPagerAdapter.pagers}"
         }
     }
 

@@ -1,6 +1,7 @@
 package com.jamesfchen.myhome.screen.profile
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,11 +11,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentProfileBinding
 import com.jamesfchen.myhome.databinding.ViewstubTagSampleBinding
+import com.jamesfchen.myhome.screen.newfeeds.LargePhotoActivity
 import com.jamesfchen.myhome.screen.profile.vm.ProfileViewModel
 import com.jamesfchen.myhome.util.Util
 import kotlinx.coroutines.*
@@ -65,6 +68,9 @@ class ProfileFragment : Fragment() {
 //                    ViewstubTagSampleBinding.bind(binding.somethingViewstub.inflate())
 //                viewStubBinding.btViewstub.textr
                 Log.d("cjf","top activity: ${Util.getI().topActivity?.get()}")
+            }
+            binding.tvChangeIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_change_icon)
             }
 
         }

@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_settings"
             app:destination="@+id/dest_settings" />
+        <action
+            android:id="@+id/action_change_icon"
+            app:destination="@+id/dest_change_icon" />
     </fragment>
 
     <activity
@@ -58,7 +61,11 @@
             />
 <!--            android:defaultValue="https://i.spacecraft.com/c/ZDg0Y2FhNjMt"-->
     </activity>
-
+    <activity
+        android:id="@+id/dest_change_icon"
+        android:name="com.jamesfchen.myhome.screen.profile.ChangeIconActivity"
+        android:label="changeIcon">
+    </activity>
 
     <fragment
         android:id="@+id/fragment_flow_step_one_dest"

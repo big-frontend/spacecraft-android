@@ -1,4 +1,4 @@
-package jamesfchen.widget;
+package com.jamesfchen.myhome.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

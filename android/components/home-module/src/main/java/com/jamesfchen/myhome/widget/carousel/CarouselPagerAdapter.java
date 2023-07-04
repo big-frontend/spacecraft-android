@@ -1,4 +1,4 @@
-package jamesfchen.widget.carousel;
+package com.jamesfchen.myhome.widget.carousel;
 
 import android.view.View;
 import android.view.ViewGroup;

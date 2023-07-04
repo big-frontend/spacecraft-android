@@ -96,9 +96,6 @@
             android:name=".kk.PagerViewActivity"
             android:theme="@style/Theme.AppCompat.Light"
             android:exported="true" />
-        <activity
-            android:name=".carousel.ViewPagerActivity"
-            android:exported="true" />
         <activity android:name=".pulse.PulseActivity"/>
         <activity android:name=".optimization.OptimizationActivity"
             />
