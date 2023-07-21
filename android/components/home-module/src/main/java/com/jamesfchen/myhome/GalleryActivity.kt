@@ -3,6 +3,7 @@ package com.jamesfchen.myhome
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
@@ -65,9 +66,9 @@ class GalleryActivity : Activity() {
     internal class MyAdapter :
         RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            val iv = ImageView(parent.context)
-            iv.setImageResource(R.drawable.tmp)
-            return MyViewHolder(iv)
+            return MyViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
+            )
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -88,15 +89,19 @@ class GalleryActivity : Activity() {
                 0 -> {
                     imageView.setBackgroundColor(Color.BLUE)
                 }
+
                 1 -> {
                     imageView.setBackgroundColor(Color.BLACK)
                 }
+
                 2 -> {
                     imageView.setBackgroundColor(Color.YELLOW)
                 }
+
                 3 -> {
                     imageView.setBackgroundColor(Color.RED)
                 }
+
                 4 -> {
                     imageView.setBackgroundColor(Color.CYAN)
                 }

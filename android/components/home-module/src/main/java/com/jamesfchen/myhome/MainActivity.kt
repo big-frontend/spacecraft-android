@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
 //        binding.fragmentNavHost.findFragment<NavHostFragment>().navController
         (supportFragmentManager.findFragmentById(R.id.fragment_nav_host) as NavHostFragment).navController
     }
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        //        Fragment fragment = WebViewFragment.newInstance("https://i.meituan.com/c/ZDg0Y2FhNjMt");
-//        FragmentUtils.add(getSupportFragmentManager(),fragment,android.R.id.content);
-//        FragmentUtils.show(fragment);
-        WebViewActivity.startActivity(this)
-    }
+//    override fun onNewIntent(intent: Intent?) {
+//        super.onNewIntent(intent)
+//        //        Fragment fragment = WebViewFragment.newInstance("https://i.meituan.com/c/ZDg0Y2FhNjMt");
+////        FragmentUtils.add(getSupportFragmentManager(),fragment,android.R.id.content);
+////        FragmentUtils.show(fragment);
+//        WebViewActivity.startActivity(this)
+//    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

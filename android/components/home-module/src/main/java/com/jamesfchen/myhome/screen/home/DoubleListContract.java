@@ -8,7 +8,7 @@ package com.jamesfchen.myhome.screen.home;
  * @since: 1/24/18
  */
 
-public interface HomeContract {
+public interface DoubleListContract {
 
      interface View  {
 

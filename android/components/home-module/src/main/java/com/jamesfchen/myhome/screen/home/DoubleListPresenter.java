@@ -9,10 +9,9 @@ import com.jamesfchen.mvp.RxPresenter;
  * @since: 1/24/18
  */
 
-public class HomePresenter extends RxPresenter<HomeFragment> implements HomeContract.Presenter {
-    public HomePresenter() {
+public class DoubleListPresenter extends RxPresenter<HomeFragment> implements DoubleListContract.Presenter {
+    public DoubleListPresenter() {
     }
-
     @Override
     public void load() {
 
