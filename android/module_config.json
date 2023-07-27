@@ -27,16 +27,10 @@
       "sourcePath": ":components:uamp-module:uamp"
     },
     {
-      "simpleName": "update-main",
-      "format": "app",
-      "group": "update",
-      "sourcePath": ":components:update-module:main"
-    },
-    {
-      "simpleName": "update-appupdate",
+      "simpleName": "update-module",
       "format": "bundle",
       "group": "update",
-      "sourcePath": ":components:update-module:appupdate"
+      "sourcePath": ":components:update-module"
     },
     {
       "simpleName": "codescanner-main",
@@ -58,22 +52,10 @@
       "sourcePath": ":components:im-module"
     },
     {
-      "simpleName": "account-main",
-      "format": "app",
-      "group": "account",
-      "sourcePath": ":components:account-module:main"
-    },
-    {
-      "simpleName": "account-impl",
+      "simpleName": "account-module",
       "format": "bundle",
       "group": "account",
-      "sourcePath": ":components:account-module:impl"
-    },
-    {
-      "simpleName": "account-export",
-      "format": "bundle_foundation",
-      "group": "account",
-      "sourcePath": ":components:account-module:export"
+      "sourcePath": ":components:account-module"
     },
     {
       "simpleName": "home-module",
@@ -100,10 +82,10 @@
       "sourcePath": ":components:hotel-module:bundle2"
     },
     {
-      "simpleName": "hotel-lint",
-      "format": "jar",
+      "simpleName": "hotel-export",
+      "format": "bundle_foundation",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:hotel-lint"
+      "sourcePath": ":components:hotel-module:export"
     },
     {
       "simpleName": "hotel-foundation",

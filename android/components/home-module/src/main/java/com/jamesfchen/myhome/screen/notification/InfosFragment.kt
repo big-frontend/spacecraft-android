@@ -2,23 +2,16 @@ package com.jamesfchen.myhome.screen.notification
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.jamesfchen.export.pay.IPay
-import com.jamesfchen.export.pay.IPayCallback
-import com.jamesfchen.export.pay.WXPayInfo
-import com.jamesfchen.ibc.cbpc.IBCCbpc
-import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentInfosBinding
-import io.reactivex.Observable
-import io.reactivex.rxkotlin.Observables
-import kotlinx.coroutines.flow.collect
-import java.util.concurrent.TimeUnit
+import com.jamesfchen.pay.CPay
+import com.jamesfchen.pay.IPayCallback
+import com.jamesfchen.pay.WXPayInfo
 
 class InfosFragment : Fragment() {
     lateinit var binding: FragmentInfosBinding
@@ -45,8 +38,7 @@ class InfosFragment : Fragment() {
             infoViewModel.infoFlow.collect {
                 binding.tvNotification.text = "您有一条新消息，请注意查收 ${it}"
             }
-            val pay = IBCCbpc.findApi(IPay::class.java)
-            pay?.wxpay(requireActivity(),
+            CPay.wxpay(requireActivity(),
                 WXPayInfo(null, null, null, null, null, null, null),
                 object : IPayCallback {
                     override fun success() {

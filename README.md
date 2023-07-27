@@ -12,7 +12,7 @@
 
 Android技术已经走过了十多年了，从技术的增长期到技术的爆炸期，以及现在的稳定期，大量的技术变化带来了效率与性能的提高。在这个项目中，我们会讨论如今Android、跨平台(React Native 、Flutter、微信小程序)项目的工程化，拆分为三个主题：Architecture、DevOps、Performance
 
-- [Architecture](https://big-frontend.github.io/pisces/arch/): 模块化、插件化、组件化、热修复、动态化
+- [Architecture](https://big-frontend.github.io/pisces/arch/design_patterns/): 模块化、插件化、组件化、热修复、动态化
 - [DevOps](https://big-frontend.github.io/pisces/devops/)：编码、测试、发布、运营
 - [Performance](https://big-frontend.github.io/pisces/perf/)：Application Performance Monitoring 、Profiling 、 Optimization
 - [bundles-assembler 项目wiki](https://github.com/electrolyteJ/bundles-assembler/wiki)

@@ -29,7 +29,8 @@ android {
 }
 dependencies {
 //    lintChecks project(path: ':lint-rules')
-    implementation project.moduleify('account-export')
+    implementation project.moduleify("account-module")
+    implementation project.moduleify('hotel-export')
     implementation project.moduleify('framework-base')
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'

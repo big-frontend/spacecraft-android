@@ -80,11 +80,11 @@ dependencies {
     project.depsConfig("implementation", "hotel-bundle1")
     project.depsConfig("implementation", "hotel-bundle2")
     project.depsConfig("implementation", "home-module")
-    project.depsConfig("implementation", "account-impl")
+    project.depsConfig("implementation", "account-module")
     project.depsConfig("implementation", "codescanner-qrcode")
     project.depsConfig("implementation", "im-chatroom")
     project.depsConfig("implementation", "hotel-foundation")
-    project.depsConfig("implementation", "update-appupdate")
+    project.depsConfig("implementation", "update-module")
     implementation project.moduleify("framework-base")
 //    implementation project.moduleify("framework-mockserver")
 }

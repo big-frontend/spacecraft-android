@@ -21,10 +21,8 @@ android {
     }
 }
 dependencies {
-    project.depsConfig("implementation", "account-impl")
+    project.depsConfig("implementation", "account-module")
     project.depsConfig("implementation", "account-rnplugin")
-    project.depsConfig("implementation", "account-foundation")
-    project.depsConfig("implementation", "account-export")
 
     implementation project.moduleify("framework-base")
     implementation project.moduleify("framework-common")
