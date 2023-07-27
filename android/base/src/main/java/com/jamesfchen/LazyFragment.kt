@@ -20,12 +20,10 @@ import androidx.annotation.LayoutRes
  */
 abstract class LazyFragment : Fragment() {
     private var isViewCreated = false
-    private var isVisibleToUser = false
     private var isDataInitiated = false
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        this.isVisibleToUser = isVisibleToUser
         prepareLoadData()
     }
 
@@ -50,7 +48,7 @@ abstract class LazyFragment : Fragment() {
     }
 
     private fun prepareLoadData() {
-        if (isVisibleToUser && isViewCreated && !isDataInitiated) {
+        if (userVisibleHint && isViewCreated && !isDataInitiated) {
             isDataInitiated = true
             loadData()
         }
