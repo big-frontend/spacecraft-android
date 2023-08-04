@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.splash
+package com.jamesfchen.myhome.screen
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.splash.ad
+package com.jamesfchen.myhome.screen.ad
 
 import android.os.Bundle
 import android.view.LayoutInflater

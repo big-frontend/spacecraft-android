@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.splash;
+package com.jamesfchen.myhome.screen;
 
 import android.Manifest;
 import android.content.pm.PackageManager;

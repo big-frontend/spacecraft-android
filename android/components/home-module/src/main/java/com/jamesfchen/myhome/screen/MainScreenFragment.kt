@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentScreenBinding
 
-class ScreenFragment : Fragment() {
+class MainScreenFragment : Fragment() {
         lateinit var binding: FragmentScreenBinding
     val navController by lazy {
 //        binding.fragmentNavHost.findFragment<NavHostFragment>().navController

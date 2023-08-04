@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.splash.welcome
+package com.jamesfchen.myhome.screen.welcome
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
