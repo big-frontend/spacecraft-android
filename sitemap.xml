@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+         <loc>https://big-frontend.github.io/pisces/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/cross_platform/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/cross_platform/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/cross_platform/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/arch/design_patterns/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/arch/design_patterns/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/arch/design_patterns/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/arch/dynamic/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/arch/dynamic/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/arch/dynamic/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/arch/middleware/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/arch/middleware/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/arch/middleware/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/arch/module_evolution/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/arch/module_evolution/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/arch/module_evolution/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/devops/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/devops/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/devops/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/devops/build/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/devops/build/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/devops/build/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/appsize/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/appsize/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/appsize/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/cpu/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/cpu/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/cpu/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/jank/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/jank/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/jank/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/mem/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/mem/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/mem/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/net/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/net/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/net/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/stability/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/stability/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/stability/"/>
+         
+    </url>
+    <url>
+         <loc>https://big-frontend.github.io/pisces/perf/startup_render/</loc>
+         <lastmod>2023-08-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://big-frontend.github.io/pisces/en/perf/startup_render/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://big-frontend.github.io/pisces/zh/perf/startup_render/"/>
+         
+    </url>
+</urlset>
