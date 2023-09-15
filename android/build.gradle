@@ -26,15 +26,15 @@ buildscript {
         //2.资源缩减：从封装应用中移除不使用的资源，包括应用库依赖项中的不使用的资源。此功能可与代码缩减功能结合使用，这样一来，移除不使用的代码后，也可以安全地移除不再引用的所有资源。如需了解详情，请转到介绍如何缩减资源的部分。
         //3.混淆处理：缩短类和成员的名称，从而减小 DEX 文件的大小。如需了解详情，请转到介绍如何对代码进行混淆处理的部分。
         //4.优化：检查并重写代码，以进一步减小应用的 DEX 文件的大小。例如，如果 R8 检测到从未采用过给定 if/else 语句的 else {} 分支，则会移除 else {} 分支的代码。如需了解详情，请转到介绍代码优化的部分。
-        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath 'com.android.tools.build:gradle:7.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
         classpath "org.jetbrains.kotlin:kotlin-serialization:1.3.70"
         classpath "io.realm:realm-gradle-plugin:5.7.0"
 //        classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.8"
 
-        classpath 'com.google.gms:google-services:4.3.8'
+        classpath 'com.google.gms:google-services:4.3.10'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.0'
-        classpath 'com.google.firebase:perf-plugin:1.4.0'
+        classpath 'com.google.firebase:perf-plugin:1.4.1'
 //        classpath 'com.google.firebase:firebase-plugins:2.0.0'
         classpath("com.tencent.matrix:matrix-gradle-plugin:${MATRIX_VERSION}") { changing = true }
         classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
@@ -47,6 +47,7 @@ buildscript {
         classpath "cn.hikyson.methodcanary:plugin:0.15.5"
         classpath "io.github.jamesfchen:bundles-assembler-plugin:1.7.1"
         classpath "io.github.jamesfchen:ibc-plugin:${rootProject.IBCROUTER_VERSION}"
+//        classpath "com.alibaba:arouter-register:+"
         classpath "io.github.jamesfchen:module-publisher-plugin:1.4.3"
     }
 }
@@ -89,12 +90,12 @@ subprojects {
             // Treat all Kotlin warnings as errors (disabled by default)
             allWarningsAsErrors = project.hasProperty("warningsAsErrors") ? project.warningsAsErrors : false
 
-            freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
+            freeCompilerArgs += '-opt-in=kotlin.RequiresOptIn'
 
             // Enable experimental coroutines APIs, including Flow
-            freeCompilerArgs += '-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi'
-            freeCompilerArgs += '-Xopt-in=kotlinx.coroutines.FlowPreview'
-            freeCompilerArgs += '-Xopt-in=kotlin.Experimental'
+            freeCompilerArgs += '-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi'
+            freeCompilerArgs += '-opt-in=kotlinx.coroutines.FlowPreview'
+            freeCompilerArgs += '-opt-in=kotlin.Experimental'
 
             // Set JVM target to 1.8
             jvmTarget = "1.8"

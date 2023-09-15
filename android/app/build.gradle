@@ -2,6 +2,7 @@ plugins {
     id "io.github.jamesfchen.app-plugin"
 //    id 'io.github.jamesfchen.counter-plugin'
 //    id 'io.github.jamesfchen.bugly-plugin'
+    id "io.sentry.android.gradle" version "3.12.0"
 }
 //bugly {
 //    appId = '3d62251014'

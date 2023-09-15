@@ -1,4 +1,5 @@
 @file:JvmName("GeocoderUtil")
+
 package com.jamesfchen.map
 
 import android.location.Geocoder
@@ -8,11 +9,10 @@ fun Geocoder?.reverseGeocode2String(lat: Double, lon: Double): String {
     if (this == null) return ""
     return try {
         val fromLocation = this.getFromLocation(lat, lon, 1)
-        if (fromLocation.isEmpty()) return ""
+        if (fromLocation == null || fromLocation.isEmpty()) return ""
         val address = fromLocation[0]
         val maxAddressLineIndex = address.maxAddressLineIndex
-        val add: String
-        add = if (maxAddressLineIndex >= 2) {
+        val add: String = if (maxAddressLineIndex >= 2) {
             address.getAddressLine(0) + address.getAddressLine(1)
         } else {
             address.getAddressLine(0)

@@ -10,9 +10,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application>
-        <activity android:name="com.jamesfchen.login.LoginActivity" />
+<!--        <activity android:name="com.jamesfchen.login.LoginActivity" />-->
 
         <activity
+            android:exported="true"
             android:name="com.jamesfchen.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <intent-filter>
@@ -30,22 +31,22 @@
             android:name="com.jamesfchen.login.SignUpActivity"
             android:parentActivityName="com.jamesfchen.login.SignInActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity
-            android:name="com.cmic.sso.activity.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--        <activity-->
+<!--            android:name="com.cmic.sso.activity.MainActivity"-->
+<!--            android:windowSoftInputMode="stateAlwaysHidden">-->
+<!--&lt;!&ndash;            <intent-filter>&ndash;&gt;-->
+<!--&lt;!&ndash;                <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+<!--&lt;!&ndash;                <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
 
         <!--android:configChanges="orientation|keyboardHidden|screenSize"
         android:screenOrientation="portrait"-->
-        <activity
-            android:name="com.cmic.sso.sdk.view.LoginAuthActivity"
-            android:launchMode="singleTop"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+<!--        <activity-->
+<!--            android:name="com.cmic.sso.sdk.view.LoginAuthActivity"-->
+<!--            android:launchMode="singleTop"-->
+<!--            android:configChanges="orientation|keyboardHidden|screenSize"/>-->
 
         <activity
             android:name="com.jamesfchen.pay.WXPayActivity"

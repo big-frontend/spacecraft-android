@@ -1,7 +1,7 @@
 def ktOptions = [
         //1.5.10-1.0.0  1.6.10-1.1.1
-        ktceVersion: "1.0.3",
-        ktcVersion : "1.5.30"
+        ktceVersion: "1.0.6",
+        ktcVersion : "1.7.10"
 ]
 android {
     defaultConfig {

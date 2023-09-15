@@ -11,17 +11,17 @@ import android.view.ScaleGestureDetector
  * @since: Dec/11/2019  Wed
  */
 class MyScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-    override fun onScaleBegin(detector: ScaleGestureDetector?): Boolean {
+    override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
         Log.d("cjf",">>>onScaleBegin")
         return super.onScaleBegin(detector)
     }
 
-    override fun onScaleEnd(detector: ScaleGestureDetector?) {
+    override fun onScaleEnd(detector: ScaleGestureDetector) {
         Log.d("cjf","<<<onScaleEnd")
         super.onScaleEnd(detector)
     }
 
-    override fun onScale(detector: ScaleGestureDetector?): Boolean {
+    override fun onScale(detector: ScaleGestureDetector): Boolean {
         Log.d("cjf","onScale")
         return super.onScale(detector)
     }

@@ -11,17 +11,17 @@ import com.almeros.android.multitouch.ShoveGestureDetector
  * @since: Dec/11/2019  Wed
  */
 class MyShoveListener:ShoveGestureDetector.SimpleOnShoveGestureListener() {
-    override fun onShove(detector: ShoveGestureDetector?): Boolean {
+    override fun onShove(detector: ShoveGestureDetector): Boolean {
         Log.d("cjf","onShove")
         return super.onShove(detector)
     }
 
-    override fun onShoveBegin(detector: ShoveGestureDetector?): Boolean {
+    override fun onShoveBegin(detector: ShoveGestureDetector): Boolean {
         Log.d("cjf",">>>onShoveBegin")
         return super.onShoveBegin(detector)
     }
 
-    override fun onShoveEnd(detector: ShoveGestureDetector?) {
+    override fun onShoveEnd(detector: ShoveGestureDetector) {
         Log.d("cjf","<<<onShoveEnd")
         super.onShoveEnd(detector)
     }

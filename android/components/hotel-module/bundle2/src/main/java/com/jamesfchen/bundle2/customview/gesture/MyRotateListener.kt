@@ -11,15 +11,15 @@ import com.almeros.android.multitouch.RotateGestureDetector
  * @since: Dec/11/2019  Wed
  */
 class MyRotateListener: RotateGestureDetector.SimpleOnRotateGestureListener() {
-    override fun onRotateBegin(detector: RotateGestureDetector?): Boolean {
+    override fun onRotateBegin(detector: RotateGestureDetector): Boolean {
         Log.d("cjf",">>>onRotateBegin")
         return super.onRotateBegin(detector)
     }
-    override fun onRotateEnd(detector: RotateGestureDetector?) {
+    override fun onRotateEnd(detector: RotateGestureDetector) {
         Log.d("cjf","<<<onRotateEnd")
         super.onRotateEnd(detector)
     }
-    override fun onRotate(detector: RotateGestureDetector?): Boolean {
+    override fun onRotate(detector: RotateGestureDetector): Boolean {
         Log.d("cjf","onRotate")
         return super.onRotate(detector)
     }

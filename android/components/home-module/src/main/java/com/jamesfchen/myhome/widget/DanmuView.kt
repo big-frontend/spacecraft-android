@@ -24,7 +24,7 @@ class DanmuView @JvmOverloads constructor(
 ) : ViewFlipper(context, attrs) {
     fun showAnimation(adapter: AnimatorListenerAdapter? = null) {
         buildAnimation(0f, object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 postDelayed({
                     showNext()
                     startFlipping()
@@ -36,7 +36,7 @@ class DanmuView @JvmOverloads constructor(
 
     fun hideAnimation(adapter: AnimatorListenerAdapter? = null) {
         buildAnimation(ConvertUtil.dp2px(-244f).toFloat(), object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 postDelayed({
                     stopFlipping()
                 }, 500)
