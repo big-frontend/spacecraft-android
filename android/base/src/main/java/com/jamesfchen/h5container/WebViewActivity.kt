@@ -1,5 +1,7 @@
 package com.jamesfchen.h5container
 
+import android.R.attr.height
+import android.R.attr.width
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.ScreenUtils
 import com.jamesfchen.base.databinding.ActivityWebviewBinding
 
 
@@ -45,6 +48,14 @@ class WebViewActivity : AppCompatActivity() {
         val binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         intent.getStringExtra("url")?.let { url ->
+            val renderer: BaseGLRenderer = DefaultRenderer(
+                this,
+                ScreenUtils.getAppScreenWidth(),
+                ScreenUtils.getAppScreenHeight()
+            )
+            binding.glSurfaceView.setEGLContextClientVersion(2);
+            binding.glSurfaceView.setRenderer(renderer)
+            binding.wv.setViewToGLRenderer(renderer)
             binding.wv.loadUrl(url)
             binding.wv.webViewClient = object : WebViewClient() {
                 override fun onReceivedSslError(

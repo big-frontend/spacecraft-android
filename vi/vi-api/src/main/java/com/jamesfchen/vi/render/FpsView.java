@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 
 import com.jamesfchen.vi.DebugOverlayController;
+import com.jamesfchen.vi.R;
 import com.jamesfchen.vi.WindowOverlayCompat;
 import com.jamesfchen.vi.util.UiThreadUtil;
 

@@ -6,14 +6,6 @@ apply from: "${rootDir}/script/ui_tradition.gradle"
 android{
     defaultConfig {
         externalNativeBuild {
-//            cmake {
-//                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
-//                cppFlags "-std=c++14", "-fexceptions", "-frtti"
-//                cFlags "-D__STDC_FORMAT_MACROS"
-////                cppFlags "-std=gnu++11"
-////                targets "hawks","hotfix"
-//                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/   //输出制定三种abi体系结构下的so库
-//            }
             cmake {
                 arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
                 cppFlags "-std=c++14", "-fexceptions", "-frtti"
@@ -416,5 +408,6 @@ dependencies {
     api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
     api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
     lintPublish project.moduleify("framework-lint-rules")
+    implementation("androidx.webkit:webkit:1.6.0")
 }
 
