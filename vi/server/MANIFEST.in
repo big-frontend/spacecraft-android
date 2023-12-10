@@ -1,4 +1,0 @@
-include app/schema.sql
-graft app/static
-graft app/templates
-global-exclude *.pyc
