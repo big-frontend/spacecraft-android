@@ -53,8 +53,8 @@ buildscript {
 }
 plugins {
 //    id 'io.github.jamesfchen.counter-plugin' version '1.0.0'
-    id 'io.github.jamesfchen.startup-plugin' apply false
-    id "io.github.jamesfchen.vi-plugin" apply false
+//    id 'io.github.jamesfchen.startup-plugin' apply false
+//    id "io.github.jamesfchen.vi-plugin" apply false
 }
 allprojects {
     configurations.all {
