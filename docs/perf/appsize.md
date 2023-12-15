@@ -21,23 +21,62 @@ comments: true
 
 ## 优化
 
-### 去重
- - 同时存在Glide 与 Fresco
- - OkHttp 与 Volley
+### sdk去重
+- Glide(500k) 与 Fresco(2-3M)
+- Okhttp、Volley、Cronet
  
 ### 拆包
-- 动态下发：replugin、aab、[so](https://github.com/IMFWorks/Android-So-Handler)
-- Gradle Product Flavor：分解业务
+- 动态下发(replugin、aab、[so](https://github.com/IMFWorks/Android-So-Handler))：dex、so、资源
+- 分解业务(Gradle Product Flavor)：tv、watch、phone
 - Gradle resConfig、split
 
-### Minify(Shrink、Obfuscate、Optimize)
+### Minify(Shrink缩减、Obfuscate混淆、Optimize优化)
 
-代码与资源都可以通过shrink、obfuscate进行包体积减小。
-
+代码与资源都可以通过shrink、obfuscate、Optimize进行包体积减小。
 - Code Minify：代码的ProGuard或者R8是基于摇树优化(tree-shaking)进行缩减与字段简单命名进行混淆，除了缩减与混淆，我们还能进行代码的优化，基于redex和bytex能做R Filed内联、常量内联 、access 内联、方法删除等
-- Resource Minify：资源进行无用资源、重复资源、png/webp/gif/jpg图片压缩、png/jpg转webp等缩减, 采用[安装包立减1M--微信Android资源混淆打包工具](https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&mid=208135658&idx=1&sn=ac9bd6b4927e9e82f9fa14e396183a8f#rd)进行混淆
+- Resource Minify：资源缩减用清除无用资源、资源去重、png/webp/gif/jpg图片压缩、png/jpg转webp等方法,且混淆
 - So Minify :去除符号表、非必要去除exception库
- 
+
+### 案例
+- 模块
+ - 去掉 Fresco(2-3M)
+- 拆包
+ - 非核心做成bundle：log、qrcode
+ - 按需下发资源bundle：splits
+
+- 代码
+ - 有些代码没有被混淆
+ - R field内联
+
+- 资源
+ - 文件去重：
+   通过计算MD5值计算重复文件，然后修改resource.arsc资源位置。
+ - 无用res去除、无用assets去除
+ - 混淆：安装包立减1M–微信Android资源混淆打包工具
+- so(https://tech.meituan.com/2022/06/02/meituans-technical-exploration-and-practice-of-android-so-volume-optimization.html)
+ - 去除32位，GP强制要求上64位 so
+- 压缩
+ - 7zip压缩apk
+ - png优化(更优压缩Pngquant 或者转webp)
+ - jpg优化(packJPG 和 guetzli 等工具)
+ - non-alpha png图片:对于不含alpha通道的png文件，可以转成jpg格式来减少文件的大小
+
+## 技术选型
+
+|   |matrix|booster|bytex
+|--|--|--|--|
+R field inline|  |☑️|☑️
+const inline  |  |   | ☑️|
+access inline |  |   |☑️| 
+资源去重       |☑️|  |   |
+`无用res、assets资源删除`|☑️| | |
+`资源混淆`       |☑️| | |
+png优化(更优压缩Pngquant 或者转webp)||☑️|
+压缩           |☑️|☑️|
+
+> AGP新资源缩减器(enableNewResourceShrinker)：7.1.0-alpha09试用，8.0正式使用
+> AGP(enableResourceOptimizations): 4.2支持资源混淆
+
 ## 更多阅读
 
 - [ProGuard and R8: Comparing Optimizers](https://www.guardsquare.com/blog/proguard-and-r8)
