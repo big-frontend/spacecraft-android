@@ -17,12 +17,24 @@
 plugins {
     id "io.github.jamesfchen.bundle-plugin"
 }
-apply plugin: 'kotlin-android-extensions'
 
 android {
     defaultConfig {
         testOptions.unitTests.includeAndroidResources = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+
+        freeCompilerArgs += [
+                "-Xallow-jvm-ir-dependencies",
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+        ]
+
     }
 }
 ext {

@@ -1,21 +1,23 @@
 plugins{
     id "io.github.jamesfchen.foundation-plugin"
-    id("com.google.devtools.ksp") version "1.7.10-1.0.6"
+    id("com.google.devtools.ksp")
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android{
     defaultConfig {
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
-                cppFlags "-std=c++14", "-fexceptions", "-frtti"
-//                        "DHAVE_CONFIG_H", "-Wno-sign-compare"
+                // issue:No compatible library found for //fbjni/fbjni Rejected the following libraries:
+                // The issue is that apps are configured to use the static STL by default. You cannot link against both the static and shared STL so you need to change your app to use the shared STL.
+                // 解决方案加入 arguments "-DANDROID_STL=c++_shared"
+                arguments  "-DANDROID_STL=c++_shared",'-DANDROID_TOOLCHAIN=clang',"-DANDROID_ARM_NEON=TRUE"
                 cFlags "-D__STDC_FORMAT_MACROS", "-Wall", "-Werror", "-Wno-unused-parameter",
                         "-Wno-unused-variable", "-Wno-overloaded-virtual", "-fvisibility=hidden"
-//                cppFlags "-std=gnu++11"
-//                targets "hawks","hotfix"
-                abiFilters "arm64-v8a", "armeabi-v7a" /*,"x86","x86_64"*/
-                //输出制定三种abi体系结构下的so库
+                //https://zhuanlan.zhihu.com/p/72475595
+                cppFlags '-s'/*去除so lib 的符号表（libguard shrink之后的size2139k -->283k 7倍）*/  \
+                            , "-fvisibility=hidden", "-ffunction-sections", "-fdata-sections","-std=c++14"
+//                "-fexceptions", "-frtti", "DHAVE_CONFIG_H", "-Wno-sign-compare","-std=gnu++11"
+                abiFilters "arm64-v8a", "armeabi-v7a"
             }
         }
         javaCompileOptions.annotationProcessorOptions.arguments = [
@@ -24,24 +26,12 @@ android{
                 "room.expandProjection": "true"
         ]
     }
-    buildFeatures {
-        viewBinding true
-    }
     ndkVersion '22.0.7026061'
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
         }
     }
-    //    packagingOptions {
-//        pickFirst 'lib/armeabi-v7a/libhotfix.so'
-//        pickFirst 'lib/armeabi-v7a/libhawks.so'
-////        pickFirst 'lib/arm64-v8a/libRSSupport.so'
-////        pickFirst 'lib/x86_64/libRSSupport.so'
-//        pickFirst 'lib/x86/libhotfix.so'
-//        pickFirst 'lib/x86/libhawks.so'
-////        pickFirst 'lib/mips/libRSSupport.so'
-//    }
     def srcDirs = [
             "async",
             "serialization",
@@ -77,17 +67,17 @@ android{
             srcDirs.forEach {
                 java.srcDirs += "$projectDir/$it/test/java"
             }
-
         }
+    }
+    buildFeatures {
+        aidl true
     }
 }
 dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    api 'com.pgyersdk:sdk:3.0.10'
-    api 'com.pgyer:analytics:4.2.1'//最好写上具体依赖的版本号 如：4.2.1
     api  'io.github.jamesfchen:retrofit:1.0.0'
-    api "io.github.jamesfchen:react-native:0.70.5-SNAPSHOT"
+//    api "io.github.jamesfchen:react-native:0.70.5-SNAPSHOT"
 
     testImplementation files('libs/jsoup-1.12.1.jar')
 //    api project(path: ':framework:common')
@@ -178,10 +168,6 @@ dependencies {
      * ===============================image end=============================
      */
 
-
-    api 'com.pgyersdk:sdk:3.0.10'
-    api 'com.pgyer:analytics:4.2.1'//最好写上具体依赖的版本号 如：4.2.1
-
 //    implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     api 'io.github.jamesfchen:lifecycle-api:1.1.0'
@@ -249,12 +235,9 @@ dependencies {
 //    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
 //    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
     api 'com.github.markzhai:blockcanary-android:1.5.0'
-
-    implementation("io.github.jamesfchen:vi-api:1.0.0")
     /**
      * ================================apm end=====================================
      */
-    implementation("io.github.jamesfchen:startup-api:1.0.0")
     implementation "androidx.startup:startup-runtime:1.1.0"
     implementation 'com.alibaba.android:alpha:1.0.0.1@aar'
     //    implementation project(path: ':framework:common')
@@ -399,7 +382,7 @@ dependencies {
     api 'com.facebook.stetho:stetho:1.5.1'
     api 'com.facebook.stetho:stetho-js-rhino:1.5.1'
 
-    debugImplementation "io.github.jamesfchen:lint-checker:1.0.0"
+//    debugImplementation "io.github.jamesfchen:lint-checker:1.0.0"
 //    lintPublish project(path: ':lint-rules')
     /**
      * ===============================monitor end=============================

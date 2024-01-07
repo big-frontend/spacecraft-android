@@ -33,17 +33,10 @@
       "sourcePath": ":components:update-module"
     },
     {
-      "simpleName": "codescanner-main",
-      "format": "app",
-      "group": "codescanner",
-      "sourcePath": ":components:codescanner-module:main"
-    },
-    {
-      "simpleName": "codescanner-qrcode",
-      "projectDir": "",
+      "simpleName": "codescanner-module",
       "format": "bundle",
       "group": "codescanner",
-      "sourcePath": ":components:codescanner-module:qrcode"
+      "sourcePath": ":components:codescanner-module"
     },
     {
       "simpleName": "im-module",
@@ -94,16 +87,10 @@
       "sourcePath": ":components:hotel-module:foundation"
     },
     {
-      "simpleName": "box-main",
-      "format": "app",
-      "group": "box",
-      "sourcePath": ":components:box-module:main"
-    },
-    {
-      "simpleName": "box-tool",
+      "simpleName": "box-module",
       "format": "bundle",
       "group": "box",
-      "sourcePath": ":components:box-module:tool"
+      "sourcePath": ":components:box-module"
     },
     {
       "simpleName": "framework-base",

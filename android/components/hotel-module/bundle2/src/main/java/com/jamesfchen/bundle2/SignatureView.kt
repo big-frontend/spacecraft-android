@@ -57,9 +57,9 @@ class SignatureView @JvmOverloads constructor(
         return true
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas?.let {
+        canvas.let {
 //            it.drawBitmap(bitmap, 0f, 0f, paint)
             it.drawPath(path, paint)
         }

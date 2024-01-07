@@ -1,7 +1,6 @@
 plugins {
     id "io.github.jamesfchen.app-plugin"
 }
-apply plugin: 'kotlin-android-extensions'
 android {
     defaultConfig {
         resValue "string", "app_name","u"

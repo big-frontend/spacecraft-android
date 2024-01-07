@@ -23,10 +23,10 @@ class MessagePumpForUI {
 
 };
 int NonDelayedLooperCallback(int fd, int events, void *data) {
-
+    return 1;
 }
 int DelayedLooperCallback(int fd, int events, void *data) {
-
+    return 1;
 }
 MessagePumpForUI::MessagePumpForUI() {
   non_delayed_fd_ = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
@@ -37,18 +37,18 @@ MessagePumpForUI::MessagePumpForUI() {
 //  CHECK_NE(delayed_fd_, -1);
 //  DCHECK(looper_);
   // Add a reference to the looper so it isn't deleted on us.
-  ALooper_acquire(looper_);
-  ALooper_addFd(looper_, non_delayed_fd_, 0, ALOOPER_EVENT_INPUT,
-				&NonDelayedLooperCallback, reinterpret_cast<void *>(this));
-  ALooper_addFd(looper_, delayed_fd_, 0, ALOOPER_EVENT_INPUT,
-				&DelayedLooperCallback, reinterpret_cast<void *>(this));
+//  ALooper_acquire(looper_);
+//  ALooper_addFd(looper_, non_delayed_fd_, 0, ALOOPER_EVENT_INPUT,
+//				&NonDelayedLooperCallback, reinterpret_cast<void *>(this));
+//  ALooper_addFd(looper_, delayed_fd_, 0, ALOOPER_EVENT_INPUT,
+//				&DelayedLooperCallback, reinterpret_cast<void *>(this));
 }
 MessagePumpForUI::~MessagePumpForUI() {
 //  DCHECK_EQ(ALooper_forThread(), looper_);
-  ALooper_removeFd(looper_, non_delayed_fd_);
-  ALooper_removeFd(looper_, delayed_fd_);
-  ALooper_release(looper_);
-  looper_ = nullptr;
+//  ALooper_removeFd(looper_, non_delayed_fd_);
+//  ALooper_removeFd(looper_, delayed_fd_);
+//  ALooper_release(looper_);
+//  looper_ = nullptr;
 //  close(non_delayed_fd_);
 //  close(delayed_fd_);
 }

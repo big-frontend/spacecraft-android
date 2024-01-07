@@ -17,7 +17,6 @@
 plugins {
     id "io.github.jamesfchen.app-plugin"
 }
-apply plugin: 'kotlin-android-extensions'
 ext {
     // Dependency versions.
     androidx_app_compat_version = '1.2.0'

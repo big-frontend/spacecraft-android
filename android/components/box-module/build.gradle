@@ -1,7 +1,8 @@
 plugins {
-    id "io.github.jamesfchen.app-plugin"
+    id "io.github.jamesfchen.bundle-plugin"
 }
-apply from:"$rootDir/script/app_config.gradle"
+apply from: "${rootDir.path}/script/ui_compose.gradle"
+apply from: "${rootDir.path}/script/ui_tradition.gradle"
 
 android {
     ndkVersion = "22.0.7026061"

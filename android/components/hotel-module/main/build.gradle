@@ -2,7 +2,6 @@ plugins {
     id "io.github.jamesfchen.app-plugin"
 //    id 'io.github.jamesfchen.counter-plugin'
 }
-apply from:"$rootDir/script/app_config.gradle"
 //counterConfig {
 //    pickupModules=[':components:hotel-module:bundle1',':components:hotel-module:bundle2',':components:hotel-module:foundation']
 //}

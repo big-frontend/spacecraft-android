@@ -3,8 +3,6 @@ package com.jamesfchen.loader;
 import android.app.Application;
 import android.content.Context;
 import android.os.Debug;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.util.Log;
@@ -17,16 +15,13 @@ import androidx.work.Configuration;
 import com.alibaba.android.alpha.OnProjectExecuteListener;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.jamesfchen.loader.alialpha.ConfigTest;
-import com.jamesfchen.startup.AppDelegate;
 import com.jamesfchen.util.Util;
-import com.jamesfchen.viapm.tracer.StartupKt;
 
 
 /**
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author:  jamesfchen
  * @since: 2017/7/4
  *
  */
@@ -52,7 +47,7 @@ public class SApp extends Application implements Configuration.Provider {
 //                // have a binary dependency on your ApplicationLifeCycle class.
 //                "com.jamesfchen.loader.SAppLike");
 //    }
-    AppDelegate appDelegate;
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -61,8 +56,6 @@ public class SApp extends Application implements Configuration.Provider {
         start = SystemClock.elapsedRealtime();
 //        Debug.startMethodTracing(getExternalCacheDir().getParent()+"/contentprovidertrace");
         Trace.beginSection("contentprovidertrace");
-        appDelegate = new AppDelegate();
-        appDelegate.attachBaseContext(base);
     }
 
     /**
@@ -73,7 +66,6 @@ public class SApp extends Application implements Configuration.Provider {
     @AddTrace(name = "App#onCreate",enabled = true)
     @Override
     public void onCreate() {
-        Log.d(StartupKt.TAG_STARTUP_MONITOR,"ContentProvider#onCreate消耗时间："+(SystemClock.elapsedRealtime()-start)+"ms");
 //        Debug.stopMethodTracing();
         Trace.endSection();
         super.onCreate();
@@ -83,7 +75,6 @@ public class SApp extends Application implements Configuration.Provider {
         Util.init(this);
 //        SystemFilter.init(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
-        appDelegate.onCreate();
         ConfigTest test = new ConfigTest(getApplicationContext());
         test.setOnProjectExecuteListener(new OnProjectExecuteListener() {
             @Override

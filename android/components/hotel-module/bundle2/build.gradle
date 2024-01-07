@@ -1,5 +1,6 @@
 plugins {
     id "io.github.jamesfchen.bundle-plugin"
+    id 'org.jetbrains.kotlin.android'
 }
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
