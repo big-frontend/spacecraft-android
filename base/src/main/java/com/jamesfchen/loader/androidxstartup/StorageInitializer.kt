@@ -17,28 +17,28 @@ class StorageInitializer : Initializer<Unit> {
 
     @AddTrace(name = "StorageInitializer#create", enabled = true)
     override fun create(context: Context) {
-        Log.d("cjf", "StorageInitializer#create")
-        firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(3600)
-            .setFetchTimeoutInSeconds((60 * 60).toLong())
-            .build()
-        firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
-        firebaseRemoteConfig.ensureInitialized()
-        firebaseRemoteConfig.fetchAndActivate()
-            .addOnCompleteListener {
-                Log.i(
-                    TAG,
-                    "onComplete-perf_enable:" + firebaseRemoteConfig.getBoolean("perf_enable")
-                )
-                FirebasePerformance.getInstance().isPerformanceCollectionEnabled =
-                    firebaseRemoteConfig.getBoolean("perf_enable")
-            }
-            .addOnFailureListener({ Log.i(TAG, "onFailure") })
-            .addOnSuccessListener { aBoolean ->
-                Log.i(TAG, "onSuccess:$aBoolean")
-            }
-            .addOnCanceledListener { Log.i(TAG, "onCanceled") }
+//        Log.d(TAG, "StorageInitializer#create")
+//        firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+//        val configSettings = FirebaseRemoteConfigSettings.Builder()
+//            .setMinimumFetchIntervalInSeconds(3600)
+//            .setFetchTimeoutInSeconds((60 * 60).toLong())
+//            .build()
+//        firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+//        firebaseRemoteConfig.ensureInitialized()
+//        firebaseRemoteConfig.fetchAndActivate()
+//            .addOnCompleteListener {
+//                Log.i(
+//                    TAG,
+//                    "onComplete-perf_enable:" + firebaseRemoteConfig.getBoolean("perf_enable")
+//                )
+//                FirebasePerformance.getInstance().isPerformanceCollectionEnabled =
+//                    firebaseRemoteConfig.getBoolean("perf_enable")
+//            }
+//            .addOnFailureListener({ Log.i(TAG, "onFailure") })
+//            .addOnSuccessListener { aBoolean ->
+//                Log.i(TAG, "onSuccess:$aBoolean")
+//            }
+//            .addOnCanceledListener { Log.i(TAG, "onCanceled") }
     }
 
     fun getFirebaseRemoteConfig(): FirebaseRemoteConfig {

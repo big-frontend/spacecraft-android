@@ -5,6 +5,8 @@ import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
 import com.blankj.utilcode.util.ProcessUtils
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.base.BuildConfig
 import com.jamesfchen.loader.SApp
@@ -53,13 +55,13 @@ class ApmInitializer : Initializer<Unit> {
     }
 
     private fun startFirebase(context: Context) {
-        //        val firebaseOptions =  FirebaseOptions.Builder()
-//                .setProjectId("spacecraft-22dc1")
-//                .setApplicationId(BuildConfig.APPLICATION_ID)
-//                .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
-//                .setStorageBucket("spacecraft-22dc1.appspot.com")
-//                .build()
-//        FirebaseApp.initializeApp(context,firebaseOptions);
+//        val firebaseOptions = FirebaseOptions.Builder()
+//            .setProjectId("spacecraft-22dc1")
+//            .setApplicationId("com.electrolytej.pisces")
+//            .setApiKey("AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY")
+//            .setStorageBucket("spacecraft-22dc1.appspot.com")
+//            .build()
+//        FirebaseApp.initializeApp(context, firebaseOptions);
 //        val crashlytics = FirebaseCrashlytics.getInstance()
 //        crashlytics.setCrashlyticsCollectionEnabled(true)
     }
