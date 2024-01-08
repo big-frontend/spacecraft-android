@@ -77,7 +77,6 @@ allprojects {
         mavenLocal()
         maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
         maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
-        maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url = uri("https://artifact.bytedance.com/repository/byteX/") }
         maven { url "https://jitpack.io" }

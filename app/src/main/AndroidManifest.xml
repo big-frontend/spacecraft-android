@@ -160,12 +160,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/leak_canary_file_paths" />
         </provider>
-        <provider
-            android:name="com.google.firebase.perf.provider.FirebasePerfProvider"
-            android:authorities="${applicationId}.firebaseperfprovider"
-            android:exported="false"
-            android:initOrder="101"
-            android:multiprocess="true" />
+<!--        <provider-->
+<!--            android:name="com.google.firebase.perf.provider.FirebasePerfProvider"-->
+<!--            android:authorities="${applicationId}.firebaseperfprovider"-->
+<!--            android:exported="false"-->
+<!--            android:initOrder="101"-->
+<!--            android:multiprocess="true" />-->
         <activity
             android:name="com.jamesfchen.myhome.MainActivity"
             android:exported="true"
