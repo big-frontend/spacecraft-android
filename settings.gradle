@@ -1,0 +1,37 @@
+pluginManagement {
+    repositories {
+        maven { url uri("$rootDir/repo") }
+        mavenLocal()
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url = uri("https://artifact.bytedance.com/repository/byteX/") }
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven{ url "https://dl.bintray.com/kotlin/kotlin-eap"}
+    }
+}
+dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url uri("$rootDir/repo") }
+        mavenLocal()
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/public/' }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://jitpack.io" }
+        maven { url = uri("https://artifact.bytedance.com/repository/byteX/") }
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
+apply from:'./script/trace_gradle.gradle'
+apply from:'./script/module_registry.gradle'
+//includeBuild("framework/network/super-retrofit")
+
