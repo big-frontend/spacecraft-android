@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "28459008283-bk95oobln3ensb02hfgv1ppc7simle7n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.electrolytej.pisces",
+            "certificate_hash": "a74f05977d5da7f98d24ccd05e31b27cf7099f4d"
+          }
+        },
+        {
           "client_id": "28459008283-brunvkvl1lh5fmv70h7sev9qlhiaiqd2.apps.googleusercontent.com",
           "client_type": 3
         }
