@@ -1,5 +1,9 @@
 package com.jamesfchen.image.svg;
 
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
+
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
@@ -10,10 +14,6 @@ import com.caverock.androidsvg.SVGParseException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import androidx.annotation.NonNull;
-
-import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
-
 /** Decodes an SVG internal representation from an {@link InputStream}. */
 public class SvgDecoder implements ResourceDecoder<InputStream, SVG> {
 
@@ -23,7 +23,9 @@ public class SvgDecoder implements ResourceDecoder<InputStream, SVG> {
     return true;
   }
 
-  public Resource<SVG> decode(@NonNull InputStream source, int width, int height, @NonNull Options options) throws IOException {
+  public Resource<SVG> decode(
+      @NonNull InputStream source, int width, int height, @NonNull Options options)
+      throws IOException {
     try {
       SVG svg = SVG.getFromInputStream(source);
       if (width != SIZE_ORIGINAL) {

@@ -74,8 +74,7 @@ android{
     }
 }
 dependencies {
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     api  'io.github.jamesfchen:retrofit:1.0.0'
 //    api "io.github.jamesfchen:react-native:0.70.5-SNAPSHOT"
 
@@ -152,6 +151,9 @@ dependencies {
     api "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
     api "com.github.bumptech.glide:recyclerview-integration:${GLIDE_VERSION}"
     api "com.github.bumptech.glide:okhttp3-integration:${GLIDE_VERSION}"
+    ksp 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     api "com.facebook.fresco:fresco:${FRESCO_VERSION}"
     api "com.facebook.fresco:animated-gif:${FRESCO_GIF_VERSION}"

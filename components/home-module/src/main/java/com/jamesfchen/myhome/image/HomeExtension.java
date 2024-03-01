@@ -1,12 +1,12 @@
-package com.jamesfchen.pisces;
+package com.jamesfchen.myhome.image;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.annotation.GlideExtension;
 import com.bumptech.glide.annotation.GlideOption;
-import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.request.BaseRequestOptions;
-import com.bumptech.glide.request.RequestOptions;
 import com.jamesfchen.myhome.R;
 
 /**
@@ -23,8 +23,6 @@ import com.jamesfchen.myhome.R;
 @GlideExtension
 public final class HomeExtension {
     private static final int MINI_THUMB_SIZE = 100;
-    private static final RequestOptions DECODE_TYPE_GIF = RequestOptions.decodeTypeOf(GifDrawable.class).lock();
-
     private HomeExtension() {
     } // utility class
 
@@ -37,15 +35,9 @@ public final class HomeExtension {
     @NonNull
     @GlideOption
     public static BaseRequestOptions<?> logo(BaseRequestOptions<?> options) {
-        if (options instanceof GlideRequest) {
-            return ((GlideRequest) options)
-//                    .transition(DrawableTransitionOptions.withCrossFade(3000))
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
-                    .fallback(R.mipmap.ic_launcher);
-        }else if (options instanceof GlideRequest){
-            return ((GlideRequest) options)
-//                    .transition(BitmapTransitionOptions.withCrossFade(3000))
+        if (options instanceof RequestBuilder){
+            return ((RequestBuilder) options)
+                    .transition(BitmapTransitionOptions.withCrossFade(3000))
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
                     .fallback(R.mipmap.ic_launcher);
@@ -83,12 +75,4 @@ public final class HomeExtension {
                 .fitCenter()
                 .override(size);
     }
-
-//    @NonNull
-//    @GlideType(GifDrawable.class)
-//    public static RequestBuilder<GifDrawable> asGif(RequestBuilder<GifDrawable> requestBuilder) {
-//        return requestBuilder
-//                .transition(new DrawableTransitionOptions())
-//                .apply(DECODE_TYPE_GIF);
-//    }
 }

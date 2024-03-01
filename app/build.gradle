@@ -5,6 +5,7 @@ plugins {
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.firebase-perf")
+    id("com.google.devtools.ksp")
 }
 //bugly {
 //    appId = '3d62251014'
@@ -170,6 +171,7 @@ android {
     }
 }
 dependencies {
+    ksp 'com.github.bumptech.glide:compiler:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     project.depsConfig("implementation", "hotel-bundle1")
