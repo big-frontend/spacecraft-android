@@ -1,6 +1,0 @@
--keep public class com.tencent.bugly.**{*;}
--keep public class com.jamesfchen.bundle2.Bundle2ActivityKt
--keep public class com.jamesfchen.bundle2.Bundle2Activity
--keep public class com.jamesfchen.foundation.dangrous.Test2
--keep public class com.jamesfchen.main.HotelApp
--keep public class com.jamesfchen.main.HotelAppKt

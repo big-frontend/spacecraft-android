@@ -1,6 +1,0 @@
-android/support/multidex/MultiDex.class
-com/jamesfchen/foundation/dangrous/Test2.class
-com/jamesfchen/bundle2/Bundle2Activity.class
-com/jamesfchen/bundle2/Bundle2ActivityKt.class
-com/jamesfchen/main/HotelApp.class
-com/jamesfchen/main/HotelAppKt.class

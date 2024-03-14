@@ -1,12 +1,10 @@
 package com.jamesfchen.loader.androidxstartup
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
 import com.blankj.utilcode.util.ProcessUtils
 import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
 import com.google.firebase.perf.metrics.AddTrace
 import com.jamesfchen.base.BuildConfig
 import com.jamesfchen.loader.SApp

@@ -33,7 +33,7 @@ dependencies {
     implementation project.moduleify("account-module")
     implementation project.moduleify('hotel-export')
     implementation project.moduleify('framework-base')
-    ksp 'com.github.bumptech.glide:compiler:4.11.0'
+//    ksp 'com.github.bumptech.glide:compiler:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'

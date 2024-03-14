@@ -1,16 +1,12 @@
 plugins {
     id "io.github.jamesfchen.app-plugin"
     id("com.google.gms.google-services")
-    id("io.sentry.android.gradle")
+//    id("io.sentry.android.gradle")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.firebase-perf")
     id("com.google.devtools.ksp")
 }
-//bugly {
-//    appId = '3d62251014'
-//    appKey = 'a15ecf84-1786-40c6-abf5-fe975fce22e6'
-//}
 apply from: "$rootDir/script/app_config.gradle"
 android {
     ndkVersion = "22.0.7026061"
@@ -52,8 +48,9 @@ android {
 //                artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
             }
             firebaseCrashlytics {
-                nativeSymbolUploadEnabled false
-                mappingFileUploadEnabled false
+                nativeSymbolUploadEnabled true
+                mappingFileUploadEnabled true
+                unstrippedNativeLibsDir = "$buildDir/intermediates/merged_native_libs/release/out/lib/arm64-v8a"
             }
             minifyEnabled true
             shrinkResources true
@@ -73,6 +70,8 @@ android {
             ext.enableCrashlytics = false
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
+                nativeSymbolUploadEnabled true
+                unstrippedNativeLibsDir = "$buildDir/intermediates/merged_native_libs/debug/out/lib/arm64-v8a"
             }
             minifyEnabled false
             shrinkResources false
@@ -171,7 +170,7 @@ android {
     }
 }
 dependencies {
-    ksp 'com.github.bumptech.glide:compiler:4.11.0'
+//    ksp 'com.github.bumptech.glide:compiler:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     project.depsConfig("implementation", "hotel-bundle1")

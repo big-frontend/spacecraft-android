@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:28459008283:android:51b9d720bf868818de13be",
+        "mobilesdk_app_id": "1:28459008283:android:709f03bfcc12addede13be",
         "android_client_info": {
-          "package_name": "com.electrolytej.pisces"
+          "package_name": "com.electrolytej.spacecraft"
         }
       },
       "oauth_client": [
         {
-          "client_id": "28459008283-bk95oobln3ensb02hfgv1ppc7simle7n.apps.googleusercontent.com",
+          "client_id": "28459008283-1dudvvp1bf11i2hsa0gmsquaad43cl9h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.electrolytej.pisces",
+            "package_name": "com.electrolytej.spacecraft",
             "certificate_hash": "a74f05977d5da7f98d24ccd05e31b27cf7099f4d"
           }
         },
@@ -28,6 +28,9 @@
         }
       ],
       "api_key": [
+        {
+          "current_key": "AIzaSyDbYiB79OTeZ_fcA59AzDSl8b2WTdrgjhc"
+        },
         {
           "current_key": "AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY"
         }
@@ -40,10 +43,10 @@
               "client_type": 3
             },
             {
-              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
+              "client_id": "28459008283-ts9n9eqk5ekb3s7jqqedd9r5bitjso8k.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.hawksjamesf.spacecraft.debug"
+                "bundle_id": "com.jamesfchen.b"
               }
             }
           ]
@@ -65,6 +68,9 @@
       ],
       "api_key": [
         {
+          "current_key": "AIzaSyDbYiB79OTeZ_fcA59AzDSl8b2WTdrgjhc"
+        },
+        {
           "current_key": "AIzaSyC17Cg6xF-jk_ABR3_6OtYD3VBWFeoXKWY"
         }
       ],
@@ -76,10 +82,10 @@
               "client_type": 3
             },
             {
-              "client_id": "28459008283-c2a9efeesli3pk3b02m96gbralmu3ha3.apps.googleusercontent.com",
+              "client_id": "28459008283-ts9n9eqk5ekb3s7jqqedd9r5bitjso8k.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.hawksjamesf.spacecraft.debug"
+                "bundle_id": "com.jamesfchen.b"
               }
             }
           ]

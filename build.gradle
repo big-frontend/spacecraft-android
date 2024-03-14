@@ -27,8 +27,8 @@ buildscript {
         classpath "cn.hikyson.methodcanary:plugin:0.15.5"
 
         classpath "io.github.jamesfchen:bundles-assembler-plugin:1.7.1"
-//        classpath "io.github.jamesfchen:ibc-plugin:${rootProject.IBCROUTER_VERSION}"
-        classpath "com.alibaba:arouter-register:1.0.2"
+        classpath "io.github.jamesfchen:ibc-plugin:${rootProject.IBCROUTER_VERSION}"
+//        classpath "com.alibaba:arouter-register:1.0.2"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${NAVIGATION_VERSION}"
         classpath "io.github.jamesfchen:module-publisher-plugin:1.4.3"
     }
@@ -40,7 +40,7 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.8.22' apply(false)
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.22' apply(false)
     id("com.google.devtools.ksp") version "1.8.22-1.0.11" apply(false)
-    id("com.google.gms.google-services") version "4.4.0" apply(false)
+    id("com.google.gms.google-services") version "4.3.15" apply(false)
     id("io.sentry.android.gradle") version "4.1.0" apply(false)
     id("com.google.firebase.crashlytics") version "2.9.4" apply(false)
     id("com.google.firebase.appdistribution") version "4.0.0" apply(false)

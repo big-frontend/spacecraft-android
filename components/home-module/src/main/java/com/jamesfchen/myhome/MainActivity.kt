@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.jamesfchen.h5container.WebViewActivity
 import com.jamesfchen.myhome.databinding.ActivityMainBinding
+import com.jamesfchen.myhome.network.Crypto
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,5 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //native  crash
+        Crypto.getClientKey("",0L)
     }
 }
