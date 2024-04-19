@@ -29,6 +29,9 @@ android {
         }
     }
     namespace 'com.media.camera.preview'
+    buildFeatures {
+        prefab true
+    }
 }
 
 dependencies {
@@ -40,4 +43,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'
     testImplementation 'junit:junit:4.13.2'
+    implementation 'com.facebook.fbjni:fbjni:0.6.0'
 }
