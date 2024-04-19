@@ -103,6 +103,12 @@
       "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":lint-rules"
+    },
+    {
+      "simpleName": "livestreaming-module",
+      "format": "bundle",
+      "group": "livestreaming",
+      "sourcePath": ":components:livestreaming-module"
     }
   ]
 }
