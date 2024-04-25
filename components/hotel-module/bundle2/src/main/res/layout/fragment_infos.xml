@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.jamesfchen.main.InfosViewModel" />
+            type="com.jamesfchen.bundle2.InfosViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

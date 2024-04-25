@@ -13,11 +13,19 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.jamesfchen.bundle2.kk.PagerViewActivity
 import com.jamesfchen.bundle2.launchmode.SpringBoardActivity
 import java.io.File
 
-class Bundle2Activity : ComponentActivity() {
+class Bundle2Activity : AppCompatActivity() {
+    val navCtrl: NavController by lazy {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        return@lazy navHostFragment.navController
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val file = File("/data/local/tmp/uidump.xml")
@@ -36,6 +44,9 @@ class Bundle2Activity : ComponentActivity() {
         //        startActivity(new Intent(this, Bundle1Activity.class));
         finish()
 
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        return navCtrl.navigateUp() || super.onSupportNavigateUp()
     }
 }
 

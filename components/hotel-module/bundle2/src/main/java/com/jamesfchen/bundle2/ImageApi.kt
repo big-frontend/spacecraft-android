@@ -1,11 +1,11 @@
-package com.jamesfchen.main
+package com.jamesfchen.bundle2
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 
-fun getImageApi():ImageApi{
+fun getImageApi(): ImageApi {
     return Retrofit.Builder()
         .baseUrl(BuildConfig.IMAGE_BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())

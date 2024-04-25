@@ -87,12 +87,6 @@
       "sourcePath": ":components:hotel-module:foundation"
     },
     {
-      "simpleName": "box-module",
-      "format": "bundle",
-      "group": "box",
-      "sourcePath": ":components:box-module"
-    },
-    {
       "simpleName": "framework-base",
       "format": "framework_foundation",
       "group": "fwk",

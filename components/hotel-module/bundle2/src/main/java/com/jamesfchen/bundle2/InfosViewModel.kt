@@ -1,15 +1,11 @@
-package com.jamesfchen.main
+package com.jamesfchen.bundle2
 
 import android.util.Log
 import androidx.databinding.*
 import androidx.lifecycle.viewModelScope
-import com.jamesfchen.mian.ObservableViewModel
-import io.reactivex.Observable
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
 
 class InfosViewModel : ObservableViewModel() {
     val notification = ObservableField<String>()

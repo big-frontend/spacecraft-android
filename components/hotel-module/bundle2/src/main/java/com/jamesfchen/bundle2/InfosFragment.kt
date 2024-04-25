@@ -1,4 +1,4 @@
-package com.jamesfchen.main
+package com.jamesfchen.bundle2
 
 import android.content.ComponentName
 import android.content.Context
@@ -14,33 +14,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.core.view.drawToBitmap
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import com.jamesfchen.common.util.ConvertUtil.dp2px
-import com.jamesfchen.main.databinding.FragmentInfosBinding
-import com.jamesfchen.mockserver.service.MockIntentService
-import io.reactivex.Observable
+import com.jamesfchen.bundle2.databinding.FragmentInfosBinding
+import com.jamesfchen.util.ConvertUtil.dp2px
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.internal.wait
-import java.util.concurrent.TimeUnit
 
 class InfosFragment : Fragment() {
     lateinit var binding: FragmentInfosBinding
-    val infoViewModel: InfosViewModel by viewModels()
-    val mainViewModel by activityViewModels<MainViewModel>()
+    val infoViewModel: InfosViewModel by viewModels<InfosViewModel>()
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }
@@ -112,14 +102,6 @@ class InfosFragment : Fragment() {
                         override fun onLoadCleared(placeholder: Drawable?) {
                         }
                     })
-                MyIntentService.bindAndStartService(requireContext(), object : ServiceConnection {
-                    override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-
-                    }
-
-                    override fun onServiceDisconnected(name: ComponentName?) {
-                    }
-                })
             }
         }
 

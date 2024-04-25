@@ -1,12 +1,10 @@
-package com.jamesfchen.main
+package com.jamesfchen.bundle2.customview
 
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Log
-import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
