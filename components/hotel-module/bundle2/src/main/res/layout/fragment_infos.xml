@@ -39,7 +39,7 @@
             app:layout_constraintVertical_chainStyle="spread"
             tools:text="adsfasdf" />
 
-        <com.jamesfchen.main.PoemView
+        <com.jamesfchen.bundle2.customview.PoemView
             android:id="@+id/myTextView"
             poem="@={viewmodel.notification}"
             android:layout_width="wrap_content"
