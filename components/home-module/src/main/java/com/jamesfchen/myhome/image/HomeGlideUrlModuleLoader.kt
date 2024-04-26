@@ -3,7 +3,7 @@ package com.jamesfchen.myhome.image
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.model.*
 import com.bumptech.glide.load.model.stream.BaseGlideUrlLoader
-import com.jamesfchen.myhome.screen.newfeeds.model.Photo
+import com.jamesfchen.myhome.image.model.Photo
 import java.io.InputStream
 
 /**

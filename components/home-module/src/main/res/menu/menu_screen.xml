@@ -21,8 +21,13 @@
         android:id="@+id/dest_profile"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="我" />
+<!--    <item-->
+<!--        android:id="@+id/dest_windows"-->
+<!--        android:icon="@drawable/ic_window_24"-->
+<!--        android:title="多窗口" />-->
+
     <item
-        android:id="@+id/dest_windows"
-        android:icon="@drawable/ic_window_24"
-        android:title="多窗口" />
+        android:id="@+id/dest_bundle2"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="bundle2" />
 </menu>

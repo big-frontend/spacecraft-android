@@ -6,7 +6,7 @@
     app:startDestination="@id/dest_blank_splash">
     <fragment
         android:id="@+id/dest_blank_splash"
-        android:name="com.jamesfchen.myhome.screen.BlankSplashFragment"
+        android:name="com.jamesfchen.myhome.page.BlankSplashFragment"
         android:label="fragment_blank_splash"
         tools:layout="@layout/fragment_blank_splash">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/dest_ad_splash"
-        android:name="com.jamesfchen.myhome.screen.ad.AdFragment"
+        android:name="com.jamesfchen.myhome.page.ad.AdFragment"
         android:label="fragment_ad_splash"
         tools:layout="@layout/fragment_ad">
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/dest_welcome_splash"
-        android:name="com.jamesfchen.myhome.screen.welcome.WelcomeFragment"
+        android:name="com.jamesfchen.myhome.page.welcome.WelcomeFragment"
         android:label="fragment_welcome_splash"
         tools:layout="@layout/fragment_welcome">
         <action
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/dest_screen"
-        android:name="com.jamesfchen.myhome.screen.MainScreenFragment"
+        android:name="com.jamesfchen.myhome.page.MainScreenFragment"
         android:label="fragment_screen"
         tools:layout="@layout/fragment_screen">
 

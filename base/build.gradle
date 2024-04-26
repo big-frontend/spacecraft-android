@@ -74,10 +74,7 @@ android{
     }
 }
 dependencies {
-
-    api  'io.github.jamesfchen:retrofit:1.0.0'
 //    api "io.github.jamesfchen:react-native:0.70.5-SNAPSHOT"
-
     testImplementation files('libs/jsoup-1.12.1.jar')
 //    api project(path: ':framework:common')
 //    api project(path: ':mockserver')
@@ -92,10 +89,15 @@ dependencies {
     */
 
     //restful
+    api 'io.github.jamesfchen:retrofit:1.0.0'
 //    api "com.squareup.retrofit2:adapter-rxjava3:${RETROFIT_VERSION}"
 //    api "com.squareup.retrofit2:converter-wire:${RETROFIT_VERSION}"
-//    api "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
-//    api "com.squareup.retrofit2:converter-moshi:2.9.0"
+    api("com.squareup.retrofit2:converter-gson:2.11.0") {
+        exclude group: 'com.squareup.retrofit2', module: 'retrofit'
+    }
+    api("com.squareup.retrofit2:converter-moshi:2.11.0") {
+        exclude group: 'com.squareup.retrofit2', module: 'retrofit'
+    }
 //    api "com.squareup.retrofit2:converter-protobuf:2.9.0"
     //rpc
 //    api("io.grpc:grpc-protobuf-lite:${rootProject.ext.grpcVersion}") {//存在依赖冲突

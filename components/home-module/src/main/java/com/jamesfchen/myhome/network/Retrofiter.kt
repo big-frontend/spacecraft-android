@@ -71,7 +71,7 @@ object Retrofiter {
     }
 
     @JvmStatic
-    fun <T> createApi(service: Class<T>): T? =
+    fun <T> createApi(service: Class<T>): T =
         Retrofit.Builder().baseUrl(BASE_URL).callFactory(OkHttpCallFactory.create(okHttpClient))
 //            .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
@@ -83,5 +83,4 @@ object Retrofiter {
 //            .addConverterFactory(WireConverterFactory.create())
             .build()
             .create(service)
-
 }

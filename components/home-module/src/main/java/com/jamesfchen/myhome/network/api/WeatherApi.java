@@ -1,8 +1,8 @@
 package com.jamesfchen.myhome.network.api;
 
 
-import com.jamesfchen.myhome.model.ListRes;
-import com.jamesfchen.myhome.model.WeatherData;
+import com.jamesfchen.myhome.network.model.ListRes;
+import com.jamesfchen.myhome.network.model.WeatherData;
 import com.jamesfchen.myhome.network.Retrofiter;
 
 import io.reactivex.Observable;

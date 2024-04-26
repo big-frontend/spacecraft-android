@@ -6,7 +6,7 @@
     app:startDestination="@id/dest_home">
     <fragment
         android:id="@+id/dest_home"
-        android:name="com.jamesfchen.myhome.screen.home.HomeFragment"
+        android:name="com.jamesfchen.myhome.page.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <!--app:destination="@id/flow_step_two_dest"/>-->
@@ -35,13 +35,13 @@
     </fragment>
     <fragment
         android:id="@+id/dest_new_feeds"
-        android:name="com.jamesfchen.myhome.screen.newfeeds.NewFeedsFragment"
+        android:name="com.jamesfchen.myhome.page.newfeeds.NewFeedsFragment"
         android:label="fragment_newfeeds"
         >
     </fragment>
     <fragment
         android:id="@+id/dest_infos"
-        android:name="com.jamesfchen.myhome.screen.notification.InfosFragment"
+        android:name="com.jamesfchen.myhome.page.notification.InfosFragment"
         android:label="fragment_infos"
         tools:layout="@layout/fragment_infos">
         <!--app:destination="@id/flow_step_two_dest"/>-->
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/dest_profile"
-        android:name="com.jamesfchen.myhome.screen.profile.ProfileFragment"
+        android:name="com.jamesfchen.myhome.page.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <!--app:destination="@id/flow_step_two_dest"/>-->
@@ -66,10 +66,16 @@
     </fragment>
     <fragment
         android:id="@+id/dest_windows"
-        android:name="com.jamesfchen.myhome.screen.window.WindowFragment"
+        android:name="com.jamesfchen.myhome.page.window.WindowFragment"
         android:label="fragment_window"
         tools:layout="@layout/fragment_window">
     </fragment>
+    <fragment
+        android:id="@+id/dest_bundle2"
+        android:name="com.jamesfchen.bundle2.Bundle2Fragment"
+        android:label="fragment_bundle2">
+    </fragment>
+
     <activity
         android:id="@+id/dest_settings"
         android:name="com.jamesfchen.h5container.WebViewActivity"
@@ -83,13 +89,13 @@
     </activity>
     <activity
         android:id="@+id/dest_change_icon"
-        android:name="com.jamesfchen.myhome.screen.profile.ChangeIconActivity"
+        android:name="com.jamesfchen.myhome.page.profile.ChangeIconActivity"
         android:label="changeIcon">
     </activity>
 
     <fragment
         android:id="@+id/fragment_flow_step_one_dest"
-        android:name="com.jamesfchen.myhome.screen.home.FlowStepFragment"
+        android:name="com.jamesfchen.myhome.page.home.FlowStepFragment"
         android:label="fragment_flow_step_one"
         tools:layout="@layout/fragment_flow_step_one">
         <argument
@@ -104,7 +110,7 @@
 
     <fragment
         android:id="@+id/fragment_flow_step_two_dest"
-        android:name="com.jamesfchen.myhome.screen.home.FlowStepFragment"
+        android:name="com.jamesfchen.myhome.page.home.FlowStepFragment"
         android:label="fragment_flow_step_two"
         tools:layout="@layout/fragment_flow_step_two">
         <argument
@@ -118,7 +124,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_deep_link"
-        android:name="com.jamesfchen.myhome.screen.home.DeepLinkFragment"
+        android:name="com.jamesfchen.myhome.page.home.DeepLinkFragment"
         android:label="fragment_deep_link"
         tools:layout="@layout/fragment_deep_link">
 

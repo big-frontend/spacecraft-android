@@ -56,9 +56,9 @@
         </activity-alias>
 
         <activity
-            android:name=".screen.profile.ProfileDetailActivity"
+            android:name=".page.profile.ProfileDetailActivity"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".screen.profile.SettingsActivity" />
+        <activity android:name=".page.profile.SettingsActivity" />
         <activity
             android:exported="true"
             android:name="com.jamesfchen.h5container.WebViewActivity"
@@ -109,13 +109,13 @@
         </receiver>
 
         <activity
-            android:name=".screen.newfeeds.PhotoActivity"
+            android:name=".page.photo.PhotoActivity"
             android:label="PhotoActivity"
             android:theme="@style/PhotoTheme" />
         <activity
-            android:name=".screen.newfeeds.LargePhotoActivity"
+            android:name=".page.photo.LargePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".screen.profile.ChangeIconActivity" />
+        <activity android:name=".page.profile.ChangeIconActivity" />
         <activity android:name=".GalleryActivity" />
     </application>
 

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 fun getImageApi(): ImageApi {
     return Retrofit.Builder()
-        .baseUrl(BuildConfig.IMAGE_BASE_URL)
+        .baseUrl("")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(ImageApi::class.java)

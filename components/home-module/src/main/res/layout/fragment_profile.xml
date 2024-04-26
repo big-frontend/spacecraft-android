@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".screen.profile.ProfileFragment">
+    tools:context=".page.profile.ProfileFragment">
 
     <TextView
         android:layout_width="200dp"
