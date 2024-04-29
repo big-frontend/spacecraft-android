@@ -69,7 +69,7 @@ class BlankSplashFragment : AbsPermissionsFragment() {
 
                 when (index % 3) {
                     0 -> {
-                        BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
+//                        BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
                         findNavController().navigate(R.id.action_screen)
                     }
                     1 -> {

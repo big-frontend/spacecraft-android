@@ -22,7 +22,7 @@ import com.jamesfchen.base.databinding.ActivityWebviewBinding
  * @email: hawksjamesf@gmail.com
  * @since: Aug/24/2020  Mon
  */
-class WebViewActivity : AppCompatActivity() {
+open class WebViewActivity : AppCompatActivity() {
     companion object {
         @JvmStatic
         fun startActivity(context: Context) {
@@ -48,14 +48,14 @@ class WebViewActivity : AppCompatActivity() {
         val binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         intent.getStringExtra("url")?.let { url ->
-            val renderer: BaseGLRenderer = DefaultRenderer(
-                this,
-                ScreenUtils.getAppScreenWidth(),
-                ScreenUtils.getAppScreenHeight()
-            )
-            binding.glSurfaceView.setEGLContextClientVersion(2);
-            binding.glSurfaceView.setRenderer(renderer)
-            binding.wv.setViewToGLRenderer(renderer)
+//            val renderer: BaseGLRenderer = DefaultRenderer(
+//                this,
+//                ScreenUtils.getAppScreenWidth(),
+//                ScreenUtils.getAppScreenHeight()
+//            )
+//            binding.glSurfaceView.setEGLContextClientVersion(2);
+//            binding.glSurfaceView.setRenderer(renderer)
+//            binding.wv.setViewToGLRenderer(renderer)
             binding.wv.loadUrl(url)
             binding.wv.webViewClient = object : WebViewClient() {
                 override fun onReceivedSslError(

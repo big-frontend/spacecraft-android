@@ -6,7 +6,6 @@ apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
     buildFeatures {
         dataBinding true
-        viewBinding true
     }
 }
 dependencies {

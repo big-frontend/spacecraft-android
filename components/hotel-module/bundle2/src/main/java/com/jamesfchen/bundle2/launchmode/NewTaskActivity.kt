@@ -10,9 +10,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.databinding.ActivityWebviewBinding
-import android.app.ActivityManager
-import android.app.ActivityManager.AppTask
+import com.jamesfchen.base.databinding.ActivityWebviewBinding
 
 
 /**

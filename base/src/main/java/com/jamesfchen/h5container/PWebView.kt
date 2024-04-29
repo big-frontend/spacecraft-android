@@ -18,7 +18,7 @@ class PWebView @JvmOverloads constructor(
     attrs,
     defStyleAttr
 ) {
-    private lateinit var mBaseGLRenderer: BaseGLRenderer
+    private var mBaseGLRenderer: BaseGLRenderer? = null
 
     /**
      * 在App渲染UI的第一阶段，Android WebView的成员函数onDraw会被调用。
@@ -28,7 +28,7 @@ class PWebView @JvmOverloads constructor(
      */
     override fun onDraw(canvas: Canvas) {
         //returns canvas attached to gl texture to draw on
-        val glAttachedCanvas: Canvas = mBaseGLRenderer.onDrawViewBegin()
+        val glAttachedCanvas: Canvas? = mBaseGLRenderer?.onDrawViewBegin()
         if (glAttachedCanvas != null) {
             //translate canvas to reflect view scrolling
             val xScale = glAttachedCanvas.width / canvas.width.toFloat()
@@ -38,7 +38,7 @@ class PWebView @JvmOverloads constructor(
             super.onDraw(glAttachedCanvas)
         }
         // notify the canvas is updated
-        mBaseGLRenderer.onDrawViewEnd()
+        mBaseGLRenderer?.onDrawViewEnd()
     }
 
     fun setViewToGLRenderer(viewTOGLRenderer: BaseGLRenderer) {
