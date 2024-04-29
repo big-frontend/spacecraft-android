@@ -17,8 +17,6 @@ import android.os.Looper;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.jamesfchen.bundle2.service.Constants;
-
 import static com.jamesfchen.bundle2.util.LbsUtils.TAG_service;
 
 

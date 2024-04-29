@@ -17,8 +17,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 
-import com.jamesfchen.bundle2.service.Constants;
-
 import static com.jamesfchen.bundle2.util.LbsUtils.TAG_service;
 
 public class LbsJobIntentService extends JobIntentService {

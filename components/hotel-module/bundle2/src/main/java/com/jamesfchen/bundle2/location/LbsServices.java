@@ -34,7 +34,6 @@ import com.jamesfchen.bundle2.R;
 import com.jamesfchen.bundle2.location.model.AppCellInfo;
 import com.jamesfchen.bundle2.location.model.AppLocation;
 import com.jamesfchen.bundle2.page.map.MapActivity;
-import com.jamesfchen.bundle2.service.WifiReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

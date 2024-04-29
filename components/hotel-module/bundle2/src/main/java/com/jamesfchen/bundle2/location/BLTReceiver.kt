@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.service
+package com.jamesfchen.bundle2.location
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice

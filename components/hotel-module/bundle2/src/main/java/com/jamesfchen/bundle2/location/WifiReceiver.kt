@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.service
+package com.jamesfchen.bundle2.location
 
 import android.content.BroadcastReceiver
 import android.content.Context
