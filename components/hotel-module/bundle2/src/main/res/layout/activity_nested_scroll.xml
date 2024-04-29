@@ -7,7 +7,7 @@
     <!--        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"-->
     <!--    <ScrollView-->
 <!--        <androidx.core.widget.NestedScrollView-->
-    <com.jamesfchen.bundle2.customview.scrollExprimental.SuperScrollView
+    <com.jamesfchen.bundle2.page.customview.scrollExprimental.SuperScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -98,7 +98,7 @@
 
 
         </LinearLayout>
-    </com.jamesfchen.bundle2.customview.scrollExprimental.SuperScrollView>
+    </com.jamesfchen.bundle2.page.customview.scrollExprimental.SuperScrollView>
 <!--        </androidx.core.widget.NestedScrollView>-->
     <!--    </ScrollView>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

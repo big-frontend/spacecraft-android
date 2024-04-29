@@ -48,7 +48,7 @@
                 android:value="androidx.startup" />
         </provider>
         <activity
-            android:name="com.jamesfchen.map.MapActivity"
+            android:name="com.jamesfchen.map.page.map.MapActivity"
             android:label="map page"
             android:hardwareAccelerated="true">
             <!--            <intent-filter>-->
@@ -69,7 +69,7 @@
 
         <activity
             android:label="location page"
-            android:name="com.jamesfchen.map.LocationActivity"
+            android:name="com.jamesfchen.map.page.location.LocationActivity"
             android:hardwareAccelerated="true">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->

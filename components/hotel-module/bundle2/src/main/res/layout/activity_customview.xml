@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.jamesfchen.bundle2.customview.CustomViewGroup
+    <com.jamesfchen.bundle2.page.customview.CustomViewGroup
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/apricot">
 
-        <com.jamesfchen.bundle2.customview.CustomView
+        <com.jamesfchen.bundle2.page.customview.CustomView
             android:id="@+id/cv"
             android:layout_width="100dp"
             android:layout_height="200dp"
@@ -18,9 +18,9 @@
             android:text="asdfasdfasf"
             android:textColor="@color/apricot"
             android:textSize="40sp" />
-    </com.jamesfchen.bundle2.customview.CustomViewGroup>
+    </com.jamesfchen.bundle2.page.customview.CustomViewGroup>
 
-    <com.jamesfchen.bundle2.SignatureView
+    <com.jamesfchen.map.widget.SignatureView
         android:id="@+id/sign"
         android:layout_width="match_parent"
         android:layout_height="400dp" />

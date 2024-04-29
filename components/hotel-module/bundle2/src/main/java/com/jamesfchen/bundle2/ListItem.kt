@@ -2,6 +2,7 @@ package com.jamesfchen.bundle2
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.jamesfchen.bundle2.BR
 
 class ListItem : BaseObservable() {
     @get:Bindable

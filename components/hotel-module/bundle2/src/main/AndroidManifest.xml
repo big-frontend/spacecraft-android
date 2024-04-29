@@ -8,29 +8,29 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".Bundle2Activity"
+            android:name="com.jamesfchen.map.Bundle2Activity"
             android:exported="true"
             android:theme="@style/Theme.SpacecraftAndroid.NoActionBar" />
 
         <activity android:name="com.jamesfchen.bundle2.customview.recyclerview.RecyclerViewActivity" />
-        <activity android:name="com.jamesfchen.bundle2.customview.animationsExprimental.AnimActivity" />
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.AnimActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.animationsExprimental.DetailActivity"
+            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.DetailActivity"
             android:theme="@style/BaseAppTheme.DetailTheme" />
-        <activity android:name="com.jamesfchen.bundle2.customview.animationsExprimental.LottieActivity" />
-        <activity android:name="com.jamesfchen.bundle2.customview.animationsExprimental.FrameAnimationActivity" />
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.LottieActivity" />
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.FrameAnimationActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.animationsExprimental.TransitionForViewActivity"
+            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.TransitionForViewActivity"
             android:theme="@style/BaseAppTheme" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.animationsExprimental.TransitionForActivityActivity"
+            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.TransitionForActivityActivity"
             android:theme="@style/BaseAppTheme.ListTheme" />
 
-        <activity android:name="com.jamesfchen.bundle2.customview.scrollExprimental.ScrollableActivity" />
-        <activity android:name="com.jamesfchen.bundle2.customview.scrollExprimental.NestedScrollActivity" />
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.scrollExprimental.ScrollableActivity" />
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.scrollExprimental.NestedScrollActivity" />
         <activity android:name="com.jamesfchen.bundle2.customview.gesture.GestureActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.ConstraintAndFlexBoxActivity"
+            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.newLayoutExprimental.ConstraintAndFlexBoxActivity"
             android:exported="true" />
         <activity
             android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.ConstraintPerformanceActivity"
@@ -40,9 +40,9 @@
             android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.CoordinatorLayoutActivity"
             android:exported="true" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.CustomViewActivity"
+            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.CustomViewActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.jamesfchen.bundle2.customview.DispatchEventActivity" />
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.DispatchEventActivity" />
         <activity android:name="com.jamesfchen.bundle2.customview.testStyle.TextStyleActivity" />
         <activity
             android:name="com.jamesfchen.bundle2.customview.testStyle.SearchActivity"
@@ -55,8 +55,8 @@
             android:label="@string/title_activity_drawable"
             android:theme="@style/AppTheme"/>
         <activity android:name=".launchmode.SpringBoardActivity"/>
-        <activity android:name="com.jamesfchen.bundle2.feedback.FeedbackUtilActivity" android:theme="@style/Theme.AppCompat.Light"/>
-        <activity android:name="com.jamesfchen.bundle2.bottomupDialog.BottomUpActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.feedback.FeedbackUtilActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.bottomupDialog.BottomUpActivity" android:theme="@style/Theme.AppCompat.Light"/>
 
         <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2NewTaskActivity" android:theme="@style/Theme.AppCompat.Light"/>
         <!--        singleTask(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)：

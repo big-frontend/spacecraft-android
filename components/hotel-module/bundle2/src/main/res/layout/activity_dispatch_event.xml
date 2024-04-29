@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.jamesfchen.bundle2.customview.scrollExprimental.B
+    <com.jamesfchen.bundle2.page.customview.scrollExprimental.B
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:background="@color/afasf"
@@ -54,9 +54,9 @@
 
 
         </com.jamesfchen.bundle2.customview.scrollExprimental.BB>
-    </com.jamesfchen.bundle2.customview.scrollExprimental.B>
+    </com.jamesfchen.bundle2.page.customview.scrollExprimental.B>
 
-    <com.jamesfchen.bundle2.customview.scrollExprimental.A
+    <com.jamesfchen.bundle2.page.customview.scrollExprimental.A
         android:layout_width="match_parent"
         android:background="@color/apricot"
         android:layout_height="match_parent">
@@ -65,6 +65,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />
-    </com.jamesfchen.bundle2.customview.scrollExprimental.A>
+    </com.jamesfchen.bundle2.page.customview.scrollExprimental.A>
 
 </LinearLayout>
