@@ -36,6 +36,8 @@ class PWebView @JvmOverloads constructor(
             glAttachedCanvas.translate(-scrollX.toFloat(), -scrollY.toFloat())
             //draw the view to provided canvas
             super.onDraw(glAttachedCanvas)
+        } else {
+            super.onDraw(canvas)
         }
         // notify the canvas is updated
         mBaseGLRenderer?.onDrawViewEnd()

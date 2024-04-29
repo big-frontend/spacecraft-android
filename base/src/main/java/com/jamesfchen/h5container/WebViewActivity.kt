@@ -8,7 +8,9 @@ import android.net.Uri
 import android.net.http.SslError
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.webkit.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ScreenUtils
 import com.jamesfchen.base.databinding.ActivityWebviewBinding
@@ -57,6 +59,7 @@ open class WebViewActivity : AppCompatActivity() {
 //            binding.glSurfaceView.setRenderer(renderer)
 //            binding.wv.setViewToGLRenderer(renderer)
             binding.wv.loadUrl(url)
+
             binding.wv.webViewClient = object : WebViewClient() {
                 override fun onReceivedSslError(
                     view: WebView,
@@ -67,7 +70,25 @@ open class WebViewActivity : AppCompatActivity() {
                     handler.proceed()
                     //handleMessage(Message msg); 其他处理
                 }
+
                 // 这行代码一定加上否则效果不会出现
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    binding.lpi.visibility = View.GONE
+                }
+
+                override fun shouldOverrideUrlLoading(
+                    view: WebView?,
+                    request: WebResourceRequest?
+                ): Boolean {
+                    Toast.makeText(this@WebViewActivity, "url:${request?.url}", Toast.LENGTH_SHORT)
+                        .show()
+                    val i = Intent(Intent.ACTION_VIEW, request?.url)
+                    startActivity(i)
+                    return true
+//                    return super.shouldOverrideUrlLoading(view, request)
+
+                }
             }
             binding.wv.settings.javaScriptEnabled = true
             binding.wv.settings.javaScriptCanOpenWindowsAutomatically = true

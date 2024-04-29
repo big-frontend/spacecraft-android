@@ -3,19 +3,19 @@
 
     <application>
         <activity
-            android:name=".page.detal.DetailActivity"
+            android:name=".page.detail.DetailActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="www.j.com"
-                    android:path="/web"
+                    android:host="a.spacecraft.com"
                     android:scheme="ispacecraft" />
+                <!--                    android:path="/detail"-->
             </intent-filter>
         </activity>
     </application>
