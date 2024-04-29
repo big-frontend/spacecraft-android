@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.recyclerview
+package com.jamesfchen.bundle2.page.customview.recyclerview
 
 import android.app.Activity
 import android.os.Bundle

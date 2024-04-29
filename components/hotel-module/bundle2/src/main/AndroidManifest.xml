@@ -8,74 +8,93 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name="com.jamesfchen.map.Bundle2Activity"
+            android:name="com.jamesfchen.bundle2.page.Bundle2Activity"
             android:exported="true"
             android:theme="@style/Theme.SpacecraftAndroid.NoActionBar" />
 
-        <activity android:name="com.jamesfchen.bundle2.customview.recyclerview.RecyclerViewActivity" />
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.AnimActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.recyclerview.RecyclerViewActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.animationsExprimental.AnimActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.DetailActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.animationsExprimental.DetailActivity"
             android:theme="@style/BaseAppTheme.DetailTheme" />
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.LottieActivity" />
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.FrameAnimationActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.animationsExprimental.LottieActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.animationsExprimental.FrameAnimationActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.TransitionForViewActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.animationsExprimental.TransitionForViewActivity"
             android:theme="@style/BaseAppTheme" />
         <activity
-            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.animationsExprimental.TransitionForActivityActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.animationsExprimental.TransitionForActivityActivity"
             android:theme="@style/BaseAppTheme.ListTheme" />
 
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.scrollExprimental.ScrollableActivity" />
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.scrollExprimental.NestedScrollActivity" />
-        <activity android:name="com.jamesfchen.bundle2.customview.gesture.GestureActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.scrollExprimental.ScrollableActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.scrollExprimental.NestedScrollActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.gesture.GestureActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.newLayoutExprimental.ConstraintAndFlexBoxActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.newLayoutExprimental.ConstraintAndFlexBoxActivity"
             android:exported="true" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.ConstraintPerformanceActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.newLayoutExprimental.ConstraintPerformanceActivity"
             android:exported="true"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.newLayoutExprimental.CoordinatorLayoutActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.newLayoutExprimental.CoordinatorLayoutActivity"
             android:exported="true" />
         <activity
-            android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.CustomViewActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.CustomViewActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.customview.DispatchEventActivity" />
-        <activity android:name="com.jamesfchen.bundle2.customview.testStyle.TextStyleActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.DispatchEventActivity" />
+        <activity android:name="com.jamesfchen.bundle2.page.customview.testStyle.TextStyleActivity" />
         <activity
-            android:name="com.jamesfchen.bundle2.customview.testStyle.SearchActivity"
+            android:name="com.jamesfchen.bundle2.page.customview.testStyle.SearchActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
         <activity
-            android:name="com.jamesfchen.bundle2.drawable.DrawableActivity"
+            android:name="com.jamesfchen.bundle2.page.feedback.DrawableActivity"
             android:label="@string/title_activity_drawable"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".launchmode.SpringBoardActivity"/>
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.feedback.FeedbackUtilActivity" android:theme="@style/Theme.AppCompat.Light"/>
-        <activity android:name="com.jamesfchen.bundle2.com.jamesfchen.map.page.bottomupDialog.BottomUpActivity" android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.jamesfchen.bundle2.page.launchmode.SpringBoardActivity" />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.feedback.FeedbackUtilActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.bottomupDialog.BottomUpActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
 
-        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2NewTaskActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.Jump2NewTaskActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
         <!--        singleTask(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)：
                     如果存在FourthActivity，则清除FourthActivity之上的Activity并且推至顶部-->
-        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleTaskInIntentActivity" android:theme="@style/Theme.AppCompat.Light"/>
-        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleTaskInIntentActivity" android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleTaskManifestActivity" android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleTaskInManifestActivity" android:theme="@style/Theme.AppCompat.Light"
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.Jump2SingleTaskInIntentActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.SingleTaskInIntentActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.Jump2SingleTaskManifestActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.SingleTaskInManifestActivity"
+            android:launchMode="singleTask"
             android:taskAffinity="com.jamesfchen.taskAffinity1"
-            android:launchMode="singleTask"/>
+            android:theme="@style/Theme.AppCompat.Light" />
         <!--        独立占用一个task stack-->
-        <activity android:name="com.jamesfchen.bundle2.launchmode.Jump2SingleInstanceManifestActivity" android:theme="@style/Theme.AppCompat.Light"/>
-<!--            android:taskAffinity="com.jamesfchen.taskAffinity2"-->
-        <activity android:name="com.jamesfchen.bundle2.launchmode.SingleInstanceActivity" android:theme="@style/Theme.AppCompat.Light"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".launchmode.NewTaskActivity"
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.Jump2SingleInstanceManifestActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <!--            android:taskAffinity="com.jamesfchen.taskAffinity2"-->
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.SingleInstanceActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.launchmode.NewTaskActivity"
+            android:exported="true"
             android:taskAffinity="com.jamesfchen.taskAffinity3"
-            android:theme="@style/Theme.AppCompat"
-            android:exported="true">
+            android:theme="@style/Theme.AppCompat">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -93,13 +112,56 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".kk.PagerViewActivity"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:exported="true" />
-        <activity android:name=".pulse.PulseActivity"/>
-        <activity android:name=".optimization.OptimizationActivity"
-            />
+            android:name="com.jamesfchen.bundle2.page.kk.PagerViewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name="com.jamesfchen.bundle2.page.feedback.PulseActivity" />
+        />
+        <activity
+            android:name="com.jamesfchen.bundle2.page.map.MapActivity"
+            android:hardwareAccelerated="true"
+            android:label="map page">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--            </intent-filter>-->
+        </activity>
+        <!--        <activity-alias-->
+        <!--            android:name="MapActivity2"-->
+        <!--            android:targetActivity=".MapActivity"-->
+        <!--            android:label="map page2"-->
+        <!--            >-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity-alias>-->
 
+        <activity
+            android:name="com.jamesfchen.bundle2.page.location.LocationActivity"
+            android:hardwareAccelerated="true"
+            android:label="location page">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--                <category android:name="android.intent.category.DEFAULT"/>-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <service
+            android:name="com.jamesfchen.bundle2.location.LbsServices"
+            android:foregroundServiceType="location" />
+        <service
+            android:name="com.jamesfchen.bundle2.location.LbsJobService"
+            android:foregroundServiceType="location"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.jamesfchen.bundle2.location.LbsJobIntentService"
+            android:foregroundServiceType="location"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.amap.api.location.APSService"
+            android:foregroundServiceType="location" />
     </application>
 
 </manifest>

@@ -46,7 +46,7 @@ import com.jamesfchen.bundle2.db.model.LBS;
 import com.jamesfchen.bundle2.location.model.AppCellInfo;
 import com.jamesfchen.bundle2.location.model.AppLocation;
 import com.jamesfchen.bundle2.page.LBSActivity;
-import com.jamesfchen.bundle2.service.ILbsApiClient;
+import com.jamesfchen.bundle2.location.ILbsApiClient;
 import com.jamesfchen.bundle2.util.MapUtil;
 
 import java.security.MessageDigest;

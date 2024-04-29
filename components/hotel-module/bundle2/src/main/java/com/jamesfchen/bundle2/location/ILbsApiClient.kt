@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.service
+package com.jamesfchen.bundle2.location
 
 import android.app.Activity
 import android.content.ComponentName
@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.os.IBinder
 import android.os.RemoteException
 import android.util.Log
-import com.jamesfchen.bundle2.location.ILbsApi
-import com.jamesfchen.bundle2.location.ILbsListener
 import com.jamesfchen.bundle2.location.model.AppCellInfo
 import com.jamesfchen.bundle2.location.model.AppLocation
 import com.jamesfchen.bundle2.page.LBSActivity

@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.service;
+package com.jamesfchen.bundle2.location;
 
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
@@ -6,8 +6,6 @@ import android.os.RemoteException;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jamesfchen.bundle2.location.ILbsApi;
-import com.jamesfchen.bundle2.location.ILbsListener;
 import com.jamesfchen.bundle2.location.model.AppCellInfo;
 import com.jamesfchen.bundle2.location.model.AppLocation;
 import com.jamesfchen.bundle2.location.model.L7;
