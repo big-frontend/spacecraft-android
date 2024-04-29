@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.drawable
+package com.jamesfchen.bundle2.page.feedback
 
 import android.graphics.Color
 import android.graphics.PorterDuff

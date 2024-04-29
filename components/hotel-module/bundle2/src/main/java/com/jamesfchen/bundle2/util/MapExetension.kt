@@ -12,11 +12,11 @@ import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.MarkerOptions
 import com.blankj.utilcode.util.Utils
 import com.jamesfchen.bundle2.page.LBSActivity.TAG
-import com.jamesfchen.bundle2.model.AppCellInfo
-import com.jamesfchen.bundle2.model.AppLocation
+import com.jamesfchen.bundle2.location.model.AppCellInfo
+import com.jamesfchen.bundle2.location.model.AppLocation
 import java.util.*
 
-fun AMap?.addMarker(appLocation: _root_ide_package_.com.jamesfchen.bundle2.model.AppLocation?, appCellInfo: _root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo?) {
+fun AMap?.addMarker(appLocation: AppLocation?, appCellInfo: AppCellInfo?) {
     if (this == null) return
     var cid: Long = 0
     var lac: Long = 0

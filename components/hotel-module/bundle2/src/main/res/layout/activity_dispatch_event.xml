@@ -9,7 +9,7 @@
         android:layout_height="350dp"
         android:background="@color/afasf"
         >
-        <com.jamesfchen.bundle2.customview.scrollExprimental.BB
+        <com.jamesfchen.bundle2.page.customview.scrollExprimental.BB
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -53,7 +53,7 @@
             <!--                android:text="afdadsfasdfa" />-->
 
 
-        </com.jamesfchen.bundle2.customview.scrollExprimental.BB>
+        </com.jamesfchen.bundle2.page.customview.scrollExprimental.BB>
     </com.jamesfchen.bundle2.page.customview.scrollExprimental.B>
 
     <com.jamesfchen.bundle2.page.customview.scrollExprimental.A
@@ -61,7 +61,7 @@
         android:background="@color/apricot"
         android:layout_height="match_parent">
 
-        <com.jamesfchen.bundle2.customview.scrollExprimental.AA
+        <com.jamesfchen.bundle2.page.customview.scrollExprimental.AA
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />

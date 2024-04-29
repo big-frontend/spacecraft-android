@@ -24,25 +24,24 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.jamesfchen.bundle2.R;
+import com.jamesfchen.bundle2.location.ILbsListener;
+import com.jamesfchen.bundle2.location.model.AppCellInfo;
+import com.jamesfchen.bundle2.location.model.AppLocation;
 import com.jamesfchen.bundle2.page.map.MapActivity;
-import com.jamesfchen.bundle2.model.AppCellInfo;
-import com.jamesfchen.bundle2.model.AppLocation;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import androidx.annotation.Nullable;
-
 import static com.jamesfchen.bundle2.util.LbsUtils.TAG_service;
-import static com.jamesfchen.bundle2.service.Constants.MIN_DISTANCE;
-import static com.jamesfchen.bundle2.service.Constants.MIN_TIMES;
 
 
 public class LbsServices extends Service {

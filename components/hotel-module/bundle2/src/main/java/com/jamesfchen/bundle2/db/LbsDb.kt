@@ -6,8 +6,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.jamesfchen.map.db.dao.LbsDao
-import com.jamesfchen.map.db.model.LBS
+import com.jamesfchen.bundle2.db.dao.LbsDao
+import com.jamesfchen.bundle2.db.model.LBS
 
 @Database(entities = [LBS::class], version = 1,exportSchema = false)
 abstract class LbsDb : RoomDatabase() {

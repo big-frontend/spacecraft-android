@@ -9,6 +9,9 @@ import androidx.paging.PagedList
 import com.blankj.utilcode.util.NetworkUtils
 import com.jamesfchen.bundle2.databinding.ActivityLocationBinding
 import com.jamesfchen.bundle2.db.model.LBS
+import com.jamesfchen.bundle2.location.ILbsListener
+import com.jamesfchen.bundle2.location.model.AppCellInfo
+import com.jamesfchen.bundle2.location.model.AppLocation
 import com.jamesfchen.bundle2.page.LBSActivity
 import com.jamesfchen.util.DeviceUtil
 
@@ -27,10 +30,10 @@ class LocationActivity : LBSActivity() {
             get() = android.os.Process.myPid()
 
         @Throws(RemoteException::class)
-        override fun onLocationChanged(appLocation: _root_ide_package_.com.jamesfchen.bundle2.model.AppLocation?, appCellInfos: List<_root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo>?, count: Long) {
+        override fun onLocationChanged(appLocation: AppLocation?, appCellInfos: List<AppCellInfo>?, count: Long) {
 //            this@LocationActivity.runOnUiThread(Runnable { bt_cellInfos.text = "统计次数：$count" })
             val s = StringBuffer()
-            var appCellInfo: _root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo?=null
+            var appCellInfo: AppCellInfo?=null
             for (index in 0 until (appCellInfos?.size?:0)){
                 s.append("${appCellInfos?.get(index)?.lac},${appCellInfos?.get(index)?.cid}  ")
                 val theCell = appCellInfos?.get(index)

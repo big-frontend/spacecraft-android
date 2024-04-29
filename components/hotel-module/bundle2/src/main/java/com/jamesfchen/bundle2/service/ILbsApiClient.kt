@@ -7,6 +7,11 @@ import android.os.Bundle
 import android.os.IBinder
 import android.os.RemoteException
 import android.util.Log
+import com.jamesfchen.bundle2.location.ILbsApi
+import com.jamesfchen.bundle2.location.ILbsListener
+import com.jamesfchen.bundle2.location.model.AppCellInfo
+import com.jamesfchen.bundle2.location.model.AppLocation
+import com.jamesfchen.bundle2.page.LBSActivity
 
 /**
  * Copyright ® $ 2020
@@ -17,7 +22,7 @@ import android.util.Log
  * @since: Jun/29/2020  Mon
  */
 class ILbsApiClient(
-        val activity: Activity
+    val activity: Activity
 ) {
     val connection = LbsServiceConnection()
     lateinit var iLbsApi: ILbsApi
@@ -25,8 +30,13 @@ class ILbsApiClient(
 
     open class Listener : ILbsListener.Stub() {
         @Throws(RemoteException::class)
-        override fun onLocationChanged(appLocation: _root_ide_package_.com.jamesfchen.bundle2.model.AppLocation, appCellInfos: List<_root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo>, count: Long) {
+        override fun onLocationChanged(
+            appLocation: AppLocation?,
+            appCellInfos: List<AppCellInfo>,
+            count: Long
+        ) {
         }
+
 
         @Throws(RemoteException::class)
         override fun onStatusChanged(s: String, i: Int, bundle: Bundle) {
@@ -35,12 +45,12 @@ class ILbsApiClient(
 
         @Throws(RemoteException::class)
         override fun onProviderEnabled(s: String) {
-            Log.d(_root_ide_package_.com.jamesfchen.bundle2.page.LBSActivity.TAG, "onProviderEnabled:$s")
+            Log.d(LBSActivity.TAG, "onProviderEnabled:$s")
         }
 
         @Throws(RemoteException::class)
         override fun onProviderDisabled(s: String) {
-            Log.d(_root_ide_package_.com.jamesfchen.bundle2.page.LBSActivity.TAG, "onProviderDisabled:$s")
+            Log.d(LBSActivity.TAG, "onProviderDisabled:$s")
         }
     }
 
@@ -72,12 +82,12 @@ class ILbsApiClient(
 
     fun startLocation() {
         //如果您的应用在后台运行，它每小时只能接收几次位置信息更新
-        _root_ide_package_.com.jamesfchen.bundle2.service.LbsServices.startAndBindService(activity, connection);
+        LbsServices.startAndBindService(activity, connection);
 //        LbsJobService.startService(this);
 //        LbsJobIntentService.startService(this);
     }
 
     fun stopLocation() {
-        _root_ide_package_.com.jamesfchen.bundle2.service.LbsServices.stopAndUnbindService(activity, connection)
+        LbsServices.stopAndUnbindService(activity, connection)
     }
 }

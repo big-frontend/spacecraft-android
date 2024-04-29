@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.model;
+package com.jamesfchen.bundle2.location.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

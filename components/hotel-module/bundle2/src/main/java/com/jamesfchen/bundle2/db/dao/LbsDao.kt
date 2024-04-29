@@ -2,8 +2,7 @@ package com.jamesfchen.bundle2.db.dao
 
 import androidx.paging.DataSource
 import androidx.room.*
-import com.jamesfchen.map.db.model.LBS
-
+import com.jamesfchen.bundle2.db.model.LBS
 @Dao
 interface LbsDao {
     @Query("SELECT * FROM lbs")

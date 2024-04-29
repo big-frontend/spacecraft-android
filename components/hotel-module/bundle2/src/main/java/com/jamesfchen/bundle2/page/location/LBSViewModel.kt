@@ -6,6 +6,8 @@ import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.jamesfchen.bundle2.db.LbsDb
 import com.jamesfchen.bundle2.db.model.LBS
+import com.jamesfchen.bundle2.location.model.AppCellInfo
+import com.jamesfchen.bundle2.location.model.AppLocation
 import com.jamesfchen.bundle2.util.ioThread
 
 class LBSViewModel(app: Application) : AndroidViewModel(app) {
@@ -16,7 +18,7 @@ class LBSViewModel(app: Application) : AndroidViewModel(app) {
             maxSize = 200
     ))
 
-    fun insert(appCellInfo: _root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo?, appLocation: _root_ide_package_.com.jamesfchen.bundle2.model.AppLocation?) = ioThread {
+    fun insert(appCellInfo: AppCellInfo?, appLocation: AppLocation?) = ioThread {
         val lbs = LBS()
         lbs.appCellInfo = appCellInfo
         lbs.appLocation = appLocation

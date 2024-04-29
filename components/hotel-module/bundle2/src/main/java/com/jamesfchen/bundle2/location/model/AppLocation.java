@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.model;
+package com.jamesfchen.bundle2.location.model;
 
 import android.location.Location;
 import android.os.Build;

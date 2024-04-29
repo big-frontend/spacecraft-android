@@ -7,6 +7,8 @@ import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.jamesfchen.bundle2.db.LbsDb
 import com.jamesfchen.bundle2.db.model.LBS
+import com.jamesfchen.bundle2.location.model.AppCellInfo
+import com.jamesfchen.bundle2.location.model.AppLocation
 import com.jamesfchen.bundle2.util.ioThread
 import com.jamesfchen.bundle2.util.reverseGeocode2String
 import java.util.*
@@ -23,7 +25,7 @@ class MapViewModel(app: Application) : AndroidViewModel(app) {
             enablePlaceholders = false
     ))
     var geocoder: Geocoder = Geocoder(app.applicationContext, Locale.CHINESE)
-    fun insert(needUpload: Boolean = false, appCellInfo: _root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo?, appLocation: _root_ide_package_.com.jamesfchen.bundle2.model.AppLocation?) = ioThread {
+    fun insert(needUpload: Boolean = false, appCellInfo: AppCellInfo?, appLocation: AppLocation?) = ioThread {
         val lbs = LBS()
         lbs.appCellInfo = appCellInfo
         lbs.appLocation = appLocation

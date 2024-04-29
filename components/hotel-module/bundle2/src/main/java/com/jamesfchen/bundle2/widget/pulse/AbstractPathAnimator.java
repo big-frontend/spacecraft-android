@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.pulse;
+package com.jamesfchen.bundle2.widget.pulse;
 
 import android.content.res.TypedArray;
 import android.graphics.Path;

@@ -1,6 +1,6 @@
 // ILbsApi.aidl
-package com.jamesfchen.map;
-import   com.jamesfchen.map.ILbsListener;
+package com.jamesfchen.bundle2.location;
+import  com.jamesfchen.bundle2.location.ILbsListener;
 
 // Declare any non-default types here with import statements
 

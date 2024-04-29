@@ -103,16 +103,16 @@ class PagerViewActivity : AppCompatActivity() {
             dialog.show()
 
         }
-        var adapter1h = _root_ide_package_.com.jamesfchen.bundle2.page.kk.Adapter1H()
+        var adapter1h = Adapter1H()
         binding.pvHorizontal1.setAdapter(adapter1h)
         adapter1h.setDataList(pagerviewList)
 
 
-        var adapter1v = _root_ide_package_.com.jamesfchen.bundle2.page.kk.Adapter1V()
+        var adapter1v = Adapter1V()
         binding.pvVertical.setAdapter(adapter1v)
         adapter1v.setDataList(pagerviewList)
 
-        val pa = _root_ide_package_.com.jamesfchen.bundle2.page.kk.PageAdapter()
+        val pa = PageAdapter()
         binding.pvHorizontal2.setAdapter(pa)
         pa.setDataList(pagerviewList)
         binding.btRemoveAll.setOnClickListener {

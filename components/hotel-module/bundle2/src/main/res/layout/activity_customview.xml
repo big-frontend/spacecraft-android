@@ -20,7 +20,7 @@
             android:textSize="40sp" />
     </com.jamesfchen.bundle2.page.customview.CustomViewGroup>
 
-    <com.jamesfchen.map.widget.SignatureView
+    <com.jamesfchen.bundle2.widget.SignatureView
         android:id="@+id/sign"
         android:layout_width="match_parent"
         android:layout_height="400dp" />

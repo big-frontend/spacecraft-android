@@ -3,8 +3,8 @@ package com.jamesfchen.bundle2.db.model
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.jamesfchen.bundle2.model.AppCellInfo
-import com.jamesfchen.bundle2.model.AppLocation
+import com.jamesfchen.bundle2.location.model.AppCellInfo
+import com.jamesfchen.bundle2.location.model.AppLocation
 
 @Entity
 class LBS {
@@ -16,10 +16,10 @@ class LBS {
     var add=""
     @Embedded
     @get:JvmName("appCellInfo")
-    var appCellInfo: _root_ide_package_.com.jamesfchen.bundle2.model.AppCellInfo? = null
+    var appCellInfo: AppCellInfo? = null
     @Embedded
     @get:JvmName("appLocation")
-    var appLocation: _root_ide_package_.com.jamesfchen.bundle2.model.AppLocation? = null
+    var appLocation: AppLocation? = null
 
     override fun toString(): String {
         return "LBS(index=$index, needUpload=$needUpload, add='$add', appCellInfo=$appCellInfo, appLocation=$appLocation)"

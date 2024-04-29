@@ -1,5 +1,5 @@
 // AppLocation.aidl
-package com.jamesfchen.map.model;
+package com.jamesfchen.bundle2.location.model;
 
 // Declare any non-default types here with import statements
 

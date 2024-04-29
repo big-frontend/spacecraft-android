@@ -6,8 +6,8 @@ import android.telephony.CellInfo;
 import android.util.JsonWriter;
 import android.util.Log;
 
-import com.jamesfchen.bundle2.model.AppCellInfo;
-import com.jamesfchen.bundle2.model.AppLocation;
+import com.jamesfchen.bundle2.location.model.AppCellInfo;
+import com.jamesfchen.bundle2.location.model.AppLocation;
 import com.jamesfchen.bundle2.network.ReportApi;
 
 import java.io.BufferedInputStream;
