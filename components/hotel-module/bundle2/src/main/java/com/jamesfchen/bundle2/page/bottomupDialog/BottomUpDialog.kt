@@ -20,13 +20,13 @@ class BottomUpDialog : BottomSheetDialog {
         const val TAG= "BottomUpDialog"
     }
     constructor(context: Context) : super(context){
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialog.Companion.TAG,"secondary constructor")
+        Log.d(BottomUpDialog.Companion.TAG,"secondary constructor")
     }
     constructor(context: Context, theme: Int) : super(context, theme)
     constructor(context: Context, cancelable: Boolean, cancelListener: DialogInterface.OnCancelListener?) : super(context, cancelable, cancelListener)
 
     init {
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialog.Companion.TAG,"primate constructor")
+        Log.d(BottomUpDialog.Companion.TAG,"primate constructor")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

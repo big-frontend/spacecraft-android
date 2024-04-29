@@ -20,12 +20,12 @@ class BottomUpActivity : AppCompatActivity() {
     }
 
     val dialogFragment =
-        com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.newInstance()
+        BottomUpDialogFragment.Companion.newInstance()
     val dialogFragment2 =
-        com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragmentv2.Companion.newInstance()
-    val rnFragment = com.jamesfchen.map.page.bottomupDialog.RNFragment.Companion.newInstance()
+        BottomUpDialogFragmentv2.Companion.newInstance()
+    val rnFragment = RNFragment.Companion.newInstance()
     val bottomUpDialogFragmentForSheet =
-        com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragmentForSheet.Companion.newInstance()
+        BottomUpDialogFragmentForSheet.Companion.newInstance()
     lateinit var binding : ActivityBottomUpDialogBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

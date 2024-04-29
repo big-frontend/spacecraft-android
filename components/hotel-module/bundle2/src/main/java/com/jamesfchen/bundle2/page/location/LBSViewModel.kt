@@ -4,11 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.paging.Config
 import androidx.paging.toLiveData
-import com.jamesfchen.map.db.LbsDb
-import com.jamesfchen.map.db.model.LBS
-import com.jamesfchen.map.util.ioThread
-import com.jamesfchen.bundle2.model.AppCellInfo
-import com.jamesfchen.bundle2.model.AppLocation
+import com.jamesfchen.bundle2.db.LbsDb
+import com.jamesfchen.bundle2.db.model.LBS
+import com.jamesfchen.bundle2.util.ioThread
 
 class LBSViewModel(app: Application) : AndroidViewModel(app) {
     val dao = LbsDb.get(app).lbsDao()

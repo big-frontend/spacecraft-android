@@ -3,7 +3,7 @@ package com.jamesfchen.bundle2.page.infos
 import android.util.Log
 import androidx.databinding.*
 import androidx.lifecycle.viewModelScope
-import com.jamesfchen.map.ObservableViewModel
+import com.jamesfchen.bundle2.ObservableViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch

@@ -6,12 +6,9 @@ import android.telephony.CellInfo;
 import android.util.JsonWriter;
 import android.util.Log;
 
-import com.jamesfchen.bundle2.ReportApi;
 import com.jamesfchen.bundle2.model.AppCellInfo;
 import com.jamesfchen.bundle2.model.AppLocation;
-import com.jamesfchen.map.ReportApi;
-import com.jamesfchen.bundle2.model.AppCellInfo;
-import com.jamesfchen.bundle2.model.AppLocation;
+import com.jamesfchen.bundle2.network.ReportApi;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,7 +23,7 @@ import java.util.List;
 
 
 
-class FileIOUtils {
+public class FileIOUtils {
     byte[] quarter_k_butter=new byte[256];//256个字节,0.25k
     byte[] one_k_butter =new byte[1024];//1k
     byte[] four_k_butter = new byte[4096];//4096个字节,4k

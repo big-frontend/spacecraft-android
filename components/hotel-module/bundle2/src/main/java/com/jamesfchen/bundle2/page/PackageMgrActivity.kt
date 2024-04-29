@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2
+package com.jamesfchen.bundle2.page
 
 import android.app.Activity
 import android.content.Context

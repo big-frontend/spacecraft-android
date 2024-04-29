@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.feedback;
+package com.jamesfchen.bundle2.util;
 
 /**
  * Copyright ® $ 2019

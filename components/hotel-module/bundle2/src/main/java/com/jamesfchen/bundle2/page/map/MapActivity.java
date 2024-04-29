@@ -20,6 +20,14 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -37,13 +45,9 @@ import com.jamesfchen.bundle2.R;
 import com.jamesfchen.bundle2.db.model.LBS;
 import com.jamesfchen.bundle2.model.AppCellInfo;
 import com.jamesfchen.bundle2.model.AppLocation;
-import com.jamesfchen.bundle2.service.ILbsApiClient;
 import com.jamesfchen.bundle2.page.LBSActivity;
-import com.jamesfchen.bundle2.model.AppCellInfo;
-import com.jamesfchen.bundle2.model.AppLocation;
-import com.jamesfchen.map.db.model.LBS;
-import com.jamesfchen.map.service.ILbsApiClient;
-import com.jamesfchen.map.util.MapUtil;
+import com.jamesfchen.bundle2.service.ILbsApiClient;
+import com.jamesfchen.bundle2.util.MapUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -52,14 +56,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * Copyright ® $ 2017

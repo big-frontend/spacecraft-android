@@ -1,12 +1,11 @@
-package com.jamesfchen.bundle2;
+package com.jamesfchen.bundle2.network;
 
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.jamesfchen.bundle2.db.model.LBS;
-import com.jamesfchen.map.db.model.LBS;
-import com.jamesfchen.map.util.FileIOUtils;
+import com.jamesfchen.bundle2.util.FileIOUtils;
 import com.jamesfchen.util.Util;
 
 import java.io.File;
@@ -16,7 +15,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class ReportApi {
+public class ReportApi {
     public static final String urlStr = "https://appdownload.coctopus.cn/parse/classes/AndroidGPSv2";
     public static final String applicationIdValue = "Bms5ZwgoXFRpTBN0bqB1kDSIp81eBrlzecRO4vKA";
     public static final String contentTypeValue = "application/json";

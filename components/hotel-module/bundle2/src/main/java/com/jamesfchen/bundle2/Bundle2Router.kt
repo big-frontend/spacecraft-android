@@ -3,6 +3,7 @@ package com.jamesfchen.bundle2
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.jamesfchen.bundle2.page.Bundle2Activity
 import com.jamesfchen.ibc.Router
 import com.jamesfchen.ibc.router.IRouter
 import java.net.URI

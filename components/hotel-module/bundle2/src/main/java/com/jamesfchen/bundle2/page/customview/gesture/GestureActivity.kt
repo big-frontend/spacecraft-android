@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.almeros.android.multitouch.MoveGestureDetector
 import com.almeros.android.multitouch.RotateGestureDetector
 import com.almeros.android.multitouch.ShoveGestureDetector
-import com.jamesfchen.bundle2.customview.gesture.*
 
 
 /**

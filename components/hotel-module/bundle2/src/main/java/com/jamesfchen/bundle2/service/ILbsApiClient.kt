@@ -7,11 +7,6 @@ import android.os.Bundle
 import android.os.IBinder
 import android.os.RemoteException
 import android.util.Log
-import com.jamesfchen.map.ILbsApi
-import com.jamesfchen.map.ILbsListener
-import com.jamesfchen.bundle2.model.AppCellInfo
-import com.jamesfchen.bundle2.model.AppLocation
-import com.jamesfchen.bundle2.page.LBSActivity
 
 /**
  * Copyright ® $ 2020

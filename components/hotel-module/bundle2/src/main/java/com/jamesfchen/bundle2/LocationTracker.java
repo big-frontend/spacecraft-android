@@ -17,7 +17,6 @@ import androidx.core.app.ActivityCompat;
  * @author: jamesfchen
  * @since: 1/26/18
  */
-
 public class LocationTracker implements LocationListener {
 
     private boolean enableGps;

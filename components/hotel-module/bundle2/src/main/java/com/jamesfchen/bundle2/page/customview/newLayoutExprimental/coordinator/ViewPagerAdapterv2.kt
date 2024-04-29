@@ -1,4 +1,4 @@
-package com.jamesfchen.uicomponent.coordinator
+package com.jamesfchen.bundle2.page.customview.newLayoutExprimental.coordinator
 
 import android.graphics.Color
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import jamesfchen.widget.Divider
-import com.jamesfchen.bundle2.customview.newLayoutExprimental.coordinator.RecyclerViewAdapter
 
 /**
  * Copyright ® $ 2017

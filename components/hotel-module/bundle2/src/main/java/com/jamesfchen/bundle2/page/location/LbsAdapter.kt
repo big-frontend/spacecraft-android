@@ -7,7 +7,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jamesfchen.base.R
-import com.jamesfchen.map.db.model.LBS
+import com.jamesfchen.bundle2.db.model.LBS
 
 class LbsAdapter : PagedListAdapter<LBS, LbsAdapter.LbsViewHolder>(diffCallback) {
 

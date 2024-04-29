@@ -8,11 +8,9 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.blankj.utilcode.util.NetworkUtils
 import com.jamesfchen.bundle2.databinding.ActivityLocationBinding
-import com.jamesfchen.util.DeviceUtil
-import com.jamesfchen.bundle2.model.AppCellInfo
-import com.jamesfchen.bundle2.model.AppLocation
-import com.jamesfchen.map.db.model.LBS
+import com.jamesfchen.bundle2.db.model.LBS
 import com.jamesfchen.bundle2.page.LBSActivity
+import com.jamesfchen.util.DeviceUtil
 
 /**
  * Copyright ® $ 2017
@@ -21,7 +19,7 @@ import com.jamesfchen.bundle2.page.LBSActivity
  * @author: hawks.jamesf
  * @since: Apr/27/2020  Mon
  */
-class LocationActivity : _root_ide_package_.com.jamesfchen.bundle2.page.LBSActivity() {
+class LocationActivity : LBSActivity() {
     lateinit var binding:ActivityLocationBinding
     private val viewModel by viewModels<LBSViewModel>()
     var ibsListenerStub: ILbsListener.Stub = object : ILbsListener.Stub() {

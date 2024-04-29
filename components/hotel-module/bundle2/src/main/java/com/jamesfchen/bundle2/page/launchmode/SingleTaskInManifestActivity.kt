@@ -6,11 +6,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.launchmode.Constants.TAG
+import com.jamesfchen.bundle2.page.launchmode.Constants.TAG
 
 class SingleTaskInManifestActivity : AppCompatActivity() {
     companion object{

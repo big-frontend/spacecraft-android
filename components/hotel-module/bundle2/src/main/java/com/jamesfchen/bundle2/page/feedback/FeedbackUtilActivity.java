@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.jamesfchen.bundle2.R;
-import com.jamesfchen.bundle2.page.feedback.ToastUtil;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.jamesfchen.bundle2.R;
+import com.jamesfchen.bundle2.util.ToastUtil;
 
 /**
  * Copyright ® $ 2019

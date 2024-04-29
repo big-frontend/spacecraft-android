@@ -16,51 +16,51 @@ import com.jamesfchen.bundle2.databinding.DialogBottomUpBinding
 class BottomUpDialogFragment : DialogFragment() {
     companion object {
         @JvmStatic
-        fun newInstance(): com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment {
+        fun newInstance(): BottomUpDialogFragment {
             val args = Bundle()
 
-            val fragment = com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment()
+            val fragment = BottomUpDialogFragment()
             fragment.arguments = args
             return fragment
         }
 
         const val TAG = "BottomUpDialogFragment"
-        const val fragmentTag = "${com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.TAG}_RNFragment"
+        const val fragmentTag = "${BottomUpDialogFragment.Companion.TAG}_RNFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.TAG, "onCreate")
+        Log.d(BottomUpDialogFragment.Companion.TAG, "onCreate")
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.TAG, "onCreateDialog")
-        return context?.let { com.jamesfchen.map.page.bottomupDialog.BottomUpDialog(it, theme) }
+        Log.d(BottomUpDialogFragment.Companion.TAG, "onCreateDialog")
+        return context?.let { BottomUpDialog(it, theme) }
                 ?: super.onCreateDialog(savedInstanceState)
     }
     lateinit var binding: DialogBottomUpBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.TAG, "onCreateView")
+        Log.d(BottomUpDialogFragment.Companion.TAG, "onCreateView")
         binding = DialogBottomUpBinding.inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.TAG, "onViewCreated:$view")
+        Log.d(BottomUpDialogFragment.Companion.TAG, "onViewCreated:$view")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d(com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.TAG, "onActivityCreated:${view}")
-        var findFragmentByTag = childFragmentManager.findFragmentByTag(com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.fragmentTag) as com.jamesfchen.map.page.bottomupDialog.RNFragment
+        Log.d(BottomUpDialogFragment.Companion.TAG, "onActivityCreated:${view}")
+        var findFragmentByTag = childFragmentManager.findFragmentByTag(BottomUpDialogFragment.Companion.fragmentTag) as RNFragment
         if (findFragmentByTag == null) {
             findFragmentByTag =
-                com.jamesfchen.map.page.bottomupDialog.RNFragment.Companion.newInstance()
+                RNFragment.Companion.newInstance()
         }
         childFragmentManager.beginTransaction()
                 .replace(R.id.fl_container,findFragmentByTag,
-                    com.jamesfchen.map.page.bottomupDialog.BottomUpDialogFragment.Companion.fragmentTag
+                    BottomUpDialogFragment.Companion.fragmentTag
                 )
                 .commitAllowingStateLoss()
     }

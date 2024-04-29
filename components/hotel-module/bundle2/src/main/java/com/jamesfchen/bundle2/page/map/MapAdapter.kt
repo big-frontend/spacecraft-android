@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amap.api.maps.AMap
 import com.blankj.utilcode.util.SpanUtils
 import com.jamesfchen.bundle2.R
-import com.jamesfchen.map.db.model.LBS
-import com.jamesfchen.map.util.move
-import com.jamesfchen.map.util.reverseGeocode2String
+import com.jamesfchen.bundle2.db.model.LBS
+import com.jamesfchen.bundle2.util.move
+import com.jamesfchen.bundle2.util.reverseGeocode2String
 import java.util.*
 
 class MapAdapter(context: Context, val map: AMap) : PagedListAdapter<LBS, MapAdapter.LbsViewHolder>(

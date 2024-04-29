@@ -6,8 +6,6 @@ import android.os.RemoteException;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jamesfchen.map.ILbsApi;
-import com.jamesfchen.map.ILbsListener;
 import com.jamesfchen.bundle2.model.AppCellInfo;
 import com.jamesfchen.bundle2.model.AppLocation;
 import com.jamesfchen.bundle2.model.L7;

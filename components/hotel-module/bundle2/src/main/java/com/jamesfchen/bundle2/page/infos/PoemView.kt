@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.customview
+package com.jamesfchen.bundle2.page.infos
 
 import android.content.Context
 import android.text.Editable
