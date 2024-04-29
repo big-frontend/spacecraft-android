@@ -178,6 +178,7 @@ dependencies {
     project.depsConfig("implementation", "hotel-bundle1")
     project.depsConfig("implementation", "hotel-bundle2")
     project.depsConfig("implementation", "home-module")
+    project.depsConfig("implementation", "feeds-module")
     project.depsConfig("implementation", "account-module")
     project.depsConfig("implementation", "codescanner-qrcode")
     project.depsConfig("implementation", "im-chatroom")

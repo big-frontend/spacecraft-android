@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.jamesfchen.myhome.BuildConfig
 import com.jamesfchen.myhome.network.model.L7
-import com.jamesfchen.myhome.network.Okhttper
+import com.jamesfchen.network.Okhttper
 import okhttp3.Request
 import java.io.InputStreamReader
 
@@ -16,7 +16,7 @@ object LocationApi {
 //            .cacheControl(CacheControl.FORCE_NETWORK)
             .get()
             .build()
-        val response = Okhttper.getInstance().sendRequest(r)
+        val response = Okhttper.create().sendRequest(r)
         val reader = JsonReader(InputStreamReader(response.body?.byteStream()))
         return Gson().fromJson(reader, object : TypeToken<List<L7>>() {}.type)
     }

@@ -35,9 +35,13 @@
     </fragment>
     <fragment
         android:id="@+id/dest_new_feeds"
-        android:name="com.jamesfchen.myhome.page.newfeeds.NewFeedsFragment"
-        android:label="fragment_newfeeds"
-        >
+        android:name="com.electrolytej.feeds.page.newfeeds.NewFeedsFragment"
+        android:label="fragment_newfeeds">
+    </fragment>
+    <fragment
+        android:id="@+id/dest_video_feeds"
+        android:name="com.electrolytej.feeds.page.videofeeds.VideoFeedsFragment"
+        android:label="fragment_videofeeds">
     </fragment>
     <fragment
         android:id="@+id/dest_infos"

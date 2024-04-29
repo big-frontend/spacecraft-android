@@ -6,24 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.jamesfchen.util.BarUtil
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentBlankSplashBinding
-import com.jamesfchen.myhome.page.newfeeds.repository.StockImages
+import com.jamesfchen.util.BarUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import java.util.*
+import java.util.Random
 import java.util.concurrent.TimeUnit
 
 class BlankSplashFragment : AbsPermissionsFragment() {
     companion object {
-        private val sRandom = Random()
+
         const val TAG = "SplashActivity"
 
         // Remote Config keys
         private const val LOADING_PHRASE_CONFIG_KEY = "loading_phrase"
-        private const val WELCOME_MESSAGE_KEY =
-            "welcome_message" //    private void fetchWelcome() {
+        private const val WELCOME_MESSAGE_KEY = "welcome_message"
+    //    private void fetchWelcome() {
         //        Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
         //        mFirebaseRemoteConfig.fetchAndActivate()
         //                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
@@ -47,7 +46,7 @@ class BlankSplashFragment : AbsPermissionsFragment() {
         //                });
         //    }
     }
-
+    private val sRandom = Random()
     lateinit var binding: FragmentBlankSplashBinding
 
     //    private FirebaseAnalytics mFirebaseAnalytics;
@@ -66,10 +65,11 @@ class BlankSplashFragment : AbsPermissionsFragment() {
     override fun onRequestPermissionsResult() {
         Observable.timer(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread())
             .subscribe { aLong: Long? ->
-                val index = sRandom.nextInt(StockImages.uriList.size)
+                val index = sRandom.nextInt(20)
+
                 when (index % 3) {
                     0 -> {
-                        BarUtil.setBarsFullscreen(requireActivity(),BarUtil.IMMERSIVE_STICKY)
+                        BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
                         findNavController().navigate(R.id.action_screen)
                     }
                     1 -> {

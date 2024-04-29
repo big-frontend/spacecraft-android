@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CollapseTextView">
+        <attr name="collapseText" format="string"/>
+        <attr name="collapseTextSize" format="integer"/>
+        <attr name="collapseTextColor" format="color"/>
+        <attr name="collapseIcon" format="reference"/>
+        <attr name="collapsed" format="boolean"/>
+        <attr name="availableCollapse" format="boolean"/>
+        <attr name="contentMaxLine" format="integer"/>
+    </declare-styleable>
+</resources>

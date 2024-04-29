@@ -1,10 +1,8 @@
 package com.jamesfchen.myhome
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import com.jamesfchen.h5container.WebViewActivity
 import com.jamesfchen.myhome.databinding.ActivityMainBinding
 import com.jamesfchen.myhome.network.Crypto
 

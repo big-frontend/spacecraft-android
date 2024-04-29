@@ -3,7 +3,6 @@ package com.jamesfchen.myhome.page.photo;
 import android.util.Log;
 
 import com.jamesfchen.myhome.image.model.Photo;
-import com.jamesfchen.myhome.page.newfeeds.Constants;
 
 import java.util.ArrayList;
 import java.util.List;

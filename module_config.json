@@ -87,6 +87,12 @@
       "sourcePath": ":components:hotel-module:foundation"
     },
     {
+      "simpleName": "feeds-module",
+      "format": "bundle",
+      "group": "feeds",
+      "sourcePath": ":components:feeds-module"
+    },
+    {
       "simpleName": "framework-base",
       "format": "framework_foundation",
       "group": "fwk",

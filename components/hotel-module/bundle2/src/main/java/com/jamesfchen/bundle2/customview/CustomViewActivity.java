@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jamesfchen.bundle2.R;
-import com.jamesfchen.bundle2.SignatureView;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,0 +1,15 @@
+plugins {
+    id("io.github.jamesfchen.bundle-plugin")
+    id("org.jetbrains.kotlin.android")
+}
+apply from: "$rootDir/script/ui_tradition.gradle"
+android {
+    namespace = "com.electrolytej.feeds"
+}
+
+dependencies {
+    compileOnly(project.moduleify("framework-base"))
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
