@@ -52,8 +52,8 @@ dependencies{
     api 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.0.0'
     api 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.0.0'
 
-    api "androidx.paging:paging-runtime-ktx:3.1.1"
-    testImplementation "androidx.paging:paging-common-ktx:3.1.1"
+    api "androidx.paging:paging-runtime-ktx:3.2.1"
+    testImplementation "androidx.paging:paging-common-ktx:3.2.1"
 //    api "androidx.paging:paging-rxjava3-ktx:3.0.1"
     api 'com.daimajia.androidanimations:library:2.4@aar'
     //styleimageview库导致编译报错：> A failure occurred while executing com.android.build.gradle.tasks.VerifyLibraryResourcesTask$Action

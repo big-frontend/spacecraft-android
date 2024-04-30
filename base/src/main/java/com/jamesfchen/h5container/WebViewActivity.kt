@@ -1,7 +1,5 @@
 package com.jamesfchen.h5container
 
-import android.R.attr.height
-import android.R.attr.width
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +10,6 @@ import android.view.View
 import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.ScreenUtils
 import com.jamesfchen.base.databinding.ActivityWebviewBinding
 
 
@@ -38,13 +35,6 @@ open class WebViewActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
-
-    @JavascriptInterface
-    fun nativeSay(): String {
-        Log.d("cjf", " native say calling from js")
-        return "sb"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityWebviewBinding.inflate(layoutInflater)
@@ -93,7 +83,8 @@ open class WebViewActivity : AppCompatActivity() {
             binding.wv.settings.javaScriptEnabled = true
             binding.wv.settings.javaScriptCanOpenWindowsAutomatically = true
             binding.wv.webChromeClient = WebChromeClient()
-            binding.wv.addJavascriptInterface(this@WebViewActivity, "myActivity")
+            binding.wv.addJavascriptInterface(NativeBridge(this), "NativeBridge")
+//            binding.wv.removeJavascriptInterface()
             binding.title.setOnClickListener {
                 binding.wv.evaluateJavascript("javascript:jsAlert()") {
                     Log.d("cjf", "jsAlert ${it}")

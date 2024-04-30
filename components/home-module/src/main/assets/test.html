@@ -6,15 +6,16 @@
     <script>
         function onClick(){
 
-            alert("native say:"+myActivity.nativeSay());
+            alert("native say:"+window.NativeBridge.nativeSay());
         }
         function jsAlert(){
             alert("calling from native")
             return "sbs"
         }
         function openDetail(){
-            window.location.href= "ispacecraft://a.spacecraft.com";
+<!--            window.location.href= "ispacecraft://a.spacecraft.com";-->
 <!--            window.location.href= "ispacecraft://www.spacecraft.com/web/";-->
+                window.NativeBridge.openDetail()
         }
 
     </script>
