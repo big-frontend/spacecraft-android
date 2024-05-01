@@ -15,7 +15,9 @@ class NewFeedsViewModel(val app: Application) : AndroidViewModel(app) {
     //    val allImages = flowOf(
 //        repo.getAny()
 //    ).flattenMerge(2)
+    @OptIn(ExperimentalPagingApi::class)
     private val _newFeeds = newFeedsRepo.flow
+
     @OptIn(ExperimentalPagingApi::class)
     val newFeeds: Flow<PagingData<Item>> = _newFeeds
     fun remove(uri: Uri) {

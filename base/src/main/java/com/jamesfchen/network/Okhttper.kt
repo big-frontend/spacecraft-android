@@ -73,6 +73,7 @@ class Okhttper(vararg interceptors: Interceptor) {
 //                .proxy(DefaultProxy())
 //                .proxyAuthenticator(DefaultProxyAuthenticator())
 //                .proxySelector(DefaultProxySelector())
+        builder.addInterceptor(CryptoInterceptor())
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         }

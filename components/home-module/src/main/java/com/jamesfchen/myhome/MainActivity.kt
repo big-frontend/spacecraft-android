@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.jamesfchen.myhome.databinding.ActivityMainBinding
-import com.jamesfchen.myhome.network.Crypto
+import com.jamesfchen.network.Crypto
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

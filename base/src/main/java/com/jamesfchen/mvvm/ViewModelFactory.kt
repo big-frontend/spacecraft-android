@@ -22,10 +22,4 @@ class ViewModelFactory private constructor() : ViewModelProvider.NewInstanceFact
 
         }
     }
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        when {
-        }
-        throw IllegalArgumentException("unknown ViewModel class:${modelClass.name} ")
-    }
 }
