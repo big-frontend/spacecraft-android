@@ -37,9 +37,7 @@ class InfosFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentInfosBinding.inflate(inflater, container, false)
-//        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_infos, container, false)
         return binding.root
     }
 
@@ -56,6 +54,7 @@ class InfosFragment : Fragment() {
             Log.d("baseimageview", "wait before")
             defer.await()
             Log.d("baseimageview", "wait after")
+            return@launchWhenResumed
             val images = getImageApi().getImages()
             for (image in images) {
                 val imageView = ImageView(context)

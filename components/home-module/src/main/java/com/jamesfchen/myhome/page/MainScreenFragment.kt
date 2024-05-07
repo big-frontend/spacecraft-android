@@ -37,42 +37,37 @@ class MainScreenFragment : Fragment() {
 //        intent.setData(uri);
 //        Intent intent = new Intent(Intent.CATEGORY_APP_BROWSER,uri);
 //        startActivity(intent);
-        binding.bnv.setupWithNavController(navController)
+//        binding.bnv.setupWithNavController(navController)
 
-//        binding.bnv.setOnItemSelectedListener { item ->
-//            return@setOnItemSelectedListener when (item.itemId) {
-//                R.id.dest_blank_splash -> {
-//                    navController.navigate(R.id.dest_blank_splash)
-//                    return@setOnItemSelectedListener true
-//                }
+        binding.bnv.setOnItemSelectedListener { item ->
+            return@setOnItemSelectedListener when (item.itemId) {
+                R.id.dest_home -> {
+                    //                navController.navigate(R.id.action_step_two)
+                    //                navController.navigate(R.id.fragment_flow_step_two_dest)
+                    navController.navigate(R.id.dest_home)
+                    true
+                }
+                R.id.dest_feeds -> {
+                    navController.navigate(R.id.dest_new_feeds)
+                    true
+                }
+                R.id.dest_infos -> {
+                    navController.navigate(R.id.dest_infos)
+                    true
+                }
+                R.id.dest_profile -> {
+                    navController.navigate(R.id.dest_profile)
+                    true
+                }
 
-//                R.id.dest_home -> {
-//                    //                navController.navigate(R.id.action_step_two)
-//                    //                navController.navigate(R.id.fragment_flow_step_two_dest)
-//
-//                    return@setOnItemSelectedListener true
-//                }
-//
-//                R.id.dest_profile -> {
-//                    return@setOnItemSelectedListener true
-//                }
+                R.id.dest_bundle2 -> {
+                    navController.navigate(R.id.dest_bundle2)
+                    true
+                }
 
-//                R.id.dest_infos -> {
-//                    return@setOnItemSelectedListener true
-//                }
-//
-//                R.id.dest_profile -> {
-//                    navController.navigate(R.id.dest_profile)
-//                    return@setOnItemSelectedListener true
-//                }
-//                R.id.dest_feeds -> {
-//                    navController.navigate(R.id.dest_new_feeds)
-//                    true
-//                }
-
-//                else -> false
-//            }
-//        }
+                else -> false
+            }
+        }
     }
 
 }

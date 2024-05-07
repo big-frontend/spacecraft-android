@@ -74,11 +74,11 @@
         android:label="fragment_window"
         tools:layout="@layout/fragment_window">
     </fragment>
-    <fragment
+    <activity
         android:id="@+id/dest_bundle2"
-        android:name="com.jamesfchen.bundle2.page.Bundle2Fragment"
-        android:label="fragment_bundle2">
-    </fragment>
+        android:name="com.jamesfchen.bundle2.page.Bundle2Activity"
+        android:label="activity_bundle2">
+    </activity>
 
     <activity
         android:id="@+id/dest_settings"

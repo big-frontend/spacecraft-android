@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.jamesfchen.myhome.R
+import com.jamesfchen.myhome.base.AbsPermissionsFragment
 import com.jamesfchen.myhome.databinding.FragmentBlankSplashBinding
-import com.jamesfchen.util.BarUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.Random

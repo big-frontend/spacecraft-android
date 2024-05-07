@@ -167,7 +167,7 @@ android {
     }
     //想要使用dataBinding一定要在app主模块配置，其他lib模块配置不好使
     buildFeatures {
-//        dataBinding true
+        dataBinding true
         aidl true
     }
 }

@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.page;
+package com.jamesfchen.myhome.base;
 
 import android.Manifest;
 import android.content.pm.PackageManager;

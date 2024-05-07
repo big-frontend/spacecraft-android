@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome.base.activity;
+package com.jamesfchen.myhome.base;
 
 import android.os.Bundle
 import androidx.annotation.Nullable
