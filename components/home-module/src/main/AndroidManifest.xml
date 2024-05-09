@@ -107,7 +107,16 @@
                 <action android:name="com.hawksjamesf.spacecraft.set_wallpaper" />
             </intent-filter>
         </receiver>
-
+        <receiver
+            android:name=".router.MyAppWidgetProvider"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/deep_link_appwidget_info" />
+        </receiver>
         <activity
             android:name=".page.photo.PhotoActivity"
             android:label="PhotoActivity"
@@ -117,6 +126,7 @@
             android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".page.profile.ChangeIconActivity" />
         <activity android:name=".GalleryActivity" />
+        <activity android:name=".page.profile.PrivacyPolicyActivity" />
     </application>
 
 </manifest>

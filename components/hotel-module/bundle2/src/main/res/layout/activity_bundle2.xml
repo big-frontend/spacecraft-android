@@ -13,6 +13,7 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_bundle2"
         tools:ignore="FragmentTagUsage" />
+
     <Button
         android:id="@+id/bt"
         android:layout_width="match_parent"

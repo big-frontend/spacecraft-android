@@ -42,8 +42,6 @@ class MainScreenFragment : Fragment() {
         binding.bnv.setOnItemSelectedListener { item ->
             return@setOnItemSelectedListener when (item.itemId) {
                 R.id.dest_home -> {
-                    //                navController.navigate(R.id.action_step_two)
-                    //                navController.navigate(R.id.fragment_flow_step_two_dest)
                     navController.navigate(R.id.dest_home)
                     true
                 }

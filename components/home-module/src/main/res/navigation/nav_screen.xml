@@ -9,30 +9,14 @@
         android:name="com.jamesfchen.myhome.page.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-        <!--app:destination="@id/flow_step_two_dest"/>-->
-        <!--NavController-->
-<!--        <action-->
-<!--            android:id="@+id/action_step_two"-->
-<!--            app:destination="@+id/fragment_flow_step_two_dest" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_profile"-->
-<!--            app:destination="@+id/dest_profile" />-->
         <action
             android:id="@+id/action_webview"
-            app:destination="@+id/dest_webview"
+            app:destination="@+id/dest_fragment_webview"
             app:popUpTo="@+id/dest_home"
             app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/dest_webview"
-        android:name="com.jamesfchen.h5container.WebViewFragment"
-        android:label="fragment_webview"
-        tools:layout="@layout/fragment_webview">
-        <argument
-            android:name="url"
-            android:defaultValue="https://www.baidu.com"
-            />
-    </fragment>
+
+    <!--    信息流-->
     <fragment
         android:id="@+id/dest_new_feeds"
         android:name="com.electrolytej.feeds.page.newfeeds.NewFeedsFragment"
@@ -43,17 +27,22 @@
         android:name="com.electrolytej.feeds.page.videofeeds.VideoFeedsFragment"
         android:label="fragment_videofeeds">
     </fragment>
+    <!--    通知-->
     <fragment
         android:id="@+id/dest_infos"
         android:name="com.jamesfchen.myhome.page.notification.InfosFragment"
         android:label="fragment_infos"
         tools:layout="@layout/fragment_infos">
-        <!--app:destination="@id/flow_step_two_dest"/>-->
-        <!--NavController-->
-        <!--        <action-->
-        <!--            android:id="@+id/action_step_two"-->
-        <!--            app:destination="@+id/fragment_flow_step_two_dest" />-->
     </fragment>
+    <!--    多窗口-->
+    <fragment
+        android:id="@+id/dest_windows"
+        android:name="com.jamesfchen.myhome.page.window.WindowFragment"
+        android:label="fragment_window"
+        tools:layout="@layout/fragment_window">
+    </fragment>
+
+    <!--    个人中心-->
     <fragment
         android:id="@+id/dest_profile"
         android:name="com.jamesfchen.myhome.page.profile.ProfileFragment"
@@ -62,29 +51,16 @@
         <!--app:destination="@id/flow_step_two_dest"/>-->
         <!--NavController-->
         <action
-            android:id="@+id/action_settings"
-            app:destination="@+id/dest_settings" />
+            android:id="@+id/action_privacy_policy"
+            app:destination="@+id/dest_privacy_policy" />
         <action
             android:id="@+id/action_change_icon"
             app:destination="@+id/dest_change_icon" />
     </fragment>
-    <fragment
-        android:id="@+id/dest_windows"
-        android:name="com.jamesfchen.myhome.page.window.WindowFragment"
-        android:label="fragment_window"
-        tools:layout="@layout/fragment_window">
-    </fragment>
     <activity
-        android:id="@+id/dest_bundle2"
-        android:name="com.jamesfchen.bundle2.page.Bundle2Activity"
-        android:label="activity_bundle2">
-    </activity>
-
-    <activity
-        android:id="@+id/dest_settings"
-        android:name="com.jamesfchen.h5container.WebViewActivity"
-        android:label="settings "
-        tools:layout="@layout/activity_webview">
+        android:id="@+id/dest_privacy_policy"
+        android:name="com.jamesfchen.myhome.page.profile.PrivacyPolicyActivity"
+        android:label="activity_privacy_policy">
         <argument
             android:name="url"
             android:defaultValue="file:///android_asset/test.html"
@@ -97,47 +73,26 @@
         android:label="changeIcon">
     </activity>
 
-    <fragment
-        android:id="@+id/fragment_flow_step_one_dest"
-        android:name="com.jamesfchen.myhome.page.home.FlowStepFragment"
-        android:label="fragment_flow_step_one"
-        tools:layout="@layout/fragment_flow_step_one">
-        <argument
-            android:name="flowStepNumber"
-            android:defaultValue="1"
-            app:argType="integer" />
-        <!--NavController-->
-        <action
-            android:id="@+id/action_next"
-            app:destination="@+id/fragment_flow_step_two_dest" />
-    </fragment>
+
+    <activity
+        android:id="@+id/dest_bundle2"
+        android:name="com.jamesfchen.bundle2.page.Bundle2Activity"
+        android:label="activity_bundle2">
+    </activity>
 
     <fragment
-        android:id="@+id/fragment_flow_step_two_dest"
-        android:name="com.jamesfchen.myhome.page.home.FlowStepFragment"
-        android:label="fragment_flow_step_two"
-        tools:layout="@layout/fragment_flow_step_two">
+        android:id="@+id/dest_fragment_webview"
+        android:name="com.jamesfchen.h5container.WebViewFragment"
+        android:label="fragment_webview"
+        tools:layout="@layout/fragment_webview">
         <argument
-            android:name="flowStepNumber"
-            android:defaultValue="2"
-            app:argType="integer" />
-
-        <action
-            android:id="@+id/action_next"
-            app:popUpTo="@id/dest_home" />
+            android:name="url"
+            android:defaultValue="https://www.baidu.com"
+            />
     </fragment>
-    <fragment
-        android:id="@+id/fragment_deep_link"
-        android:name="com.jamesfchen.myhome.page.home.DeepLinkFragment"
-        android:label="fragment_deep_link"
-        tools:layout="@layout/fragment_deep_link">
-
-        <argument
-            android:name="args_deep_link"
-            android:defaultValue="Android!" />
-
-        <!--<deepLink app:uri="www.example.com/{args_deep_link}"/>-->
-    </fragment>
-
-
+    <activity
+        android:id="@+id/dest_activity_webview"
+        android:name="com.jamesfchen.h5container.WebViewActivity"
+        android:label="activity_webview">
+    </activity>
 </navigation>

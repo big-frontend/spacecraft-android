@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launchWhenResumed {
             binding.btSettings.setOnClickListener {
 //                findNavController().navigate(directions)
-                findNavController().navigate(R.id.action_settings)
+                findNavController().navigate(R.id.action_privacy_policy)
 //                val location = IntArray(2)
 //                it.getLocationOnScreen(location)
 //                ProfileDetailActivity.openActivity(activity as Context, location[0],

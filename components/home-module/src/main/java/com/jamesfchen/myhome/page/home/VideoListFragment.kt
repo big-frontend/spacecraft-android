@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentVideoListBinding
 
-class VideoListFragment : Fragment()  {
+class VideoListFragment : Fragment() {
     lateinit var binding: FragmentVideoListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -21,6 +21,8 @@ class VideoListFragment : Fragment()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.bt.setOnClickListener {
+            val bundle = Bundle();
+            bundle.putString("url", "https://www.baidu.com");
             findNavController().navigate(R.id.action_webview)
         }
     }

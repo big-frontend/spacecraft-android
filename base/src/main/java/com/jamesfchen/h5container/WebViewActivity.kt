@@ -35,22 +35,25 @@ open class WebViewActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+
+    val binding: ActivityWebviewBinding by lazy {
+        return@lazy ActivityWebviewBinding.inflate(layoutInflater)
+    }
+    val nativeBridge = NativeBridge(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityWebviewBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         intent.getStringExtra("url")?.let { url ->
-//            val renderer: BaseGLRenderer = DefaultRenderer(
-//                this,
-//                ScreenUtils.getAppScreenWidth(),
-//                ScreenUtils.getAppScreenHeight()
-//            )
-//            binding.glSurfaceView.setEGLContextClientVersion(2);
-//            binding.glSurfaceView.setRenderer(renderer)
-//            binding.wv.setViewToGLRenderer(renderer)
             binding.wv.loadUrl(url)
-
             binding.wv.webViewClient = object : WebViewClient() {
+                override fun shouldInterceptRequest(
+                    view: WebView?,
+                    request: WebResourceRequest?
+                ): WebResourceResponse? {
+                    return super.shouldInterceptRequest(view, request)
+                }
                 override fun onReceivedSslError(
                     view: WebView,
                     handler: SslErrorHandler,
@@ -61,10 +64,9 @@ open class WebViewActivity : AppCompatActivity() {
                     //handleMessage(Message msg); 其他处理
                 }
 
-                // 这行代码一定加上否则效果不会出现
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    binding.lpi.visibility = View.GONE
+//                    binding.lpi.visibility = View.GONE
                 }
 
                 override fun shouldOverrideUrlLoading(
@@ -80,17 +82,28 @@ open class WebViewActivity : AppCompatActivity() {
 
                 }
             }
+            binding.wv.settings.allowFileAccess = true
+            binding.wv.settings.allowFileAccessFromFileURLs = true
+            binding.wv.settings.allowUniversalAccessFromFileURLs = true
+
+            binding.wv.settings.domStorageEnabled = true
+            binding.wv.settings.databaseEnabled = true
+//            binding.wv.settings.databasePath = ""
             binding.wv.settings.javaScriptEnabled = true
             binding.wv.settings.javaScriptCanOpenWindowsAutomatically = true
             binding.wv.webChromeClient = WebChromeClient()
-            binding.wv.addJavascriptInterface(NativeBridge(this), "NativeBridge")
-//            binding.wv.removeJavascriptInterface()
-            binding.title.setOnClickListener {
+            binding.wv.addJavascriptInterface(nativeBridge, "NativeBridge")
+//
+            binding.bt.setOnClickListener {
                 binding.wv.evaluateJavascript("javascript:jsAlert()") {
                     Log.d("cjf", "jsAlert ${it}")
                 }
             }
         }
-//        binding.title.setImageBitmap()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.wv.removeJavascriptInterface("NativeBridge")
     }
 }

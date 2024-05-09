@@ -4,26 +4,35 @@
     <meta charset="utf-8">
     <title>this is title</title>
     <script>
-        function onClick(){
-
-            alert("native say:"+window.NativeBridge.nativeSay());
+        function closePage(){
+            window.NativeBridge.closePage()
         }
-        function jsAlert(){
-            alert("calling from native")
-            return "sbs"
-        }
-        function openDetail(){
+       function readAndWriteStorage(){
+<!--           alert("native say:"+window.NativeBridge.readAndWriteStorage());-->
+           window.localStorage.setItem("myCat", "Tom");
+           const cat = window.localStorage.getItem("myCat");
+           alert("native say:"+cat);
+       }
+       function jsAlert(){
+           alert("calling from native")
+           return "sbs"
+       }
+       function openDetail(){
 <!--            window.location.href= "ispacecraft://a.spacecraft.com";-->
 <!--            window.location.href= "ispacecraft://www.spacecraft.com/web/";-->
-                window.NativeBridge.openDetail()
-        }
+               window.NativeBridge.openDetail()
+       }
 
     </script>
 </head>
 <body>
+<img width="90" height="100" src="file:///android_asset/images/lit_pier.jpg">
+<img width="90" height="100" src="images/jetpack.png">
+<img src="tenor.gif">
 
-<button type="button" id="bt" onclick="onClick()">call to native</button>
+<button type="button" id="bt" onclick="readAndWriteStorage()">read and write storage</button>
 <button type="button" id="bt2" onclick="openDetail()">open detail page</button>
+<button type="button" id="bt3" onclick="closePage()">close detail page</button>
 
 <a href="ispacecraft://a.spacecraft.com">open detail page</a>
 </body>

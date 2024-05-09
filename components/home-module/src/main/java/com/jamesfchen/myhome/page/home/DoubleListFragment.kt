@@ -48,9 +48,9 @@ class DoubleListFragment : RxFragment<DoubleListPresenter>(), DoubleListContract
         }
         Navigation.setViewNavController(view, navController)
         view.findViewById<View>(R.id.bt_navigate_destination).setOnClickListener { view1: View? ->
-            Navigation.findNavController(
-                view1!!
-            ).navigate(R.id.fragment_flow_step_one_dest, null, options)
+//            Navigation.findNavController(
+//                view1!!
+//            ).navigate(R.id.fragment_flow_step_one_dest, null, options)
         }
         //        view.findViewById(R.id.bt_navigate_action).setOnClickListener(
 //                Navigation.createNavigateOnClickListener(R.id.action_step_two)

@@ -43,9 +43,6 @@ class NewTaskActivity : AppCompatActivity() {
         val binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d(Constants.TAG,"onCreate:${intent?.toString()}")
-        binding.title.setOnClickListener {
-
-        }
         intent.getStringExtra("url")?.let { url ->
             binding.wv.loadUrl(url)
             binding.wv.webViewClient = object : WebViewClient() {
