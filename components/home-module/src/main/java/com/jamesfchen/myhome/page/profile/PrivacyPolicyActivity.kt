@@ -1,6 +1,6 @@
 package com.jamesfchen.myhome.page.profile
 
-import com.jamesfchen.h5container.WebViewActivity
+import com.jamesfchen.activity.WebActivity
 
-class PrivacyPolicyActivity : WebViewActivity() {
+class PrivacyPolicyActivity : WebActivity() {
 }

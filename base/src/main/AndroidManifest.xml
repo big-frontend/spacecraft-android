@@ -7,16 +7,15 @@
         android:hardwareAccelerated="true"
         android:name="com.jamesfchen.loader.SApp"
         >
-        <activity android:name="com.jamesfchen.av.AvRecorderActivity" />
+        <activity android:name="com.jamesfchen.activity.AvRecorderActivity" />
         <service
             android:name="com.jamesfchen.av.AvRecorderService"
             android:foregroundServiceType="mediaProjection" />
         <activity
-            android:name="com.jamesfchen.av.VideoActivity"
+            android:name="com.jamesfchen.activity.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:supportsPictureInPicture="true" />
         <!--            android:theme="@style/VideoTheme" -->
-        <activity android:name="com.jamesfchen.image.FrescoActivity" />
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"

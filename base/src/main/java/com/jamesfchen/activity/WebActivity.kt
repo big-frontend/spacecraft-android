@@ -1,4 +1,4 @@
-package com.jamesfchen.h5container
+package com.jamesfchen.activity
 
 import android.content.Context
 import android.content.Intent
@@ -6,11 +6,13 @@ import android.net.Uri
 import android.net.http.SslError
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.base.databinding.ActivityWebviewBinding
+import com.jamesfchen.h5container.AndroidNativeBridge
+import com.jamesfchen.h5container.NativeBridge
+import com.jamesfchen.util.AssetsUtils
 
 
 /**
@@ -21,8 +23,9 @@ import com.jamesfchen.base.databinding.ActivityWebviewBinding
  * @email: hawksjamesf@gmail.com
  * @since: Aug/24/2020  Mon
  */
-open class WebViewActivity : AppCompatActivity() {
+open class WebActivity : AppCompatActivity() {
     companion object {
+        private const val TAG = "WebViewActivity"
         @JvmStatic
         fun startActivity(context: Context) {
             //        Fragment fragment = WebViewFragment.newInstance("https://i.meituan.com/c/ZDg0Y2FhNjMt");
@@ -40,6 +43,7 @@ open class WebViewActivity : AppCompatActivity() {
         return@lazy ActivityWebviewBinding.inflate(layoutInflater)
     }
     val nativeBridge = NativeBridge(this)
+    val androidNativeBridge = AndroidNativeBridge(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,13 +71,15 @@ open class WebViewActivity : AppCompatActivity() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 //                    binding.lpi.visibility = View.GONE
+                    binding.wv.evaluateJavascript(AssetsUtils.loadAssetsFile(this@WebActivity,"VideoHelper.js"),null);
+                    binding.wv.evaluateJavascript("javascript:videoCustomerJs()",null)
                 }
 
                 override fun shouldOverrideUrlLoading(
                     view: WebView?,
                     request: WebResourceRequest?
                 ): Boolean {
-                    Toast.makeText(this@WebViewActivity, "url:${request?.url}", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@WebActivity, "url:${request?.url}", Toast.LENGTH_SHORT)
                         .show()
                     val i = Intent(Intent.ACTION_VIEW, request?.url)
                     startActivity(i)
@@ -93,10 +99,16 @@ open class WebViewActivity : AppCompatActivity() {
             binding.wv.settings.javaScriptCanOpenWindowsAutomatically = true
             binding.wv.webChromeClient = WebChromeClient()
             binding.wv.addJavascriptInterface(nativeBridge, "NativeBridge")
-//
+            binding.wv.addJavascriptInterface(nativeBridge, "Android")
+            binding.wv.setDownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
+                Log.d(TAG, "url:${url}")
+                val uri = Uri.parse(url)
+                val intent = Intent("android.intent.action.VIEW", uri)
+                    startActivity(intent)
+            }
             binding.bt.setOnClickListener {
                 binding.wv.evaluateJavascript("javascript:jsAlert()") {
-                    Log.d("cjf", "jsAlert ${it}")
+                    Log.d(TAG, "jsAlert ${it}")
                 }
             }
         }

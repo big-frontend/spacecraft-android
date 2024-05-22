@@ -1,4 +1,4 @@
-package com.jamesfchen.av;
+package com.jamesfchen.activity;
 
 
 import android.annotation.SuppressLint;

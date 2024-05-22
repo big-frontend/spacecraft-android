@@ -1,4 +1,4 @@
-package com.jamesfchen.h5container
+package com.jamesfchen.widget
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,6 +6,8 @@ import android.opengl.GLSurfaceView
 import android.util.AttributeSet
 import android.webkit.WebView
 import com.blankj.utilcode.util.ScreenUtils
+import com.jamesfchen.h5container.BaseGLRenderer
+import com.jamesfchen.h5container.DefaultRenderer
 
 
 /**

@@ -1,4 +1,5 @@
 package com.jamesfchen.image
+import com.jamesfchen.util.Util
 import com.squareup.picasso.Picasso
 
 /**
@@ -21,7 +22,7 @@ object PicassoProvider {
   private val instance: Picasso by lazy {
 
     Picasso
-        .Builder(PicassoContentProvider.autoContext!!)
+        .Builder(Util.getApp())
 //        .addEventListener(StatsEventListener())
         .build()
   }

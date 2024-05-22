@@ -1,4 +1,4 @@
-package com.jamesfchen.av
+package com.jamesfchen.activity
 
 import android.app.Activity
 import android.content.Context
@@ -9,6 +9,7 @@ import android.os.Environment
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 import android.widget.Toast
+import com.jamesfchen.av.AvRecorderService
 import com.jamesfchen.av.recorder.VideoRecorder
 import com.jamesfchen.base.R
 import com.jamesfchen.base.databinding.ActivityRecoderBinding

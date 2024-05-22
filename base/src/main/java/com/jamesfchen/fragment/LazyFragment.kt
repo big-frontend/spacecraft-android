@@ -1,4 +1,4 @@
-package com.jamesfchen
+package com.jamesfchen.fragment
 
 import androidx.fragment.app.Fragment
 import android.os.Bundle

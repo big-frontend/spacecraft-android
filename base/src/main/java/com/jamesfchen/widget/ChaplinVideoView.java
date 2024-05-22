@@ -1,4 +1,4 @@
-package com.jamesfchen.av.player;
+package com.jamesfchen.widget;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.widget.ImageView;
 
 
 import com.jamesfchen.av.State;
+import com.jamesfchen.av.player.OnMediaPlayerListener;
+import com.jamesfchen.av.player.ScaleType;
+import com.jamesfchen.av.player.VideoPlayer;
 import com.jamesfchen.base.databinding.ViewChaplinBinding;
 import com.jamesfchen.base.R;
 import java.io.File;

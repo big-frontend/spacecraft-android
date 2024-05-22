@@ -82,7 +82,7 @@
 
     <fragment
         android:id="@+id/dest_fragment_webview"
-        android:name="com.jamesfchen.h5container.WebViewFragment"
+        android:name="com.jamesfchen.fragment.WebFragment"
         android:label="fragment_webview"
         tools:layout="@layout/fragment_webview">
         <argument
@@ -92,7 +92,7 @@
     </fragment>
     <activity
         android:id="@+id/dest_activity_webview"
-        android:name="com.jamesfchen.h5container.WebViewActivity"
+        android:name="com.jamesfchen.activity.WebActivity"
         android:label="activity_webview">
     </activity>
 </navigation>

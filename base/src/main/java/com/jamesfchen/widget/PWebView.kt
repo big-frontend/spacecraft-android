@@ -1,4 +1,4 @@
-package com.jamesfchen.h5container
+package com.jamesfchen.widget
 
 import android.content.Context
 import android.graphics.Canvas

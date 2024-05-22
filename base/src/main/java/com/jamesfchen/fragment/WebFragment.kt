@@ -1,4 +1,4 @@
-package com.jamesfchen.h5container
+package com.jamesfchen.fragment
 
 import android.net.http.SslError
 import android.os.Bundle
@@ -19,13 +19,13 @@ import com.jamesfchen.base.databinding.FragmentWebviewBinding
  * @email: hawksjamesf@gmail.com
  * @since: Aug/25/2020  Tue
  */
-class WebViewFragment : Fragment() {
+class WebFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(url: String): Fragment {
             val args = Bundle()
             args.putString("url", url)
-            val fragment = WebViewFragment()
+            val fragment = WebFragment()
             fragment.arguments = args
             return fragment
         }

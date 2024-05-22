@@ -96,7 +96,7 @@
 <!--            android:id="@+id/vv_video"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="200dp" />-->
-        <com.jamesfchen.av.player.ChaplinVideoView
+        <com.jamesfchen.widget.ChaplinVideoView
             android:id="@+id/clv_video"
             android:layout_width="match_parent"
             android:layout_height="200dp" />

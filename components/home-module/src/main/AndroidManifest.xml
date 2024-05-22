@@ -61,7 +61,7 @@
         <activity android:name=".page.profile.SettingsActivity" />
         <activity
             android:exported="true"
-            android:name="com.jamesfchen.h5container.WebViewActivity"
+            android:name="com.jamesfchen.activity.WebActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
