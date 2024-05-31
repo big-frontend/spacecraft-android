@@ -1,4 +1,4 @@
-package com.jamesfchen.kvStore
+package com.electrolytej.storage
 
 import android.content.Context
 import androidx.annotation.GuardedBy

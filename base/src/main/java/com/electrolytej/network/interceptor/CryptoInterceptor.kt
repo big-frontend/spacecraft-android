@@ -1,4 +1,4 @@
-package com.electrolytej.network
+package com.electrolytej.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
