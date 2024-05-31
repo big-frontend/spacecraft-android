@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
-import com.jamesfchen.util.ConvertUtil;
+import com.electrolytej.util.ConvertUtil;
 
 import org.jetbrains.annotations.NotNull;
 

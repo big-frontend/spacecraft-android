@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
-import com.jamesfchen.util.ConvertUtil
+import com.electrolytej.util.ConvertUtil
 
 /**
  * Copyright ® $ 2017

@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.jamesfchen.util.ConvertUtil;
+import com.electrolytej.util.ConvertUtil;
 
 import androidx.annotation.Nullable;
 

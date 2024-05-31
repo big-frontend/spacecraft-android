@@ -17,8 +17,8 @@ import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
-import com.jamesfchen.base.BuildConfig;
-import com.jamesfchen.util.ThreadUtil;
+import com.electrolytej.base.BuildConfig;
+import com.electrolytej.util.ThreadUtil;
 
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;

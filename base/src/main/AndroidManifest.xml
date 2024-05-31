@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jamesfchen.base">
+    package="com.electrolytej.base">
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:hardwareAccelerated="true"
-        android:name="com.jamesfchen.loader.SApp"
+        android:name="com.electrolytej.loader.SApp"
         >
-        <activity android:name="com.jamesfchen.activity.AvRecorderActivity" />
+        <activity android:name="com.electrolytej.activity.AvRecorderActivity" />
         <service
-            android:name="com.jamesfchen.av.AvRecorderService"
+            android:name="com.electrolytej.av.AvRecorderService"
             android:foregroundServiceType="mediaProjection" />
         <activity
-            android:name="com.jamesfchen.activity.VideoActivity"
+            android:name="com.electrolytej.activity.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:supportsPictureInPicture="true" />
         <!--            android:theme="@style/VideoTheme" -->

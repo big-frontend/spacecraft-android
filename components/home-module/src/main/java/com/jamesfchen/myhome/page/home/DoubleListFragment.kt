@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.jamesfchen.mvp.RxFragment
+import com.electrolytej.mvp.RxFragment
 import com.jamesfchen.myhome.GalleryActivity
 import com.jamesfchen.myhome.R
 import com.jamesfchen.myhome.databinding.FragmentDoubleListBinding

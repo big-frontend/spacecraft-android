@@ -6,8 +6,8 @@ import android.graphics.Paint
 import android.text.TextPaint
 import android.text.style.ReplacementSpan
 import androidx.annotation.ColorInt
-import com.jamesfchen.util.ConvertUtil
-import com.jamesfchen.util.DP
+import com.electrolytej.util.ConvertUtil
+import com.electrolytej.util.DP
 
 /**
  * Copyright ® $ 2017
@@ -47,7 +47,8 @@ class DrawableBackgroundSpan(val bgColor: Int = -1, @DP val strokeWith: Int = -1
             paint.strokeWidth = ConvertUtil.dp2px(strokeWith.toFloat()).toFloat()
             paint.style = Paint.Style.STROKE
             paint.color = strokeColor
-            if (dashGap != -1 && dashWidth != -1) paint.pathEffect = DashPathEffect(floatArrayOf(ConvertUtil.dp2px(dashWidth.toFloat()).toFloat(), ConvertUtil.dp2px(dashGap.toFloat()).toFloat()), 0f)
+            if (dashGap != -1 && dashWidth != -1) paint.pathEffect = DashPathEffect(floatArrayOf(
+                ConvertUtil.dp2px(dashWidth.toFloat()).toFloat(), ConvertUtil.dp2px(dashGap.toFloat()).toFloat()), 0f)
         }
         if (bgColor != -1) {
             paint.color = bgColor

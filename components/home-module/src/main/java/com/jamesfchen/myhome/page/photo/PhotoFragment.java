@@ -26,7 +26,7 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.jamesfchen.myhome.image.model.Photo;
-import com.jamesfchen.util.ImageUtil;
+import com.electrolytej.util.ImageUtil;
 import com.jamesfchen.myhome.R;
 
 import java.security.MessageDigest;

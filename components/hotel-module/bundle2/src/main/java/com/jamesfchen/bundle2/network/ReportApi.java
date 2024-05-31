@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.jamesfchen.bundle2.db.model.LBS;
 import com.jamesfchen.bundle2.util.FileIOUtils;
-import com.jamesfchen.util.Util;
+import com.electrolytej.util.Util;
 
 import java.io.File;
 import java.io.IOException;

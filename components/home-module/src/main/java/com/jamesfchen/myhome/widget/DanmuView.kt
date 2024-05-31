@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.animation.Animation
 import android.widget.ViewFlipper
 import androidx.annotation.Px
-import com.jamesfchen.util.ConvertUtil
+import com.electrolytej.util.ConvertUtil
 
 /**
  * Copyright ® $ 2017

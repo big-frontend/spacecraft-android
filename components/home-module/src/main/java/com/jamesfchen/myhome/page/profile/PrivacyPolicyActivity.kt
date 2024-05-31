@@ -1,6 +1,6 @@
 package com.jamesfchen.myhome.page.profile
 
-import com.jamesfchen.activity.WebActivity
+import com.electrolytej.activity.WebActivity
 
 class PrivacyPolicyActivity : WebActivity() {
 }

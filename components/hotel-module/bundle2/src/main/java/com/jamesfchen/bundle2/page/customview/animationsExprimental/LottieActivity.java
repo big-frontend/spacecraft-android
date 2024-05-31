@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.jamesfchen.bundle2.R;
 import com.jamesfchen.bundle2.databinding.ActivityLottieBinding;
 import com.jamesfchen.bundle2.databinding.ItemDumpBinding;
-import com.jamesfchen.util.ConvertUtil;
+import com.electrolytej.util.ConvertUtil;
 /**
  * Copyright ® $ 2017
  * All right reserved.

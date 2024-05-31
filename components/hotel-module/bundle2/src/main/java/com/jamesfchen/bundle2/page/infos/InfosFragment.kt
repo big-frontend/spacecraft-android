@@ -22,7 +22,7 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.jamesfchen.bundle2.databinding.FragmentInfosBinding
 import com.jamesfchen.bundle2.network.api.getImageApi
-import com.jamesfchen.util.ConvertUtil.dp2px
+import com.electrolytej.util.ConvertUtil.dp2px
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 

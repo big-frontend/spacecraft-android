@@ -15,7 +15,7 @@ import com.jamesfchen.myhome.databinding.ItemDumpBinding
 import com.jamesfchen.myhome.widget.carousel.CarouselPagerAdapter
 import com.jamesfchen.myhome.widget.carousel.transformer.ParallaxPageTransformer
 import com.jamesfchen.myhome.widget.carousel.transformer.ZoomOutPageTransformer
-import com.jamesfchen.util.ConvertUtil
+import com.electrolytej.util.ConvertUtil
 
 class GalleryActivity : Activity() {
     var list = listOf(1, 2, 3, 4, 5)

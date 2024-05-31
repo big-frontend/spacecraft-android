@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jamesfchen.base">
+    package="com.electrolytej.base">
 
     <application>
         <activity android:name="com.jamesfchen.StethoActivity" />

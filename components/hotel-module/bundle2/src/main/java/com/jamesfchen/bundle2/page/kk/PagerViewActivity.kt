@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.bundle2.R
 import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
-import com.jamesfchen.loader.systemfilter.SystemFilter
+import com.electrolytej.loader.systemfilter.SystemFilter
 import jamesfchen.widget.kk.TabsLayout
 
 /**

@@ -13,7 +13,7 @@ import com.jamesfchen.bundle2.location.ILbsListener
 import com.jamesfchen.bundle2.location.model.AppCellInfo
 import com.jamesfchen.bundle2.location.model.AppLocation
 import com.jamesfchen.bundle2.page.LBSActivity
-import com.jamesfchen.util.DeviceUtil
+import com.electrolytej.util.DeviceUtil
 
 /**
  * Copyright ® $ 2017

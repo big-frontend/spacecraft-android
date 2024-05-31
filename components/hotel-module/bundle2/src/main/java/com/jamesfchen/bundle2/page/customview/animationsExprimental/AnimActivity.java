@@ -39,7 +39,7 @@ import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.I
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.ArgbEvaluator;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.HSVEvaluator;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.IntEvaluator;
-import com.jamesfchen.util.ConvertUtil;
+import com.electrolytej.util.ConvertUtil;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.ArgbEvaluator;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.HSVEvaluator;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.IntEvaluator;

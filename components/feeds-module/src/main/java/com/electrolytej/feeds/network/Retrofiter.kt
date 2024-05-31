@@ -2,8 +2,8 @@
 
 package com.electrolytej.feeds.network
 
-import com.jamesfchen.network.Okhttper
-import com.jamesfchen.network.adapter.ObservableOrMainCallAdapterFactory
+import com.electrolytej.network.Okhttper
+import com.electrolytej.network.adapter.ObservableOrMainCallAdapterFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
 import retrofit2.OkHttpCallFactory
 import retrofit2.Retrofit

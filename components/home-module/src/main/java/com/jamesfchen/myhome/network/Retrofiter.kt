@@ -2,8 +2,8 @@
 
 package com.jamesfchen.myhome.network
 
-import com.jamesfchen.network.Okhttper
-import com.jamesfchen.network.adapter.ObservableOrMainCallAdapterFactory
+import com.electrolytej.network.Okhttper
+import com.electrolytej.network.adapter.ObservableOrMainCallAdapterFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
 import retrofit2.OkHttpCallFactory
 import retrofit2.Retrofit
@@ -17,7 +17,11 @@ object Retrofiter {
             Retrofit.Builder().baseUrl(BASE_URL)
                 .callFactory(OkHttpCallFactory.create(Okhttper.create(URLInterceptor()).okHttpClient))
 //            .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .addCallAdapterFactory(ObservableOrMainCallAdapterFactory(AndroidSchedulers.mainThread()))
+                .addCallAdapterFactory(
+                    ObservableOrMainCallAdapterFactory(
+                        AndroidSchedulers.mainThread()
+                    )
+                )
                 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .addCallAdapterFactory(CoroutineCallAdapterFactory())
 //            .addConverterFactory(GsonConverterFactory.create())

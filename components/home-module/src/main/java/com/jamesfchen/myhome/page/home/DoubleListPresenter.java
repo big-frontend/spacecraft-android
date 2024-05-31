@@ -1,6 +1,6 @@
 package com.jamesfchen.myhome.page.home;
 
-import com.jamesfchen.mvp.RxPresenter;
+import com.electrolytej.mvp.RxPresenter;
 
 /**
  * Copyright ® $ 2017

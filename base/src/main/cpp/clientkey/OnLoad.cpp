@@ -6,7 +6,7 @@
 extern "C"
 JNIEXPORT jstring
 JNICALL
-Java_com_jamesfchen_network_Crypto_getClientKey(JNIEnv *env, jclass thiz,
+Java_com_electrolytej_network_Crypto_getClientKey(JNIEnv *env, jclass thiz,
                                                        jstring jstr_token,
                                                        jlong cur_time) {
 //    int *p = nullptr;

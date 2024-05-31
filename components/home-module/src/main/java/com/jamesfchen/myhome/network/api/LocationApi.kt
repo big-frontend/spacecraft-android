@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.jamesfchen.myhome.BuildConfig
 import com.jamesfchen.myhome.network.model.L7
-import com.jamesfchen.network.Okhttper
+import com.electrolytej.network.Okhttper
 import okhttp3.Request
 import java.io.InputStreamReader
 

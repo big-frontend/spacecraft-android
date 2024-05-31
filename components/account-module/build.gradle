@@ -5,7 +5,7 @@ plugins {
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
     defaultConfig {
-        buildConfigField('String', 'BASE_URL', '" https://www.easy-mock.com/mock/5ce10c941e436e14aceef040/"')
+        buildConfigField('String', 'BASE_URL', '" "')
     }
     buildTypes {
         release {
@@ -19,7 +19,7 @@ android {
             buildConfigField 'String', "APP_ID", "\"应用的appid\""
             buildConfigField 'String', "APP_KEY", "\"应用的appkey\""
             buildConfigField 'String', "APP_SECRET", "\"应用的secret\""
-            buildConfigField 'String', "HTTP_BASE_URL", "\"https://www.cmpassport.com/unisdk/rsapi/loginTokenValidate\""
+            buildConfigField 'String', "HTTP_BASE_URL", "\"\""
             buildConfigField 'String', "HTTP_VALIDATE_TOKEN_URL", "\"https://www.cmpassport.com/openapi/rs/tokenValidate\""
         }
         debug {
