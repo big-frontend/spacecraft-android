@@ -1,9 +1,8 @@
 package com.jamesfchen.widget
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
-import android.webkit.WebView
+import com.tencent.smtt.sdk.WebView
 
 
 class PWebView @JvmOverloads constructor(

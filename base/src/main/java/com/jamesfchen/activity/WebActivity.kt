@@ -3,16 +3,18 @@ package com.jamesfchen.activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.net.http.SslError
 import android.os.Bundle
 import android.util.Log
-import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesfchen.base.databinding.ActivityWebviewBinding
-import com.jamesfchen.h5container.AndroidNativeBridge
-import com.jamesfchen.h5container.NativeBridge
-import com.jamesfchen.util.AssetsUtils
+import com.tencent.smtt.export.external.interfaces.SslError
+import com.tencent.smtt.export.external.interfaces.SslErrorHandler
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse
+import com.tencent.smtt.sdk.WebChromeClient
+import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 
 
 /**
@@ -59,12 +61,12 @@ open class WebActivity : AppCompatActivity() {
                     return super.shouldInterceptRequest(view, request)
                 }
                 override fun onReceivedSslError(
-                    view: WebView,
-                    handler: SslErrorHandler,
-                    error: SslError
+                    view: WebView?,
+                    handler: SslErrorHandler?,
+                    p2: SslError?
                 ) {
                     //handler.cancel(); 默认的处理方式，WebView变成空白页
-                    handler.proceed()
+                    handler?.proceed()
                     //handleMessage(Message msg); 其他处理
                 }
 
@@ -89,8 +91,8 @@ open class WebActivity : AppCompatActivity() {
                 }
             }
             binding.wv.settings.allowFileAccess = true
-            binding.wv.settings.allowFileAccessFromFileURLs = true
-            binding.wv.settings.allowUniversalAccessFromFileURLs = true
+//            binding.wv.settings.allowFileAccessFromFileURLs = true
+//            binding.wv.settings.allowUniversalAccessFromFileURLs = true
 
             binding.wv.settings.domStorageEnabled = true
             binding.wv.settings.databaseEnabled = true

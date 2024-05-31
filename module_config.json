@@ -57,12 +57,6 @@
       "sourcePath": ":components:home-module"
     },
     {
-      "simpleName": "hotel-main",
-      "format": "app",
-      "group": "hotel",
-      "sourcePath": ":components:hotel-module:main"
-    },
-    {
       "simpleName": "hotel-bundle1",
       "format": "bundle",
       "group": "hotel",

@@ -391,5 +391,6 @@ dependencies {
     api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
     lintPublish project.moduleify("framework-lint-rules")
     implementation("androidx.webkit:webkit:1.6.0")
+    implementation 'com.tencent.tbs:tbssdk:44286'
 }
 
