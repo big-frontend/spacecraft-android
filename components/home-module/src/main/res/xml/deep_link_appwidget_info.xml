@@ -15,4 +15,4 @@
     android:minWidth="110dp"
     android:minHeight="40dp"
     android:updatePeriodMillis="0"
-    android:initialLayout="@layout/deep_link_appwidget"/>
+    android:initialLayout="@layout/appwidget_deep_link"/>

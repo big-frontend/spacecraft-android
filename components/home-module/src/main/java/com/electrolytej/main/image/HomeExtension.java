@@ -38,15 +38,15 @@ public final class HomeExtension {
         if (options instanceof RequestBuilder){
             return ((RequestBuilder) options)
                     .transition(BitmapTransitionOptions.withCrossFade(3000))
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
-                    .fallback(R.mipmap.ic_launcher);
+                    .placeholder(R.drawable.ic_stat_name)
+                    .error(R.drawable.ic_stat_name)
+                    .fallback(R.drawable.ic_stat_name);
 //        }else if (options instanceof GlideOptions){
         } else {
             return options
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
-                    .fallback(R.mipmap.ic_launcher);
+                    .placeholder(R.drawable.ic_stat_name)
+                    .error(R.drawable.ic_stat_name)
+                    .fallback(R.drawable.ic_stat_name);
         }
 
     }

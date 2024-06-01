@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:logo="@mipmap/ic_launcher"
+                    app:logo="@drawable/ic_stat_name"
                     app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
                     app:popupTheme="@style/AppTheme.PopupOverlay"
                     app:subtitle="subtitle"

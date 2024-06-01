@@ -15,7 +15,7 @@ class MyAppWidgetProvider : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        val remoteViews = RemoteViews(context.packageName, R.layout.deep_link_appwidget)
+        val remoteViews = RemoteViews(context.packageName, R.layout.appwidget_deep_link)
 
         val args = Bundle()
         args.putString("url", ResUtils.getAssetsPath("test.html"))

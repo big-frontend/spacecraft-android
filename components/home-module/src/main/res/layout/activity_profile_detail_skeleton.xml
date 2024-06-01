@@ -146,7 +146,7 @@
         android:id="@+id/view8"
         android:layout_width="53dp"
         android:layout_height="12dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_stat_name"
         android:tag="breathing"
         app:layout_constraintRight_toRightOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/view7" />

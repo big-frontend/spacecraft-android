@@ -33,9 +33,11 @@
         android:layout_height="wrap_content"
         android:layout="@layout/viewstub_tag_sample" />
 
-    <include
-        android:id="@+id/something_include"
-        layout="@layout/include_tag_sample" />
+    <Button
+        android:id="@+id/bt_123"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123"/>
 
     <TextView
         android:id="@+id/tv_location"

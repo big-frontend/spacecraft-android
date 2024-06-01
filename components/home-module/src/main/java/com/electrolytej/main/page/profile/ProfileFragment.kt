@@ -166,7 +166,6 @@ class ProfileFragment : Fragment() {
 //                .flowOn(Dispatchers.IO)//更改上游数据流
                 .collect {
                     channel.send(it)
-                    binding.somethingInclude.bt123.text = "123_ad ${it}"
                 }
 //            val ret = deferred1 + deferred2
             deferred1.await().onStart {

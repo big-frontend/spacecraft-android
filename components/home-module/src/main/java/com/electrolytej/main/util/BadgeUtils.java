@@ -107,9 +107,8 @@ public class BadgeUtils {
         Notification notification = new NotificationCompat.Builder(context, "badge")
                 .setContentTitle("应用角标")
                 .setContentText("您有" + count + "条未读消息")
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap
-                        .ic_launcher))
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_stat_name))
+                .setSmallIcon(R.drawable.ic_stat_name)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setChannelId("badge")
