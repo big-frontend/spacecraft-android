@@ -32,10 +32,7 @@ android{
             path "CMakeLists.txt"
         }
     }
-    def srcDirs = [
-            "async",
-            "serialization",
-    ]
+    def srcDirs = ["async",]
     sourceSets {
         main {
             java.excludes = [

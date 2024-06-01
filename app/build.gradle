@@ -170,6 +170,12 @@ android {
         dataBinding true
         aidl true
     }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output->
+            println(output)
+//            outputFileName = "${appName}_${latestVersionName}.${new Date().format('yyyyMMdd')}.apk"
+        }
+    }
 }
 dependencies {
 //    ksp 'com.github.bumptech.glide:compiler:4.11.0'

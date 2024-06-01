@@ -1,4 +1,4 @@
-package com.electrolytej.main.page
+package com.electrolytej.main.page.blanksplash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.SPUtils
+import com.electrolytej.main.Constants.KEY_AD_SPLASH
+import com.electrolytej.main.Constants.KEY_WELCOMNE_SPLASH
 import com.electrolytej.main.R
 import com.electrolytej.main.base.AbsPermissionsFragment
 import com.electrolytej.main.databinding.FragmentBlankSplashBinding
@@ -14,7 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.Random
 import java.util.concurrent.TimeUnit
 
-class BlankSplashFragment : com.electrolytej.main.base.AbsPermissionsFragment() {
+class BlankSplashFragment : AbsPermissionsFragment() {
     companion object {
 
         const val TAG = "SplashActivity"
@@ -22,7 +25,7 @@ class BlankSplashFragment : com.electrolytej.main.base.AbsPermissionsFragment() 
         // Remote Config keys
         private const val LOADING_PHRASE_CONFIG_KEY = "loading_phrase"
         private const val WELCOME_MESSAGE_KEY = "welcome_message"
-    //    private void fetchWelcome() {
+        //    private void fetchWelcome() {
         //        Log.i(TAG, "LOADING_PHRASE_CONFIG_KEY:" + mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
         //        mFirebaseRemoteConfig.fetchAndActivate()
         //                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
@@ -46,8 +49,11 @@ class BlankSplashFragment : com.electrolytej.main.base.AbsPermissionsFragment() 
         //                });
         //    }
     }
-    private val sRandom = Random()
+    private val random = Random()
     lateinit var binding: FragmentBlankSplashBinding
+    val navController by lazy {
+//        (childFragmentManager.findFragmentById(R.id.fragment_nav_host) as NavHostFragment).navController
+    }
 
     //    private FirebaseAnalytics mFirebaseAnalytics;
     //    private Trace myTrace;
@@ -63,24 +69,17 @@ class BlankSplashFragment : com.electrolytej.main.base.AbsPermissionsFragment() 
 
     @SuppressLint("CheckResult")
     override fun onRequestPermissionsResult() {
-        Observable.timer(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread())
+        Observable.timer(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread())
             .subscribe { aLong: Long? ->
-                val index = sRandom.nextInt(20)
-
-                when (index % 3) {
+                val index = random.nextInt(20)
+                when (index % 4) {
                     0 -> {
-//                        BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
-                        findNavController().navigate(R.id.action_screen)
-                    }
-                    1 -> {
-                        findNavController().navigate(R.id.action_ad_splash)
-                    }
-                    2 -> {
-                        findNavController().navigate(R.id.action_welcome_splash)
+                        SPUtils.getInstance().put(KEY_AD_SPLASH,!SPUtils.getInstance().getBoolean(KEY_AD_SPLASH))
                     }
                 }
+                findNavController().navigate(R.id.dest_home)
             }
-
+    }
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");
 //        myTrace.start();
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -109,11 +108,5 @@ class BlankSplashFragment : com.electrolytej.main.base.AbsPermissionsFragment() 
 //        fetchWelcome();
 //        myTrace.stop();
 //        mHttpMetric.stop();
-
 //        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event);
-    }
-
-
-
-
 }

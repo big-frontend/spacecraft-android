@@ -39,7 +39,7 @@ class PagerViewActivity : AppCompatActivity() {
     }
     var pagerviewList: List<PagerViewModel> = object : ArrayList<PagerViewModel>() {
         init {
-            val tabItem0 = TabsLayout.TabItem("美食", R.mipmap.ic_launcher)
+            val tabItem0 = TabsLayout.TabItem("美食", R.drawable.ic_arrow_back_black_24dp)
             val tabItem1 = TabsLayout.TabItem("景点", R.drawable.ic_arrow_back_black_24dp)
             val tabItem2 = TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp)
             val tabItem3 = TabsLayout.TabItem("购物", R.drawable.ic_arrow_back_black_24dp)

@@ -15,7 +15,6 @@ import com.electrolytej.main.R
 import com.electrolytej.main.databinding.FragmentProfileBinding
 import com.electrolytej.main.databinding.ViewstubTagSampleBinding
 import com.electrolytej.main.page.profile.vm.ProfileViewModel
-import com.electrolytej.main.util.Util
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
@@ -61,7 +60,6 @@ class ProfileFragment : Fragment() {
 //                viewStubBinding =
 //                    ViewstubTagSampleBinding.bind(binding.somethingViewstub.inflate())
 //                viewStubBinding.btViewstub.textr
-                Log.d("cjf","top activity: ${Util.getI().topActivity?.get()}")
             }
             binding.tvChangeIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_change_icon)

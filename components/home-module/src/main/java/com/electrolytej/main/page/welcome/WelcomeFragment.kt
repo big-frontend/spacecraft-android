@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.SPUtils
+import com.electrolytej.main.Constants
 import com.electrolytej.util.BarUtil
 import com.electrolytej.main.R
 import com.electrolytej.main.databinding.FragmentWelcomeBinding
@@ -21,11 +23,13 @@ class WelcomeFragment : Fragment() {
         binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.bt.setOnClickListener {
             BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
-            findNavController().navigate(R.id.action_screen)
+            findNavController().navigate(R.id.dest_home)
+            SPUtils.getInstance().put(Constants.KEY_WELCOMNE_SPLASH, true)
         }
     }
 }

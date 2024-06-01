@@ -11,14 +11,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.electrolytej.base.databinding.FragmentWebviewBinding
 
-/**
- * Copyright ® $ 2020
- * All right reserved.
- *
- * @author: hawksjamesf
- * @email: hawksjamesf@gmail.com
- * @since: Aug/25/2020  Tue
- */
+
 class WebFragment : Fragment() {
     companion object {
         @JvmStatic
@@ -31,7 +24,7 @@ class WebFragment : Fragment() {
         }
     }
     lateinit var binding: FragmentWebviewBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentWebviewBinding.inflate(inflater,container,false)
         return binding.root
     }

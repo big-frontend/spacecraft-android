@@ -21,10 +21,8 @@
         <!--<item name="android:colorForeground">@android:color/background_material_light</item>-->
         <!--<item name="android:colorBackground">@android:color/background_material_light</item>-->
         <!--<item name="android:windowBackground">?android:attr/colorBackground</item>-->
-
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowDisablePreview">true</item>
-
         <!--支持3.0以上-->
         <!--<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>-->
         <!--<item name="android:windowActionBarOverlay">true</item>-->
@@ -33,6 +31,7 @@
         <!--<item name="windowActionBarOverlay">true</item>-->
         <!--<item name="actionBarStyle">@style/AppTheme.ActionBar</item>-->
         <!--支持2.0以上-->
+        <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>

@@ -8,42 +8,42 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbsPermissionsFragment extends Fragment {
+public abstract class AbsPermissionsActivity extends AppCompatActivity {
     private final List<String> mPermissions = new ArrayList<String>() {
         {
-//            add(Manifest.permission.READ_PHONE_STATE);
-//            add(Manifest.permission.READ_SMS);
-//            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
-//                add(Manifest.permission.READ_PHONE_NUMBERS);
-//            }
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//                add(Manifest.permission.ACCESS_MEDIA_LOCATION);
-//                add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-//            }
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//                add(Manifest.permission.FOREGROUND_SERVICE);
-//            }
-//            add(Manifest.permission.ACCESS_FINE_LOCATION);
-//            add(Manifest.permission.ACCESS_COARSE_LOCATION);
-//            add(Manifest.permission.READ_EXTERNAL_STORAGE);
-//            add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            add(Manifest.permission.READ_PHONE_STATE);
+            add(Manifest.permission.READ_SMS);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+                add(Manifest.permission.READ_PHONE_NUMBERS);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                add(Manifest.permission.ACCESS_MEDIA_LOCATION);
+                add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                add(Manifest.permission.FOREGROUND_SERVICE);
+            }
+            add(Manifest.permission.ACCESS_FINE_LOCATION);
+            add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
             add(Manifest.permission.INTERNET);
             add(Manifest.permission.ACCESS_NETWORK_STATE);
             add(Manifest.permission.ACCESS_WIFI_STATE);
             add(Manifest.permission.CHANGE_WIFI_MULTICAST_STATE);
             add(Manifest.permission.CHANGE_WIFI_STATE);
-//            add(Manifest.permission.BLUETOOTH);
-//            add(Manifest.permission.BLUETOOTH_ADMIN);/* Manifest.permission.BLUETOOTH_PRIVILEGED,*/
-//            add(Manifest.permission.RECEIVE_BOOT_COMPLETED);
-//            add(Manifest.permission.RECORD_AUDIO);
-//            add(Manifest.permission.CAMERA);
+            add(Manifest.permission.BLUETOOTH);
+            add(Manifest.permission.BLUETOOTH_ADMIN);/* Manifest.permission.BLUETOOTH_PRIVILEGED,*/
+            add(Manifest.permission.RECEIVE_BOOT_COMPLETED);
+            add(Manifest.permission.RECORD_AUDIO);
+            add(Manifest.permission.CAMERA);
             add(Manifest.permission.INSTALL_SHORTCUT);
             add(Manifest.permission.UNINSTALL_SHORTCUT);
         }
@@ -82,7 +82,7 @@ public abstract class AbsPermissionsFragment extends Fragment {
                     sb.append(p);
                     sb.append('\n');
                 }
-                Toast.makeText(requireContext(), "need permission:" + sb, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "need permission:" + sb, Toast.LENGTH_LONG).show();
                 onRequestPermissionsResult();
             }
         } else {
@@ -93,7 +93,7 @@ public abstract class AbsPermissionsFragment extends Fragment {
     private boolean hasPermission() {
         boolean hasPermission = true;
         for (String permission : mPermissions) {
-            boolean b = (ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED);
+            boolean b = (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED);
             if (!b) {
                 mFailurePermissions.add(permission);
             }

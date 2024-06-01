@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">myhome</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="static_disabled_message">被禁用了</string>
+    <string name="static_shortcut_long_label" >长 label</string>
+    <string name="static_shortcut_short_label" >短 label</string>
+    <item name="tv_text" type="id" />
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="weeks">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thurday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
 </resources>

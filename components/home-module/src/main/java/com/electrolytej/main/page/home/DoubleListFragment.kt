@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.electrolytej.mvp.RxFragment
-import com.electrolytej.main.GalleryActivity
+import com.electrolytej.main.page.photo.GalleryActivity
 import com.electrolytej.main.R
 import com.electrolytej.main.databinding.FragmentDoubleListBinding
 
@@ -114,7 +114,7 @@ class DoubleListFragment : RxFragment<com.electrolytej.main.page.home.DoubleList
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             holder.tvText.text = "asfasdfas"
             holder.tvText.setOnClickListener { v: View? ->
-                val i = Intent(activity,GalleryActivity::class.java)
+                val i = Intent(activity, GalleryActivity::class.java)
                 startActivity(i)
             }
         }

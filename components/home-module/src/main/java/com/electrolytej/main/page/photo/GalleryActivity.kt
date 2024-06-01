@@ -1,4 +1,4 @@
-package com.electrolytej.main
+package com.electrolytej.main.page.photo
 
 import android.app.Activity
 import android.graphics.Color
@@ -60,7 +60,7 @@ class GalleryActivity : Activity() {
     }
 
 
-    internal class MyAdapter : RecyclerView.Adapter<GalleryActivity.MyViewHolder>() {
+    internal class MyAdapter : RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             return MyViewHolder(
                 LayoutInflater.from(parent.context)

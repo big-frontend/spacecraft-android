@@ -18,14 +18,6 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 
 
-/**
- * Copyright ® $ 2020
- * All right reserved.
- *
- * @author: hawksjamesf
- * @email: hawksjamesf@gmail.com
- * @since: Aug/24/2020  Mon
- */
 open class WebActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "WebViewActivity"
@@ -48,7 +40,6 @@ open class WebActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(binding.root)
         intent.getStringExtra("url")?.let { url ->
             binding.wv.loadUrl(url)

@@ -5,21 +5,25 @@
 
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.opengles.aep" android:required="true" />
-    <uses-feature android:glEsVersion="0x00030001" android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.opengles.aep"
+        android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00030001"
+        android:required="true" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <application>
 
+    <application>
         <activity
             android:name="com.electrolytej.main.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/HomeTheme"
-            android:windowSoftInputMode="adjustPan"
-            >
-<!--            android:theme="@style/HomeTheme"-->
+            android:windowSoftInputMode="adjustPan">
+            <!--            android:theme="@style/HomeTheme"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,30 +35,29 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- 自定义的协议如果内部不能处理就会crash报错，http/https如果内部不能处理就会交给外部 -->
-                <data
-                    android:host="i.spacecraft.com"
-                    android:path="/home"
-                    android:scheme="https" />
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/home"
-                    android:scheme="ispacecraft" />
-                <data
-                    android:host="i.spacecraft.com"
-                    android:pathPrefix="/c/"
-                    android:scheme="https" />
+                <data android:scheme="https" />
+                <data android:host="i.spacecraft.com" />
+                <data android:path="/home" />
+                <data android:scheme="ispacecraft" />
+                <data android:host="www.spacecraft.com" />
+                <data android:path="/home" />
+                <data android:scheme="https" />
+                <data android:host="i.spacecraft.com" />
+                <data android:pathPrefix="/c/" />
             </intent-filter>
             <!-- firebase app indexing启动 start -->
             <!-- firebase app indexing启动 end -->
-
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity-alias
             android:name=".aMainActivity"
-            android:targetActivity="com.electrolytej.main.MainActivity"
-            android:label="618"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_stat_name"
-            android:exported="true">
+            android:label="618"
+            android:targetActivity="com.electrolytej.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -64,8 +67,18 @@
         <activity
             android:name=".page.profile.ProfileDetailActivity"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name="com.electrolytej.main.page.profile.SettingsActivity" />
-
+        <activity android:name=".page.profile.SettingsActivity" />
+        <activity
+            android:name=".page.photo.PhotoActivity"
+            android:theme="@style/PhotoTheme" />
+        <activity
+            android:name=".page.photo.LargePhotoActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name=".page.profile.ChangeIconActivity" />
+        <activity android:name=".page.photo.GalleryActivity" />
+        <activity
+            android:name=".page.profile.PrivacyPolicyActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
@@ -76,22 +89,14 @@
             tools:node="remove"
             tools:targetApi="n" />
 
-        <activity android:name="com.electrolytej.main.BlankActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+        <activity android:name="com.electrolytej.main.router.BlankActivity" />
 
         <receiver
-            android:name=".SetWallpaper"
+            android:name=".router.SetWallpaperReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.hawksjamesf.spacecraft.set_wallpaper" />
+                <action android:name="com.electrolytej.spacecraft.set_wallpaper" />
             </intent-filter>
         </receiver>
         <receiver
@@ -104,16 +109,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/deep_link_appwidget_info" />
         </receiver>
-        <activity
-            android:name="com.electrolytej.main.page.photo.PhotoActivity"
-            android:label="PhotoActivity"
-            android:theme="@style/PhotoTheme" />
-        <activity
-            android:name=".page.photo.LargePhotoActivity"
-            android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".page.profile.ChangeIconActivity" />
-        <activity android:name="com.electrolytej.main.GalleryActivity" />
-        <activity android:name=".page.profile.PrivacyPolicyActivity" />
+
+
     </application>
 
 </manifest>

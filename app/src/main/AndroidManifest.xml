@@ -18,8 +18,9 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!--    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />-->
     <!--允许程序读写手机状态和身份-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" android:maxSdkVersion="29"  />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--android10 之后电话 蓝牙 WLAN(Wifi) 需要ACCESS_FINE_LOCATION权限才能使用，
@@ -37,6 +38,8 @@
     <!-- 用户手机设置中允许未知来源安装包安装状态为关；-->
     <!-- Android8.0 以后，如果要安装 apk 需要额外添加权限：-->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -69,7 +72,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme,android:allowBackup"
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="GoogleAppIndexingWarning">
         <meta-data

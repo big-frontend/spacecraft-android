@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.electrolytej.base">
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
-        android:hardwareAccelerated="true"
-        android:name="com.electrolytej.SApp"
-        >
+        android:name="com.electrolytej.SApp">
         <activity android:name="com.electrolytej.activity.AvRecorderActivity" />
         <service
             android:name="com.electrolytej.av.AvRecorderService"
@@ -23,31 +22,32 @@
             tools:node="merge">
             <!--            tools:node="remove"-->
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.ApmInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.ApmInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.BundleInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.BundleInitializer"
                 android:value="androidx.startup" />
             <!--                tools:node="remove"-->
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.LoggerInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.LoggerInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.ImageInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.ImageInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.StorageInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.StorageInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.CrossPlatformInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.CrossPlatformInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.jamesfchen.loader.androidxstartup.EmojiInitializer"
+                android:name="com.electrolytej.loader.androidxstartup.EmojiInitializer"
                 android:value="androidx.startup" />
         </provider>
         <activity
-            android:exported="true"
             android:name="com.electrolytej.activity.WebActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
