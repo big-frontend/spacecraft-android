@@ -1,4 +1,4 @@
-package com.jamesfchen.myhome;
+package com.electrolytej.main;
 
 import android.content.Context;
 

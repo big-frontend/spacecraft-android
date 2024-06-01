@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package com.electrolytej.network.model;
+option java_package = "com.electrolytej.network.model";
+option java_outer_classname = "SignUpProto";
+option java_multiple_files = true;
+option java_generic_services = true;
+
+
+message SignUpReq {
+    int32 id = 1;
+    string password = 2;
+    int32 verificationCode = 3;
+}
+
+message SignUpResp {
+}
+
+service SignUpService {
+    rpc signup (SignUpReq) returns (SignUpResp);
+}

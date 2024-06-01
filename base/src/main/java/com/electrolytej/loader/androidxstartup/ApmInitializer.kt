@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.startup.Initializer
 import com.blankj.utilcode.util.ProcessUtils
 import com.electrolytej.base.BuildConfig
-import com.electrolytej.loader.SApp
+import com.electrolytej.SApp
 import com.google.firebase.perf.metrics.AddTrace
 import com.electrolytej.loader.matrix.*
 import com.tencent.bugly.crashreport.CrashReport

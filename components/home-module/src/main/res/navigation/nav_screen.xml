@@ -6,7 +6,7 @@
     app:startDestination="@id/dest_home">
     <fragment
         android:id="@+id/dest_home"
-        android:name="com.jamesfchen.myhome.page.home.HomeFragment"
+        android:name="com.electrolytej.main.page.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -30,14 +30,14 @@
     <!--    通知-->
     <fragment
         android:id="@+id/dest_infos"
-        android:name="com.jamesfchen.myhome.page.notification.InfosFragment"
+        android:name="com.electrolytej.main.page.notification.InfosFragment"
         android:label="fragment_infos"
         tools:layout="@layout/fragment_infos">
     </fragment>
     <!--    多窗口-->
     <fragment
         android:id="@+id/dest_windows"
-        android:name="com.jamesfchen.myhome.page.window.WindowFragment"
+        android:name="com.electrolytej.main.page.window.WindowFragment"
         android:label="fragment_window"
         tools:layout="@layout/fragment_window">
     </fragment>
@@ -45,7 +45,7 @@
     <!--    个人中心-->
     <fragment
         android:id="@+id/dest_profile"
-        android:name="com.jamesfchen.myhome.page.profile.ProfileFragment"
+        android:name="com.electrolytej.main.page.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <!--app:destination="@id/flow_step_two_dest"/>-->
@@ -59,7 +59,7 @@
     </fragment>
     <activity
         android:id="@+id/dest_privacy_policy"
-        android:name="com.jamesfchen.myhome.page.profile.PrivacyPolicyActivity"
+        android:name="com.electrolytej.main.page.profile.PrivacyPolicyActivity"
         android:label="activity_privacy_policy">
         <argument
             android:name="url"
@@ -69,7 +69,7 @@
     </activity>
     <activity
         android:id="@+id/dest_change_icon"
-        android:name="com.jamesfchen.myhome.page.profile.ChangeIconActivity"
+        android:name="com.electrolytej.main.page.profile.ChangeIconActivity"
         android:label="changeIcon">
     </activity>
 

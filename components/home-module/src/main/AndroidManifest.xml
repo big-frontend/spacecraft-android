@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jamesfchen.myhome">
+    package="com.electrolytej.main">
 
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
@@ -11,13 +11,19 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <application>
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.electrolytej.main.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:theme="@style/HomeTheme"
+            android:windowSoftInputMode="adjustPan"
             >
 <!--            android:theme="@style/HomeTheme"-->
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <!-- 通过url路由调用改页面 -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -44,7 +50,7 @@
         </activity>
         <activity-alias
             android:name=".aMainActivity"
-            android:targetActivity=".MainActivity"
+            android:targetActivity="com.electrolytej.main.MainActivity"
             android:label="618"
             android:enabled="false"
             android:icon="@drawable/ic_stat_name"
@@ -58,27 +64,8 @@
         <activity
             android:name=".page.profile.ProfileDetailActivity"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".page.profile.SettingsActivity" />
-        <activity
-            android:exported="true"
-            android:name="com.jamesfchen.activity.WebActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
+        <activity android:name="com.electrolytej.main.page.profile.SettingsActivity" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web"
-                    android:scheme="ispacecraft" />
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web/"
-                    android:scheme="ispacecraft" />
-            </intent-filter>
-        </activity>
 
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
@@ -89,7 +76,7 @@
             tools:node="remove"
             tools:targetApi="n" />
 
-        <activity android:name=".BlankActivity">
+        <activity android:name="com.electrolytej.main.BlankActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -118,14 +105,14 @@
                 android:resource="@xml/deep_link_appwidget_info" />
         </receiver>
         <activity
-            android:name=".page.photo.PhotoActivity"
+            android:name="com.electrolytej.main.page.photo.PhotoActivity"
             android:label="PhotoActivity"
             android:theme="@style/PhotoTheme" />
         <activity
             android:name=".page.photo.LargePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".page.profile.ChangeIconActivity" />
-        <activity android:name=".GalleryActivity" />
+        <activity android:name="com.electrolytej.main.GalleryActivity" />
         <activity android:name=".page.profile.PrivacyPolicyActivity" />
     </application>
 

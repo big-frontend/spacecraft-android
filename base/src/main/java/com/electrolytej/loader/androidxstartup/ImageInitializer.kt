@@ -13,7 +13,7 @@ import com.facebook.imagepipeline.cache.MemoryCacheParams
 import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.google.firebase.perf.metrics.AddTrace
 import com.electrolytej.util.ThreadUtil
-import com.electrolytej.loader.SApp
+import com.electrolytej.SApp
 import okhttp3.ConnectionPool
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient

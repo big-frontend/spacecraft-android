@@ -5,7 +5,7 @@ import android.media.MediaCodecInfo
 import android.media.MediaFormat
 import android.util.Log
 import android.view.Surface
-import com.electrolytej.av.writeFully
+import com.electrolytej.util.writeFully
 import java.io.FileDescriptor
 import java.io.IOException
 import java.nio.ByteBuffer

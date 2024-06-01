@@ -24,7 +24,7 @@ public class DrawableUtil {
     private DrawableUtil() {
     }
 
-    private void applay() {
+    private void apply() {
         mView.setBackground(backgroundDrawable);
     }
 }

@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.electrolytej.h5container.AndroidNativeBridge
-import com.electrolytej.h5container.NativeBridge
-import com.electrolytej.util.AssetsUtils
+import com.electrolytej.util.ResUtils
 import com.electrolytej.base.databinding.ActivityWebviewBinding
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
@@ -47,8 +45,6 @@ open class WebActivity : AppCompatActivity() {
     val binding: ActivityWebviewBinding by lazy {
         return@lazy ActivityWebviewBinding.inflate(layoutInflater)
     }
-    val nativeBridge = NativeBridge(this)
-    val androidNativeBridge = AndroidNativeBridge(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +72,7 @@ open class WebActivity : AppCompatActivity() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 //                    binding.lpi.visibility = View.GONE
-                    binding.wv.evaluateJavascript(AssetsUtils.loadAssetsFile(this@WebActivity,"VideoHelper.js"),null);
+                    binding.wv.evaluateJavascript(ResUtils.loadAssetFile(this@WebActivity,"VideoHelper.js"),null);
                     binding.wv.evaluateJavascript("javascript:videoCustomerJs()",null)
                 }
 
@@ -103,8 +99,8 @@ open class WebActivity : AppCompatActivity() {
             binding.wv.settings.javaScriptEnabled = true
             binding.wv.settings.javaScriptCanOpenWindowsAutomatically = true
             binding.wv.webChromeClient = WebChromeClient()
-            binding.wv.addJavascriptInterface(nativeBridge, "NativeBridge")
-            binding.wv.addJavascriptInterface(nativeBridge, "Android")
+//            binding.wv.addJavascriptInterface(nativeBridge, "NativeBridge")
+//            binding.wv.addJavascriptInterface(nativeBridge, "Android")
             binding.wv.setDownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
                 Log.d(TAG, "url:${url}")
                 val uri = Uri.parse(url)

@@ -43,7 +43,7 @@ inline fun <T> Single<T>.subscribeBy(
 
 ) {
     subscribe(object : SingleObserver<T> {
-        override fun onSuccess(t: T) = onSuccess(t)
+        override fun onSuccess(t: T & Any)  =  onSuccess(t)
 
         override fun onSubscribe(d: Disposable) = onSubscribe(d)
 

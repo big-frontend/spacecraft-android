@@ -4,15 +4,7 @@ import androidx.annotation.FloatRange;
 
 import com.electrolytej.util.Util;
 
-/**
- * Copyright ® 2019
- * All right reserved.
- * Code Link : https://github.com/HawksJamesf/Spacecraft
- *
- * @author: hawksjamesf
- * @email: hawksjamesf@gmail.com
- * @since: Mar/03/2019  Sun
- */
+
 public class ConvertUtil {
 
     public static int dp2px(@FloatRange final float dpValue) {

@@ -5,13 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.jamesfchen.myhome.widget.gallery.GalleryView
+    <com.electrolytej.main.widget.gallery.GalleryView
         android:id="@+id/rv_gallery"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.jamesfchen.myhome.widget.carousel.CarouselView
+    <com.electrolytej.main.widget.carousel.CarouselView
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="153dp"
@@ -20,7 +20,7 @@
         app:cv_autoStart="true"
         app:cv_interval="5000" />
 
-    <com.jamesfchen.myhome.widget.DanmuView
+    <com.electrolytej.main.widget.DanmuView
         android:background="@color/afasf"
         android:id="@+id/danmu"
         android:layout_width="244dp"

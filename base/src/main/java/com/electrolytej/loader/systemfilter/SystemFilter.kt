@@ -5,7 +5,7 @@ import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
 import android.view.View
-import com.electrolytej.loader.SApp
+import com.electrolytej.SApp
 
 class SystemFilter {
     companion object {
