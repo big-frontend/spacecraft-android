@@ -9,17 +9,17 @@
         android:id="@+id/dest_blank_splash"
         android:name="com.electrolytej.main.page.blanksplash.BlankSplashFragment"
         android:label="fragment_blank_splash"
-        tools:layout="@layout/fragment_blank_splash"></fragment>
+        tools:layout="@layout/fragment_blank_splash" />
     <fragment
         android:id="@+id/dest_ad_splash"
         android:name="com.electrolytej.main.page.ad.AdFragment"
         android:label="fragment_ad_splash"
-        tools:layout="@layout/fragment_ad"></fragment>
+        tools:layout="@layout/fragment_ad" />
     <fragment
         android:id="@+id/dest_welcome_splash"
         android:name="com.electrolytej.main.page.welcome.WelcomeFragment"
         android:label="fragment_welcome_splash"
-        tools:layout="@layout/fragment_welcome"></fragment>
+        tools:layout="@layout/fragment_welcome" />
     <!--    首页-->
     <fragment
         android:id="@+id/dest_home"
@@ -27,10 +27,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_webview"
-            app:destination="@+id/dest_fragment_webview"
-            app:popUpTo="@+id/dest_home"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_search"
+            app:destination="@+id/dest_activity_search" />
     </fragment>
     <!--    信息流-->
     <fragment
@@ -101,5 +99,9 @@
     <activity
         android:id="@+id/dest_activity_webview"
         android:name="com.electrolytej.activity.WebActivity"
-        android:label="activity_webview"></activity>
+        android:label="activity_webview"/>
+    <activity
+        android:id="@+id/dest_activity_search"
+        android:name="com.electrolytej.main.page.search.SearchActivity"
+        android:label="activity_search"/>
 </navigation>

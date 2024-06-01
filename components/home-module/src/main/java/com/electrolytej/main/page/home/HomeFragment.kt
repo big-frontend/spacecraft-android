@@ -36,8 +36,8 @@ class HomeFragment : Fragment() {
 
     inner class HomeAdapter(f: Fragment) : FragmentStateAdapter(f) {
         val list = listOf(
+            BrowserFragment::class.java,
             DoubleListFragment::class.java,
-            VideoListFragment::class.java,
         )
 
         override fun getItemCount() = list.size

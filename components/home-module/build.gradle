@@ -27,6 +27,9 @@ android {
             path "CMakeLists.txt"
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 dependencies {
 //    lintChecks project(path: ':lint-rules')

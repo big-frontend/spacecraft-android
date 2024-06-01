@@ -110,7 +110,9 @@
                 android:resource="@xml/deep_link_appwidget_info" />
         </receiver>
 
-
+        <activity
+            android:name="com.electrolytej.main.page.search.SearchActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>
