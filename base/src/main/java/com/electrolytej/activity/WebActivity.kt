@@ -28,8 +28,7 @@ open class WebActivity : AppCompatActivity() {
 //        FragmentUtils.show(fragment);
             val uri = Uri.parse("ispacecraft://www.spacecraft.com/web/")
             val intent = Intent(Intent.ACTION_VIEW, uri)
-//            intent.putExtra("url", "https://i.meituan.com/c/ZDg0Y2FhNjMt")
-            intent.putExtra("url", "https://i.meituan.com/c1/ZDg0Y2FhNjMt")/**/
+            intent.putExtra("url", "https://i.meituan.com/c1/ZDg0Y2FhNjMt")
             context.startActivity(intent)
         }
     }

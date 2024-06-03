@@ -102,6 +102,6 @@
         android:label="activity_webview"/>
     <activity
         android:id="@+id/dest_activity_search"
-        android:name="com.electrolytej.main.page.search.SearchActivity"
+        android:name="com.electrolytej.main.page.web.WebSearchActivity"
         android:label="activity_search"/>
 </navigation>
