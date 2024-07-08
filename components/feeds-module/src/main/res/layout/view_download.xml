@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/bt_start_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始下载"
+        tools:visibility="gone"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/ll_cancel_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消下载" />
+
+        <ProgressBar
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:id="@+id/pb_progress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            tools:progress="10"
+            android:progressDrawable="@drawable/cust_progress_bar"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_restart_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重新下载"
+        android:visibility="gone" />
+</FrameLayout>

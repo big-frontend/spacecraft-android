@@ -22,7 +22,6 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider
 import com.electrolytej.feeds.databinding.ItemPhotoTextBinding
 import com.electrolytej.feeds.page.newfeeds.model.Item
 import kotlinx.coroutines.flow.collectLatest
-import java.util.Random
 
 /**
  * 信息流的内容：
@@ -143,7 +142,7 @@ class NewFeedsAdapter(
         holder.binding.tvIndex.text = "$position"
         holder.binding.tvText.setText("photo list size:${item.photoList?.size} ${item.text}")
         holder.binding.tvText.autoRecoverStateByUniqueKey(position)
-
+        holder.binding.btDownload.autoRecoverStateByUniqueKey(position)
         holder.binding.ilvPhotoList.setOnItemClickListener { _, pos ->
             //                val thumbnailBitmapList = arrayListOf<Bitmap>()
 //                linearLayout.children.forEach {
