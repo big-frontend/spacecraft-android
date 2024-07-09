@@ -389,5 +389,9 @@ dependencies {
     lintPublish project.moduleify("framework-lint-rules")
     implementation("androidx.webkit:webkit:1.6.0")
     implementation 'com.tencent.tbs:tbssdk:44286'
+
+    implementation "com.liulishuo.okdownload:okdownload:1.0.7"
+    implementation "com.liulishuo.okdownload:sqlite:1.0.7"
+    implementation "com.liulishuo.okdownload:okhttp:1.0.7"
 }
 

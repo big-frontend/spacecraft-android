@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="开始下载"
-        tools:visibility="gone"
-        android:visibility="visible" />
+        android:visibility="visible"
+        tools:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_cancel_download"
@@ -21,23 +21,22 @@
         tools:visibility="visible">
 
         <Button
+            android:id="@+id/bt_cancel_download"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消下载" />
 
         <ProgressBar
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:id="@+id/pb_progress"
             style="?android:progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:max="100"
             android:progress="0"
-            tools:progress="10"
             android:progressDrawable="@drawable/cust_progress_bar"
-            />
-
+            tools:progress="10" />
     </LinearLayout>
 
     <Button
