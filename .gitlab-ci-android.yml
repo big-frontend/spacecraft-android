@@ -38,6 +38,6 @@ stages:
   - deploy
 include:
   - '/android/.gitlab-ci-fwk.yml'
-  - '/android/.gitlab-ci-myhome.yml'
+  - '/android/.gitlab-ci-main.yml'
   - '/android/.gitlab-ci-hotel.yml'
   - '/android/.gitlab-ci-account.yml'

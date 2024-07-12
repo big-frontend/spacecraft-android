@@ -51,10 +51,10 @@
       "sourcePath": ":components:account-module"
     },
     {
-      "simpleName": "home-module",
+      "simpleName": "main-module",
       "format": "bundle",
-      "group": "home",
-      "sourcePath": ":components:home-module"
+      "group": "main",
+      "sourcePath": ":components:main-module"
     },
     {
       "simpleName": "hotel-bundle1",

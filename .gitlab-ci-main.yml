@@ -1,0 +1,40 @@
+main-module-build:
+  only:
+    changes:
+      #      - components/main-module/myhome/*.{java,kt,xml,gradle}
+      - android/components/main-module/**/*
+  stage: build
+  script:
+    - ./gradlew :components:main-module:assemble
+
+
+#main-module-lint:
+#  only:
+#    changes:
+#      - android/components/main-module/myhome/**/*
+#  stage: test
+#  script:
+#    - ./gradlew :components:main-module:myhome:lintInhouse
+
+main-module-deploy:
+  only:
+    changes:
+      - android/components/main-module/**/*
+  stage: deploy
+  script:
+    - ./gradlew :components:main-module:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
+
+## ========================
+#home-daily-check:
+#  only:
+#    changes:
+#      - android/components/main-module/**/*
+#  stage: build
+#  script:
+#    - ./gradlew :components:main-module:main:fileCounter
+
+##debugTests:
+##  stage: test
+##  script:
+##    - ./gradlew -Pci --console=plain :app:testDebug
+#
