@@ -1,0 +1,6 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:drawable="@drawable/p_vector_drawable">
+    <target
+        android:name="curtainGroup"
+        android:animation="@animator/breathe"/>
+</animated-vector>

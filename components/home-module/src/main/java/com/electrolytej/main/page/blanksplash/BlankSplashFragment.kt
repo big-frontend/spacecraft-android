@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.blankj.utilcode.util.SPUtils
 import com.electrolytej.main.Constants.KEY_AD_SPLASH
-import com.electrolytej.main.Constants.KEY_WELCOMNE_SPLASH
 import com.electrolytej.main.R
 import com.electrolytej.main.base.AbsPermissionsFragment
 import com.electrolytej.main.databinding.FragmentBlankSplashBinding
@@ -74,9 +73,9 @@ class BlankSplashFragment : AbsPermissionsFragment() {
                 val index = random.nextInt(20)
                 when (index % 4) {
                     0 -> {
-                        SPUtils.getInstance().put(KEY_AD_SPLASH,!SPUtils.getInstance().getBoolean(KEY_AD_SPLASH))
                     }
                 }
+                        SPUtils.getInstance().put(KEY_AD_SPLASH,!SPUtils.getInstance().getBoolean(KEY_AD_SPLASH))
                 findNavController().navigate(R.id.dest_home)
             }
     }

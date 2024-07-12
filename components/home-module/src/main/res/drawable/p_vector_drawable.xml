@@ -1,0 +1,31 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="104dp"
+    android:height="812dp"
+    android:viewportWidth="104"
+    android:viewportHeight="812">
+
+    <group
+        android:name="curtainGroup"
+        android:translationX="104dp">
+        <path
+            android:name="curtain"
+            android:pathData="M66.52 0C26.4 92.87 0 250.8 0 430C0 581.27 18.81 717.38 48.81 812L104 812L104 0L66.52 0Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:endX="104"
+                    android:endY="391"
+                    android:startX="-116"
+                    android:startY="391"
+                    android:type="linear">
+                    <item
+                        android:color="#FFFFFFFF"
+                        android:offset="0.02" />
+                    <item
+                        android:color="#00FFFFFF"
+                        android:offset="1" />
+                </gradient>
+            </aapt:attr>
+        </path>
+    </group>
+</vector>

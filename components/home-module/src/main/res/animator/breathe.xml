@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially">
+    <objectAnimator
+        android:duration="600"
+        android:interpolator="@anim/interpolator_breathe"
+        android:propertyName="translationX"
+        android:valueFrom="1040.0dp"
+        android:valueTo="0.0dp"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="1000"
+        android:interpolator="@android:interpolator/linear"
+        android:propertyName="translationX"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:valueFrom="0.0dp"
+        android:valueTo="20.0dp"
+        android:valueType="floatType" />
+</set>
+
+
