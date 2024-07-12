@@ -12,79 +12,79 @@
       "simpleName": "uamp-automotive",
       "format": "app",
       "group": "uamp",
-      "sourcePath": ":components:uamp-module:automotive"
+      "sourcePath": ":modules:uamp-module:automotive"
     },
     {
       "simpleName": "uamp-main",
       "format": "app",
       "group": "uamp",
-      "sourcePath": ":components:uamp-module:main"
+      "sourcePath": ":modules:uamp-module:main"
     },
     {
       "simpleName": "uamp-uamp",
       "format": "bundle",
       "group": "uamp",
-      "sourcePath": ":components:uamp-module:uamp"
+      "sourcePath": ":modules:uamp-module:uamp"
     },
     {
       "simpleName": "update-module",
       "format": "bundle",
       "group": "update",
-      "sourcePath": ":components:update-module"
+      "sourcePath": ":modules:update-module"
     },
     {
       "simpleName": "codescanner-module",
       "format": "bundle",
       "group": "codescanner",
-      "sourcePath": ":components:codescanner-module"
+      "sourcePath": ":modules:codescanner-module"
     },
     {
       "simpleName": "im-module",
       "format": "bundle",
       "group": "im",
-      "sourcePath": ":components:im-module"
+      "sourcePath": ":modules:im-module"
     },
     {
       "simpleName": "account-module",
       "format": "bundle",
       "group": "account",
-      "sourcePath": ":components:account-module"
+      "sourcePath": ":modules:account-module"
     },
     {
       "simpleName": "main-module",
       "format": "bundle",
       "group": "main",
-      "sourcePath": ":components:main-module"
+      "sourcePath": ":modules:main-module"
     },
     {
       "simpleName": "hotel-bundle1",
       "format": "bundle",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:bundle1"
+      "sourcePath": ":modules:hotel-module:bundle1"
     },
     {
       "simpleName": "hotel-bundle2",
       "format": "bundle",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:bundle2"
+      "sourcePath": ":modules:hotel-module:bundle2"
     },
     {
       "simpleName": "hotel-export",
       "format": "bundle_foundation",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:export"
+      "sourcePath": ":modules:hotel-module:export"
     },
     {
       "simpleName": "hotel-foundation",
       "format": "bundle_foundation",
       "group": "hotel",
-      "sourcePath": ":components:hotel-module:foundation"
+      "sourcePath": ":modules:hotel-module:foundation"
     },
     {
       "simpleName": "feeds-module",
       "format": "bundle",
       "group": "feeds",
-      "sourcePath": ":components:feeds-module"
+      "sourcePath": ":modules:feeds-module"
     },
     {
       "simpleName": "framework-base",
@@ -102,7 +102,7 @@
       "simpleName": "livestreaming-module",
       "format": "bundle",
       "group": "livestreaming",
-      "sourcePath": ":components:livestreaming-module"
+      "sourcePath": ":modules:livestreaming-module"
     }
   ]
 }

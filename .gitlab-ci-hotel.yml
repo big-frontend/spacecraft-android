@@ -1,73 +1,73 @@
 hotel-foundation:
   only:
     changes:
-      - android/components/hotel-module/foundation/**/*
+      - android/modules/hotel-module/foundation/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:foundation:assemble publishDebugAarPublicationToMavenCentralRepository
+    - ./gradlew :modules:hotel-module:foundation:assemble publishDebugAarPublicationToMavenCentralRepository
 #hotel-foundation-lint:
 #  only:
 #    changes:
-#      - android/components/hotel-module/foundation/**/*
+#      - android/modules/hotel-module/foundation/**/*
 #  stage: test
 #  script:
-#    - ./gradlew :components:hotel-module:foundation:lintInhouse
+#    - ./gradlew :modules:hotel-module:foundation:lintInhouse
 #hotel-foundation-test:
 #  only:
 #    changes:
-#      - android/components/hotel-module/bundle1/**/*
+#      - android/modules/hotel-module/bundle1/**/*
 #  stage: test
 #  script:
-#    - ./gradlew :components:hotel-module:foundation:test
+#    - ./gradlew :modules:hotel-module:foundation:test
 # ========================
 hotel-bundle1:
   only:
     changes:
-      - android/components/hotel-module/bundle1/**/*
+      - android/modules/hotel-module/bundle1/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:bundle1:assemble publishDebugAarPublicationToMavenCentralRepository
+    - ./gradlew :modules:hotel-module:bundle1:assemble publishDebugAarPublicationToMavenCentralRepository
 
 #hotel-bundle1-lint:
 #  only:
 #    changes:
-#      - android/components/hotel-module/bundle1/**/*
+#      - android/modules/hotel-module/bundle1/**/*
 #  stage: test
 #  script:
-#    - ./gradlew :components:hotel-module:bundle1:lintInhouse
+#    - ./gradlew :modules:hotel-module:bundle1:lintInhouse
 
 # ========================
 hotel-bundle2:
   only:
     changes:
-      - android/components/hotel-module/bundle2/**/*
+      - android/modules/hotel-module/bundle2/**/*
   stage: build
   script:
-    - ./gradlew :components:hotel-module:bundle2:assemble publishDebugAarPublicationToMavenCentralRepository
+    - ./gradlew :modules:hotel-module:bundle2:assemble publishDebugAarPublicationToMavenCentralRepository
 
 #hotel-bundle2-lint:
 #  only:
 #    changes:
-#      - android/components/hotel-module/bundle2/**/*
+#      - android/modules/hotel-module/bundle2/**/*
 #  stage: test
 #  script:
-#    - ./gradlew :components:hotel-module:bundle2:lintInhouse
+#    - ./gradlew :modules:hotel-module:bundle2:lintInhouse
 # ========================
 
 #hotel-daily-check:
 #  only:
 #    changes:
-#      - android/components/hotel-module/**/*
+#      - android/modules/hotel-module/**/*
 #  stage: build
 #  script:
-#    - ./gradlew :components:hotel-module:main:fileCounter
+#    - ./gradlew :modules:hotel-module:main:fileCounter
 #lint job
 #hotelLint:
 #  only:
 #    - hotel
 #  stage: build
 #  script:
-#    - ./gradlew -Pci --console=plain -PbuildDir=lint :components:hotel-module:main:lintDebug
+#    - ./gradlew -Pci --console=plain -PbuildDir=lint :modules:hotel-module:main:lintDebug
 
 #debugTests:
 #  stage: test

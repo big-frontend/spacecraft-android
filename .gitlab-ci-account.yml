@@ -1,65 +1,65 @@
 account-impl-build:
   only:
     changes:
-      #      - components/account-module/impl/*.{java,kt,xml,gradle}
-      - android/components/account-module/impl/**/*
+      #      - modules/account-module/impl/*.{java,kt,xml,gradle}
+      - android/modules/account-module/impl/**/*
   stage: build
   script:
-    - ./gradlew :components:account-module:impl:assemble
+    - ./gradlew :modules:account-module:impl:assemble
 
 
 #account-impl-lint:
 #  only:
 #    changes:
-#      - android/components/account-module/impl/**/*
+#      - android/modules/account-module/impl/**/*
 #  stage: test
 #  script:
-#    - ./gradlew :components:account-module:impl:lintInhouse
+#    - ./gradlew :modules:account-module:impl:lintInhouse
 
 account-impl-deploy:
   only:
     changes:
-      - android/components/account-module/impl/**/*
+      - android/modules/account-module/impl/**/*
   stage: deploy
   script:
-    - ./gradlew :components:account-module:impl:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew :modules:account-module:impl:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 
 account-export-build:
   only:
     changes:
-      #      - components/account-module/impl/*.{java,kt,xml,gradle}
-      - android/components/account-module/export/**/*
+      #      - modules/account-module/impl/*.{java,kt,xml,gradle}
+      - android/modules/account-module/export/**/*
   stage: build
   script:
-    - ./gradlew :components:account-module:export:assemble
+    - ./gradlew :modules:account-module:export:assemble
 
 
 #account-export-lint:
 #  only:
 #    changes:
-#      - android/components/account-module/export/**/*
+#      - android/modules/account-module/export/**/*
 #  stage: test
 #  script:
-#    - ./gradlew :components:account-module:export:lintInhouse
+#    - ./gradlew :modules:account-module:export:lintInhouse
 
 account-export-deploy:
   only:
     changes:
-      - android/components/account-module/export/**/*
+      - android/modules/account-module/export/**/*
   stage: deploy
   script:
-    - ./gradlew :components:account-module:export:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
+    - ./gradlew :modules:account-module:export:publishDebugAarPublicationToMavenCentralRepository #发布到远程仓库
 
 ## ========================
 #account-daily-check:
 #  only:
 #    changes:
-#      - android/components/account-module/**/*
+#      - android/modules/account-module/**/*
 #  stage: build
 #  script:
-#    - ./gradlew :components:account-module:main:fileCounter
+#    - ./gradlew :modules:account-module:main:fileCounter
 
 ##debugTests:
 ##  stage: test
