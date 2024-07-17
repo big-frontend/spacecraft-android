@@ -30,7 +30,6 @@ dependencyResolutionManagement {
         maven { url "https://plugins.gradle.org/m2/" }
     }
 }
-apply from:'./script/trace_gradle.gradle'
 apply from:'./script/module_registry.gradle'
 //includeBuild("framework/network/super-retrofit")
 
