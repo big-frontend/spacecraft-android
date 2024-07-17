@@ -26,7 +26,7 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.bt.setOnClickListener {
+        binding.button.setOnClickListener {
             BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
             findNavController().navigate(R.id.dest_home)
             SPUtils.getInstance().put(Constants.KEY_WELCOMNE_SPLASH, true)
