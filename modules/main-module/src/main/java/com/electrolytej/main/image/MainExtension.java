@@ -21,9 +21,9 @@ import com.electrolytej.main.R;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 @GlideExtension
-public final class HomeExtension {
+public final class MainExtension {
     private static final int MINI_THUMB_SIZE = 100;
-    private HomeExtension() {
+    private MainExtension() {
     } // utility class
 
     /**
