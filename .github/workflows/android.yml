@@ -1,4 +1,4 @@
-name: Pisces CI
+name: build CI
 
 on:
   push:
