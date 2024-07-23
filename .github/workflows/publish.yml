@@ -1,4 +1,4 @@
-name: publish android apk CI
+name: publish CI
 
 
 on:

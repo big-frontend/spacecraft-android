@@ -1,4 +1,4 @@
-name: build CI
+name: code review CI
 
 on:
   push:
