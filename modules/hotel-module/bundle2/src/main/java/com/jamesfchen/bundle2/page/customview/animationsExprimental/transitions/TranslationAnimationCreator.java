@@ -9,7 +9,7 @@ import android.transition.Transition;
 import android.transition.TransitionValues;
 import android.view.View;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 
 public class TranslationAnimationCreator {

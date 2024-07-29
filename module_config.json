@@ -27,85 +27,86 @@
     },
     {
       "simpleName": "uamp-uamp",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "uamp",
       "sourcePath": ":modules:uamp-module:uamp"
     },
     {
       "simpleName": "update-module",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "update",
       "sourcePath": ":modules:update-module"
     },
     {
       "simpleName": "codescanner-module",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "codescanner",
       "sourcePath": ":modules:codescanner-module"
     },
     {
-      "simpleName": "im-module",
-      "format": "bundle",
+      "simpleName": "im-bundle",
+      "format": "ndbundle",
       "group": "im",
-      "sourcePath": ":modules:im-module"
+      "sourcePath": ":modules:im-module:bundle"
+    },
+    {
+      "simpleName": "im-export",
+      "group": "im",
+      "sourcePath": ":modules:im-module:export"
     },
     {
       "simpleName": "account-module",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "account",
       "sourcePath": ":modules:account-module"
     },
     {
       "simpleName": "main-module",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "main",
       "sourcePath": ":modules:main-module"
     },
     {
       "simpleName": "hotel-bundle1",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "hotel",
       "sourcePath": ":modules:hotel-module:bundle1"
     },
     {
       "simpleName": "hotel-bundle2",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "hotel",
       "sourcePath": ":modules:hotel-module:bundle2"
     },
     {
       "simpleName": "hotel-export",
-      "format": "bundle_foundation",
       "group": "hotel",
       "sourcePath": ":modules:hotel-module:export"
     },
     {
       "simpleName": "hotel-foundation",
-      "format": "bundle_foundation",
       "group": "hotel",
       "sourcePath": ":modules:hotel-module:foundation"
     },
     {
       "simpleName": "feeds-module",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "feeds",
       "sourcePath": ":modules:feeds-module"
     },
     {
       "simpleName": "livestreaming-module",
-      "format": "bundle",
+      "format": "nsbundle",
       "group": "livestreaming",
       "sourcePath": ":modules:livestreaming-module"
     },
     {
       "simpleName": "framework-lint-rules",
-      "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":lint-rules"
     },
     {
       "simpleName": "framework-base",
-      "format": "framework_foundation",
       "group": "fwk",
       "sourcePath": ":base"
     }

@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.DialogBottomUpBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.DialogBottomUpBinding
 
 class BottomUpDialogFragmentv2 : Fragment() ,DialogInterface.OnCancelListener,DialogInterface.OnDismissListener,DialogInterface.OnShowListener{
     companion object {
@@ -45,7 +45,7 @@ class BottomUpDialogFragmentv2 : Fragment() ,DialogInterface.OnCancelListener,Di
         binding.flContainer.layoutParams.height = 400
         val dialog = AlertDialog.Builder(context)
                 .setTitle("asdfsaf")
-                .setIcon(R.drawable.tmp)
+                .setIcon(com.electrolytej.base.R.drawable.tmp)
                 .setMessage("sadfsaf")
                 .create()
         dialog.setOnCancelListener(this)

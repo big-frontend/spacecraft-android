@@ -41,7 +41,7 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.db.model.LBS;
 import com.jamesfchen.bundle2.location.model.AppCellInfo;
 import com.jamesfchen.bundle2.location.model.AppLocation;

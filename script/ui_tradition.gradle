@@ -8,6 +8,15 @@ android{
     buildFeatures {
         viewBinding true
         aidl true
+        buildConfig true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 dependencies{
@@ -61,6 +70,8 @@ dependencies{
     //      > A failure occurred while executing com.android.build.gradle.internal.res.ResourceCompilerRunnable
     //         > Resource compilation failed. Check logs for details.
 //    api 'it.chengdazhi.styleimageview:styleimageview:1.0.4'
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui.ktx)
 
 
 }

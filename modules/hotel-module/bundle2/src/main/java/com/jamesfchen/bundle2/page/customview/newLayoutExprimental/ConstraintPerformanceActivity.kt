@@ -14,7 +14,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.R
+import com.electrolytej.bundle2.R
 import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration

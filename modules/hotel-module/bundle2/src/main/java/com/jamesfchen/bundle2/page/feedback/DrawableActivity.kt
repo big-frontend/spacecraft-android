@@ -13,8 +13,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.google.android.material.snackbar.Snackbar
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityDrawableBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityDrawableBinding
 
 class DrawableActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

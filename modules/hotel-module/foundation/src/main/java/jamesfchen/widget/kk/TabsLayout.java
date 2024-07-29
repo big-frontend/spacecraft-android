@@ -23,7 +23,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.bumptech.glide.Glide;
-import com.jamesfchen.foundation.R;
+import com.electrolytej.foundation.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.jamesfchen.bundle1;
 
 
-import com.jamesfchen.bundle1.R;
+import com.electrolytej.bundle1.R;
 
 /**
  * Copyright ® $ 2017

@@ -10,7 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.page.customview.Adapter;
 import com.jamesfchen.bundle2.page.customview.ViewModel;
 
@@ -42,25 +42,25 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 public class TransitionForActivityActivity extends Activity {
     public List<ViewModel> dataList = new ArrayList<ViewModel>() {
         {
-            add(new ViewModel(R.drawable.tmp, "图片"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "图片"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
         }
     };
     StaggeredGridLayoutManager staggeredGridLayoutManager;

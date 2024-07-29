@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 /**
  * Copyright ® $ 2021

@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.blankj.utilcode.util.NetworkUtils
-import com.jamesfchen.bundle2.databinding.ActivityLocationBinding
+import com.electrolytej.bundle2.databinding.ActivityLocationBinding
 import com.jamesfchen.bundle2.db.model.LBS
 import com.jamesfchen.bundle2.location.ILbsListener
 import com.jamesfchen.bundle2.location.model.AppCellInfo

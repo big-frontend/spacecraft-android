@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 /**
  * Copyright ® $ 2017

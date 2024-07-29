@@ -19,6 +19,7 @@ plugins {
 }
 
 android {
+    namespace "com.example.android.uamp.media"
     defaultConfig {
         testOptions.unitTests.includeAndroidResources = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

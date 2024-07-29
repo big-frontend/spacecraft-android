@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityBottomUpDialogBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityBottomUpDialogBinding
 
 /**
  * bottom up的控件实现由如下几种：

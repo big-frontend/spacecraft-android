@@ -19,9 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import com.jamesfchen.bundle2.R;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransition;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransitionv2;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransition;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransitionv2;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransition;
@@ -55,25 +53,25 @@ public class DetailActivity extends Activity {
     public static final String SCALEUP_TRANSITIONNAME = "scale_up";
     private List<ViewModel> dataList = new ArrayList<ViewModel>() {
         {
-            add(new ViewModel(R.drawable.tmp, "图片"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "图片"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
             add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
+            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
         }
     };
     GridLayoutManager gridLayoutManager;

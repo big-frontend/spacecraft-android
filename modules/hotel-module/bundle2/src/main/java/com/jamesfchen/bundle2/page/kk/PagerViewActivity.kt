@@ -10,8 +10,8 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityPagerViewBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityPagerViewBinding
 import com.electrolytej.loader.systemfilter.SystemFilter
 import jamesfchen.widget.kk.TabsLayout
 
@@ -76,7 +76,7 @@ class PagerViewActivity : AppCompatActivity() {
         binding.image.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("title")
-            builder.setIcon(R.drawable.tmp)
+            builder.setIcon(com.electrolytej.base.R.drawable.tmp)
             builder.setMessage("message")
             val view: View = LayoutInflater.from(this).inflate(R.layout.dialog_card, null)
 //            builder.setView(view)

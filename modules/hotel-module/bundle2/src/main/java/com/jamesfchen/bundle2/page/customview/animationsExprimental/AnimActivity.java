@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.ArgbEvaluator;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.HSVEvaluator;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.IntEvaluator;
@@ -118,7 +118,7 @@ public class AnimActivity extends AppCompatActivity {
         });
         for (Interpolator interpolator : dataForInterpolators) {
             TextView textView = new TextView(this);
-            textView.setBackgroundResource(R.color.apricot);
+            textView.setBackgroundResource(com.electrolytej.base.R.color.apricot);
             textView.setText(
                     interpolator.getClass().getSimpleName().substring(0,
                             interpolator.getClass().getSimpleName().lastIndexOf("Interpolator")
@@ -154,7 +154,7 @@ public class AnimActivity extends AppCompatActivity {
 
             } else if (evaluator instanceof RectEvaluator) {
                 ivEvaluator.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                ivEvaluator.setImageResource(R.drawable.tmp);
+                ivEvaluator.setImageResource(com.electrolytej.base.R.drawable.tmp);
                 int width = ConvertUtil.dp2px(200f);
                 int height = ConvertUtil.dp2px(200f);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(

@@ -20,7 +20,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import com.jamesfchen.bundle2.databinding.FragmentInfosBinding
+import com.electrolytej.bundle2.databinding.FragmentInfosBinding
 import com.jamesfchen.bundle2.network.api.getImageApi
 import com.electrolytej.util.ConvertUtil.dp2px
 import kotlinx.coroutines.Dispatchers

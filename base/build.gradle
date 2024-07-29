@@ -4,6 +4,7 @@ plugins{
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android{
+    namespace "com.electrolytej.base"
     defaultConfig {
         externalNativeBuild {
             cmake {

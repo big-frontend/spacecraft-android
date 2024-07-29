@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.jamesfchen.foundation.R
+import com.electrolytej.foundation.R
 
 class InsetDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private var mInsets = 0

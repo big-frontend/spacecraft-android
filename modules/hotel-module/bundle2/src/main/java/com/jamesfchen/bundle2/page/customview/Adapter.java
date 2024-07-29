@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.DetailActivity;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.DetailActivity;
 import com.jamesfchen.bundle2.page.customview.animationsExprimental.DetailActivity;

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

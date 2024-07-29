@@ -6,7 +6,7 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.jamesfchen.foundation.R
+import com.electrolytej.foundation.R
 
 class DividerDecoration : RecyclerView.ItemDecoration() {
     private val ATTRS = intArrayOf(android.R.attr.listDivider)

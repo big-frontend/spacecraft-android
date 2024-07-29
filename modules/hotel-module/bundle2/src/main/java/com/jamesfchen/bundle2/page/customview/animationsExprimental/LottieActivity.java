@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jamesfchen.bundle2.R;
-import com.jamesfchen.bundle2.databinding.ActivityLottieBinding;
-import com.jamesfchen.bundle2.databinding.ItemDumpBinding;
+import com.electrolytej.bundle2.R;
+import com.electrolytej.bundle2.databinding.ActivityLottieBinding;
+import com.electrolytej.bundle2.databinding.ItemDumpBinding;
 import com.electrolytej.util.ConvertUtil;
 /**
  * Copyright ® $ 2017

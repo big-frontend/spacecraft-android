@@ -4,8 +4,8 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityTextStyleBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityTextStyleBinding
 
 /**
  * Copyright ® $ 2017

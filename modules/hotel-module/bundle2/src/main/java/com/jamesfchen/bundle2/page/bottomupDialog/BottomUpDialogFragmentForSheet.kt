@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.jamesfchen.bundle2.databinding.FragmentRnBinding
+import com.electrolytej.bundle2.databinding.FragmentRnBinding
 
 class BottomUpDialogFragmentForSheet : BottomSheetDialogFragment() {
     companion object {

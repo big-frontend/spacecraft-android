@@ -2,7 +2,7 @@ package com.jamesfchen.bundle2.page.customview.newLayoutExprimental
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.databinding.ActivityCoordinatorlayoutBinding
+import com.electrolytej.bundle2.databinding.ActivityCoordinatorlayoutBinding
 import com.jamesfchen.bundle2.page.customview.newLayoutExprimental.coordinator.ViewPagerAdapterv2
 
 /**

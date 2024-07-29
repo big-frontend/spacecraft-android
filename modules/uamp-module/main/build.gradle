@@ -2,6 +2,7 @@ plugins {
     id "io.github.electrolytej.app-plugin"
 }
 android {
+    namespace "com.example.android.uamp"
     defaultConfig {
         resValue "string", "app_name","u"
     }

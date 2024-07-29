@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.page.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 /**

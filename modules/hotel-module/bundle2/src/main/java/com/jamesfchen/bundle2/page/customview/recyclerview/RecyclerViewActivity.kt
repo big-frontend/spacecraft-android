@@ -7,13 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityRecyclerviewBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityRecyclerviewBinding
 import com.jamesfchen.bundle2.page.customview.Adapter
 import com.jamesfchen.bundle2.page.customview.ViewModel
-import com.jamesfchen.bundle2.page.customview.recyclerview.FixedGridLayoutManager
-import com.jamesfchen.bundle2.page.customview.recyclerview.MyItemAnimator
-import com.jamesfchen.bundle2.page.customview.recyclerview.MySnapHelper
 import jamesfchen.widget.InsetDecoration
 import java.util.ArrayList
 
@@ -22,7 +19,7 @@ class RecyclerViewActivity : Activity() {
         init {
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "图片"
                 )
             )
@@ -34,37 +31,19 @@ class RecyclerViewActivity : Activity() {
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.baseline_3d_rotation_black_48,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
@@ -76,19 +55,13 @@ class RecyclerViewActivity : Activity() {
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
@@ -100,7 +73,19 @@ class RecyclerViewActivity : Activity() {
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
+                    "你好吗我很好，她不好"
+                )
+            )
+            add(
+                ViewModel(
+                    com.electrolytej.base.R.drawable.tmp,
+                    "你好吗我很好，她不好"
+                )
+            )
+            add(
+                ViewModel(
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
@@ -112,25 +97,37 @@ class RecyclerViewActivity : Activity() {
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    R.drawable.baseline_3d_rotation_black_48,
                     "你好吗我很好，她不好"
                 )
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )
             add(
                 ViewModel(
-                    R.drawable.tmp,
+                    com.electrolytej.base.R.drawable.tmp,
+                    "你好吗我很好，她不好"
+                )
+            )
+            add(
+                ViewModel(
+                    com.electrolytej.base.R.drawable.tmp,
+                    "你好吗我很好，她不好"
+                )
+            )
+            add(
+                ViewModel(
+                    com.electrolytej.base.R.drawable.tmp,
                     "你好吗我很好，她不好"
                 )
             )

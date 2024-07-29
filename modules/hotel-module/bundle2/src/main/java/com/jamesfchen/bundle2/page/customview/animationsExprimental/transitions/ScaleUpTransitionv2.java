@@ -13,7 +13,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.Nullable;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 
 public class ScaleUpTransitionv2 extends Transition {

@@ -1,13 +1,18 @@
 plugins {
     id "io.github.electrolytej.static-bundle-plugin"
     id 'org.jetbrains.kotlin.android'
+    alias(libs.plugins.compose)
 }
 
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android {
+    namespace "com.electrolytej.bundle1"
     buildFeatures {
         viewBinding true
     }
+}
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 dependencies {
     implementation project.moduleify("hotel-foundation")

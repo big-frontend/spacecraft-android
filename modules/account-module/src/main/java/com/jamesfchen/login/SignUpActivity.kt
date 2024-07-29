@@ -2,7 +2,7 @@ package com.jamesfchen.login
 
 import android.app.Activity
 import android.os.Bundle
-import com.jamesfchen.account.databinding.ActivitySignupBinding
+import com.electrolytej.account.databinding.ActivitySignupBinding
 import com.jamesfchen.login.modle.SendCodeRespBody
 import com.jamesfchen.login.modle.SignUpReqBody
 

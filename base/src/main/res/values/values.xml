@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CollapsingBarsLayout_Layout">
-        <attr name="cbl_layout_collapseParallaxMultiplier" format="float" />
-        <attr name="cbl_layout_collapseMode" format="reference">
-            <enum name="none" value="0" />
-            <enum name="pin" value="1" />
-            <enum name="parallax" value="2" />
-        </attr>
-    </declare-styleable>
-    <item name="view_offset_helper" type="id" />
+
 </resources>

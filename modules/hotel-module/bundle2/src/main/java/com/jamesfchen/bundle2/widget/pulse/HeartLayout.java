@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import java.lang.ref.WeakReference;
 import java.util.Random;
 

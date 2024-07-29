@@ -45,6 +45,7 @@ ext {
 }
 
 android {
+    namespace "com.example.android.uamp.automotive"
     defaultConfig {
         applicationId "com.example.android.uamp.next"
     }

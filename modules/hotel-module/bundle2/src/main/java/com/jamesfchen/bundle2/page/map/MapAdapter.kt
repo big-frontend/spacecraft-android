@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amap.api.maps.AMap
 import com.blankj.utilcode.util.SpanUtils
-import com.jamesfchen.bundle2.R
+import com.electrolytej.bundle2.R
 import com.jamesfchen.bundle2.db.model.LBS
 import com.jamesfchen.bundle2.util.move
 import com.jamesfchen.bundle2.util.reverseGeocode2String

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 /**
  * Copyright ® $ 2017

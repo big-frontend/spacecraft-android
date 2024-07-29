@@ -24,7 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.page.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 import androidx.annotation.StringRes;

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.jamesfchen.bundle2.databinding.FragmentRnBinding
+import com.electrolytej.bundle2.databinding.FragmentRnBinding
 
 class RNFragment : Fragment() {
     companion object {

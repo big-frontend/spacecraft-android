@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.jamesfchen.bundle2.R
+import com.electrolytej.bundle2.R
 
 class Jump2SingleTaskManifestActivity : AppCompatActivity() {
     companion object{

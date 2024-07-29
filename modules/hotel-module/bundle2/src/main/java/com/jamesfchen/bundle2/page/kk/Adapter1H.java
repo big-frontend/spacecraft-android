@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import jamesfchen.widget.kk.PagerView;
 import jamesfchen.widget.kk.TabsLayout;
 

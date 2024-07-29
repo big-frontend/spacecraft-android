@@ -1,9 +1,10 @@
 plugins {
     id "io.github.electrolytej.static-bundle-plugin"
-    id 'org.jetbrains.kotlin.android'
+//    id 'org.jetbrains.kotlin.android'
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
+    namespace "com.electrolytej.account"
     defaultConfig {
         buildConfigField('String', 'BASE_URL', '" "')
     }

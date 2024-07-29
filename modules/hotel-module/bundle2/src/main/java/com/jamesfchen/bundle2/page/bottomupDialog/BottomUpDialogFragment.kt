@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.DialogBottomUpBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.DialogBottomUpBinding
 
 /**
  *DialogFragment的设计是为了将业务代码放到fragment，通过fragment的生命周期管理。让dialog更纯粹。

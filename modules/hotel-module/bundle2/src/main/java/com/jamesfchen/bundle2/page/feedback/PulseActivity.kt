@@ -2,8 +2,8 @@ package com.jamesfchen.bundle2.page.feedback
 
 import android.app.Activity
 import android.os.Bundle
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityPulseBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityPulseBinding
 import com.jamesfchen.bundle2.widget.pulse.HeadBubbleView.BrowseEntity
 import java.util.ArrayList
 

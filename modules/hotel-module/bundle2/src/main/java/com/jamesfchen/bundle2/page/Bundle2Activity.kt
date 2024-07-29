@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivityBundle2Binding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivityBundle2Binding
 import java.io.File
 
 class Bundle2Activity : AppCompatActivity() {

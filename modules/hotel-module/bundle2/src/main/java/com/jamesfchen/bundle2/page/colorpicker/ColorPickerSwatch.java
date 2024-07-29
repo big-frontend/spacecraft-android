@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 
 /**

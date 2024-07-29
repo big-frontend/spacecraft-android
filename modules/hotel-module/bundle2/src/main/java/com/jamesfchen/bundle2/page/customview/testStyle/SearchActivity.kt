@@ -20,8 +20,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.forEach
 import androidx.core.util.isNotEmpty
 import com.google.android.material.snackbar.Snackbar
-import com.jamesfchen.bundle2.R
-import com.jamesfchen.bundle2.databinding.ActivitySearchBinding
+import com.electrolytej.bundle2.R
+import com.electrolytej.bundle2.databinding.ActivitySearchBinding
 import kotlinx.serialization.toUtf8Bytes
 import org.json.JSONObject
 import java.util.regex.Pattern
@@ -230,7 +230,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener {
                 )
                 contentSpan.setSpan(
                     DrawableBackgroundSpan(
-                        strokeColor = getColor(R.color.apricot),
+                        strokeColor = getColor(com.electrolytej.base.R.color.apricot),
                         strokeWith = 2,
                         dashWidth = 2,
                         dashGap = 1,

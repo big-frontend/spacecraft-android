@@ -3,7 +3,7 @@ package com.jamesfchen.bundle2.widget.pulse
 import android.content.Context
 import android.graphics.*
 import androidx.appcompat.widget.AppCompatImageView
-import com.jamesfchen.bundle2.R
+import com.electrolytej.bundle2.R
 import android.util.AttributeSet
 import android.graphics.drawable.BitmapDrawable
 import java.lang.OutOfMemoryError

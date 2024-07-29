@@ -3,6 +3,7 @@ plugins {
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
+    namespace "com.electrolytej.qrcode"
     defaultConfig {
     }
 }

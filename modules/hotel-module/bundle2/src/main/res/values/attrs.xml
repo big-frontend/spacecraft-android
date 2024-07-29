@@ -13,5 +13,13 @@
         <attr name="bezierFactor" format="integer"/>
         <attr name="anim_duration" format="integer"/>
     </declare-styleable>
-
+    <declare-styleable name="CollapsingBarsLayout_Layout">
+        <attr name="cbl_layout_collapseParallaxMultiplier" format="float" />
+        <attr name="cbl_layout_collapseMode" format="reference">
+            <enum name="none" value="0" />
+            <enum name="pin" value="1" />
+            <enum name="parallax" value="2" />
+        </attr>
+    </declare-styleable>
+    <item type="id" name="transitionPosition" />
 </resources>

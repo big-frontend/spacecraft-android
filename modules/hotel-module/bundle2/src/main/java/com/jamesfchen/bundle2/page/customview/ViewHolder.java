@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 
 /**
  * Copyright ® $ 2017

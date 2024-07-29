@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Debug
 import android.util.Log
 import com.facebook.device.yearclass.YearClass
-import com.jamesfchen.bundle2.databinding.ActivitySpringBoardBinding
+import com.electrolytej.bundle2.databinding.ActivitySpringBoardBinding
 import java.io.File
 
 class SpringBoardActivity : Activity() {

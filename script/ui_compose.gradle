@@ -2,6 +2,7 @@ android {
     buildFeatures {
         compose true
         aidl true
+        buildConfig true
 
         // Disable unused AGP features
 //        buildConfig false
@@ -10,48 +11,62 @@ android {
 //        resValues false
 //        shaders false
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.4.8"
+//    }
+//    kotlinOptions {
+//        jvmTarget = "11"
+//
+//        freeCompilerArgs += [
+//                "-Xallow-jvm-ir-dependencies",
+//                "-P",
+//                "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+//        ]
+//
+//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "11"
-
-        freeCompilerArgs += [
-                "-Xallow-jvm-ir-dependencies",
-                "-P",
-                "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
-        ]
-
+        jvmTarget = '17'
     }
 }
 dependencies {
     api 'com.google.accompanist:accompanist-insets:0.19.0'
     api "com.google.accompanist:accompanist-insets-ui:0.19.0"
-    //compose
-    api "androidx.compose.foundation:foundation-layout:1.4.0"
-    api "androidx.compose.runtime:runtime:1.4.0"
-    api "androidx.compose.ui:ui-util:1.4.0"
-    api "androidx.compose.ui:ui-viewbinding:1.4.0"
-    api "androidx.compose.compiler:compiler:1.4.4"
-    api "androidx.compose.ui:ui:1.4.0"
-    // Tooling support (Previews, etc.)
-    api "androidx.compose.ui:ui-tooling:1.4.0"
+    def composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation(libs.kotlin.stdlib)
+//    implementation(libs.kotlinx.coroutines.android)
+
+    implementation(libs.androidx.activity.compose)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.google.android.material)
+
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.iconsExtended)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.util)
+    implementation(libs.androidx.compose.ui.viewbinding)
+    implementation(libs.androidx.compose.ui.googlefonts)
+
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
     api "androidx.compose.foundation:foundation:1.4.0"
-    api "androidx.compose.material:material:1.4.3"
     api "androidx.compose.material:material-icons-core:1.4.0"
-    api "androidx.compose.material:material-icons-extended:1.4.0"
-    // Integration with observables
-    api "androidx.compose.runtime:runtime-livedata:1.4.0"
-    api "androidx.compose.runtime:runtime-rxjava2:1.4.0"
     // UI Tests
     androidTestApi "androidx.compose.ui:ui-test-junit4:1.4.0"
-
-    // Integration with ViewModels
-    api 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1'
-
-    api "com.google.android.material:material:1.11.0"
-    api 'androidx.activity:activity-compose:1.7.0'
-
-
 }

@@ -3,7 +3,7 @@ package com.jamesfchen.bundle2.page.customview.newLayoutExprimental.coordinator
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.jamesfchen.bundle2.R
+import com.electrolytej.bundle2.R
 
 /**
  * Copyright ® $ 2017
@@ -15,7 +15,7 @@ import com.jamesfchen.bundle2.R
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val image = ImageView(parent.context)
-        image.setImageResource(R.drawable.tmp)
+        image.setImageResource(com.electrolytej.base.R.drawable.tmp)
         image.layoutParams = ViewGroup.LayoutParams(200, 200)
         return object : RecyclerView.ViewHolder(image) {}
     }

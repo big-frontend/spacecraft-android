@@ -30,7 +30,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.jamesfchen.bundle2.R;
+import com.electrolytej.bundle2.R;
 import com.jamesfchen.bundle2.location.model.AppCellInfo;
 import com.jamesfchen.bundle2.location.model.AppLocation;
 import com.jamesfchen.bundle2.page.map.MapActivity;

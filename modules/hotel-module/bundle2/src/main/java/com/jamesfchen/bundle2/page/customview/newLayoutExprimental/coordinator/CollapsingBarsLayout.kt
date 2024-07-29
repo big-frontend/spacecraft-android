@@ -14,7 +14,7 @@ import androidx.core.math.MathUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.AppBarLayout
-import com.jamesfchen.bundle2.R
+import com.electrolytej.bundle2.R
 import jamesfchen.widget.getMaxOffsetForPinChild
 import jamesfchen.widget.getViewOffsetHelper
 import kotlin.math.roundToInt
