@@ -32,6 +32,9 @@ android {
 //        multiDexKeepProguard file('multiDexKeep.pro')
         applicationId rootProject.applicationId
         testApplicationId "${rootProject.applicationId}.test"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -73,7 +76,7 @@ android {
             ]
             firebaseAppDistribution {
 //                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                testers = "hawksjamesf@gmail.com"
+                testers = "electrolytej@gmail.com"
                 serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
 //                artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
             }
@@ -156,11 +159,34 @@ android {
 //        abi {
 //            enable true
 //            reset()
-//            include 'armeabi-v7a', "arm64-v8a", 'armeabi'
-//            exclude "x86","x86_64"
-//            universalApk false
+//            include "armeabi-v7a","arm64-v8a"
+//            exclude "x86","x86_64","armeabi"
+//            universalApk true
 //        }
 //    }
+    // Instead, use the bundle block to control which types of configuration APKs
+    // you want your app bundle to support.
+    bundle {
+        language {
+            // This property is set to true by default.
+            // You can specify `false` to turn off
+            // generating configuration APKs for language resources.
+            // These resources are instead packaged with each base and
+            // feature APK.
+            // Continue reading below to learn about situations when an app
+            // might change setting to `false`, otherwise consider leaving
+            // the default on for more optimized downloads.
+            enableSplit = false
+        }
+        density {
+            // This property is set to true by default.
+            enableSplit = false
+        }
+        abi {
+            // This property is set to true by default.
+            enableSplit = true
+        }
+    }
 
 //    dexOptions {
 //        preDexLibraries true
