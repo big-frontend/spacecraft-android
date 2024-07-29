@@ -36,8 +36,8 @@ import com.example.compose.jetchat.components.JetchatScaffold
 import com.example.compose.jetchat.conversation.BackPressHandler
 import com.example.compose.jetchat.conversation.LocalBackPressedDispatcher
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.jamesfchen.chatroom.R
-import com.jamesfchen.chatroom.databinding.ContentMainBinding
+import com.electrolytej.im.R
+import com.electrolytej.im.databinding.ContentMainBinding
 import kotlinx.coroutines.launch
 
 /**

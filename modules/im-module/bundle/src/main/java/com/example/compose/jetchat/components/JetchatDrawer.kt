@@ -50,7 +50,7 @@ import com.example.compose.jetchat.data.colleagueProfile
 import com.example.compose.jetchat.data.meProfile
 import com.example.compose.jetchat.theme.JetchatTheme
 import com.google.accompanist.insets.statusBarsHeight
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 
 @Composable
 fun ColumnScope.JetchatDrawer(onProfileClicked: (String) -> Unit, onChatClicked: (String) -> Unit) {

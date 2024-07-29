@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.jetchat.theme.JetchatTheme
 import com.example.compose.jetchat.theme.elevatedSurface
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 
 @Composable
 fun JetchatAppBar(

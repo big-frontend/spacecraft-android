@@ -4,7 +4,7 @@ plugins {
 }
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android{
-    namespace "com.electrolytej.bundle"
+    namespace "com.electrolytej.im"
     buildFeatures {
         viewBinding true
     }
@@ -13,4 +13,8 @@ composeCompiler {
     enableStrongSkippingMode = true
 }
 dependencies {
+    implementation project.moduleify('framework-base')
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.github.madrapps:plot:0.1.1'
 }

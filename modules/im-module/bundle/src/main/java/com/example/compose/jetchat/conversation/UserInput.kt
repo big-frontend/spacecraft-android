@@ -96,7 +96,7 @@ import androidx.compose.ui.unit.sp
 import com.example.compose.jetchat.FunctionalityNotAvailablePopup
 import com.example.compose.jetchat.theme.compositedOnSurface
 import com.example.compose.jetchat.theme.elevatedSurface
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 
 enum class InputSelector {
     NONE,

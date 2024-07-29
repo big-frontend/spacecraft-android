@@ -19,7 +19,7 @@ package com.example.compose.jetchat.data
 import com.example.compose.jetchat.conversation.ConversationUiState
 import com.example.compose.jetchat.conversation.Message
 import com.example.compose.jetchat.profile.ProfileScreenState
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 
 private val initialMessages = listOf(
     Message(

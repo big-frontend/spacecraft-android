@@ -36,7 +36,7 @@ import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ViewWindowInsetObserver
 import com.google.accompanist.insets.navigationBarsPadding
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 
 class ConversationFragment : Fragment() {
 

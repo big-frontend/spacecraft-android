@@ -79,7 +79,7 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.statusBarsPadding
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 import kotlinx.coroutines.launch
 
 /**

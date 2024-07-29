@@ -18,7 +18,7 @@ package com.example.compose.jetchat.conversation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.mutableStateListOf
-import com.jamesfchen.chatroom.R
+import com.electrolytej.im.R
 
 class ConversationUiState(
     val channelName: String,
