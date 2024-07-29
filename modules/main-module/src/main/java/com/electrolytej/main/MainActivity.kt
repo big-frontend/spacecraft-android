@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //native  crash
-        Crypto.getClientKey("", 0L)
+//        Crypto.getClientKey("", 0L)
         val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
         if (!SPUtils.getInstance().getBoolean(Constants.KEY_WELCOMNE_SPLASH)) {
             navGraph.setStartDestination(R.id.dest_welcome_splash)
