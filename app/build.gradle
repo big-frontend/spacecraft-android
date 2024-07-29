@@ -1,5 +1,5 @@
 plugins {
-    id "io.github.jamesfchen.app-plugin"
+    id "io.github.electrolytej.app-plugin"
     id("com.google.gms.google-services")
 //    id("io.sentry.android.gradle")
     id("com.google.firebase.crashlytics")
@@ -18,7 +18,9 @@ android {
         buildConfigField('String', 'XIAOMI_APP_KEY', '"5921799441447"')
         buildConfigField('String', 'AMAP_KEY', '"84198333a8ab4404cd35829dbb4ec435"')
         manifestPlaceholders = [
-                'BUGLY_APP_ID'     : '3d62251014', 'BUGLY_APP_KEY': 'a15ecf84-1786-40c6-abf5-fe975fce22e6', "BUGLY_APP_VERSION": "${rootProject.ext.versionName}",
+                'BUGLY_APP_ID'     : '3d62251014',
+                'BUGLY_APP_KEY'    : 'a15ecf84-1786-40c6-abf5-fe975fce22e6',
+                "BUGLY_APP_VERSION": rootProject.ext.versionName,
                 'AMAP_KEY'         : '84198333a8ab4404cd35829dbb4ec435',
                 "PGYER_APPID"      : '0ba5ba7940deded0f77b37b7655b252e',
                 "PGYER_API_KEY"    : '8543d53b97cbb4daa5f55f807ab7e31e',

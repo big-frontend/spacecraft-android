@@ -40,7 +40,7 @@ project.tasks.whenTaskAdded {
     }
 }
 
-//apply plugin: 'io.github.jamesfchen.vi-plugin'
+//apply plugin: 'io.github.electrolytej.vi-plugin'
 //vi{
 //    apkAnalyzer{
 //        variant = [

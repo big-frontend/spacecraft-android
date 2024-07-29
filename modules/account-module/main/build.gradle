@@ -1,6 +1,5 @@
 plugins {
-    id "io.github.jamesfchen.app-plugin"
-//    id 'io.github.jamesfchen.counter-plugin'
+    id "io.github.electrolytej.app-plugin"
 }
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 //counterConfig {

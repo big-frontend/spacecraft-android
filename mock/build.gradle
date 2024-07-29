@@ -1,5 +1,5 @@
 plugins {
-    id "io.github.jamesfchen.foundation-plugin"
+    id "io.github.electrolytej.foundation-plugin"
 }
 android {
     defaultConfig {

@@ -15,7 +15,7 @@
  */
 
 plugins {
-    id "io.github.jamesfchen.app-plugin"
+    id "io.github.electrolytej.app-plugin"
 }
 ext {
     // Dependency versions.

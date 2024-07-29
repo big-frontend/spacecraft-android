@@ -15,7 +15,7 @@
  */
 
 plugins {
-    id "io.github.jamesfchen.bundle-plugin"
+    id "io.github.electrolytej.static-bundle-plugin"
 }
 
 android {

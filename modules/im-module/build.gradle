@@ -1,5 +1,5 @@
 plugins {
-    id "io.github.jamesfchen.bundle-plugin"
+    id "io.github.electrolytej.static-bundle-plugin"
 }
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android{

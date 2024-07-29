@@ -1,5 +1,5 @@
 plugins{
-    id "io.github.jamesfchen.foundation-plugin"
+    id "io.github.electrolytej.foundation-plugin"
     id("com.google.devtools.ksp")
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
@@ -66,7 +66,7 @@ android{
     }
 }
 dependencies {
-//    api "io.github.jamesfchen:react-native:0.70.5-SNAPSHOT"
+//    api "io.github.electrolytej:react-native:0.70.5-SNAPSHOT"
     testImplementation files('libs/jsoup-1.12.1.jar')
 //    api project(path: ':framework:common')
 //    api project(path: ':mockserver')

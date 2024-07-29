@@ -6,8 +6,13 @@
     "release",
     "inhouse"
   ],
-  "groupId": "io.github.jamesfchen",
+  "groupId": "io.github.electrolytej",
   "allModules": [
+    {
+      "simpleName": "app",
+      "sourcePath": ":app",
+      "group": "host"
+    },
     {
       "simpleName": "uamp-automotive",
       "format": "app",
@@ -87,10 +92,10 @@
       "sourcePath": ":modules:feeds-module"
     },
     {
-      "simpleName": "framework-base",
-      "format": "framework_foundation",
-      "group": "fwk",
-      "sourcePath": ":base"
+      "simpleName": "livestreaming-module",
+      "format": "bundle",
+      "group": "livestreaming",
+      "sourcePath": ":modules:livestreaming-module"
     },
     {
       "simpleName": "framework-lint-rules",
@@ -99,10 +104,10 @@
       "sourcePath": ":lint-rules"
     },
     {
-      "simpleName": "livestreaming-module",
-      "format": "bundle",
-      "group": "livestreaming",
-      "sourcePath": ":modules:livestreaming-module"
+      "simpleName": "framework-base",
+      "format": "framework_foundation",
+      "group": "fwk",
+      "sourcePath": ":base"
     }
   ]
 }
