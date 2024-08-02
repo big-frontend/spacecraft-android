@@ -15,7 +15,7 @@
  */
 
 plugins {
-    id "io.github.electrolytej.app-plugin"
+    alias(libs.plugins.android.application)
 }
 ext {
     // Dependency versions.
@@ -45,9 +45,11 @@ ext {
 }
 
 android {
+    compileSdkVersion = Integer.parseInt(rootProject.compileSdkVersion)
     namespace "com.example.android.uamp.automotive"
     defaultConfig {
         applicationId "com.example.android.uamp.next"
+        targetSdkVersion  Integer.parseInt(rootProject.targetSdkVersion)
     }
 
     buildFeatures {
@@ -64,7 +66,7 @@ android {
 }
 
 dependencies {
-    implementation project.moduleify('uamp-uamp')
+    implementation project(":modules:uamp-module:uamp")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 

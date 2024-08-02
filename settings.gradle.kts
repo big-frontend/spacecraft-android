@@ -24,6 +24,11 @@ dependencyResolutionManagement {
         maven("https://maven.aliyun.com/repository/public")
         maven("https://jitpack.io")
         maven("https://artifact.bytedance.com/repository/byteX/")
+        //不能用
+//        maven{
+//            url = uri("http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/")
+//            isAllowInsecureProtocol = true
+//        }
         mavenCentral()
         google()
     }

@@ -14,16 +14,14 @@
       "group": "host"
     },
     {
-      "simpleName": "uamp-automotive",
-      "format": "app",
-      "group": "uamp",
-      "sourcePath": ":modules:uamp-module:automotive"
+      "simpleName": "framework-lint-rules",
+      "group": "fwk",
+      "sourcePath": ":lint-rules"
     },
     {
-      "simpleName": "uamp-main",
-      "format": "app",
-      "group": "uamp",
-      "sourcePath": ":modules:uamp-module:main"
+      "simpleName": "framework-base",
+      "group": "fwk",
+      "sourcePath": ":base"
     },
     {
       "simpleName": "uamp-uamp",
@@ -101,14 +99,15 @@
       "sourcePath": ":modules:livestreaming-module"
     },
     {
-      "simpleName": "framework-lint-rules",
-      "group": "fwk",
-      "sourcePath": ":lint-rules"
+      "simpleName": "commerce-bundle",
+      "format": "nsbundle",
+      "group": "commerce",
+      "sourcePath": ":modules:commerce-module:commerce-bundle"
     },
     {
-      "simpleName": "framework-base",
-      "group": "fwk",
-      "sourcePath": ":base"
+      "simpleName": "commerce-export",
+      "group": "commerce",
+      "sourcePath": ":modules:commerce-module:export"
     }
   ]
 }
