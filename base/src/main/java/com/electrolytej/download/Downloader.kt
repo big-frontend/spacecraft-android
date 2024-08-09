@@ -1,9 +1,11 @@
-package com.electrolytej.feeds.widget
+package com.electrolytej.download
 
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.util.Log
 import android.util.SparseArray
+import com.liulishuo.okdownload.OkDownload
+import com.liulishuo.okdownload.OkDownloadProvider
 
 class Downloader private constructor() {
     companion object {
@@ -25,7 +27,7 @@ class Downloader private constructor() {
             override fun onAnimationStart(p0: Animator) {}
             override fun onAnimationEnd(p0: Animator) {
                 Log.d("DownloadButton", "$key onAnimationEnd")
-                downloadListeners[key].onFinishDownload(key)
+//                downloadListeners[key].onFinishDownload(key)
                 downloadListeners.remove(key)
             }
 
@@ -40,20 +42,12 @@ class Downloader private constructor() {
         }
         animator.duration = 10000
         animator.start()
-
-//        Observable.intervalRange(0, 100, 0, 1, TimeUnit.SECONDS)
-//            .observeOn(AndroidSchedulers.mainThread()).subscribe({ aLong: Long? ->
-//                l.onDownloading(aLong as Int)
-//            }, {}, {
-//                l.onFinishDownload()
-//                downloadListeners.remove(key)
-//            })
-    }
-
-    fun cancelDownload(key: Int) {
-        val downloadListener = downloadListeners.get(key)
-        downloadListener?.onCancelDownload()
-        downloadListeners.remove(key)
+//        FileDownloader.getImpl().create(url)
+//            .setPath(path)
+//            .setAutoRetryTimes(3)
+//            .setForceReDownload(isForceReDownload)
+//            .setCallbackProgressTimes(20) //20次最大回调次数
+//            .setListener(new FileDownloadListener ()
     }
 
     fun pauseDownload(key: Int) {}
@@ -63,8 +57,25 @@ class Downloader private constructor() {
     }
 
     interface OnDownloadListener {
-        fun onDownloading(key: Int,progress: Int)
-        fun onFinishDownload(key: Int)
-        fun onCancelDownload() {}
+        fun onDownloading(url: Int,progress: Int) {
+        }
+
+        fun onPause(url: Int) {
+        }
+
+        fun onStop(url: Int) {
+        }
+
+        fun onStart(url: Int) {
+        }
+
+        fun onFinish(url: Int) {
+        }
+
+        fun onFailure(url: Int) {
+        }
+
+        fun onSuccess(url: Int) {
+        }
     }
 }

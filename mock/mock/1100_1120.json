@@ -1,0 +1,797 @@
+[
+    {
+        "download_scheme_uri": "meetyou.linggan:///open?params=eyJ1cmwiOiJodHRwczovL3VjZGwuMjVwcC5jb20vZnMwOC8yMDIxLzExLzAzLzEwLzFfYTc5OGM0NDM3OWI3NjgyOTYxNmI5MGNiNjI3NzAyNDguYXBrP25yZD0wJmZuYW1lPSVFOCVBNSVCRiVFNyU5MyU5QyVFNSVCMCU4RiVFOCVBRiVCNCZwcm9kdWN0aWQ9MjAxMSZwYWNrYWdlaWQ9MTAwNjk4OTQwJnBrZz1jb20uZGlhbnpob25nLnhneHMmdmNvZGU9Mzk5MzI0NiZ5aW5naWQ9d2RqX3dlYiZwb3M9d2RqX3dlYiUyRmRldGFpbF9ub3JtYWxfZGwlMkYwJmFwcGlkPTgyODU2ODgmYXBwcmQ9ODI4NTY4OCZpY29uVXJsPWh0dHAlM0ElMkYlMkZhbmRyb2lkLWFydHdvcmtzLjI1cHAuY29tJTJGZnMwOCUyRjIwMjElMkYxMSUyRjAzJTJGMSUyRjFfZmI2YjBiYjgzNjUxYWYxMmE4MmRmYTE5ZDBjYTQ4OGJfY29uLnBuZyZkaWQ9MjBhYTZiNzE0MjM3M2JmMGYxNWI5MWYxMjZjZDQ4ODAmbWQ1PTQ0YWUyMjNhYTc1OGUzZDFhOThkYzMzOTRmZmRjNjIxIn0",
+        "attr_text": "https://lnk0.com/l8g8Yh?td_subid={td_subid}\u0026isdownloadapk=1",
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/adimg/2023/2/63da0eb36a727_369_492.png"
+        ],
+        "has_shut_action": 1,
+        "show_ping": [
+            "http://e.cn.miaozhen.com/r?show=7=7\u0026MEETYOU_W=__MEETYOU_W__\u0026MEETYOU_H=__MEETYOU_H__\u0026MEETYOU_DOWN_X=__MEETYOU_DOWN_X__\u0026MEETYOU_DOWN_Y=__MEETYOU_DOWN_Y__\u0026MEETYOU_UP_X=__MEETYOU_UP_X__\u0026MEETYOU_UP_Y=__MEETYOU_UP_Y__\u0026MEETYOU_DOWN_SX=__MEETYOU_DOWN_SX__\u0026MEETYOU_DOWN_SY=__MEETYOU_DOWN_SY__\u0026MEETYOU_UP_SX=__MEETYOU_UP_SX__\u0026MEETYOU_UP_SY=__MEETYOU_UP_SY__\u0026MEETYOU_TIMESTAMP=__MEETYOU_TIMESTAMP__\u0026MEETYOU_MICRO_TIMESTAMP=__MEETYOU_MICRO_TIMESTAMP__?myr=16337703821啦\u0026myr=17219835161"
+        ],
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026source=myad\u0026posid=1120\u0026plan_id=44327\u0026material_id=62674\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=2\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026source=myad\u0026posid=1120\u0026plan_id=44327\u0026material_id=62674\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=2\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026source=myad\u0026posid=1120\u0026plan_id=44327\u0026material_id=62674\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=2\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026source=myad\u0026posid=1120\u0026plan_id=44327\u0026material_id=62674\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=2\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026source=myad\u0026posid=1120\u0026plan_id=44327\u0026material_id=62674\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=2\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_44327_62674_1721983525_7d62404596f68\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "ad_source_type": 2,
+        "position": "1120",
+        "extraparam": "ordinal=2|plan_id=44327|material_id=62674|city_id=350200|province_id=350000|cityid_final_source=1|sid=WiDDME6vra285IsJ|global_track_id=22059889911001721983525248707597|image_style=19|bt_type=2|exposure_time_frame=1|source=myad|mode=3|home_feeds_tabs=1|link_type=90005|ordinal_req=2",
+        "title": "竖向单图样式，西瓜小说apk，下载-外链",
+        "tag_id": 1,
+        "close_by_reason": 1,
+        "type": 4,
+        "request_time": 1721983526,
+        "image_style": 19,
+        "expires": 3000,
+        "content": "12313213",
+        "tag_title": "广告",
+        "call_down_title": "立即下载",
+        "encourage_video_time": 0,
+        "id": "myc-0_0_44327_62674_1721983525_7d62404596f68",
+        "ordinal": 2,
+        "pic_size": {
+            "w": 369,
+            "h": 492
+        },
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwczovL2xuazAuY29tL2w4ZzhZaD90ZF9zdWJpZD17dGRfc3ViaWR9JmlzZG93bmxvYWRhcGs9MSIsIm5ld1N0YXRpc3RpY3MiOnsianNFbWJlZFVybCI6Ii8vdGVzdC1zYy5zZWV5b3V5aW1hLmNvbS9laW1nL2FkdmVydGlzZS8yMDIwMTIyOS81ZmViMDY2ODk5M2VkLmpzIiwib3BlbkJyaWRnZSI6MSwibXlKc0FkaWQiOiIwXzJfNDQzMjdfNjI2NzQifSwidXNpbmdXSyI6MSwibmF2QmFyU3R5bGUiOiJ3aGl0ZSIsImlzZG93bmxvYWRhcGsiOjF9",
+        "next_encourage_coin_num": 0,
+        "user": {
+            "screen_name": "资质zip格式啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
+            "avatar": "http://sc.seeyouyima.com/advertise/20170315/58c90cad65961_180_180.jpg"
+        },
+        "is_download": 1,
+        "tips_position": 1,
+        "sub_title": "12313213",
+        "click_ping": [
+            "https://test-ad.seeyouyima.com/jump?id=703\u0026myr=17219835161",
+            "http://e.cn.miaozhen.com/r?click=7\u0026MEETYOU_W=__MEETYOU_W__\u0026MEETYOU_H=__MEETYOU_H__\u0026MEETYOU_DOWN_X=__MEETYOU_DOWN_X__\u0026MEETYOU_DOWN_Y=__MEETYOU_DOWN_Y__\u0026MEETYOU_UP_X=__MEETYOU_UP_X__\u0026MEETYOU_UP_Y=__MEETYOU_UP_Y__\u0026MEETYOU_DOWN_SX=__MEETYOU_DOWN_SX__\u0026MEETYOU_DOWN_SY=__MEETYOU_DOWN_SY__\u0026MEETYOU_UP_SX=__MEETYOU_UP_SX__\u0026MEETYOU_UP_SY=__MEETYOU_UP_SY__\u0026MEETYOU_TIMESTAMP=__MEETYOU_TIMESTAMP__\u0026MEETYOU_MICRO_TIMESTAMP=__MEETYOU_MICRO_TIMESTAMP__?myr=16337703821啦\u0026myr=17219835161"
+        ],
+        "encourage_finish_time": 0,
+        "shake_type": 0,
+        "planid": "44327",
+        "attr_id": 0,
+        "opt_click_deeplink": 1,
+        "source": "myad",
+        "source_type": 1
+    },
+    {
+        "title": "激励视频入口",
+        "tag_id": 1,
+        "position": "1120",
+        "source_type": 1,
+        "type": 998,
+        "tag_title": "广告",
+        "pic_size": {
+            "w": 640,
+            "h": 264
+        },
+        "btn_txt": "1234",
+        "image_style": 1,
+        "id": "myc-0_0_41282_61335_1721983525_9043cae038901",
+        "ordinal": 6,
+        "user": {
+            "screen_name": "高洁丝",
+            "avatar": "http://sc.seeyouyima.com/avatar_62"
+        },
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/adimg/2023/4/642f82f950ff8_640_264.jpg"
+        ],
+        "scheme_uri": "meiyou:///encourage?params=eyJlbmNvdXJhZ2Vfc2NlbmUiOjEsImlzX211bHRpX3ZpZGVvcyI6MSwicG9zX2NvZGUiOjExMjB9",
+        "close_by_reason": 1,
+        "request_time": 1721983526,
+        "attr_id": 0,
+        "attr_text": "meiyou:///encourage?params=eyJlbmNvdXJhZ2Vfc2NlbmUiOjEsImlzX211bHRpX3ZpZGVvcyI6MSwicG9zX2NvZGUiOjExMjB9",
+        "encourage_finish_time": 0,
+        "next_encourage_coin_num": 0,
+        "expires": 3000,
+        "extraparam": "ordinal=6|plan_id=41282|material_id=61335|city_id=350200|province_id=350000|cityid_final_source=1|sid=pjFsQbknVfbjKcII|global_track_id=22059889911001721983525248707597|image_style=1|exposure_time_frame=1|source=myad|mode=3|home_feeds_tabs=1|link_type=90999|ordinal_req=6",
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41282_61335_1721983525_9043cae038901\u0026source=myad\u0026posid=1120\u0026plan_id=41282\u0026material_id=61335\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=6\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41282_61335_1721983525_9043cae038901\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41282_61335_1721983525_9043cae038901\u0026source=myad\u0026posid=1120\u0026plan_id=41282\u0026material_id=61335\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=6\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41282_61335_1721983525_9043cae038901\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41282_61335_1721983525_9043cae038901\u0026source=myad\u0026posid=1120\u0026plan_id=41282\u0026material_id=61335\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=6\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41282_61335_1721983525_9043cae038901\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41282_61335_1721983525_9043cae038901\u0026source=myad\u0026posid=1120\u0026plan_id=41282\u0026material_id=61335\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=6\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41282_61335_1721983525_9043cae038901\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41282_61335_1721983525_9043cae038901\u0026source=myad\u0026posid=1120\u0026plan_id=41282\u0026material_id=61335\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=6\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41282_61335_1721983525_9043cae038901\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "planid": "41282",
+        "source": "myad",
+        "has_shut_action": 1,
+        "tips_position": 1,
+        "ad_source_type": 2,
+        "encourage_video_time": 0,
+        "shake_type": 0
+    },
+    {
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026source=myad\u0026posid=1120\u0026plan_id=40831\u0026material_id=61909\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=11\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026source=myad\u0026posid=1120\u0026plan_id=40831\u0026material_id=61909\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=11\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026source=myad\u0026posid=1120\u0026plan_id=40831\u0026material_id=61909\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=11\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026source=myad\u0026posid=1120\u0026plan_id=40831\u0026material_id=61909\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=11\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026source=myad\u0026posid=1120\u0026plan_id=40831\u0026material_id=61909\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=11\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_40831_61909_1721983525_8c1460286aa0a\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "next_encourage_coin_num": 0,
+        "shake_type": 0,
+        "extraparam": "ordinal=11|plan_id=40831|material_id=61909|monitor_url=http://mail.xiaoyouzi.com/?myr=17219835161|city_id=350200|province_id=350000|cityid_final_source=1|sid=LK6sG2t1dc3IBDeY|global_track_id=22059889911001721983525248707597|image_style=18|bt_type=2|exposure_time_frame=1|source=myad|mode=3|home_feeds_tabs=1|link_type=90005|ordinal_req=11",
+        "is_download": 1,
+        "encourage_video_time": 0,
+        "title": "1120广告位，单图横向测撒范德萨分撒旦飞洒地方士大夫发士大夫发士大夫发生的发士大夫",
+        "show_ping": [
+            "http://e.cn.miaozhen.com/r?show\u0026MEETYOU_W=__MEETYOU_W__\u0026MEETYOU_H=__MEETYOU_H__\u0026MEETYOU_DOWN_X=__MEETYOU_DOWN_X__\u0026MEETYOU_DOWN_Y=__MEETYOU_DOWN_Y__\u0026MEETYOU_UP_X=__MEETYOU_UP_X__\u0026MEETYOU_UP_Y=__MEETYOU_UP_Y__\u0026MEETYOU_DOWN_SX=__MEETYOU_DOWN_SX__\u0026MEETYOU_DOWN_SY=__MEETYOU_DOWN_SY__\u0026MEETYOU_UP_SX=__MEETYOU_UP_SX__\u0026MEETYOU_UP_SY=__MEETYOU_UP_SY__\u0026MEETYOU_TIMESTAMP=__MEETYOU_TIMESTAMP__\u0026MEETYOU_MICRO_TIMESTAMP=__MEETYOU_MICRO_TIMESTAMP__?myr=16337703821\u0026myr=17219835161",
+            "http://mail.xiaoyouzi.com/?myr=17219835161"
+        ],
+        "expires": 3000,
+        "attr_id": 0,
+        "tips_position": 1,
+        "download_scheme_uri": "meetyou.linggan:///web?params=eyJkZXZlbG9wTmFtZSI6IuS4iua1t-WfuuWIhuaWh-WMluS8oOaSreaciemZkOWFrOWPuCAiLCJwZXJtaXNzaW9uc1VybCI6IiIsImh3SG90Wm9uZURvd25sb2FkIjoiIiwicGFja2FnZU5hbWUiOiJjb20uamlmZW4ucXVrYW4iLCJwcml2YXRlUG9saWN5IjoiaHR0cHM6Ly9oNXNzbC4xc2FwcC5jb20vcXVrYW53ZWIvaW5hcHAvdXNlcl9hZ3JlZW1lbnQvcHJpdmFjeS5odG1sIiwiYXBwU3RvcmVEZWVwbGluayI6IiIsImFwcERlc2MiOiJjZXPlupTnlKjku4vnu40iLCJ2ZXJzaW9uTmFtZSI6IjMuOS44Ni4wMDAuMDcxMC4wOTU4IiwiYXBwSWNvbiI6Imh0dHBzOi8vcGljLWFkLnR1cGlhbjEyMzQuY29tL2FkaW1nLzIwMjQvNy82NjgyMWU0ZTczOTQ1XzI1Nl8yNTYuanBnIiwicGVybWlzc2lvbnMiOlt7InRpdGxlIjoi5oul5pyJ5a6M5YWo55qE572R57uc6K6_6Zeu5p2D6ZmQIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOWIm-W7uue9kee7nOWll-aOpeWtl-WSjOS9v-eUqOiHquWumuS5iee9kee7nOWNj-iuruOAgua1j-iniOWZqOWSjOWFtuS7luafkOS6m-W6lOeUqOaPkOS-m-S6huWQkeS6kuiBlOe9keWPkemAgeaVsOaNrueahOmAlOW-hO-8jOWboOatpOW6lOeUqOaXoOmcgOivpeadg-mZkOWNs-WPr-WQkeS6kuiBlOe9keWPkemAgeaVsOaNruOAgiJ9LHsidGl0bGUiOiLkv67mlLnmiJbliKDpmaTmgqjnmoRTROWNoeS4reeahOWGheWuuSIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjlhpnlhaVTROWNoeOAgiJ9LHsidGl0bGUiOiLlhYHorrjorr_pl67nvZHnu5wiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So6K6_6Zeu572R57uc6L-e5o6l77yM5Y-v6IO95Lqn55SfR1BSU-a1gemHj-OAgiJ9LHsidGl0bGUiOiLor7vlj5bmiYvmnLrnirbmgIHlkozouqvku70iLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So6K6_6Zeu6K6-5aSH55qE55S16K-d5Yqf6IO944CC5q2k5p2D6ZmQ5Y-v6K6p6K-l5bqU55So56Gu5a6a5pys5py65Y-356CB5ZKM6K6-5aSHSUTjgIHmmK_lkKbmraPlpITkuo7pgJror53nirbmgIHku6Xlj4rmi6jmiZPnmoTlj7fnoIHjgIIifSx7InRpdGxlIjoi5pS55Y-Y572R57uc54q25oCBIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOabtOaUuee9kee7nOi_nuaOpeeahOeKtuaAgeOAgiJ9LHsidGl0bGUiOiLor7fmsYLlronoo4Xmlofku7bljIUiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So6K-35rGC5a6J6KOF5paH5Lu25YyF44CC57G75pyN5Yqh56Gu5a6a5oKo55qE5aSn5qaC5L2N572u44CCIn0seyJ0aXRsZSI6Iuivu-WPluWtmOWCqOWNoeS4reeahOWGheWuuSIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjor7vlj5blrZjlgqjljaHkuK3nmoTlhoXlrrnjgILmg4XlhrXkuIvliIbkuqvogZTns7vkurrmlbDmja7jgIIifSx7InRpdGxlIjoi5YWz6Zet5YW25LuW5bqU55SoIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOe7k-adn-WFtuS7luW6lOeUqOeahOWQjuWPsOi_m-eoi-OAguatpOadg-mZkOWPr-WvvOiHtOWFtuS7luW6lOeUqOWBnOatoui_kOihjOOAgiJ9LHsidGl0bGUiOiLpmLLmraLmiYvmnLrkvJHnnKAiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So6Zi75q2i5omL5py66L-b5YWl5LyR55yg54q25oCB44CCIn0seyJ0aXRsZSI6IuS_ruaUueezu-e7n-iuvue9riIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjor7vlhpnns7vnu5_nmoTorr7nva7mlbDmja7jgILmgbbmhI_lupTnlKjlj6_og73kvJrnoLTlnY_mgqjnmoTns7vnu5_phY3nva7jgIIifSx7InRpdGxlIjoi6K6_6Zeu5a6a5L2N6aKd5aSW5ZG95LukIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOS9v-eUqOWFtuS7lueahOS9jee9ruS_oeaBr-aPkOS-m-eoi-W6j-WRveS7pOOAguatpOadg-mZkOS9v-ivpeW6lOeUqOWPr-S7peW5suaJsEdQU-aIluWFtuS7luS9jee9ruS_oeaBr-a6kOeahOi_kOS9nOOAgiJ9LHsidGl0bGUiOiLmi43mkYTnhafniYflkozlvZXliLbop4bpopEiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So5L2_55So55u45py65ouN5pGE54Wn54mH5ZKM6KeG6aKR44CC5q2k5p2D6ZmQ5Y-v6K6p6K-l5bqU55So6ZqP5pe25L2_55So55u45py677yM6ICM5peg6ZyA5oKo55qE56Gu6K6k44CCIn0seyJ0aXRsZSI6IuWFgeiuuOaOpeaUtldMQU7lpJrmkq0iLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So5L2_55So5aSa5pKt5Zyw5Z2A5o6l5pS25Y-R6YCB5YiwV0xBTue9kee7nOS4iuaJgOacieiuvuWkh--8iOiAjOS4jeS7heS7heaYr-aCqOeahOaJi-acuu-8ieeahOaVsOaNruWMheOAguivpeaTjeS9nOeahOiAl-eUtemHj-avlOmdnuWkmuaSreaooeW8j-imgeWkp-OAgiJ9LHsidGl0bGUiOiLor7vlj5bml6XljobmtLvliqjlkozor6bmg4UiLCJjb250ZW50Ijoi5q2k5bqU55So5Y-v6K-75Y-W5oKo5omL5py65LiK5a2Y5YKo55qE5omA5pyJ5pel5Y6G5rS75Yqo77yM5bm25YiG5Lqr5oKo55qE5pel5Y6G5pWw5o2u44CCIn0seyJ0aXRsZSI6Iua3u-WKoOaIluS_ruaUueaXpeWOhua0u-WKqCIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjmt7vliqDjgIHliKDpmaTjgIHmm7TmlLnmgqjlj6_lnKjmiYvmnLrkuIrkv67mlLnnmoTmtLvliqjvvIzljIXmi6zmnIvlj4vmiJblkIzkuovnmoTmtLvliqjjgILmraTmnYPpmZDlj6_orqnor6XlupTnlKjlhpLlhYXml6XljobmiYDmnInogIXlj5HpgIHmtojmga_vvIzmiJblnKjmiYDmnInogIXkuI3nn6Xmg4XnmoTmg4XlhrXkuIvkv67mlLnmtLvliqjjgIIifSx7InRpdGxlIjoi5pu05pS55oKo55qE6Z-z6aKR6K6-572uIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOS_ruaUueWFqOWxgOmfs-mikeiuvue9ru-8jOS-i-Wmgumfs-mHj-WSjOeUqOS6jui-k-WHuueahOaJrOWjsOWZqOOAgiJ9XSwidmVyc2lvbkNvZGUiOiIzLjkuODYuMDAwLjA3MTAuMDk1OCIsIm5hdkJhclN0eWxlIjoid2hpdGUiLCJhcHBOYW1lIjoi6Laj5aS05p2hIiwidXJsIjoiaHR0cDovL2JkLW0ucXV0b3V0aWFvLm5ldC9kb3dubG9hZC9xdXRvdXRpYW9fMTMxMy5hcGsifQ",
+        "ad_source_type": 2,
+        "position": "1120",
+        "image_style": 18,
+        "source_type": 1,
+        "type": 4,
+        "attr_text": "https://www.baidu.com",
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/adimg/2022/2/6204da6fdbbf7_492_369.png"
+        ],
+        "pic_size": {
+            "w": 492,
+            "h": 369
+        },
+        "close_by_reason": 1,
+        "id": "myc-0_0_40831_61909_1721983525_8c1460286aa0a",
+        "source": "myad",
+        "scheme_uri": "meetyou.linggan:///web?params=eyJuYXZCYXJTdHlsZSI6IndoaXRlIiwidXJsIjoiaHR0cHM6Ly93d3cuYmFpZHUuY29tIiwibmV3U3RhdGlzdGljcyI6eyJqc0VtYmVkVXJsIjoiLy90ZXN0LXNjLnNlZXlvdXlpbWEuY29tL2VpbWcvYWR2ZXJ0aXNlLzIwMjAxMjI5LzVmZWIwNjY4OTkzZWQuanMiLCJvcGVuQnJpZGdlIjoxLCJteUpzQWRpZCI6IjBfMl80MDgzMV82MTkwOSJ9LCJ1c2luZ1dLIjoxfQ",
+        "call_down_title": "趣头条",
+        "encourage_finish_time": 0,
+        "ordinal": 11,
+        "request_time": 1721983526,
+        "tag_title": "广告",
+        "user": {
+            "screen_name": "资质zip格式啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
+            "avatar": "http://sc.seeyouyima.com/advertise/20170315/58c90cad65961_180_180.jpg"
+        },
+        "tag_id": 1,
+        "click_ping": [
+            "http://e.cn.miaozhen.com/r?click\u0026MEETYOU_W=__MEETYOU_W__\u0026MEETYOU_H=__MEETYOU_H__\u0026MEETYOU_DOWN_X=__MEETYOU_DOWN_X__\u0026MEETYOU_DOWN_Y=__MEETYOU_DOWN_Y__\u0026MEETYOU_UP_X=__MEETYOU_UP_X__\u0026MEETYOU_UP_Y=__MEETYOU_UP_Y__\u0026MEETYOU_DOWN_SX=__MEETYOU_DOWN_SX__\u0026MEETYOU_DOWN_SY=__MEETYOU_DOWN_SY__\u0026MEETYOU_UP_SX=__MEETYOU_UP_SX__\u0026MEETYOU_UP_SY=__MEETYOU_UP_SY__\u0026MEETYOU_TIMESTAMP=__MEETYOU_TIMESTAMP__\u0026MEETYOU_MICRO_TIMESTAMP=__MEETYOU_MICRO_TIMESTAMP__?myr=16337703821\u0026myr=17219835161",
+            "http://mail.xiaoyouzi.com/?myr=17219835161"
+        ],
+        "new_download_style": 2,
+        "planid": "40831",
+        "has_shut_action": 1
+    },
+    {
+        "ordinal": 16,
+        "expires": 3000,
+        "attr_id": 0,
+        "tips_position": 1,
+        "type": 4,
+        "title": "翻转样式，外链跳转优酷",
+        "sub_title": "fasf",
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwczovL2UuY24ubWlhb3poZW4uY29tL3Ivaz0yNDEwNjQ3JnA9OGNlQmYmZHg9X19JUERYX18mcnQ9MiZwcm89cyZucz01OS41Ny4yNTEuMTYyJm5pPV9fSUVTSURfXyZ2PV9fTE9DX18meGE9X19BRFBMQVRGT1JNX18mdHI9X19SRVFVRVNUSURfXyZtbz0wJm0wPV9fT1BFTlVESURfXyZtMGE9X19EVUlEX18mbTE9OWE4Yzc1NjBkYzBlODczNCZtMWE9NmFlYzEzMDc3NTc4NzliYTRlYzM0ZGFiMGJmMDkxZTImbTI9X19JTUVJX18mbTQ9X19BQUlEX18mbTU9X19JREZBX18mbTY9X19NQUMxX18mbTZhPV9fTUFDX18mbTExPTZmN2Q0YjAyMThiMjhiZTc4MmI2ZDg4OTYwZTg5YzYyMTQ0YjAwNDc4NTU3MzUwYzQ1NTFiYzdiZTU0YjQzYTYmbTE0PV9fQ0FJRF9fJm01YT1fX0lERlZfXyZtbj1fX0FOQU1FX18mbTViPV9fSURGQTFfXyZtMTFhPV9fT0FJRDFfXyZtMTRhPV9fQ0FJRDFfXyZ2bz0zZDA4ODNjMjAmdnI9MiZvPWh0dHBzOi8vamV3ZWxsZXJ5LmdvbGQvSjBJVlBKS1gyQyIsIm5ld1N0YXRpc3RpY3MiOnsianNFbWJlZFVybCI6Ii8vdGVzdC1zYy5zZWV5b3V5aW1hLmNvbS9laW1nL2FkdmVydGlzZS8yMDIwMTIyOS81ZmViMDY2ODk5M2VkLmpzIiwib3BlbkJyaWRnZSI6MSwibXlKc0FkaWQiOiIwXzJfNDEyMDhfNjI2MTAifSwidXNpbmdXSyI6MSwibmF2QmFyU3R5bGUiOiJ3aGl0ZSJ9",
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026source=myad\u0026posid=1120\u0026plan_id=41208\u0026material_id=62610\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=16\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026source=myad\u0026posid=1120\u0026plan_id=41208\u0026material_id=62610\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=16\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026source=myad\u0026posid=1120\u0026plan_id=41208\u0026material_id=62610\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=16\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026source=myad\u0026posid=1120\u0026plan_id=41208\u0026material_id=62610\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=16\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026source=myad\u0026posid=1120\u0026plan_id=41208\u0026material_id=62610\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=16\u0026dsp_id=0\u0026iswake=0\u0026ad_id=myc-0_0_41208_62610_1721983525_8e47eb5ad9048\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "position": "1120",
+        "image_style": 19,
+        "tag_id": 1,
+        "tag_title": "广告",
+        "images": [
+            "https://pic-ad.tupian1234.com/adimg/2024/6/667e843a131e5_369_492.png"
+        ],
+        "source_type": 1,
+        "content": "fasf",
+        "encourage_finish_time": 0,
+        "shake_type": 0,
+        "id": "myc-0_0_41208_62610_1721983525_8e47eb5ad9048",
+        "request_time": 1721983526,
+        "ad_source_type": 2,
+        "planid": "41208",
+        "source": "myad",
+        "attr_text": "https://e.cn.miaozhen.com/r/k=2410647\u0026p=8ceBf\u0026dx=__IPDX__\u0026rt=2\u0026pro=s\u0026ns=59.57.251.162\u0026ni=__IESID__\u0026v=__LOC__\u0026xa=__ADPLATFORM__\u0026tr=__REQUESTID__\u0026mo=0\u0026m0=__OPENUDID__\u0026m0a=__DUID__\u0026m1=9a8c7560dc0e8734\u0026m1a=6aec1307757879ba4ec34dab0bf091e2\u0026m2=__IMEI__\u0026m4=__AAID__\u0026m5=__IDFA__\u0026m6=__MAC1__\u0026m6a=__MAC__\u0026m11=6f7d4b0218b28be782b6d88960e89c62144b00478557350c4551bc7be54b43a6\u0026m14=__CAID__\u0026m5a=__IDFV__\u0026mn=__ANAME__\u0026m5b=__IDFA1__\u0026m11a=__OAID1__\u0026m14a=__CAID1__\u0026vo=3d0883c20\u0026vr=2\u0026o=https://jewellery.gold/J0IVPJKX2C",
+        "pic_size": {
+            "w": 369,
+            "h": 492
+        },
+        "close_by_reason": 1,
+        "encourage_video_time": 0,
+        "extraparam": "ordinal=16|plan_id=41208|material_id=62610|city_id=350200|province_id=350000|cityid_final_source=1|sid=Paw8gMuNuLJoCDeo|global_track_id=22059889911001721983525248707597|image_style=19|exposure_time_frame=1|source=myad|mode=3|home_feeds_tabs=1|link_type=90005|ordinal_req=16",
+        "user": {
+            "screen_name": "好时巧克力",
+            "avatar": "http://sc.seeyouyima.com/advertise/20170825/599fc49122124_180_180.png"
+        },
+        "has_shut_action": 1,
+        "next_encourage_coin_num": 0
+    },
+    {
+        "video_duration": "01:06",
+        "complete_ping": [
+            "https://www.baidu.com?action=video_complete_ping\u0026price={AUCTION_PRICE}"
+        ],
+        "planid": "9012",
+        "position": "1120",
+        "type": 4,
+        "image_style": -1,
+        "pic_max_size": {
+            "w": 640,
+            "h": 360
+        },
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwOi8vcHBzY2hscGtnLWRyY24uZGJhbmtjZG4uY29tL25zcC1wcHMtY2hhbm5lbHBrZy1wMDEtZHJjbi9wcHNwa2cvNDA3LzU4Mi80MDAvMjg1MDA4NjAwMDQwNzU4MjQwMC4yMDIxMDEwNzE3MTcwMC4xNjE4NzUxMDY2NDk0MTg5MDcyNjU2ODY3MjM2NDk4Mi5hcGsiLCJuYXZCYXJTdHlsZSI6IndoaXRlIn0",
+        "file_size": "12k",
+        "click_ping": [
+            "https://www.baidu.com?click=1\u0026_MEETYOU_W__=__MEETYOU_W__\u0026_MEETYOU_H__=__MEETYOU_H__\u0026_MEETYOU_DOWN_X__=__MEETYOU_DOWN_X__\u0026_MEETYOU_DOWN_Y__=__MEETYOU_DOWN_Y__\u0026_MEETYOU_UP_X__=__MEETYOU_UP_X__\u0026_MEETYOU_UP_Y__=__MEETYOU_UP_Y__\u0026_MEETYOU_TIMESTAMP__=__MEETYOU_TIMESTAMP__\u0026_MEETYOU_MICRO_TIMESTAMP__=__MEETYOU_MICRO_TIMESTAMP__\u0026_MEETYOU_DOWN_SX__=__MEETYOU_DOWN_SX__\u0026_MEETYOU_DOWN_SY__=__MEETYOU_DOWN_SY__\u0026_MEETYOU_UP_SX__=__MEETYOU_UP_SX__\u0026_MEETYOU_UP_SY__=__MEETYOU_UP_SY__\u0026啦啦\u0026extra=qu09JJAqjcR3Zl58iE3_McI\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w==",
+            "http://test-x.seeyouyima.com/adx/staticstics?a=2\u0026adid=1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026apn=4\u0026appid=1\u0026bid_type=4\u0026c_tid=__MEETYOU_TRACK_ID__\u0026channel=api\u0026channel_key=12\u0026cityCode=350200\u0026cr_ord=__MEETYOU_CR_ORDINAL__\u0026cs_ord=__MEETYOU_CS_ORDINAL__\u0026did=303e0d37c62952876a7f0a22a6dcf9b1\u0026dp=130\u0026global_track_id=22059889911001721983525248707597\u0026image_style=7\u0026layer=3\u0026material_type=2\u0026mode=2\u0026myclient=0130877001200000\u0026network=wifi\u0026ordinal=21\u0026pid=1_1120_21_3\u0026pif%2Comitempty=0%3A2700-3%3A3000-2%3A900-1%3A900\u0026plat=3\u0026pos_id=1120\u0026source=pangle_api\u0026ss=99d08d73587abd1bcac328984ba5a6ee\u0026st=MC4yMjIyMg\u0026title=%E5%A4%8F%E7%94%9F%E7%AB%A5%E8%A3%85%E7%99%BD%E9%B8%AD%E7%BB%92%E7%BE%BD%E7%BB%92%E6%9C%8D%E7%94%B7%E5%A5%B3%E7%AB%A5%E5%86%AC%E5%AD%A3%E5%84%BF%E7%AB%A52022%E5%B9%B4%E6%96%B0%E6%AC%BE%E5%AE%9D\u0026ts=1721983526\u0026ua=Mozilla%2F5.0+%28Linux%3B+Android+9%3B+V1934A+Build%2FPPR1.180610.011%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F68.0.3440.91+Mobile+Safari%2F537.36\u0026uid=220598899\u0026user_mode=3\u0026uuid=865322950"
+        ],
+        "source_type": 1,
+        "user": {
+            "screen_name": "美团2",
+            "avatar": "https://nb-ssp.oss-cn-beijing.aliyuncs.com/1648699553998828f6f50-79c1-11ec-92c0-01612323b7a1.png",
+            "dsp_source_key": "pangle_api"
+        },
+        "lead_title": "夏生童装白鸭绒羽绒服男女童冬季儿童2022年新款宝",
+        "show_ping": [
+            "https://www.baidu.com?show=1\u0026_MEETYOU_W__=__MEETYOU_W__\u0026_MEETYOU_H__=__MEETYOU_H__\u0026_MEETYOU_DOWN_X__=__MEETYOU_DOWN_X__\u0026_MEETYOU_DOWN_Y__=__MEETYOU_DOWN_Y__\u0026_MEETYOU_UP_X__=__MEETYOU_UP_X__\u0026_MEETYOU_UP_Y__=__MEETYOU_UP_Y__\u0026_MEETYOU_TIMESTAMP__=__MEETYOU_TIMESTAMP__\u0026_MEETYOU_MICRO_TIMESTAMP__=__MEETYOU_MICRO_TIMESTAMP__\u0026_MEETYOU_DOWN_SX__=__MEETYOU_DOWN_SX__\u0026_MEETYOU_DOWN_SY__=__MEETYOU_DOWN_SY__\u0026_MEETYOU_UP_SX__=__MEETYOU_UP_SX__\u0026_MEETYOU_UP_SY__=__MEETYOU_UP_SY__\u0026啦啦\u0026extra=qu09JJAqjcR3Zl58iE3_McI\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w==",
+            "https://dsp.toutiao.com/api/common/ads/show?extra=2G6_LDZ3Q7hdYXoJMLYv3Z7e79Lx5zIDrZ3OgJ6XBdx1qE_lTVIxswfhiIa0DJoa9Vg58q3zHIpYxJhlfsmOV965rSdbzjGQbcsIDGK6yJAQBhaPPAB5IJszNI-f9MqaJKjX2Ay781Lex_iYClcunme5xi-GBYHllLT_A2S4Sj_0l9sJY7fMDvBnwkTXU11wW7wlSekVEG5_0tof1OGxngMQBDKiiABY12hK4llLmNy3kA61sfiWWYlW92r-N3iknt4zfvo2aKJPIRiUoaHMacK6jMxGyWLutxwiq3D21snyDaoh-ZiwhydprD0XT3QE8VuBfjs641jYqmM4JY1zLf4eC8gEZzJKKpdI0OrRzJHYhA3azQ8HRi94N1KGpl4pO6OxO5_sJqIQ49u9a8zXC-gVwBTIY71JnR5ufKXXd4Rb3zpK5DDVNJ66-xcPqMUWjaYtmL00eyYuXi5jWL8_yDRQLWfrwTOgQdnM5qzckxOv6XjUJe1S3EodP-Q5KNvv-8PZB7LwS6ZUX3LvoyxMiUqAdCf75sZrYuGaywHo-GmO3z7DKBZljVpgbSFSpMx4MRb_bSGHZeMCMMplFSs0a_jAElAmJfDKRRgf1-7iM5Ti5DpGO4puVAJtB0GR9ygiv-3JHVJDV1opLUd9JfUmZP41bzpgqG_kgjd7iQjrzD80rBRJPv2-Fvp6KUdarDDdFCZlcmLw-G6-sp7Me-hTtFusJ427ZKwjWW9GRcztsQ8tmwXrDDfpcQ8qnRzwXQTeT6vpNvuDnRIZ5LBCSajfwpLPft36qDQ-WBUZ_5Zn0ATcb_gbUZKRWrPQS3hTpNN28mWfEuYkmDiJzyrEIj9KPKG7TNgzjDYzONnI9VgyLWw5TH02iZIYV1CZfdOKsfv0NrArvu3Tkaqf000swhraMe19jyX1xHHQJa1TTQX4xPJ0euVruDYUytKn9GhVEzbzfWK2uxKsBAHclKqfoqcyTP40GImldtIfqEtWWQLapfOLFKJZ8EjLU_AueUwb1ue6LZTR3-9qpIA-a5HMUkxlXAGq2fYz51tFfwiKpMd7shZpkVbMpQ8PKSis1mHiQt5kYTksJI6NUzSm7zZYWisZbVp5nZmikOGVf2XUASMi34nMTSGUe_PsFZzNgXIMdE72jnQPLfZ9q6ypwy-1g60RYnQRyl9RSofBMYQx05zm2Lc8VZRNlaoK21O6zN_1z5wVK_11PTJSDKcil1JpmGqJR5TVTc4QAMxVEEr684f_5L0rVNXd6HbEIOMPksGNS4I0I9q_TWhEfd2uVX6XYWIkIGdQVxT_ficA0P9K9UFjAEqVS8nxMRJdccNxDJXH18r8ORzkDI-NmJZdAWWBFjQP\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w==",
+            "http://test-x.seeyouyima.com/adx/staticstics?a=1\u0026adid=1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026apn=4\u0026appid=1\u0026bid_type=4\u0026c_tid=__MEETYOU_TRACK_ID__\u0026channel=api\u0026channel_key=12\u0026cityCode=350200\u0026cr_ord=__MEETYOU_CR_ORDINAL__\u0026cs_ord=__MEETYOU_CS_ORDINAL__\u0026did=303e0d37c62952876a7f0a22a6dcf9b1\u0026dp=130\u0026global_track_id=22059889911001721983525248707597\u0026image_style=7\u0026layer=3\u0026material_type=2\u0026mode=2\u0026myclient=0130877001200000\u0026network=wifi\u0026ordinal=21\u0026pid=1_1120_21_3\u0026pif%2Comitempty=0%3A2700-3%3A3000-2%3A900-1%3A900\u0026plat=3\u0026pos_id=1120\u0026source=pangle_api\u0026ss=9d0c49c58b8697757b78a5b5f7b5dc1b\u0026st=MC4yMjIyMg\u0026title=%E5%A4%8F%E7%94%9F%E7%AB%A5%E8%A3%85%E7%99%BD%E9%B8%AD%E7%BB%92%E7%BE%BD%E7%BB%92%E6%9C%8D%E7%94%B7%E5%A5%B3%E7%AB%A5%E5%86%AC%E5%AD%A3%E5%84%BF%E7%AB%A52022%E5%B9%B4%E6%96%B0%E6%AC%BE%E5%AE%9D\u0026ts=1721983526\u0026ua=Mozilla%2F5.0+%28Linux%3B+Android+9%3B+V1934A+Build%2FPPR1.180610.011%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F68.0.3440.91+Mobile+Safari%2F537.36\u0026uid=220598899\u0026user_mode=3\u0026uuid=865322950"
+        ],
+        "ad_source_type": 1,
+        "tips_position": 1,
+        "tag_id": 666,
+        "logo": "https://pic-ad.tupian1234.com/advertise/20240223/65d8657111636_180_180.png",
+        "download_tracking": {
+            "start_download_tracking_url": [
+                "https://www.baidu.com?action=start_download_ping\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w=="
+            ],
+            "over_download_tracking_url": [
+                "https://www.baidu.com?action=over_download_ping\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w=="
+            ],
+            "over_install_tracking_url": [
+                "https://www.baidu.com?action=over_install_ping\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w=="
+            ]
+        },
+        "new_download_style": 2,
+        "cache_ret_info": {
+            "cache_id": "22059889911001721983525248707597_1120_21",
+            "allow_cache": 1,
+            "cache_req_ordinal": 21,
+            "cache_content": "1120|21|pangle_api|22222000.00|130|1721984126",
+            "cache_expire": 1721984126
+        },
+        "has_shut_action": 1,
+        "title": "夏生童装白鸭绒羽绒服男女童冬季儿童2022年新款宝",
+        "content": "夏生童装白鸭绒羽绒服男女童冬季儿童2022年新款宝",
+        "call_down_title": "立即下载",
+        "start_ping": [
+            "https://www.baidu.com?action=video_start_ping\u0026price={AUCTION_PRICE}"
+        ],
+        "video_play_report_time": "2",
+        "close_by_reason": 1,
+        "encourage_finish_time": 0,
+        "expires": 3000,
+        "request_time": 1721983526,
+        "extraparam": "ordinal=21|plan_id=9012|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|mode=3|request_city_id=350200|dsp_id=130|is_support=0|sid=HcWgLuLqkuZnRs05|global_track_id=22059889911001721983525248707597|image_style=-1|bt_type=2|source=adx_meetyou|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=21",
+        "attr_id": 0,
+        "attr_text": "http://ppschlpkg-drcn.dbankcdn.com/nsp-pps-channelpkg-p01-drcn/ppspkg/407/582/400/2850086000407582400.20210107171700.16187510664941890726568672364982.apk",
+        "download_scheme_uri": "meetyou.linggan:///web?params=eyJuYXZCYXJTdHlsZSI6IndoaXRlIiwiYXBwSWNvbiI6Imh0dHBzOi8vbmItc3NwLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xNjQ4Njk5NTUzOTk4ODI4ZjZmNTAtNzljMS0xMWVjLTkyYzAtMDE2MTIzMjNiN2ExLnBuZyIsInBlcm1pc3Npb25zVXJsIjoiIiwiYXBwRGVzYyI6IuWKn-iDveS7i-e7je-8muOAkOe-juWbouWkluWNluOAkeaYr-S4gOasvuS8mOi0qOeahOenu-WKqOW6lOeUqO-8jOa7oei2s-eUqOaIt-eahOWfuuacrOmcgOaxguS5i-Wklu-8jOa3seWFpeaMluaOmOS6huW-iOWkmuS4sOWvjOacieeUqOeahOWKn-iDve-8jOespuWQiOeUqOaIt-S9k-mqjOagh-WHhuOAguWmgumcgOafpeivouabtOWkmkFQUOS_oeaBr-ivt-enu-atpeiHs-W6lOeUqOWVhuW6l-OAgiIsImh3SG90Wm9uZURvd25sb2FkIjoiIiwidXJsIjoiaHR0cDovL3Bwc2NobHBrZy1kcmNuLmRiYW5rY2RuLmNvbS9uc3AtcHBzLWNoYW5uZWxwa2ctcDAxLWRyY24vcHBzcGtnLzQwNy81ODIvNDAwLzI4NTAwODYwMDA0MDc1ODI0MDAuMjAyMTAxMDcxNzE3MDAuMTYxODc1MTA2NjQ5NDE4OTA3MjY1Njg2NzIzNjQ5ODIuYXBrIiwicHJpdmF0ZVBvbGljeSI6Imh0dHBzOi8vcnVsZXMtY2VudGVyLm1laXR1YW4uY29tL3J1bGVzLWRldGFpbC8xMzc_Y29tbW9uVHlwZT03IiwiYXBwU3RvcmVEZWVwbGluayI6IiIsInBhY2thZ2VOYW1lIjoiY29tLnNhbmt1YWkubWVpdHVhbi50YWtlb3V0bmV3IiwiYXBwTmFtZSI6Iue-juWbouWkluWNliIsInZlcnNpb25OYW1lIjoiIiwidmVyc2lvbkNvZGUiOiI3LjY0LjQiLCJkZXZlbG9wTmFtZSI6IuWMl-S6rOS4ieW_q-WcqOe6v-enkeaKgOaciemZkOWFrOWPuCIsInBlcm1pc3Npb25zIjpbeyJ0aXRsZSI6IuaLpeacieWujOWFqOeahOe9kee7nOiuv-mXruadg-mZkCIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjliJvlu7rnvZHnu5zlpZfmjqXlrZflkozkvb_nlKjoh6rlrprkuYnnvZHnu5zljY_orq7jgILmtY_op4jlmajlkozlhbbku5bmn5DkupvlupTnlKjmj5DkvpvkuoblkJHkupLogZTnvZHlj5HpgIHmlbDmja7nmoTpgJTlvoTvvIzlm6DmraTlupTnlKjml6DpnIDor6XmnYPpmZDljbPlj6_lkJHkupLogZTnvZHlj5HpgIHmlbDmja7jgIIifSx7InRpdGxlIjoi5ZCN56ewMiIsImNvbnRlbnQiOiLlhoXlrrkyIn1dfQ",
+        "ordinal": 21,
+        "source": "adx_meetyou",
+        "pic_size": {
+            "w": 640,
+            "h": 360
+        },
+        "video_finish_title": "了解更多",
+        "next_encourage_coin_num": 0,
+        "shake_type": 0,
+        "sub_title": "夏生童装白鸭绒羽绒服男女童冬季儿童2022年新款宝",
+        "tag_title": "广告",
+        "is_adx_sources": 1,
+        "id": "adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597",
+        "images": [
+            "https://canvas.gdt.qq.com/canvas/1?viewid=%12%0C%08%EB%E4%DD%E4%E8%8D%D3%DB.%20%06%18%CA%84%DA%05\u0026ckn=3366243284171584107"
+        ],
+        "video": "http://vods-weimi.listenvod.com/video/ld/2021/3/7ba2023f6c548d9fd9f2ba022e0edbe6.mp4",
+        "deep_link_tracking": {
+            "app_installed_url": [
+                "https://www.baidu.com?action=31\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w=="
+            ],
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026source=adx_meetyou\u0026posid=1120\u0026plan_id=9012\u0026material_id=0\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=21\u0026dsp_id=130\u0026iswake=0\u0026ad_id=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://www.baidu.com?action=32\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w==",
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026source=adx_meetyou\u0026posid=1120\u0026plan_id=9012\u0026material_id=0\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=21\u0026dsp_id=130\u0026iswake=0\u0026ad_id=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://www.baidu.com?action=34\u0026price=YWU2MDNjNDE3NDVhZmYyYzYA8n6cJKeXkIYx1w==",
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026source=adx_meetyou\u0026posid=1120\u0026plan_id=9012\u0026material_id=0\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=21\u0026dsp_id=130\u0026iswake=0\u0026ad_id=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026source=adx_meetyou\u0026posid=1120\u0026plan_id=9012\u0026material_id=0\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=21\u0026dsp_id=130\u0026iswake=0\u0026ad_id=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026source=adx_meetyou\u0026posid=1120\u0026plan_id=9012\u0026material_id=0\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=21\u0026dsp_id=130\u0026iswake=0\u0026ad_id=adx-1754381102762014_130_865322950_1721983526_22059889911001721983525248707597\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "encourage_video_time": 0
+    },
+    {
+        "source_type": 1,
+        "attr_id": 0,
+        "lead_title": "是视频的副标题呀~~~是视频",
+        "show_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTEmYWRfaWQ9MjI1M183NTE4NV8xMDg5NzdfODA2NzNfMTI2ODU5XzJfMTcyMTk4MzUyNl9CemJmamM0MDhiYjAxLTEmYXBwX2lkPTEmYmlkX3R5cGU9MiZjaGFubmVsPTEyJmNwaz0xLjAwMzA1MTJlJTJCMDcmZWNpPTI0MCZlY2o9MTE4NDEmZ2xvYmFsX3RyYWNrX2lkPTIyMDU5ODg5OTExMDAxNzIxOTgzNTI1MjQ4NzA3NTk3JmlzX3JlYWxfY3RyPTEma2V5d29yZD0mbXl1aWQ9MjIwNTk4ODk5Jm5ld3NfY2lkPTAmbmV3c19vcmRpbmFsPTAmbmV3c19zb3VyY2U9MCZvY3BjX3N0YWdlPTMmb3JkaW5hbD0yNiZwbGF0Zm9ybT0zJnBvc2lkPTExMjAmcmVxdWVzdF9jaXR5X2lkPTM1MDIwMCZyZXF1ZXN0X3RpbWU9MTcyMTk4MzUyNiZycz14UFVBcFkmc2VhcmNoX2NsYXNzPTAmc2lnbj1jZDM1ZTdlMzQ2NjVjZDY1YjQwYzc2MzZhYjE4YzE4NyZ0YWdzPWFnZSUzQTAlN0Ntb2RlJTNBLTElN0Ntb2RlMiUzQS0xJnRhcmdldD0yJnY9OC43Ny4wJndvcmRfcGFjaz0zJTJDMzA3MjYlN0MyJTJDMjM1MDIwMA==\u0026ordinal_real=26"
+        ],
+        "close_by_reason": 1,
+        "position": "1120",
+        "source": "mye",
+        "encourage_video_time": 0,
+        "next_encourage_coin_num": 0,
+        "click_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTImYWRfaWQ9MjI1M183NTE4NV8xMDg5NzdfODA2NzNfMTI2ODU5XzJfMTcyMTk4MzUyNl9CemJmamM0MDhiYjAxLTEmYXBwX2lkPTEmYmlkX3R5cGU9MiZjaGFubmVsPTEyJmNwaz0xLjAwMzA1MTJlJTJCMDcmZWNpPTI0MCZlY2o9MTE4NDEmZ2xvYmFsX3RyYWNrX2lkPTIyMDU5ODg5OTExMDAxNzIxOTgzNTI1MjQ4NzA3NTk3JmlzX3JlYWxfY3RyPTEma2V5d29yZD0mbXl1aWQ9MjIwNTk4ODk5Jm5ld3NfY2lkPTAmbmV3c19vcmRpbmFsPTAmbmV3c19zb3VyY2U9MCZvY3BjX3N0YWdlPTMmb3JkaW5hbD0yNiZwbGF0Zm9ybT0zJnBvc2lkPTExMjAmcmVxdWVzdF9jaXR5X2lkPTM1MDIwMCZyZXF1ZXN0X3RpbWU9MTcyMTk4MzUyNiZycz1Lb1ZJa2smc2VhcmNoX2NsYXNzPTAmc2lnbj04ZjU3MWRkYjY4MjIyZDcwMmZmNTQ0MzJmMWY1OTgzMyZ0YWdzPWFnZSUzQTAlN0Ntb2RlJTNBLTElN0Ntb2RlMiUzQS0xJnRhcmdldD0yJnY9OC43Ny4wJndvcmRfcGFjaz0zJTJDMzA3MjYlN0MyJTJDMjM1MDIwMA==\u0026ordinal_real=26"
+        ],
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80673\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=26\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80673\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=26\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80673\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=26\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80673\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=26\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80673\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=26\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1c2luZ1dLIjoxLCJuYXZCYXJTdHlsZSI6IndoaXRlIiwidXJsIjoiaHR0cHM6Ly90ZXN0LWg1ZS5tZWl5b3UuY29tL3BhZ2U_YWlkPTlhOGM3NTYwZGMwZTg3MzQmaWRmYT0maW1laT0maXA9NTkuNTcuMjUxLjE2MiZteXd0Yl9uYW1lPWp6ZS1oNSZub19hdXRvcGxheT0xJm9zPTMmcGFnZV9pZD0zMjM1JnRyYWNrX2lkPTgwNjczLTMyMzUtMjIwNTk4ODk5LTEyLTExMjAtMC0wLTQtMTcyMTk4MzUyNi0xLTdUaHZuYThkZDg1N2MtMy0yLTImdWE9TW96aWxsYSUyRjUuMCslMjhMaW51eCUzQitBbmRyb2lkKzklM0IrVjE5MzRBK0J1aWxkJTJGUFBSMS4xODA2MTAuMDExJTNCK3d2JTI5K0FwcGxlV2ViS2l0JTJGNTM3LjM2KyUyOEtIVE1MJTJDK2xpa2UrR2Vja28lMjkrVmVyc2lvbiUyRjQuMCtDaHJvbWUlMkY2OC4wLjM0NDAuOTErTW9iaWxlK1NhZmFyaSUyRjUzNy4zNiZpbXlfc2hhcmU9MSJ9",
+        "image_style": -1,
+        "has_shut_action": 1,
+        "ordinal": 26,
+        "video_duration": "00:12",
+        "btn_txt": "查看详情",
+        "id": "mye-2253_75185_108977_80673_126859_2_1721983526_Bzbfjc408bb01-1",
+        "planid": "9012",
+        "sub_title": "建站-微信-视频厦门-7月26日",
+        "tag_id": 666,
+        "pic_size": {
+            "w": 640,
+            "h": 360
+        },
+        "tips_position": 1,
+        "title": "建站-微信-视频厦门-7月26日",
+        "pic_max_size": {
+            "w": 640,
+            "h": 360
+        },
+        "is_adx_sources": 1,
+        "encourage_finish_time": 0,
+        "type": 4,
+        "extraparam": "ordinal=26|plan_id=9012|material_id=80673|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|convert_type=8|feedbackType=0|feedback_type=0|is_ocpc=1|track_id=80673-3235-220598899-12-1120-0-0-4-1721983526-1-7Thvna8dd857c-3-2-2|convert_id=3235|mode=3|request_city_id=350200|dsp_id=113|is_support=0|ebid_cpc=296949.89738592|sid=pS7K9ReA8h6qeEje|global_track_id=22059889911001721983525248707597|image_style=-1|source=mye|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=26",
+        "attr_text": "https://test-h5e.meiyou.com/page?aid=9a8c7560dc0e8734\u0026idfa=\u0026imei=\u0026ip=59.57.251.162\u0026mywtb_name=jze-h5\u0026no_autoplay=1\u0026os=3\u0026page_id=3235\u0026track_id=80673-3235-220598899-12-1120-0-0-4-1721983526-1-7Thvna8dd857c-3-2-2\u0026ua=Mozilla%2F5.0+%28Linux%3B+Android+9%3B+V1934A+Build%2FPPR1.180610.011%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F68.0.3440.91+Mobile+Safari%2F537.36\u0026imy_share=1",
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/20230629/649d45129d413_640_360.jpeg"
+        ],
+        "file_size": "0.65M",
+        "ad_source_type": 1,
+        "expires": 3000,
+        "user": {
+            "screen_name": "测试公司2253",
+            "avatar": "http://test-sc.seeyouyima.com/eimg/e_ad/230629/649d4516125f1_150_150.png",
+            "dsp_source_key": "mix_mye"
+        },
+        "tag_title": "广告",
+        "video": "https://ad-evods.tianya.tv/evideo/2022/8/14a6b3cd-9c7b-48be-9d64-f16365bc2e66.mp4",
+        "video_finish_title": "了解更多",
+        "shake_type": 0,
+        "video_play_report_time": "2",
+        "request_time": 1721983526,
+        "content": "建站-微信-视频厦门-7月26日"
+    },
+    {
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwczovL3Rlc3QtaDVlLm1laXlvdS5jb20vdGlwcz9pbmR1c3RyeT0xMDAyJm1hdGVyaWFsX2lkPTc3NzgzJnVybD1hSFIwY0hNNkx5OTNkM2N1WW1GcFpIVXVZMjl0UDJOaGJHeGlZV05yUFdoMGRIQnpKVE5CSlRKR0pUSkdkR1Z6ZEMxbExtMWxhWGx2ZFM1amIyMGxNa1owY21GamF5VXlSbU5zZFdVbE0wWndZV05ySlRORVdWZHNhMUJVYkdoUFIwMHpUbFJaZDFwSFRYZGFWR2N6VFhwUmJWa3lPWFZrYlZaNVpFWTVjRnBFTURST2VrMHdUV3BGZVUxNlVUVk5lVnB3V2tkYWFGQlRXbkJpVjFad1VGTmFjR05FTURGUFV6UXhUbmswZVU1VVJYVk5WRmw1U20wNWVsQlVUVzFqYlZaNFpGZFdlbVJHT1RCaFZ6RnNVRlJGTTAxcVJUVlBSRTB4VFdwWmJXTnVUVGxQVlhBMVkwY3hVRXB1VG5CYU1qUTVUakpWZWsxWFdtdGFWMFV5V2xkS2FrMTZaekpaYlVsNlRucHNhazB5Vm1sT01sazBXa2RKZDA1NlVXMWtTRXBvV1RKMFptRlhVVGxPZW1NelQwUk5kRTlFWTNwT1JFbDRUV3BOTUU5VVRYUk5ha2wzVGxSck5FOUVhelZNVkVWNVRGUkZlRTFxUVhSTlF6QjNURlJSZEUxVVkzbE5WR3MwVFhwVmVVNXBNSGhNVlZwdVpVaFNOVTVxU1RWTmVsazFUVEpOZEUxcE1IaE1WRVZ0WkZkRk9WUlhPVFpoVjNoeldWTlZlVkpxVlhWTlEzTnNUV3BvVFdGWE5URmxRMVY2VVdsMFFtSnRVbmxpTW14clMzcHJiRTB3U1hKV2FrVTFUWHBTUWtzd1NqRmhWM2hyU2xSS1IxVkdRbE5OVXpSNFQwUkJNazFVUVhWTlJFVjRTbFJPUTBzelpESktWRWsxU3pCR2QyTkhlR3hXTWxacFV6SnNNRXBVU2tkT1ZFMHpUR3BOTWt0NVZYbFBSWFJKVmtVeFRVcFVTa1JMTW5od1lUSlZjbEl5Vm1waE1qaHNUV3ByY2xadFZubGpNbXgyWW1sVmVWSnFVWFZOUTNSRVlVaEtkbUpYVld4TmExa3lUME0wZDB4cVRUQk9SRUYxVDFSRmNsUlhPV2xoVjNoc1N6Rk9hRnB0Um5saFUxVjVVbXBWZWs1NU5IcE9aeVV6UkNVelJDWnRZWFJsY21saGJGOXBaRDAzTnpjNE15WnZjejB6Sm5SeVlXTnJYMmxrUFRjM056Z3pMVGczTXpReU1USXpORGt6TFRJeU1EVTVPRGc1T1MweE1pMHhNVEl3TFRBdE1DMDBMVEUzTWpFNU9ETTFNall0TVMxR1ozaDBlVFl5T1RNMk9UTmpMVEl0TVMweCIsInVzaW5nV0siOjEsIm5hdkJhclN0eWxlIjoid2hpdGUifQ",
+        "page_pre_load": 1,
+        "is_adx_sources": 1,
+        "expires": 3000,
+        "sub_title": "XYY线索-在线下单，7月26日-节日。DHA呀呀呀",
+        "content": "XYY线索-在线下单，7月26日-节日。DHA呀呀呀",
+        "shake_type": 0,
+        "ordinal": 31,
+        "attr_text": "https://test-h5e.meiyou.com/tips?industry=1002\u0026material_id=77783\u0026url=aHR0cHM6Ly93d3cuYmFpZHUuY29tP2NhbGxiYWNrPWh0dHBzJTNBJTJGJTJGdGVzdC1lLm1laXlvdS5jb20lMkZ0cmFjayUyRmNsdWUlM0ZwYWNrJTNEWVdsa1BUbGhPR00zTlRZd1pHTXdaVGczTXpRbVkyOXVkbVZ5ZEY5cFpEMDROek0wTWpFeU16UTVNeVpwWkdaaFBTWnBiV1ZwUFNacGNEMDFPUzQxTnk0eU5URXVNVFl5Sm05elBUTW1jbVZ4ZFdWemRGOTBhVzFsUFRFM01qRTVPRE0xTWpZbWNuTTlPVXA1Y0cxUEpuTnBaMjQ5TjJVek1XWmtaV0UyWldKak16ZzJZbUl6Tnpsak0yVmlOMlk0WkdJd056UW1kSEpoWTJ0ZmFXUTlOemMzT0RNdE9EY3pOREl4TWpNME9UTXRNakl3TlRrNE9EazVMVEV5TFRFeE1qQXRNQzB3TFRRdE1UY3lNVGs0TXpVeU5pMHhMVVpuZUhSNU5qSTVNelk1TTJNdE1pMHhMVEVtZFdFOVRXOTZhV3hzWVNVeVJqVXVNQ3NsTWpoTWFXNTFlQ1V6UWl0QmJtUnliMmxrS3prbE0wSXJWakU1TXpSQkswSjFhV3hrSlRKR1VGQlNNUzR4T0RBMk1UQXVNREV4SlROQ0szZDJKVEk1SzBGd2NHeGxWMlZpUzJsMEpUSkdOVE0zTGpNMkt5VXlPRXRJVkUxTUpUSkRLMnhwYTJVclIyVmphMjhsTWprclZtVnljMmx2YmlVeVJqUXVNQ3REYUhKdmJXVWxNa1kyT0M0d0xqTTBOREF1T1RFclRXOWlhV3hsSzFOaFptRnlhU1V5UmpVek55NHpOZyUzRCUzRCZtYXRlcmlhbF9pZD03Nzc4MyZvcz0zJnRyYWNrX2lkPTc3NzgzLTg3MzQyMTIzNDkzLTIyMDU5ODg5OS0xMi0xMTIwLTAtMC00LTE3MjE5ODM1MjYtMS1GZ3h0eTYyOTM2OTNjLTItMS0x",
+        "tag_title": "广告",
+        "pic_size": {
+            "w": 640,
+            "h": 264
+        },
+        "id": "mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1",
+        "planid": "9012",
+        "title": "XYY线索-在线下单，7月26日-节日。DHA呀呀呀",
+        "download_scheme_uri": "meetyou.linggan:///web?params=eyJ1c2luZ1dLIjoxLCJuYXZCYXJTdHlsZSI6IndoaXRlIiwidXJsIjoiaHR0cHM6Ly93d3cuYmFpZHUuY29tIiwibmV3U3RhdGlzdGljcyI6eyJqc0VtYmVkVXJsIjoiLy90ZXN0LXNjLnNlZXlvdXlpbWEuY29tL2VpbWcvYWR2ZXJ0aXNlLzIwMjAxMjI5LzVmZWIwNjY4OTkzZWQuanMiLCJvcGVuQnJpZGdlIjoxLCJteUpzQWRpZCI6IjFfMl83NDYzMF83Nzc4MyJ9fQ",
+        "click_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTImYWRfaWQ9NzEyXzc0NjMwXzEwNjgxN183Nzc4M18xMTI1XzFfMTcyMTk4MzUyNl9FcUlDZWJlYzQ5NWNmLTEmYXBwX2lkPTEmYmlkX3R5cGU9MSZjaGFubmVsPTEyJmNwaz0yLjE3ZSUyQjA2JmVjaT0yNDAmZWNqPTE5NDg2Jmdsb2JhbF90cmFja19pZD0yMjA1OTg4OTkxMTAwMTcyMTk4MzUyNTI0ODcwNzU5NyZpc19yZWFsX2N0cj0xJmtleXdvcmQ9Jm15dWlkPTIyMDU5ODg5OSZuZXdzX2NpZD0wJm5ld3Nfb3JkaW5hbD0wJm5ld3Nfc291cmNlPTAmb2NwY19zdGFnZT0yJm9yZGluYWw9MjEmcGxhdGZvcm09MyZwb3NpZD0xMTIwJnJlcXVlc3RfY2l0eV9pZD0zNTAyMDAmcmVxdWVzdF90aW1lPTE3MjE5ODM1MjYmcnM9NXc2ajV3JnNlYXJjaF9jbGFzcz0wJnNpZ249MjM0NDI0ODBjMWQwZmY2ZDM5NmQ5YWZkZjE1Y2Y3OTkmdGFncz1tb2RlMiUzQS0xJTdDYWdlJTNBMCU3Q21vZGUlM0EtMSZ0YXJnZXQ9MiZ2PTguNzcuMCZ3b3JkX3BhY2s9NDglMkM2MDAwMDAwJTdDNDYlMkMzMDcyNg==\u0026ordinal_real=31"
+        ],
+        "encourage_video_time": 0,
+        "next_encourage_coin_num": 0,
+        "source": "mye",
+        "tips_position": 1,
+        "pic_max_size": {
+            "w": 640,
+            "h": 264
+        },
+        "close_by_reason": 1,
+        "encourage_finish_time": 0,
+        "request_time": 1721983526,
+        "attr_id": 0,
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/20200519/5ec397a37ee86_640_264.jpg"
+        ],
+        "image_style": 1,
+        "tag_id": 666,
+        "extraparam": "ordinal=31|plan_id=9012|material_id=77783|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|convert_id=87342123493|convert_type=14|feedbackType=4|feedback_type=4|is_ocpc=1|track_id=77783-87342123493-220598899-12-1120-0-0-4-1721983526-1-Fgxty6293693c-2-1-1|mode=3|request_city_id=350200|dsp_id=113|is_support=0|ebid_cpc=105714.7833|sid=nSXEBnR8r98Ze5VH|global_track_id=22059889911001721983525248707597|image_style=1|bt_type=2|source=mye|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=21",
+        "source_type": 1,
+        "type": 4,
+        "has_shut_action": 1,
+        "call_down_title": "立即下载",
+        "show_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTEmYWRfaWQ9NzEyXzc0NjMwXzEwNjgxN183Nzc4M18xMTI1XzFfMTcyMTk4MzUyNl9FcUlDZWJlYzQ5NWNmLTEmYXBwX2lkPTEmYmlkX3R5cGU9MSZjaGFubmVsPTEyJmNwaz0yLjE3ZSUyQjA2JmVjaT0yNDAmZWNqPTE5NDg2Jmdsb2JhbF90cmFja19pZD0yMjA1OTg4OTkxMTAwMTcyMTk4MzUyNTI0ODcwNzU5NyZpc19yZWFsX2N0cj0xJmtleXdvcmQ9Jm15dWlkPTIyMDU5ODg5OSZuZXdzX2NpZD0wJm5ld3Nfb3JkaW5hbD0wJm5ld3Nfc291cmNlPTAmb2NwY19zdGFnZT0yJm9yZGluYWw9MjEmcGxhdGZvcm09MyZwb3NpZD0xMTIwJnJlcXVlc3RfY2l0eV9pZD0zNTAyMDAmcmVxdWVzdF90aW1lPTE3MjE5ODM1MjYmcnM9UzF2ZFlVJnNlYXJjaF9jbGFzcz0wJnNpZ249ZWE0YmU1OTg0NmMzZjMwOGRjYzM5NGEyZTliYTg2MDEmdGFncz1tb2RlMiUzQS0xJTdDYWdlJTNBMCU3Q21vZGUlM0EtMSZ0YXJnZXQ9MiZ2PTguNzcuMCZ3b3JkX3BhY2s9NDglMkM2MDAwMDAwJTdDNDYlMkMzMDcyNg==\u0026ordinal_real=31"
+        ],
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77783\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=31\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77783\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=31\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77783\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=31\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77783\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=31\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77783\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=31\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74630_106817_77783_1125_1_1721983526_EqICebec495cf-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "ad_source_type": 1,
+        "position": "1120",
+        "user": {
+            "screen_name": "Kokoro loveabc",
+            "avatar": "http://test-sc.seeyouyima.com/eimg/e_ad/200609/5edf60a556028_150_150.png",
+            "dsp_source_key": "mix_mye"
+        }
+    },
+    {
+        "page_pre_load": 1,
+        "encourage_finish_time": 0,
+        "source": "mye",
+        "user": {
+            "screen_name": "xxxx",
+            "avatar": "http://test-sc.seeyouyima.com/eimg/e_ad/230323/641c23cf44d87_150_150.png",
+            "dsp_source_key": "mix_mye"
+        },
+        "tag_id": 666,
+        "tag_title": "广告",
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/20230317/64142a8b66602_640_360.jpeg"
+        ],
+        "tips_position": 1,
+        "call_down_title": "详情戳我",
+        "lead_title": "下载视频",
+        "encourage_video_time": 0,
+        "id": "mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1",
+        "title": "这个是下载视频",
+        "pic_max_size": {
+            "w": 640,
+            "h": 360
+        },
+        "video": "https://evods.tianya.tv/ss-mp4-ld/2021/3/789c901f14a74c3c8c3287a32ca4eb97.mp4",
+        "btn_txt": "详情戳我",
+        "next_encourage_coin_num": 0,
+        "ordinal": 36,
+        "request_time": 1721983526,
+        "content": "这个是下载视频",
+        "pic_size": {
+            "w": 640,
+            "h": 360
+        },
+        "new_download_style": 2,
+        "image_style": -1,
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwczovL3Rlc3QtaDVlLm1laXlvdS5jb20vZG93bmxvYWQvYXBrLzUxP2lzZG93bmxvYWRhcGs9MSZpbXlfc2hhcmU9MSIsInVzaW5nV0siOjEsIm5hdkJhclN0eWxlIjoid2hpdGUiLCJpc2Rvd25sb2FkYXBrIjoxfQ",
+        "download_scheme_uri": "meetyou.linggan:///web?params=eyJhcHBTdG9yZURlZXBsaW5rIjoiIiwidXJsIjoiaHR0cHM6Ly90ZXN0LWg1ZS5tZWl5b3UuY29tL2Rvd25sb2FkL2Fway81MT9pc2Rvd25sb2FkYXBrPTEiLCJ2ZXJzaW9uQ29kZSI6IjcuNC43LjAiLCJhcHBOYW1lIjoi5Lmd5ri45ri45oiPIiwiZGV2ZWxvcE5hbWUiOiLlub_lt57niLHkuZ3muLjkv6Hmga_mioDmnK_mnInpmZDlhazlj7giLCJwZXJtaXNzaW9ucyI6W3sidGl0bGUiOiLmi6XmnInlrozlhajnmoTnvZHnu5zorr_pl67mnYPpmZAiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So5Yib5bu6572R57uc5aWX5o6l5a2X5ZKM5L2_55So6Ieq5a6a5LmJ572R57uc5Y2P6K6u44CC5rWP6KeI5Zmo5ZKM5YW25LuW5p-Q5Lqb5bqU55So5o-Q5L6b5LqG5ZCR5LqS6IGU572R5Y-R6YCB5pWw5o2u55qE6YCU5b6E77yM5Zug5q2k5bqU55So5peg6ZyA6K-l5p2D6ZmQ5Y2z5Y-v5ZCR5LqS6IGU572R5Y-R6YCB5pWw5o2u44CCIn0seyJ0aXRsZSI6IuWFgeiuuOiuv-mXrue9kee7nCIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjorr_pl67nvZHnu5zov57mjqXvvIzlj6_og73kuqfnlJ9HUFJT5rWB6YeP44CCIn0seyJ0aXRsZSI6IuS_ruaUueaIluWIoOmZpOaCqOeahFNE5Y2h5Lit55qE5YaF5a65IiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOWGmeWFpVNE5Y2h44CCIn0seyJ0aXRsZSI6IuS_ruaUueezu-e7n-iuvue9riIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjor7vlhpnns7vnu5_nmoTorr7nva7mlbDmja7jgILmgbbmhI_lupTnlKjlj6_og73kvJrnoLTlnY_mgqjnmoTns7vnu5_phY3nva7jgIIifSx7InRpdGxlIjoi5ouN5pGE54Wn54mH5ZKM5b2V5Yi26KeG6aKRIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOS9v-eUqOebuOacuuaLjeaRhOeFp-eJh-WSjOinhumikeOAguatpOadg-mZkOWPr-iuqeivpeW6lOeUqOmaj-aXtuS9v-eUqOebuOacuu-8jOiAjOaXoOmcgOaCqOeahOehruiupOOAgiJ9LHsidGl0bGUiOiLor7vlj5bmiYvmnLrnirbmgIHlkozouqvku70iLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So6K6_6Zeu6K6-5aSH55qE55S16K-d5Yqf6IO944CC5q2k5p2D6ZmQ5Y-v6K6p6K-l5bqU55So56Gu5a6a5pys5py65Y-356CB5ZKM6K6-5aSHSUTjgIHmmK_lkKbmraPlpITkuo7pgJror53nirbmgIHku6Xlj4rmi6jmiZPnmoTlj7fnoIHjgIIifSx7InRpdGxlIjoi6K-75Y-W5pel5Y6G5rS75Yqo5ZKM6K-m5oOFIiwiY29udGVudCI6IuatpOW6lOeUqOWPr-ivu-WPluaCqOaJi-acuuS4iuWtmOWCqOeahOaJgOacieaXpeWOhua0u-WKqO-8jOW5tuWIhuS6q-aCqOeahOaXpeWOhuaVsOaNruOAgiJ9LHsidGl0bGUiOiLmt7vliqDmiJbkv67mlLnml6XljobmtLvliqgiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So5re75Yqg44CB5Yig6Zmk44CB5pu05pS55oKo5Y-v5Zyo5omL5py65LiK5L-u5pS555qE5rS75Yqo77yM5YyF5ous5pyL5Y-L5oiW5ZCM5LqL55qE5rS75Yqo44CC5q2k5p2D6ZmQ5Y-v6K6p6K-l5bqU55So5YaS5YWF5pel5Y6G5omA5pyJ6ICF5Y-R6YCB5raI5oGv77yM5oiW5Zyo5omA5pyJ6ICF5LiN55-l5oOF55qE5oOF5Ya15LiL5L-u5pS55rS75Yqo44CCIn0seyJ0aXRsZSI6Iuivu-WPluWtmOWCqOWNoeS4reeahOWGheWuuSIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjor7vlj5blrZjlgqjljaHkuK3nmoTlhoXlrrnjgILmg4XlhrXkuIvliIbkuqvogZTns7vkurrmlbDmja7jgIIifSx7InRpdGxlIjoi5pu05pS55oKo55qE6Z-z6aKR6K6-572uIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOS_ruaUueWFqOWxgOmfs-mikeiuvue9ru-8jOS-i-Wmgumfs-mHj-WSjOeUqOS6jui-k-WHuueahOaJrOWjsOWZqOOAgiJ9LHsidGl0bGUiOiLor7fmsYLlronoo4Xmlofku7bljIUiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So6K-35rGC5a6J6KOF5paH5Lu25YyF44CC57G75pyN5Yqh56Gu5a6a5oKo55qE5aSn5qaC5L2N572u44CCIn0seyJ0aXRsZSI6IumYsuatouaJi-acuuS8keecoCIsImNvbnRlbnQiOiLlhYHorrjor6XlupTnlKjpmLvmraLmiYvmnLrov5vlhaXkvJHnnKDnirbmgIHjgIIifSx7InRpdGxlIjoi5YWz6Zet5YW25LuW5bqU55SoIiwiY29udGVudCI6IuWFgeiuuOivpeW6lOeUqOe7k-adn-WFtuS7luW6lOeUqOeahOWQjuWPsOi_m-eoi-OAguatpOadg-mZkOWPr-WvvOiHtOWFtuS7luW6lOeUqOWBnOatoui_kOihjOOAgiJ9LHsidGl0bGUiOiLmlLnlj5jnvZHnu5znirbmgIEiLCJjb250ZW50Ijoi5YWB6K646K-l5bqU55So5pu05pS5572R57uc6L-e5o6l55qE54q25oCB44CCIn1dLCJwcml2YXRlUG9saWN5IjoiaHR0cHM6Ly9hLjlnYW1lLmNuL3RwbC9wYy9hcHAvcHJpdmF0ZS5odG1sIiwidXNpbmdXSyI6MSwibmF2QmFyU3R5bGUiOiJ3aGl0ZSIsInBhY2thZ2VOYW1lIjoiY24ubmluZWdhbWUuZ2FtZW1hbmFnZXIueXoiLCJpc2Rvd25sb2FkYXBrIjoxLCJ2ZXJzaW9uTmFtZSI6IjcuNC43LjAiLCJhcHBJY29uIjoiaHR0cDovL3Rlc3Qtc2Muc2VleW91eWltYS5jb20vZWltZy8yMDIxMDkxMi82MTNkZGQ3NGNhMTM1LnBuZyIsInBlcm1pc3Npb25zVXJsIjoiIiwiYXBwRGVzYyI6IuWKn-iDveS7i-e7je-8muOAkOS5nea4uOa4uOaIj-OAkeaYr-S4gOasvuS8mOi0qOeahOenu-WKqOW6lOeUqO-8jOa7oei2s-eUqOaIt-eahOWfuuacrOmcgOaxguS5i-Wklu-8jOa3seWFpeaMluaOmOS6huW-iOWkmuS4sOWvjOacieeUqOeahOWKn-iDve-8jOespuWQiOeUqOaIt-S9k-mqjOagh-WHhuOAguWmgumcgOafpeivouabtOWkmkFQUOS_oeaBr-ivt-enu-atpeiHs-W6lOeUqOWVhuW6l-OAgiIsImh3SG90Wm9uZURvd25sb2FkIjoiIn0",
+        "is_adx_sources": 1,
+        "video_play_report_time": "2",
+        "extraparam": "ordinal=36|plan_id=9012|material_id=80590|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|mode=3|request_city_id=350200|dsp_id=113|is_support=0|sid=WfnxXp8NjznTdQdA|global_track_id=22059889911001721983525248707597|image_style=-1|bt_type=2|source=mye|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=46",
+        "has_shut_action": 1,
+        "sub_title": "这个是下载视频",
+        "video_duration": "00:11",
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80590\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=36\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80590\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=36\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80590\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=36\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80590\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=36\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80590\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=36\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_75219_108888_80590_36001_2_1721983526_6FbGc48a0a741-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "ad_source_type": 1,
+        "shake_type": 0,
+        "planid": "9012",
+        "expires": 3000,
+        "attr_text": "https://test-h5e.meiyou.com/download/apk/51?isdownloadapk=1\u0026imy_share=1",
+        "file_size": "0.12M",
+        "show_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTEmYWRfaWQ9NzEyXzc1MjE5XzEwODg4OF84MDU5MF8zNjAwMV8yXzE3MjE5ODM1MjZfNkZiR2M0OGEwYTc0MS0xJmFwcF9pZD0xJmJpZF90eXBlPTImY2hhbm5lbD0xMiZlY2k9MjQwJmdsb2JhbF90cmFja19pZD0yMjA1OTg4OTkxMTAwMTcyMTk4MzUyNTI0ODcwNzU5NyZpc19yZWFsX2N0cj0xJmtleXdvcmQ9Jm15dWlkPTIyMDU5ODg5OSZuZXdzX2NpZD0wJm5ld3Nfb3JkaW5hbD0wJm5ld3Nfc291cmNlPTAmb2NwY19zdGFnZT0wJm9yZGluYWw9NDYmcGxhdGZvcm09MyZwb3NpZD0xMTIwJnJlcXVlc3RfY2l0eV9pZD0zNTAyMDAmcmVxdWVzdF90aW1lPTE3MjE5ODM1MjYmcnM9ekpreDRPJnNlYXJjaF9jbGFzcz0wJnNpZ249Zjg5ZDA2YjAxZTRmZjQ1NmM2OTRhYTM4Y2M2YTM5NjUmdGFncz1hZ2UlM0EwJTdDbW9kZSUzQS0xJTdDbW9kZTIlM0EtMSZ0YXJnZXQ9MyZ2PTguNzcuMA==\u0026ordinal_real=36"
+        ],
+        "click_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTImYWRfaWQ9NzEyXzc1MjE5XzEwODg4OF84MDU5MF8zNjAwMV8yXzE3MjE5ODM1MjZfNkZiR2M0OGEwYTc0MS0xJmFwcF9pZD0xJmJpZF90eXBlPTImY2hhbm5lbD0xMiZlY2k9MjQwJmdsb2JhbF90cmFja19pZD0yMjA1OTg4OTkxMTAwMTcyMTk4MzUyNTI0ODcwNzU5NyZpc19yZWFsX2N0cj0xJmtleXdvcmQ9Jm15dWlkPTIyMDU5ODg5OSZuZXdzX2NpZD0wJm5ld3Nfb3JkaW5hbD0wJm5ld3Nfc291cmNlPTAmb2NwY19zdGFnZT0wJm9yZGluYWw9NDYmcGxhdGZvcm09MyZwb3NpZD0xMTIwJnJlcXVlc3RfY2l0eV9pZD0zNTAyMDAmcmVxdWVzdF90aW1lPTE3MjE5ODM1MjYmcnM9VGNCa296JnNlYXJjaF9jbGFzcz0wJnNpZ249NGM5OTJmYWNiMmIzOTQzYjc0Y2ExNzZmNmFjYmNjYmMmdGFncz1hZ2UlM0EwJTdDbW9kZSUzQS0xJTdDbW9kZTIlM0EtMSZ0YXJnZXQ9MyZ2PTguNzcuMA==\u0026ordinal_real=36"
+        ],
+        "close_by_reason": 1,
+        "position": "1120",
+        "source_type": 1,
+        "type": 4,
+        "attr_id": 0,
+        "video_finish_title": "了解更多"
+    },
+    {
+        "encourage_finish_time": 0,
+        "id": "mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1",
+        "position": "1120",
+        "image_style": 1,
+        "tag_id": 666,
+        "tag_title": "广告",
+        "pic_size": {
+            "w": 640,
+            "h": 264
+        },
+        "ordinal": 46,
+        "page_pre_load": 1,
+        "is_adx_sources": 1,
+        "ad_source_type": 1,
+        "next_encourage_coin_num": 0,
+        "planid": "9012",
+        "request_time": 1721983526,
+        "extraparam": "ordinal=46|plan_id=9012|material_id=80500|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|mode=3|request_city_id=350200|dsp_id=113|is_support=0|sid=fEy9lnbQdrjs1MBA|global_track_id=22059889911001721983525248707597|image_style=1|source=mye|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=86",
+        "pic_max_size": {
+            "w": 640,
+            "h": 264
+        },
+        "click_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTImYWRfaWQ9NzEyXzc0ODExXzEwODU4OF84MDUwMF8xMDAwXzFfMTcyMTk4MzUyNl9hbU05VTgzZWQ3ZmE0LTEmYXBwX2lkPTEmYmlkX3R5cGU9MSZjaGFubmVsPTEyJmVjaT0yNDAmZ2xvYmFsX3RyYWNrX2lkPTIyMDU5ODg5OTExMDAxNzIxOTgzNTI1MjQ4NzA3NTk3JmlzX3JlYWxfY3RyPTEma2V5d29yZD0mbXl1aWQ9MjIwNTk4ODk5Jm5ld3NfY2lkPTAmbmV3c19vcmRpbmFsPTAmbmV3c19zb3VyY2U9MCZvY3BjX3N0YWdlPTAmb3JkaW5hbD04NiZwbGF0Zm9ybT0zJnBvc2lkPTExMjAmcmVxdWVzdF9jaXR5X2lkPTM1MDIwMCZyZXF1ZXN0X3RpbWU9MTcyMTk4MzUyNiZycz14UUJhR28mc2VhcmNoX2NsYXNzPTAmc2lnbj03Y2RmMzI3MWJmM2UxY2ZiYWM1Y2U4NDVjYWY2Y2RjZCZ0YWdzPWFnZSUzQTAlN0Ntb2RlJTNBLTElN0Ntb2RlMiUzQS0xJnRhcmdldD0xJnY9OC43Ny4w\u0026ordinal_real=46"
+        ],
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80500\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=46\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80500\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=46\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80500\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=46\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80500\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=46\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=80500\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=46\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-712_74811_108588_80500_1000_1_1721983526_amM9U83ed7fa4-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "shake_type": 0,
+        "source": "mye",
+        "tips_position": 1,
+        "title": "都市大剧场测试?瘦身吗？祛痘",
+        "type": 4,
+        "expires": 3000,
+        "attr_text": "https://test-h5e.meiyou.com/tips?industry=1002\u0026material_id=80500\u0026url=aHR0cHM6Ly93eGZ4Lmp4anp3aC5jbi93ZWNoYXQuaHRtbD90ZmlkPTYzNzVhZTI0YTkzNmY5NjA0MmEwZTJiYg",
+        "content": "都市大剧场测试?瘦身吗？祛痘",
+        "source_type": 1,
+        "attr_id": 0,
+        "has_shut_action": 1,
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwczovL3Rlc3QtaDVlLm1laXlvdS5jb20vdGlwcz9pbmR1c3RyeT0xMDAyJm1hdGVyaWFsX2lkPTgwNTAwJnVybD1hSFIwY0hNNkx5OTNlR1o0TG1wNGFucDNhQzVqYmk5M1pXTm9ZWFF1YUhSdGJEOTBabWxrUFRZek56VmhaVEkwWVRrek5tWTVOakEwTW1Fd1pUSmlZZyIsInVzaW5nV0siOjEsIm5hdkJhclN0eWxlIjoid2hpdGUifQ",
+        "show_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTEmYWRfaWQ9NzEyXzc0ODExXzEwODU4OF84MDUwMF8xMDAwXzFfMTcyMTk4MzUyNl9hbU05VTgzZWQ3ZmE0LTEmYXBwX2lkPTEmYmlkX3R5cGU9MSZjaGFubmVsPTEyJmVjaT0yNDAmZ2xvYmFsX3RyYWNrX2lkPTIyMDU5ODg5OTExMDAxNzIxOTgzNTI1MjQ4NzA3NTk3JmlzX3JlYWxfY3RyPTEma2V5d29yZD0mbXl1aWQ9MjIwNTk4ODk5Jm5ld3NfY2lkPTAmbmV3c19vcmRpbmFsPTAmbmV3c19zb3VyY2U9MCZvY3BjX3N0YWdlPTAmb3JkaW5hbD04NiZwbGF0Zm9ybT0zJnBvc2lkPTExMjAmcmVxdWVzdF9jaXR5X2lkPTM1MDIwMCZyZXF1ZXN0X3RpbWU9MTcyMTk4MzUyNiZycz1ZMXMxbm4mc2VhcmNoX2NsYXNzPTAmc2lnbj0zODNjMDQzMzMyZWEzMzVhOTJmYzY5N2JmMTZkNWQ0ZiZ0YWdzPWFnZSUzQTAlN0Ntb2RlJTNBLTElN0Ntb2RlMiUzQS0xJnRhcmdldD0xJnY9OC43Ny4w\u0026ordinal_real=46"
+        ],
+        "close_by_reason": 1,
+        "user": {
+            "screen_name": "女人通",
+            "avatar": "http://test-sc.seeyouyima.com/eimg/20220809/62f2474db29cc_160_160.png",
+            "dsp_source_key": "mix_mye"
+        },
+        "sub_title": "都市大剧场测试?瘦身吗？祛痘",
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/20221118/6376fc0316042_640_264.jpeg"
+        ],
+        "encourage_video_time": 0
+    },
+    {
+        "expires": 3000,
+        "user": {
+            "screen_name": "测试公司2080",
+            "avatar": "http://test-sc.seeyouyima.com/eimg/e_ad/220210/6204ac57784e8_150_150.png",
+            "dsp_source_key": "mix_mye"
+        },
+        "attr_id": 0,
+        "sub_title": "嗷呜嗷呜钱包鼓鼓~~7月26日-节日",
+        "shake_type": 0,
+        "position": "1120",
+        "ordinal": 56,
+        "id": "mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1",
+        "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwczovL3Rlc3QtaDVlLm1laXlvdS5jb20vcGFnZT9haWQ9OWE4Yzc1NjBkYzBlODczNCZpZGZhPSZpbWVpPSZpcD01OS41Ny4yNTEuMTYyJm15d3RiX25hbWU9anplLWg1Jm9zPTMmcGFnZV9pZD0yMTAyJnRyYWNrX2lkPTc5NzU5LTIxMDItMjIwNTk4ODk5LTEyLTExMjAtMC0wLTQtMTcyMTk4MzUyNi0xLXZxY1RxYThmY2E1NWMtMC0yLTEmdWE9TW96aWxsYSUyRjUuMCslMjhMaW51eCUzQitBbmRyb2lkKzklM0IrVjE5MzRBK0J1aWxkJTJGUFBSMS4xODA2MTAuMDExJTNCK3d2JTI5K0FwcGxlV2ViS2l0JTJGNTM3LjM2KyUyOEtIVE1MJTJDK2xpa2UrR2Vja28lMjkrVmVyc2lvbiUyRjQuMCtDaHJvbWUlMkY2OC4wLjM0NDAuOTErTW9iaWxlK1NhZmFyaSUyRjUzNy4zNiZpbXlfc2hhcmU9MSIsInVzaW5nV0siOjEsIm5hdkJhclN0eWxlIjoid2hpdGUifQ",
+        "show_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTEmYWRfaWQ9MjA4MF83NDkzMF8xMDc5ODRfNzk3NTlfMzAxXzFfMTcyMTk4MzUyNl94czNHS2FlZjMzOTAzLTEmYXBwX2lkPTEmYmlkX3R5cGU9MSZjaGFubmVsPTEyJmVjaT0yNDAmZ2xvYmFsX3RyYWNrX2lkPTIyMDU5ODg5OTExMDAxNzIxOTgzNTI1MjQ4NzA3NTk3JmlzX3JlYWxfY3RyPTEma2V5d29yZD0mbXl1aWQ9MjIwNTk4ODk5Jm5ld3NfY2lkPTAmbmV3c19vcmRpbmFsPTAmbmV3c19zb3VyY2U9MCZvY3BjX3N0YWdlPTAmb3JkaW5hbD00MSZwbGF0Zm9ybT0zJnBvc2lkPTExMjAmcmVxdWVzdF9jaXR5X2lkPTM1MDIwMCZyZXF1ZXN0X3RpbWU9MTcyMTk4MzUyNiZycz1teEtnWGsmc2VhcmNoX2NsYXNzPTAmc2lnbj1kNGUyNTFjMGVlYWZjZjYwNzA1ZWIyNTUwYTkxMjdhYyZ0YWdzPWFnZSUzQTAlN0Ntb2RlJTNBLTElN0Ntb2RlMiUzQS0xJnRhcmdldD0xJnY9OC43Ny4wJndvcmRfcGFjaz02JTJDNjAwMDAwMCU3QzMlMkMzMDcyNg==\u0026ordinal_real=56"
+        ],
+        "attr_text": "https://test-h5e.meiyou.com/page?aid=9a8c7560dc0e8734\u0026idfa=\u0026imei=\u0026ip=59.57.251.162\u0026mywtb_name=jze-h5\u0026os=3\u0026page_id=2102\u0026track_id=79759-2102-220598899-12-1120-0-0-4-1721983526-1-vqcTqa8fca55c-0-2-1\u0026ua=Mozilla%2F5.0+%28Linux%3B+Android+9%3B+V1934A+Build%2FPPR1.180610.011%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F68.0.3440.91+Mobile+Safari%2F537.36\u0026imy_share=1",
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/20220210/6204ac54abb8c_300_200.jpeg"
+        ],
+        "title": "嗷呜嗷呜钱包鼓鼓~~7月26日-节日",
+        "tag_title": "广告",
+        "click_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTImYWRfaWQ9MjA4MF83NDkzMF8xMDc5ODRfNzk3NTlfMzAxXzFfMTcyMTk4MzUyNl94czNHS2FlZjMzOTAzLTEmYXBwX2lkPTEmYmlkX3R5cGU9MSZjaGFubmVsPTEyJmVjaT0yNDAmZ2xvYmFsX3RyYWNrX2lkPTIyMDU5ODg5OTExMDAxNzIxOTgzNTI1MjQ4NzA3NTk3JmlzX3JlYWxfY3RyPTEma2V5d29yZD0mbXl1aWQ9MjIwNTk4ODk5Jm5ld3NfY2lkPTAmbmV3c19vcmRpbmFsPTAmbmV3c19zb3VyY2U9MCZvY3BjX3N0YWdlPTAmb3JkaW5hbD00MSZwbGF0Zm9ybT0zJnBvc2lkPTExMjAmcmVxdWVzdF9jaXR5X2lkPTM1MDIwMCZyZXF1ZXN0X3RpbWU9MTcyMTk4MzUyNiZycz00NDcxV0Umc2VhcmNoX2NsYXNzPTAmc2lnbj1iZGFhNTAyMjRkYzQ2ZTU5ZGUyMGQxZTk5Y2Q0Y2Y1MiZ0YWdzPWFnZSUzQTAlN0Ntb2RlJTNBLTElN0Ntb2RlMiUzQS0xJnRhcmdldD0xJnY9OC43Ny4wJndvcmRfcGFjaz02JTJDNjAwMDAwMCU3QzMlMkMzMDcyNg==\u0026ordinal_real=56"
+        ],
+        "next_encourage_coin_num": 0,
+        "type": 4,
+        "request_time": 1721983526,
+        "tips_position": 1,
+        "content": "嗷呜嗷呜钱包鼓鼓~~7月26日-节日",
+        "pic_size": {
+            "w": 300,
+            "h": 200
+        },
+        "source": "mye",
+        "source_type": 1,
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=79759\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=56\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=79759\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=56\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=79759\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=56\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=79759\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=56\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=79759\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=56\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-2080_74930_107984_79759_301_1_1721983526_xs3GKaef33903-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "encourage_video_time": 0,
+        "encourage_finish_time": 0,
+        "image_style": 18,
+        "has_shut_action": 1,
+        "planid": "9012",
+        "pic_max_size": {
+            "w": 300,
+            "h": 200
+        },
+        "ad_source_type": 1,
+        "close_by_reason": 1,
+        "is_adx_sources": 1,
+        "extraparam": "ordinal=56|plan_id=9012|material_id=79759|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|mode=3|request_city_id=350200|dsp_id=113|is_support=0|sid=LoN156ISlu66ULB6|global_track_id=22059889911001721983525248707597|image_style=18|source=mye|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=41",
+        "tag_id": 666
+    },
+    {
+        "image_style": 18,
+        "tips_position": 1,
+        "encourage_finish_time": 0,
+        "position": "1120",
+        "type": 4,
+        "images": [
+            "http://test-sc.seeyouyima.com/eimg/20200706/5f02d34a4710f_300_200.jpeg"
+        ],
+        "shake_type": 0,
+        "ordinal": 61,
+        "source_type": 1,
+        "tag_title": "广告",
+        "close_by_reason": 1,
+        "attr_id": 0,
+        "tag_id": 666,
+        "is_adx_sources": 1,
+        "encourage_video_time": 0,
+        "planid": "9012",
+        "request_time": 1721983526,
+        "pic_max_size": {
+            "w": 300,
+            "h": 200
+        },
+        "pic_size": {
+            "w": 300,
+            "h": 200
+        },
+        "click_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTImYWRfaWQ9MTc5MF83NDY2MF8xMDcwODlfNzc5NDBfODJfMV8xNzIxOTgzNTI2X2hkR0tHYmIzY2Y4NWQtMSZhcHBfaWQ9MSZiaWRfdHlwZT0xJmNoYW5uZWw9MTImZWNpPTI0MCZnbG9iYWxfdHJhY2tfaWQ9MjIwNTk4ODk5MTEwMDE3MjE5ODM1MjUyNDg3MDc1OTcmaXNfcmVhbF9jdHI9MSZrZXl3b3JkPSZteXVpZD0yMjA1OTg4OTkmbmV3c19jaWQ9MCZuZXdzX29yZGluYWw9MCZuZXdzX3NvdXJjZT0wJm9jcGNfc3RhZ2U9MCZvcmRpbmFsPTY2JnBsYXRmb3JtPTMmcG9zaWQ9MTEyMCZyZXF1ZXN0X2NpdHlfaWQ9MzUwMjAwJnJlcXVlc3RfdGltZT0xNzIxOTgzNTI2JnJzPXduMjNBUSZzZWFyY2hfY2xhc3M9MCZzaWduPWE4MDEyMDAwNTk2ZjM5MmIxOGZjYThkNDc2MzZiYzgwJnRhZ3M9YWdlJTNBMCU3Q21vZGUlM0EtMSU3Q21vZGUyJTNBLTEmdGFyZ2V0PTEmdj04Ljc3LjAmd29yZF9wYWNrPTIlMkMyMzUwMjAwJTdDNCUyQzQwMDAwMDU=\u0026ordinal_real=61"
+        ],
+        "deep_link_tracking": {
+            "start_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77940\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=61\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=31"
+            ],
+            "over_deep_link_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77940\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=61\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=32"
+            ],
+            "fallback_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77940\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=61\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=33"
+            ],
+            "uninstall_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77940\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=61\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=34"
+            ],
+            "installed_invoke_fail_url": [
+                "https://test-ad.seeyouyima.com/statistics_dp_track_report?\u0026ids=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026source=mye\u0026posid=1120\u0026plan_id=9012\u0026material_id=77940\u0026global_track_id=22059889911001721983525248707597\u0026ordinal=61\u0026dsp_id=113\u0026iswake=0\u0026ad_id=mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1\u0026pos_id=1120\u0026dp_scheme=\u0026action=35"
+            ]
+        },
+        "next_encourage_coin_num": 0,
+        "has_shut_action": 1,
+        "content": "不完美又怎样，万物皆有裂痕，那是光进来的地方。❥星期五的厦门~",
+        "user": {
+            "screen_name": "唯美小柚233",
+            "avatar": "http://test-sc.seeyouyima.com/eimg/e_ad/200706/5f02d34f28425_150_150.png",
+            "dsp_source_key": "mix_mye"
+        },
+        "scheme_uri": "meetyou.linggan:///web?params=eyJuYXZCYXJTdHlsZSI6IndoaXRlIiwidXJsIjoiaHR0cHM6Ly90ZXN0LWg1ZS5tZWl5b3UuY29tL3BhZ2U_YWlkPTlhOGM3NTYwZGMwZTg3MzQmaWRmYT0maW1laT0maXA9NTkuNTcuMjUxLjE2MiZteXd0Yl9uYW1lPWp6ZS1oNSZvcz0zJnBhZ2VfaWQ9MjEwMiZ0cmFja19pZD03Nzk0MC0yMTAyLTIyMDU5ODg5OS0xMi0xMTIwLTAtMC00LTE3MjE5ODM1MjYtMS12d3Eyd2E3N2JmNmUyLTAtMi0xJnVhPU1vemlsbGElMkY1LjArJTI4TGludXglM0IrQW5kcm9pZCs5JTNCK1YxOTM0QStCdWlsZCUyRlBQUjEuMTgwNjEwLjAxMSUzQit3diUyOStBcHBsZVdlYktpdCUyRjUzNy4zNislMjhLSFRNTCUyQytsaWtlK0dlY2tvJTI5K1ZlcnNpb24lMkY0LjArQ2hyb21lJTJGNjguMC4zNDQwLjkxK01vYmlsZStTYWZhcmklMkY1MzcuMzYmaW15X3NoYXJlPTEiLCJ1c2luZ1dLIjoxfQ",
+        "ad_source_type": 1,
+        "source": "mye",
+        "expires": 3000,
+        "attr_text": "https://test-h5e.meiyou.com/page?aid=9a8c7560dc0e8734\u0026idfa=\u0026imei=\u0026ip=59.57.251.162\u0026mywtb_name=jze-h5\u0026os=3\u0026page_id=2102\u0026track_id=77940-2102-220598899-12-1120-0-0-4-1721983526-1-vwq2wa77bf6e2-0-2-1\u0026ua=Mozilla%2F5.0+%28Linux%3B+Android+9%3B+V1934A+Build%2FPPR1.180610.011%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F68.0.3440.91+Mobile+Safari%2F537.36\u0026imy_share=1",
+        "title": "不完美又怎样，万物皆有裂痕，那是光进来的地方。❥星期五的厦门~",
+        "sub_title": "不完美又怎样，万物皆有裂痕，那是光进来的地方。❥星期五的厦门~",
+        "show_ping": [
+            "https://test-e.seeyouyima.com/report/meiyou?pack=YWN0aW9uPTEmYWRfaWQ9MTc5MF83NDY2MF8xMDcwODlfNzc5NDBfODJfMV8xNzIxOTgzNTI2X2hkR0tHYmIzY2Y4NWQtMSZhcHBfaWQ9MSZiaWRfdHlwZT0xJmNoYW5uZWw9MTImZWNpPTI0MCZnbG9iYWxfdHJhY2tfaWQ9MjIwNTk4ODk5MTEwMDE3MjE5ODM1MjUyNDg3MDc1OTcmaXNfcmVhbF9jdHI9MSZrZXl3b3JkPSZteXVpZD0yMjA1OTg4OTkmbmV3c19jaWQ9MCZuZXdzX29yZGluYWw9MCZuZXdzX3NvdXJjZT0wJm9jcGNfc3RhZ2U9MCZvcmRpbmFsPTY2JnBsYXRmb3JtPTMmcG9zaWQ9MTEyMCZyZXF1ZXN0X2NpdHlfaWQ9MzUwMjAwJnJlcXVlc3RfdGltZT0xNzIxOTgzNTI2JnJzPTNvR3NlOSZzZWFyY2hfY2xhc3M9MCZzaWduPWEwMjg2OWZiNDM4ZjY3MmFmY2IwOGFhY2M3NzY0NjIwJnRhZ3M9YWdlJTNBMCU3Q21vZGUlM0EtMSU3Q21vZGUyJTNBLTEmdGFyZ2V0PTEmdj04Ljc3LjAmd29yZF9wYWNrPTIlMkMyMzUwMjAwJTdDNCUyQzQwMDAwMDU=\u0026ordinal_real=61"
+        ],
+        "id": "mye-1790_74660_107089_77940_82_1_1721983526_hdGKGbb3cf85d-1",
+        "extraparam": "ordinal=61|plan_id=9012|material_id=77940|city_id=350200|province_id=350000|cityid_final_source=1|tail=1|mode=3|request_city_id=350200|dsp_id=113|is_support=0|sid=yY4SJgDKbgiL0YuT|global_track_id=22059889911001721983525248707597|image_style=18|source=mye|mode=3|home_feeds_tabs=1|link_type=0|ordinal_req=66"
+    }
+]

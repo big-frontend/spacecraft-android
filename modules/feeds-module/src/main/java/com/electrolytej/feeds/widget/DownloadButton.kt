@@ -1,10 +1,8 @@
 package com.electrolytej.feeds.widget
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
-import android.util.SparseArray
 import android.util.SparseIntArray
 import android.view.View
 import android.widget.Button
@@ -12,8 +10,9 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.core.util.getOrDefault
+import com.electrolytej.download.Downloader
 import com.electrolytej.feeds.R
-import com.electrolytej.feeds.widget.Downloader.OnDownloadListener
+import com.electrolytej.download.Downloader.OnDownloadListener
 
 typealias StateChangeListener = (state: Int) -> Unit
 
@@ -50,7 +49,7 @@ class DownloadButton @JvmOverloads constructor(
         }
         btCancelDownload.setOnClickListener {
             toReadyState()
-            Downloader.getInstance().cancelDownload(key)
+            Downloader.getInstance().pauseDownload(key)
         }
         btRestartDownload.setOnClickListener {
             pbProgress.progress = 0

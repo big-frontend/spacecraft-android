@@ -1,0 +1,63 @@
+[{
+    "open_video_pre_click": 1,
+    "id": "dongfeng-2066134",
+    "request_time": 1667273006,
+    "tag_title": "广告",
+    "is_full_screen": false,
+    "iswake": 1,
+    "deeplink_uri": "meetyou.linggan:///delay_open?params=eyJ3YWtlX3N0eWxlIjoxNTAwLCJ1cmwiOiJ0Ym9wZW46Ly9tLnRhb2Jhby5jb20vdGJvcGVuL2luZGV4Lmh0bWw_YWN0aW9uPWFsaS5vcGVuLm5hdiZib290SW1hZ2U9MCZtb2R1bGU9aDUmc291cmNlPWFsaW1hbWEmdmlzYT01ZDQyOTAzNGFkMDQ2NzAxJmFwcGtleT0yNDU0MDc1NCZiY19mbF9zcmM9dGFueF9kZl82MjkzNDIxM18wYmI5YWUwNjAwMDAwZjc1NjM2MDkxMmUwN2M1NTEwZF8xMDAwNjBfNjg4MTE4MjJfMTE5MTY2MDZfMTg5MDU1MV8xMjEwNDVfMl8yMDg1OTgwXzFfMTAwNDU0NDdfMF8wXzBfMCZiYWNrVVJMPSZwYWNrYWdlTmFtZT1jb20ubGluZ2FuLnNlZXlvdSZoNVVybD1odHRwcyUzYSUyZiUyZmNsaWNrLnRhbnguY29tJTJmdGYlM2ZlJTNkViUyNTJCTkhIR1Nvb3pJa1A2UTFwRFJUalh1SVlPSjZjNUFmeGZOVmFRWjV5d29kMGhlZ0dxbzc5N3NRMXY4WlU2Mk5rbHolMjUyQmJkV3loVWV6d2h2WDFjWGo3dWxUM3E1WWpKRnlvaXAlMjUyRjBya0VwWUlTanRUa1JGaXpyOXB5MUFBSlhWclNnWkt3eUtaWTJGR3FRNVJCY29mJTI1MkZhOG56eHBCMnRrelRNU3NnczNQeWk3eFdOajU3RWNxNU9nZzlNUnJJemlPSWd1UyUyNTJGUm9VVGlzU2RwQ3REaWVMTzZ0RXc3VXRWQUJuczRzUXNEeEF4emFRQnpES1hsJTI1MkJjUk9OaklqaGxqbktjdk44YWtlTGVIeFhucjhQNzNHdzMxUjM2VWZNN0FIaG92eTJDR2M3Und6b0duNEVkWHc4R250MDVUTXNLY1MyTW5RdkMwT1ZBeGxZRXJZdjI0RU5rJTI1MkZpa0xXVkxvdmMyOXk0SDhTU29tR3lnY0ZrZTBwTm0wSVJxbjk3M0ViUFcxYTVteGxqb1phU213dUhMQkcxSlJyVWlZYk1SMktuQjgzbGl2bXRHNVp0JTI1MkZwOE9kdnE0TiUyNTJCekt2VGc0Tk1RMmVRazEyOHQlMjUyRjl6TjVuT0N2bk4lMjUyQlElMjUyRmd0JTI1MkZXdzkzUzAlMjUyQmtBTXclMjUyRkYlMjUyQjJPNFNFR2dMRTYySGtnM256QWFDRiUyNTJCNHU3RSUyNTJCdWUlMjUyRkhScms1dmlXRWkxWmhwczM1WXN5JTI1MkZSVFJzJTI1MkJTUENQZVRuMjlZbU1TZlpVVHZObEJtaVdLQ0dnNGFYQzJVdUN3Wkc2SGlPZTIwMHRSVGhvJTI1MkJKaFFabGJ1OFclMjUyRjYlMjUyRjlHUkolMjUyRjU0S3M4QmxZUXUlMjUyQnZLSVdqViUyNTJGcWVqTElCOVZsVXdmam9nMiUyNTJCVWVOclJwNHBFM0Q2NFQ5RGIxZ2g2ZVpwZ0xZdEdnVlNHSkJwdTJFb21ETkw0MVpEdlElMjUzRCUyNTNEJTI2dSUzZGh0dHBzJTI1M0ElMjUyRiUyNTJGZGV0YWlsLnRtYWxsLmNvbSUyNTJGaXRlbS5odG0lMjUzRmRmX3NpZCUyNTNEMGJiOWFlMDYwMDAwMGY3NTYzNjA5MTJlMDdjNTUxMGQlMjUyNmlkJTI1M0Q2ODY2MTI4ODkxMDMlMjUyNl9vbmVJZCUyNTNEMTYxQkZGMDcxNzREQkRDQzRFNjFBNzg5QjcxMkY1RDMxODI2OTM5RTFDRUM5RDFCODU3NjgwMkFEN0VGREVCNiUyNTI2cmVzb3VyY2VfaWQlMjUzRDEwMDA2MCUyNmslM2Q2OTYlMjZ4JTNkMSZfdGFueF9ia3RzPTAuNzM1NjU2Ni0wLjgxNjY2NTAtMC4xMjMzNDEzMl8yMDg1OTgwIiwidGV4dCI6IuWNs-WwhuWJjeW-gOaJi-acuua3mOWunSIsImRlbGF5IjoxNTAwfQ",
+    "tips_position": 4,
+    "tag_id": 666,
+    "images": [],
+    "pic_max_size": {
+        "w": 640,
+        "h": 360
+    },
+    "show_ping": ["http://ef-dongfeng.tanx.com/tanx?p=AQu2FBQAABXLY2CRLgAAN9%2bv9hxtUqyV7Q%3d%3d&e=zYfMHzXxVuIXImpDbIzeFg6gA40sxHUQDaVFx47UxraoGuXrk7yjclYupQwvV_fcra7VvByeqQ9ZqHjsFqgVMxWKIH9xwwTXCmiqJBzM4ljLn7wpy6BWGsp8AuTaHrzGGJkp-C5Sjo_VdzmYjhN46erndYdfz55nm8do8h7c0dL0OZ2WM1BnZJ7mj8KXGcZcJ_8CQUh9Uwj0M7ZBLIFHwlGDC0jbEeD_FZ5Nn1NvbU6YHnK8dxXJJBM0QE3BjzWagAaw15a2VyZfptFEoYgWM6NeyWVMGMvrN4vxYlRGgALMXqGib5nha-uCBnbDtjyLWR7YbIL1zfMPsM-YEj00U8QLB1Kv2j1AgmmGcMgcnrufeeJJMbJi5cKf7pz3d8Hf05y4d2Qhtumol6_wnv8EeojbP_JzlZAUPcsc0PX1vOO7krDMwqugr_4y-UPSVFaOVynxtZS2Xy_7BoU40L1hW1XaMIwZrusFlzm-X3dq4NYexTFvEeJYdeHGtWVTGJreL5krswIA0R86AkhYEoqrQT6ilXm6cOQ6aVBPXIDm31UQcl3myf_MO66Nk0CBeQjqKi27mK64FK3Lx5vM7i7ILXf-nFseU5unkwliXUb_sA6VFJuxujyz04f-3FcQHR3T1spz4IDmzovhcxd4dH2VmflcohLei4XBrfg889lP3cu6yIFQAO09KPtp17mFRiPpzvt3Mq74H41v06n24Llxtmrrj_FdkMRy-2IA0gGQ4Q6PGoMuLNiu0J_v3A2UWaTuMEHf5gwr7l98ne7PiLVt_ucQPgIDMcLLqrJwCv-bLKYzVfajx_5jkhWd3t1wCQgEFC0jD5XABvEg2w6zpVwDbysWbW4ALYf3YHcK84MtnuiRYh_zkW-ondzGGXq4L17pEuQjcm_-k-MTatsJoYzwdtNXTTeEFhYoIIOiaKC2Bqty009pTGRiIswdWVWyMWlF-vb442x_w-WDpaVFm7Inl17ABrKKr2w9dYO2uX4lgEuWt9di1Tuu6OqCQSUfqBLi3LfQdI6Lzj7GMCrliYw5O2LLrsT-Z8qKjMXBPHJuywnCryWLX3EgtyrVQaB2t4JAzdwSB5iPw3wtbNXhsm-NCebUmIPaHWbuoqbFRsnAWkY&k=1130", "http://df.tanx.com/spf3?e=yXkHDR9qcqXzN6c8It7V3xJQGW6hayR-VPE8RutL3YVSNrZ6tLP17sSOQ1cq9lxsPE2hlz_jdesWEypS3K8WgP5QEvuwmg7_25nlxuhDrZq1brzIQpnaHZxhlCz_BAy8fNc7A5glU5Jq7F6dj6ud5wj7D2_s0VYMMovjHHqAY_Yq3ujsfWiW1kedeLVJZQACf3Er99lmQpstOGeIyc50ElkpHu5cj7h3TSd4y8INxB9gp81SXWKv1I-_RisspcKXMZdsI-0TzVOB5WHojTbnhyAKULTBwbKWy_wtX1UPByAqFfjCiNb2zj9DQIajBpTIWMVSA1H7TjWSkyhutluQCE2Vu0WtSeiuP6mUZ4i9d7swjTIIxqRP6bSggfhmBBJiRXhLAXt46KTioazWl6CuanAO5xAZ42lD3wdPB8kcNq7wH9ZMeGyK7heKU8uQlb7u5uZtf3kO5A4H4kXEDWn1wf3GIWjeiRTBHQOHfYnLC_7HxeA6KReX5-qfku9voTLu&k=513&i=mm_57126793_8052421_62934213", "https://gxbr.cnzz.com/app.htm?si=465579&gid=483&rpid=131949&cid=5687&ht=appview"],
+    "open_jump_area_sub_text": "点击跳转第三方页面",
+    "extraparam": "ordinal=1|plan_id=2066134|pmp_dsp_ad_id=36100_16138_2066134_0_1667273006_3fd6fa908e8e9|sid=QsMAd6H3V7iSzUix|global_track_id=21893255410001667273004236100000|source=dongfeng|mode=3|link_type=0",
+    "attr_text": "http://click.tanx.com/tf?e=V%2BNHHGSoozIkP6Q1pDRTjXuIYOJ6c5AfxfNVaQZ5ywod0hegGqo797sQ1v8ZU62Nklz%2BbdWyhUezwhvX1cXj7ulT3q5YjJFyoip%2F0rkEpYISjtTkRFizr9py1AAJXVrSgZKwyKZY2FGqQ5RBcof%2Fa8nzxpB2tkzTMSsgs3Pyi7xWNj57Ecq5Ogg9MRrIziOIguS%2FRoUTisSdpCtDieLO6tEw7UtVABns4sQsDxAxzaQBzDKXl%2BcRONjIjhljnKcvN8akeLeHxXnr8P73Gw31R36UfM7AHhovy2CGc7RwzoGn4EdXw8Gnt05TMsKcS2MnQvC0OVAxlYErYv24ENk%2FikLWVLovc29y4H8SSomGygcFke0pNm0IRqn973EbPW1a5mxljoZaSmwuHLBG1JRrUiYbMR2KnB83livmtG5Zt%2Fp8Odvq4N%2BzKvTg4NMQ2eQk128t%2F9zN5nOCvnN%2BQ%2Fgt%2FWw93S0%2BkAMw%2FF%2B2O4SEGgLE62Hkg3nzAaCF%2B4u7E%2Bue%2FHRrk5viWEi1Zhps35Ysy%2FRTRs%2BSPCPeTn29YmMSfZUTvNlBmiWKCGg4aXC2UuCwZG6HiOe200tRTho%2BJhQZlbu8W%2F6%2F9GRJ%2F54Ks8BlYQu%2BvKIWjV%2FqejLIB9VlUwfjog2%2BUeNrRp4pE3D64T9Db1gh6eZpgLYtGgVSGJBpu2EomDNL41ZDvQ%3D%3D&u=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fdf_sid%3D0bb9ae0600000f756360912e07c5510d%26id%3D686612889103%26_oneId%3D161BFF07174DBDCC4E61A789B712F5D31826939E1CEC9D1B8576802AD7EFDEB6%26resource_id%3D100060&k=696&x=0",
+    "shake_angle": 1,
+    "shake_speed": 3.8,
+    "hide_cut_down": 1,
+    "video_duration": "00:00",
+    "is_clickable_force": 1,
+    "fit_notch": 0,
+    "source": "dongfeng",
+    "source_type": 1,
+    "user": {
+        "screen_name": "天猫",
+        "avatar": "http://sc.seeyouyima.com/eimg/adimg/20190619/5d099daee36c5_180_180.jpg"
+    },
+    "attr_id": 0,
+    "video": "https://a1.alibabausercontent.com/prod/feupload/user/6qgaf/676d7070-5137-11ed-b39a-1141d59c9af7.mp4_.mp4",
+    "open_jump_area_type": 5,
+    "planid": "2066134",
+    "position": "1000",
+    "type": 4,
+    "click_ping": ["http://ef-dongfeng.tanx.com/cm?e=UMTcB12q4gQXImpDbIzeFg6gA40sxHUQDaVFx47UxraoGuXrk7yjclYupQwvV_fcra7VvByeqQ9ZqHjsFqgVMxWKIH9xwwTXCmiqJBzM4ljLn7wpy6BWGsp8AuTaHrzGGJkp-C5Sjo_VdzmYjhN46erndYdfz55nm8do8h7c0dL0OZ2WM1BnZJ7mj8KXGcZcJ_8CQUh9Uwj0M7ZBLIFHwlGDC0jbEeD_FZ5Nn1NvbU6YHnK8dxXJJBM0QE3BjzWagAaw15a2VyZfptFEoYgWM6NeyWVMGMvrN4vxYlRGgALMXqGib5nha-uCBnbDtjyLWR7YbIL1zfMPsM-YEj00U8QLB1Kv2j1AgmmGcMgcnrufeeJJMbJi5cKf7pz3d8Hf05y4d2Qhtumol6_wnv8EeojbP_JzlZAUX0U5O_LLtsu7krDMwqugr_4y-UPSVFaOVynxtZS2Xy_7BoU40L1hW1XaMIwZrusFlzm-X3dq4NYexTFvEeJYdeHGtWVTGJreL5krswIA0R86AkhYEoqrQT6ilXm6cOQ6aVBPXIDm31UQcl3myf_MO66Nk0CBeQjqKi27mK64FK3Lx5vM7i7ILXf-nFseU5unkwliXUb_sA6VFJuxujyz04f-3FcQHR3Tdq_pcdKrXegNoqYvGs2cLw&k=663&ext=1", "http://rdstat.tanx.com/trd?f=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm&p=mm_57126793_8052421_62934213&pvid=0bb61414000015cb6360912e000037df&sid=0bb61414000015cb6360912e000037df&s=1080x2032&d=121507994&did=2085980&oi=1C994431AD3E4DBC9F6FCAAE99F315692ed82fc7f886e968ae71efa4bbe81dde&mc=EF7A545CF166DD1B996AA28AB69C172B&os=3&osv=12&br=OPPO&md=PGBM10&aid=898257023727044764&k=9e3fd0cc08f69015&bkts=0.7356566-0.8166650-0.12334132&clst=na630&t=1667273006&et=MjA2NjEzNAIyMQIxAjMwNQIzAjEwAjMCMQICMAICMQIwAjECNjg4MTE4MjICMjE0MjQ4NAI1MDAwAlgCTQJjb20ubGluZ2FuLnNlZXlvdQICMTAwMDcwODUCAg", "https://at.umtrack.com/L9neWn"],
+    "ordinal": 1,
+    "deeplink": "tbopen://m.taobao.com/tbopen/index.html?action=ali.open.nav&bootImage=0&module=h5&source=alimama&visa=5d429034ad046701&appkey=24540754&bc_fl_src=tanx_df_62934213_0bb9ae0600000f756360912e07c5510d_100060_68811822_11916606_1890551_121045_2_2085980_1_10045447_0_0_0_0&backURL=&packageName=com.lingan.seeyou&h5Url=https%3a%2f%2fclick.tanx.com%2ftf%3fe%3dV%252BNHHGSoozIkP6Q1pDRTjXuIYOJ6c5AfxfNVaQZ5ywod0hegGqo797sQ1v8ZU62Nklz%252BbdWyhUezwhvX1cXj7ulT3q5YjJFyoip%252F0rkEpYISjtTkRFizr9py1AAJXVrSgZKwyKZY2FGqQ5RBcof%252Fa8nzxpB2tkzTMSsgs3Pyi7xWNj57Ecq5Ogg9MRrIziOIguS%252FRoUTisSdpCtDieLO6tEw7UtVABns4sQsDxAxzaQBzDKXl%252BcRONjIjhljnKcvN8akeLeHxXnr8P73Gw31R36UfM7AHhovy2CGc7RwzoGn4EdXw8Gnt05TMsKcS2MnQvC0OVAxlYErYv24ENk%252FikLWVLovc29y4H8SSomGygcFke0pNm0IRqn973EbPW1a5mxljoZaSmwuHLBG1JRrUiYbMR2KnB83livmtG5Zt%252Fp8Odvq4N%252BzKvTg4NMQ2eQk128t%252F9zN5nOCvnN%252BQ%252Fgt%252FWw93S0%252BkAMw%252FF%252B2O4SEGgLE62Hkg3nzAaCF%252B4u7E%252Bue%252FHRrk5viWEi1Zhps35Ysy%252FRTRs%252BSPCPeTn29YmMSfZUTvNlBmiWKCGg4aXC2UuCwZG6HiOe200tRTho%252BJhQZlbu8W%252F6%252F9GRJ%252F54Ks8BlYQu%252BvKIWjV%252FqejLIB9VlUwfjog2%252BUeNrRp4pE3D64T9Db1gh6eZpgLYtGgVSGJBpu2EomDNL41ZDvQ%253D%253D%26u%3dhttps%253A%252F%252Fdetail.tmall.com%252Fitem.htm%253Fdf_sid%253D0bb9ae0600000f756360912e07c5510d%2526id%253D686612889103%2526_oneId%253D161BFF07174DBDCC4E61A789B712F5D31826939E1CEC9D1B8576802AD7EFDEB6%2526resource_id%253D100060%26k%3d696%26x%3d1&_tanx_bkts=0.7356566-0.8166650-0.12334132_2085980",
+    "auto_play": 1,
+    "is_mute": true,
+    "pic_size": {
+        "w": 1080,
+        "h": 2032
+    },
+    "image_style": -1,
+    "expires": 3000,
+    "deep_link_tracking": {
+        "start_deep_link_url": ["https://ad.seeyouyima.com/statistics_dp_track_report?&ids=dongfeng-2066134&source=dongfeng&posid=1000&plan_id=2066134&material_id=0&global_track_id=21893255410001667273004236100000&ordinal=1&dsp_id=0&iswake=0&ad_id=dongfeng-2066134&pos_id=1000&action=31"],
+        "over_deep_link_url": ["https://ad.seeyouyima.com/statistics_dp_track_report?&ids=dongfeng-2066134&source=dongfeng&posid=1000&plan_id=2066134&material_id=0&global_track_id=21893255410001667273004236100000&ordinal=1&dsp_id=0&iswake=0&ad_id=dongfeng-2066134&pos_id=1000&action=32"],
+        "fallback_url": ["https://ad.seeyouyima.com/statistics_dp_track_report?&ids=dongfeng-2066134&source=dongfeng&posid=1000&plan_id=2066134&material_id=0&global_track_id=21893255410001667273004236100000&ordinal=1&dsp_id=0&iswake=0&ad_id=dongfeng-2066134&pos_id=1000&action=33"],
+        "uninstall_invoke_fail_url": ["https://ad.seeyouyima.com/statistics_dp_track_report?&ids=dongfeng-2066134&source=dongfeng&posid=1000&plan_id=2066134&material_id=0&global_track_id=21893255410001667273004236100000&ordinal=1&dsp_id=0&iswake=0&ad_id=dongfeng-2066134&pos_id=1000&action=34"],
+        "installed_invoke_fail_url": ["https://ad.seeyouyima.com/statistics_dp_track_report?&ids=dongfeng-2066134&source=dongfeng&posid=1000&plan_id=2066134&material_id=0&global_track_id=21893255410001667273004236100000&ordinal=1&dsp_id=0&iswake=0&ad_id=dongfeng-2066134&pos_id=1000&action=35"]
+    },
+    "ad_source_type": 2,
+    "default_jump_area_text": "点击跳转第三方页面",
+    "content_type": 3,
+    "stay_seconds": 5,
+    "android_delay_time":-1,
+    "android_bs_delay_time": 150,
+    "scheme_uri": "meetyou.linggan:///web?params=eyJ1cmwiOiJodHRwOi8vY2xpY2sudGFueC5jb20vdGY_ZT1WJTJCTkhIR1Nvb3pJa1A2UTFwRFJUalh1SVlPSjZjNUFmeGZOVmFRWjV5d29kMGhlZ0dxbzc5N3NRMXY4WlU2Mk5rbHolMkJiZFd5aFVlendodlgxY1hqN3VsVDNxNVlqSkZ5b2lwJTJGMHJrRXBZSVNqdFRrUkZpenI5cHkxQUFKWFZyU2daS3d5S1pZMkZHcVE1UkJjb2YlMkZhOG56eHBCMnRrelRNU3NnczNQeWk3eFdOajU3RWNxNU9nZzlNUnJJemlPSWd1UyUyRlJvVVRpc1NkcEN0RGllTE82dEV3N1V0VkFCbnM0c1FzRHhBeHphUUJ6REtYbCUyQmNST05qSWpobGpuS2N2Tjhha2VMZUh4WG5yOFA3M0d3MzFSMzZVZk03QUhob3Z5MkNHYzdSd3pvR240RWRYdzhHbnQwNVRNc0tjUzJNblF2QzBPVkF4bFlFcll2MjRFTmslMkZpa0xXVkxvdmMyOXk0SDhTU29tR3lnY0ZrZTBwTm0wSVJxbjk3M0ViUFcxYTVteGxqb1phU213dUhMQkcxSlJyVWlZYk1SMktuQjgzbGl2bXRHNVp0JTJGcDhPZHZxNE4lMkJ6S3ZUZzROTVEyZVFrMTI4dCUyRjl6TjVuT0N2bk4lMkJRJTJGZ3QlMkZXdzkzUzAlMkJrQU13JTJGRiUyQjJPNFNFR2dMRTYySGtnM256QWFDRiUyQjR1N0UlMkJ1ZSUyRkhScms1dmlXRWkxWmhwczM1WXN5JTJGUlRScyUyQlNQQ1BlVG4yOVltTVNmWlVUdk5sQm1pV0tDR2c0YVhDMlV1Q3daRzZIaU9lMjAwdFJUaG8lMkJKaFFabGJ1OFclMkY2JTJGOUdSSiUyRjU0S3M4QmxZUXUlMkJ2S0lXalYlMkZxZWpMSUI5VmxVd2Zqb2cyJTJCVWVOclJwNHBFM0Q2NFQ5RGIxZ2g2ZVpwZ0xZdEdnVlNHSkJwdTJFb21ETkw0MVpEdlElM0QlM0QmdT1odHRwcyUzQSUyRiUyRmRldGFpbC50bWFsbC5jb20lMkZpdGVtLmh0bSUzRmRmX3NpZCUzRDBiYjlhZTA2MDAwMDBmNzU2MzYwOTEyZTA3YzU1MTBkJTI2aWQlM0Q2ODY2MTI4ODkxMDMlMjZfb25lSWQlM0QxNjFCRkYwNzE3NERCRENDNEU2MUE3ODlCNzEyRjVEMzE4MjY5MzlFMUNFQzlEMUI4NTc2ODAyQUQ3RUZERUI2JTI2cmVzb3VyY2VfaWQlM0QxMDAwNjAmaz02OTYmeD0wIiwibmV3U3RhdGlzdGljcyI6eyJqc0VtYmVkVXJsIjoiLy9zYy5zZWV5b3V5aW1hLmNvbS9hZHZlcnRpc2UvMjAxOTEyMDIvNWRlNGQ1YjRkYjk5MS5qcyIsIm9wZW5CcmlkZ2UiOjEsIm15SnNBZGlkIjoiMl8yXzIwNjYxMzRfMCJ9LCJ1c2luZ1dLIjoxLCJuYXZCYXJTdHlsZSI6IndoaXRlIn0"
+}]

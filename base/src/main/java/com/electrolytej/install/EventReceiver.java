@@ -1,4 +1,4 @@
-package com.electrolytej;
+package com.electrolytej.install;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
