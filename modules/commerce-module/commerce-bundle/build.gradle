@@ -2,7 +2,7 @@ plugins {
     id("io.github.electrolytej.static-bundle-plugin")
     alias(libs.plugins.kotlin.android)
 }
-apply(from = "${rootDir}/script/ui_tradition.gradle")
+apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
     namespace = "com.electrolytej.commerce"
 }
@@ -15,7 +15,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
-
+    implementation(project.moduleify("framework-base"))
 //    // 登陆
 //    implementation("com.alibaba.baichuan.sdk:alibclogin:5.0.0.13")
 //    // applink

@@ -29,7 +29,7 @@ class WelcomeFragment : Fragment() {
         binding.button.setOnClickListener {
             BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
             findNavController().navigate(R.id.dest_home)
-            SPUtils.getInstance().put(Constants.KEY_WELCOMNE_SPLASH, true)
+            SPUtils.getInstance().put(Constants.KEY_WELCOME_SPLASH, true)
         }
     }
 }

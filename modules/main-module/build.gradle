@@ -2,6 +2,10 @@ plugins {
     id "io.github.electrolytej.static-bundle-plugin"
     id 'org.jetbrains.kotlin.android'
     id("com.google.devtools.ksp")
+    id 'jacoco'
+}
+jacoco {
+    toolVersion = "0.8.5"
 }
 apply from: "$rootDir/script/ui_tradition.gradle"
 android {
@@ -30,6 +34,16 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            testCoverageEnabled = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled = true
+        }
     }
 }
 dependencies {

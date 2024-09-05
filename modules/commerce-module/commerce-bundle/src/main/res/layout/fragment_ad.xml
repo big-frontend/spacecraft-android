@@ -19,7 +19,7 @@
     <!--        app:layout_constraintTop_toTopOf="parent"-->
     <!--        app:layout_constraintVertical_weight="1" />-->
 
-    <com.electrolytej.main.widget.ShinyAdView
+    <com.electrolytej.commerce.ShinyAdView
         android:id="@+id/sv_shiny"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

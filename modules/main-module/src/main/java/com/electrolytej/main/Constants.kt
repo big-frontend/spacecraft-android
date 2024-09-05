@@ -9,5 +9,5 @@ package com.electrolytej.main
  */
 object Constants {
     const val KEY_AD_SPLASH = "ad_splash"
-    const val KEY_WELCOMNE_SPLASH = "welcome_splash"
+    const val KEY_WELCOME_SPLASH = "welcome_splash"
 }

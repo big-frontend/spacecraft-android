@@ -1,10 +1,16 @@
 package com.electrolytej.main.page.web
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.SpanUtils
+import com.electrolytej.main.R
 import com.electrolytej.main.databinding.ActivityWebSearchBinding
+import com.electrolytej.main.util.RoundedBackgroundSpan
 
 /**
  * Copyright ® $ 2024
@@ -24,6 +30,13 @@ class WebSearchActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.rvSearchList.layoutManager = layoutManager
+        SpanUtils.with(binding.tvAd)
+            .append("广告")
+            .setFontSize(11, true)
+            .setSpans(RoundedBackgroundSpan(Color.parseColor("#FF71A0"), Color.WHITE, ConvertUtils.dp2px(4f)))
+            .append("  28元捡漏两套结晶月子服！原价488米错过直拍大腿！入口给你快进群捡漏！")
+            .setFontSize(16, true)
+            .create()
         binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             //点击搜索按钮会触发
             override fun onQueryTextSubmit(query: String?): Boolean {

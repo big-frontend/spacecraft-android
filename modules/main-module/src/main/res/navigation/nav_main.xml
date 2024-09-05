@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_blank_splash" />
     <fragment
         android:id="@+id/dest_ad_splash"
-        android:name="com.electrolytej.main.page.ad.AdFragment"
+        android:name="com.electrolytej.commerce.AdFragment"
         android:label="fragment_ad_splash"
         tools:layout="@layout/fragment_ad" />
     <fragment
