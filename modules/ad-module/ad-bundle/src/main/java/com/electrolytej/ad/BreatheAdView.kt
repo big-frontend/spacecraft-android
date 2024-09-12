@@ -1,4 +1,4 @@
-package com.electrolytej.commerce
+package com.electrolytej.ad
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.electrolytej.ad.R
 
 
 class BreatheAdView @JvmOverloads constructor(

@@ -222,7 +222,7 @@ dependencies {
     project.depsConfig("implementation", "hotel-bundle1")
     project.depsConfig("implementation", "hotel-bundle2")
     project.depsConfig("implementation", "hotel-foundation")
-    project.depsConfig("implementation", "commerce-bundle")
+    project.depsConfig("implementation", "ad-bundle")
     project.depsConfig("implementation", "main-module")
     project.depsConfig("implementation", "feeds-module")
     project.depsConfig("implementation", "account-module")

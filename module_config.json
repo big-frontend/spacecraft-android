@@ -99,15 +99,15 @@
       "sourcePath": ":modules:livestreaming-module"
     },
     {
-      "simpleName": "commerce-bundle",
+      "simpleName": "ad-bundle",
       "format": "nsbundle",
       "group": "commerce",
-      "sourcePath": ":modules:commerce-module:commerce-bundle"
+      "sourcePath": ":modules:ad-module:ad-bundle"
     },
     {
-      "simpleName": "commerce-export",
+      "simpleName": "ad-export",
       "group": "commerce",
-      "sourcePath": ":modules:commerce-module:export"
+      "sourcePath": ":modules:ad-module:export"
     }
   ]
 }

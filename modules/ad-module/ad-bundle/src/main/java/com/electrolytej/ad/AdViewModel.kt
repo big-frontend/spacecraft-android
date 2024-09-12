@@ -1,4 +1,4 @@
-package com.electrolytej.commerce
+package com.electrolytej.ad
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

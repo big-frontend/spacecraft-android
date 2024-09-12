@@ -4,7 +4,7 @@ plugins {
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
-    namespace = "com.electrolytej.commerce"
+    namespace = "com.electrolytej.ad"
 }
 
 dependencies {
