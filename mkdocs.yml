@@ -15,6 +15,7 @@ theme:
 
 nav:
   - 'Home':
+    - 'Index': index.md
     - '代码设计': CODEDESIGN.md
     - '代码评审': CODEREVIEW.md
 
