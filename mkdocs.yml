@@ -19,6 +19,10 @@ nav:
 
   - 'AD':
     - 'Index': ad/index.md
+    - '880':
+      - ad/880/index.md
+      - 'a' : ad/880/a.md
+      - 'b' : ad/880/b.md
 
 markdown_extensions:
   - smarty
@@ -41,3 +45,6 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - tables
+
+plugins:
+  - search
