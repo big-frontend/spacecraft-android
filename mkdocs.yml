@@ -11,7 +11,7 @@ theme:
     - navigation.sections
     # - navigation.expand
     - navigation.path
-    - navigation.indexes
+#    - navigation.indexes
 
 nav:
   - 'Home':

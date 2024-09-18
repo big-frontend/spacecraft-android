@@ -50,6 +50,11 @@ import java.util.logging.Logger
  * -->  [intermediate code:generator & optimizer -- intermediate representation --> machine code:generator & optimizer ] -- target/machine code-->
  *
  * kotlin在编译后端自动生成set/get代码(PropertyCodegen)，修改类为final
+ *
+ * ast解析经历
+ * Lombok AST -> PSI -> UAST
+ *
+ *
  */
 class KotlinScriptParser {
     private class SourceModuleInfo(
