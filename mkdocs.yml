@@ -19,6 +19,9 @@ nav:
     - '代码设计': CODEDESIGN.md
     - '代码评审': CODEREVIEW.md
 
+  - 'AD':
+    - 'Index': ad/index.md
+
 markdown_extensions:
   - smarty
   - footnotes
