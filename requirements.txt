@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 babel==2.14.0; python_version >= '3.7'
-certifi==2023.11.17; python_version >= '3.6'
+certifi==2024.7.4; python_version >= '3.6'
 charset-normalizer==3.3.2; python_full_version >= '3.7.0'
 click==8.1.7; python_version >= '3.7'
 colorama==0.4.6; platform_system == 'Windows'
