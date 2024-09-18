@@ -19,14 +19,12 @@
 ### 质量扫描 、安全扫描(源代码、第三方组件) 、开源合规
 
 - 质量扫描
-
-  - 代码静态分析：[使用 lint 检查改进您的代码](https://developer.android.com/studio/write/lint.html?hl=zh-cn#commandline)  、 [Android Lint API Guide](https://googlesamples.github.io/android-custom-lint-rules/api-guide.html)  、 [美团外卖Android Lint代码检查实践](https://tech.meituan.com/2018/04/13/waimai-android-lint.html)  、 [UAST](https://plugins.jetbrains.com/docs/intellij/uast.html#using-uast-in-plugins)
-  - Android Style : [Android 开发规范（完结版）](https://github.com/Blankj/AndroidStandardDevelop)
-  - Kotlin Style : [Android Kotlin Style](https://developer.android.com/kotlin/style-guide?hl=zh-tw) 、[JB Kotlin Style](https://kotlinlang.org/docs/coding-conventions.html)
+    - 代码静态分析：[使用 lint 检查改进您的代码](https://developer.android.com/studio/write/lint.html?hl=zh-cn#commandline)  、 [Android Lint API Guide](https://googlesamples.github.io/android-custom-lint-rules/api-guide.html)  、 [美团外卖Android Lint代码检查实践](https://tech.meituan.com/2018/04/13/waimai-android-lint.html)  、 [UAST](https://plugins.jetbrains.com/docs/intellij/uast.html#using-uast-in-plugins)
+    - Android Style : [Android 开发规范（完结版）](https://github.com/Blankj/AndroidStandardDevelop)
+    - Kotlin Style : [Android Kotlin Style](https://developer.android.com/kotlin/style-guide?hl=zh-tw) 、[JB Kotlin Style](https://kotlinlang.org/docs/coding-conventions.html)
   
 - 安全扫描
-
-  - 风险代码 
+    - 风险代码 
 
 ## 性能与稳定性监控
 
