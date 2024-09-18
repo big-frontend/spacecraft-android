@@ -1,0 +1,41 @@
+site_name: spacecraft-android
+theme:
+  name: material
+  locale: en
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - django
+  features:
+    - navigation.tabs
+    - navigation.sections
+    # - navigation.expand
+    - navigation.path
+    - navigation.indexes
+
+nav:
+  - 'Home':
+    - '代码设计': CODEDESIGN.md
+    - '代码评审': CODEREVIEW.md
+
+markdown_extensions:
+  - smarty
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - attr_list
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:materialx.emoji.twemoji
+  #     emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
