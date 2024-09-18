@@ -7,7 +7,7 @@
 
 ## 代码设计(code design)
 
-[CODEDESIGN](docs/CODEDESIGN.md)
+[CODEDESIGN](/docs/CODEDESIGN.md)
 
 ## 代码评审(code review)
 
