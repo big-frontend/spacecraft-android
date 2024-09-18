@@ -11,10 +11,10 @@
 
 ## 代码评审(code review)
 
-### 自测
+### 测试
 
 - 覆盖率：[Android增量代码测试覆盖率工具](https://tech.meituan.com/2017/06/16/android-jacoco-practace.html)、JaCoCo
-- 单元测试
+- 自动化测试：单元测试、集成测试等，[自动化测试在美团外卖的实践与落地](https://tech.meituan.com/2022/09/15/automated-testing-in-meituan.html)
 
 ### 质量扫描 、安全扫描(源代码、第三方组件) 、开源合规
 
