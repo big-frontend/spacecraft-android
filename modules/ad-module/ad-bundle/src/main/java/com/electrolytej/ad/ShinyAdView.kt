@@ -10,13 +10,12 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.view.drawToBitmap
-import com.electrolytej.ad.R
 
 
 class ShinyAdView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1
 ) : FrameLayout(ctx, attrs, defStyleAttr) {
-    private val root = View.inflate(ctx, R.layout.view_shiny_ad, this)
+    private val root = View.inflate(ctx, R.layout.view_ad_shiny, this)
     private val viewColor by lazy { root.findViewById<View>(R.id.view_color) }
     private val ivScene2 by lazy { root.findViewById<ImageView>(R.id.iv_scene2) }
     private val ivScene3 by lazy { root.findViewById<ImageView>(R.id.iv_scene3) }

@@ -1,4 +1,4 @@
-package com.electrolytej.main.page.blanksplash
+package com.electrolytej.main.page.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,13 +10,13 @@ import com.blankj.utilcode.util.SPUtils
 import com.electrolytej.main.Constants.KEY_AD_SPLASH
 import com.electrolytej.main.R
 import com.electrolytej.main.base.AbsPermissionsFragment
-import com.electrolytej.main.databinding.FragmentBlankSplashBinding
+import com.electrolytej.main.databinding.FragmentSplashBinding
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.Random
 import java.util.concurrent.TimeUnit
 
-class BlankSplashFragment : AbsPermissionsFragment() {
+class SplashFragment : AbsPermissionsFragment() {
     companion object {
 
         const val TAG = "SplashActivity"
@@ -49,7 +49,7 @@ class BlankSplashFragment : AbsPermissionsFragment() {
         //    }
     }
     private val random = Random()
-    lateinit var binding: FragmentBlankSplashBinding
+    lateinit var binding: FragmentSplashBinding
     val navController by lazy {
 //        (childFragmentManager.findFragmentById(R.id.fragment_nav_host) as NavHostFragment).navController
     }
@@ -62,7 +62,7 @@ class BlankSplashFragment : AbsPermissionsFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBlankSplashBinding.inflate(inflater, container, false)
+        binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
 

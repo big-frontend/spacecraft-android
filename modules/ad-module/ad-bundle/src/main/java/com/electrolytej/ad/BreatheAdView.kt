@@ -8,13 +8,12 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.electrolytej.ad.R
 
 
 class BreatheAdView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1
 ) : FrameLayout(ctx, attrs, defStyleAttr) {
-    private val root = View.inflate(ctx, R.layout.view_breathe_ad, this)
+    private val root = View.inflate(ctx, R.layout.view_ad_breathe, this)
     private val ivBreathe by lazy { root.findViewById<ImageView>(R.id.iv_breathe) }
     private val ivBreathe2 by lazy { root.findViewById<ImageView>(R.id.iv_breathe2) }
     private val tvIntro by lazy { root.findViewById<TextView>(R.id.tv_intro) }

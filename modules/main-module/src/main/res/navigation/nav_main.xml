@@ -7,12 +7,12 @@
     <!--    闪屏页-->
     <fragment
         android:id="@+id/dest_blank_splash"
-        android:name="com.electrolytej.main.page.blanksplash.BlankSplashFragment"
+        android:name="com.electrolytej.main.page.splash.SplashFragment"
         android:label="fragment_blank_splash"
-        tools:layout="@layout/fragment_blank_splash" />
+        tools:layout="@layout/fragment_splash" />
     <fragment
         android:id="@+id/dest_ad_splash"
-        android:name="com.electrolytej.commerce.AdFragment"
+        android:name="com.electrolytej.ad.AdFragment"
         android:label="fragment_ad_splash"
         tools:layout="@layout/fragment_ad" />
     <fragment
