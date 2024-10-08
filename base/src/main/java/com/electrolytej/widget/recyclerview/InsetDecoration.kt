@@ -1,10 +1,10 @@
-package jamesfchen.widget
+package com.electrolytej.widget.recyclerview
 
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.electrolytej.foundation.R
+import com.electrolytej.base.R
 
 class InsetDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private var mInsets = 0

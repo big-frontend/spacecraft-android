@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.customview.recyclerview;
+package com.electrolytej.widget.recyclerview;
 
 import android.content.Context;
 import android.graphics.PointF;
@@ -9,11 +9,11 @@ import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.HashSet;
-import java.util.List;
-
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * A {@link android.support.v7.widget.RecyclerView.LayoutManager} implementation

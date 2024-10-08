@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators;
+package com.electrolytej.widget.animations.evaluators;
 
 import android.animation.TypeEvaluator;
 import android.graphics.Color;

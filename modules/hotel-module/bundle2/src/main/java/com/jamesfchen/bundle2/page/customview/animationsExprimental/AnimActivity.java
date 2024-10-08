@@ -33,16 +33,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.electrolytej.bundle2.R;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.ArgbEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.HSVEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.IntEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.ArgbEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.HSVEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.IntEvaluator;
+import com.electrolytej.widget.animations.evaluators.ArgbEvaluator;
+import com.electrolytej.widget.animations.evaluators.HSVEvaluator;
+import com.electrolytej.widget.animations.evaluators.IntEvaluator;
 import com.electrolytej.util.ConvertUtil;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.ArgbEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.HSVEvaluator;
-import com.jamesfchen.bundle2.page.customview.animationsExprimental.evaluators.IntEvaluator;
 
 import java.util.ArrayList;
 import java.util.List;

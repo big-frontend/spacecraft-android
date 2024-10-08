@@ -1,4 +1,4 @@
-package jamesfchen.widget;
+package com.electrolytej.widget.recyclerview;
 
 import android.content.Context;
 import android.graphics.Canvas;

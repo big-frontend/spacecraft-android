@@ -11,7 +11,7 @@ import com.electrolytej.bundle2.R
 import com.electrolytej.bundle2.databinding.ActivityRecyclerviewBinding
 import com.jamesfchen.bundle2.page.customview.Adapter
 import com.jamesfchen.bundle2.page.customview.ViewModel
-import jamesfchen.widget.InsetDecoration
+import com.electrolytej.widget.recyclerview.InsetDecoration
 import java.util.ArrayList
 
 class RecyclerViewActivity : Activity() {

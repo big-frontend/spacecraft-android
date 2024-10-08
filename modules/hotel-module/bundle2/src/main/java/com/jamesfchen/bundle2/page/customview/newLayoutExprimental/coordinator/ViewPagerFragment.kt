@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import jamesfchen.widget.Divider
+import com.electrolytej.widget.recyclerview.Divider
 
 /**
  * Copyright ® $ 2017

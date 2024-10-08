@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle2.page.customview.animationsExprimental.interpolators;
+package com.electrolytej.widget.animations.interpolators;
 
 import android.animation.TimeInterpolator;
 

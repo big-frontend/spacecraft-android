@@ -1,4 +1,4 @@
-package jamesfchen.widget
+package com.electrolytej.widget.recyclerview
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,7 +6,7 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.electrolytej.foundation.R
+import com.electrolytej.base.R
 
 
 class GridDividerDecoration :RecyclerView.ItemDecoration(){

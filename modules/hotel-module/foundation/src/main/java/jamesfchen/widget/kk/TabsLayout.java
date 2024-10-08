@@ -24,12 +24,10 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.bumptech.glide.Glide;
 import com.electrolytej.foundation.R;
+import com.electrolytej.util.DimenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import jamesfchen.widget.DimenUtil;
-
 
 /**
  * Copyright ® $ 2019
@@ -241,12 +239,11 @@ public class TabsLayout extends FrameLayout {
             endValue = targetTop;
             property = "translationY";
             int dy = 0;
-            if (targetBottom > DimenUtil.getScreenHeight(getContext())) {
+            //todo:fix bug
+            //            } else if (targetLeft < 0) {
+            //                dx = targetLeft;
+            if (targetBottom > DimenUtil.getScreenHeight(getContext()))
                 dy = targetBottom - DimenUtil.getScreenWidth(getContext());
-                //todo:fix bug
-//            } else if (targetLeft < 0) {
-//                dx = targetLeft;
-            }
             ((NestedScrollView) mScrollView).smoothScrollBy(0, dy);
 
         }
