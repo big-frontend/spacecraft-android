@@ -62,7 +62,7 @@ class ImageInitializer : Initializer<Unit> {
                 return@setBitmapMemoryCacheParamsSupplier memoryCacheParams
             }.setMainDiskCacheConfig(diskCacheConfig).setMemoryTrimmableRegistry(memTrimRegistry)
             .build()
-        Fresco.initialize(SApp.getInstance(),config)
+//        Fresco.initialize(SApp.getInstance(),config)
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {
