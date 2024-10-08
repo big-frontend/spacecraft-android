@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.electrolytej.bundle2.R
 import com.electrolytej.bundle2.databinding.ActivityRecyclerviewBinding
+import com.electrolytej.widget.recyclerview.FixedGridLayoutManager
 import com.jamesfchen.bundle2.page.customview.Adapter
 import com.jamesfchen.bundle2.page.customview.ViewModel
 import com.electrolytej.widget.recyclerview.InsetDecoration
