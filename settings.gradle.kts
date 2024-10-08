@@ -13,6 +13,7 @@ pluginManagement {
         maven("https://plugins.gradle.org/m2/")
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
+    includeBuild("build-logic")
 }
 dependencyResolutionManagement {
 //    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)

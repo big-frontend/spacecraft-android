@@ -34,12 +34,11 @@ class AdFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.svShiny.setOnShinyListener {
+        binding.svShiny.setOnShinyListener {
 //            BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
-////            findNavController().navigate(R.id.dest_home)
-//            findNavController().navigateUp()
-////            SPUtils.getInstance().put(Constants.KEY_AD_SPLASH, true)
-//        }
+            findNavController().navigateUp()
+//            SPUtils.getInstance().put(Constants.KEY_AD_SPLASH, true)
+        }
         getAllPackage()
         getMyPackage()
     }

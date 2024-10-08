@@ -42,6 +42,8 @@ plugins {
     id("io.sentry.android.gradle") version "4.1.0" apply(false)
     id("io.github.electrolytej.module-publisher-plugin") version("1.0.0") apply false
     id("io.github.electrolytej.module-assembler-rootproject-plugin") apply true
+
+    id("electrolytej.android.application.jacoco") apply false
 }
 allprojects {
 //    configurations.all {

@@ -8,11 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.blankj.utilcode.util.SPUtils
 import com.electrolytej.main.databinding.ActivityMainBinding
 import com.electrolytej.util.CryptoUtil
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -38,15 +42,20 @@ class MainActivity : AppCompatActivity() {
         //native  crash
 //        Crypto.getClientKey("", 0L)
         val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
-        if (!SPUtils.getInstance().getBoolean(Constants.KEY_WELCOME_SPLASH)) {
-            navGraph.setStartDestination(R.id.dest_welcome_splash)
-        } else if (!SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)) {
-            navGraph.setStartDestination(R.id.dest_ad_splash)
-        } else {
-            navGraph.setStartDestination(R.id.dest_blank_splash)
-        }
         navController.graph = navGraph
         binding.bnv.setupWithNavController(navController)
+        if (!SPUtils.getInstance().getBoolean(Constants.KEY_WELCOME_SPLASH)) {//欢迎页 --> 首页
+            navGraph.setStartDestination(R.id.dest_welcome)
+        } else {//闪屏页 --> 广告 --> 首页
+            navGraph.setStartDestination(R.id.dest_splash)
+//            navController.navigate(R.id.dest_home)
+            lifecycleScope.launch {
+                delay(1000)
+                navController.navigate(R.id.dest_ad)
+            }
+//            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
+//
+        }
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Log.d(
                 TAG,

@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/dest_blank_splash">
+    app:startDestination="@id/dest_splash">
     <!--    闪屏页-->
     <fragment
-        android:id="@+id/dest_blank_splash"
+        android:id="@+id/dest_splash"
         android:name="com.electrolytej.main.page.splash.SplashFragment"
-        android:label="fragment_blank_splash"
+        android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
     <fragment
-        android:id="@+id/dest_ad_splash"
+        android:id="@+id/dest_ad"
         android:name="com.electrolytej.ad.AdFragment"
         android:label="fragment_ad_splash"
         tools:layout="@layout/fragment_ad" />
     <fragment
-        android:id="@+id/dest_welcome_splash"
+        android:id="@+id/dest_welcome"
         android:name="com.electrolytej.main.page.welcome.WelcomeFragment"
         android:label="fragment_welcome_splash"
         tools:layout="@layout/fragment_welcome" />

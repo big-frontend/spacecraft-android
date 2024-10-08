@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.blankj.utilcode.util.SPUtils
-import com.electrolytej.main.Constants.KEY_AD_SPLASH
 import com.electrolytej.main.R
 import com.electrolytej.main.base.AbsPermissionsFragment
 import com.electrolytej.main.databinding.FragmentSplashBinding
@@ -75,8 +73,6 @@ class SplashFragment : AbsPermissionsFragment() {
                     0 -> {
                     }
                 }
-                        SPUtils.getInstance().put(KEY_AD_SPLASH,!SPUtils.getInstance().getBoolean(KEY_AD_SPLASH))
-                findNavController().navigate(R.id.dest_home)
             }
     }
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");

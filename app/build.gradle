@@ -6,6 +6,7 @@ plugins {
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.firebase-perf")
     id("com.google.devtools.ksp")
+    id("electrolytej.android.application.jacoco")
 }
 apply from: "$rootDir/script/app_config.gradle"
 android {
