@@ -13,10 +13,15 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.blankj.utilcode.util.SPUtils
+import com.bumptech.glide.Glide
 import com.electrolytej.main.databinding.ActivityMainBinding
+import com.electrolytej.main.util.BadgeUtils
 import com.electrolytej.util.CryptoUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.internal.wait
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -30,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 //        binding.fragmentNavHost.findFragment<NavHostFragment>().navController
         (supportFragmentManager.findFragmentById(R.id.fragment_nav_host) as NavHostFragment).navController
     }
+
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 //        navController.handleDeepLink(intent)
@@ -48,14 +54,14 @@ class MainActivity : AppCompatActivity() {
             navGraph.setStartDestination(R.id.dest_welcome)
         } else {//闪屏页 --> 广告 --> 首页
             navGraph.setStartDestination(R.id.dest_splash)
-//            navController.navigate(R.id.dest_home)
-            lifecycleScope.launch {
+            navController.navigate(R.id.dest_home)
+            lifecycleScope.launch(Dispatchers.IO) {
                 delay(1000)
-                navController.navigate(R.id.dest_ad)
+                jump2Ad()
             }
-//            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
-//
+            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
         }
+        BadgeUtils.setCount(1,this)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Log.d(
                 TAG,
@@ -93,6 +99,12 @@ class MainActivity : AppCompatActivity() {
 
                 else -> false
             }
+        }
+    }
+
+    private suspend fun jump2Ad() {
+        return withContext(Dispatchers.Main) {
+            navController.navigate(R.id.dest_ad)
         }
     }
 }

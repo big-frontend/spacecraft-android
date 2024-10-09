@@ -9,6 +9,7 @@ plugins {
     id("electrolytej.android.application.jacoco")
 }
 apply from: "$rootDir/script/app_config.gradle"
+apply from: "$rootDir/script/test_impl.gradle"
 android {
     namespace "com.electrolytej.spacecraft"
     ndkVersion = "22.0.7026061"
@@ -36,6 +37,8 @@ android {
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
+        testOptions.unitTests.includeAndroidResources = true
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -218,8 +221,8 @@ android {
 }
 dependencies {
 //    ksp 'com.github.bumptech.glide:compiler:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    ksp 'com.github.bumptech.glide:ksp:4.14.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     project.depsConfig("implementation", "hotel-bundle1")
     project.depsConfig("implementation", "hotel-bundle2")
     project.depsConfig("implementation", "hotel-foundation")

@@ -9,7 +9,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import androidx.core.view.drawToBitmap
-import com.facebook.drawee.view.SimpleDraweeView
 
 class BubbleAdView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1
@@ -17,7 +16,6 @@ class BubbleAdView @JvmOverloads constructor(
 
     private val root = View.inflate(ctx, R.layout.view_ad_bubble, this)
     private val ivBubble by lazy { root.findViewById<View>(R.id.iv_bubble) }
-    private val ivBack: SimpleDraweeView by lazy { root.findViewById<SimpleDraweeView>(R.id.iv_back) }
 
     init {
         val startValue = 1f

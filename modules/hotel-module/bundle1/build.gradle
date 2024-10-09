@@ -1,6 +1,7 @@
 plugins {
     id "io.github.electrolytej.static-bundle-plugin"
     id 'org.jetbrains.kotlin.android'
+    id("com.google.devtools.ksp")
     alias(libs.plugins.compose)
 }
 
@@ -17,7 +18,7 @@ composeCompiler {
 dependencies {
     implementation project.moduleify("hotel-foundation")
     implementation project.moduleify('framework-base')
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    ksp 'com.github.bumptech.glide:ksp:4.14.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.madrapps:plot:0.1.1'
 }

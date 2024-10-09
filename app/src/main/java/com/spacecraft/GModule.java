@@ -1,4 +1,4 @@
-package com.jamesfchen.pisces;
+package com.spacecraft;
 
 
 import android.content.Context;

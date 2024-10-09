@@ -2,10 +2,7 @@ plugins {
     id "io.github.electrolytej.static-bundle-plugin"
     id 'org.jetbrains.kotlin.android'
     id("com.google.devtools.ksp")
-    id 'jacoco'
-}
-jacoco {
-    toolVersion = "0.8.5"
+    id("electrolytej.android.library.jacoco")
 }
 apply from: "$rootDir/script/ui_tradition.gradle"
 android {
@@ -52,8 +49,8 @@ dependencies {
     implementation project.moduleify('hotel-export')
     implementation project.moduleify('framework-base')
 //    ksp 'com.github.bumptech.glide:compiler:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    ksp 'com.github.bumptech.glide:ksp:4.14.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.github.chrisbanes:PhotoView:2.0.+'
     implementation 'top.zibin:Luban:1.1.8'

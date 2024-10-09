@@ -1,6 +1,7 @@
 plugins {
     id "io.github.electrolytej.static-bundle-plugin"
     id 'org.jetbrains.kotlin.android'
+    id("com.google.devtools.ksp")
 }
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {
@@ -14,7 +15,7 @@ dependencies {
     implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
     implementation project.moduleify("hotel-foundation")
     implementation project.moduleify('framework-base')
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    ksp 'com.github.bumptech.glide:ksp:4.14.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'androidx.databinding:databinding-runtime:8.2.0'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'

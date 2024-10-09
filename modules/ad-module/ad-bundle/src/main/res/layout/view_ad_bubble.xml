@@ -15,14 +15,14 @@
 <!--        android:scaleY="1"-->
 <!--        android:scaleX="1"-->
 <!--        android:translationY="22dp"-->
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_intro"
-        />
+<!--    <com.facebook.drawee.view.SimpleDraweeView-->
+<!--        android:id="@+id/iv_back"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/tv_intro"-->
+<!--        />-->
     <TextView
         android:id="@+id/tv_intro"
         android:layout_width="wrap_content"

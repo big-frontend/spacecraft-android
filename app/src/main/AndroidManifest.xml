@@ -63,6 +63,7 @@
         android:required="false" />
 
     <dist:module dist:instant="true" />
+
     <!--        android:allowBackup="${allowBackup}"-->
     <application
         android:allowBackup="true"

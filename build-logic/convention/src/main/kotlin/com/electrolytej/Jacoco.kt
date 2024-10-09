@@ -24,6 +24,7 @@ private val coverageExclusions = listOf(
     "**/Manifest*.*",
     "**/*_Hilt*.class",
     "**/Hilt_*.class",
+//    "**/androidx/**",
 )
 
 private fun String.capitalize() = replaceFirstChar {

@@ -147,7 +147,7 @@ dependencies {
     api "com.github.bumptech.glide:recyclerview-integration:${GLIDE_VERSION}"
     api "com.github.bumptech.glide:okhttp3-integration:${GLIDE_VERSION}"
 //    ksp 'com.github.bumptech.glide:compiler:4.11.0'
-    ksp 'com.github.bumptech.glide:compiler:4.11.0'
+    ksp 'com.github.bumptech.glide:ksp:4.14.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     api "com.facebook.fresco:fresco:${FRESCO_VERSION}"

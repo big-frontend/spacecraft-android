@@ -44,6 +44,7 @@ plugins {
     id("io.github.electrolytej.module-assembler-rootproject-plugin") apply true
 
     id("electrolytej.android.application.jacoco") apply false
+    id("electrolytej.android.library.jacoco") apply false
 }
 allprojects {
 //    configurations.all {
