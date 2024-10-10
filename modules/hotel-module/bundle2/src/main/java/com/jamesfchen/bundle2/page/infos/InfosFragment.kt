@@ -67,17 +67,17 @@ class InfosFragment : Fragment() {
                         override fun onLoadFailed(
                             e: GlideException?,
                             model: Any?,
-                            target: Target<Bitmap>?,
+                            target: Target<Bitmap>,
                             isFirstResource: Boolean
                         ): Boolean {
                             return false
                         }
 
                         override fun onResourceReady(
-                            resource: Bitmap?,
-                            model: Any?,
+                            resource: Bitmap,
+                            model: Any,
                             target: Target<Bitmap>?,
-                            dataSource: DataSource?,
+                            dataSource: DataSource,
                             isFirstResource: Boolean
                         ): Boolean {
                             Log.d(
@@ -86,6 +86,7 @@ class InfosFragment : Fragment() {
                             )
                             return false
                         }
+
                     })
 //                    .into(imageView)
                     .into(object: CustomTarget<Bitmap>() {
@@ -93,6 +94,7 @@ class InfosFragment : Fragment() {
                             resource: Bitmap,
                             transition: Transition<in Bitmap>?
                         ) {
+
                             imageView.setImageBitmap(resource)
                         }
 

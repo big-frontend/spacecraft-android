@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 delay(1000)
                 jump2Ad()
             }
-            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
+//            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
         }
         BadgeUtils.setCount(1,this)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->

@@ -54,7 +54,6 @@ public class BadgeUtils {
     private static int notificationId = 0;
 
     public static boolean setCount(final int count, final Context context) {
-        int a= 1;
         if (count >= 0 && context != null) {
             Log.d("BRAND", Build.BRAND);
             switch (Build.BRAND.toLowerCase()) {

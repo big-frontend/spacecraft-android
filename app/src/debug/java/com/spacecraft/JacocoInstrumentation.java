@@ -21,9 +21,6 @@ public class JacocoInstrumentation extends Instrumentation {
     private static String DEFAULT_COVERAGE_FILE_PATH = "/mnt/sdcard/coverage.ec";
     private final Bundle mResults = new Bundle();
     private Intent mIntent;
-    private static final boolean LOGD = true;
-    private boolean mCoverage = true;
-    private String mCoverageFilePath;
 
     public JacocoInstrumentation() {
     }
@@ -41,9 +38,6 @@ public class JacocoInstrumentation extends Instrumentation {
                 Log.d(TAG, "新建文件异常：" + e);
             }
         }
-        if (arguments != null) {
-            mCoverageFilePath = arguments.getString("coverageFile");
-        }
         mIntent = new Intent(getTargetContext(), MainActivity.class);
         mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         start();
@@ -58,29 +52,9 @@ public class JacocoInstrumentation extends Instrumentation {
     public void callActivityOnDestroy(Activity activity) {
         super.callActivityOnDestroy(activity);
         if (activity instanceof  MainActivity){
-            if (mCoverage) {
-                generateCoverageReport();
-            }
-            finish(Activity.RESULT_OK, mResults);
+            Jacoco.generateCoverageReport();
+//            finish(Activity.RESULT_OK, mResults);
         }
     }
 
-
-    private String getCoverageFilePath() {
-        if (mCoverageFilePath == null) {
-            return DEFAULT_COVERAGE_FILE_PATH;
-        } else {
-            return mCoverageFilePath;
-        }
-    }
-
-    private void generateCoverageReport() {
-        Log.d(TAG, "generateCoverageReport():" + getCoverageFilePath());
-        try (OutputStream out = new FileOutputStream(getCoverageFilePath(), false)) {
-            Object agent = Class.forName("org.jacoco.agent.rt.RT").getMethod("getAgent").invoke(null);
-            out.write((byte[]) agent.getClass().getMethod("getExecutionData", boolean.class).invoke(agent, false));
-        } catch (Exception e) {
-            Log.d(TAG, e.toString(), e);
-        }
-    }
 }

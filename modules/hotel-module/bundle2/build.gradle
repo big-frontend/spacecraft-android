@@ -15,7 +15,7 @@ dependencies {
     implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
     implementation project.moduleify("hotel-foundation")
     implementation project.moduleify('framework-base')
-    ksp 'com.github.bumptech.glide:ksp:4.14.0'
+    ksp(libs.glide.ksp)
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'androidx.databinding:databinding-runtime:8.2.0'
     api 'com.github.markzhai:databinding-rv-adapter:1.0.1'

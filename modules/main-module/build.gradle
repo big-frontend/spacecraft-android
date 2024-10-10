@@ -49,7 +49,7 @@ dependencies {
     implementation project.moduleify('hotel-export')
     implementation project.moduleify('framework-base')
 //    ksp 'com.github.bumptech.glide:compiler:4.11.0'
-    ksp 'com.github.bumptech.glide:ksp:4.14.0'
+    ksp(libs.glide.ksp)
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.github.chrisbanes:PhotoView:2.0.+'

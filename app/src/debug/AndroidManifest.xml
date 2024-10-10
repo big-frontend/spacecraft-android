@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!--    <instrumentation-->
-<!--        android:name="com.spacecraft.JacocoInstrumentation"-->
-<!--        android:handleProfiling="true"-->
-<!--        android:label="CoverageInstrumentation"-->
-<!--        android:targetPackage="com.electrolytej.spacecraft" />-->
+    <instrumentation
+        android:name="com.spacecraft.JacocoInstrumentation"
+        android:handleProfiling="true"
+        android:label="CoverageInstrumentation"
+        android:targetPackage="com.electrolytej.spacecraft" />
 </manifest>
