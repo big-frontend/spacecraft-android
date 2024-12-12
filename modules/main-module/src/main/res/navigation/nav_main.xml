@@ -44,7 +44,7 @@
         android:id="@+id/dest_infos"
         android:name="com.electrolytej.main.page.notification.InfosFragment"
         android:label="fragment_infos"
-        tools:layout="@layout/fragment_infos"></fragment>
+        tools:layout="@layout/main_fragment_infos"></fragment>
     <!--    多窗口-->
     <fragment
         android:id="@+id/dest_windows"

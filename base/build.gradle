@@ -158,7 +158,6 @@ dependencies {
     api "com.squareup.picasso:picasso-pollexor:${PICASSO_VERSION}"
 
     api "com.caverock:androidsvg:${ANDROIDSVG_VERSION}"
-    api("io.coil-kt:coil:$COIL_VERSION")
     /**
      * ===============================image end=============================
      */

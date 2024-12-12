@@ -33,9 +33,10 @@ class ILbsApiClient(
         @Throws(RemoteException::class)
         override fun onLocationChanged(
             appLocation: AppLocation?,
-            appCellInfos: List<AppCellInfo>,
+            appCellInfos: MutableList<AppCellInfo>?,
             count: Long
         ) {
+
         }
 
 

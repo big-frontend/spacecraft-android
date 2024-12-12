@@ -1,5 +1,8 @@
 package com.electrolytej.main.page.web
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
 /**
  * Copyright ® $ 2024
  * All right reserved.
@@ -7,5 +10,11 @@ package com.electrolytej.main.page.web
  * @author: electrolyteJ
  * @since: Jun/02/2024  Sun
  */
-class WebActivity {
+class WebActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
+
 }

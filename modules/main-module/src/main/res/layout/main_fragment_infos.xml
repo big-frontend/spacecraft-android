@@ -9,12 +9,23 @@
     <TextView
         android:id="@+id/tv_notification"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="90dp"
         android:background="@color/apricot"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
         tools:text="adsfasdf" />
+
+
+    <Button
+        android:id="@+id/bt_text"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@color/afasf"
+        android:text="测试"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

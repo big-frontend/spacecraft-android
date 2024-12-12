@@ -73,6 +73,7 @@ class SplashFragment : AbsPermissionsFragment() {
                     0 -> {
                     }
                 }
+                findNavController().navigate(R.id.dest_home)
             }
     }
 //        myTrace = FirebasePerformance.getInstance().newTrace("loadData");

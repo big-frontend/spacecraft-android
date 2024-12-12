@@ -38,7 +38,7 @@ class Downloader private constructor() {
             }
         })
         animator.addUpdateListener {
-            downloadListeners[key].onDownloading(key,it.animatedValue as Int)
+            downloadListeners[key]?.onDownloading(key,it.animatedValue as Int)
         }
         animator.duration = 10000
         animator.start()

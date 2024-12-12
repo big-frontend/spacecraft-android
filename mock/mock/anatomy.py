@@ -38,6 +38,7 @@ class Counter:
         # statinfo = flow.request.headers.get("statinfo")
         # sv = flow.request.headers.get("sv")
         # logging.error(f"{statinfo} {sv}")
+        logging.error(flow.request.path)
         if "v1/getad" not in flow.request.path: return
         pageid = flow.request.query.get('pageid')
         pos_id = flow.request.query.get('pos_id')
@@ -92,14 +93,14 @@ class Counter:
         #         flow.response.text = json.dumps(data)
 
         # 1100/1120 首页流
-        # if pageid=='1100' and pos_id == '1120': 
-        #         # with open("1100_1120.json", 'r') as fcc_file:
-        #         with open("1100_1120_video_style.json", 'r') as fcc_file:
-        #         # with open("1100_1120_huawei.json", 'r') as fcc_file:
-        #         # data = json.loads(flow.response.get_text())
-        #             # logging.info(flow.response.get_text())
-        #             data = json.load(fcc_file)
-        #             flow.response.text = json.dumps(data)
+        if pageid=='1100' and pos_id == '1120': 
+                # with open("1100_1120.json", 'r') as fcc_file:
+                with open("1100_1120_video_style.json", 'r') as fcc_file:
+                # with open("1100_1120_huawei.json", 'r') as fcc_file:
+                # data = json.loads(flow.response.get_text())
+                    # logging.info(flow.response.get_text())
+                    data = json.load(fcc_file)
+                    flow.response.text = json.dumps(data)
 
         # #视频激励广告   
         # if pageid =='9300' and pos_id == '9301':
@@ -130,14 +131,14 @@ class Counter:
             if d.get('download_scheme_uri') or d.get('scheme_uri'):
                 path1 , p1 = get_path_params(d.get('download_scheme_uri'))
                 path2 , p2 = get_path_params(d.get('scheme_uri'))
-                logging.error(f"{i} title:{d.get("title")} call_down_title:{d.get('call_down_title')} new_download_style:{d.get('new_download_style')}")
+                logging.error(f"{i} title:{d.get('title')} call_down_title:{d.get('call_down_title')} new_download_style:{d.get('new_download_style')}")
                 if p1:
                     p1j = json.loads(p1)
-                    logging.error(f"download_scheme_uri: {path1}\t{p1j.get("appName")} {p1j.get("url")} {p1j.get("appStoreDeeplink")}")
+                    logging.error(f"download_scheme_uri: {path1}\t{p1j.get('appName')} {p1j.get('url')} {p1j.get('appStoreDeeplink')}")
                     logging.error(p1)
                 if p2:
                     p2j = json.loads(p2)
-                    logging.error(f"scheme_uri:\t{path2} {p2j.get("url")} {p2}")
+                    logging.error(f"scheme_uri:\t{path2} {p2j.get('url')} {p2}")
                         # break
                 i +=1
             

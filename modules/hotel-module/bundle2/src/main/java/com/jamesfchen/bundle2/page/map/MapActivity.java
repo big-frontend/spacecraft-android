@@ -76,7 +76,7 @@ public class MapActivity extends LBSActivity {
     ILbsApiClient iLbsApiClient;
 
     ILbsApiClient.Listener ibsListener = new ILbsApiClient.Listener(){
-        public void onLocationChanged(AppLocation appLocation, List<AppCellInfo> appCellInfos, long count) throws RemoteException {
+        public void onLocationChanged(AppLocation appLocation, List<AppCellInfo> appCellInfos, long count) {
             StringBuffer s = new StringBuffer();
             AppCellInfo appCellInfo = null;
             if (appCellInfos != null && appCellInfos.size() > 0) {
