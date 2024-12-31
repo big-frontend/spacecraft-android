@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.blankj.utilcode.util.PermissionUtils;
+import androidx.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 
 /**
@@ -73,7 +72,7 @@ public final class Util {
     };
 
     private static void setTopActivityWeakRef(Activity activity) {
-        if (activity.getClass() == PermissionUtils.PermissionActivity.class) return;
+//        if (activity.getClass() == PermissionUtils.PermissionActivity.class) return;
         //不能使用强引用，当栈顶的Activity被销毁时，由于Util类的静态字段持有Activity对象导致其占有的内存不能被释放，造成内存泄漏。
         //故当静态字段引用周期类时，需要使用WeakReference
         if (sTopActivityWeakRef == null || !activity.equals(sTopActivityWeakRef.get())) {

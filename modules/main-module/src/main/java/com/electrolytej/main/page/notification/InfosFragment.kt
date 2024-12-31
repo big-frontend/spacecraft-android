@@ -87,13 +87,24 @@ class InfosFragment : Fragment() {
                 //302 (Content-Type, text/html;charset=utf-8), (Expires, Thu, 01 Jan 1970 00:00:00 GMT), (Location, https://dl-1251299587.file.myqcloud.com/myqcloud/yuedan/yuedan_tuiguang_0058_824cf65ac1db1a3e1.apk), (Server, Jetty(9.3.14.v20161028)), (Set-Cookie, browserid=fff0b7f5-081f-48c0-a25c-ad796c07d991;Expires=Fri, 12-Dec-2025 02:21:23 GMT), (Content-Length, 0), (Connection, keep-alive)
                 Log.d("InfosFragment", "click url")
                 val okhttper = OkHttpClient().newBuilder()
-//                    .followRedirects(false)
+                    .addInterceptor { chain->
+                        val response = chain.proceed(chain.request())
+                        var location = response.headers("Location")
+                        if (location == null){
+                            location = response.headers("location")
+                        }
+
+                        Log.d("InfosFragment", "interceptor: ${response.request.url} ${location} ${response.code} ${response.headers.joinToString()}")
+                        return@addInterceptor  response
+                    }
+                    .followRedirects(false)
                     .build()
                 val request = Request.Builder()
-//                    .head()
+                    .head()
 //                    .method()
 //                    .url("https://www.chengzijianzhan.com/tetris/page/7369427047796293659")
-                    .url("https://lnk0.com/l8g8Yh?td_subid={td_subid}")
+//                    .url("https://lnk0.com/l8g8Yh?td_subid={td_subid}")
+                    .url("https://ugapk.com/eT8YF")
                     .build()
                 okhttper.newCall(request).enqueue(object :Callback{
                     override fun onFailure(call: Call, e: IOException) {

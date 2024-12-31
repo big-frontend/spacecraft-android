@@ -7,8 +7,8 @@ import android.widget.ProgressBar;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.electrolytej.bundle2.R;
-import com.jamesfchen.bundle2.util.ToastUtil;
 
 /**
  * Copyright ® $ 2019
@@ -32,7 +32,7 @@ public class FeedbackUtilActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                finish();
-                ToastUtil.showShort("asdfaf");
+                ToastUtils.showShort("asdfaf");
             }
         });
         ProgressBar progressBar = new ProgressBar(this);

@@ -1,16 +1,10 @@
 package com.jamesfchen.bundle2.page.customview.gesture
 
 import android.util.Log
-import com.almeros.android.multitouch.ShoveGestureDetector
+import com.electrolytej.widget.multitouch.ShoveGestureDetector
 
-/**
- * Copyright ® $ 2017
- * All right reserved.
- *
- * @author: hawks.jamesf
- * @since: Dec/11/2019  Wed
- */
-class MyShoveListener:ShoveGestureDetector.SimpleOnShoveGestureListener() {
+
+class MyShoveListener: ShoveGestureDetector.SimpleOnShoveGestureListener() {
     override fun onShove(detector: ShoveGestureDetector): Boolean {
         Log.d("cjf","onShove")
         return super.onShove(detector)

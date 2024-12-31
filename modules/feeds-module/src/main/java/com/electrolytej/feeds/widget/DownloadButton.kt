@@ -12,19 +12,23 @@ import android.widget.ProgressBar
 import androidx.core.util.getOrDefault
 import com.electrolytej.download.Downloader
 import com.electrolytej.feeds.R
-import com.electrolytej.download.Downloader.OnDownloadListener
+import com.electrolytej.feeds.widget.download.ApkDownloader
 
 typealias StateChangeListener = (state: Int) -> Unit
 
 class DownloadButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1, defStyleRes: Int = -1
-) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes), ApkDownloader.OnDownloadListener {
     companion object {
         private const val TAG = "DownloadButton"
-        const val STATE_READY = 1
-        const val STATE_DOWNLOADING = 2
-        const val STATE_PAUSE = 3
-        const val STATE_FINISH = 4
+        const val STATE_UNKNOWN: Int = -1
+        const val STATE_READY: Int = 1
+        const val STATE_DOWNLOADING: Int = 2
+        const val STATE_PAUSE: Int = 3
+        const val STATE_SUCCESS: Int = 4
+        const val STATE_FAIL: Int = 5
+        const val STATE_INSTALL: Int = 6
+        const val STATE_OPEN_APP: Int = 7
         //由于Recyclerview会复用ViewHolder所以我们需要记录每个状态
         private val stateArray = SparseIntArray()
     }
@@ -39,7 +43,6 @@ class DownloadButton @JvmOverloads constructor(
 
     var state = STATE_READY
     private var stateChangeListener: StateChangeListener? = null
-    private var l: OnDownloadListener? = null
     private var key: Int = -1
     init {
         btStartDownload.setOnClickListener {
@@ -61,6 +64,10 @@ class DownloadButton @JvmOverloads constructor(
 
     fun setOnStateChangeListener(l: (state: Int) -> Unit) {
         stateChangeListener = l
+
+    }
+    fun setUrl(url:String?){
+        ApkDownloader.getInstance().addOnDownloadListener(url,url,this)
     }
 
     /**
@@ -73,7 +80,7 @@ class DownloadButton @JvmOverloads constructor(
         when (s) {
             STATE_READY -> toReadyState()
             STATE_DOWNLOADING -> toDownloadingState()
-            STATE_FINISH -> toFinishState()
+            STATE_SUCCESS -> toFinishState()
         }
         //todo:RecyclerView 的 ViewHolder 复用机制导致下载监听回调错误
 //        Downloader.getInstance().setOnDownloadListener(key,object : OnDownloadListener {
@@ -113,7 +120,7 @@ class DownloadButton @JvmOverloads constructor(
     }
 
     private fun toFinishState() {
-        state = STATE_FINISH
+        state = STATE_SUCCESS
         stateChangeListener?.invoke(state)
         stateArray.put(key, state)
         btStartDownload.visibility = GONE

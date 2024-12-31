@@ -9,8 +9,8 @@ import android.util.Log
 import android.view.Display
 import android.view.MotionEvent
 import androidx.annotation.RawRes
-import com.almeros.android.multitouch.MoveGestureDetector
 import com.blankj.utilcode.util.ImageUtils
+import com.electrolytej.widget.multitouch.MoveGestureDetector
 
 
 /**

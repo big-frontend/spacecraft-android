@@ -3,6 +3,7 @@ package com.electrolytej.main.page.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,17 +16,18 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.electrolytej.mvp.RxFragment
-import com.electrolytej.main.page.photo.GalleryActivity
 import com.electrolytej.main.R
 import com.electrolytej.main.databinding.FragmentDoubleListBinding
+import com.electrolytej.main.page.photo.GalleryActivity
+import com.electrolytej.main.widget.GestureDetectorView
+import com.electrolytej.mvp.RxFragment
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
-class DoubleListFragment : RxFragment<com.electrolytej.main.page.home.DoubleListPresenter>(), com.electrolytej.main.page.home.DoubleListContract.View {
+class DoubleListFragment : RxFragment<DoubleListPresenter>(), DoubleListContract.View {
     lateinit var binding: FragmentDoubleListBinding
-    override fun createPresenter(): com.electrolytej.main.page.home.DoubleListPresenter {
-        return com.electrolytej.main.page.home.DoubleListPresenter()
+    override fun createPresenter(): DoubleListPresenter {
+        return DoubleListPresenter()
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDoubleListBinding.inflate(inflater,container,false)
@@ -84,7 +86,7 @@ class DoubleListFragment : RxFragment<com.electrolytej.main.page.home.DoubleList
                 val myViewHolder: MyViewHolder
                 if (convertView == null) {
                     val itemView: View = LayoutInflater.from(activity)
-                        .inflate(R.layout.item_image_and_text, parent, false)
+                        .inflate(R.layout.main_item_image_and_text, parent, false)
                     myViewHolder = MyViewHolder(itemView)
                     itemView.tag = myViewHolder
                     convertView = itemView
@@ -102,16 +104,20 @@ class DoubleListFragment : RxFragment<com.electrolytej.main.page.home.DoubleList
         }
     }
 
-    inner class MyAdapter :
-        RecyclerView.Adapter<MyViewHolder>() {
+    inner class MyAdapter : RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             return MyViewHolder(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_image_and_text, parent, false)
+                    .inflate(R.layout.main_item_image_and_text, parent, false)
             )
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+            (holder.itemView as? GestureDetectorView)?.setOnGestureListener(object :GestureDetectorView.IGestureListener{
+                override fun onMoveEnd() {
+                    holder.tvText.performClick()
+                }
+            })
             holder.tvText.text = "asfasdfas"
             holder.tvText.setOnClickListener { v: View? ->
                 val i = Intent(activity, GalleryActivity::class.java)

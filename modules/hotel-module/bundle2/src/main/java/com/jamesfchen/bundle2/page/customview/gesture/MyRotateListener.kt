@@ -1,7 +1,7 @@
 package com.jamesfchen.bundle2.page.customview.gesture
 
 import android.util.Log
-import com.almeros.android.multitouch.RotateGestureDetector
+import com.electrolytej.widget.multitouch.RotateGestureDetector
 
 /**
  * Copyright ® $ 2017

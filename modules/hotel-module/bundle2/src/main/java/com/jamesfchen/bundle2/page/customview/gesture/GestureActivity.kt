@@ -7,9 +7,9 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.almeros.android.multitouch.MoveGestureDetector
-import com.almeros.android.multitouch.RotateGestureDetector
-import com.almeros.android.multitouch.ShoveGestureDetector
+import com.electrolytej.widget.multitouch.MoveGestureDetector
+import com.electrolytej.widget.multitouch.RotateGestureDetector
+import com.electrolytej.widget.multitouch.ShoveGestureDetector
 
 
 /**
@@ -35,9 +35,9 @@ class GestureActivity : AppCompatActivity() {
         imageView.setOnTouchListener { v, event ->
             mGestureDetector.onTouchEvent(event)
             mScaleDetector.onTouchEvent(event)
-            mRotateDetector.onTouchEvent(event)
-            mShoveDetector.onTouchEvent(event)
-            mMoveGestureDetector.onTouchEvent(event)
+//            mRotateDetector.onTouchEvent(event)
+//            mShoveDetector.onTouchEvent(event)
+//            mMoveGestureDetector.onTouchEvent(event)
             //当down被消费，之后的move才能被传过来消费
             return@setOnTouchListener true
         }

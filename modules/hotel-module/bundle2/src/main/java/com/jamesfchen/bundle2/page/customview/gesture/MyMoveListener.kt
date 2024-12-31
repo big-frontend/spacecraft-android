@@ -1,7 +1,7 @@
 package com.jamesfchen.bundle2.page.customview.gesture
 
 import android.util.Log
-import com.almeros.android.multitouch.MoveGestureDetector
+import com.electrolytej.widget.multitouch.MoveGestureDetector
 
 /**
  * Copyright ® $ 2017
@@ -10,17 +10,19 @@ import com.almeros.android.multitouch.MoveGestureDetector
  * @author: hawks.jamesf
  * @since: Dec/11/2019  Wed
  */
-class MyMoveListener:MoveGestureDetector.SimpleOnMoveGestureListener() {
+class MyMoveListener : MoveGestureDetector.SimpleOnMoveGestureListener() {
     override fun onMoveBegin(detector: MoveGestureDetector): Boolean {
-        Log.d("cjf",">>>onMoveBegin")
+        Log.d("cjf", ">>>onMoveBegin")
         return super.onMoveBegin(detector)
     }
+
     override fun onMoveEnd(detector: MoveGestureDetector) {
-        Log.d("cjf","<<<onMoveEnd")
+        Log.d("cjf", "<<<onMoveEnd")
         super.onMoveEnd(detector)
     }
+
     override fun onMove(detector: MoveGestureDetector): Boolean {
-        Log.d("cjf","onMove")
+        Log.d("cjf", "onMove")
         return super.onMove(detector)
     }
 

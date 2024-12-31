@@ -11,13 +11,13 @@ import java.io.InputStreamReader
 
 object LocationApi {
     //location/datas
-    suspend fun getDatas(): List<com.electrolytej.main.network.model.L7> {
+    suspend fun getDatas(): List<L7> {
         val r = Request.Builder().url("${BuildConfig.CONFIG_SERVER_BASE_URL}/location/datas")
 //            .cacheControl(CacheControl.FORCE_NETWORK)
             .get()
             .build()
         val response = Okhttper.create().sendRequest(r)
         val reader = JsonReader(InputStreamReader(response.body?.byteStream()))
-        return Gson().fromJson(reader, object : TypeToken<List<com.electrolytej.main.network.model.L7>>() {}.type)
+        return Gson().fromJson(reader, object : TypeToken<List<L7>>() {}.type)
     }
 }
