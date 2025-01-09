@@ -1,4 +1,4 @@
-package com.electrolytej.main.util;
+package com.electrolytej.main.util.span;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
