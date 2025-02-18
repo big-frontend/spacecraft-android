@@ -1,29 +1,20 @@
 package com.electrolytej.main
 
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.Signature
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.blankj.utilcode.util.SPUtils
-import com.bumptech.glide.Glide
 import com.electrolytej.main.databinding.ActivityMainBinding
 import com.electrolytej.main.util.BadgeUtils
-import com.electrolytej.util.CryptoUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.internal.wait
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     companion object {

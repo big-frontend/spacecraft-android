@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
+import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.electrolytej.bundle2.databinding.ActivityLocationBinding
 import com.jamesfchen.bundle2.db.model.LBS
@@ -13,7 +14,6 @@ import com.jamesfchen.bundle2.location.ILbsListener
 import com.jamesfchen.bundle2.location.model.AppCellInfo
 import com.jamesfchen.bundle2.location.model.AppLocation
 import com.jamesfchen.bundle2.page.LBSActivity
-import com.electrolytej.util.DeviceUtil
 
 /**
  * Copyright ® $ 2017
@@ -75,11 +75,11 @@ class LocationActivity : LBSActivity() {
         val ipAddressipv4 = NetworkUtils.getIPAddress(true)
         val ipAddressipv6 = NetworkUtils.getIPAddress(false)
         Log.d(TAG, "onCreate: " + ipAddressByWifi + "  " + ipAddressipv4 + " " + ipAddressipv6)
-        val macAddressByNetworkInterface = DeviceUtil.getMacAddressByNetworkInterface()
-        val macAddressByInetAddress = DeviceUtil.getMacAddressByInetAddress()
-        val macAddressByWifiInfo = DeviceUtil.getMacAddressByWifiInfo()
-        val getMacAddressByFile = DeviceUtil.getMacAddressByFile()
-        Log.d(TAG, "onCreate: 网卡：" + macAddressByNetworkInterface + "\n网络地址:" + macAddressByInetAddress + "\nwifi:" + macAddressByWifiInfo + "\nfile:" + getMacAddressByFile)
+//        val macAddressByNetworkInterface = DeviceUtils.getMacAddressByNetworkInterface()
+//        val macAddressByInetAddress = DeviceUtils.getMacAddressByInetAddress()
+//        val macAddressByWifiInfo = DeviceUtils.getMacAddressByWifiInfo()
+//        val getMacAddressByFile = DeviceUtils.getMacAddressByFile()
+//        Log.d(TAG, "onCreate: 网卡：" + macAddressByNetworkInterface + "\n网络地址:" + macAddressByInetAddress + "\nwifi:" + macAddressByWifiInfo + "\nfile:" + getMacAddressByFile)
 
         val adapter = LbsAdapter()
         binding.rvCellinfos.adapter = adapter

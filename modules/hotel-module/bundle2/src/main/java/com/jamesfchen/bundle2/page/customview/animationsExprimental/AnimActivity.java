@@ -32,17 +32,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.blankj.utilcode.util.ConvertUtils;
 import com.electrolytej.bundle2.R;
 import com.electrolytej.widget.animations.evaluators.ArgbEvaluator;
 import com.electrolytej.widget.animations.evaluators.HSVEvaluator;
 import com.electrolytej.widget.animations.evaluators.IntEvaluator;
-import com.electrolytej.util.ConvertUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Copyright ® $ 2017
@@ -120,7 +120,7 @@ public class AnimActivity extends AppCompatActivity {
             );
             textView.setGravity(Gravity.CENTER);
             textView.setTag(interpolator);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ConvertUtil.dp2px(100f), ConvertUtil.dp2px(50f));
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ConvertUtils.dp2px(100f), ConvertUtils.dp2px(50f));
             llInterpolator.addView(textView, layoutParams);
         }
         //interpolators end
@@ -149,8 +149,8 @@ public class AnimActivity extends AppCompatActivity {
             } else if (evaluator instanceof RectEvaluator) {
                 ivEvaluator.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 ivEvaluator.setImageResource(com.electrolytej.base.R.drawable.tmp);
-                int width = ConvertUtil.dp2px(200f);
-                int height = ConvertUtil.dp2px(200f);
+                int width = ConvertUtils.dp2px(200f);
+                int height = ConvertUtils.dp2px(200f);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         width, height);
                 ivEvaluator.setLayoutParams(layoutParams);

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.ThreadUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
@@ -18,7 +19,6 @@ import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
 import com.electrolytej.base.BuildConfig;
-import com.electrolytej.util.ThreadUtil;
 
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
@@ -57,22 +57,15 @@ public class GModule extends AppGlideModule {
      * ModelLoader, 用于加载自定义的 Model(Url, Uri,任意的 POJO )和 Data(InputStreams, FileDescriptors)。
      * ResourceTranscoder，用于在不同的资源类型之间做转换，例如，从 BitmapResource 转换为 DrawableResource 。
      */
-    OkHttpClient okhttpClient;
-    {
-        try {
-            okhttpClient = new OkHttpClient.Builder()
-                    .dispatcher(new Dispatcher(ThreadUtil.getIOPool()))//默认任务分发池，最多并发请求为64个，每个host最多5个，线程池容量为整形最大值，为缓存池，对于低端手机能不能根据cpu来控制线程核心数，优化图片加载任务分发池最大线程数为2*cpu+1
-                    .connectTimeout(15_000, TimeUnit.MILLISECONDS)//15s
-                    .readTimeout(15_000, TimeUnit.MILLISECONDS)//
-                    .writeTimeout(15_000, TimeUnit.MILLISECONDS)//
-                    .connectionPool(new ConnectionPool(5, 10_000, TimeUnit.MILLISECONDS))//空闲5个，保活10s
-                    .addInterceptor((chain) -> {//应用层的拦截器
-                        return chain.proceed(chain.request());
-                    }).build();
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    OkHttpClient okhttpClient = new OkHttpClient.Builder()
+                .dispatcher(new Dispatcher(ThreadUtils.getIoPool()))//默认任务分发池，最多并发请求为64个，每个host最多5个，线程池容量为整形最大值，为缓存池，对于低端手机能不能根据cpu来控制线程核心数，优化图片加载任务分发池最大线程数为2*cpu+1
+                .connectTimeout(15_000, TimeUnit.MILLISECONDS)//15s
+                .readTimeout(15_000, TimeUnit.MILLISECONDS)//
+                .writeTimeout(15_000, TimeUnit.MILLISECONDS)//
+                .connectionPool(new ConnectionPool(5, 10_000, TimeUnit.MILLISECONDS))//空闲5个，保活10s
+                .addInterceptor((chain) -> {//应用层的拦截器
+                    return chain.proceed(chain.request());
+                }).build();
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {

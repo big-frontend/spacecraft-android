@@ -11,9 +11,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.EncryptUtils
 import com.electrolytej.ad.databinding.FragmentAdBinding
-import com.electrolytej.util.BarUtil
-import com.electrolytej.util.CryptoUtil
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -77,7 +76,7 @@ class AdFragment : Fragment() {
             val installDateString = dateFormat.format(installDate);
             val updateDateString = dateFormat.format(updateDate);
             Log.d(TAG, "getAllPackage ${packagename}   ${updateDateString} ${installDateString}")
-            val messageDigest: String = CryptoUtil.encryptMD5ToString(
+            val messageDigest: String = EncryptUtils.encryptMD5ToString(
                 getRawSignature(requireActivity(), info.packageName)?.get(0)?.toByteArray()
             )
             val sb = StringBuffer()
@@ -91,12 +90,12 @@ class AdFragment : Fragment() {
             val sb3 = StringBuffer()
             if (signingInfo != null) {
                 for (signature in signingInfo.apkContentsSigners) {
-                    sb2.append(CryptoUtil.encryptMD5ToString(signature.toByteArray()))
+                    sb2.append(EncryptUtils.encryptMD5ToString(signature.toByteArray()))
                         .append('\t')
 
                 }
                 for (signingCertificateHistory in signingInfo.signingCertificateHistory) {
-                    sb3.append(CryptoUtil.encryptMD5ToString(signingCertificateHistory.toByteArray()))
+                    sb3.append(EncryptUtils.encryptMD5ToString(signingCertificateHistory.toByteArray()))
                         .append('\t')
                 }
             }

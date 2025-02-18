@@ -4,8 +4,8 @@ import android.content.Context;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 
+import com.blankj.utilcode.util.ResourceUtils;
 import com.electrolytej.base.R;
-import com.electrolytej.util.ResUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -74,11 +74,11 @@ public class DefaultRenderer extends BaseGLRenderer {
     }
 
     private String getVertexShader() {
-        return ResUtils.loadRawFile(mContext, R.raw.vertex_shader);
+        return ResourceUtils.readRaw2String(R.raw.vertex_shader);
     }
 
     private String getFragmentShader() {
-        return ResUtils.loadRawFile(mContext, R.raw.rect_fragment_shader);
+        return ResourceUtils.readRaw2String(R.raw.rect_fragment_shader);
     }
 
 

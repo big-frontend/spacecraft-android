@@ -1,4 +1,4 @@
-//@file:JvmName("ActivityUtil")
+@file:JvmName("ActivityUtil")
 package com.electrolytej.util
 
 import android.app.Activity

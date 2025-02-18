@@ -66,7 +66,7 @@ class DangerousApiDetector : Detector(), SourceCodeScanner {
                         includeReceiver = true,
                         includeArguments = true
                 ),
-                message = "高危api为了你的绩效请使用SafeConverts"
+                message = "高危api为了你的绩效请使用NumberUtil"
         )
     }
 

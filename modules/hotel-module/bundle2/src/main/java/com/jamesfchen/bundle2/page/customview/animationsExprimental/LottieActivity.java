@@ -1,15 +1,10 @@
 package com.jamesfchen.bundle2.page.customview.animationsExprimental;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.electrolytej.bundle2.R;
 import com.electrolytej.bundle2.databinding.ActivityLottieBinding;
-import com.electrolytej.bundle2.databinding.ItemDumpBinding;
-import com.electrolytej.util.ConvertUtil;
 /**
  * Copyright ® $ 2017
  * All right reserved.

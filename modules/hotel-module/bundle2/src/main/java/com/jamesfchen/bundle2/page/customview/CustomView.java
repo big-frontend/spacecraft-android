@@ -6,10 +6,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.electrolytej.util.ConvertUtil;
-
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.ConvertUtils;
 /**
  * Copyright ® $ 2021
  * All right reserved.
@@ -82,7 +81,7 @@ public class CustomView extends View {
                 hm = "default";
                 break;
         }
-        Log.d("cjf","widthmode:"+wm+" "+ ConvertUtil.px2dp(widthSize) +" heightmode:"+hm+" "+ConvertUtil.px2dp(heightSize));
+        Log.d("cjf","widthmode:"+wm+" "+ ConvertUtils.px2dp(widthSize) +" heightmode:"+hm+" "+ConvertUtils.px2dp(heightSize));
 //        resolveSize()
 //        setMeasuredDimension(width, height);
         super.onMeasure(widthMeasureSpec,heightMeasureSpec);

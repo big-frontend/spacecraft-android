@@ -16,6 +16,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.blankj.utilcode.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -25,17 +30,10 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.electrolytej.main.image.model.Photo;
-import com.electrolytej.main.image.model.Photo;
-import com.electrolytej.main.image.model.Photo;
-import com.electrolytej.util.ImageUtil;
 import com.electrolytej.main.R;
+import com.electrolytej.main.image.model.Photo;
 
 import java.security.MessageDigest;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 /**
  * Copyright ® $ 2017
@@ -270,7 +268,7 @@ public class PhotoFragment extends Fragment {
             try {
                 //"内存溢出"
 //                throw  new OutOfMemoryError("溢出");
-                return ImageUtil.addReflection(decoded, 360);
+                return ImageUtils.addReflection(decoded, 360);
             } catch (OutOfMemoryError e) {
                 pool.clearMemory();
                 return decoded;

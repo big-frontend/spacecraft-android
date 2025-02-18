@@ -7,11 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
-import com.electrolytej.util.ConvertUtil;
-
-import org.jetbrains.annotations.NotNull;
-
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.blankj.utilcode.util.ConvertUtils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Copyright ® $ 2017
@@ -29,7 +28,7 @@ public class Divider extends RecyclerView.ItemDecoration {
     }
 
     public Divider(Context context, int heightDP) {
-        space = ConvertUtil.dp2px(heightDP);
+        space = ConvertUtils.dp2px(heightDP);
         paint = new Paint();
         paint.setColor(Color.WHITE);
     }
@@ -46,7 +45,7 @@ public class Divider extends RecyclerView.ItemDecoration {
         int childCount = parent.getChildCount();
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
-        int space = ConvertUtil.dp2px(1);
+        int space = ConvertUtils.dp2px(1);
         for (int i = 0; i < childCount - 1; i++) {
             View view = parent.getChildAt(i);
 

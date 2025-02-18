@@ -6,7 +6,7 @@ import android.graphics.Paint
 import android.text.TextPaint
 import android.text.style.ReplacementSpan
 import androidx.annotation.ColorInt
-import com.electrolytej.util.ConvertUtil
+import com.blankj.utilcode.util.ConvertUtils
 import com.electrolytej.util.DP
 
 /**
@@ -44,11 +44,11 @@ class DrawableBackgroundSpan(val bgColor: Int = -1, @DP val strokeWith: Int = -1
         }
         paint.isAntiAlias = true
         if (strokeWith != -1 && strokeColor != -1) {
-            paint.strokeWidth = ConvertUtil.dp2px(strokeWith.toFloat()).toFloat()
+            paint.strokeWidth = ConvertUtils.dp2px(strokeWith.toFloat()).toFloat()
             paint.style = Paint.Style.STROKE
             paint.color = strokeColor
             if (dashGap != -1 && dashWidth != -1) paint.pathEffect = DashPathEffect(floatArrayOf(
-                ConvertUtil.dp2px(dashWidth.toFloat()).toFloat(), ConvertUtil.dp2px(dashGap.toFloat()).toFloat()), 0f)
+                ConvertUtils.dp2px(dashWidth.toFloat()).toFloat(), ConvertUtils.dp2px(dashGap.toFloat()).toFloat()), 0f)
         }
         if (bgColor != -1) {
             paint.color = bgColor
@@ -62,7 +62,7 @@ class DrawableBackgroundSpan(val bgColor: Int = -1, @DP val strokeWith: Int = -1
         val rectRight = y.toFloat()
         val rectBottom = bottom.toFloat()
         if (radius != -1) {
-            canvas.drawRoundRect(rectLeft, rectTop, x + size, rectBottom, ConvertUtil.dp2px(radius.toFloat()).toFloat(), ConvertUtil.dp2px(radius.toFloat()).toFloat(), paint)
+            canvas.drawRoundRect(rectLeft, rectTop, x + size, rectBottom, ConvertUtils.dp2px(radius.toFloat()).toFloat(), ConvertUtils.dp2px(radius.toFloat()).toFloat(), paint)
         } else {
             canvas.drawRect(rectLeft, rectTop, x + size, rectBottom, paint)
         }

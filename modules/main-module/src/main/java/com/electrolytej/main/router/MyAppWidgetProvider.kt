@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.navigation.NavDeepLinkBuilder
 import com.electrolytej.main.R
-import com.electrolytej.util.ResUtils
+import com.electrolytej.util.getAssetsPath
 
 class MyAppWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -18,7 +18,7 @@ class MyAppWidgetProvider : AppWidgetProvider() {
         val remoteViews = RemoteViews(context.packageName, R.layout.appwidget_deep_link)
 
         val args = Bundle()
-        args.putString("url", ResUtils.getAssetsPath("test.html"))
+        args.putString("url", getAssetsPath("test.html"))
         val pendingIntent = NavDeepLinkBuilder(context)
             .setGraph(R.navigation.nav_main)
             .setDestination(R.id.dest_activity_webview)

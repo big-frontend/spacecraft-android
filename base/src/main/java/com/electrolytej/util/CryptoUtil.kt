@@ -1,6 +1,7 @@
+@file:JvmName("CryptoUtil")
 package com.electrolytej.util
 
-enum class CryptoKeyIndex(var value: String) {
+enum class CryptoUtil(var value: String) {
     AESKEY("aesKey"),
     COMMONKEY("commonKey"),
     CONCHKEY("conchKey"),

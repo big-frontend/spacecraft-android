@@ -7,6 +7,7 @@ pluginManagement {
         maven("https://maven.aliyun.com/repository/public")
         maven("https://maven.aliyun.com/repository/google/")
         maven("https://artifact.bytedance.com/repository/byteX/")
+        maven("https://artifact.bytedance.com/repository/pangle")
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -25,6 +26,7 @@ dependencyResolutionManagement {
         maven("https://maven.aliyun.com/repository/public")
         maven("https://jitpack.io")
         maven("https://artifact.bytedance.com/repository/byteX/")
+        maven("https://artifact.bytedance.com/repository/pangle")
         //不能用
 //        maven{
 //            url = uri("http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/")

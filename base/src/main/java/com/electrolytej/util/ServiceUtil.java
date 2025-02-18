@@ -1,16 +1,7 @@
 package com.electrolytej.util;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-
-import com.electrolytej.util.Util;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Copyright ® $ 2017
@@ -20,59 +11,6 @@ import java.util.Set;
  * @since: Nov/10/2018  Sat
  */
 public class ServiceUtil {
-    public static Set getAllRunningService() {
-        ActivityManager am = (ActivityManager) Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
-        if (am == null) return Collections.emptySet();
-        List<ActivityManager.RunningServiceInfo> infos = am.getRunningServices(Integer.MAX_VALUE);
-        Set<String> names = new HashSet<>();
-        if (infos == null || infos.size() == 0) return null;
-        for (ActivityManager.RunningServiceInfo info : infos) {
-            names.add(info.service.getClassName());
-        }
-
-        return names;
-    }
-
-    public static void startService(final String className) {
-        try {
-            startService(Class.forName(className));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void startService(final Class<?> clz) {
-        Util.getApp().startService(new Intent(
-                Util.getApp(), clz
-        ));
-
-    }
-
-    public static boolean stopService(final String className) {
-        try {
-            return stopService(Class.forName(className));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean stopService(final Class<?> clz) {
-        return Util.getApp().stopService(new Intent(
-                Util.getApp(), clz
-        ));
-    }
-
-    public static void bindService(final String className,
-                                   final ServiceConnection connection,
-                                   final int flag) {
-        try {
-            bindService(Class.forName(className), connection, flag);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void bindService(final Class<?> clz,
                                    final ServiceConnection connection,
                                    final int flag) {
@@ -117,22 +55,4 @@ public class ServiceUtil {
         Util.getApp().bindService(new Intent(Util.getApp(), clz),
                 connection, flag);
     }
-
-    public static void unbindService(final ServiceConnection connection) {
-        Util.getApp().unbindService(connection);
-    }
-
-    public static boolean isServiceRunning(final String className) {
-        ActivityManager am = (ActivityManager) Util.getApp().getSystemService(Context.ACTIVITY_SERVICE);
-        if (am == null) return false;
-        List<ActivityManager.RunningServiceInfo> infors = am.getRunningServices(Integer.MAX_VALUE);
-        if (infors == null || infors.size() == 0) return false;
-        for (ActivityManager.RunningServiceInfo info :
-                infors) {
-            if (className.equals(info.service.getClassName())) return true;
-        }
-        return false;
-    }
-
-
 }

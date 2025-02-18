@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.electrolytej.util.ConvertUtil;
+import com.blankj.utilcode.util.ConvertUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,11 +59,11 @@ public class HeadBubbleView extends FrameLayout {
         //三阶贝塞尔曲线控制点二
         controlPointTwo = new Point();
         //每个子view的宽高是固定的
-        viewWidth = viewHeight = ConvertUtil.dp2px(22);
-        marginLeft = ConvertUtil.dp2px(15);
-        marginBot = ConvertUtil.dp2px(21);
+        viewWidth = viewHeight = ConvertUtils.dp2px(22);
+        marginLeft = ConvertUtils.dp2px(15);
+        marginBot = ConvertUtils.dp2px(21);
         //父View的高度也是固定的
-        height = ConvertUtil.dp2px(130);
+        height = ConvertUtils.dp2px(130);
         //用于从PathMeasure 中不断的取出 曲线的路径值
         pos = new float[2];
         tan = new float[2];

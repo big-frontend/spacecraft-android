@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.ConvertUtils.dp2px
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -22,7 +23,6 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.electrolytej.bundle2.databinding.FragmentInfosBinding
 import com.jamesfchen.bundle2.network.api.getImageApi
-import com.electrolytej.util.ConvertUtil.dp2px
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 

@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.ConvertUtils
 import com.electrolytej.main.databinding.ActivityGalleryBinding
 import com.electrolytej.main.databinding.ItemDumpBinding
 import com.electrolytej.main.widget.carousel.CarouselPagerAdapter
-import com.electrolytej.util.ConvertUtil
 import com.electrolytej.main.R
 
 class GalleryActivity : Activity() {
@@ -49,7 +49,7 @@ class GalleryActivity : Activity() {
             binding.danmu.addView(
                 itemBinding.root,
                 i,
-                ViewGroup.LayoutParams(ConvertUtil.dp2px(240f), ConvertUtil.dp2px(100f))
+                ViewGroup.LayoutParams(ConvertUtils.dp2px(240f), ConvertUtils.dp2px(100f))
             )
         }
 //        binding.danmu.hideAnimation(null)

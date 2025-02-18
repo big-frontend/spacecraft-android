@@ -7,8 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.blankj.utilcode.util.ConvertUtils
 import com.bumptech.glide.Glide
-import com.electrolytej.util.ConvertUtil
 
 /**
  * Copyright ® $ 2017
@@ -72,19 +72,19 @@ class PhotoListView @JvmOverloads constructor(
                 //按照比例压缩 scale
                 if (width > height) {
                     var scale = width / height
-                    width = ConvertUtil.dp2px(150f)
-                    height = ConvertUtil.dp2px(50f)
+                    width = ConvertUtils.dp2px(150f)
+                    height = ConvertUtils.dp2px(50f)
                 } else if (width < height) {
-                    width = ConvertUtil.dp2px(50f)
-                    height = ConvertUtil.dp2px(150f)
+                    width = ConvertUtils.dp2px(50f)
+                    height = ConvertUtils.dp2px(150f)
                 }
                 val lp = LayoutParams(width, height)
                 img.layoutParams = lp
 //                img.tag = rawUri
                 l1.addView(img, lp)
             } else {
-                width = ConvertUtil.dp2px(70f)
-                height = ConvertUtil.dp2px(70f)
+                width = ConvertUtils.dp2px(70f)
+                height = ConvertUtils.dp2px(70f)
                 if (uriList.size < 4) {
                     val lp = LayoutParams(width, height)
                     img.layoutParams = lp

@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.animation.Animation
 import android.widget.ViewFlipper
 import androidx.annotation.Px
-import com.electrolytej.util.ConvertUtil
+import com.blankj.utilcode.util.ConvertUtils
 
 /**
  * Copyright ® $ 2017
@@ -35,7 +35,7 @@ class DanmuView @JvmOverloads constructor(
     }
 
     fun hideAnimation(adapter: AnimatorListenerAdapter? = null) {
-        buildAnimation(ConvertUtil.dp2px(-244f).toFloat(), object : AnimatorListenerAdapter() {
+        buildAnimation(ConvertUtils.dp2px(-244f).toFloat(), object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 postDelayed({
                     stopFlipping()

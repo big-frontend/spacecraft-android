@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.electrolytej.util.ResUtils
+import com.blankj.utilcode.util.ResourceUtils
 import com.electrolytej.base.databinding.ActivityWebviewBinding
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
@@ -62,7 +62,7 @@ open class WebActivity : AppCompatActivity() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 //                    binding.lpi.visibility = View.GONE
-                    binding.wv.evaluateJavascript(ResUtils.loadAssetFile(this@WebActivity,"VideoHelper.js"),null);
+                    binding.wv.evaluateJavascript(ResourceUtils.readAssets2String("VideoHelper.js"),null);
                     binding.wv.evaluateJavascript("javascript:videoCustomerJs()",null)
                 }
 
