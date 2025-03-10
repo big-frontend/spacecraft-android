@@ -11,7 +11,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven("https://plugins.gradle.org/m2/")
+//        maven("https://plugins.gradle.org/m2/")
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
     includeBuild("build-logic")
@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 //            url = uri("http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/")
 //            isAllowInsecureProtocol = true
 //        }
+        gradlePluginPortal()
         mavenCentral()
         google()
     }

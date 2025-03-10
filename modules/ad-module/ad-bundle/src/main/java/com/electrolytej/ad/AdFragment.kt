@@ -22,6 +22,7 @@ class AdFragment : Fragment() {
         private const val TAG = "AdFragment"
     }
 
+    private lateinit var mySensorEventListener: MySensorEventListener
     private val viewModel by viewModels<AdViewModel>()
     lateinit var binding: FragmentAdBinding
     override fun onCreateView(
@@ -33,13 +34,23 @@ class AdFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mySensorEventListener = MySensorEventListener(requireContext())
         binding.svShiny.setOnShinyListener {
 //            BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
-            findNavController().navigateUp()
+//            findNavController().navigateUp()
 //            SPUtils.getInstance().put(Constants.KEY_AD_SPLASH, true)
         }
         getAllPackage()
         getMyPackage()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mySensorEventListener.start()
+    }
+    override fun onPause() {
+        super.onPause()
+        mySensorEventListener.stop()
     }
 
     fun getMyPackage() {

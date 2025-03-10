@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withResumed
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.blankj.utilcode.util.SPUtils
@@ -39,26 +40,32 @@ class MainActivity : AppCompatActivity() {
         //native  crash
 //        Crypto.getClientKey("", 0L)
         val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
-        navController.graph = navGraph
-        binding.bnv.setupWithNavController(navController)
-        if (!SPUtils.getInstance().getBoolean(Constants.KEY_WELCOME_SPLASH)) {//欢迎页 --> 首页
+        val hasWelcomeSplash = SPUtils.getInstance().getBoolean(Constants.KEY_WELCOME_SPLASH)
+        Log.d(TAG, "hasWelcomeSplash:${hasWelcomeSplash}")
+        if (!hasWelcomeSplash) {//欢迎页 --> 首页
             navGraph.setStartDestination(R.id.dest_welcome)
+            navController.graph = navGraph
         } else {//闪屏页 --> 广告 --> 首页
             navGraph.setStartDestination(R.id.dest_splash)
+            navController.graph = navGraph
             navController.navigate(R.id.dest_home)
             lifecycleScope.launch(Dispatchers.IO) {
-                delay(1000)
-                jump2Ad()
+                delay(3000)
+                withResumed {
+                    navController.navigate(R.id.dest_ad)
+                }
+
             }
 //            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
         }
-        BadgeUtils.setCount(1,this)
+
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Log.d(
                 TAG,
                 "addOnDestinationChangedListener ${destination} ${destination.id} ${destination.route} ${destination.navigatorName} ${destination.displayName}"
             )
             if (destination.id == R.id.dest_home) binding.bnv.visibility = View.VISIBLE
+            if (destination.id == R.id.dest_ad) binding.bnv.visibility = View.GONE
 
         }
         binding.bnv.setOnItemSelectedListener { item ->
@@ -91,6 +98,8 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        binding.bnv.setupWithNavController(navController)
+        BadgeUtils.setCount(1, this)
     }
 
     private suspend fun jump2Ad() {

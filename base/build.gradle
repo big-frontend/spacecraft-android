@@ -27,7 +27,7 @@ android{
                 "room.expandProjection": "true"
         ]
     }
-    ndkVersion '22.0.7026061'
+    ndkVersion = '28.0.13004108'
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"

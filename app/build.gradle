@@ -12,7 +12,7 @@ apply from: "$rootDir/script/app_config.gradle"
 apply from: "$rootDir/script/test_impl.gradle"
 android {
     namespace "com.electrolytej.spacecraft"
-    ndkVersion = "22.0.7026061"
+    ndkVersion = "28.0.13004108"
     defaultConfig {
         resValue "string", "app_name", "spacecraft.app"
         buildConfigField('String', 'BUGLY_APP_ID', '"3d62251014"')
