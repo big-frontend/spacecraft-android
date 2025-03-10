@@ -17,6 +17,8 @@ import com.electrolytej.main.util.BadgeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.Random
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -77,7 +79,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.dest_feeds -> {
-                    navController.navigate(R.id.dest_new_feeds)
+                    val index = Random().nextInt(20)
+                    when (index % 4) {
+                        0 -> {
+                            navController.navigate(R.id.dest_new_feeds)
+                        }
+
+                        else -> {
+                            navController.navigate(R.id.dest_video_feeds)
+                        }
+                    }
+
                     true
                 }
 

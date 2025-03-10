@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.ListPreloader
@@ -22,7 +23,7 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider
 import com.electrolytej.feeds.databinding.ItemPhotoTextBinding
 import com.electrolytej.feeds.page.newfeeds.model.Item
 
-class NewFeedsFragment : Fragment() {
+class VideoFeedsFragment : Fragment() {
     private val newFeedsAdapter: NewFeedsAdapter by lazy {
         val a = NewFeedsAdapter(requireContext())
 //        val headerAdapter = HeaderAdapter()
@@ -36,6 +37,8 @@ class NewFeedsFragment : Fragment() {
             setBackgroundColor(Color.CYAN)
             layoutManager = LinearLayoutManager(context)
             //        addItemDecoration(Divider(this@NewFeedsActivity))
+            val h = PagerSnapHelper()
+            h.attachToRecyclerView(this)
             adapter = newFeedsAdapter
 //        val preloader = RecyclerViewPreloader(adapter.glideRequestBuilder, adapter, adapter, 4)
 //        rvNewFeeds.addOnScrollListener(preloader)
