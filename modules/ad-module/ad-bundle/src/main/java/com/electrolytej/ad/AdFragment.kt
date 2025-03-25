@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.blankj.utilcode.util.EncryptUtils
 import com.electrolytej.ad.databinding.FragmentAdBinding
+import com.electrolytej.sensor.SensorDispatcher
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -22,7 +23,7 @@ class AdFragment : Fragment() {
         private const val TAG = "AdFragment"
     }
 
-    private lateinit var mySensorEventListener: MySensorEventListener
+    private lateinit var sDispatcher: SensorDispatcher
     private val viewModel by viewModels<AdViewModel>()
     lateinit var binding: FragmentAdBinding
     override fun onCreateView(
@@ -34,11 +35,12 @@ class AdFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mySensorEventListener = MySensorEventListener(requireContext())
+        sDispatcher = SensorDispatcher(requireContext())
         binding.svShiny.setOnShinyListener {
 //            BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
-//            findNavController().navigateUp()
+            findNavController().navigateUp()
 //            SPUtils.getInstance().put(Constants.KEY_AD_SPLASH, true)
+//            findNavController().navigate(R.id.dest_home)
         }
         getAllPackage()
         getMyPackage()
@@ -46,11 +48,11 @@ class AdFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mySensorEventListener.start()
+        sDispatcher.start()
     }
     override fun onPause() {
         super.onPause()
-        mySensorEventListener.stop()
+        sDispatcher.stop()
     }
 
     fun getMyPackage() {

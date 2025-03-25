@@ -1,5 +1,6 @@
 plugins {
     id("io.github.electrolytej.static-bundle-plugin")
+    id("org.jetbrains.kotlin.kapt")
     alias(libs.plugins.kotlin.android)
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
@@ -8,7 +9,8 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.google.auto.service:auto-service-annotations:1.0.1'
+    kapt("com.google.auto.service:auto-service:1.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.android.material)
@@ -46,5 +48,5 @@ dependencies {
 //    implementation("com.taobao.android:securitybodyaar3:5.0.0.9-v6@aar")
 //    implementation("com.taobao.android:sgmiddletieraar3:5.0.0.9-v6@aar")
 //    implementation("com.alibaba:fastjson:1.1.71.android")
-    implementation("com.pangle.cn:ads-sdk-pro:6.5.0.4")
+    implementation("com.pangle.cn:ads-sdk-pro:6.7.0.7")
 }

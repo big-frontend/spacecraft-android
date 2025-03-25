@@ -48,6 +48,15 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    signingConfigs {
+        releaseSigningConfig {
+            (keyAlias, keyPassword, storePassword) = [project.rootProject.keyAlias, project.rootProject.keyPassword, project.rootProject.storePassword]
+            storeFile project.file("${project.rootDir}/${project.rootProject.storeFilePath}")
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+
+    }
     buildTypes {
         inhouse {
             initWith release
@@ -55,6 +64,7 @@ android {
             shrinkResources false
         }
         release {
+            signingConfig signingConfigs.releaseSigningConfig
             manifestPlaceholders = [
                     'QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf'
 
@@ -75,6 +85,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            signingConfig signingConfigs.releaseSigningConfig
             manifestPlaceholders = [
                     'QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf'
             ]

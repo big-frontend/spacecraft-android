@@ -48,15 +48,13 @@ class MainActivity : AppCompatActivity() {
         } else {//闪屏页 --> 广告 --> 首页
             navGraph.setStartDestination(R.id.dest_splash)
             navController.graph = navGraph
-            navController.navigate(R.id.dest_home)
             lifecycleScope.launch(Dispatchers.IO) {
                 delay(3000)
                 withResumed {
+                    navController.navigate(R.id.dest_home)
                     navController.navigate(R.id.dest_ad)
                 }
-
             }
-//            !SPUtils.getInstance().getBoolean(Constants.KEY_AD_SPLASH)
         }
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
@@ -65,7 +63,9 @@ class MainActivity : AppCompatActivity() {
                 "addOnDestinationChangedListener ${destination} ${destination.id} ${destination.route} ${destination.navigatorName} ${destination.displayName}"
             )
             if (destination.id == R.id.dest_home) binding.bnv.visibility = View.VISIBLE
-            if (destination.id == R.id.dest_ad) binding.bnv.visibility = View.GONE
+            if (destination.id == R.id.dest_ad) {
+                binding.bnv.visibility = View.GONE
+            }
 
         }
         binding.bnv.setOnItemSelectedListener { item ->
@@ -100,11 +100,5 @@ class MainActivity : AppCompatActivity() {
         }
         binding.bnv.setupWithNavController(navController)
         BadgeUtils.setCount(1, this)
-    }
-
-    private suspend fun jump2Ad() {
-        return withContext(Dispatchers.Main) {
-            navController.navigate(R.id.dest_ad)
-        }
     }
 }
