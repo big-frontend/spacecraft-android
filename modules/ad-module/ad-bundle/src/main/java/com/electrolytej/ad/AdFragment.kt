@@ -11,7 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.EncryptUtils
+import com.blankj.utilcode.util.ScreenUtils
+import com.blankj.utilcode.util.SizeUtils
 import com.electrolytej.ad.databinding.FragmentAdBinding
 import com.electrolytej.sensor.SensorDispatcher
 import java.text.SimpleDateFormat
@@ -44,6 +48,7 @@ class AdFragment : Fragment() {
         }
         getAllPackage()
         getMyPackage()
+        Log.d(TAG, "onViewCreated ${ScreenUtils.getScreenWidth()}   ${ScreenUtils.getScreenWidth1()} ")
     }
 
     override fun onResume() {

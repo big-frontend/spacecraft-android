@@ -34,12 +34,21 @@ public final class ScreenUtils {
     private ScreenUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
-
+    @Deprecated
+    public static int getScreenWidth1() {
+        try {
+            return  Utils.getApp().getResources().getDisplayMetrics().widthPixels;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 480;
+    }
     /**
      * Return the width of screen, in pixel.
      *
      * @return the width of screen, in pixel
      */
+
     public static int getScreenWidth() {
         WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) return -1;
