@@ -2,12 +2,18 @@ package com.electrolytej.ad;
 
 import android.content.Context;
 
+import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 
 public class Csj {
     public void initApp(Context context){
+        AdSlot adSlot =new AdSlot.Builder()
+                .withBid("xxxxxx")//xxxxxx为广告位ID
+//                .setExpressViewAcceptedSize(size.w.toFloat(), size.h.toFloat())//期望模板广告view的size,宽度最低为375，单位dp
+//                .setImageAcceptedSize(size.w, size.h)//设置请求广告的尺寸 单位：px
+                .build();
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
         TTAdSdk.init(context,
                 new TTAdConfig.Builder()

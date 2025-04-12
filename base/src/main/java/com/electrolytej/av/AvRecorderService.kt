@@ -81,7 +81,8 @@ class AvRecorderService : Service() {
             chan.lightColor = Color.BLUE
             chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
             val notificationIntent = Intent(this, AvRecorderActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
+            val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+                PendingIntent.FLAG_IMMUTABLE)
             notificationManager!!.createNotificationChannel(chan)
             val notification = Notification.Builder(this, channelId)
                     .setContentTitle("this is title")

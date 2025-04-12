@@ -18,6 +18,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.electrolytej.ad.databinding.FragmentAdBinding
 import com.electrolytej.sensor.SensorDispatcher
+import com.electrolytej.util.UserAgentUtil
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -49,6 +50,8 @@ class AdFragment : Fragment() {
         getAllPackage()
         getMyPackage()
         Log.d(TAG, "onViewCreated ${ScreenUtils.getScreenWidth()}   ${ScreenUtils.getScreenWidth1()} ")
+        Log.d(TAG, "user-agent ${UserAgentUtil.getWebUserAgent()}   ${UserAgentUtil.getAndroidUserAgent()} ")
+
     }
 
     override fun onResume() {

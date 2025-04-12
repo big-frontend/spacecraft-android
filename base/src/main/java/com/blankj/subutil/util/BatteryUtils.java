@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.PowerManager;
 
 import com.blankj.utilcode.util.ThreadUtils;
@@ -112,7 +113,7 @@ public final class BatteryUtils {
                     if (preSize == 0 && mListeners.size() == 1) {
                         IntentFilter intentFilter = new IntentFilter();
                         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
-                        Utils.getApp().registerReceiver(BatteryChangedReceiver.getInstance(), intentFilter);
+                        Utils.getApp().registerReceiver(BatteryChangedReceiver.getInstance(), intentFilter,null,new Handler());
                     }
                 }
             });

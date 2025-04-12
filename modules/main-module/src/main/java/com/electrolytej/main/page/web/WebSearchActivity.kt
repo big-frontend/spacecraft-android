@@ -1,16 +1,24 @@
 package com.electrolytej.main.page.web
 
-import android.app.Activity
+import android.annotation.SuppressLint
+import android.app.Service
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
-import android.net.Uri
+import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.util.Log
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.NotificationUtils
 import com.blankj.utilcode.util.SpanUtils
+import com.blankj.utilcode.util.Utils
 import com.electrolytej.main.databinding.ActivityWebSearchBinding
 import com.electrolytej.main.util.span.RoundedBackgroundSpan
 
@@ -41,7 +49,8 @@ class WebSearchActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.vAd.setOnClickListener {
             Log.d(TAG, "setOnClickListener")
-            openMediaDialog(this,deeplinkUri)
+            Test.addition_isCorrect2()
+//            openMediaDialog(this,deeplinkUri)
         }
         binding.rvSearchList.layoutManager = layoutManager
         SpanUtils.with(binding.tvAd)
@@ -68,36 +77,108 @@ class WebSearchActivity : AppCompatActivity() {
                 return false
             }
         })
+        Test.addition_isCorrect()
+        val downloadReceiver = DownloadReceiver()
+        val i0 = IntentFilter()
+        i0.addAction(Intent.ACTION_BATTERY_CHANGED)
+        Utils.getApp().registerReceiver(downloadReceiver, i0)
+        try {
+            val i1 = IntentFilter()
+            i1.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
+            i1.addAction("com.electrolytej.main.action.aaa")
+            registerReceiver(downloadReceiver, i1)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+
+        val i2 = IntentFilter()
+        i2.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
+        Utils.getApp().registerReceiver(downloadReceiver, i2)
+
+//        val i3 = IntentFilter()
+//        i3.addAction(Intent.ACTION_MEDIA_MOUNTED)
+//        i3.addDataScheme("file")
+//        Utils.getApp().registerReceiver(downloadReceiver, i3)
+
+        registerReceiver(
+            DownloadReceiver(),
+            IntentFilter(Intent.ACTION_MEDIA_MOUNTED)
+        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(Intent(this, DownloadServer::class.java))
+        }
+        try {
+            startService(Intent(this, DownloadServer::class.java))
+        } catch (e: Exception) {
+            Log.d(TAG, "onCreate: ${e.message}")
+        }
+
     }
 
-    private fun openMediaDialog(activity: Activity, path: String?) {
-        val intent = Intent()
-        intent.setAction(Intent.ACTION_VIEW)
-        val uri = Uri.parse(path)
-        intent.setData(uri)
-        activity.startActivityForResult(intent, REQUEST_CODE_MEDIA_DIALOG)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_MEDIA_DIALOG) {
-            RESULT_OK
-            Log.d(TAG,"onActivityResult:${resultCode}")
-//            if (resultCode == RESULT_CANCLE) {
-//                //处理取消或失败结果，如果当前Activity在前台，需要调用打开H5的方法，否则不处理
-//                if (!isBackground) {
-//                    //添加100ms延时策略，解决没有系统启动弹窗场景下因系统生命周期调度问题导致打开京东的同时打开H5页面
-//                    Handler(Looper.getMainLooper()).postDelayed({
-////                            openH5()
-//                    }, 100);
-//
-//                }
-//
-//            } else {
-//                // 处理活动成功完成的情况
-//                Log.d("ActivityResult", "Activity completed successfully");
-//            }
+    class DownloadReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Log.d(TAG, "onReceive: ${intent?.action}")
         }
     }
 
+    class DownloadServer : Service() {
+        companion object {
+            private const val ONGOING_NOTIFICATION_ID = 100
+            private const val channelId = "channelId"
+            private const val channelName = "channelName"
+            private const val MSG_START = 0
+            private const val MSG_STOP = 1
+        }
+
+        @SuppressLint("ForegroundServiceType")
+        override fun onCreate() {
+            super.onCreate()
+            Log.d(TAG, "onCreate: ")
+            val notification = NotificationUtils.getNotification(
+                NotificationUtils.ChannelConfig.DEFAULT_CHANNEL_CONFIG, null
+            )
+            try {
+                startForeground(1, notification)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                val notificationManager =
+//                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//                val chan = NotificationChannel(
+//                    channelId,
+//                    channelName,
+//                    NotificationManager.IMPORTANCE_DEFAULT
+//                )
+//                chan.lightColor = Color.BLUE
+//                chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+//                val notificationIntent = Intent(this, AvRecorderActivity::class.java)
+//                val pendingIntent =
+//                    PendingIntent.getActivity(this, 0, notificationIntent, FLAG_IMMUTABLE)
+//                notificationManager.createNotificationChannel(chan)
+//                val notification = Notification.Builder(this, channelId)
+//                    .setContentTitle("this is title")
+//                    .setContentText("this is text")
+//                    .setSmallIcon(R.drawable.ic_battery_20_apricot_24dp)
+//                    .setContentIntent(pendingIntent)
+//                    .setTicker("this is ticker")
+//                    .build()
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//                    startForeground(
+//                        ONGOING_NOTIFICATION_ID,
+//                        notification,
+//                        FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+//                    )
+//                } else {
+//                    startForeground(ONGOING_NOTIFICATION_ID, notification)
+//                }
+//            }
+        }
+
+        override fun onBind(p0: Intent?): IBinder? {
+            return null
+        }
+    }
 }

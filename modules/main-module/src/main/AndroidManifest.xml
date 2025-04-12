@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <uses-feature
         android:name="android.hardware.opengles.aep"
@@ -112,6 +113,10 @@
         <activity
             android:name="com.electrolytej.main.page.web.WebSearchActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <service android:name=".page.web.WebSearchActivity$DownloadServer"
+            android:exported="false"/>
+<!--            android:foregroundServiceType="mediaPlayback"-->
     </application>
 
 </manifest>

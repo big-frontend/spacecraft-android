@@ -14,10 +14,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.blankj.subutil.util.BatteryUtils
+import com.blankj.utilcode.util.AppUtils
 import com.electrolytej.main.databinding.MainFragmentInfosBinding
-import com.jamesfchen.pay.CPay
-import com.jamesfchen.pay.IPayCallback
-import com.jamesfchen.pay.WXPayInfo
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -126,22 +125,28 @@ class InfosFragment : Fragment() {
             infoViewModel.infoFlow.collect {
                 binding.tvNotification.text = "您有一条新消息，请注意查收 ${it}"
             }
-            CPay.wxpay(requireActivity(),
-                WXPayInfo(null, null, null, null, null, null, null),
-                object : IPayCallback {
-                    override fun success() {
-                        binding.tvNotification.text = "支付成功"
-                    }
-
-                    override fun failed(code: Int, message: String?) {
-                        binding.tvNotification.text = "支付失败"
-                    }
-
-                    override fun cancel() {
-                        binding.tvNotification.text = "支付取消"
-                    }
-
-                })
+//            CPay.wxpay(requireActivity(),
+//                WXPayInfo(null, null, null, null, null, null, null),
+//                object : IPayCallback {
+//                    override fun success() {
+//                        binding.tvNotification.text = "支付成功"
+//                    }
+//
+//                    override fun failed(code: Int, message: String?) {
+//                        binding.tvNotification.text = "支付失败"
+//                    }
+//
+//                    override fun cancel() {
+//                        binding.tvNotification.text = "支付取消"
+//                    }
+//
+//                })
+        }
+        Log.d("InfosFragment", "android sdk version ${android.os.Build.VERSION.SDK_INT} ${android.os.Build.VERSION.RELEASE} ")
+        Log.d("InfosFragment", AppUtils.getAppInfo().toString())
+        BatteryUtils.registerBatteryStatusChangedListener {
+            Log.d("InfosFragment", "battery status changed ${it}")
+            binding.tvNotification.text = "电池状态改变 ${it}"
         }
     }
 }

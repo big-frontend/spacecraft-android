@@ -1,5 +1,7 @@
 package com.electrolytej.main.util;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -103,7 +105,7 @@ public class BadgeUtils {
             notificationManager.createNotificationChannel(channel);
         }
         Intent intent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, FLAG_IMMUTABLE);
         Notification notification = new NotificationCompat.Builder(context, "badge")
                 .setContentTitle("应用角标")
                 .setContentText("您有" + count + "条未读消息")

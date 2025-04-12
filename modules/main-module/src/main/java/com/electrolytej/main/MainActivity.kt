@@ -1,7 +1,9 @@
 package com.electrolytej.main
 
+import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -101,4 +103,5 @@ class MainActivity : AppCompatActivity() {
         binding.bnv.setupWithNavController(navController)
         BadgeUtils.setCount(1, this)
     }
+
 }
