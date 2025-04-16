@@ -29,6 +29,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.dependencyGuard) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.appdistribution) apply false
@@ -72,40 +73,4 @@ allprojects {
 //        }
 //    }
 //    }
-    //    flavorDimensions 'env','device'
-//    productFlavors {
-//        beta {
-//            dimension 'env'
-//        }
-//        dev{
-//            dimension 'env'
-//        }
-//        tv {
-//            dimension 'device'
-//        }
-//        phone {
-//            dimension 'device'
-//        }
-
-//    }
-    afterEvaluate {
-        if (project.plugins.hasPlugin("com.android.application") || project.plugins.hasPlugin("com.android.library") || project.plugins.hasPlugin(
-                "com.android.dynamic-feature"
-            )
-        ) {
-            project.configure<BaseExtension> {
-                flavorDimensions("device")
-                productFlavors {
-                    create("tv") {
-                        dimension = "device"
-                    }
-//                    create("watch") {
-//                        dimension = "device"
-//                    }
-                }
-            }
-        }
-    }
-
-
 }

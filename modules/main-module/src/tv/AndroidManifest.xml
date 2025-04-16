@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android">
         <activity
-            android:name="com.electrolytej.main.MainActivity"
+            android:name="com.electrolytej.main.MainActivity2"
             android:banner="@drawable/app_icon_your_company"
             android:exported="true"
             android:icon="@drawable/app_icon_your_company"

@@ -30,7 +30,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.jamesfchen.main.R
 
 import java.util.Collections
 
@@ -63,7 +62,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             initializeBackground(mSelectedMovie)
             onItemViewClickedListener = ItemViewClickedListener()
         } else {
-            val intent = Intent(activity!!, MainActivity::class.java)
+            val intent = Intent(activity!!, MainActivity2::class.java)
             startActivity(intent)
         }
     }

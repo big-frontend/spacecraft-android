@@ -2,7 +2,6 @@ package com.electrolytej.main
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import com.jamesfchen.main.R
 
 /**
  * Details activity class that loads [VideoDetailsFragment] class.

@@ -23,7 +23,7 @@ android {
         manifestPlaceholders = [
                 'BUGLY_APP_ID'     : '3d62251014',
                 'BUGLY_APP_KEY'    : 'a15ecf84-1786-40c6-abf5-fe975fce22e6',
-                "BUGLY_APP_VERSION": rootProject.ext.versionName,
+                "BUGLY_APP_VERSION": libs.versions.versionName,
                 'AMAP_KEY'         : '84198333a8ab4404cd35829dbb4ec435',
                 "PGYER_APPID"      : '0ba5ba7940deded0f77b37b7655b252e',
                 "PGYER_API_KEY"    : '8543d53b97cbb4daa5f55f807ab7e31e',
@@ -58,11 +58,6 @@ android {
 
     }
     buildTypes {
-//        inhouse {
-//            initWith release
-//            minifyEnabled false
-//            shrinkResources false
-//        }
         release {
             signingConfig signingConfigs.releaseSigningConfig
             manifestPlaceholders = [
@@ -223,12 +218,12 @@ android {
         aidl true
         buildConfig true
     }
-    android.applicationVariants.all { variant ->
-        variant.outputs.all { output->
-            println(output)
-//            outputFileName = "${appName}_${latestVersionName}.${new Date().format('yyyyMMdd')}.apk"
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all { output->
+//            println(output)
+////            outputFileName = "${appName}_${latestVersionName}.${new Date().format('yyyyMMdd')}.apk"
+//        }
+//    }
 }
 dependencies {
 //    ksp 'com.github.bumptech.glide:compiler:4.11.0'
