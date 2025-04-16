@@ -86,6 +86,11 @@
       "sourcePath": ":modules:hotel-module:foundation"
     },
     {
+      "simpleName": "hotel-tools",
+      "group": "hotel",
+      "sourcePath": ":modules:hotel-module:tools"
+    },
+    {
       "simpleName": "feeds-module",
       "format": "nsbundle",
       "group": "feeds",
