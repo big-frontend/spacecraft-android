@@ -1,4 +1,0 @@
-<resources>
-
-    <style name="Theme.Android" parent="@style/Theme.Leanback" />
-</resources>

@@ -1,9 +1,21 @@
-plugins{
+plugins {
     id "io.github.electrolytej.foundation-plugin"
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.room)
+}
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.incremental", "true")
+    arg("room.expandProjection", "true")
+}
+room {
+    schemaDirectory("$projectDir/schemas/")
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
-android{
+android {
     namespace "com.electrolytej.base"
     defaultConfig {
         externalNativeBuild {
@@ -11,12 +23,12 @@ android{
                 // issue:No compatible library found for //fbjni/fbjni Rejected the following libraries:
                 // The issue is that apps are configured to use the static STL by default. You cannot link against both the static and shared STL so you need to change your app to use the shared STL.
                 // 解决方案加入 arguments "-DANDROID_STL=c++_shared"
-                arguments  "-DANDROID_STL=c++_shared",'-DANDROID_TOOLCHAIN=clang',"-DANDROID_ARM_NEON=TRUE"
+                arguments "-DANDROID_STL=c++_shared", '-DANDROID_TOOLCHAIN=clang', "-DANDROID_ARM_NEON=TRUE"
                 cFlags "-D__STDC_FORMAT_MACROS", "-Wall", "-Werror", "-Wno-unused-parameter",
                         "-Wno-unused-variable", "-Wno-overloaded-virtual", "-fvisibility=hidden"
                 //https://zhuanlan.zhihu.com/p/72475595
-                cppFlags '-s'/*去除so lib 的符号表（libguard shrink之后的size2139k -->283k 7倍）*/  \
-                            , "-fvisibility=hidden", "-ffunction-sections", "-fdata-sections","-std=c++14"
+                cppFlags '-s'/*去除so lib 的符号表（libguard shrink之后的size2139k -->283k 7倍）*/    \
+                            , "-fvisibility=hidden", "-ffunction-sections", "-fdata-sections", "-std=c++14"
 //                "-fexceptions", "-frtti", "DHAVE_CONFIG_H", "-Wno-sign-compare","-std=gnu++11"
                 abiFilters "arm64-v8a", "armeabi-v7a"
             }
@@ -65,22 +77,48 @@ android{
     buildFeatures {
         aidl true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 dependencies {
 //    api "io.github.electrolytej:react-native:0.70.5-SNAPSHOT"
+    /**
+     * ===============================serialization start================================
+     */
+//    api(libs.kotlinx.serialization.runtime)
+    api(libs.kotlinx.serialization.json)
+    annotationProcessor 'org.parceler:parceler:1.1.12'
+    api 'org.parceler:parceler-api:1.1.12'
+
+    //》》》》》》》》json
+    //api 'com.google.code.gson:gson:2.8.2'
+    api 'com.alibaba:fastjson:1.2.54'
+    api("com.squareup.moshi:moshi:1.9.2")
+    api 'com.squareup.moshi:moshi-adapters:1.8.0'
+    api("com.squareup.moshi:moshi-kotlin:1.8.0")
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
+
+    //》》》》》》protobuf
+    //api 'com.google.protobuf:protobuf-lite:3.0.1'
+    /**
+     * ===============================serialization end================================
+     */
+    /**
+     * ===============================http start=============================
+     */
     testImplementation files('libs/jsoup-1.12.1.jar')
-//    api project(path: ':framework:common')
-//    api project(path: ':mockserver')
+    //    api project(path: ':mockserver')
 //    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     //    api 'com.android.volley:volley:1.1.1'
-    api "com.squareup.okhttp3:okhttp-tls:${OKHTTP_TLS_VERSION}"
     api "com.facebook.stetho:stetho-okhttp3:${OKHTTP_STETHO_VERSION}"
-    api "com.squareup.okhttp3:logging-interceptor:${OKHTTP_LOGGING_VERSION}"
-    testImplementation 'com.squareup.okhttp3:okhttp-dnsoverhttps:4.0.1'
-    /*
-    >>>> http style  start
-    */
-
+    api(libs.okhttp.logging)
+    api(libs.okhttp.tls)
     //restful
     api 'io.github.jamesfchen:retrofit:1.0.0'
 //    api "com.squareup.retrofit2:adapter-rxjava3:${RETROFIT_VERSION}"
@@ -99,17 +137,14 @@ dependencies {
 //    }
 //    api "io.grpc:grpc-okhttp:${rootProject.ext.grpcVersion}"
 //    api "io.grpc:grpc-stub:${rootProject.ext.grpcVersion}"
-
-    /*
-      http style  end
-    */
-
-    ksp "com.google.dagger:dagger-compiler:2.16"
-//    implementation 'javax.annotation:javax.annotation-api:1.3.2'
 //    implementation "com.github.jnr:jnr-unixsocket:0.23"
-    api "com.google.android.gms:play-services-cronet:${CRONET_VERSION}"
-
-    //    implementation project(path: ':framework::common')
+    implementation "com.liulishuo.okdownload:okdownload:1.0.7"
+    implementation "com.liulishuo.okdownload:sqlite:1.0.7"
+    implementation "com.liulishuo.okdownload:okhttp:1.0.7"
+//    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:最新版本号'
+    /**
+     * ===============================http end=============================
+     */
     /**
      * ===============================av start=============================
      */
@@ -135,6 +170,8 @@ dependencies {
 //    implementation 'com.google.android.exoplayer:exoplayer-core:+'
 //    implementation 'com.google.android.exoplayer:exoplayer-dash:+'
 //    implementation 'com.google.android.exoplayer:exoplayer-ui:+'
+    api(libs.androidx.media3.exoplayer)
+    api(libs.androidx.media3.ui)
     /**
      * ===============================av end=============================
      */
@@ -146,7 +183,7 @@ dependencies {
     api(libs.glide.recyclerview)
     api(libs.glide.okhttp3)
     ksp(libs.glide.ksp)
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     api "com.facebook.fresco:fresco:${FRESCO_VERSION}"
     api "com.facebook.fresco:animated-gif:${FRESCO_GIF_VERSION}"
@@ -154,45 +191,46 @@ dependencies {
     api "com.facebook.fresco:animated-webp:${FRESCO_WEBP_VERSION}"
     api "com.facebook.fresco:webpsupport:${FRESCO_WEBP_VERSION}"
     api "com.facebook.fresco:imagepipeline-okhttp3:${FRESCO_OKHTTP3_VERSION}"
-    api "com.squareup.picasso:picasso:${PICASSO_VERSION}"
-    api "com.squareup.picasso:picasso-pollexor:${PICASSO_VERSION}"
+    api libs.picasso
+    api libs.picasso.pollexor
 
     api "com.caverock:androidsvg:${ANDROIDSVG_VERSION}"
+    api(libs.coil.compose)
     /**
      * ===============================image end=============================
      */
-
-//    implementation 'com.google.android.gms:play-services-location:16.0.0'
-//    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
-    api 'com.google.firebase:firebase-perf'
-    api 'com.google.firebase:firebase-perf-ktx'
-    api 'com.google.firebase:firebase-crashlytics'
-    api 'com.google.firebase:firebase-crashlytics-ktx'
-    api 'com.google.firebase:firebase-crashlytics-ndk'
-    api 'com.google.firebase:firebase-analytics'
-    api 'com.google.firebase:firebase-analytics-ktx'
-    api 'com.firebaseui:firebase-ui-database:6.0.2'
-    api 'com.firebaseui:firebase-ui-firestore:6.0.2'
-    api('com.firebaseui:firebase-ui-storage:6.0.2') {
-        exclude group: 'com.github.bumptech.glide', module: 'glide'
-    }
-
-    api 'androidx.emoji:emoji:1.1.0'
-    api 'androidx.emoji:emoji-appcompat:1.1.0'
-    api 'androidx.emoji:emoji-bundled:1.1.0'
-    api "androidx.work:work-runtime:2.5.0"
-    api "androidx.work:work-runtime-ktx:2.5.0"
-//    api "androidx.work:work-rxjava2:2.5.0"
-    api "androidx.work:work-gcm:2.5.0"
-    androidTestImplementation "androidx.work:work-testing:2.5.0"
-//    api "androidx.work:work-firebase:2.2.0"
-
-    //android 21+可以不接入该sdk，android sdk默认集成
-    api 'androidx.multidex:multidex:2.0.1'
-
     /**
-     * ================================apm start=====================================
+     * ================================database start==============================
+     */
+    testImplementation(libs.room.testing)
+    api(libs.room.runtime)
+    api(libs.room.rxjava2)
+    ksp(libs.room.compiler)
+
+    //realm database
+    api "io.realm:realm-annotations:${REALM_VERSION}"
+    api "io.realm:realm-android-library:${REALM_VERSION}"
+    api "io.realm:realm-android-kotlin-extensions:${REALM_VERSION}"
+    ksp "io.realm:realm-annotations-processor:${REALM_VERSION}"
+
+    //firebase database
+    api 'com.google.firebase:firebase-database'
+    api 'com.google.firebase:firebase-firestore'
+    api 'com.google.firebase:firebase-storage'
+    api 'com.google.firebase:firebase-storage-ktx'
+    api 'com.google.firebase:firebase-config'
+    api "com.tencent:mmkv-static:${MMKV_VERSION}"
+
+//    implementation "androidx.datastore:datastore:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
+//    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
+//    implementation "com.dropbox.mobile.store:store4:4.0.1"
+    /**
+     * ================================database end==============================
+     */
+    /**
+     * ================================performance start=====================================
      */
     //crash and anr
     api 'com.tencent.bugly:nativecrashreport:3.7.1'
@@ -229,44 +267,48 @@ dependencies {
 //    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
 //    debugApi "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3"
     api 'com.github.markzhai:blockcanary-android:1.5.0'
-    /**
-     * ================================apm end=====================================
-     */
     implementation "androidx.startup:startup-runtime:1.1.0"
     implementation 'com.alibaba.android:alpha:1.0.0.1@aar'
-    //    implementation project(path: ':framework:common')
+
+    api "com.orhanobut:logger:$LOGGER_VERSION"
+    api 'com.jakewharton.timber:timber:4.7.1'
+    api 'com.facebook.stetho:stetho:1.5.1'
+    api 'com.facebook.stetho:stetho-js-rhino:1.5.1'
+    lintPublish project.moduleify("framework-lint-rules")
     /**
-     * ================================database start==============================
+     * ================================performance end=====================================
      */
-    //room database
-    testImplementation "androidx.room:room-testing:${ROOM_VERSION}"
-    api "androidx.room:room-runtime:${ROOM_VERSION}"
-    api "androidx.room:room-rxjava2:${ROOM_VERSION}"
-    api "androidx.room:room-ktx:${ROOM_VERSION}"
-    ksp "androidx.room:room-compiler:${ROOM_VERSION}"
+//    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    api "com.google.android.gms:play-services-cronet:${CRONET_VERSION}"
+//    implementation 'com.google.android.gms:play-services-location:16.0.0'
+//    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
+    api platform("com.google.firebase:firebase-bom:$FIREBASE_VERSION")
+    api 'com.google.firebase:firebase-perf'
+    api 'com.google.firebase:firebase-perf-ktx'
+    api 'com.google.firebase:firebase-crashlytics'
+    api 'com.google.firebase:firebase-crashlytics-ktx'
+    api 'com.google.firebase:firebase-crashlytics-ndk'
+    api 'com.google.firebase:firebase-analytics'
+    api 'com.google.firebase:firebase-analytics-ktx'
+    api 'com.firebaseui:firebase-ui-database:6.0.2'
+    api 'com.firebaseui:firebase-ui-firestore:6.0.2'
+    api('com.firebaseui:firebase-ui-storage:6.0.2') {
+        exclude group: 'com.github.bumptech.glide', module: 'glide'
+    }
 
-    //realm database
-    api "io.realm:realm-annotations:${REALM_VERSION}"
-    api "io.realm:realm-android-library:${REALM_VERSION}"
-    api "io.realm:realm-android-kotlin-extensions:${REALM_VERSION}"
-    ksp "io.realm:realm-annotations-processor:${REALM_VERSION}"
+    api 'androidx.emoji:emoji:1.1.0'
+    api 'androidx.emoji:emoji-appcompat:1.1.0'
+    api 'androidx.emoji:emoji-bundled:1.1.0'
+    api "androidx.work:work-runtime:2.5.0"
+    api "androidx.work:work-runtime-ktx:2.5.0"
+//    api "androidx.work:work-rxjava2:2.5.0"
+    api "androidx.work:work-gcm:2.5.0"
+    androidTestImplementation "androidx.work:work-testing:2.5.0"
+//    api "androidx.work:work-firebase:2.2.0"
 
-    //firebase database
-    api 'com.google.firebase:firebase-database'
-    api 'com.google.firebase:firebase-firestore'
-    api 'com.google.firebase:firebase-storage'
-    api 'com.google.firebase:firebase-storage-ktx'
-    api 'com.google.firebase:firebase-config'
-    api "com.tencent:mmkv-static:${MMKV_VERSION}"
+    //android 21+可以不接入该sdk，android sdk默认集成
+    api 'androidx.multidex:multidex:2.0.1'
 
-//    implementation "androidx.datastore:datastore:1.0.0-rc01"
-//    implementation "androidx.datastore:datastore-rxjava3:1.0.0-rc01"
-//    implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
-//    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0-rc01"
-//    implementation "com.dropbox.mobile.store:store4:4.0.1"
-    /**
-     * ================================database end==============================
-     */
     api "androidx.appcompat:appcompat:1.3.1"
     api "androidx.activity:activity-ktx:1.3.1"
     api 'androidx.fragment:fragment-ktx:1.3.5'
@@ -275,11 +317,6 @@ dependencies {
     api 'joda-time:joda-time:2.10.2'
     api 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
     api "org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN_VERSION}"
-
-//    debugApi 'me.ele:uetool:1.0.17'
-//    releaseApi 'me.ele:uetool-no-op:1.0.17'
-    // if you want to show more attrs a bout Fresco's DraweeView
-//    debugApi 'me.ele:uetool-fresco:1.0.17'
     api "com.squareup.okio:okio:2.9.0"
     api 'com.jakewharton:disklrucache:2.0.2'
     /**
@@ -295,31 +332,6 @@ dependencies {
 
     /**
      * ===============================async end================================
-     */
-    /**
-     * ===============================serialization start================================
-     */
-    api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"
-    annotationProcessor 'org.parceler:parceler:1.1.12'
-    api 'org.parceler:parceler-api:1.1.12'
-
-    //》》》》》》》》json
-    //api 'com.google.code.gson:gson:2.8.2'
-    api 'com.alibaba:fastjson:1.2.54'
-    api("com.squareup.moshi:moshi:1.9.2")
-    api 'com.squareup.moshi:moshi-adapters:1.8.0'
-    api("com.squareup.moshi:moshi-kotlin:1.8.0")
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
-
-    //》》》》》》protobuf
-    //api 'com.google.protobuf:protobuf-lite:3.0.1'
-    /**
-     * ===============================serialization end================================
-     */
-
-
-    /**
-     * ===============================mvvm start================================
      */
 
     // Lifecycles only (no ViewModel or LiveData)
@@ -349,48 +361,34 @@ dependencies {
 //    api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
 // If you want to use Kotlin syntax with Android Lifecycle
 //    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:3.0.0'
+    api libs.eventbus
+    api(libs.dagger)
+    api(libs.dagger.android)
+    api(libs.dagger.android.support)
+//    ksp(libs.dagger.compiler)
+    api(libs.hilt.android)
+    api(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
 
-    /**
-     * ===============================mvvm end================================
-     */
-
-    /**
-     * ===============================decoupling start================================
-     */
-    api 'org.greenrobot:eventbus:3.1.1'
-    // Dagger dependencies
-    api "com.google.dagger:dagger:2.35.1"
-    api "com.google.dagger:dagger-android:2.35.1"
-    api "com.google.dagger:dagger-android-support:2.16"
-    /**
-     * ===============================decoupling  end================================
-     */
-
-
-    /**
-     * ===============================monitor start=============================
-     */
-    api "com.orhanobut:logger:$LOGGER_VERSION"
-    api 'com.jakewharton.timber:timber:4.7.1'
-    api 'com.facebook.stetho:stetho:1.5.1'
-    api 'com.facebook.stetho:stetho-js-rhino:1.5.1'
-
-//    debugImplementation "io.github.jamesfchen:lint-checker:1.0.0"
-//    lintPublish project(path: ':lint-rules')
-    /**
-     * ===============================monitor end=============================
-     */
     api "com.amap.api:location:${AMAP_LOCATION_VERSION}"
     api "com.amap.api:search:${AMAP_SEARCH_VERSION}"
     api "com.amap.api:3dmap:${AMAP_3DMAP_VERSION}"
-    lintPublish project.moduleify("framework-lint-rules")
-    implementation("androidx.webkit:webkit:1.6.0")
-    implementation 'com.tencent.tbs:tbssdk:44286'
 
-    implementation "com.liulishuo.okdownload:okdownload:1.0.7"
-    implementation "com.liulishuo.okdownload:sqlite:1.0.7"
-    implementation "com.liulishuo.okdownload:okhttp:1.0.7"
-//    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:最新版本号'
+    api("androidx.webkit:webkit:1.6.0")
+    api 'com.tencent.tbs:tbssdk:44286'
+
+    debugApi 'com.github.eleme.UETool:uetool:1.3.4'
+    debugApi 'com.github.eleme.UETool:uetool-base:1.3.4'
+    releaseApi'com.github.eleme.UETool:uetool-no-op:1.3.4'
+    debugApi 'com.github.eleme.UETool:uetool-fresco:1.3.4'// if you want to show more attrs about Fresco's DraweeView
+//    def lastversion = "3.5.0"
+//    debugImplementation "io.github.didi.dokit:dokitx:${lastversion}"//核心模块
+//    debugImplementation "io.github.didi.dokit:dokitx-ft:${lastversion}"//文件同步模块
+//    debugImplementation "io.github.didi.dokit:dokitx-mc:${lastversion}"//一机多控模块
+//    debugImplementation "io.github.didi.dokit:dokitx-weex:${lastversion}"//weex模块
+//    releaseImplementation "io.github.didi.dokit:dokitx-no-op:${lastversion}"//no-op 模块
+
+    api(libs.androidx.core.splashscreen)
 
 }
 

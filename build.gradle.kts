@@ -50,20 +50,21 @@ plugins {
 }
 allprojects {
 //    configurations.all {
-    // don't cache changing modules at all，check for updates every build
-    //一般在开发模式下，我们可以频繁的发布SNAPSHOT版本，
-    // 以便让其它项目能实时的使用到最新的功能做联调；当版本趋于稳定时，再发布一个正式版本，供正式使用。
-    // SNAPSHOT版本可能会频繁更新但是版本号是不变的，需要取消缓存策略
-    //gradlew build --refresh-dependencies前置刷新依赖
-    // [理解Maven中的SNAPSHOT版本和正式版本](https://www.cnblogs.com/huang0925/p/5169624.html)
-    //[更新maven组件的坑](https://qa.1r1g.com/sf/ask/2944103851/)
-//        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 //        resolutionStrategy {
-    //出现两个不同版本时会报错，比如：glide:4.8 与 glide：4.11
+            // don't cache changing modules at all，check for updates every build
+            //一般在开发模式下，我们可以频繁的发布SNAPSHOT版本，
+            // 以便让其它项目能实时的使用到最新的功能做联调；当版本趋于稳定时，再发布一个正式版本，供正式使用。
+            // SNAPSHOT版本可能会频繁更新但是版本号是不变的，需要取消缓存策略
+            //gradlew build --refresh-dependencies前置刷新依赖
+            // [理解Maven中的SNAPSHOT版本和正式版本](https://www.cnblogs.com/huang0925/p/5169624.html)
+            //[更新maven组件的坑](https://qa.1r1g.com/sf/ask/2944103851/)
+//            cacheChangingModulesFor(0, TimeUnit.SECONDS)
+//    出现两个不同版本时会报错，比如：glide:4.8 与 glide：4.11
 //            failOnVersionConflict()
 //            force 'com.github.bumptech.glide:glide:4.11.0'
 //            force 'androidx.fragment:fragment:1.3.6'app_config
 //            force 'androidx.fragment:fragment-ktx:1.3.5'
+//            force("me.weishu:free_reflection:3.0.1")
 //        }
 
 //    resolutionStrategy.eachDependency {
@@ -73,4 +74,20 @@ allprojects {
 //        }
 //    }
 //    }
+//    tasks.withType<Test>().configureEach {
+//        testLogging {
+//            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+//            showExceptions = true
+//            showCauses = true
+//            showStackTraces = true
+//        }
+//    }
+//    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+//        kotlinOptions {
+//            jvmTarget = JavaVersion.VERSION_17.majorVersion
+//            apiVersion = "1.5"
+//            freeCompilerArgs = listOf("-Xno-optimized-callable-references")
+//        }
+//    }
+
 }

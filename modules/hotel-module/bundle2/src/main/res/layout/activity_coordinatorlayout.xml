@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.jamesfchen.bundle2.page.customview.newLayoutExprimental.CoordinatorLayoutActivity">
+    tools:context=".page.customview.newLayoutExprimental.CoordinatorLayoutActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abl"
@@ -18,7 +18,7 @@
         app:liftOnScroll="true"
         tools:expanded="false">
 
-        <com.jamesfchen.bundle2.page.customview.newLayoutExprimental.coordinator.CollapsingBarsLayout
+        <com.electrolytej.bundle2.page.customview.newLayoutExprimental.coordinator.CollapsingBarsLayout
             android:id="@+id/ctbl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -41,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@id/iv"
-                app:tabMode="auto"
-                android:background="@color/apricot" />
+                android:background="@color/apricot"
+                app:tabMode="auto" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb"
@@ -50,14 +50,14 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/apricot"
                 app:cbl_layout_collapseMode="pin"
-                app:logo="@mipmap/ic_launcher"
+                app:logo="@drawable/ic_colorpicker_swatch_selected"
                 app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:subtitle="subtitle"
                 app:title="title" />
 
 
-        </com.jamesfchen.bundle2.page.customview.newLayoutExprimental.coordinator.CollapsingBarsLayout>
+        </com.electrolytej.bundle2.page.customview.newLayoutExprimental.coordinator.CollapsingBarsLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

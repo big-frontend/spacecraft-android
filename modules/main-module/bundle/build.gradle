@@ -1,0 +1,81 @@
+plugins {
+    id "io.github.electrolytej.static-bundle-plugin"
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
+//    id("electrolytej.android.library.jacoco")
+
+}
+apply from: "$rootDir/script/ui_compose.gradle"
+apply from: "$rootDir/script/ui_tradition.gradle"
+android {
+    namespace "com.electrolytej.main"
+    defaultConfig {
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        buildConfigField('String', 'CONFIG_SERVER_BASE_URL', '"http://192.168.5.103:9000"')
+        externalNativeBuild {
+            cmake {
+                // issue:No compatible library found for //fbjni/fbjni Rejected the following libraries:
+                // The issue is that apps are configured to use the static STL by default. You cannot link against both the static and shared STL so you need to change your app to use the shared STL.
+                // 解决方案加入 arguments "-DANDROID_STL=c++_shared"
+                arguments "-DANDROID_STL=c++_shared", '-DANDROID_TOOLCHAIN=clang', "-DANDROID_ARM_NEON=TRUE"
+                cFlags "-D__STDC_FORMAT_MACROS"
+                //https://zhuanlan.zhihu.com/p/72475595
+                cppFlags '-s'/*去除so lib 的符号表（libguard shrink之后的size2139k -->283k 7倍）*/   \
+                            , "-fvisibility=hidden", "-ffunction-sections", "-fdata-sections", "-std=c++14"
+                abiFilters "arm64-v8a", "armeabi-v7a"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+        compose = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            testCoverageEnabled = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+composeCompiler {
+    enableStrongSkippingMode = true
+}
+dependencies {
+//    lintChecks project(path: ':lint-rules')
+    project.depsConfig("implementation", "account-module")
+    implementation project.moduleify('hotel-export')
+    implementation project.moduleify('framework-base')
+//    ksp 'com.github.bumptech.glide:compiler:4.11.0'
+    ksp(libs.glide.ksp)
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation 'top.zibin:Luban:1.1.8'
+    implementation 'com.danikula:videocache:2.7.1'
+    implementation 'com.github.danylovolokh:video-player-manager:0.2.0'
+    api(libs.hilt.android)
+    api(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
+}

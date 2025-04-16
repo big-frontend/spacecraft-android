@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.jamesfchen.bundle2.page.infos.InfosViewModel" />
+            type="com.electrolytej.bundle2.page.infos.InfosViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,7 @@
             app:layout_constraintVertical_chainStyle="spread"
             tools:text="adsfasdf" />
 
-        <com.jamesfchen.bundle2.page.infos.PoemView
+        <com.electrolytej.bundle2.page.infos.PoemView
             android:id="@+id/myTextView"
             poem="@={viewmodel.notification}"
             android:layout_width="wrap_content"

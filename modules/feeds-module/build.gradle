@@ -1,10 +1,19 @@
 plugins {
     id("io.github.electrolytej.static-bundle-plugin")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.kotlin.kapt)
 }
 apply from: "$rootDir/script/ui_tradition.gradle"
 android {
     namespace = "com.electrolytej.feeds"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {

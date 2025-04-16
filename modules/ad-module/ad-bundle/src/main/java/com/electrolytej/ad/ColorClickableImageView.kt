@@ -9,7 +9,7 @@ import androidx.core.view.drawToBitmap
 
 class ColorClickableImageView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1
-) : ImageView(ctx, attrs, defStyleAttr) {
+) : androidx.appcompat.widget.AppCompatImageView(ctx, attrs, defStyleAttr) {
     companion object {
         private const val TAG = "ColorClickableImageView"
     }

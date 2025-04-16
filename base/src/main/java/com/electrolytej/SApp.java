@@ -17,14 +17,6 @@ import com.electrolytej.loader.alialpha.ConfigTest;
 import com.electrolytej.util.Util;
 import com.google.firebase.perf.metrics.AddTrace;
 
-
-/**
- * Copyright ® $ 2017
- * All right reserved.
- *
- * @since: 2017/7/4
- *
- */
 public class SApp extends Application implements Configuration.Provider {
     private static SApp app;
     public static SApp getInstance() {

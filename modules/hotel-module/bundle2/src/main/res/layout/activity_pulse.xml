@@ -22,7 +22,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/ic_favorite_border_read_24dp" />
 
-        <com.jamesfchen.bundle2.widget.pulse.HeartLayout
+        <com.electrolytej.bundle2.widget.pulse.HeartLayout
             android:id="@+id/heart_layout"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_marginBottom="10dp"
         app:srcCompat="@drawable/ic_favorite_border_read_24dp" />
 
-    <com.jamesfchen.bundle2.widget.pulse.HeadBubbleView
+    <com.electrolytej.bundle2.widget.pulse.HeadBubbleView
         android:id="@+id/hbv_heartbeat"
         android:layout_width="100dp"
         android:layout_height="100dp"

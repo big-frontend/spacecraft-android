@@ -1,6 +1,7 @@
 package com.jamesfchen.bundle1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,8 @@ import com.madrapps.plot.line.DataPoint
 import com.madrapps.plot.line.LineGraph
 import com.madrapps.plot.line.LinePlot
 import androidx.compose.ui.Modifier
+import androidx.tv.material3.Button
+
 class Bundle1Activity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +40,14 @@ class Bundle1Activity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
+    Button(
+        onClick = {
+            Log.d("cjf","click")
+        }
+    ) {
     Text(text = "Hello $name!")
+
+    }
 }
 
 @Preview(showBackground = true)

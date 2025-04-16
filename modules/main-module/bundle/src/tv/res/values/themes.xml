@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.Android" parent="@style/Theme.Leanback" />
+    <style name="Theme.JetStream" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/jetstream_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_play_circle</item>
+        <item name="postSplashScreenTheme">@style/Theme.JetStream</item>
+    </style>
+</resources>

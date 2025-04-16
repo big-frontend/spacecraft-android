@@ -32,8 +32,6 @@ import okhttp3.OkHttpClient;
  * Copyright ® $ 2017
  * All right reserved.
  *
- * @author: jamesfchen
- * @since: Mar/28/2020  Sat
  * <p>
  * Generated API 目前仅可以在 Application 模块内使用。这一限制可以让我们仅持有一份 Generated API，
  * 而不是各个 Library 和 Application 中均有自己定义出来的 Generated GAPI。这一做法会让 Generated API 的调用更简单，

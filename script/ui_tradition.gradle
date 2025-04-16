@@ -14,10 +14,10 @@ android{
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+//    kotlinOptions {
+//        jvmTarget = '17'
+//    }
 
-    kotlinOptions {
-        jvmTarget = '17'
-    }
 }
 dependencies{
     api 'jp.wasabeef:recyclerview-animators:4.0.2'
@@ -72,6 +72,7 @@ dependencies{
 //    api 'it.chengdazhi.styleimageview:styleimageview:1.0.4'
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui.ktx)
+    tvImplementation(libs.androidx.leanback)
 
 
 }

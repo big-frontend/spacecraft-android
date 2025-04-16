@@ -1,5 +1,5 @@
 {
-  "author": "jamesfchen",
+  "author": "electrolytej",
   "description": "该配置文件给idea plugin插件和gradle plugin读取,idea plugin通过该文件可以实现管理想要编译的模块，gradle plugin则可以根据这些模块信息生成快速模块",
   "buildVariants": [
     "tvDebug",
@@ -42,14 +42,15 @@
     },
     {
       "simpleName": "im-bundle",
-      "format": "ndbundle",
+      "format": "nsbundle",
       "group": "im",
-      "sourcePath": ":modules:im-module:bundle"
+      "sourcePath": ":modules:im-bundle"
     },
     {
       "simpleName": "im-export",
+      "format": "api",
       "group": "im",
-      "sourcePath": ":modules:im-module:export"
+      "sourcePath": ":modules:im-export"
     },
     {
       "simpleName": "account-module",
@@ -58,14 +59,20 @@
       "sourcePath": ":modules:account-module"
     },
     {
-      "simpleName": "main-module",
+      "simpleName": "main-bundle",
       "format": "nsbundle",
       "group": "main",
-      "sourcePath": ":modules:main-module"
+      "sourcePath": ":modules:main-module:bundle"
+    },
+    {
+      "simpleName": "main-export",
+      "format": "api",
+      "group": "main",
+      "sourcePath": ":modules:main-module:export"
     },
     {
       "simpleName": "hotel-bundle1",
-      "format": "nsbundle",
+      "format": "ndbundle",
       "group": "hotel",
       "sourcePath": ":modules:hotel-module:bundle1"
     },
@@ -86,9 +93,9 @@
       "sourcePath": ":modules:hotel-module:foundation"
     },
     {
-      "simpleName": "hotel-tools",
+      "simpleName": "hotel-tool",
       "group": "hotel",
-      "sourcePath": ":modules:hotel-module:tools"
+      "sourcePath": ":modules:hotel-module:tool"
     },
     {
       "simpleName": "feeds-module",

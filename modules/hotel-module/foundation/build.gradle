@@ -1,5 +1,7 @@
 plugins {
     id "io.github.electrolytej.static-bundle-plugin"
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
 android {

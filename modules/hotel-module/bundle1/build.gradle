@@ -1,23 +1,49 @@
 plugins {
-    id "io.github.electrolytej.static-bundle-plugin"
-    id 'org.jetbrains.kotlin.android'
-    id("com.google.devtools.ksp")
+    id "io.github.electrolytej.dynamic-bundle-plugin"
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.compose)
+    alias(libs.plugins.room)
 }
-
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.incremental", "true")
+    arg("room.expandProjection", "true")
+}
+room {
+    schemaDirectory("$projectDir/schemas/")
+}
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android {
     namespace "com.electrolytej.bundle1"
+    defaultConfig {
+        javaCompileOptions.annotationProcessorOptions.arguments = [
+                "room.schemaLocation"  : "$projectDir/schemas",
+                "room.incremental"     : "true",
+                "room.expandProjection": "true"
+        ]
+    }
     buildFeatures {
         viewBinding true
+        compose = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 composeCompiler {
     enableStrongSkippingMode = true
 }
 dependencies {
-    implementation project.moduleify("hotel-foundation")
-    implementation project.moduleify('framework-base')
+    ksp(libs.room.compiler)
+    compileOnly project.moduleify("hotel-foundation")
+    compileOnly project.moduleify('framework-base')
     ksp(libs.glide.ksp)
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.madrapps:plot:0.1.1'

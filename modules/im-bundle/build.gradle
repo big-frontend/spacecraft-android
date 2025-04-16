@@ -1,0 +1,48 @@
+plugins {
+    id "io.github.electrolytej.static-bundle-plugin"
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.compose)
+}
+apply from: "${rootDir}/script/ui_compose.gradle"
+android{
+    namespace "com.electrolytej.im"
+    defaultConfig {
+        buildConfigField('String', 'WEATHER_APP_ID', '"fb306d52c9aaff4a1ae20fbe8aa38afb"')
+        buildConfigField('String', 'CONFIG_SERVER_BASE_URL', '"http://192.168.5.103:9000"')
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+        compose = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            testCoverageEnabled = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+}
+composeCompiler {
+    enableStrongSkippingMode = true
+}
+dependencies {
+    implementation project.moduleify('framework-base')
+    ksp(libs.glide.ksp)
+//    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.github.madrapps:plot:0.1.1'
+}

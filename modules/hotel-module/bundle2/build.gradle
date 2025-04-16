@@ -1,6 +1,7 @@
 plugins {
     id "io.github.electrolytej.static-bundle-plugin"
     id 'org.jetbrains.kotlin.android'
+    alias(libs.plugins.kotlin.kapt)
     id("com.google.devtools.ksp")
 }
 apply from: "${rootDir.path}/script/ui_tradition.gradle"
@@ -9,6 +10,14 @@ android {
     buildFeatures {
         dataBinding true
         aidl true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 dependencies {

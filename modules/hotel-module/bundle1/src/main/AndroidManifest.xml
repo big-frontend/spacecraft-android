@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     tools:ignore="ImpliedTouchscreenHardware,MissingLeanbackLauncher,MissingLeanbackSupport">
-
+    <dist:module
+        dist:instant="true"
+        dist:title="@string/app_name">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="false" />
+    </dist:module>
     <application>
         <activity
-            android:name=".Bundle1Activity"
+            android:name="com.jamesfchen.bundle1.Bundle1Activity"
             android:theme="@style/Theme.SpacecraftAndroid.NoActionBar"
             android:exported="true" />
     </application>

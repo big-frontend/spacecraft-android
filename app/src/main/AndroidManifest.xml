@@ -66,6 +66,7 @@
 
     <!--        android:allowBackup="${allowBackup}"-->
     <application
+        android:name="com.spacecraft.GApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -75,6 +76,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        tools:replace="android:theme,android:name"
         tools:ignore="GoogleAppIndexingWarning">
         <meta-data
             android:name="com.amap.api.v2.apikey"
