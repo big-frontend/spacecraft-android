@@ -56,4 +56,5 @@ dependencies {
     implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.danikula:videocache:2.7.1'
     implementation 'com.github.danylovolokh:video-player-manager:0.2.0'
+    tvImplementation(libs.androidx.leanback)
 }

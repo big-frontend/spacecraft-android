@@ -1,3 +1,5 @@
+import com.android.build.gradle.BaseExtension
+
 buildscript {
     repositories {
         maven(uri("$rootDir/repo"))
@@ -38,8 +40,8 @@ plugins {
     alias(libs.plugins.secrets) apply false
     alias(libs.plugins.room) apply false
     alias(libs.plugins.module.graph) apply true // Plugin applied to allow module graph generation
-    id("io.sentry.android.gradle") version "4.1.0" apply(false)
-    id("io.github.electrolytej.module-publisher-plugin") version("1.0.0") apply false
+    id("io.sentry.android.gradle") version "4.1.0" apply (false)
+    id("io.github.electrolytej.module-publisher-plugin") version ("1.0.0") apply false
     id("io.github.electrolytej.module-assembler-rootproject-plugin") apply true
 
     id("electrolytej.android.application.jacoco") apply false
@@ -70,4 +72,40 @@ allprojects {
 //        }
 //    }
 //    }
+    //    flavorDimensions 'env','device'
+//    productFlavors {
+//        beta {
+//            dimension 'env'
+//        }
+//        dev{
+//            dimension 'env'
+//        }
+//        tv {
+//            dimension 'device'
+//        }
+//        phone {
+//            dimension 'device'
+//        }
+
+//    }
+    afterEvaluate {
+        if (project.plugins.hasPlugin("com.android.application") || project.plugins.hasPlugin("com.android.library") || project.plugins.hasPlugin(
+                "com.android.dynamic-feature"
+            )
+        ) {
+            project.configure<BaseExtension> {
+                flavorDimensions("device")
+                productFlavors {
+                    create("tv") {
+                        dimension = "device"
+                    }
+//                    create("watch") {
+//                        dimension = "device"
+//                    }
+                }
+            }
+        }
+    }
+
+
 }

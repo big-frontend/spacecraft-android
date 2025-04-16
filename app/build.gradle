@@ -58,11 +58,11 @@ android {
 
     }
     buildTypes {
-        inhouse {
-            initWith release
-            minifyEnabled false
-            shrinkResources false
-        }
+//        inhouse {
+//            initWith release
+//            minifyEnabled false
+//            shrinkResources false
+//        }
         release {
             signingConfig signingConfigs.releaseSigningConfig
             manifestPlaceholders = [

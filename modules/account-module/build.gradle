@@ -16,13 +16,6 @@ android {
             buildConfigField 'String', "HTTP_BASE_URL", "\"https://www.cmpassport.com/unisdk/rsapi/loginTokenValidate\""
             buildConfigField 'String', "HTTP_VALIDATE_TOKEN_URL", "\"https://www.cmpassport.com/openapi/rs/tokenValidate\""
         }
-        inhouse {
-            buildConfigField 'String', "APP_ID", "\"应用的appid\""
-            buildConfigField 'String', "APP_KEY", "\"应用的appkey\""
-            buildConfigField 'String', "APP_SECRET", "\"应用的secret\""
-            buildConfigField 'String', "HTTP_BASE_URL", "\"\""
-            buildConfigField 'String', "HTTP_VALIDATE_TOKEN_URL", "\"https://www.cmpassport.com/openapi/rs/tokenValidate\""
-        }
         debug {
             buildConfigField 'String', "APP_ID", "\"应用的appid\""
             buildConfigField 'String', "APP_KEY", "\"应用的appkey\""
