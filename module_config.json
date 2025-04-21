@@ -84,6 +84,7 @@
     },
     {
       "simpleName": "hotel-export",
+      "format": "api",
       "group": "hotel",
       "sourcePath": ":modules:hotel-export"
     },
@@ -117,6 +118,7 @@
     },
     {
       "simpleName": "ad-export",
+      "format": "api",
       "group": "commerce",
       "sourcePath": ":modules:ad-export"
     }
