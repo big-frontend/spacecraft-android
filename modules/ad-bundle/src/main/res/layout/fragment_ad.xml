@@ -19,7 +19,7 @@
     <!--        app:layout_constraintTop_toTopOf="parent"-->
     <!--        app:layout_constraintVertical_weight="1" />-->
 
-    <com.electrolytej.ad.ShinyAdView
+    <com.electrolytej.ad.widget.ShinyAdView
         android:id="@+id/sv_shiny"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.electrolytej.ad.BreatheAdView-->
+<!--    <com.electrolytej.ad.widget.BreatheAdView-->
 <!--        android:id="@+id/bv_breath"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
@@ -36,7 +36,7 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
-<!--    <com.electrolytej.ad.BubbleAdView-->
+<!--    <com.electrolytej.ad.widget.BubbleAdView-->
 <!--        android:id="@+id/bv_bubble"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->

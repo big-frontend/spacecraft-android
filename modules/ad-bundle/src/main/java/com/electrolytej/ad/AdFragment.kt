@@ -11,13 +11,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.blankj.utilcode.util.ConvertUtils
-import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.blankj.utilcode.util.SizeUtils
 import com.electrolytej.ad.databinding.FragmentAdBinding
-import com.electrolytej.sensor.SensorDispatcher
 import com.electrolytej.util.UserAgentUtil
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -28,7 +24,7 @@ class AdFragment : Fragment() {
         private const val TAG = "AdFragment"
     }
 
-    private lateinit var sDispatcher: SensorDispatcher
+
     private val viewModel by viewModels<AdViewModel>()
     lateinit var binding: FragmentAdBinding
     override fun onCreateView(
@@ -40,7 +36,7 @@ class AdFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sDispatcher = SensorDispatcher(requireContext())
+
         binding.svShiny.setOnShinyListener {
 //            BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
             findNavController().navigateUp()
@@ -52,15 +48,7 @@ class AdFragment : Fragment() {
         Log.d(TAG, "onViewCreated ${ScreenUtils.getScreenWidth()}   ${ScreenUtils.getScreenWidth1()} ")
         Log.d(TAG, "user-agent ${UserAgentUtil.getWebUserAgent()}   ${UserAgentUtil.getAndroidUserAgent()} ")
 
-    }
 
-    override fun onResume() {
-        super.onResume()
-        sDispatcher.start()
-    }
-    override fun onPause() {
-        super.onPause()
-        sDispatcher.stop()
     }
 
     fun getMyPackage() {

@@ -7,7 +7,6 @@ import com.electrolytej.sensor.ISensorHandler
 import com.google.auto.service.AutoService
 import kotlin.math.abs
 import kotlin.math.sqrt
-@AutoService(ISensorHandler::class)
 class TwoStageShakeSensorHandler : ISensorHandler {
     companion object {
         private const val TAG = "TwoStageShakeSensorHandler"

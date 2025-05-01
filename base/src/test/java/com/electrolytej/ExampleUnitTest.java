@@ -4,9 +4,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.util.ArrayMap;
+
 import com.electrolytej.collection.WeakHashSet;
+import com.electrolytej.sensor.ISensorHandler;
+import com.electrolytej.sensor.SensorDetector;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -66,6 +72,17 @@ public class ExampleUnitTest {
 //        }
 
     }
+    private Map<Class<?>, TestClass> sensorHandler = new HashMap<>();
+    @Test
+    public void testSensorHandler() {
+        TestClass testClass = new TestClass("test1");
+        sensorHandler.put(TestClass.class,testClass);
+        TestClass testClass2 = new TestClass("test2");
+        sensorHandler.putIfAbsent(TestClass.class,testClass2);
+        System.out.println(sensorHandler.size());
+        System.out.println(sensorHandler.get(TestClass.class).name);
+    }
+
 
     static class TestClass {
         public String name;

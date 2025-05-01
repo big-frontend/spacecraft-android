@@ -14,9 +14,15 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+
+    implementation 'com.google.android.filament:filament-android:1.57.1'
+    implementation 'com.google.android.filament:gltfio-android:1.57.1'
     implementation 'com.google.auto.service:auto-service-annotations:1.0.1'
     kapt("com.google.auto.service:auto-service:1.0")
     implementation(libs.androidx.core.ktx)

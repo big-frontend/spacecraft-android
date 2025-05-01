@@ -1,4 +1,4 @@
-package com.electrolytej.ad
+package com.electrolytej.ad.widget
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.view.drawToBitmap
+import com.electrolytej.ad.R
 
 
 class ShinyAdView @JvmOverloads constructor(

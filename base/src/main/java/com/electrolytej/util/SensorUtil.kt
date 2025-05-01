@@ -1,5 +1,4 @@
 import android.hardware.SensorManager
-
 /**
  *
  * 三大类型 sensor
@@ -10,14 +9,14 @@ import android.hardware.SensorManager
  * c.Position sensors
  *
  * sensor在移动设备的坐标轴
-   传感器坐标系定义
-    Android 传感器坐标系是一个 右手坐标系，基于设备的默认方向（竖屏）定义：
+传感器坐标系定义
+Android 传感器坐标系是一个 右手坐标系，基于设备的默认方向（竖屏）定义：
 
-    X 轴：水平方向，向右为正方向。
+X 轴：水平方向，向右为正方向。
 
-    Y 轴：垂直方向，向上为正方向。
+Y 轴：垂直方向，向上为正方向。
 
-    Z 轴：垂直于屏幕，向外（指向用户）为正方向。
+Z 轴：垂直于屏幕，向外（指向用户）为正方向。
  * https://juejin.cn/post/6995538111111381028#heading-8
  * https://source.android.com/docs/core/interaction/sensors/sensor-types?hl=zh-cn
  *
@@ -123,27 +122,89 @@ import android.hardware.SensorManager
  *
  * 注意：陀螺仪数据的单位是 弧度/秒（rad/s）。
  */
-//TYPE_ROTATION_VECTOR
 
 /**
+ * 旋转矢量传感器和方向传感器的坐标系都是地球坐标系
+ *
+ *
+ *
+ */
+//TYPE_ROTATION_VECTOR
+fun getOrientation(
+    rotationValues: FloatArray?
+): Triple<Double?, Double?, Double?> {
+    if (rotationValues == null || rotationValues.isEmpty()) {
+        return Triple(null, null, null)
+    }
+    val rotationMatrix = FloatArray(9)
+    val orientationAngles = FloatArray(3)
+    //获取世界坐标系
+    SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationValues)
+    SensorManager.getOrientation(rotationMatrix, orientationAngles)
+    // orientationAngles包含:
+    // [0]: 方位角(绕Z轴)
+    // [1]: 俯仰角(绕X轴)
+    // [2]: 横滚角(绕Y轴)
+    return Triple(
+        Math.toDegrees(orientationAngles[0].toDouble()),
+        Math.toDegrees(orientationAngles[1].toDouble()),
+        Math.toDegrees(
+            orientationAngles[2].toDouble()
+        )
+    )
+}
+
+
+/**
+
  * 方向传感器：orientation sensor，已经被废弃
  * 方向角解释
  * azimuth：方位角，表示设备绕 Z 轴旋转的角度，范围是 [-π, π]。Z轴
  * pitch：俯仰角，表示设备绕 X 轴旋转的角度，范围是 [-π/2, π/2]。X轴
  * roll：横滚角，表示设备绕 Y 轴旋转的角度，范围是 [-π, π]。Y轴
  * https://www.cnblogs.com/mengdd/archive/2013/05/19/3086781.html
+ * SensorManager.getRotationMatrix + SensorManager.getOrientation 获取到的角为欧拉角，欧拉角存在万向节锁问题，
+ * 使用四元数([w, x, y, z])，相比欧拉角，能避免万向节锁问题
+ *
+ *
+ * 常见问题解答
+ * 1. 为什么俯仰角范围是 [-90°, 90°]？
+ * 这是欧拉角的 万向节锁（Gimbal Lock） 限制。当设备垂直（如竖起）时，俯仰角达到极限值，方位角和横滚角会失去唯一性。
+ *
+ * 2. 如何避免磁力计干扰？
+ * 使用 TYPE_GAME_ROTATION_VECTOR（仅依赖加速度计和陀螺仪）：
+ *
+ * 3. 如何校准传感器？
+ * 在代码中监听 SensorManager.SENSOR_STATUS_ACCURACY_HIGH
+ *
+ * 4. 传感器依赖
+ * - 方位角的准确性依赖 磁力计 校准（TYPE_ROTATION_VECTOR）。
+ * - 若使用 TYPE_GAME_ROTATION_VECTOR（不依赖磁力计），方位角可能随时间漂移。
+ *
+ * 解决万向节锁问题
+ * 方法	优点	缺点	适用场景
+ * 四元数	无万向节锁，计算高效	数学抽象，调试复杂	实时旋转叠加、插值
+ * 旋转矩阵	直观，适合 GPU 计算	存储冗余（9个浮点数）	图形渲染、坐标变换
+ * 调整旋转顺序	简单易实现	不能完全避免万向节锁	对精度要求不高的场景
+ * 轴-角表示	物理意义明确	插值计算复杂	机械控制、物理引擎
+ *
+ *  angle: 角
+ *  degree：角度 ，单位度
+ *  radians: 弧度 ，单位
  *
  */
 fun getOrientation(
-    accelerometerValues: FloatArray,
-    magneticValues: FloatArray
-): Triple<Double, Double, Double> {
+    accelerometerValues: FloatArray?,
+    magneticValues: FloatArray?
+): Triple<Double?, Double?, Double?> {
+    if (accelerometerValues == null || accelerometerValues.isEmpty() || magneticValues == null || magneticValues.isEmpty()) {
+        return Triple(null, null, null)
+    }
     val orientationAngles = FloatArray(3)
     val rotationMatrix = FloatArray(9)
     //获取世界坐标系
     SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerValues, magneticValues)
     SensorManager.getOrientation(rotationMatrix, orientationAngles);
-    // Convert from radians to degrees
     return Triple(
         Math.toDegrees(orientationAngles[0].toDouble()),
         Math.toDegrees(orientationAngles[1].toDouble()),

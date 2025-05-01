@@ -5,7 +5,7 @@
         android:enabled="true"
         android:icon="@drawable/avd_anim"
         android:shortcutDisabledMessage="@string/static_disabled_message"
-        android:shortcutId="staticId"
+        android:shortcutId="web"
         android:shortcutLongLabel="@string/static_shortcut_long_label"
         android:shortcutShortLabel="@string/static_shortcut_short_label">
         <intent
@@ -15,6 +15,34 @@
         <extra
             android:name="url"
             android:value="file:///android_asset/test.html"/>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_3d_rotation_24dp_black"
+        android:shortcutDisabledMessage="@string/static_disabled_message"
+        android:shortcutId="shake"
+        android:shortcutLongLabel="@string/static_shortcut_long_label"
+        android:shortcutShortLabel="@string/static_shortcut_short_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.electrolytej.ad.page.shake.ShakeActivity"
+            android:targetPackage="com.electrolytej.spacecraft" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_battery_90_apricot_24dp"
+        android:shortcutDisabledMessage="@string/static_disabled_message"
+        android:shortcutId="shake2"
+        android:shortcutLongLabel="@string/static_shortcut_long_label"
+        android:shortcutShortLabel="@string/static_shortcut_short_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.electrolytej.ad.page.shake.Shake2Activity"
+            android:targetPackage="com.electrolytej.spacecraft" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
 </shortcuts>

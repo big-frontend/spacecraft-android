@@ -1,87 +1,95 @@
 package com.electrolytej.ad.sensor
 
-import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
-import android.os.Vibrator
+import android.hardware.SensorManager
 import android.util.Log
+import androidx.annotation.WorkerThread
 import com.electrolytej.sensor.ISensorHandler
-import com.electrolytej.util.Util
-import com.google.auto.service.AutoService
-import kotlin.math.sqrt
-
-@AutoService(ISensorHandler::class)
+import com.electrolytej.sensor.minus
 class ShakeSensorHandler : ISensorHandler {
     companion object {
         private const val TAG = "ShakeSensorHandler"
-        private const val UPDATE_INTERVAL_TIME: Int = 70 // 检测时间间隔
-        private const val VELOCITY_SHRESHOLD: Int = 3000 // 速度阈值
-        private const val SHAKE_INTERVAL: Int = 1000 // 两次摇动的最大时间间隔
     }
 
+    private var baseLineQuaternion: FloatArray? = null
+    private val rotationValues = FloatArray(9)
     private val accelerometerValues = FloatArray(3)
-    override fun sensors() = setOf(Sensor.TYPE_ACCELEROMETER)
-    override fun onSensorChanged(event: SensorEvent) {
-        Log.d(TAG,"sensor:${event.sensor.type}")
-        event.values?.copyInto(accelerometerValues)
-        doubleShake(accelerometerValues)
+    private val resultValues = DoubleArray(6)
+    private var onShakeListener: OnShakeListener? = null
+    override fun sensors(): Set<Int> {
+        return setOf(
+            Sensor.TYPE_LINEAR_ACCELERATION,
+//            Sensor.TYPE_ACCELEROMETER,
+            Sensor.TYPE_ROTATION_VECTOR,
+        )
     }
 
-    private val vibrator = Util.getApp().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-    private var lastAX = 0f
-    private var lastAY = 0f
-    private var lastAZ = 0f
-    private var lastUpdateTime = 0L
+    fun setOnShakeListener(onShakeListener: OnShakeListener) {
+        this.onShakeListener = onShakeListener
+    }
 
-    // 摇动计数和时间片
-    private var count = 0
-    private var timeSlice = 0
-    fun doubleShake(accelerometerValues: FloatArray) {
-        if (accelerometerValues.isEmpty()) return
-        val currentTime = System.currentTimeMillis()
-        val timeInterval = currentTime - lastUpdateTime
+    interface OnShakeListener {
+        @WorkerThread
+        fun onTrace(resultValues: DoubleArray)
 
-        if (timeInterval < UPDATE_INTERVAL_TIME) {
-            return
+        @WorkerThread
+        fun onShake(p: String?) {
         }
-        lastUpdateTime = currentTime
+//            void onShake(float ax1, float ay1, float az1,
+//                             float degreeDx1, float degreeDy1, float degreeDz1, float ax2, float ay2, float az2,
+//                             float degreeDx2, float degreeDy2, float degreeDz2,long delta);
+    }
 
-        val ax: Float = accelerometerValues[0]
-        val ay: Float = accelerometerValues[1]
-        val az: Float = accelerometerValues[2]
 
-        val deltaX = ax - lastAX
-        val deltaY = ay - lastAY
-        val deltaZ = az - lastAZ
-        val a = sqrt((deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ).toDouble())
+    override fun onSensorChanged(sensorEvent: SensorEvent) {
+        when (sensorEvent.sensor?.type) {
+            Sensor.TYPE_ACCELEROMETER,
+            Sensor.TYPE_LINEAR_ACCELERATION -> {
+                sensorEvent.values?.copyInto(accelerometerValues)
+                val (ax, ay, az) = accelerometerValues
+                resultValues[0] = ax.toDouble()
+                resultValues[1] = ay.toDouble()
+                resultValues[2] = az.toDouble()
+//            if (abs(ax) > 10 || abs(ay) > 10 || abs(az) > 10) {
+//                Log.d(TAG, "xyz加速度: ${ax} ${ay} ${az}")
+//            }
+            }
 
-        lastAX = ax
-        lastAY = ay
-        lastAZ = az
-        val velocity = a * 10000 / timeInterval
-        if (velocity > VELOCITY_SHRESHOLD) {
-            count++
-            if (count == 1) {
-                timeSlice = 0
-            } else if (count == 2) {
-                if (timeSlice * UPDATE_INTERVAL_TIME < SHAKE_INTERVAL) {
-                    // 触发双向摇一摇操作
-//                    vibrator.vibrate(500)
-                    Log.d(TAG, "双向摇一摇触发")
-                    count = 0
-                } else {
-                    count = 1
+            Sensor.TYPE_ROTATION_VECTOR -> {
+                sensorEvent.values?.copyInto(rotationValues)
+//                val (azimuth, pitch, roll) = getOrientation(rotationValues)
+//                if (azimuth == null || pitch == null || roll == null) {
+//                    return
+//                }
+//                resultValues[3] = roll
+//                resultValues[4] = pitch
+//                resultValues[5] = azimuth
+
+                val quaternion = FloatArray(4)
+                SensorManager.getQuaternionFromVector(quaternion, rotationValues)
+                if (baseLineQuaternion == null) {
+                    baseLineQuaternion = quaternion.copyOf()
                 }
-                timeSlice = 0
+                baseLineQuaternion?.let {
+                    val (deltaX, deltaY, deltaZ) = quaternion.minus(it)
+                    resultValues[3] = deltaX
+                    resultValues[4] = deltaY
+                    resultValues[5] = deltaZ
+//                Log.d(TAG, "旋转传感器计算出xyz角度: ${degreeX}/${degreeY}/${degreeZ}")
+                }
+
             }
         }
 
-        if (count == 1) {
-            timeSlice++
-            if (timeSlice * UPDATE_INTERVAL_TIME > SHAKE_INTERVAL) {
-                count = 0
-                timeSlice = 0
-            }
+        onShakeListener?.onTrace(resultValues)
+
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        Log.d(TAG, "传感器精度变化: ${sensor.name} ${accuracy}")
+        if (accuracy == SensorManager.SENSOR_STATUS_ACCURACY_HIGH) {
+            // 传感器已校准
         }
     }
 

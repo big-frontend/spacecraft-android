@@ -1,4 +1,4 @@
-package com.electrolytej.ad
+package com.electrolytej.ad.widget
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import androidx.core.view.drawToBitmap
+import com.electrolytej.ad.R
 
 class BubbleAdView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1
