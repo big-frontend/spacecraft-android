@@ -3,7 +3,7 @@ coilCompose = "3.1.0"
 compileSdkVersion = "35"
 buildToolsVersion = "31.0.0"
 #19:kk,21:L,23:M,24:N,26:O,28:P,29:Q,30:R
-minSdkVersion = "23"
+minSdkVersion = "24"
 picasso = "2.71828"
 targetSdkVersion = "35"
 versionCode = "2"

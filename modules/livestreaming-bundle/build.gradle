@@ -9,6 +9,10 @@ android {
                 cppFlags "-std=c++14"
                 arguments "-DANDROID_STL=c++_shared", '-DANDROID_TOOLCHAIN=clang'
             }
+
+        }
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
     }
     externalNativeBuild {

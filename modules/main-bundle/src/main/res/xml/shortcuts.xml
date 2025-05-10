@@ -14,7 +14,7 @@
             android:targetPackage="com.electrolytej.spacecraft" />
         <extra
             android:name="url"
-            android:value="file:///android_asset/test.html"/>
+            android:value="file:///android_asset/test.html" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
     <shortcut
@@ -42,6 +42,34 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetClass="com.electrolytej.ad.page.shake.Shake2Activity"
+            android:targetPackage="com.electrolytej.spacecraft" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_battery_90_apricot_24dp"
+        android:shortcutDisabledMessage="@string/livestream_gl"
+        android:shortcutId="gl"
+        android:shortcutLongLabel="@string/livestream_gl"
+        android:shortcutShortLabel="@string/livestream_gl">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.electrolytej.livestreaming.GLActivity"
+            android:targetPackage="com.electrolytej.spacecraft" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_battery_90_apricot_24dp"
+        android:shortcutDisabledMessage="@string/livestream_vk"
+        android:shortcutId="vk"
+        android:shortcutLongLabel="@string/livestream_vk"
+        android:shortcutShortLabel="@string/livestream_vk">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.electrolytej.livestreaming.VKActivity"
             android:targetPackage="com.electrolytej.spacecraft" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>

@@ -15,4 +15,6 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
+    <string name="livestream_gl">livestream_gl</string>
+    <string name="livestream_vk">livestream_vk</string>
 </resources>

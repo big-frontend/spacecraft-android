@@ -1,0 +1,31 @@
+#version 450
+layout(local_size_x = 32, local_size_y = 8) in;
+
+layout(binding = 0, rgba8) readonly uniform image2D srcImage;
+layout(binding = 1, rgba8) writeonly uniform image2D tmpImage;
+
+layout(push_constant) uniform PushConsts {
+    int width;
+    int height;
+    int radius;
+    float sigma;
+} pc;
+
+const float PI = 3.141592653589793;
+
+void main() {
+    ivec2 coord = ivec2(gl_GlobalInvocationID.xy);
+    if (coord.x >= pc.width || coord.y >= pc.height) return;
+
+    float sum = 0.0;
+    float wsum = 0.0;
+    // 预计算一维高斯权重
+    for (int i = -pc.radius; i <= pc.radius; ++i) {
+        float x = float(i);
+        float weight = exp(-0.5 * (x*x)/(pc.sigma*pc.sigma)) / (pc.sigma * sqrt(2.0*PI));
+        sum  += weight * imageLoad(srcImage, coord + ivec2(i,0)).r;
+        wsum += weight;
+    }
+    float blurred = sum / wsum;
+    imageStore(tmpImage, coord, vec4(blurred, blurred, blurred, 1.0));
+}
