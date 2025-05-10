@@ -106,7 +106,6 @@ class SensorGLView @JvmOverloads constructor(
         override fun onDrawFrame(gl: GL10?) {
             GLES30.glClearColor(0.1f, 0.1f, 0.1f, 1f)
             GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT or GLES30.GL_DEPTH_BUFFER_BIT)
-
             Matrix.multiplyMM(mvpMatrix, 0, viewMatrix, 0, displayRotationMatrix, 0)
             Matrix.multiplyMM(mvpMatrix, 0, projectionMatrix, 0, mvpMatrix, 0)
 

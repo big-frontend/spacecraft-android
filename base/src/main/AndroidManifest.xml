@@ -57,20 +57,16 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web"
-                    android:scheme="ispacecraft" />
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web/"
-                    android:scheme="ispacecraft" />
+                <data android:scheme="ispacecraft" />
+                <data android:host="www.spacecraft.com" />
+                <data android:path="/web" />
+                <data android:path="/web/" />
             </intent-filter>
         </activity>
 

@@ -8,6 +8,26 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 import kotlin.math.withSign
 
+/**
+ * 将单位四元数 q 转换为轴–角表示
+ * @param q  四元数数组 [w, x, y, z]
+ * @return    Pair(axis: FloatArray(3), angleRad: Float)
+ */
+fun quaternionToAxisAngle(q: FloatArray): Pair<FloatArray, Float> {
+    // 1. 单位化
+    val qq = normalizeQuaternion(q)
+    val w = qq[0].coerceIn(-1f,1f)
+    // 2. 计算角度
+    val theta = 2f * acos(w)
+    // 3. sin(θ/2) 并提轴
+    val sinH = sqrt(1f - w*w)
+    val axis = if (sinH < 1e-6f) floatArrayOf(1f,0f,0f)
+    else floatArrayOf(qq[1]/sinH, qq[2]/sinH, qq[3]/sinH)
+    return Pair(axis, theta)
+}
+
+
+
 fun quaternionToEulerAngles(q: FloatArray): Triple<Double, Double, Double> {
     val w = q[0]
     val x = q[1]

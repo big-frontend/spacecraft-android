@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
         <meta-data
@@ -95,20 +94,16 @@
             android:exported="true"
             android:taskAffinity="com.jamesfchen.taskAffinity3"
             android:theme="@style/Theme.AppCompat">
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web"
-                    android:scheme="ispacecraft" />
-                <data
-                    android:host="www.spacecraft.com"
-                    android:path="/web/"
-                    android:scheme="ispacecraft" />
+                <data android:scheme="ispacecraft" />
+                <data android:host="www.spacecraft.com" />
+                <data android:path="/web" />
+                <data android:path="/web/" />
             </intent-filter>
         </activity>
         <activity
@@ -162,6 +157,10 @@
         <service
             android:name="com.amap.api.location.APSService"
             android:foregroundServiceType="location" />
+
+        <activity
+            android:name=".page.workmanager.SelectImageActivity"
+            android:label="location page" />
     </application>
 
 </manifest>

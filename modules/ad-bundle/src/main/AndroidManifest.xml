@@ -50,6 +50,12 @@
            android:screenOrientation="portrait">
        </activity>
        <activity
+           android:name="com.electrolytej.ad.page.shake.RotationVectorActivity"
+           android:exported="true"
+           android:theme="@style/Theme.AppCompat.Light"
+           android:screenOrientation="portrait">
+       </activity>
+       <activity
            android:name="com.electrolytej.ad.page.shake.Shake3Activity"
            android:exported="true"
            android:theme="@style/Theme.AppCompat.Light"

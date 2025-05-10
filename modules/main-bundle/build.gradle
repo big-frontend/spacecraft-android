@@ -58,6 +58,11 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+//    sourceSets {
+//        main.java.srcDirs += ['workmanager/java']
+//        main.res.srcDirs += ['workmanager/res']
+//        main.renderscript.srcDirs += ['workmanager/rs']
+//    }
 }
 composeCompiler {
     enableStrongSkippingMode = true

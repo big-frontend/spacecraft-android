@@ -2,6 +2,7 @@ package com.electrolytej
 
 import com.electrolytej.sensor.calculateAngleDifference
 import org.junit.Test
+import kotlin.math.max
 
 class ShakeUnitTest {
     @Test
@@ -19,5 +20,8 @@ class ShakeUnitTest {
 //        println("AngleDiffs ΔX: ${"%.1f".format(deltaX)}°, ΔY: ${"%.1f".format(deltaY)}°, ΔZ: ${"%.1f".format(deltaZ)}°")
 
         println(1.minus(1))
+//        maxValue = max(maxValue.toDouble(), ))
+//        val label = String.format("%.1f", value)
+        println(Float.NaN)
     }
 }

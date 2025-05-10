@@ -32,19 +32,23 @@ import com.electrolytej.ad.Constants.sk_by_angle_y
 import com.electrolytej.ad.Constants.sk_by_angle_z
 import com.electrolytej.ad.Constants.sk_by_gap_duration
 import com.electrolytej.ad.R
-import com.electrolytej.ad.sensor.DoubleShakeSensorHandler
 import com.electrolytej.ad.sensor.ShakeSensorHandler
-import com.electrolytej.ad.sensor.TwoStageShakeSensorHandler
 import com.electrolytej.ad.util.ShakeTraceUtil
-import com.electrolytej.ad.util.component6
+import com.electrolytej.util.component6
+import com.electrolytej.util.component7
+import com.electrolytej.util.component8
+import com.electrolytej.util.component9
 import com.electrolytej.ad.widget.sensor.SensorLineChartView
 import com.electrolytej.sensor.ISensorHandler
 import com.electrolytej.sensor.SensorDetector
 import com.electrolytej.ad.widget.CustomDividerItemDecoration
 import com.electrolytej.ad.widget.SimpleTextWatcher
+import com.electrolytej.util.NumberUtil
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.abs
+import kotlin.math.max
 
 
 class ShakeActivity : AppCompatActivity() {
@@ -61,7 +65,10 @@ class ShakeActivity : AppCompatActivity() {
     lateinit var coordinatorLayout: CoordinatorLayout
     lateinit var accelerometerChart: SensorLineChartView
     lateinit var rationChart: SensorLineChartView
+    lateinit var aAndmChart: SensorLineChartView
     lateinit var tvAccelerometer: TextView
+    lateinit var tvRation: TextView
+    lateinit var tvAm: TextView
     lateinit var btnClear: Button
     private  val mDetector: SensorDetector by lazy {
          val d = SensorDetector(this)
@@ -79,6 +86,16 @@ class ShakeActivity : AppCompatActivity() {
     }
     private var isRecordStream = true
     private var isPause = false
+    private var maxAx = 0.0
+    private var maxAy = 0.0
+    private var maxAz = 0.0
+    private var maxRationDegreeDx = 0.0
+    private var maxRationDegreeDy = 0.0
+    private var maxRationDegreeDz = 0.0
+    private var maxAmDegreeDx = 0.0
+    private var maxAmDegreeDy = 0.0
+    private var maxAmDegreeDz = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shake)
@@ -97,7 +114,10 @@ class ShakeActivity : AppCompatActivity() {
         rvLogs2.addItemDecoration(divider2)
         accelerometerChart = findViewById(R.id.accelerometerChart)
         rationChart = findViewById(R.id.rationChart)
+        aAndmChart = findViewById(R.id.aAndmChart)
         tvAccelerometer = findViewById(R.id.tv_accelerometer)
+        tvRation = findViewById(R.id.tv_ration)
+        tvAm = findViewById(R.id.tv_av)
 
         //配置
         val etSampleThreshold: EditText = findViewById(R.id.et_sample_threshold)
@@ -256,10 +276,10 @@ class ShakeActivity : AppCompatActivity() {
         val handler = ShakeSensorHandler()
         handler.setOnShakeListener( object : ShakeSensorHandler.OnShakeListener {
             override fun onTrace(resultValues: DoubleArray) {
-                if (isPause) {
+                if (isPause || mDetector.isStop) {
                     return
                 }
-                val (ax, ay, az, degreeDx, degreeDy, degreeDz) = resultValues
+                val (ax, ay, az, rationDegreeDx, rationDegreeDy, rationDegreeDz,amDegreeDx,amDegreeDy,amDegreeDz) = resultValues
                 val endTime = System.currentTimeMillis() - startTime
                 accelerometerChart.addDataPoint(
                     SensorLineChartView.DataPoint(
@@ -268,15 +288,31 @@ class ShakeActivity : AppCompatActivity() {
                 )
                 rationChart.addDataPoint(
                     SensorLineChartView.DataPoint(
-                        endTime, degreeDx, degreeDy, degreeDz
+                        endTime, rationDegreeDx, rationDegreeDy, rationDegreeDz
                     )
+                )
+                aAndmChart.addDataPoint(
+                    SensorLineChartView.DataPoint(
+                        endTime, amDegreeDx, amDegreeDy, amDegreeDz
+                    )
+                )
+                computeMax(
+                    NumberUtil.round(abs(ax), 1),
+                    NumberUtil.round(abs(ay), 1),
+                    NumberUtil.round(abs(az), 1),
+                    NumberUtil.round(abs(rationDegreeDx), 1),
+                    NumberUtil.round(abs(rationDegreeDy), 1),
+                    NumberUtil.round(abs(rationDegreeDz), 1),
+                    NumberUtil.round(abs(amDegreeDx), 1),
+                    NumberUtil.round(abs(amDegreeDy), 1),
+                    NumberUtil.round(abs(amDegreeDz), 1),
                 )
                 val time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
                 val p = "加速度:" + ShakeTraceUtil.accelerationTrace(
                     ax,
                     ay,
                     az
-                ) + " 角度差:" + ShakeTraceUtil.degreeTrace(degreeDx, degreeDy, degreeDz)
+                ) + " 角度差:" + ShakeTraceUtil.degreeTrace(rationDegreeDx, rationDegreeDy, rationDegreeDz)
                 val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                 val currentTime = sdf.format(Date())
                 val pp = "${p}\n$currentTime"
@@ -310,18 +346,58 @@ class ShakeActivity : AppCompatActivity() {
         return handler
     }
 
+    fun computeMax(
+        ax: Double,
+        ay: Double,
+        az: Double,
+        rationDegreeDx: Double,
+        rationDegreeDy: Double,
+        rationDegreeDz: Double,
+        amDegreeDx :Double,
+        amDegreeDy:Double,
+        amDegreeDz:Double
+    ) {
+        maxAx = max(ax,maxAx)
+        maxAy = max(ay,maxAy)
+        maxAz = max(az,maxAz)
+
+        maxRationDegreeDx = max(rationDegreeDx,maxRationDegreeDx)
+        maxRationDegreeDy = max(rationDegreeDy,maxRationDegreeDy)
+        maxRationDegreeDz = max(rationDegreeDz,maxRationDegreeDz)
+
+        maxAmDegreeDx = max(amDegreeDx,maxAmDegreeDx)
+        maxAmDegreeDy = max(amDegreeDy,maxAmDegreeDy)
+        maxAmDegreeDz = max(amDegreeDz,maxAmDegreeDz)
+
+        tvAccelerometer.text = "加速度\n最大x/y/z ${maxAx}/${maxAy}/${maxAz}"
+        tvRation.text = "旋转矢量\n最大x/y/z ${maxRationDegreeDx}/${maxRationDegreeDy}/${maxRationDegreeDz}"
+        tvAm.text = "加速度+磁力计\n最大x/y/z ${maxAmDegreeDx}/${maxAmDegreeDy}/${maxAmDegreeDz}"
+    }
+
     private fun clearRealTimeData() {
         stopSensor()
         realtimeAdapter.clear()
         accelerometerChart.clearData()
         rationChart.clearData()
+        aAndmChart.clearData()
+
+        maxAy = 0.0
+        maxAy = 0.0
+        maxAz = 0.0
+        maxRationDegreeDx = 0.0
+        maxRationDegreeDy = 0.0
+        maxRationDegreeDz = 0.0
+
+        maxAmDegreeDx = 0.0
+        maxAmDegreeDy = 0.0
+        maxAmDegreeDz = 0.0
     }
 
 
     fun startSensor() {
         mDetector.addHandler(createSensorHandler())
-        mDetector.addHandler(DoubleShakeSensorHandler())
-        mDetector.addHandler(TwoStageShakeSensorHandler())
+//        mDetector.addHandler(DoubleShakeSensorHandler())
+//        mDetector.addHandler(TwoStageShakeSensorHandler())
         mDetector.start()
     }
 

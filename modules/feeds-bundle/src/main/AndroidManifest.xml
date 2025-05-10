@@ -12,10 +12,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="a.spacecraft.com"
-                    android:scheme="ispacecraft" />
-                <!--                    android:path="/detail"-->
+                <data android:scheme="ispacecraft" />
+                <data android:host="a.spacecraft.com" />
             </intent-filter>
         </activity>
     </application>

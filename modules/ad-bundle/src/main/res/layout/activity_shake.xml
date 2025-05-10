@@ -162,18 +162,59 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="210dp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="旋转矢量传感器(角度差)"
-                                android:textColor="#3D7DB2"
-                                android:textSize="18sp" />
-
-                            <com.electrolytej.ad.widget.sensor.SensorLineChartView
-                                android:id="@+id/rationChart"
+                            <HorizontalScrollView
+                                android:layout_marginBottom="30dp"
                                 android:layout_width="match_parent"
-                                android:layout_height="270dp" />
+                                android:layout_height="270dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_marginEnd="20dp"
+                                        android:layout_width="380dp"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/tv_ration"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:text="旋转矢量传感器(角度)"
+                                            android:textColor="#3D7DB2"
+                                            android:textSize="18sp" />
+
+                                        <com.electrolytej.ad.widget.sensor.SensorLineChartView
+                                            android:id="@+id/rationChart"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="270dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="380dp"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/tv_av"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:text="加速度+磁力计传感器(角度)"
+                                            android:textColor="#3D7DB2"
+                                            android:textSize="18sp" />
+
+                                        <com.electrolytej.ad.widget.sensor.SensorLineChartView
+                                            android:id="@+id/aAndmChart"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="270dp" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </HorizontalScrollView>
+
                         </LinearLayout>
                     </ScrollView>
                 </FrameLayout>

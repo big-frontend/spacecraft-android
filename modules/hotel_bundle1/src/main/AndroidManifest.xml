@@ -13,7 +13,7 @@
     </dist:module>
     <application>
         <activity
-            android:name="com.jamesfchen.bundle1.Bundle1Activity"
+            android:name=".Bundle1Activity"
             android:theme="@style/Theme.SpacecraftAndroid.NoActionBar"
             android:exported="true" />
     </application>

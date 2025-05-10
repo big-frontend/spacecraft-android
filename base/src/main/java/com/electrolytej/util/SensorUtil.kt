@@ -1,4 +1,6 @@
 import android.hardware.SensorManager
+import kotlin.math.abs
+
 /**
  *
  * 三大类型 sensor
@@ -131,15 +133,21 @@ Z 轴：垂直于屏幕，向外（指向用户）为正方向。
  */
 //TYPE_ROTATION_VECTOR
 fun getOrientation(
-    rotationValues: FloatArray?
-): Triple<Double?, Double?, Double?> {
-    if (rotationValues == null || rotationValues.isEmpty()) {
-        return Triple(null, null, null)
-    }
+    rotationValues: FloatArray
+): Triple<Double, Double, Double> {
+//    if (rotationValues == null || rotationValues.isEmpty()) {
+//        return Triple(null, null, null)
+//    }
     val rotationMatrix = FloatArray(9)
     val orientationAngles = FloatArray(3)
     //获取世界坐标系
     SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationValues)
+//     val displayRotationMatrix = FloatArray(9)
+//    SensorManager.remapCoordinateSystem(
+//        rotationMatrix,
+//        SensorManager.AXIS_X,
+//        SensorManager.AXIS_Z,
+//        displayRotationMatrix
     SensorManager.getOrientation(rotationMatrix, orientationAngles)
     // orientationAngles包含:
     // [0]: 方位角(绕Z轴)
@@ -194,12 +202,12 @@ fun getOrientation(
  *
  */
 fun getOrientation(
-    accelerometerValues: FloatArray?,
-    magneticValues: FloatArray?
-): Triple<Double?, Double?, Double?> {
-    if (accelerometerValues == null || accelerometerValues.isEmpty() || magneticValues == null || magneticValues.isEmpty()) {
-        return Triple(null, null, null)
-    }
+    accelerometerValues: FloatArray,
+    magneticValues: FloatArray
+): Triple<Double, Double, Double> {
+//    if (accelerometerValues == null || accelerometerValues.isEmpty() || magneticValues == null || magneticValues.isEmpty()) {
+//        return Triple(null, null, null)
+//    }
     val orientationAngles = FloatArray(3)
     val rotationMatrix = FloatArray(9)
     //获取世界坐标系
@@ -213,3 +221,15 @@ fun getOrientation(
         )
     )
 }
+
+fun checkGimbalLock(currentQuaternion: FloatArray): Boolean {
+    val rotationMatrix = FloatArray(16)
+    SensorManager.getRotationMatrixFromVector(rotationMatrix, currentQuaternion)
+    val orientation = FloatArray(3)
+    SensorManager.getOrientation(rotationMatrix, orientation)
+    return abs(Math.toDegrees(orientation[1].toDouble())) > 89.0 // 俯仰角接近90°
+}
+
+// 扩展函数：弧度 → 角度
+fun Float.toDegrees() = Math.toDegrees(this.toDouble())
+fun Double.toDegrees() = Math.toDegrees(this)

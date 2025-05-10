@@ -123,4 +123,31 @@
     <!-- Content description for a selected color square. -->
     <string name="color_swatch_description_selected">Color <xliff:g id="color_index" example="14">%1$d</xliff:g> selected</string>
     <string name="title_activity_drawable">DrawableActivity</string>
+
+    <string name="select_stock_image">Select Stock Image</string>
+    <string name="select_image">Select Image</string>
+    <!-- filters -->
+    <string name="filters_title">Choose Filters</string>
+    <string name="filter_watercolor">Watercolor</string>
+    <string name="filter_grayscale">Grayscale</string>
+    <string name="filter_blur">Blur</string>
+    <!-- destinations -->
+    <string name="destinations_title">Destination</string>
+    <string name="destination_save">Save Image</string>
+    <string name="destination_upload">Upload to Imgur</string>
+    <!-- actions -->
+    <string name="go">Go</string>
+    <string name="cancel">Cancel</string>
+    <string name="output">Output</string>
+    <!-- content descriptions -->
+    <string name="description_image">The image to filter and upload.</string>
+    <!-- messages -->
+    <string name="set_permissions_in_settings">
+        Go to Settings -> Apps and Notifications -> WorkManager Demo -> App Permissions
+        and grant access to Storage.
+    </string>
+    <string name="credits">
+        <![CDATA[Stock Photos by <a href="https://www.flickr.com/photos/romainguy">Romain Guy</a>.
+        CC2 License.]]>
+    </string>
 </resources>

@@ -22,7 +22,8 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.electrolytej.bundle2.databinding.FragmentInfosBinding
-import com.electrolytej.bundle2.network.api.getImageApi
+import com.electrolytej.bundle2.network.ImgRetrofiter
+import com.electrolytej.bundle2.network.api.ImageApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
@@ -55,7 +56,8 @@ class InfosFragment : Fragment() {
             defer.await()
             Log.d("baseimageview", "wait after")
             return@launchWhenResumed
-            val images = getImageApi().getImages()
+
+            val images = ImgRetrofiter.createApi(ImageApi::class.java).getImages()
             for (image in images) {
                 val imageView = ImageView(context)
                 binding.ll.addView(imageView,LinearLayout.LayoutParams(dp2px(400f), dp2px(200f)))
