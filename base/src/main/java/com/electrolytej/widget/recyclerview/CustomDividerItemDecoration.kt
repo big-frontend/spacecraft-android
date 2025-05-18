@@ -1,4 +1,4 @@
-package com.electrolytej.ad.widget
+package com.electrolytej.widget.recyclerview
 
 import android.graphics.Canvas
 import android.graphics.Paint

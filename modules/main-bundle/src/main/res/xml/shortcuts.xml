@@ -41,7 +41,7 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.electrolytej.ad.page.shake.Shake2Activity"
+            android:targetClass="com.electrolytej.bundle2.page.customview.recyclerview.RecyclerViewActivity"
             android:targetPackage="com.electrolytej.spacecraft" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>

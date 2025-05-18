@@ -4,35 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
-    <Button
-        android:text="click"
-        android:id="@+id/bt_add_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
-        android:id="@+id/ll_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:visibility="gone">
 
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/bt_add_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="btn 1" />
-        <Button
+            android:text="click" />
+
+        <LinearLayout
+            android:id="@+id/ll_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="btn 2" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btn 1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btn 2" />
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_image_text"
         android:layout_width="match_parent"

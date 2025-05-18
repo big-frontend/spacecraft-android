@@ -4,25 +4,25 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose)
-    alias(libs.plugins.room)
+//    alias(libs.plugins.room)
 }
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
-    arg("room.incremental", "true")
-    arg("room.expandProjection", "true")
-}
-room {
-    schemaDirectory("$projectDir/schemas/")
-}
+//ksp {
+//    arg("room.schemaLocation", "$projectDir/schemas")
+//    arg("room.incremental", "true")
+//    arg("room.expandProjection", "true")
+//}
+//room {
+//    schemaDirectory("$projectDir/schemas/")
+//}
 apply from: "${rootDir.path}/script/ui_compose.gradle"
 android {
     namespace "com.electrolytej.bundle1"
     defaultConfig {
-        javaCompileOptions.annotationProcessorOptions.arguments = [
-                "room.schemaLocation"  : "$projectDir/schemas",
-                "room.incremental"     : "true",
-                "room.expandProjection": "true"
-        ]
+//        javaCompileOptions.annotationProcessorOptions.arguments = [
+//                "room.schemaLocation"  : "$projectDir/schemas",
+//                "room.incremental"     : "true",
+//                "room.expandProjection": "true"
+//        ]
     }
     buildFeatures {
         viewBinding true

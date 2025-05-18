@@ -11,6 +11,7 @@ plugins {
 }
 apply from: "$rootDir/script/ui_compose.gradle"
 apply from: "$rootDir/script/ui_tradition.gradle"
+apply from: "$rootDir/script/test_impl.gradle"
 android {
     namespace "com.electrolytej.main"
     defaultConfig {

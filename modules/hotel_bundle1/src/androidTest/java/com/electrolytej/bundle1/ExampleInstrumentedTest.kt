@@ -1,4 +1,4 @@
-package com.jamesfchen.bundle1
+package com.electrolytej.bundle1
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

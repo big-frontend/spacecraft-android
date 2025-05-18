@@ -3,7 +3,7 @@ package com.jamesfchen.common
 import android.util.Log
 import androidx.test.runner.AndroidJUnit4
 import kotlinx.coroutines.*
-import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.junit.Before
@@ -33,7 +33,7 @@ class KotlinCoroutinesTest {
     @Test
     fun testCoroutines() {
         val request = Request.Builder()
-                .url(HttpUrl.parse("https://api.github.com/user"))
+                .url("https://api.github.com/user".toHttpUrl())
                 .build()
 
         GlobalScope.launch(Dispatchers.Main) {

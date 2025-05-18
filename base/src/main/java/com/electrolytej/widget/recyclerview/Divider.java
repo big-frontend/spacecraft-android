@@ -11,14 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import org.jetbrains.annotations.NotNull;
-
-/**
- * Copyright ® $ 2017
- * All right reserved.
- *
- * @author: jamesfchen
- * @since: May/01/2019  Wed
- */
 public class Divider extends RecyclerView.ItemDecoration {
     private Paint paint;
     private int space;

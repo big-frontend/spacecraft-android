@@ -41,7 +41,7 @@ import com.electrolytej.util.component9
 import com.electrolytej.ad.widget.sensor.SensorLineChartView
 import com.electrolytej.sensor.ISensorHandler
 import com.electrolytej.sensor.SensorDetector
-import com.electrolytej.ad.widget.CustomDividerItemDecoration
+import com.electrolytej.widget.recyclerview.CustomDividerItemDecoration
 import com.electrolytej.ad.widget.SimpleTextWatcher
 import com.electrolytej.util.NumberUtil
 import java.text.SimpleDateFormat

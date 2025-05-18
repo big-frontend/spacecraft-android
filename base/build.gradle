@@ -15,6 +15,7 @@ room {
     schemaDirectory("$projectDir/schemas/")
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
+apply from: "${rootDir}/script/test_impl.gradle"
 android {
     namespace "com.electrolytej.base"
     defaultConfig {

@@ -9,129 +9,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.electrolytej.bundle2.R
 import com.electrolytej.bundle2.databinding.ActivityRecyclerviewBinding
-import com.electrolytej.widget.recyclerview.FixedGridLayoutManager
 import com.electrolytej.bundle2.page.customview.Adapter
 import com.electrolytej.bundle2.page.customview.ViewModel
-import com.electrolytej.widget.recyclerview.InsetDecoration
-import java.util.ArrayList
+import com.electrolytej.widget.recyclerview.FixedGridLayoutManager
+import com.electrolytej.widget.recyclerview.addDividerItemDecoration
 
 class RecyclerViewActivity : Activity() {
     var dataList: ArrayList<ViewModel> = object : ArrayList<ViewModel>() {
         init {
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "图片"
+            for (i in 0..3){
+//                add(
+//                    ViewModel(
+//                        com.electrolytej.base.R.drawable.tmp,
+//                        "图片"
+//                    )
+//                )
+                add(
+                    ViewModel(
+                        R.drawable.baseline_3d_rotation_black_48,
+                        "你好吗我很好，她不好"
+                    )
                 )
-            )
-            add(
-                ViewModel(
-                    R.drawable.baseline_3d_rotation_black_48,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.baseline_3d_rotation_black_48,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.baseline_3d_rotation_black_48,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.baseline_3d_rotation_black_48,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    R.drawable.baseline_3d_rotation_black_48,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
-            add(
-                ViewModel(
-                    com.electrolytej.base.R.drawable.tmp,
-                    "你好吗我很好，她不好"
-                )
-            )
+            }
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,11 +43,14 @@ class RecyclerViewActivity : Activity() {
 //        myLayoutManager.startSmoothScroll(MySmoothScroller())
 //        rv_image_text.layoutManager =myLayoutManager
         val fglm = FixedGridLayoutManager()
-        fglm.setTotalColumnCount(3)
-        binding.rvImageText.layoutManager = fglm
-        binding.rvImageText.itemAnimator = MyItemAnimator()
         val llm = LinearLayoutManager(this)
-        binding.rvImageText.addItemDecoration(InsetDecoration(this))
+        fglm.setTotalColumnCount(3)
+//        binding.rvImageText.layoutManager = fglm
+        binding.rvImageText.layoutManager = llm
+        binding.rvImageText.itemAnimator = MyItemAnimator()
+//        binding.rvImageText.addItemDecoration(InsetDecoration(this))
+//        binding.rvImageText.addItemDecoration(Divider(this))
+        binding.rvImageText.addDividerItemDecoration()
         binding.rvImageText.addOnScrollListener(object :RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
