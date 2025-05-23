@@ -41,9 +41,9 @@ import com.electrolytej.util.component9
 import com.electrolytej.ad.widget.sensor.SensorLineChartView
 import com.electrolytej.sensor.ISensorHandler
 import com.electrolytej.sensor.SensorDetector
-import com.electrolytej.widget.recyclerview.CustomDividerItemDecoration
 import com.electrolytej.ad.widget.SimpleTextWatcher
 import com.electrolytej.util.NumberUtil
+import com.electrolytej.widget.recyclerview.addDividerItemDecoration
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -105,13 +105,11 @@ class ShakeActivity : AppCompatActivity() {
         rvLogs = findViewById(R.id.rv_logs)
         realtimeAdapter = ContentShakeAdapter()
         rvLogs.adapter = realtimeAdapter
-        val divider = CustomDividerItemDecoration(2, Color.GRAY)
-        rvLogs.addItemDecoration(divider)
+        rvLogs.addDividerItemDecoration()
         rvLogs2 = findViewById(R.id.rv_logs2)
         hitShakeAdapter = LeftShakeAdapter()
         rvLogs2.adapter = hitShakeAdapter
-        val divider2 = CustomDividerItemDecoration(2, Color.RED)
-        rvLogs2.addItemDecoration(divider2)
+        rvLogs2.addDividerItemDecoration()
         accelerometerChart = findViewById(R.id.accelerometerChart)
         rationChart = findViewById(R.id.rationChart)
         aAndmChart = findViewById(R.id.aAndmChart)

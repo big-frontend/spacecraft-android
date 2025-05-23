@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.electrolytej.bundle2.R
 import com.electrolytej.bundle2.databinding.ActivityPagerViewBinding
-import com.electrolytej.loader.systemfilter.SystemFilter
+import com.electrolytej.ui.SystemFilter
 import jamesfchen.widget.kk.TabsLayout
 
 /**

@@ -42,7 +42,7 @@ public class TabsLayout extends FrameLayout {
     public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     public static final int VERTICAL = LinearLayout.VERTICAL;
     private int mOrientation = HORIZONTAL;
-    public final int GAP = DimenUtil.dp2px(24, this.getContext());
+    public final int GAP = DimenUtil.dp2px(24);
     private int mCurPosition;
     private ValueAnimator mIndicatorAnimator;
 
@@ -138,9 +138,9 @@ public class TabsLayout extends FrameLayout {
                  ViewGroup.LayoutParams indicatorLp = mIndicator.getLayoutParams();
                 if (mOrientation == HORIZONTAL) {
                     indicatorLp.width = mLlContainer.getChildAt(0).getWidth();
-                    indicatorLp.height = DimenUtil.dp2px(5, getContext());
+                    indicatorLp.height = DimenUtil.dp2px(5);
                 } else {
-                    indicatorLp.width = DimenUtil.dp2px(5, getContext());
+                    indicatorLp.width = DimenUtil.dp2px(5);
                     indicatorLp.height = mLlContainer.getChildAt(0).getHeight();
                 }
                 mIndicator.setLayoutParams(indicatorLp);

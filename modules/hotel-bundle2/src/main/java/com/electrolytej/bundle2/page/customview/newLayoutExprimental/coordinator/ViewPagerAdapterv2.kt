@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
-import com.electrolytej.widget.recyclerview.Divider
+import com.electrolytej.widget.recyclerview.addDividerItemDecoration
 
 /**
  * Copyright ® $ 2017
@@ -22,7 +22,7 @@ class ViewPagerAdapterv2 : PagerAdapter() {
         val rvPhotoList = RecyclerView(container.context)
         rvPhotoList.setBackgroundColor(Color.CYAN)
         rvPhotoList.layoutManager = LinearLayoutManager(container.context)
-        rvPhotoList.addItemDecoration(Divider(container.context))
+        rvPhotoList.addDividerItemDecoration()
         val adapter = RecyclerViewAdapter()
         rvPhotoList.adapter = adapter
         container.addView(rvPhotoList)

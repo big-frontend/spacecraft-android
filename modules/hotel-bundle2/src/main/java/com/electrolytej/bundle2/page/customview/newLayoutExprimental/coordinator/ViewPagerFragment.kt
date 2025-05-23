@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.electrolytej.widget.recyclerview.Divider
+import com.electrolytej.widget.recyclerview.addDividerItemDecoration
 
 /**
  * Copyright ® $ 2017
@@ -35,7 +35,7 @@ class ViewPagerFragment : Fragment() {
         val rvPhotoList = RecyclerView(requireContext())
         rvPhotoList.setBackgroundColor(Color.CYAN)
         rvPhotoList.layoutManager = LinearLayoutManager(requireContext())
-        rvPhotoList.addItemDecoration(Divider(requireContext()))
+        rvPhotoList.addDividerItemDecoration()
         val adapter = RecyclerViewAdapter()
         rvPhotoList.adapter = adapter
         return rvPhotoList

@@ -34,6 +34,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+<!--        <item name="android:appComponentFactory"></item>-->
+        <item name="viewInflaterClass">com.electrolytej.ui.SViewInflater</item>
     </style>
     <!--老版本使用actionbar-->
     <style name="AppTheme.ActionBar" parent="Widget.AppCompat.ActionBar"/>

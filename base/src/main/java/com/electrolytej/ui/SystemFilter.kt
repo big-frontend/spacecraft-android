@@ -1,4 +1,4 @@
-package com.electrolytej.loader.systemfilter
+package com.electrolytej.ui
 
 import android.app.Activity
 import android.graphics.ColorMatrix

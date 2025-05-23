@@ -1,5 +1,6 @@
 package com.electrolytej.bundle2.page.customview;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         ViewModel viewModel = dataList.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,42 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:layout_constraintBottom_toTopOf="@id/rv_image_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showDividerHorizontal="end">
 
         <Button
             android:id="@+id/bt_add_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="click" />
+            android:text="add view" />
 
-        <LinearLayout
-            android:id="@+id/ll_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn 1" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="btn 1" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn 2" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="btn 2" />
-        </LinearLayout>
-    </LinearLayout>
+        <Button
+            android:id="@+id/bt_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="列表 or 网格 or 瀑布" />
+    </com.google.android.flexbox.FlexboxLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/lightGreyBlue"
         android:id="@+id/rv_image_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/fl_container"
         tools:itemCount="9"
         tools:listitem="@layout/item_image_and_text" />
 

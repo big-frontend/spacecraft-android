@@ -6,10 +6,6 @@ import java.util.List;
 import androidx.annotation.IntRange;
 import androidx.annotation.Nullable;
 
-/**
- * Copyright ® $ 2019
- * All right reserved.
- */
 public class CollectionUtil {
 
     public static boolean isEmpty(final Collection collection) {
