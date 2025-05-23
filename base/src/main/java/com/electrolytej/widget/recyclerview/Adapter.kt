@@ -1,5 +1,6 @@
 package com.electrolytej.widget.recyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,11 +46,11 @@ class ArrayAdapter(
     override fun getItemCount() = items.size / viewIds.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        repeat(viewIds.size) { index ->
+        viewIds.forEachIndexed { index, viewid ->
             //0 2 4 6 8 10 12
             //0 1 2 3 4 5 6
-            val item = items[position * 2 + index]
-            val view = holder.views[index]
+            val item = items[position * viewIds.size + index]
+            val view = holder.views[viewid]
             if (view is ImageView) {
                 view.setImageResource(item as Int)
             } else if (view is Button) {
@@ -57,9 +58,10 @@ class ArrayAdapter(
             } else if (view is TextView) {
                 view.text = item.toString()
             }
+//            Log.d("cjf","${position * viewIds.size + index} ${item} ${view}")
         }
         holder.itemView.setOnClickListener {
-            listener?.invoke(it, position)
+            listener?.invoke(holder, position)
         }
     }
 
@@ -71,12 +73,12 @@ class ArrayAdapter(
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var views = arrayListOf<View>()
+        var views = LinkedHashMap<Int, View>()
 
         init {
             viewIds.forEach { viewId ->
                 val v = itemView.findViewById<View>(viewId)
-                views.add(v)
+                views.put(viewId, v)
 
             }
         }

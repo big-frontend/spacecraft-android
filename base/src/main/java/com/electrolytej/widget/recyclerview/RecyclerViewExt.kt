@@ -1,12 +1,12 @@
 package com.electrolytej.widget.recyclerview
 
-import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.electrolytej.base.R
 
-typealias OnItemClickListener = (View, Int) -> Unit
+typealias OnItemClickListener = (ArrayAdapter.ViewHolder, Int) -> Unit
+//typealias OnItemClickListener = (View, Int) -> Unit
 
 fun RecyclerView.addDividerItemDecoration(
     @DrawableRes d: Int = R.drawable.line_divider,

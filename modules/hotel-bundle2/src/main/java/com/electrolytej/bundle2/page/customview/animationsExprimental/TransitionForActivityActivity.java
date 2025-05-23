@@ -11,10 +11,11 @@ import android.view.View;
 import android.view.Window;
 
 import com.electrolytej.bundle2.R;
-import com.electrolytej.bundle2.page.customview.Adapter;
 import com.electrolytej.bundle2.page.customview.ViewModel;
+import com.electrolytej.widget.recyclerview.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -87,13 +88,24 @@ public class TransitionForActivityActivity extends Activity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 //        rv.setLayoutManager(staggeredGridLayoutManager);
         rv.setLayoutManager(linearLayoutManager);
-        Adapter adapter = new Adapter();
+        ArrayAdapter adapter = new ArrayAdapter(
+                R.layout.item_image_and_text,
+                new int[]{R.id.tv_text, R.id.iv},
+                new Object[]{
+                        "图片1", com.electrolytej.base.R.drawable.tmp,
+                        "图片2", com.electrolytej.base.R.drawable.tmp,
+                        "图片3", com.electrolytej.base.R.drawable.tmp,
+                        "图片4", com.electrolytej.base.R.drawable.tmp,
+                        "图片5", com.electrolytej.base.R.drawable.tmp,
+                        "图片6", com.electrolytej.base.R.drawable.tmp,
+                        "图片7", com.electrolytej.base.R.drawable.tmp,
+                }
+        );
         rv.setAdapter(adapter);
         rv.setHasFixedSize(true);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(TransitionForActivityActivity.this, DividerItemDecoration.HORIZONTAL);
         dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
         rv.addItemDecoration(dividerItemDecoration);
-        adapter.addDatas(dataList);
         Slide slide = new Slide(Gravity.BOTTOM);
         slide.setDuration(1000);
         slide.setInterpolator(new FastOutSlowInInterpolator());
