@@ -111,49 +111,6 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".page.feedback.PulseActivity" />
-        />
-        <activity
-            android:name=".page.map.MapActivity"
-            android:hardwareAccelerated="true"
-            android:label="map page">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--            </intent-filter>-->
-        </activity>
-        <!--        <activity-alias-->
-        <!--            android:name="MapActivity2"-->
-        <!--            android:targetActivity=".MapActivity"-->
-        <!--            android:label="map page2"-->
-        <!--            >-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.MAIN" />-->
-        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity-alias>-->
-
-        <activity
-            android:name=".page.location.LocationActivity"
-            android:hardwareAccelerated="true"
-            android:label="location page">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--                <category android:name="android.intent.category.DEFAULT"/>-->
-            <!--            </intent-filter>-->
-        </activity>
-
-        <service
-            android:name=".location.LbsServices"
-            android:foregroundServiceType="location" />
-        <service
-            android:name=".location.LbsJobService"
-            android:foregroundServiceType="location"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name=".location.LbsJobIntentService"
-            android:foregroundServiceType="location"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name="com.amap.api.location.APSService"
             android:foregroundServiceType="location" />

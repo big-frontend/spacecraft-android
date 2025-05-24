@@ -9,7 +9,7 @@ import android.opengl.GLES30
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
 import android.util.AttributeSet
-import com.electrolytej.ad.sensor.ShakeSensorHandler.OnShakeListener
+import com.electrolytej.ad.page.shake.sensor.ShakeSensorHandler.OnShakeListener
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 import kotlin.math.acos

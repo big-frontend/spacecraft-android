@@ -22,13 +22,14 @@ import android.widget.Toolbar;
 import com.electrolytej.bundle2.R;
 import com.electrolytej.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransition;
 import com.electrolytej.bundle2.page.customview.animationsExprimental.transitions.ScaleUpTransitionv2;
+import com.electrolytej.util.CollectionUtil;
+import com.electrolytej.widget.recyclerview.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
@@ -49,29 +50,7 @@ public class DetailActivity extends Activity {
     public static final String IV_TRANSITIONNAME = "image";
     public static final String TV_TRANSITIONNAME = "text";
     public static final String SCALEUP_TRANSITIONNAME = "scale_up";
-    private List<ViewModel> dataList = new ArrayList<ViewModel>() {
-        {
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "图片"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-        }
-    };
+
     GridLayoutManager gridLayoutManager;
     ImageView ivCover;
     TextView tvText;
@@ -224,7 +203,11 @@ public class DetailActivity extends Activity {
             }
         });
         rvContent.setLayoutManager(gridLayoutManager);
-        Adapter adapter = new Adapter();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(R.layout.item_detail_content,
+                new int[]{R.id.textview1, R.id.textview2, R.id.textview3},
+                CollectionUtil.list("图片1", "图片2", "图片3", "图片4", "图片5", "图片6")
+        );
         rvContent.setAdapter(adapter);
         rvContent.setHasFixedSize(true);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -256,61 +239,4 @@ public class DetailActivity extends Activity {
 //        ActivityCompat.finishAfterTransition(this);
 //    }
 
-    class Adapter extends RecyclerView.Adapter<ViewHolder> {
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(DetailActivity.this).inflate(R.layout.item_detail_content, parent, false);
-            return new ViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            ViewModel viewModel = dataList.get(position);
-            holder.textview1.setText(viewModel.text);
-            holder.textview2.setText(viewModel.text);
-            holder.textview3.setText(viewModel.text);
-        }
-
-        @Override
-        public int getItemCount() {
-            return dataList.size();
-        }
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textview1;
-        TextView textview2;
-        TextView textview3;
-
-        public ViewHolder(@NonNull final View itemView) {
-            super(itemView);
-            textview1 = itemView.findViewById(R.id.textview1);
-            textview2 = itemView.findViewById(R.id.textview2);
-            textview3 = itemView.findViewById(R.id.textview3);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    SnackbarUtil.with(tvText)
-//                            .setActionText("action text")
-//                            .setMessage("message")
-//                            .setDuration(1000)
-//                            .showSuccess();
-                }
-            });
-        }
-    }
-
-    class ViewModel {
-        @DrawableRes
-        int drawableRes;
-        String text;
-
-        public ViewModel(int drawableRes, String text) {
-            this.drawableRes = drawableRes;
-            this.text = text;
-        }
-    }
 }

@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.electrolytej.ad.R
-import com.electrolytej.ad.sensor.ShakeSensorHandler
+import com.electrolytej.ad.page.shake.sensor.ShakeSensorHandler
 import com.electrolytej.ad.widget.SensorGLView
 
 class Shake3Activity : AppCompatActivity() {

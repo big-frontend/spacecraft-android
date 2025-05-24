@@ -1,7 +1,9 @@
 package com.blankj.utilcode.util;
 
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -25,6 +27,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import androidx.annotation.CallSuper;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
+
+import com.electrolytej.sensor.SensorDetector;
 
 /**
  * <pre>
@@ -63,6 +67,27 @@ public final class ThreadUtils {
 
     public static Handler getMainHandler() {
         return HANDLER;
+    }
+
+    static class WorkHandler extends Handler {
+        WorkHandler(Looper looper) {
+            super(looper);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+        }
+    }
+
+    private static HandlerThread handlerThread = new HandlerThread("handler_thread");
+    private static WorkHandler workHandler;
+
+    public static Handler getWorkHandler() {
+        if (workHandler == null) {
+            handlerThread.start();
+            workHandler = new WorkHandler(handlerThread.getLooper());
+        }
+        return workHandler;
     }
 
     public static void runOnUiThread(final Runnable runnable) {

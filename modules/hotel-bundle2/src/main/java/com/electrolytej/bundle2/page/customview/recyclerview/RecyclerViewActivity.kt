@@ -27,7 +27,7 @@ class RecyclerViewActivity : Activity() {
         val adapter = ArrayAdapter(
             R.layout.item_image_and_text,
             intArrayOf(R.id.tv_text, R.id.iv),
-            arrayOf(
+            listOf(
                 "图片1", com.electrolytej.base.R.drawable.tmp,
                 "图片2", com.electrolytej.base.R.drawable.tmp,
                 "图片3", com.electrolytej.base.R.drawable.tmp,
@@ -38,8 +38,8 @@ class RecyclerViewActivity : Activity() {
             )
         )
         adapter.setOnItemClickListener { viewHolder, position ->
-            val textView = viewHolder.views[R.id.tv_text] as TextView
-            val iv = viewHolder.views[R.id.iv] as ImageView
+            val textView = viewHolder.findViewById<TextView>(R.id.tv_text)!!
+            val iv = viewHolder.findViewById<ImageView>(R.id.iv)!!
             var remain: Int = position % 5
 //            remain = -1
             if (remain == 0) {
@@ -55,8 +55,8 @@ class RecyclerViewActivity : Activity() {
                 DetailActivity.startActivityWithClipReveal(
                     this,
                     iv,
-                    iv.getWidth() / 2,
-                    iv.getHeight() / 2,
+                    iv.width / 2,
+                    iv.height / 2,
                     1000,
                     1000
                 )
@@ -64,8 +64,8 @@ class RecyclerViewActivity : Activity() {
                 DetailActivity.startActivityWithScaleUp(
                     this,
                     iv,
-                    iv.getWidth() / 2,
-                    iv.getHeight() / 2,
+                    iv.width / 2,
+                    iv.height / 2,
                     200,
                     200
                 )
@@ -73,9 +73,9 @@ class RecyclerViewActivity : Activity() {
                 DetailActivity.startActivityWithThumbnailScaleUp(
                     this,
                     iv,
-                    iv.getDrawingCache(),
-                    iv.getWidth() / 2,
-                    iv.getHeight() / 2
+                    iv.drawingCache,
+                    iv.width / 2,
+                    iv.height / 2
                 )
             } else {
 //                        DetailActivity.startActivityWithScaleUp((Activity) holder.itemView.getContext(),holder.itemView,0,0,iv.getWidth(),iv.getHeight());
@@ -84,8 +84,8 @@ class RecyclerViewActivity : Activity() {
                     viewHolder.itemView,
                     0,
                     0,
-                    iv.getWidth(),
-                    iv.getHeight()
+                    iv.width,
+                    iv.height
                 )
             }
         }

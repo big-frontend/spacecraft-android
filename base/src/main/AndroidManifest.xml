@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.electrolytej.base">
 
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />
@@ -11,6 +14,14 @@
             <action android:name="android.intent.action.VIEW" />
         </intent>
     </queries>
+    <!-- 请求大致位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 请求确切位置 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application android:name="com.electrolytej.SApp">
         <activity android:name="com.electrolytej.activity.AvRecorderActivity" />
@@ -103,5 +114,13 @@
                 <action android:name="${applicationId}.messenger" />
             </intent-filter>
         </service>
+
+        <service
+            android:name="com.electrolytej.location.LbsServices"
+            android:foregroundServiceType="location" />
+        <service
+            android:name="com.electrolytej.location.LbsJobService"
+            android:foregroundServiceType="location"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 </manifest>

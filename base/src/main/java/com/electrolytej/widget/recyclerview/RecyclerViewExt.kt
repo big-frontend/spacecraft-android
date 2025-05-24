@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.electrolytej.base.R
 
-typealias OnItemClickListener = (ArrayAdapter.ViewHolder, Int) -> Unit
+typealias OnItemClickListener =  (BaseViewHolder<*>, Int) -> Unit
 //typealias OnItemClickListener = (View, Int) -> Unit
 
 fun RecyclerView.addDividerItemDecoration(

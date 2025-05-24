@@ -20,10 +20,10 @@
     <shortcut
         android:enabled="true"
         android:icon="@drawable/ic_baseline_3d_rotation_24dp_black"
-        android:shortcutDisabledMessage="@string/static_disabled_message"
+        android:shortcutDisabledMessage="@string/shake"
         android:shortcutId="shake"
-        android:shortcutLongLabel="@string/static_shortcut_long_label"
-        android:shortcutShortLabel="@string/static_shortcut_short_label">
+        android:shortcutLongLabel="@string/shake"
+        android:shortcutShortLabel="@string/shake">
 
         <intent
             android:action="android.intent.action.VIEW"
@@ -31,6 +31,21 @@
             android:targetPackage="com.electrolytej.spacecraft" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_battery_90_apricot_24dp"
+        android:shortcutDisabledMessage="@string/lbs"
+        android:shortcutId="lbs"
+        android:shortcutLongLabel="@string/lbs"
+        android:shortcutShortLabel="@string/lbs">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.electrolytej.ad.page.map.MapActivity"
+            android:targetPackage="com.electrolytej.spacecraft" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
     <shortcut
         android:enabled="true"
         android:icon="@drawable/ic_battery_90_apricot_24dp"

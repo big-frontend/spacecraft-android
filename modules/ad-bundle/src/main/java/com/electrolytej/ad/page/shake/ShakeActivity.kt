@@ -1,6 +1,5 @@
 package com.electrolytej.ad.page.shake
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -32,13 +31,13 @@ import com.electrolytej.ad.Constants.sk_by_angle_y
 import com.electrolytej.ad.Constants.sk_by_angle_z
 import com.electrolytej.ad.Constants.sk_by_gap_duration
 import com.electrolytej.ad.R
-import com.electrolytej.ad.sensor.ShakeSensorHandler
+import com.electrolytej.ad.page.shake.sensor.ShakeSensorHandler
 import com.electrolytej.ad.util.ShakeTraceUtil
 import com.electrolytej.util.component6
 import com.electrolytej.util.component7
 import com.electrolytej.util.component8
 import com.electrolytej.util.component9
-import com.electrolytej.ad.widget.sensor.SensorLineChartView
+import com.electrolytej.widget.LineChartView
 import com.electrolytej.sensor.ISensorHandler
 import com.electrolytej.sensor.SensorDetector
 import com.electrolytej.ad.widget.SimpleTextWatcher
@@ -63,9 +62,9 @@ class ShakeActivity : AppCompatActivity() {
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var coordinatorLayout: CoordinatorLayout
-    lateinit var accelerometerChart: SensorLineChartView
-    lateinit var rationChart: SensorLineChartView
-    lateinit var aAndmChart: SensorLineChartView
+    lateinit var accelerometerChart: LineChartView
+    lateinit var rationChart: LineChartView
+    lateinit var aAndmChart: LineChartView
     lateinit var tvAccelerometer: TextView
     lateinit var tvRation: TextView
     lateinit var tvAm: TextView
@@ -280,18 +279,20 @@ class ShakeActivity : AppCompatActivity() {
                 val (ax, ay, az, rationDegreeDx, rationDegreeDy, rationDegreeDz,amDegreeDx,amDegreeDy,amDegreeDz) = resultValues
                 val endTime = System.currentTimeMillis() - startTime
                 accelerometerChart.addDataPoint(
-                    SensorLineChartView.DataPoint(
+                    LineChartView.DataPoint(
                         endTime, ax, ay, az
                     )
                 )
                 rationChart.addDataPoint(
-                    SensorLineChartView.DataPoint(
-                        endTime, rationDegreeDx, rationDegreeDy, rationDegreeDz
+                    LineChartView.DataPoint(
+                        endTime, rationDegreeDx, rationDegreeDy,
+//                        rationDegreeDz
                     )
                 )
                 aAndmChart.addDataPoint(
-                    SensorLineChartView.DataPoint(
-                        endTime, amDegreeDx, amDegreeDy, amDegreeDz
+                    LineChartView.DataPoint(
+                        endTime, amDegreeDx,
+//                        amDegreeDy, amDegreeDz
                     )
                 )
                 computeMax(

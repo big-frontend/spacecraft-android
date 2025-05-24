@@ -1,5 +1,6 @@
 package com.electrolytej.util;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,4 +39,9 @@ public class CollectionUtil {
     public static <T> boolean isValidateElement(@Nullable List<T> list, @IntRange(from = 0) int position) {
         return isNotEmpty(list) && list.get(position) != null;
     }
+
+    public static <T> List<T> list(T... t) {
+        return Arrays.asList(t);
+    }
+
 }

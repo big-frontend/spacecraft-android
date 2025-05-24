@@ -157,7 +157,7 @@
                                 android:textColor="#3D7DB2"
                                 android:textSize="18sp" />
 
-                            <com.electrolytej.ad.widget.sensor.SensorLineChartView
+                            <com.electrolytej.widget.LineChartView
                                 android:id="@+id/accelerometerChart"
                                 android:layout_width="match_parent"
                                 android:layout_height="210dp" />
@@ -187,7 +187,7 @@
                                             android:textColor="#3D7DB2"
                                             android:textSize="18sp" />
 
-                                        <com.electrolytej.ad.widget.sensor.SensorLineChartView
+                                        <com.electrolytej.widget.LineChartView
                                             android:id="@+id/rationChart"
                                             android:layout_width="match_parent"
                                             android:layout_height="270dp" />
@@ -207,7 +207,7 @@
                                             android:textColor="#3D7DB2"
                                             android:textSize="18sp" />
 
-                                        <com.electrolytej.ad.widget.sensor.SensorLineChartView
+                                        <com.electrolytej.widget.LineChartView
                                             android:id="@+id/aAndmChart"
                                             android:layout_width="match_parent"
                                             android:layout_height="270dp" />

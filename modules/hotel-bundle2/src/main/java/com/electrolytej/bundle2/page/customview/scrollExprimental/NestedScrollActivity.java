@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.electrolytej.bundle2.R;
+import com.electrolytej.util.CollectionUtil;
 import com.electrolytej.widget.recyclerview.ArrayAdapter;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,10 +23,10 @@ public class NestedScrollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nested_scroll);
         RecyclerView rv_image_text = findViewById(R.id.rv_image_text);
-        ArrayAdapter adapter = new ArrayAdapter(
+        ArrayAdapter<Object> adapter = new ArrayAdapter<>(
                 R.layout.item_image_and_text,
                 new int[]{R.id.tv_text, R.id.iv},
-                new Object[]{
+                CollectionUtil.list(
                         "图片1", com.electrolytej.base.R.drawable.tmp,
                         "图片2", com.electrolytej.base.R.drawable.tmp,
                         "图片3", com.electrolytej.base.R.drawable.tmp,
@@ -33,7 +34,7 @@ public class NestedScrollActivity extends Activity {
                         "图片5", com.electrolytej.base.R.drawable.tmp,
                         "图片6", com.electrolytej.base.R.drawable.tmp,
                         "图片7", com.electrolytej.base.R.drawable.tmp,
-                }
+                        )
         );
         rv_image_text.setAdapter(adapter);
 
@@ -41,7 +42,7 @@ public class NestedScrollActivity extends Activity {
         ArrayAdapter adapter2 = new ArrayAdapter(
                 R.layout.item_image_and_text,
                 new int[]{R.id.tv_text, R.id.iv},
-                new Object[]{
+                CollectionUtil.list(
                         "图片1", com.electrolytej.base.R.drawable.tmp,
                         "图片2", com.electrolytej.base.R.drawable.tmp,
                         "图片3", com.electrolytej.base.R.drawable.tmp,
@@ -49,7 +50,7 @@ public class NestedScrollActivity extends Activity {
                         "图片5", com.electrolytej.base.R.drawable.tmp,
                         "图片6", com.electrolytej.base.R.drawable.tmp,
                         "图片7", com.electrolytej.base.R.drawable.tmp,
-                }
+                        )
         );
         rv_image_text_grid.setAdapter(adapter2);
     }

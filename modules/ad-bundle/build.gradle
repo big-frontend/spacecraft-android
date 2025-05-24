@@ -2,6 +2,8 @@ plugins {
     id("io.github.electrolytej.static-bundle-plugin")
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
+//    alias(libs.plugins.room)
 }
 apply from: "${rootDir}/script/ui_tradition.gradle"
 android {
@@ -24,6 +26,8 @@ dependencies {
     implementation 'com.google.android.filament:filament-android:1.57.1'
     implementation 'com.google.android.filament:gltfio-android:1.57.1'
     implementation 'com.google.auto.service:auto-service-annotations:1.0.1'
+    implementation project(':modules:hotel-bundle2')
+    implementation project(':modules:hotel-bundle2')
     kapt("com.google.auto.service:auto-service:1.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -63,4 +67,5 @@ dependencies {
 //    implementation("com.taobao.android:sgmiddletieraar3:5.0.0.9-v6@aar")
 //    implementation("com.alibaba:fastjson:1.1.71.android")
 //    implementation("com.pangle.cn:ads-sdk-pro:6.7.0.7")
+    ksp(libs.room.compiler)
 }

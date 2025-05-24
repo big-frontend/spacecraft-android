@@ -22,6 +22,7 @@ import androidx.core.util.isNotEmpty
 import com.google.android.material.snackbar.Snackbar
 import com.electrolytej.bundle2.R
 import com.electrolytej.bundle2.databinding.ActivitySearchBinding
+import com.electrolytej.widget.span.DrawableBackgroundSpan
 import org.json.JSONObject
 import java.util.regex.Pattern
 

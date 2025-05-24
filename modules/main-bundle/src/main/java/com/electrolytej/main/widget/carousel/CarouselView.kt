@@ -50,7 +50,7 @@ class CarouselView @JvmOverloads constructor(
     private var mAutoStart = false
     private var mVpContent: ViewPager
     private var mTvIndicator: TextView
-    private lateinit var mPagerAdapter: com.electrolytej.main.widget.carousel.CarouselPagerAdapter<*>
+    private lateinit var mPagerAdapter: CarouselPagerAdapter<*>
     private var mCurPosition = 0
     private val transformer: ViewPager.PageTransformer? = null
     private var mHandler: Handler
@@ -92,7 +92,7 @@ class CarouselView @JvmOverloads constructor(
         mHandler.removeMessages(0)
     }
 
-    fun setAdapter(adapter: com.electrolytej.main.widget.carousel.CarouselPagerAdapter<*>) {
+    fun setAdapter(adapter: CarouselPagerAdapter<*>) {
         mPagerAdapter = adapter
         mPagerAdapter.setViewPager(mVpContent)
         mPagerAdapter.setIndicator(mTvIndicator)

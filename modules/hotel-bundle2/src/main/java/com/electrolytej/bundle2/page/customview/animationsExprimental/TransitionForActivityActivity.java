@@ -11,13 +11,8 @@ import android.view.View;
 import android.view.Window;
 
 import com.electrolytej.bundle2.R;
-import com.electrolytej.bundle2.page.customview.ViewModel;
+import com.electrolytej.util.CollectionUtil;
 import com.electrolytej.widget.recyclerview.ArrayAdapter;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
@@ -41,29 +36,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
  * - 共享元素转场:常见于两个页面有共同的元素，比如图片，文件等。
  */
 public class TransitionForActivityActivity extends Activity {
-    public List<ViewModel> dataList = new ArrayList<ViewModel>() {
-        {
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "图片"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(R.drawable.baseline_3d_rotation_black_48, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-            add(new ViewModel(com.electrolytej.base.R.drawable.tmp, "你好吗我很好，她不好"));
-        }
-    };
     StaggeredGridLayoutManager staggeredGridLayoutManager;
     RecyclerView rv;
 
@@ -88,18 +60,18 @@ public class TransitionForActivityActivity extends Activity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 //        rv.setLayoutManager(staggeredGridLayoutManager);
         rv.setLayoutManager(linearLayoutManager);
-        ArrayAdapter adapter = new ArrayAdapter(
+        ArrayAdapter<Object> adapter = new ArrayAdapter<>(
                 R.layout.item_image_and_text,
                 new int[]{R.id.tv_text, R.id.iv},
-                new Object[]{
+                CollectionUtil.list(
                         "图片1", com.electrolytej.base.R.drawable.tmp,
                         "图片2", com.electrolytej.base.R.drawable.tmp,
                         "图片3", com.electrolytej.base.R.drawable.tmp,
                         "图片4", com.electrolytej.base.R.drawable.tmp,
                         "图片5", com.electrolytej.base.R.drawable.tmp,
                         "图片6", com.electrolytej.base.R.drawable.tmp,
-                        "图片7", com.electrolytej.base.R.drawable.tmp,
-                }
+                        "图片7", com.electrolytej.base.R.drawable.tmp
+                )
         );
         rv.setAdapter(adapter);
         rv.setHasFixedSize(true);
