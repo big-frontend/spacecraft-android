@@ -45,24 +45,27 @@ class ImageInitializer : Initializer<Unit> {
         val memTrimRegistry = NoOpMemoryTrimmableRegistry.getInstance()
         memTrimRegistry.registerMemoryTrimmable { type ->
             val suggestedTrimRatio = type.suggestedTrimRatio
-            if (MemoryTrimType.OnCloseToDalvikHeapLimit.suggestedTrimRatio == suggestedTrimRatio || MemoryTrimType.OnSystemLowMemoryWhileAppInBackground.suggestedTrimRatio == suggestedTrimRatio || MemoryTrimType.OnSystemLowMemoryWhileAppInForeground.suggestedTrimRatio == suggestedTrimRatio) {
+            if (MemoryTrimType.OnCloseToDalvikHeapLimit.suggestedTrimRatio == suggestedTrimRatio || MemoryTrimType.OnSystemLowMemoryWhileAppInBackgroundLowSeverity.suggestedTrimRatio == suggestedTrimRatio || MemoryTrimType.OnSystemLowMemoryWhileAppInForeground.suggestedTrimRatio == suggestedTrimRatio) {
                 //回收内存缓存
                 Fresco.getImagePipeline().clearMemoryCaches()
             }
-
         }
         val diskCacheConfig = DiskCacheConfig.newBuilder(SApp.getInstance())
             .setBaseDirectoryPath(SApp.getInstance().cacheDir).setBaseDirectoryName("fresco_cache")
             .setMaxCacheSize(diskCacheSize).build()
-        val config = ImagePipelineConfig.newBuilder(SApp.getInstance()).setDownsampleEnabled(true)
-            .setNetworkFetcher(OkHttpNetworkFetcher(okhttpClient))
-            .setBitmapsConfig(Bitmap.Config.RGB_565).experiment().setWebpSupportEnabled(true)
-            .experiment().setShouldDownscaleFrameToDrawableDimensions(true)//fix gif oom
-            .setBitmapMemoryCacheParamsSupplier {
-                return@setBitmapMemoryCacheParamsSupplier memoryCacheParams
-            }.setMainDiskCacheConfig(diskCacheConfig).setMemoryTrimmableRegistry(memTrimRegistry)
-            .build()
-//        Fresco.initialize(SApp.getInstance(),config)
+//        val config = ImagePipelineConfig.newBuilder(SApp.getInstance()).setDownsampleEnabled(true)
+//            .setNetworkFetcher(OkHttpNetworkFetcher(okhttpClient))
+//            .setBitmapsConfig(Bitmap.Config.RGB_565)
+//            .experiment()
+//            .setWebpSupportEnabled(true)
+////            .experiment()
+//            .setShouldDownscaleFrameToDrawableDimensions(true)//fix gif oom
+//            .setBitmapMemoryCacheParamsSupplier {
+//                return@setBitmapMemoryCacheParamsSupplier memoryCacheParams
+//            }.setMainDiskCacheConfig(diskCacheConfig)
+//            .setMemoryTrimmableRegistry(memTrimRegistry)
+//            .build()
+        Fresco.initialize(SApp.getInstance())
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {

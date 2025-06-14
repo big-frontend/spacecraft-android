@@ -29,6 +29,10 @@
             android:lines="2"
             android:textSize="90sp"
             android:text="adasdfadsfsdf" />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"/>
         <SearchView
             android:id="@+id/sv_search"
             android:layout_width="match_parent"

@@ -33,8 +33,7 @@ public class NestedScrollActivity extends Activity {
                         "图片4", com.electrolytej.base.R.drawable.tmp,
                         "图片5", com.electrolytej.base.R.drawable.tmp,
                         "图片6", com.electrolytej.base.R.drawable.tmp,
-                        "图片7", com.electrolytej.base.R.drawable.tmp,
-                        )
+                        "图片7", com.electrolytej.base.R.drawable.tmp)
         );
         rv_image_text.setAdapter(adapter);
 
@@ -49,8 +48,7 @@ public class NestedScrollActivity extends Activity {
                         "图片4", com.electrolytej.base.R.drawable.tmp,
                         "图片5", com.electrolytej.base.R.drawable.tmp,
                         "图片6", com.electrolytej.base.R.drawable.tmp,
-                        "图片7", com.electrolytej.base.R.drawable.tmp,
-                        )
+                        "图片7", com.electrolytej.base.R.drawable.tmp)
         );
         rv_image_text_grid.setAdapter(adapter2);
     }

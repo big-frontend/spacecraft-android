@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
@@ -19,8 +20,14 @@ import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.NotificationUtils
 import com.blankj.utilcode.util.SpanUtils
 import com.blankj.utilcode.util.Utils
+import com.electrolytej.image.processor.Grey2Postprocessor
+import com.electrolytej.image.processor.GreyPostprocessor
 import com.electrolytej.main.databinding.ActivityWebSearchBinding
 import com.electrolytej.main.util.span.RoundedBackgroundSpan
+import com.electrolytej.util.loadUrl
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.interfaces.DraweeController
+import com.facebook.imagepipeline.request.ImageRequestBuilder
 
 
 /**
@@ -52,6 +59,9 @@ class WebSearchActivity : AppCompatActivity() {
             Test.addition_isCorrect2()
 //            openMediaDialog(this,deeplinkUri)
         }
+//        "http://test-sc.seeyouyima.com/eimg/adimg/2025/2/67aab80631bb4_1080_1555.jpg"
+        binding.ivImage.loadUrl("https://test-sc.seeyouyima.com/eimg/adimg/2022/6/62ac2bbfa17b1_640_300.gif")
+
         binding.rvSearchList.layoutManager = layoutManager
         SpanUtils.with(binding.tvAd)
             .append("广告")

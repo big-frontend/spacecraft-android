@@ -106,7 +106,7 @@ internal class RecyclerViewAdapterProxy<T>(
     fun getItemCount() = items.size / viewIds.size
 
     fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
-        for (index in viewIds) {
+        for (index in viewIds.indices) {
             val viewid = viewIds[index]
             //0 2 4 6 8 10 12
             //0 1 2 3 4 5 6
@@ -137,13 +137,13 @@ internal class RecyclerViewAdapterProxy<T>(
     }
 }
 
-class BaseViewHolder<T>(val itemView: View) : RecyclerView.ViewHolder(itemView) {
+class BaseViewHolder<T>(val rootView: View) : RecyclerView.ViewHolder(rootView) {
     private var views = LinkedHashMap<Int, View>()
 
     fun <V : View?> findViewById(@IdRes viewId: Int): V? {
         var view: View? = views[viewId]
         if (view == null) {
-            view = itemView.findViewById(viewId)
+            view = rootView.findViewById(viewId)
             views[viewId] = view
         }
         return view as? V

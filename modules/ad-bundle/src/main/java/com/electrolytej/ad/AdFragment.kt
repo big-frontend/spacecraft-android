@@ -42,11 +42,11 @@ class AdFragment : Fragment() {
 
         binding.svShiny.setOnShinyListener {
 //            BarUtil.setBarsFullscreen(requireActivity(), BarUtil.IMMERSIVE_STICKY)
-//            findNavController().navigateUp()
+            findNavController().navigateUp()
 //            SPUtils.getInstance().put(Constants.KEY_AD_SPLASH, true)
 //            findNavController().navigate(R.id.dest_home)
 //            ActivityUtils.startActivity(requireActivity(), RotationVectorActivity::class.java)
-            ActivityUtils.startActivity(requireActivity(), Shake3Activity::class.java)
+//            ActivityUtils.startActivity(requireActivity(), Shake3Activity::class.java)
         }
         getAllPackage()
         getMyPackage()
