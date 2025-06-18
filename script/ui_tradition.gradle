@@ -32,7 +32,7 @@ dependencies{
     api 'com.scwang.smart:refresh-header-two-level:2.0.3'   //二级刷新头
     api 'com.scwang.smart:refresh-footer-ball:2.0.3'        //球脉冲加载
     api 'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
-
+    api "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.7"
     //layout start
     api 'androidx.constraintlayout:constraintlayout:2.1.0'
     api 'com.google.android:flexbox:1.1.0'
