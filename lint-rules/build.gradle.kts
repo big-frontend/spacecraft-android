@@ -18,8 +18,8 @@ dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib:${KOTLIN_VERSION}")
     compileOnly("org.jetbrains.kotlin:kotlin-compiler:${KOTLIN_VERSION}")
 
-//    compileOnly "com.android.tools.lint:lint-api:${project.rootProject.LINT_VERSION}"
-//    compileOnly "com.android.tools.lint:lint-checks:${project.rootProject.LINT_VERSION}"
+//    compileOnly "com.android.tools.lint:lint-api:30.3.0"
+//    compileOnly "com.android.tools.lint:lint-checks:30.3.0"
 }
 //jar {
 //    manifest {
