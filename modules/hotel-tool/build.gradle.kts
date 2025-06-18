@@ -1,8 +1,10 @@
+import groovy.lang.Closure
+
 plugins {
     id("io.github.electrolytej.tool-plugin")
     alias(libs.plugins.kotlin.android)
 }
-
+apply("from" to "$rootDir/script/test_impl.gradle")
 android {
     namespace = "com.electrolytej.tool"
 
@@ -19,6 +21,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        aidl = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -37,4 +42,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    val moduleify: Closure<Any> by project.extra
+    implementation(moduleify("framework-base"))
 }

@@ -1,4 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+        <provider
+            android:name="com.electrolytej.tool.LogContentProvider"
+            android:authorities="${applicationId}.mockserver.log"
+            android:exported="false"
+            android:multiprocess="true"
+            android:process=":log_ui_server" />
+        <receiver
+            android:name="com.electrolytej.tool.CmdReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <!--            android:priority="1000"-->
+            <intent-filter>
+                <action android:name="com.hawksjamesf.spacecraft.cmd_list" />
+            </intent-filter>
+
+        </receiver>
+
+        <activity
+            android:name="com.electrolytej.tool.LogDBActivity"
+            android:multiprocess="true"
+            android:process=":log_ui_server"
+            android:theme="@style/Theme.AppCompat.DayNight" />
+        <activity
+            android:name="com.electrolytej.tool.LogActivity"
+            android:process=":mock_server"
+            android:theme="@style/Theme.AppCompat.DayNight" />
+
+        <service
+            android:name="com.electrolytej.tool.service.NonAffinityService"
+            android:process=":non_affinity_service" />
+        <service
+            android:name="com.electrolytej.tool.service.MockIntentService"
+            android:process=":mock_intentserver" />
+        <service
+            android:name="com.electrolytej.tool.service.MockForegroundService"
+            android:process=":mock_foregroundserver" />
+        <service
+            android:name="com.electrolytej.tool.service.MockService"
+            android:process=":mock_server" />
+        <service
+            android:name="com.electrolytej.tool.service.MockJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":mock_jobserver" />
+        <service
+            android:name="com.electrolytej.tool.service.MockJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":mock_jobintentserver" />
+    </application>
 </manifest>
