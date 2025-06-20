@@ -24,6 +24,11 @@ android {
             buildConfigField 'String', "HTTP_VALIDATE_TOKEN_URL", "\"https://www.cmpassport.com/openapi/rs/tokenValidate\""
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs += ['ww/res']
+        }
+    }
 }
 
 dependencies {

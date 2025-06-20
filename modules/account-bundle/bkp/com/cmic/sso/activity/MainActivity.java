@@ -36,7 +36,7 @@ import com.cmic.sso.tokenValidate.RequestCallback;
 import com.cmic.sso.util.Constant;
 import com.cmic.sso.util.SpUtils;
 import com.cmic.sso.util.StringFormat;
-import com.jamesfchen.main.R;
+import com.electrolytej.account.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
