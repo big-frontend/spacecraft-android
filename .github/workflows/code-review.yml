@@ -56,7 +56,7 @@ jobs:
   #        env:
   #          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_411517790 }}
   #          QODANA_ENDPOINT: 'https://qodana.cloud'
-  DeepCode Analysis:
+  DeepCode-Analysis:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
