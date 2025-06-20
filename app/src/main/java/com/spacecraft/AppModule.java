@@ -1,19 +1,10 @@
-package com.jamesfchen;
+package com.spacecraft;
 
-import dagger.Module;
 
-/**
- * Copyright ® $ 2017
- * All right reserved.
- * Code Link : https://github.com/HawksJamesf/Spacecraft
- *
- * @author: hawks jamesf
- * @since: 2017/7/4
- */
-@Module
-public class AppModule {
-    public AppModule() {
-    }
+//@Module
+//public class AppModule {
+//    public AppModule() {
+//    }
 
 //    @Provides
 //    @UserScope
@@ -27,4 +18,4 @@ public class AppModule {
 //    public SignInContract.Presenter provideSignInPresenter(SignInDataSource dataSource) {
 //        return new SignInPresenter(dataSource);
 //    }
-}
+//}

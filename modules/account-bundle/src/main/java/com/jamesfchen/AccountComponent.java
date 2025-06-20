@@ -14,8 +14,8 @@ import dagger.Component;
  * @since: Nov/10/2018  Sat
  */
 @Singleton
-@Component(modules = NetModule.class)
-public interface NetComponent {
+@Component(modules = AccountModule.class)
+public interface AccountComponent {
 
 //    SignInDataSource getSignInDataSource();
 //    WeatherDataSource getWeatherDataSource();

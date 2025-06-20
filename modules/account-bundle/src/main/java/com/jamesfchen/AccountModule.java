@@ -10,7 +10,7 @@ import dagger.Module;
  * @since: Nov/10/2018  Sat
  */
 @Module
-public class NetModule {
+public class AccountModule {
 //    public App app;
 //
 //    NetModule(App app) {
