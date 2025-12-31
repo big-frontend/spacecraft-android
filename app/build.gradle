@@ -7,7 +7,7 @@ plugins {
     id("com.google.gms.google-services")
 //    id("io.sentry.android.gradle")
     id("com.google.firebase.crashlytics")
-    id("com.google.firebase.appdistribution")
+//    id("com.google.firebase.appdistribution")
     id("com.google.firebase.firebase-perf")
     id("electrolytej.android.application.jacoco")
 }
@@ -64,12 +64,12 @@ android {
                     'QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf'
 
             ]
-            firebaseAppDistribution {
-//                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                testers = "hawksjamesf@gmail.com"
-                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
-//                artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
-            }
+//            firebaseAppDistribution {
+////                releaseNotesFile = "${rootDir}/releasenotes.txt"
+//                testers = "hawksjamesf@gmail.com"
+//                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+////                artifactPath "${buildDir}/outputs/apk/release/app-release.apk"
+//            }
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
                 mappingFileUploadEnabled true
@@ -84,12 +84,12 @@ android {
             manifestPlaceholders = [
                     'QQ_KEY': 'adf', 'WEXIN_KEY': 'adfaf'
             ]
-            firebaseAppDistribution {
-//                releaseNotesFile = "${rootDir}/releasenotes.txt"
-                testers = "electrolytej@gmail.com"
-                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
-//                artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
-            }
+//            firebaseAppDistribution {
+////                releaseNotesFile = "${rootDir}/releasenotes.txt"
+//                testers = "electrolytej@gmail.com"
+//                serviceCredentialsFile = "${projectDir}/spacecraft-22dc1-e7362822612d.json"
+////                artifactPath "${buildDir}/outputs/apk/debug/app-debug.apk"
+//            }
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
             firebaseCrashlytics {

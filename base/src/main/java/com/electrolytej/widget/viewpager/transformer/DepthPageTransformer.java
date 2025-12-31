@@ -1,4 +1,4 @@
-package com.electrolytej.main.widget.carousel.transformer;
+package com.electrolytej.widget.viewpager.transformer;
 
 import android.view.View;
 

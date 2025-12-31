@@ -13,6 +13,7 @@ import com.electrolytej.main.databinding.ActivityGalleryBinding
 import com.electrolytej.main.databinding.ItemDumpBinding
 import com.electrolytej.main.widget.carousel.CarouselPagerAdapter
 import com.electrolytej.main.R
+import com.electrolytej.widget.viewpager.transformer.ParallaxPageTransformer
 
 class GalleryActivity : Activity() {
     var list = listOf(1, 2, 3, 4, 5)
@@ -28,7 +29,7 @@ class GalleryActivity : Activity() {
         val adapter = Adapter()
         binding.cv.setAdapter(adapter)
 //        binding.cv.setPageTransformer(ZoomOutPageTransformer())
-        binding.cv.setPageTransformer(com.electrolytej.main.widget.carousel.transformer.ParallaxPageTransformer())
+        binding.cv.setPageTransformer(ParallaxPageTransformer())
         adapter.setDataList(list)
 
         for (i in 0..3) {

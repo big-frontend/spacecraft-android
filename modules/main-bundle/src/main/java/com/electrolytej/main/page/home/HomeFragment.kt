@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.electrolytej.main.databinding.FragmentHomeBinding
+import com.electrolytej.util.dp
+import com.electrolytej.widget.viewpager2.transformer.StackPageTransformer
 
 /**
  * Copyright ® $ 2017
@@ -28,13 +32,20 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.pager.adapter = HomeAdapter(this)
+        binding.pager.offscreenPageLimit = 3
+
+        val compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(StackPageTransformer(3))
+//        compositePageTransformer.addTransformer(MarginPageTransformer(20.dp))
+        binding.pager.setPageTransformer(compositePageTransformer)
+
         val tabLayout = binding.tabLayout
         TabLayoutMediator(tabLayout, binding.pager) { tab, position ->
             tab.text = "OBJECT ${(position + 1)}"
         }.attach()
     }
 
-    inner class HomeAdapter(f: Fragment) : FragmentStateAdapter(f) {
+    class HomeAdapter(f: Fragment) : FragmentStateAdapter(f) {
         val list = listOf(
             BrowserFragment::class.java,
             DoubleListFragment::class.java,
@@ -43,7 +54,7 @@ class HomeFragment : Fragment() {
         override fun getItemCount() = list.size
 
         override fun createFragment(position: Int): Fragment{
-            val newInstance = list[position].newInstance()
+            val newInstance = list[position].getDeclaredConstructor().newInstance()
             return newInstance
         }
 

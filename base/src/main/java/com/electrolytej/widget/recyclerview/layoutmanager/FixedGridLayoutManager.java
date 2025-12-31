@@ -1,4 +1,4 @@
-package com.electrolytej.widget.recyclerview;
+package com.electrolytej.widget.recyclerview.layoutmanager;
 
 import android.content.Context;
 import android.graphics.PointF;
