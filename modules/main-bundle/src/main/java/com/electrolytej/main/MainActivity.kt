@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 delay(3000)
                 withResumed {
                     navController.navigate(R.id.dest_home)
-                    navController.navigate(R.id.dest_ad)
+//                    navController.navigate(R.id.dest_ad)
                 }
             }
         }
