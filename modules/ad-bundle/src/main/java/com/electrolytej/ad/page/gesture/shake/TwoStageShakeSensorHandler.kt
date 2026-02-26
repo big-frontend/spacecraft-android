@@ -1,4 +1,4 @@
-package com.electrolytej.ad.page.shake.sensor
+package com.electrolytej.ad.page.gesture.shake
 
 import android.hardware.Sensor
 import android.hardware.SensorEvent

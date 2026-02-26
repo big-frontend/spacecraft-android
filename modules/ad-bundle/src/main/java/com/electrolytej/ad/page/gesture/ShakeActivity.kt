@@ -1,4 +1,4 @@
-package com.electrolytej.ad.page.shake
+package com.electrolytej.ad.page.gesture
 
 import android.os.Bundle
 import android.os.Handler
@@ -31,7 +31,7 @@ import com.electrolytej.ad.Constants.sk_by_angle_y
 import com.electrolytej.ad.Constants.sk_by_angle_z
 import com.electrolytej.ad.Constants.sk_by_gap_duration
 import com.electrolytej.ad.R
-import com.electrolytej.ad.page.shake.sensor.ShakeSensorHandler
+import com.electrolytej.ad.page.gesture.shake.ShakeSensorHandler
 import com.electrolytej.ad.util.ShakeTraceUtil
 import com.electrolytej.util.component6
 import com.electrolytej.util.component7

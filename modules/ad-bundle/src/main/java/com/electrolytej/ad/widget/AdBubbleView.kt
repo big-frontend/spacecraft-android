@@ -11,11 +11,11 @@ import android.widget.FrameLayout
 import androidx.core.view.drawToBitmap
 import com.electrolytej.ad.R
 
-class BubbleAdView @JvmOverloads constructor(
+class AdBubbleView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1
 ) : FrameLayout(ctx, attrs, defStyleAttr) {
 
-    private val root = View.inflate(ctx, R.layout.view_ad_bubble, this)
+    private val root = View.inflate(ctx, R.layout.ad_view_bubble, this)
     private val ivBubble by lazy { root.findViewById<View>(R.id.iv_bubble) }
 
     init {

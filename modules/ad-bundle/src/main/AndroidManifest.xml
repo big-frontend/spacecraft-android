@@ -38,25 +38,19 @@
        <!--        android:name="com.google.ar.core"-->
        <!--        android:value="optional" />-->
        <activity
-           android:name="com.electrolytej.ad.page.shake.ShakeActivity"
+           android:name="com.electrolytej.ad.page.gesture.ShakeActivity"
            android:exported="true"
            android:theme="@style/Theme.AppCompat.Light"
            android:screenOrientation="portrait">
        </activity>
        <activity
-           android:name="com.electrolytej.ad.page.shake.Shake2Activity"
+           android:name="com.electrolytej.ad.page.gesture.RotationVectorActivity"
            android:exported="true"
            android:theme="@style/Theme.AppCompat.Light"
            android:screenOrientation="portrait">
        </activity>
        <activity
-           android:name="com.electrolytej.ad.page.shake.RotationVectorActivity"
-           android:exported="true"
-           android:theme="@style/Theme.AppCompat.Light"
-           android:screenOrientation="portrait">
-       </activity>
-       <activity
-           android:name="com.electrolytej.ad.page.shake.Shake3Activity"
+           android:name="com.electrolytej.ad.page.gesture.RotationVector2Activity"
            android:exported="true"
            android:theme="@style/Theme.AppCompat.Light"
            android:screenOrientation="portrait">

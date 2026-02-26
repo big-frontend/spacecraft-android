@@ -11,12 +11,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.electrolytej.ad.databinding.FragmentAdBinding
-import com.electrolytej.ad.page.shake.RotationVectorActivity
-import com.electrolytej.ad.page.shake.Shake3Activity
 import com.electrolytej.util.UserAgentUtil
 import java.text.SimpleDateFormat
 import java.util.Date

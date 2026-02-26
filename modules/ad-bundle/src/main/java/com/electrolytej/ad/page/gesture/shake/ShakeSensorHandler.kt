@@ -1,4 +1,4 @@
-package com.electrolytej.ad.page.shake.sensor
+package com.electrolytej.ad.page.gesture.shake
 
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -51,6 +51,7 @@ class ShakeSensorHandler : ISensorHandler {
             Sensor.TYPE_MAGNETIC_FIELD,
             Sensor.TYPE_ROTATION_VECTOR,
 //            Sensor.TYPE_GAME_ROTATION_VECTOR,
+//        Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR,
         )
     }
 

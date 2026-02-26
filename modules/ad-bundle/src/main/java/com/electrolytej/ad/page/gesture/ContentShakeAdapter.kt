@@ -1,13 +1,14 @@
-package com.electrolytej.ad.page.shake
+package com.electrolytej.ad.page.gesture
 
-import android.graphics.Color
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class LeftShakeAdapter : RecyclerView.Adapter<ViewHolder>() {
+class ContentShakeAdapter : RecyclerView.Adapter<ViewHolder>() {
     val shakeList = mutableListOf<String>()
+    var sampleThreshold = 1000L
+
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): ViewHolder {
@@ -15,7 +16,6 @@ class LeftShakeAdapter : RecyclerView.Adapter<ViewHolder>() {
         textView1.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        textView1.setTextColor(Color.WHITE)
         return object : ViewHolder(textView1) {}
     }
 
@@ -30,14 +30,22 @@ class LeftShakeAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     fun clear() {
+        lastMs = 0
         shakeList.clear()
         notifyDataSetChanged()
     }
-
-    fun add(shakeTrace: String): Boolean {
-        val add = shakeList.add(shakeTrace)
+     var refresh = true
+    private var lastMs: Long = 0
+    fun add(shakeTrace: String?): Boolean {
+        if (!refresh) return false
+        if (System.currentTimeMillis() - lastMs < sampleThreshold) {
+            return false
+        }
+        lastMs = System.currentTimeMillis()
+        if (shakeTrace.isNullOrEmpty()) return false
+        shakeList.add(shakeTrace)
         notifyItemInserted(itemCount - 1)
-        return add
+        return true
 
     }
 }

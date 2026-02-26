@@ -124,44 +124,17 @@ Z 轴：垂直于屏幕，向外（指向用户）为正方向。
  *
  * 注意：陀螺仪数据的单位是 弧度/秒（rad/s）。
  */
-
-/**
- * 旋转矢量传感器和方向传感器的坐标系都是地球坐标系
- *
- *
- *
- */
-//TYPE_ROTATION_VECTOR
-fun getOrientation(
-    rotationValues: FloatArray
-): Triple<Double, Double, Double> {
-//    if (rotationValues == null || rotationValues.isEmpty()) {
-//        return Triple(null, null, null)
-//    }
-    val rotationMatrix = FloatArray(9)
-    val orientationAngles = FloatArray(3)
-    //获取世界坐标系
-    SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationValues)
-//     val displayRotationMatrix = FloatArray(9)
-//    SensorManager.remapCoordinateSystem(
-//        rotationMatrix,
-//        SensorManager.AXIS_X,
-//        SensorManager.AXIS_Z,
-//        displayRotationMatrix
-    SensorManager.getOrientation(rotationMatrix, orientationAngles)
-    // orientationAngles包含:
-    // [0]: 方位角(绕Z轴)
-    // [1]: 俯仰角(绕X轴)
-    // [2]: 横滚角(绕Y轴)
-    return Triple(
-        Math.toDegrees(orientationAngles[0].toDouble()),
-        Math.toDegrees(orientationAngles[1].toDouble()),
-        Math.toDegrees(
-            orientationAngles[2].toDouble()
-        )
-    )
+fun checkGimbalLock(currentQuaternion: FloatArray): Boolean {
+    val rotationMatrix = FloatArray(16)
+    SensorManager.getRotationMatrixFromVector(rotationMatrix, currentQuaternion)
+    val orientation = FloatArray(3)
+    SensorManager.getOrientation(rotationMatrix, orientation)
+    return abs(Math.toDegrees(orientation[1].toDouble())) > 89.0 // 俯仰角接近90°
 }
 
+// 扩展函数：弧度 → 角度
+fun Float.toDegrees() = Math.toDegrees(this.toDouble())
+fun Double.toDegrees() = Math.toDegrees(this)
 
 /**
 
@@ -222,14 +195,51 @@ fun getOrientation(
     )
 }
 
-fun checkGimbalLock(currentQuaternion: FloatArray): Boolean {
-    val rotationMatrix = FloatArray(16)
-    SensorManager.getRotationMatrixFromVector(rotationMatrix, currentQuaternion)
-    val orientation = FloatArray(3)
-    SensorManager.getOrientation(rotationMatrix, orientation)
-    return abs(Math.toDegrees(orientation[1].toDouble())) > 89.0 // 俯仰角接近90°
+/**
+ * 旋转矢量传感器和方向传感器的坐标系都是地球坐标系
+ *
+ * TYPE_ROTATION_VECTOR
+ * 输出：设备姿态（四元数/旋转向量，可转旋转矩阵、欧拉角）。
+ * 依赖：陀螺仪 + 加速度计 + 磁力计（磁力计用于把 yaw/azimuth 锁定到地磁北，减少漂移）。
+ * 特点：方位角比较“绝对”（相对地磁北），但容易被磁干扰。
+ * 典型用途：指南针增强、AR、方向相关交互。
+ * TYPE_GAME_ROTATION_VECTOR
+ * 输出：姿态（不含磁北约束）。
+ * 依赖：陀螺仪 + 加速度计（通常不使用磁力计）。
+ * 特点：抗磁干扰、短期更稳，但 yaw 会随时间漂移（没有地磁北做绝对约束）。
+ * 典型用途：游戏、手势/体感控制（更平滑）。
+ * TYPE_GEOMAGNETIC_ROTATION_VECTOR
+ * 输出：姿态（用地磁 + 重力定姿）。
+ * 依赖：加速度计 + 磁力计（不需要陀螺仪）。
+ * 特点：功耗低，但动态响应一般，噪声/抖动会更明显。
+ * 典型用途：低功耗方向估计、简化版指南针。
+ */
+fun getOrientation(
+    rotationValues: FloatArray
+): Triple<Double, Double, Double> {
+//    if (rotationValues == null || rotationValues.isEmpty()) {
+//        return Triple(null, null, null)
+//    }
+    val rotationMatrix = FloatArray(9)
+    val orientationAngles = FloatArray(3)
+    //获取世界坐标系
+    SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationValues)
+//     val displayRotationMatrix = FloatArray(9)
+//    SensorManager.remapCoordinateSystem(
+//        rotationMatrix,
+//        SensorManager.AXIS_X,
+//        SensorManager.AXIS_Z,
+//        displayRotationMatrix
+    SensorManager.getOrientation(rotationMatrix, orientationAngles)
+    // orientationAngles包含:
+    // [0]: 方位角(绕Z轴)
+    // [1]: 俯仰角(绕X轴)
+    // [2]: 横滚角(绕Y轴)
+    return Triple(
+        Math.toDegrees(orientationAngles[0].toDouble()),
+        Math.toDegrees(orientationAngles[1].toDouble()),
+        Math.toDegrees(
+            orientationAngles[2].toDouble()
+        )
+    )
 }
-
-// 扩展函数：弧度 → 角度
-fun Float.toDegrees() = Math.toDegrees(this.toDouble())
-fun Double.toDegrees() = Math.toDegrees(this)
