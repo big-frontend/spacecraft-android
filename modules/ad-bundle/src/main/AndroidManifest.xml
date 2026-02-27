@@ -44,13 +44,7 @@
            android:screenOrientation="portrait">
        </activity>
        <activity
-           android:name="com.electrolytej.ad.page.gesture.RotationVectorActivity"
-           android:exported="true"
-           android:theme="@style/Theme.AppCompat.Light"
-           android:screenOrientation="portrait">
-       </activity>
-       <activity
-           android:name="com.electrolytej.ad.page.gesture.RotationVector2Activity"
+           android:name="com.electrolytej.ad.page.gesture.SensorActivity"
            android:exported="true"
            android:theme="@style/Theme.AppCompat.Light"
            android:screenOrientation="portrait">

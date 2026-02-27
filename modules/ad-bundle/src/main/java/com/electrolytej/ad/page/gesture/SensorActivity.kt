@@ -13,7 +13,7 @@ import com.electrolytej.sensor.SensorDetector
 import com.electrolytej.widget.LineChartView
 import getOrientation
 
-class RotationVectorActivity : AppCompatActivity(), ISensorHandler {
+class SensorActivity : AppCompatActivity(), ISensorHandler {
     private lateinit var sensorGLView: CubeView
     lateinit var rationChart: LineChartView
     lateinit var angleSpeedChart: LineChartView
@@ -32,7 +32,7 @@ class RotationVectorActivity : AppCompatActivity(), ISensorHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rotation_vector)
+        setContentView(R.layout.activity_sensor)
         sensorGLView = findViewById(R.id.sgl_gl)
         rationChart = findViewById(R.id.rationChart)
         angleSpeedChart = findViewById(R.id.angleSpeedChart)
