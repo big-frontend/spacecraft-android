@@ -24,6 +24,14 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
 //        Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR,
     )
 
+    private var startTime = 0L
+
+    private val rotationValues = FloatArray(9)
+
+    // 缓存 rotation-vector 角度，给其他分支/展示复用（避免未定义变量）
+    private var lastAzimuth: Double = 0.0
+    private var lastPitch: Double = 0.0
+    private var lastRoll: Double = 0.0
     private val mDetector: SensorDetector by lazy {
         val d = SensorDetector(this)
         d.samplingPeriodUs = 20_000
@@ -49,15 +57,10 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 100f
             )
         }
-
+        startTime = System.currentTimeMillis()
+        mDetector.addHandler(this)
     }
 
-    private val rotationValues = FloatArray(9)
-
-    // 缓存 rotation-vector 角度，给其他分支/展示复用（避免未定义变量）
-    private var lastAzimuth: Double = 0.0
-    private var lastPitch: Double = 0.0
-    private var lastRoll: Double = 0.0
 
     override fun onSensorChanged(sensorEvent: SensorEvent) {
         val endTime = System.currentTimeMillis() - startTime
@@ -85,14 +88,11 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 angleSpeedChart.addDataPoint(LineChartView.DataPoint(endTime, magnitude.toDouble()))
             }
         }
-
     }
 
-    var startTime = 0L
+
     override fun onResume() {
         super.onResume()
-        startTime = System.currentTimeMillis()
-        mDetector.addHandler(this)
         mDetector.start()
     }
 

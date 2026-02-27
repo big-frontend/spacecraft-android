@@ -269,7 +269,15 @@ class CubeView @JvmOverloads constructor(
             // 每条线段：2 个点；每个点 7 floats
             val out = ArrayList<Float>(7 * 2 * 9)
 
-            fun addVertex(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float = 1f) {
+            fun addVertex(
+                x: Float,
+                y: Float,
+                z: Float,
+                r: Float,
+                g: Float,
+                b: Float,
+                a: Float = 1f
+            ) {
                 out.add(x); out.add(y); out.add(z)
                 out.add(r); out.add(g); out.add(b); out.add(a)
             }
