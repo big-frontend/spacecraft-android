@@ -26,7 +26,6 @@ internal class TiltSensorTriggerEngine(
     private val configProvider: () -> TiltSensorTriggerConfig?,
     private val clockMs: () -> Long
 ) {
-    private enum class Phase { IDLE, ROTATING, PEAK_RECORDED, STOPPED }
 
     private var phase: Phase = Phase.IDLE
 

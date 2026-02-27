@@ -1,56 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_ration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="旋转矢量传感器(角度)"
-                android:textColor="#3D7DB2"
-                android:textSize="18sp" />
-
-            <com.electrolytej.widget.LineChartView
-                android:id="@+id/rationChart"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="270dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_av"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="陀螺仪传感器(角速度)"
-                android:textColor="#3D7DB2"
-                android:textSize="18sp" />
+                android:orientation="vertical">
 
-            <com.electrolytej.widget.LineChartView
-                android:id="@+id/angleSpeedChart"
+                <TextView
+                    android:id="@+id/tv_ration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="旋转矢量传感器(角度)"
+                    android:textColor="#3D7DB2"
+                    android:textSize="18sp" />
+
+                <com.electrolytej.widget.LineChartView
+                    android:id="@+id/rationChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="270dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_av"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="陀螺仪传感器(角速度)"
+                    android:textColor="#3D7DB2"
+                    android:textSize="18sp" />
+
+                <com.electrolytej.widget.LineChartView
+                    android:id="@+id/angleSpeedChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_accelerometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="线性加速度传感器(加速度)"
+                    android:textColor="#3D7DB2"
+                    android:textSize="18sp" />
+
+                <com.electrolytej.widget.LineChartView
+                    android:id="@+id/accelerometerChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <com.electrolytej.ad.widget.CubeView
         android:id="@+id/sgl_gl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:visibility="gone" />
 </FrameLayout>

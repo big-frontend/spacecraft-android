@@ -17,13 +17,14 @@ public class LineChartView extends View {
 
     // 画笔
     private Paint axisPaint;
-    private Paint linePaint1, linePaint2, linePaint3;
+    private Paint linePaint1, linePaint2, linePaint3, linePaint4;
     private Paint textPaint;
 
     // 颜色
     private int lineColor1 = Color.parseColor("#FF5722"); // 橙色
     private int lineColor2 = Color.parseColor("#4CAF50"); // 绿色
     private int lineColor3 = Color.parseColor("#2196F3"); // 蓝色
+    private int lineColor4 = Color.parseColor("#9C27B0"); // 紫色：矢量合
 
     // 边距和间距
     private int paddingLeft = 100;
@@ -43,6 +44,7 @@ public class LineChartView extends View {
     private String label1 = "x轴";
     private String label2 = "y轴";
     private String label3 = "z轴";
+    private String label4 = "矢量合";
     private String labelX = "时间 (s)";
     private String labelY = "传感器值";
 
@@ -89,6 +91,13 @@ public class LineChartView extends View {
         linePaint3.setStrokeWidth(4f);
         linePaint3.setStyle(Paint.Style.STROKE);
         linePaint3.setAntiAlias(true);
+
+        // 折线4画笔（矢量合）
+        linePaint4 = new Paint();
+        linePaint4.setColor(lineColor4);
+        linePaint4.setStrokeWidth(4f);
+        linePaint4.setStyle(Paint.Style.STROKE);
+        linePaint4.setAntiAlias(true);
     }
 
     // 数据点类
@@ -97,6 +106,7 @@ public class LineChartView extends View {
         public Double value1 = null;
         public Double value2 = null;
         public Double value3 = null;
+        public Double value4 = null; // 矢量合
 
         public DataPoint(long timestamp, double value1) {
             this.timestamp = timestamp;
@@ -114,6 +124,14 @@ public class LineChartView extends View {
             this.value1 = value1;
             this.value2 = value2;
             this.value3 = value3;
+        }
+
+        public DataPoint(long timestamp, double value1, double value2, double value3, double value4) {
+            this.timestamp = timestamp;
+            this.value1 = value1;
+            this.value2 = value2;
+            this.value3 = value3;
+            this.value4 = value4;
         }
     }
 
@@ -148,6 +166,10 @@ public class LineChartView extends View {
         this.label3 = label3;
     }
 
+    public void setLabel4(String label4) {
+        this.label4 = label4;
+    }
+
     public void setLabelX(String labelX) {
         this.labelX = labelX;
     }
@@ -158,6 +180,7 @@ public class LineChartView extends View {
 
     private boolean hasLine2;
     private boolean hasLine3;
+    private boolean hasLine4;
 
     // 更新数据范围
     private void updateDataRange() {
@@ -168,38 +191,42 @@ public class LineChartView extends View {
         minValue = dataPoints.get(0).value1;
         maxValue = dataPoints.get(0).value1;
 
+        hasLine2 = false;
+        hasLine3 = false;
+        hasLine4 = false;
+
         for (DataPoint point : dataPoints) {
             minTime = Math.min(minTime, point.timestamp);
             maxTime = Math.max(maxTime, point.timestamp);
 
             minValue = Math.min(minValue, point.value1);
             maxValue = Math.max(maxValue, point.value1);
+
             if (point.value2 != null) {
                 minValue = Math.min(minValue, point.value2);
                 maxValue = Math.max(maxValue, point.value2);
                 hasLine2 = true;
-            } else {
-                hasLine2 = false;
             }
             if (point.value3 != null) {
                 minValue = Math.min(minValue, point.value3);
                 maxValue = Math.max(maxValue, point.value3);
                 hasLine3 = true;
-            } else {
-                hasLine3 = false;
             }
-
+            if (point.value4 != null) {
+                minValue = Math.min(minValue, point.value4);
+                maxValue = Math.max(maxValue, point.value4);
+                hasLine4 = true;
+            }
         }
 
         // 添加一些边距
         double range = maxValue - minValue;
+        // 防止全是相同值导致 range=0
+        if (range == 0) {
+            range = 1;
+        }
         minValue = minValue - range * 0.1f;
         maxValue = maxValue + range * 0.1f;
-
-        // 确保最小值不为负
-//        if (minValue < 0 && maxValue > 0) {
-//            minValue = 0;
-//        }
     }
 
     @Override
@@ -223,6 +250,9 @@ public class LineChartView extends View {
             }
             if (hasLine3) {
                 drawLineChart(canvas, width, height, linePaint3, 3);
+            }
+            if (hasLine4) {
+                drawLineChart(canvas, width, height, linePaint4, 4);
             }
         }
 
@@ -284,25 +314,38 @@ public class LineChartView extends View {
         Path path = new Path();
         boolean firstPoint = true;
 
+        // 防止 maxTime==minTime 或 maxValue==minValue 时除 0
+        long timeRange = Math.max(1, maxTime - minTime);
+        double valueRange = Math.max(1e-9, maxValue - minValue);
+
         for (DataPoint point : dataPoints) {
             // 计算X坐标 (时间)
-            float x = paddingLeft + ((point.timestamp - minTime) / (float) (maxTime - minTime)) * xAxisLength;
+            float x = paddingLeft + ((point.timestamp - minTime) / (float) timeRange) * xAxisLength;
 
             // 计算Y坐标 (值)
-            double value = 0;
+            Double valueObj = null;
             switch (valueType) {
                 case 1:
-                    value = point.value1;
+                    valueObj = point.value1;
                     break;
                 case 2:
-                    value = point.value2;
+                    valueObj = point.value2;
                     break;
                 case 3:
-                    value = point.value3;
+                    valueObj = point.value3;
+                    break;
+                case 4:
+                    valueObj = point.value4;
                     break;
             }
 
-            double y = height - paddingBottom - ((value - minValue) / (maxValue - minValue)) * yAxisLength;
+            if (valueObj == null) {
+                // 该点没有此条线的数据：断开 path，避免画到 0
+                firstPoint = true;
+                continue;
+            }
+
+            double y = height - paddingBottom - ((valueObj - minValue) / valueRange) * yAxisLength;
 
             if (firstPoint) {
                 path.moveTo(x, (float) y);
@@ -338,5 +381,12 @@ public class LineChartView extends View {
             canvas.drawRect(legendX, legendY, legendX + rectSize, legendY + rectSize, linePaint3);
             canvas.drawText(label3, legendX + textOffset, legendY + rectSize / 2 + 10, textPaint);
         }
+        if (hasLine4) {
+            // 图例4（矢量合）
+            legendY += 50;
+            canvas.drawRect(legendX, legendY, legendX + rectSize, legendY + rectSize, linePaint4);
+            canvas.drawText(label4, legendX + textOffset, legendY + rectSize / 2 + 10, textPaint);
+        }
     }
 }
+

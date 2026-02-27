@@ -66,7 +66,7 @@ class CubeView @JvmOverloads constructor(
     }
 
     fun updateModelMatrix(rotationVector: FloatArray) {
-        // 1) 按 getRotationMatrixFromVector 的坐标系获取旋转矩阵（不 remap）
+        // 1) 按 getRotationMatrixFromVector 的坐标系获取旋转矩阵（不 remap）,世界坐标系：X=右，Y=上，Z=外（垂直屏幕向外）
         SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVector)
 
         // 2) 拷贝到渲染用矩阵（避免并发读写引起的抖动/撕裂）

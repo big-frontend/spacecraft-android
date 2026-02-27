@@ -3,7 +3,9 @@ package com.electrolytej.ad.page.gesture
 import android.graphics.PixelFormat
 import android.hardware.Sensor
 import android.hardware.SensorEvent
+import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.electrolytej.ad.R
 import com.electrolytej.ad.util.MatrixHelper
@@ -12,38 +14,40 @@ import com.electrolytej.sensor.ISensorHandler
 import com.electrolytej.sensor.SensorDetector
 import com.electrolytej.widget.LineChartView
 import getOrientation
+import kotlin.math.sqrt
 
 class SensorActivity : AppCompatActivity(), ISensorHandler {
     private lateinit var sensorGLView: CubeView
     lateinit var rationChart: LineChartView
     lateinit var angleSpeedChart: LineChartView
+    lateinit var accelerometerChart: LineChartView
+
     override fun sensors() = setOf(
-        Sensor.TYPE_GYROSCOPE,
         Sensor.TYPE_ROTATION_VECTOR,
 //        Sensor.TYPE_GAME_ROTATION_VECTOR,
 //        Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR,
+        Sensor.TYPE_GYROSCOPE,
+        Sensor.TYPE_LINEAR_ACCELERATION,
     )
 
     private var startTime = 0L
+    private var baseAngle = 0.0
 
     private val rotationValues = FloatArray(9)
 
-    // 缓存 rotation-vector 角度，给其他分支/展示复用（避免未定义变量）
-    private var lastAzimuth: Double = 0.0
-    private var lastPitch: Double = 0.0
-    private var lastRoll: Double = 0.0
     private val mDetector: SensorDetector by lazy {
         val d = SensorDetector(this)
         d.samplingPeriodUs = 20_000
         return@lazy d
     }
-
+    private var phase: Phase = Phase.IDLE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sensor)
         sensorGLView = findViewById(R.id.sgl_gl)
         rationChart = findViewById(R.id.rationChart)
         angleSpeedChart = findViewById(R.id.angleSpeedChart)
+        accelerometerChart = findViewById(R.id.accelerometerChart)
         // 设置背景透明度
         sensorGLView.setZOrderOnTop(true)
         sensorGLView.holder.setFormat(PixelFormat.TRANSLUCENT)
@@ -61,18 +65,26 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
         mDetector.addHandler(this)
     }
 
-
     override fun onSensorChanged(sensorEvent: SensorEvent) {
+        if (phase == Phase.STOPPED) return
         val endTime = System.currentTimeMillis() - startTime
+        var angleSpeed = 0.0
+        var a = 0.0
+        var angle = 0.0
         when (sensorEvent.sensor.type) {
             Sensor.TYPE_ROTATION_VECTOR, Sensor.TYPE_GAME_ROTATION_VECTOR -> {
                 sensorEvent.values?.copyInto(rotationValues)
                 val (azimuth, pitch, roll) = getOrientation(rotationValues)
-                lastAzimuth = azimuth
-                lastPitch = pitch
-                lastRoll = roll
-
-                rationChart.addDataPoint(LineChartView.DataPoint(endTime, pitch, roll, azimuth))
+                angle = sqrt(pitch * pitch + roll * roll + azimuth * azimuth).toDouble()
+                rationChart.addDataPoint(
+                    LineChartView.DataPoint(
+                        endTime,
+                        pitch,
+                        roll,
+                        azimuth,
+                        angle
+                    )
+                )
                 sensorGLView.updateModelMatrix(sensorEvent.values)
             }
 
@@ -82,14 +94,41 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 val gx = values.getOrNull(0) ?: return
                 val gy = values.getOrNull(1) ?: return
                 val gz = values.getOrNull(2) ?: return
+                angleSpeed = sqrt(gx * gx + gy * gy + gz * gz).toDouble()
+                angleSpeedChart.addDataPoint(LineChartView.DataPoint(endTime, angleSpeed))
+            }
 
-                // 额外：角速度幅值（更稳定、更有意义）
-                val magnitude = kotlin.math.sqrt(gx * gx + gy * gy + gz * gz)
-                angleSpeedChart.addDataPoint(LineChartView.DataPoint(endTime, magnitude.toDouble()))
+            Sensor.TYPE_LINEAR_ACCELERATION -> {
+                // 线性加速度：单位 m/s²（去重力加速度后的加速度）
+                val values = sensorEvent.values ?: return
+                val ax = values.getOrNull(0) ?: return
+                val ay = values.getOrNull(1) ?: return
+                val az = values.getOrNull(2) ?: return
+                a = sqrt(ax * ax + ay * ay + az * az).toDouble()
+                accelerometerChart.addDataPoint(LineChartView.DataPoint(endTime, a))
             }
         }
-    }
 
+
+        when (phase) {
+            Phase.IDLE -> {
+                baseAngle = angle
+                phase = Phase.ROTATING
+            }
+
+            Phase.ROTATING -> {
+                val delta = angle - baseAngle
+            }
+
+            Phase.PEAK_RECORDED -> {
+
+            }
+
+            Phase.STOPPED -> Unit
+        }
+
+
+    }
 
     override fun onResume() {
         super.onResume()
@@ -100,5 +139,4 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
         super.onPause()
         mDetector.stop()
     }
-
 }
