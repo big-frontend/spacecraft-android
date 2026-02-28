@@ -3,9 +3,7 @@ package com.electrolytej.ad.page.gesture
 import android.graphics.PixelFormat
 import android.hardware.Sensor
 import android.hardware.SensorEvent
-import android.hardware.SensorManager
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.electrolytej.ad.R
 import com.electrolytej.ad.util.MatrixHelper

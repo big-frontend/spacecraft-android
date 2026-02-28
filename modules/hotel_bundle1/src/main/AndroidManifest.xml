@@ -16,6 +16,11 @@
             android:name=".Bundle1Activity"
             android:theme="@style/Theme.SpacecraftAndroid.NoActionBar"
             android:exported="true" />
+
+        <activity
+            android:name="com.electrolytej.bundle1.Shoe3DPreviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat" />
     </application>
 
 </manifest>

@@ -48,15 +48,14 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/ic_battery_90_apricot_24dp"
-        android:shortcutDisabledMessage="@string/static_disabled_message"
-        android:shortcutId="shake2"
-        android:shortcutLongLabel="@string/static_shortcut_long_label"
-        android:shortcutShortLabel="@string/static_shortcut_short_label">
-
+        android:icon="@drawable/baseline_snowshoeing_24"
+        android:shortcutDisabledMessage="@string/shoe_model"
+        android:shortcutId="shoe_model"
+        android:shortcutLongLabel="@string/shoe_model"
+        android:shortcutShortLabel="@string/shoe_model">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.electrolytej.bundle2.page.customview.recyclerview.RecyclerViewActivity"
+            android:targetClass="com.electrolytej.bundle1.Shoe3DPreviewActivity"
             android:targetPackage="com.electrolytej.spacecraft" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
