@@ -95,7 +95,15 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 val gy = values.getOrNull(1) ?: return
                 val gz = values.getOrNull(2) ?: return
                 angleSpeed = sqrt(gx * gx + gy * gy + gz * gz).toDouble()
-                angleSpeedChart.addDataPoint(LineChartView.DataPoint(endTime, angleSpeed))
+                angleSpeedChart.addDataPoint(
+                    LineChartView.DataPoint(
+                        endTime,
+                        gx.toDouble(),
+                        gy.toDouble(),
+                        gz.toDouble(),
+                        angleSpeed
+                    )
+                )
             }
 
             Sensor.TYPE_LINEAR_ACCELERATION -> {
@@ -105,7 +113,13 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 val ay = values.getOrNull(1) ?: return
                 val az = values.getOrNull(2) ?: return
                 a = sqrt(ax * ax + ay * ay + az * az).toDouble()
-                accelerometerChart.addDataPoint(LineChartView.DataPoint(endTime, a))
+                accelerometerChart.addDataPoint(
+                    LineChartView.DataPoint(
+                        endTime,
+                        ax.toDouble(), ay.toDouble(), az.toDouble(),
+                        a
+                    )
+                )
             }
         }
 
