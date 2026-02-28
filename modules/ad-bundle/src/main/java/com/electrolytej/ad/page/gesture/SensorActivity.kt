@@ -4,7 +4,11 @@ import android.graphics.PixelFormat
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.electrolytej.ad.R
 import com.electrolytej.ad.util.MatrixHelper
 import com.electrolytej.ad.widget.CubeView
@@ -19,6 +23,7 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
     lateinit var rationChart: LineChartView
     lateinit var angleSpeedChart: LineChartView
     lateinit var accelerometerChart: LineChartView
+    lateinit var gravityChart: LineChartView
 
     override fun sensors() = setOf(
         Sensor.TYPE_ROTATION_VECTOR,
@@ -26,6 +31,7 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
 //        Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR,
         Sensor.TYPE_GYROSCOPE,
         Sensor.TYPE_LINEAR_ACCELERATION,
+        Sensor.TYPE_GRAVITY,
     )
 
     private var startTime = 0L
@@ -46,6 +52,18 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
         rationChart = findViewById(R.id.rationChart)
         angleSpeedChart = findViewById(R.id.angleSpeedChart)
         accelerometerChart = findViewById(R.id.accelerometerChart)
+        gravityChart = findViewById(R.id.gravityChart)
+
+        findViewById<View>(R.id.fab_action).setOnClickListener {
+            sensorGLView.visibility = if (sensorGLView.isVisible) View.GONE else View.VISIBLE
+        }
+
+        // 让图例更明确
+        gravityChart.setLabel1("gx")
+        gravityChart.setLabel2("gy")
+        gravityChart.setLabel3("gz")
+        gravityChart.setLabel4("|g|")
+
         // 设置背景透明度
         sensorGLView.setZOrderOnTop(true)
         sensorGLView.holder.setFormat(PixelFormat.TRANSLUCENT)
@@ -63,17 +81,43 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
         mDetector.addHandler(this)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_sensor, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_clear_charts -> {
+                clearCharts()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun clearCharts() {
+        rationChart.clearData()
+        angleSpeedChart.clearData()
+        accelerometerChart.clearData()
+        gravityChart.clearData()
+
+        // 重置状态
+        baseAngle = 0.0
+        phase = Phase.IDLE
+        startTime = System.currentTimeMillis()
+    }
+
     override fun onSensorChanged(sensorEvent: SensorEvent) {
         if (phase == Phase.STOPPED) return
         val endTime = System.currentTimeMillis() - startTime
-        var angleSpeed = 0.0
-        var a = 0.0
         var angle = 0.0
         when (sensorEvent.sensor.type) {
             Sensor.TYPE_ROTATION_VECTOR, Sensor.TYPE_GAME_ROTATION_VECTOR -> {
                 sensorEvent.values?.copyInto(rotationValues)
                 val (azimuth, pitch, roll) = getOrientation(rotationValues)
-                angle = sqrt(pitch * pitch + roll * roll + azimuth * azimuth).toDouble()
+                angle = sqrt(pitch * pitch + roll * roll + azimuth * azimuth)
                 rationChart.addDataPoint(
                     LineChartView.DataPoint(
                         endTime,
@@ -92,7 +136,7 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 val gx = values.getOrNull(0) ?: return
                 val gy = values.getOrNull(1) ?: return
                 val gz = values.getOrNull(2) ?: return
-                angleSpeed = sqrt(gx * gx + gy * gy + gz * gz).toDouble()
+                val angleSpeed = sqrt(gx * gx + gy * gy + gz * gz).toDouble()
                 angleSpeedChart.addDataPoint(
                     LineChartView.DataPoint(
                         endTime,
@@ -110,7 +154,7 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                 val ax = values.getOrNull(0) ?: return
                 val ay = values.getOrNull(1) ?: return
                 val az = values.getOrNull(2) ?: return
-                a = sqrt(ax * ax + ay * ay + az * az).toDouble()
+                val a = sqrt(ax * ax + ay * ay + az * az).toDouble()
                 accelerometerChart.addDataPoint(
                     LineChartView.DataPoint(
                         endTime,
@@ -119,6 +163,24 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
                     )
                 )
             }
+            Sensor.TYPE_GRAVITY -> {
+                val values = sensorEvent.values ?: return
+                val gx = values.getOrNull(0) ?: return
+                val gy = values.getOrNull(1) ?: return
+                val gz = values.getOrNull(2) ?: return
+
+                val g = sqrt(gx * gx + gy * gy + gz * gz).toDouble()
+                gravityChart.addDataPoint(
+                    LineChartView.DataPoint(
+                        endTime,
+                        gx.toDouble(),
+                        gy.toDouble(),
+                        gz.toDouble(),
+                        g
+                    )
+                )
+            }
+
         }
 
 
@@ -129,7 +191,7 @@ class SensorActivity : AppCompatActivity(), ISensorHandler {
             }
 
             Phase.ROTATING -> {
-                val delta = angle - baseAngle
+                // TODO: 这里按需补触发逻辑
             }
 
             Phase.PEAK_RECORDED -> {

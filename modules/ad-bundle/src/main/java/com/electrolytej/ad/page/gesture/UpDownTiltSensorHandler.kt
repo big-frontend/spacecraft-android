@@ -7,25 +7,27 @@ import com.electrolytej.sensor.ISensorHandler
 import getOrientation
 
 /**
- * 倾斜触发 SensorHandler（接入 SensorDetector）：
+ * 上下倾斜触发 SensorHandler（接入 SensorDetector）：
  * - 监听 TYPE_ROTATION_VECTOR
- * - 用 roll（左右倾斜）驱动触发状态机
+ * - 用 pitch（上下倾斜 / 俯仰角）驱动触发状态机
  *
  * 触发条件（严格按需求）：
  * 记录初始角度 → 单方向旋转≥rotateDeg → 记录峰值 → 回正(|delta|≤recoverDeg) → 总时长≥durationMs → 触发并停止
  *
  * 配置来源：外部注入 configProvider；返回 null 表示“无配置，不触发”。
  */
-class TiltSensorHandler(
+class UpDownTiltSensorHandler(
     private val configProvider: () -> TiltSensorTriggerConfig?,
 ) : ISensorHandler {
 
-    interface OnTiltTriggerListener {
-        /** 触发时回调（建议在 WorkerThread 下执行） */
-        fun onTriggered()
+    interface OnUpDownTiltTriggerListener {
+        /**
+         * @param direction UP=上倾触发，DOWN=下倾触发
+         */
+        fun onTriggered(direction: UpDownTiltSensorTriggerEngine.TriggerDirection)
     }
 
-    var onTiltTriggerListener: OnTiltTriggerListener? = null
+    var onUpDownTiltTriggerListener: OnUpDownTiltTriggerListener? = null
 
     /**
      * 触发后会置为 true，方便外部（Activity/Fragment）决定是否 stop SensorDetector。
@@ -35,7 +37,7 @@ class TiltSensorHandler(
     var shouldStop: Boolean = false
         private set
 
-    private val engine = TiltSensorTriggerEngine(
+    private val engine = UpDownTiltSensorTriggerEngine(
         configProvider = configProvider,
         clockMs = { SystemClock.uptimeMillis() }
     )
@@ -46,14 +48,13 @@ class TiltSensorHandler(
         if (shouldStop) return
         if (sensorEvent.sensor.type != Sensor.TYPE_ROTATION_VECTOR) return
 
-        // rotationValues 长度通常为 3/4/5，这里用 copyOf() 生成安全数组给工具方法
         val rotationValues = sensorEvent.values ?: return
-        val (_, _, rollDeg) = getOrientation(rotationValues)
+        val (_, pitchDeg, _) = getOrientation(rotationValues)
 
-        val triggered = engine.onRollDeg(rollDeg.toFloat())
-        if (triggered) {
+        val direction = engine.onPitchDeg(pitchDeg.toFloat())
+        if (direction != null) {
             shouldStop = true
-            onTiltTriggerListener?.onTriggered()
+            onUpDownTiltTriggerListener?.onTriggered(direction)
         }
     }
 

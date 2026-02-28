@@ -1,76 +1,81 @@
 package com.electrolytej.ad.page.gesture
 
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 class TiltSensorTriggerEngineTest {
 
     @Test
     fun `no config - never triggers`() {
-        val engine = TiltSensorTriggerEngine(
+        val engine = UpDownTiltSensorTriggerEngine(
             configProvider = { null },
             clockMs = { 0L }
         )
-        assertFalse(engine.onRollDeg(0f))
-        assertFalse(engine.onRollDeg(30f))
+        assertNull(engine.onPitchDeg(0f))
+        assertNull(engine.onPitchDeg(30f))
     }
 
     @Test
-    fun `rotate then recover then duration ok - triggers and stops`() {
+    fun `up tilt - rotate then recover then duration ok triggers`() {
         var now = 0L
-        val engine = TiltSensorTriggerEngine(
+        val engine = UpDownTiltSensorTriggerEngine(
             configProvider = { TiltSensorTriggerConfig(rotateDeg = 20f, recoverDeg = 5f, durationMs = 500L) },
             clockMs = { now }
         )
 
-        // initial
         now = 0L
-        assertFalse(engine.onRollDeg(0f))
+        assertNull(engine.onPitchDeg(10f)) // baseline
 
-        // rotate to the right beyond threshold
         now = 100L
-        assertFalse(engine.onRollDeg(25f))
+        assertNull(engine.onPitchDeg(35f)) // delta +25 >= 20
 
-        // keep peak
-        now = 200L
-        assertFalse(engine.onRollDeg(30f))
-
-        // recover close to base, but duration not enough yet -> should reset (no trigger)
-        now = 300L
-        assertFalse(engine.onRollDeg(2f))
-
-        // start again
-        now = 400L
-        assertFalse(engine.onRollDeg(0f))
         now = 600L
-        assertFalse(engine.onRollDeg(25f))
-        now = 950L
-        // recovered + duration ok => trigger
-        assertTrue(engine.onRollDeg(2f))
+        assertEquals(UpDownTiltSensorTriggerEngine.TriggerDirection.UP, engine.onPitchDeg(12f)) // recovered |delta|<=5 and duration ok
 
         // after trigger, further updates should be ignored
-        now = 1100L
-        assertFalse(engine.onRollDeg(30f))
+        now = 800L
+        assertNull(engine.onPitchDeg(40f))
     }
 
     @Test
-    fun `left direction rotation also works`() {
+    fun `down tilt - rotate then recover triggers`() {
         var now = 0L
-        val engine = TiltSensorTriggerEngine(
-            configProvider = { TiltSensorTriggerConfig(rotateDeg = 15f, recoverDeg = 4f, durationMs = 200L) },
+        val engine = UpDownTiltSensorTriggerEngine(
+            configProvider = { TiltSensorTriggerConfig(rotateDeg = 15f, recoverDeg = 4f, durationMs = 0L) },
             clockMs = { now }
         )
 
         now = 0L
-        assertFalse(engine.onRollDeg(0f))
+        assertNull(engine.onPitchDeg(0f))
 
-        // rotate left
-        now = 50L
-        assertFalse(engine.onRollDeg(-18f))
+        now = 10L
+        assertNull(engine.onPitchDeg(-20f)) // down tilt
 
-        // recover
-        now = 250L
-        assertTrue(engine.onRollDeg(-1f))
+        now = 20L
+        assertEquals(UpDownTiltSensorTriggerEngine.TriggerDirection.DOWN, engine.onPitchDeg(-2f)) // recover
+    }
+
+    @Test
+    fun `duration too short - recover resets and does not trigger`() {
+        var now = 0L
+        val engine = UpDownTiltSensorTriggerEngine(
+            configProvider = { TiltSensorTriggerConfig(rotateDeg = 20f, recoverDeg = 5f, durationMs = 1000L) },
+            clockMs = { now }
+        )
+
+        now = 0L
+        assertNull(engine.onPitchDeg(0f))
+
+        now = 100L
+        assertNull(engine.onPitchDeg(25f))
+
+        // recover but duration not ok => should reset and return null
+        now = 600L
+        assertNull(engine.onPitchDeg(2f))
+
+        // next call should re-baseline
+        now = 700L
+        assertNull(engine.onPitchDeg(2f))
     }
 }
