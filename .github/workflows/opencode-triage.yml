@@ -34,7 +34,7 @@ jobs:
       - uses: anomalyco/opencode/github@latest
         if: steps.check.outputs.result == 'true'
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         with:
           model: anthropic/claude-sonnet-4-20250514
           prompt: |
