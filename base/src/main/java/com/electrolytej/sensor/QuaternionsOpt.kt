@@ -25,9 +25,9 @@ fun quaternionToAxisAngle(q: FloatArray): Pair<FloatArray, Float> {
     else floatArrayOf(qq[1]/sinH, qq[2]/sinH, qq[3]/sinH)
     return Pair(axis, theta)
 }
-
-
-
+/**
+ * 将单位四元数 q 转换为欧拉角表示
+ */
 fun quaternionToEulerAngles(q: FloatArray): Triple<Double, Double, Double> {
     val w = q[0]
     val x = q[1]
@@ -128,6 +128,33 @@ fun calculateAngleDifference(q1: FloatArray, q2: FloatArray): Double {
     val thetaRadians = 2 * acos(absW)
 
     return Math.toDegrees(thetaRadians.toDouble())
+}
+
+// Returns the imaginary (xyz) part of the relative rotation quaternion (q2 * conj(q1)).
+fun calculateVectorDifference(q1: FloatArray, q2: FloatArray): FloatArray {
+    val q1Norm = normalizeQuaternion(q1)
+    val q2Norm = normalizeQuaternion(q2)
+    val qDiff = multiplyQuaternions(q2Norm, getConjugate(q1Norm))
+    return floatArrayOf(qDiff[1], qDiff[2], qDiff[3])
+}
+
+// Returns axis * angle (radians) for the relative rotation (q2 * conj(q1)).
+fun calculateAxisAngleVector(q1: FloatArray, q2: FloatArray): FloatArray {
+    val q1Norm = normalizeQuaternion(q1)
+    val q2Norm = normalizeQuaternion(q2)
+    val qDiff = normalizeQuaternion(multiplyQuaternions(q2Norm, getConjugate(q1Norm)))
+    val w = qDiff[0].coerceIn(-1f, 1f)
+    val angle = 2f * acos(w)
+    val sinH = sqrt(1f - w * w)
+    return if (sinH < 1e-6f) {
+        floatArrayOf(0f, 0f, 0f)
+    } else {
+        floatArrayOf(
+            (qDiff[1] / sinH) * angle,
+            (qDiff[2] / sinH) * angle,
+            (qDiff[3] / sinH) * angle
+        )
+    }
 }
 
 fun getConjugate(q: FloatArray): FloatArray {

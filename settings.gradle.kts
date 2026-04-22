@@ -21,6 +21,7 @@ dependencyResolutionManagement {
     repositories {
         maven(uri("$rootDir/repo"))
         mavenLocal()
+        maven ("https://developer.huawei.com/repo/")
         maven("https://s01.oss.sonatype.org/content/repositories/public/")
         maven("https://oss.sonatype.org/content/repositories/snapshots/")
         maven("https://maven.aliyun.com/repository/public")

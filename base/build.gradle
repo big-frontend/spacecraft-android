@@ -392,6 +392,8 @@ dependencies {
 //    releaseImplementation "io.github.didi.dokit:dokitx-no-op:${lastversion}"//no-op 模块
 
     api(libs.androidx.core.splashscreen)
+    api 'com.huawei.scenekit:scenekit-math:5.1.0.300'
+
 
 }
 
